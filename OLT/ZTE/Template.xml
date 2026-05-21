@@ -310,82 +310,6 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                   <type>MULTIPLIER</type>
                   <params>0.002</params>
                 </step>
-                <step>
-                  <type>JAVASCRIPT</type>
-                  <params>var lld = JSON.parse(value);
-var map = {};
-
-function getProprietaryIndex(snmpIndex) {
-    if (snmpIndex &gt;= 285212672) {
-        return snmpIndex;
-    }
-    if (snmpIndex &gt;= 268435456 &amp;&amp; snmpIndex &lt; 285212672) {
-        var rem = snmpIndex - 268435456;
-        var slot = Math.floor(rem / 65536);
-        var port = Math.floor((rem % 65536) / 256) + 1;
-        return 285278208 + (slot * 256) + port;
-    }
-    return null;
-}
-
-for (var i = 0; i &lt; lld.length; i++) {
-    var item = lld[i];
-    var snmpIndex = parseInt(item['{#SNMPINDEX}'], 10);
-    if (isNaN(snmpIndex)) continue;
-    
-    var propIndex = getProprietaryIndex(snmpIndex);
-    if (!propIndex) continue;
-    
-    var key = propIndex.toString();
-    if (!map[key]) {
-        map[key] = {
-            '{#PROPRIETARYINDEX}': key,
-            '{#SNMPINDEX}': snmpIndex.toString()
-        };
-    }
-    
-    for (var k in item) {
-        if (item.hasOwnProperty(k)) {
-            if (item[k] !== undefined &amp;&amp; item[k] !== null &amp;&amp; item[k] !== '') {
-                if (k === '{#SNMPINDEX}') {
-                    var currentSnmpIndex = parseInt(map[key]['{#SNMPINDEX}'], 10);
-                    if (currentSnmpIndex &gt;= 285212672 &amp;&amp; snmpIndex &lt; 285212672) {
-                        map[key]['{#SNMPINDEX}'] = item[k];
-                    }
-                } else {
-                    map[key][k] = item[k];
-                }
-            }
-        }
-    }
-}
-
-var result = [];
-for (var propKey in map) {
-    if (map.hasOwnProperty(propKey)) {
-        var mergedItem = map[propKey];
-        var ponName = mergedItem['{#PONNAME}'];
-        
-        if (ponName &amp;&amp; (ponName.indexOf('gpon_') === 0 || ponName.indexOf('gpon-') === 0)) {
-            var ponAdmin = mergedItem['{#PONADMIN}'];
-            var ponOper = mergedItem['{#PONOPER}'];
-            var onuAuth = mergedItem['{#ONUAUTH}'];
-            
-            var admin = ponAdmin ? parseInt(ponAdmin, 10) : 1;
-            var oper = ponOper ? parseInt(ponOper, 10) : 1;
-            var auth = onuAuth ? parseInt(onuAuth, 10) : 0;
-            
-            mergedItem['{#ONUAUTH}'] = auth.toString();
-            
-            if (admin === 1 &amp;&amp; oper === 1 &amp;&amp; auth &gt; 0) {
-                result.push(mergedItem);
-            }
-        }
-    }
-}
-
-return JSON.stringify(result);</params>
-                </step>
               </preprocessing>
             </item_prototype>
             <item_prototype>
@@ -457,28 +381,72 @@ return JSON.stringify(result);</params>
             <step>
               <type>JAVASCRIPT</type>
               <params>var lld = JSON.parse(value);
-var result = [];
+var map = {};
+
+function getProprietaryIndex(snmpIndex) {
+    if (snmpIndex &gt;= 285212672) {
+        return snmpIndex;
+    }
+    if (snmpIndex &gt;= 268435456 &amp;&amp; snmpIndex &lt; 285212672) {
+        var rem = snmpIndex - 268435456;
+        var slot = Math.floor(rem / 65536);
+        var port = Math.floor((rem % 65536) / 256) + 1;
+        return 285278208 + (slot * 256) + port;
+    }
+    return null;
+}
 
 for (var i = 0; i &lt; lld.length; i++) {
-    var ponName = lld[i]['{#PONNAME}'];
-    var ponAdmin = lld[i]['{#PONADMIN}'];
-    var ponOper = lld[i]['{#PONOPER}'];
-    var onuAuth = lld[i]['{#ONUAUTH}'];
+    var item = lld[i];
+    var snmpIndex = parseInt(item['{#SNMPINDEX}'], 10);
+    if (isNaN(snmpIndex)) continue;
     
-    if (ponName &amp;&amp; ponName.indexOf('gpon_') === 0) {
-        var admin = ponAdmin ? parseInt(ponAdmin, 10) : 1;
-        var oper = ponOper ? parseInt(ponOper, 10) : 1;
-        var auth = onuAuth ? parseInt(onuAuth, 10) : 0;
+    var propIndex = getProprietaryIndex(snmpIndex);
+    if (!propIndex) continue;
+    
+    var key = propIndex.toString();
+    if (!map[key]) {
+        map[key] = {
+            '{#PROPRIETARYINDEX}': key,
+            '{#SNMPINDEX}': snmpIndex.toString()
+        };
+    }
+    
+    for (var k in item) {
+        if (item.hasOwnProperty(k)) {
+            if (item[k] !== undefined &amp;&amp; item[k] !== null &amp;&amp; item[k] !== '') {
+                if (k === '{#SNMPINDEX}') {
+                    var currentSnmpIndex = parseInt(map[key]['{#SNMPINDEX}'], 10);
+                    if (currentSnmpIndex &gt;= 285212672 &amp;&amp; snmpIndex &lt; 285212672) {
+                        map[key]['{#SNMPINDEX}'] = item[k];
+                    }
+                } else {
+                    map[key][k] = item[k];
+                }
+            }
+        }
+    }
+}
+
+var result = [];
+for (var propKey in map) {
+    if (map.hasOwnProperty(propKey)) {
+        var mergedItem = map[propKey];
+        var ponName = mergedItem['{#PONNAME}'];
         
-        // Descarte se: desligada (admin != 1), sem GBIC (oper != 1) ou 0 clientes ativos (auth == 0)
-        if (admin === 1 &amp;&amp; oper === 1 &amp;&amp; auth &gt; 0) {
-            var path = ponName.substring(5).split('/');
-            if (path.length &gt;= 3) {
-                var slot = parseInt(path[1], 10);
-                var port = parseInt(path[2], 10);
-                var proprietaryIndex = 285278208 + (slot * 256) + port;
-                lld[i]['{#PROPRIETARYINDEX}'] = proprietaryIndex.toString();
-                result.push(lld[i]);
+        if (ponName &amp;&amp; (ponName.indexOf('gpon_') === 0 || ponName.indexOf('gpon-') === 0)) {
+            var ponAdmin = mergedItem['{#PONADMIN}'];
+            var ponOper = mergedItem['{#PONOPER}'];
+            var onuAuth = mergedItem['{#ONUAUTH}'];
+            
+            var admin = ponAdmin ? parseInt(ponAdmin, 10) : 1;
+            var oper = ponOper ? parseInt(ponOper, 10) : 1;
+            var auth = onuAuth ? parseInt(onuAuth, 10) : 0;
+            
+            mergedItem['{#ONUAUTH}'] = auth.toString();
+            
+            if (admin === 1 &amp;&amp; oper === 1) {
+                result.push(mergedItem);
             }
         }
     }
@@ -745,7 +713,7 @@ for (var propKey in map) {
             
             mergedItem['{#ONUAUTH}'] = auth.toString();
             
-            if (admin === 1 &amp;&amp; oper === 1 &amp;&amp; auth &gt; 0) {
+            if (admin === 1 &amp;&amp; oper === 1) {
                 result.push(mergedItem);
             }
         }
