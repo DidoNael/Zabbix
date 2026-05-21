@@ -396,6 +396,46 @@ function getProprietaryIndex(snmpIndex) {
     return null;
 }
 
+function parseStatus(val) {
+    if (val === undefined || val === null) {
+        return 1;
+    }
+    var str = val.toString().trim();
+    if (str === '') {
+        return 1;
+    }
+    if (/^\d+$/.test(str)) {
+        return parseInt(str, 10);
+    }
+    var match = str.match(/\((\d+)\)/);
+    if (match) {
+        return parseInt(match[1], 10);
+    }
+    var lower = str.toLowerCase();
+    if (lower === 'up' || lower === 'active') {
+        return 1;
+    }
+    if (lower === 'down' || lower === 'inactive') {
+        return 2;
+    }
+    return 1;
+}
+
+function parseCount(val) {
+    if (val === undefined || val === null) {
+        return 0;
+    }
+    var str = val.toString().trim();
+    if (str === '') {
+        return 0;
+    }
+    var match = str.match(/\d+/);
+    if (match) {
+        return parseInt(match[0], 10);
+    }
+    return 0;
+}
+
 for (var i = 0; i &lt; lld.length; i++) {
     var item = lld[i];
     var snmpIndex = parseInt(item['{#SNMPINDEX}'], 10);
@@ -414,7 +454,7 @@ for (var i = 0; i &lt; lld.length; i++) {
     
     for (var k in item) {
         if (item.hasOwnProperty(k)) {
-            if (item[k] !== undefined &amp;&amp; item[k] !== null &amp;&amp; item[k] !== '') {
+            if (item[k] !== undefined &amp;&amp; item[k] !== null) {
                 if (k === '{#SNMPINDEX}') {
                     var currentSnmpIndex = parseInt(map[key]['{#SNMPINDEX}'], 10);
                     if (currentSnmpIndex &gt;= 285212672 &amp;&amp; snmpIndex &lt; 285212672) {
@@ -435,17 +475,16 @@ for (var propKey in map) {
         var ponName = mergedItem['{#PONNAME}'];
         
         if (ponName &amp;&amp; (ponName.indexOf('gpon_') === 0 || ponName.indexOf('gpon-') === 0)) {
-            var ponAdmin = mergedItem['{#PONADMIN}'];
-            var ponOper = mergedItem['{#PONOPER}'];
-            var onuAuth = mergedItem['{#ONUAUTH}'];
+            var admin = parseStatus(mergedItem['{#PONADMIN}']);
+            var oper = parseStatus(mergedItem['{#PONOPER}']);
+            var auth = parseCount(mergedItem['{#ONUAUTH}']);
             
-            var admin = ponAdmin ? parseInt(ponAdmin, 10) : 1;
-            var oper = ponOper ? parseInt(ponOper, 10) : 1;
-            var auth = onuAuth ? parseInt(onuAuth, 10) : 0;
-            
+            mergedItem['{#PONADMIN}'] = admin.toString();
+            mergedItem['{#PONOPER}'] = oper.toString();
             mergedItem['{#ONUAUTH}'] = auth.toString();
+            mergedItem['{#PONDESC}'] = mergedItem['{#PONDESC}'] || '';
             
-            if (admin === 1 &amp;&amp; oper === 1) {
+            if (admin === 1 &amp;&amp; (oper === 1 || auth &gt; 0)) {
                 result.push(mergedItem);
             }
         }
@@ -664,6 +703,46 @@ function getProprietaryIndex(snmpIndex) {
     return null;
 }
 
+function parseStatus(val) {
+    if (val === undefined || val === null) {
+        return 1;
+    }
+    var str = val.toString().trim();
+    if (str === '') {
+        return 1;
+    }
+    if (/^\d+$/.test(str)) {
+        return parseInt(str, 10);
+    }
+    var match = str.match(/\((\d+)\)/);
+    if (match) {
+        return parseInt(match[1], 10);
+    }
+    var lower = str.toLowerCase();
+    if (lower === 'up' || lower === 'active') {
+        return 1;
+    }
+    if (lower === 'down' || lower === 'inactive') {
+        return 2;
+    }
+    return 1;
+}
+
+function parseCount(val) {
+    if (val === undefined || val === null) {
+        return 0;
+    }
+    var str = val.toString().trim();
+    if (str === '') {
+        return 0;
+    }
+    var match = str.match(/\d+/);
+    if (match) {
+        return parseInt(match[0], 10);
+    }
+    return 0;
+}
+
 for (var i = 0; i &lt; lld.length; i++) {
     var item = lld[i];
     var snmpIndex = parseInt(item['{#SNMPINDEX}'], 10);
@@ -682,7 +761,7 @@ for (var i = 0; i &lt; lld.length; i++) {
     
     for (var k in item) {
         if (item.hasOwnProperty(k)) {
-            if (item[k] !== undefined &amp;&amp; item[k] !== null &amp;&amp; item[k] !== '') {
+            if (item[k] !== undefined &amp;&amp; item[k] !== null) {
                 if (k === '{#SNMPINDEX}') {
                     var currentSnmpIndex = parseInt(map[key]['{#SNMPINDEX}'], 10);
                     if (currentSnmpIndex &gt;= 285212672 &amp;&amp; snmpIndex &lt; 285212672) {
@@ -703,17 +782,16 @@ for (var propKey in map) {
         var ponName = mergedItem['{#PONNAME}'];
         
         if (ponName &amp;&amp; (ponName.indexOf('gpon_') === 0 || ponName.indexOf('gpon-') === 0)) {
-            var ponAdmin = mergedItem['{#PONADMIN}'];
-            var ponOper = mergedItem['{#PONOPER}'];
-            var onuAuth = mergedItem['{#ONUAUTH}'];
+            var admin = parseStatus(mergedItem['{#PONADMIN}']);
+            var oper = parseStatus(mergedItem['{#PONOPER}']);
+            var auth = parseCount(mergedItem['{#ONUAUTH}']);
             
-            var admin = ponAdmin ? parseInt(ponAdmin, 10) : 1;
-            var oper = ponOper ? parseInt(ponOper, 10) : 1;
-            var auth = onuAuth ? parseInt(onuAuth, 10) : 0;
-            
+            mergedItem['{#PONADMIN}'] = admin.toString();
+            mergedItem['{#PONOPER}'] = oper.toString();
             mergedItem['{#ONUAUTH}'] = auth.toString();
+            mergedItem['{#PONDESC}'] = mergedItem['{#PONDESC}'] || '';
             
-            if (admin === 1 &amp;&amp; oper === 1) {
+            if (admin === 1 &amp;&amp; (oper === 1 || auth &gt; 0)) {
                 result.push(mergedItem);
             }
         }
