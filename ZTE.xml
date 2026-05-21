@@ -1,0 +1,1025 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+  <version>4.4</version>
+  <date>2026-05-21T03:03:15Z</date>
+  <groups>
+    <group>
+      <name>ZTE</name>
+    </group>
+  </groups>
+  <templates>
+    <template>
+      <template>OLT ZTE - NETSTREAM</template>
+      <name>OLT ZTE - NETSTREAM</name>
+      <groups>
+        <group>
+          <name>ZTE</name>
+        </group>
+      </groups>
+      <applications>
+        <application>
+          <name>cpu</name>
+        </application>
+        <application>
+          <name>ifdesc</name>
+        </application>
+        <application>
+          <name>ifname</name>
+        </application>
+        <application>
+          <name>ifstatus</name>
+        </application>
+        <application>
+          <name>onu</name>
+        </application>
+        <application>
+          <name>onu-dedicado</name>
+        </application>
+        <application>
+          <name>onu-state</name>
+        </application>
+        <application>
+          <name>uptime</name>
+        </application>
+      </applications>
+      <items>
+        <item>
+          <name>Uptime OLT</name>
+          <type>SNMPV2</type>
+          <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+          <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
+          <key>system.uptime</key>
+          <delay>10m</delay>
+          <history>10d</history>
+          <trends>0</trends>
+          <value_type>FLOAT</value_type>
+          <units>d</units>
+          <applications>
+            <application>
+              <name>uptime</name>
+            </application>
+          </applications>
+          <preprocessing>
+            <step>
+              <type>MULTIPLIER</type>
+              <params>0.01</params>
+            </step>
+          </preprocessing>
+        </item>
+        <item>
+          <name>OLT: Status dos Ventiladores</name>
+          <type>SNMPV2</type>
+          <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+          <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.5.1.3.1</snmp_oid>
+          <key>sensor.fan.status</key>
+          <delay>5m</delay>
+          <valuemap>
+            <name>OLT-ZTE-STATUS-FAN</name>
+          </valuemap>
+        </item>
+        <item>
+          <name>OLT: Status da Fonte de Energia 1</name>
+          <type>SNMPV2</type>
+          <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+          <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.2.1.4.1</snmp_oid>
+          <key>sensor.psu.status[1]</key>
+          <delay>5m</delay>
+          <valuemap>
+            <name>OLT-ZTE-STATUS-PSU</name>
+          </valuemap>
+        </item>
+        <item>
+          <name>OLT: Status da Fonte de Energia 2</name>
+          <type>SNMPV2</type>
+          <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+          <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.2.1.4.2</snmp_oid>
+          <key>sensor.psu.status[2]</key>
+          <delay>5m</delay>
+          <valuemap>
+            <name>OLT-ZTE-STATUS-PSU</name>
+          </valuemap>
+        </item>
+      </items>
+      <discovery_rules>
+        <discovery_rule>
+          <name>NETSTREAM - Descoberta de Placas</name>
+          <type>SNMPV2</type>
+          <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+          <snmp_oid>discovery[{#CARDTYPE},1.3.6.1.4.1.3902.1015.2.1.1.3.1.3]</snmp_oid>
+          <key>zte.card.discovery</key>
+          <delay>1h</delay>
+          <item_prototypes>
+            <item_prototype>
+              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de CPU</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.9.{#SNMPINDEX}</snmp_oid>
+              <key>zte.card.cpu[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
+              <units>%</units>
+              <applications>
+                <application>
+                  <name>cpu</name>
+                </application>
+              </applications>
+            </item_prototype>
+            <item_prototype>
+              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de MemÃ³ria</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.11.{#SNMPINDEX}</snmp_oid>
+              <key>zte.card.mem[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
+              <units>%</units>
+              <applications>
+                <application>
+                  <name>cpu</name>
+                </application>
+              </applications>
+            </item_prototype>
+            <item_prototype>
+              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Tipo de Placa FÃ­sico</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.8.{#SNMPINDEX}</snmp_oid>
+              <key>zte.card.realtype[{#SNMPINDEX}]</key>
+              <delay>1h</delay>
+              <applications>
+                <application>
+                  <name>cpu</name>
+                </application>
+              </applications>
+              <valuemap>
+                <name>OLT-ZTE-CARD-TYPE</name>
+              </valuemap>
+            </item_prototype>
+            <item_prototype>
+              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Status Operacional</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
+              <key>zte.card.status[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
+              <valuemap>
+                <name>OLT-ZTE-STATUS-CARD</name>
+              </valuemap>
+              <applications>
+                <application>
+                  <name>cpu</name>
+                </application>
+              </applications>
+            </item_prototype>
+          </item_prototypes>
+          <trigger_prototypes>
+            <trigger_prototype>
+              <expression>{OLT ZTE - NETSTREAM:zte.card.status[{#SNMPINDEX}].last()}=9</expression>
+              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa com defeito (Faulty)</name>
+              <priority>HIGH</priority>
+              <manual_close>YES</manual_close>
+            </trigger_prototype>
+            <trigger_prototype>
+              <expression>{OLT ZTE - NETSTREAM:zte.card.status[{#SNMPINDEX}].last()}=11</expression>
+              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa sem energia (No Power)</name>
+              <priority>HIGH</priority>
+              <manual_close>YES</manual_close>
+            </trigger_prototype>
+            <trigger_prototype>
+              <expression>{OLT ZTE - NETSTREAM:zte.card.cpu[{#SNMPINDEX}].min(10m)}&gt;90</expression>
+              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de CPU elevado (&gt;90% por 10m)</name>
+              <priority>AVERAGE</priority>
+              <manual_close>YES</manual_close>
+            </trigger_prototype>
+            <trigger_prototype>
+              <expression>{OLT ZTE - NETSTREAM:zte.card.mem[{#SNMPINDEX}].min(10m)}&gt;90</expression>
+              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de memÃ³ria RAM elevado (&gt;90% por 10m)</name>
+              <priority>AVERAGE</priority>
+              <manual_close>YES</manual_close>
+            </trigger_prototype>
+          </trigger_prototypes>
+        </discovery_rule>
+        <discovery_rule>
+          <name>NETSTREAM - Descoberta de ONUs</name>
+          <type>SNMPV2</type>
+          <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+          <snmp_oid>discovery[{#ONUID}, 1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.1]</snmp_oid>
+          <key>gpon.onu.discovery</key>
+          <delay>1d</delay>
+          <status>DISABLED</status>
+          <item_prototypes>
+            <item_prototype>
+              <name>ONU {#ONUID}: Sinal Ã“ptico RX</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.9.1.4.{#SNMPINDEX}.{#ONUID}</snmp_oid>
+              <key>gpon.onu.rxpower[{#SNMPINDEX},{#ONUID}]</key>
+              <delay>3h</delay>
+              <value_type>FLOAT</value_type>
+              <units>dBm</units>
+              <preprocessing>
+                <step>
+                  <type>JAVASCRIPT</type>
+                  <params>var power = parseFloat(value);
+if (power === 0 || isNaN(power) || power &gt; 100000) return -40; // Sem sinal / LOS
+return ((power * 0.002) - 30).toFixed(2);</params>
+                </step>
+              </preprocessing>
+            </item_prototype>
+          </item_prototypes>
+        </discovery_rule>
+        <discovery_rule>
+          <name>NETSTREAM - Descoberta de Portas GPON</name>
+          <type>SNMPV2</type>
+          <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+          <snmp_oid>discovery[{#PONNAME},1.3.6.1.2.1.31.1.1.1.1, {#PONDESC},1.3.6.1.2.1.2.2.1.2, {#PONADMIN},1.3.6.1.2.1.2.2.1.7, {#PONOPER},1.3.6.1.2.1.2.2.1.8, {#ONUAUTH},1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14]</snmp_oid>
+          <key>gpon.port.discovery</key>
+          <delay>1d</delay>
+          <filter>
+            <evaltype>AND</evaltype>
+            <conditions>
+              <condition>
+                <macro>{#ONUAUTH}</macro>
+                <value>^0$</value>
+                <operator>NOT_MATCHES_REGEX</operator>
+                <formulaid>A</formulaid>
+              </condition>
+            </conditions>
+          </filter>
+          <item_prototypes>
+            <item_prototype>
+              <name>Porta {#PONNAME}: ONUs Autorizadas</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#PROPRIETARYINDEX}</snmp_oid>
+              <key>gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]</key>
+              <delay>1h</delay>
+            </item_prototype>
+            <item_prototype>
+              <name>Porta {#PONNAME}: ONUs Offline</name>
+              <type>CALCULATED</type>
+              <key>gpon.onu.offline[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
+              <params>last("gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]")-last("gpon.onu.online[{#SNMPINDEX}]")</params>
+            </item_prototype>
+            <item_prototype>
+              <name>Porta {#PONNAME}: ONUs Online</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15.{#PROPRIETARYINDEX}</snmp_oid>
+              <key>gpon.onu.online[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
+            </item_prototype>
+            <item_prototype>
+              <name>Porta {#PONNAME}: ONUs Online Antes</name>
+              <type>CALCULATED</type>
+              <key>gpon.onu.online_antes[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
+              <params>last("gpon.onu.online[{#SNMPINDEX}]",#2)</params>
+            </item_prototype>
+            <item_prototype>
+              <name>Porta {#PONNAME}: Status Operacional</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
+              <key>gpon.port.status[{#SNMPINDEX}]</key>
+            </item_prototype>
+            <item_prototype>
+              <name>Porta {#PONNAME}: Temperatura do SFP</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.1.1.{#SNMPINDEX}</snmp_oid>
+              <key>gpon.sfp.temp[{#SNMPINDEX}]</key>
+              <value_type>FLOAT</value_type>
+              <units>ÂºC</units>
+              <preprocessing>
+                <step>
+                  <type>MULTIPLIER</type>
+                  <params>0.1</params>
+                </step>
+              </preprocessing>
+            </item_prototype>
+            <item_prototype>
+              <name>Porta {#PONNAME}: PotÃªncia de SaÃ­da do SFP (TX Power)</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.1.4.{#SNMPINDEX}</snmp_oid>
+              <key>gpon.sfp.txpower[{#SNMPINDEX}]</key>
+              <value_type>FLOAT</value_type>
+              <units>dBm</units>
+              <preprocessing>
+                <step>
+                  <type>MULTIPLIER</type>
+                  <params>0.002</params>
+                </step>
+                <step>
+                  <type>JAVASCRIPT</type>
+                  <params>var lld = JSON.parse(value);
+var map = {};
+
+function getProprietaryIndex(snmpIndex) {
+    if (snmpIndex &gt;= 285212672) {
+        return snmpIndex;
+    }
+    if (snmpIndex &gt;= 268435456 &amp;&amp; snmpIndex &lt; 285212672) {
+        var rem = snmpIndex - 268435456;
+        var slot = Math.floor(rem / 65536);
+        var port = Math.floor((rem % 65536) / 256) + 1;
+        return 285278208 + (slot * 256) + port;
+    }
+    return null;
+}
+
+for (var i = 0; i &lt; lld.length; i++) {
+    var item = lld[i];
+    var snmpIndex = parseInt(item['{#SNMPINDEX}'], 10);
+    if (isNaN(snmpIndex)) continue;
+    
+    var propIndex = getProprietaryIndex(snmpIndex);
+    if (!propIndex) continue;
+    
+    var key = propIndex.toString();
+    if (!map[key]) {
+        map[key] = {
+            '{#PROPRIETARYINDEX}': key,
+            '{#SNMPINDEX}': snmpIndex.toString()
+        };
+    }
+    
+    for (var k in item) {
+        if (item.hasOwnProperty(k)) {
+            if (item[k] !== undefined &amp;&amp; item[k] !== null &amp;&amp; item[k] !== '') {
+                if (k === '{#SNMPINDEX}') {
+                    var currentSnmpIndex = parseInt(map[key]['{#SNMPINDEX}'], 10);
+                    if (currentSnmpIndex &gt;= 285212672 &amp;&amp; snmpIndex &lt; 285212672) {
+                        map[key]['{#SNMPINDEX}'] = item[k];
+                    }
+                } else {
+                    map[key][k] = item[k];
+                }
+            }
+        }
+    }
+}
+
+var result = [];
+for (var propKey in map) {
+    if (map.hasOwnProperty(propKey)) {
+        var mergedItem = map[propKey];
+        var ponName = mergedItem['{#PONNAME}'];
+        
+        if (ponName &amp;&amp; (ponName.indexOf('gpon_') === 0 || ponName.indexOf('gpon-') === 0)) {
+            var ponAdmin = mergedItem['{#PONADMIN}'];
+            var ponOper = mergedItem['{#PONOPER}'];
+            var onuAuth = mergedItem['{#ONUAUTH}'];
+            
+            var admin = ponAdmin ? parseInt(ponAdmin, 10) : 1;
+            var oper = ponOper ? parseInt(ponOper, 10) : 1;
+            var auth = onuAuth ? parseInt(onuAuth, 10) : 0;
+            
+            mergedItem['{#ONUAUTH}'] = auth.toString();
+            
+            if (admin === 1 &amp;&amp; oper === 1 &amp;&amp; auth &gt; 0) {
+                result.push(mergedItem);
+            }
+        }
+    }
+}
+
+return JSON.stringify(result);</params>
+                </step>
+              </preprocessing>
+            </item_prototype>
+            <item_prototype>
+              <name>Porta {#PONNAME}: Erros de Entrada</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
+              <key>net.if.in.errors[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
+              <preprocessing>
+                <step>
+                  <type>CHANGE_PER_SECOND</type>
+                  <params />
+                </step>
+              </preprocessing>
+            </item_prototype>
+            <item_prototype>
+              <name>Porta {#PONNAME}: TrÃ¡fego de Entrada (Download)</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+              <key>net.if.in[{#SNMPINDEX}]</key>
+              <units>bps</units>
+              <preprocessing>
+                <step>
+                  <type>CHANGE_PER_SECOND</type>
+                  <params />
+                </step>
+                <step>
+                  <type>MULTIPLIER</type>
+                  <params>8</params>
+                </step>
+              </preprocessing>
+            </item_prototype>
+            <item_prototype>
+              <name>Porta {#PONNAME}: Erros de SaÃ­da</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
+              <key>net.if.out.errors[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
+              <preprocessing>
+                <step>
+                  <type>CHANGE_PER_SECOND</type>
+                  <params />
+                </step>
+              </preprocessing>
+            </item_prototype>
+            <item_prototype>
+              <name>Porta {#PONNAME}: TrÃ¡fego de SaÃ­da (Upload)</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
+              <key>net.if.out[{#SNMPINDEX}]</key>
+              <units>bps</units>
+              <preprocessing>
+                <step>
+                  <type>CHANGE_PER_SECOND</type>
+                  <params />
+                </step>
+                <step>
+                  <type>MULTIPLIER</type>
+                  <params>8</params>
+                </step>
+              </preprocessing>
+            </item_prototype>
+          </item_prototypes>
+          <preprocessing>
+            <step>
+              <type>JAVASCRIPT</type>
+              <params>var lld = JSON.parse(value);
+var result = [];
+
+for (var i = 0; i &lt; lld.length; i++) {
+    var ponName = lld[i]['{#PONNAME}'];
+    var ponAdmin = lld[i]['{#PONADMIN}'];
+    var ponOper = lld[i]['{#PONOPER}'];
+    var onuAuth = lld[i]['{#ONUAUTH}'];
+    
+    if (ponName &amp;&amp; ponName.indexOf('gpon_') === 0) {
+        var admin = ponAdmin ? parseInt(ponAdmin, 10) : 1;
+        var oper = ponOper ? parseInt(ponOper, 10) : 1;
+        var auth = onuAuth ? parseInt(onuAuth, 10) : 0;
+        
+        // Descarte se: desligada (admin != 1), sem GBIC (oper != 1) ou 0 clientes ativos (auth == 0)
+        if (admin === 1 &amp;&amp; oper === 1 &amp;&amp; auth &gt; 0) {
+            var path = ponName.substring(5).split('/');
+            if (path.length &gt;= 3) {
+                var slot = parseInt(path[1], 10);
+                var port = parseInt(path[2], 10);
+                var proprietaryIndex = 285278208 + (slot * 256) + port;
+                lld[i]['{#PROPRIETARYINDEX}'] = proprietaryIndex.toString();
+                result.push(lld[i]);
+            }
+        }
+    }
+}
+
+return JSON.stringify(result);</params>
+            </step>
+          </preprocessing>
+          <trigger_prototypes>
+            <trigger_prototype>
+              <expression>{OLT ZTE - NETSTREAM:gpon.onu.online[{#SNMPINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;=0 and ({OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}-{OLT ZTE - NETSTREAM:gpon.onu.online[{#SNMPINDEX}].last()})&gt;={$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2</expression>
+              <name>Porta {#PONNAME}: Queda massiva de ONUs (MÃ­nimo {$GPON_DROP_MIN} ONUs)</name>
+              <priority>DISASTER</priority>
+              <manual_close>YES</manual_close>
+              <tags>
+                <tag>
+                  <tag>clientes_online</tag>
+                  <value>{ITEM.VALUE1}</value>
+                </tag>
+                <tag>
+                  <tag>clientes_autorizados</tag>
+                  <value>{ITEM.VALUE2}</value>
+                </tag>
+                <tag>
+                  <tag>online_antes</tag>
+                  <value>{ITEM.VALUE3}</value>
+                </tag>
+                <tag>
+                  <tag>pon_name</tag>
+                  <value>{#PONNAME}</value>
+                </tag>
+              </tags>
+            </trigger_prototype>
+            <trigger_prototype>
+              <expression>{OLT ZTE - NETSTREAM:net.if.in.errors[{#SNMPINDEX}].last()}&gt;10</expression>
+              <name>Porta {#PONNAME}: Taxa de erros de entrada elevada</name>
+              <priority>WARNING</priority>
+              <manual_close>YES</manual_close>
+              <tags>
+                <tag>
+                  <tag>erros_in</tag>
+                  <value>{ITEM.VALUE1}</value>
+                </tag>
+                <tag>
+                  <tag>pon_name</tag>
+                  <value>{#PONNAME}</value>
+                </tag>
+              </tags>
+            </trigger_prototype>
+            <trigger_prototype>
+              <expression>{OLT ZTE - NETSTREAM:net.if.out.errors[{#SNMPINDEX}].last()}&gt;10</expression>
+              <name>Porta {#PONNAME}: Taxa de erros de saÃ­da elevada</name>
+              <priority>WARNING</priority>
+              <manual_close>YES</manual_close>
+              <tags>
+                <tag>
+                  <tag>erros_out</tag>
+                  <value>{ITEM.VALUE1}</value>
+                </tag>
+                <tag>
+                  <tag>pon_name</tag>
+                  <value>{#PONNAME}</value>
+                </tag>
+              </tags>
+            </trigger_prototype>
+            <trigger_prototype>
+              <expression>{OLT ZTE - NETSTREAM:gpon.port.status[{#SNMPINDEX}].last()}=2 and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2 and {OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;=0</expression>
+              <name>Porta {#PONNAME}: Porta GPON Apagada (Inativa)</name>
+              <priority>HIGH</priority>
+              <manual_close>YES</manual_close>
+              <tags>
+                <tag>
+                  <tag>status_gpon</tag>
+                  <value>{ITEM.VALUE1}</value>
+                </tag>
+                <tag>
+                  <tag>total_autorizadas</tag>
+                  <value>{ITEM.VALUE2}</value>
+                </tag>
+                <tag>
+                  <tag>online_antes</tag>
+                  <value>{ITEM.VALUE3}</value>
+                </tag>
+                <tag>
+                  <tag>pon_name</tag>
+                  <value>{#PONNAME}</value>
+                </tag>
+              </tags>
+            </trigger_prototype>
+            <trigger_prototype>
+              <expression>{OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;127 and {OLT ZTE - NETSTREAM:gpon.port.status[{#SNMPINDEX}].last()}=1</expression>
+              <name>Porta {#PONNAME}: Porta GPON Cheia (&gt;127 ONUs autorizadas)</name>
+              <priority>WARNING</priority>
+              <manual_close>YES</manual_close>
+              <tags>
+                <tag>
+                  <tag>clientes_autorizados</tag>
+                  <value>{ITEM.VALUE1}</value>
+                </tag>
+                <tag>
+                  <tag>pon_name</tag>
+                  <value>{#PONNAME}</value>
+                </tag>
+              </tags>
+            </trigger_prototype>
+          </trigger_prototypes>
+        </discovery_rule>
+        <discovery_rule>
+          <name>Discovery pon state | pon name | pondesc</name>
+          <type>SNMPV2</type>
+          <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+          <snmp_oid>discovery[{#PONNAME},1.3.6.1.2.1.31.1.1.1.1, {#PONDESC},1.3.6.1.2.1.2.2.1.2, {#PONADMIN},1.3.6.1.2.1.2.2.1.7, {#PONOPER},1.3.6.1.2.1.2.2.1.8, {#ONUAUTH},1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14]</snmp_oid>
+          <key>interfaces.discovery</key>
+          <delay>1d</delay>
+          <filter>
+            <evaltype>AND</evaltype>
+            <conditions>
+              <condition>
+                <macro>{#PONDESC}</macro>
+                <value>LAB-NAEL</value>
+                <operator>NOT_MATCHES_REGEX</operator>
+                <formulaid>A</formulaid>
+              </condition>
+              <condition>
+                <macro>{#PONNAME}</macro>
+                <value>^(xgei_|gei_).*</value>
+                <operator>NOT_MATCHES_REGEX</operator>
+                <formulaid>B</formulaid>
+              </condition>
+              <condition>
+                <macro>{#ONUAUTH}</macro>
+                <value>^0$</value>
+                <operator>NOT_MATCHES_REGEX</operator>
+                <formulaid>C</formulaid>
+              </condition>
+            </conditions>
+          </filter>
+          <item_prototypes>
+            <item_prototype>
+              <name>ONU Autorizadas: {#PONNAME} : {#PONDESC}</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#PROPRIETARYINDEX}</snmp_oid>
+              <key>onuauth.[{#SNMPINDEX}]</key>
+              <delay>1d</delay>
+              <trends>0</trends>
+              <applications>
+                <application>
+                  <name>onu</name>
+                </application>
+              </applications>
+            </item_prototype>
+            <item_prototype>
+              <name>Operational Status: {#PONNAME} : {#PONDESC}</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
+              <key>statuspon.[{#SNMPINDEX}]</key>
+              <trends>90d</trends>
+              <applications>
+                <application>
+                  <name>ifstatus</name>
+                </application>
+              </applications>
+              <valuemap>
+                <name>OLT</name>
+              </valuemap>
+              <trigger_prototypes>
+                <trigger_prototype>
+                  <expression>{last()}=2
+and
+{prev()}=1
+and 
+{min(#3)}=1</expression>
+                  <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                  <recovery_expression>{last()}=1</recovery_expression>
+                  <name>{#PONNAME} : {#PONDESC}</name>
+                  <priority>HIGH</priority>
+                  <description>{#PONNAME}</description>
+                  <manual_close>YES</manual_close>
+                  <tags>
+                    <tag>
+                      <tag>PONDOWN</tag>
+                      <value>PONDOWN</value>
+                    </tag>
+                    <tag>
+                      <tag>PONOLT</tag>
+                      <value>{#PONNAME}</value>
+                    </tag>
+                    <tag>
+                      <tag>PONZTE</tag>
+                      <value>PONZTE</value>
+                    </tag>
+                  </tags>
+                </trigger_prototype>
+              </trigger_prototypes>
+            </item_prototype>
+          </item_prototypes>
+          <preprocessing>
+            <step>
+              <type>JAVASCRIPT</type>
+              <params>var lld = JSON.parse(value);
+var map = {};
+
+function getProprietaryIndex(snmpIndex) {
+    if (snmpIndex &gt;= 285212672) {
+        return snmpIndex;
+    }
+    if (snmpIndex &gt;= 268435456 &amp;&amp; snmpIndex &lt; 285212672) {
+        var rem = snmpIndex - 268435456;
+        var slot = Math.floor(rem / 65536);
+        var port = Math.floor((rem % 65536) / 256) + 1;
+        return 285278208 + (slot * 256) + port;
+    }
+    return null;
+}
+
+for (var i = 0; i &lt; lld.length; i++) {
+    var item = lld[i];
+    var snmpIndex = parseInt(item['{#SNMPINDEX}'], 10);
+    if (isNaN(snmpIndex)) continue;
+    
+    var propIndex = getProprietaryIndex(snmpIndex);
+    if (!propIndex) continue;
+    
+    var key = propIndex.toString();
+    if (!map[key]) {
+        map[key] = {
+            '{#PROPRIETARYINDEX}': key,
+            '{#SNMPINDEX}': snmpIndex.toString()
+        };
+    }
+    
+    for (var k in item) {
+        if (item.hasOwnProperty(k)) {
+            if (item[k] !== undefined &amp;&amp; item[k] !== null &amp;&amp; item[k] !== '') {
+                if (k === '{#SNMPINDEX}') {
+                    var currentSnmpIndex = parseInt(map[key]['{#SNMPINDEX}'], 10);
+                    if (currentSnmpIndex &gt;= 285212672 &amp;&amp; snmpIndex &lt; 285212672) {
+                        map[key]['{#SNMPINDEX}'] = item[k];
+                    }
+                } else {
+                    map[key][k] = item[k];
+                }
+            }
+        }
+    }
+}
+
+var result = [];
+for (var propKey in map) {
+    if (map.hasOwnProperty(propKey)) {
+        var mergedItem = map[propKey];
+        var ponName = mergedItem['{#PONNAME}'];
+        
+        if (ponName &amp;&amp; (ponName.indexOf('gpon_') === 0 || ponName.indexOf('gpon-') === 0)) {
+            var ponAdmin = mergedItem['{#PONADMIN}'];
+            var ponOper = mergedItem['{#PONOPER}'];
+            var onuAuth = mergedItem['{#ONUAUTH}'];
+            
+            var admin = ponAdmin ? parseInt(ponAdmin, 10) : 1;
+            var oper = ponOper ? parseInt(ponOper, 10) : 1;
+            var auth = onuAuth ? parseInt(onuAuth, 10) : 0;
+            
+            mergedItem['{#ONUAUTH}'] = auth.toString();
+            
+            if (admin === 1 &amp;&amp; oper === 1 &amp;&amp; auth &gt; 0) {
+                result.push(mergedItem);
+            }
+        }
+    }
+}
+
+return JSON.stringify(result);</params>
+            </step>
+          </preprocessing>
+        </discovery_rule>
+        <discovery_rule>
+          <name>Discovery ONU DEDICADO</name>
+          <type>SNMPV2</type>
+          <snmp_community>S3ML1M1T3</snmp_community>
+          <snmp_oid>discovery[{#ONTDESC},1.3.6.1.4.1.3902.1012.3.28.1.1.2]</snmp_oid>
+          <key>oltonudedicado</key>
+          <delay>1d</delay>
+          <port>161</port>
+          <filter>
+            <conditions>
+              <condition>
+                <macro>{#ONTDESC}</macro>
+                <value>dedicado-.*</value>
+                <formulaid>A</formulaid>
+              </condition>
+            </conditions>
+          </filter>
+          <item_prototypes>
+            <item_prototype>
+              <name>Cliente - {#ONTDESC}</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1012.3.28.2.1.4.{#SNMPINDEX}</snmp_oid>
+              <key>onu.status.[{#SNMPINDEX}]</key>
+              <trends>90d</trends>
+              <status>DISABLED</status>
+              <port>161</port>
+              <applications>
+                <application>
+                  <name>onu-dedicado</name>
+                </application>
+                <application>
+                  <name>onu-state</name>
+                </application>
+              </applications>
+              <valuemap>
+                <name>OLT-ZTE-STATUS-ONT</name>
+              </valuemap>
+              <trigger_prototypes>
+                <trigger_prototype>
+                  <expression>{min(#5)}=1</expression>
+                  <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                  <recovery_expression>{last()}=3</recovery_expression>
+                  <name>Status ONU - {#ONTDESC}</name>
+                  <priority>INFO</priority>
+                  <manual_close>YES</manual_close>
+                  <tags>
+                    <tag>
+                      <tag>ONUDEDICADO</tag>
+                      <value>ONUDEDICADO</value>
+                    </tag>
+                    <tag>
+                      <tag>ONUSTATUS</tag>
+                      <value>{ITEM.LASTVALUE}</value>
+                    </tag>
+                  </tags>
+                </trigger_prototype>
+              </trigger_prototypes>
+            </item_prototype>
+          </item_prototypes>
+        </discovery_rule>
+      </discovery_rules>
+      <macros>
+        <macro>
+          <macro>{$GPON_DROP_MIN}</macro>
+          <value>5</value>
+        </macro>
+      </macros>
+    </template>
+  </templates>
+  <triggers>
+    <trigger>
+      <expression>{OLT ZTE - NETSTREAM:sensor.fan.status.last()}=4</expression>
+      <name>OLT: Falha no Ventilador (Fan Fail)</name>
+      <priority>HIGH</priority>
+      <manual_close>YES</manual_close>
+    </trigger>
+    <trigger>
+      <expression>{OLT ZTE - NETSTREAM:sensor.psu.status[1].last()}=2</expression>
+      <name>OLT: Falha na Fonte de Energia 1</name>
+      <priority>HIGH</priority>
+      <manual_close>YES</manual_close>
+    </trigger>
+    <trigger>
+      <expression>{OLT ZTE - NETSTREAM:sensor.psu.status[2].last()}=2</expression>
+      <name>OLT: Falha na Fonte de Energia 2</name>
+      <priority>HIGH</priority>
+      <manual_close>YES</manual_close>
+    </trigger>
+    <trigger>
+      <expression>{OLT ZTE - NETSTREAM:sensor.psu.status[1].last()}=3</expression>
+      <name>OLT: Fonte de Energia 1 Desconectada / Offline</name>
+      <priority>WARNING</priority>
+      <manual_close>YES</manual_close>
+    </trigger>
+    <trigger>
+      <expression>{OLT ZTE - NETSTREAM:sensor.psu.status[2].last()}=3</expression>
+      <name>OLT: Fonte de Energia 2 Desconectada / Offline</name>
+      <priority>WARNING</priority>
+      <manual_close>YES</manual_close>
+    </trigger>
+  </triggers>
+  <value_maps>
+    <value_map>
+      <name>OLT</name>
+      <mappings>
+        <mapping>
+          <value>1</value>
+          <newvalue>GPON OK</newvalue>
+        </mapping>
+        <mapping>
+          <value>2</value>
+          <newvalue>GPON APAGADA</newvalue>
+        </mapping>
+      </mappings>
+    </value_map>
+    <value_map>
+      <name>OLT-ZTE-STATUS-ONT</name>
+      <mappings>
+        <mapping>
+          <value>0</value>
+          <newvalue>Offline ( Desligada a muito tempo)</newvalue>
+        </mapping>
+        <mapping>
+          <value>1</value>
+          <newvalue>LOS / LOFI / SFi</newvalue>
+        </mapping>
+        <mapping>
+          <value>2</value>
+          <newvalue>SFi ( Falha de sinal atÃ© a ONU )</newvalue>
+        </mapping>
+        <mapping>
+          <value>3</value>
+          <newvalue>Working ( Ativa )</newvalue>
+        </mapping>
+        <mapping>
+          <value>4</value>
+          <newvalue>Dyinggasp ( Desligada / Queda de Enegia )</newvalue>
+        </mapping>
+      </mappings>
+    </value_map>
+    <value_map>
+      <name>OLT-ZTE-STATUS-FAN</name>
+      <mappings>
+        <mapping>
+          <value>1</value>
+          <newvalue>normal</newvalue>
+        </mapping>
+        <mapping>
+          <value>2</value>
+          <newvalue>speed low</newvalue>
+        </mapping>
+        <mapping>
+          <value>3</value>
+          <newvalue>speed high</newvalue>
+        </mapping>
+        <mapping>
+          <value>4</value>
+          <newvalue>fail</newvalue>
+        </mapping>
+      </mappings>
+    </value_map>
+    <value_map>
+      <name>OLT-ZTE-STATUS-PSU</name>
+      <mappings>
+        <mapping>
+          <value>1</value>
+          <newvalue>normal</newvalue>
+        </mapping>
+        <mapping>
+          <value>2</value>
+          <newvalue>fail</newvalue>
+        </mapping>
+        <mapping>
+          <value>3</value>
+          <newvalue>offline</newvalue>
+        </mapping>
+      </mappings>
+    </value_map>
+    <value_map>
+      <name>OLT-ZTE-STATUS-CARD</name>
+      <mappings>
+        <mapping>
+          <value>1</value>
+          <newvalue>inService (Ativa)</newvalue>
+        </mapping>
+        <mapping>
+          <value>2</value>
+          <newvalue>notInService</newvalue>
+        </mapping>
+        <mapping>
+          <value>3</value>
+          <newvalue>hwOnline (Software nÃ£o carregado)</newvalue>
+        </mapping>
+        <mapping>
+          <value>4</value>
+          <newvalue>hwOffline (Desconectada)</newvalue>
+        </mapping>
+        <mapping>
+          <value>5</value>
+          <newvalue>configuring</newvalue>
+        </mapping>
+        <mapping>
+          <value>6</value>
+          <newvalue>configFailed</newvalue>
+        </mapping>
+        <mapping>
+          <value>7</value>
+          <newvalue>typeMismatch</newvalue>
+        </mapping>
+        <mapping>
+          <value>8</value>
+          <newvalue>deactivated</newvalue>
+        </mapping>
+        <mapping>
+          <value>9</value>
+          <newvalue>faulty (Falha na Placa)</newvalue>
+        </mapping>
+        <mapping>
+          <value>10</value>
+          <newvalue>invalid</newvalue>
+        </mapping>
+        <mapping>
+          <value>11</value>
+          <newvalue>noPower (Sem Energia)</newvalue>
+        </mapping>
+        <mapping>
+          <value>12</value>
+          <newvalue>unauthorized</newvalue>
+        </mapping>
+        <mapping>
+          <value>13</value>
+          <newvalue>adminDown</newvalue>
+        </mapping>
+        <mapping>
+          <value>34</value>
+          <newvalue>powerSaving</newvalue>
+        </mapping>
+      </mappings>
+    </value_map>
+    <value_map>
+      <name>OLT-ZTE-CARD-TYPE</name>
+      <mappings>
+        <mapping>
+          <value>1</value>
+          <newvalue>Slot vazio/desconhecido</newvalue>
+        </mapping>
+        <mapping>
+          <value>43</value>
+          <newvalue>Placa do tipo GU1A</newvalue>
+        </mapping>
+        <mapping>
+          <value>48</value>
+          <newvalue>Placa do tipo GU1F</newvalue>
+        </mapping>
+        <mapping>
+          <value>119</value>
+          <newvalue>Placa do tipo GTGH</newvalue>
+        </mapping>
+        <mapping>
+          <value>135</value>
+          <newvalue>Placa do tipo GTOH</newvalue>
+        </mapping>
+      </mappings>
+    </value_map>
+  </value_maps>
+</zabbix_export>
