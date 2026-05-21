@@ -6,7 +6,7 @@ Repositório centralizado de templates customizados para o Zabbix, otimizados pa
 
 ## Templates Disponíveis
 
-### 1. ZTE GPON OLT (`ZTE.xml`)
+### 1. ZTE GPON OLT (`OLT/ZTE/Template.xml`)
 Template otimizado e corrigido para compatibilidade com o **Zabbix 4.4+**.
 
 #### Principais Características e Correções:
@@ -26,7 +26,7 @@ Template otimizado e corrigido para compatibilidade com o **Zabbix 4.4+**.
 
 1. **Importação:**
    * Acesse `Configuration` > `Templates` > `Import` no seu painel do Zabbix.
-   * Escolha o arquivo `ZTE.xml` deste repositório e clique em **Import**.
+   * Escolha o arquivo `OLT/ZTE/Template.xml` deste repositório e clique em **Import**.
 2. **Macros de Host / Template:**
    * Certifique-se de configurar a macro `{$SNMP_COMMUNITY}` com a comunidade SNMP correta.
    * Ajuste a macro `{$GPON_DROP_MIN}` (padrão `5`) caso queira alterar a sensibilidade do alarme de queda massiva.
