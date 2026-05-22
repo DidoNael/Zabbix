@@ -180,7 +180,7 @@
           <delay>5m</delay>
         </item>
         <item>
-          <name>Uso de MemÃ³ria RAM</name>
+          <name>Uso de Memória RAM</name>
           <type>SNMPV2</type>
           <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
           <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.4</snmp_oid>
@@ -199,7 +199,7 @@
           <status>DISABLED</status>
           <item_prototypes>
             <item_prototype>
-              <name>ONU {#ONUID}: Sinal Ãƒâ€œptico RX</name>
+              <name>ONU {#ONUID}: Sinal óptico RX</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.9.1.4.{#SNMPINDEX}.{#ONUID}</snmp_oid>
@@ -283,7 +283,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <key>gpon.sfp.temp[{#SNMPINDEX}]</key>
               <delay>5m</delay>
               <value_type>FLOAT</value_type>
-              <units>Ã‚ÂºC</units>
+              <units>ºC</units>
               <preprocessing>
                 <step>
                   <type>MULTIPLIER</type>
@@ -292,7 +292,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               </preprocessing>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: PotÃƒÂªncia de SaÃƒÂ­da do SFP (TX Power)</name>
+              <name>Porta {#PONNAME}: Potência de Saída do SFP (TX Power)</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1082.30.40.2.4.1.3.{#PROPRIETARYINDEX}</snmp_oid>
@@ -342,7 +342,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               </trigger_prototypes>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: TrÃƒÂ¡fego de Entrada (Download)</name>
+              <name>Porta {#PONNAME}: Tráfego de Entrada (Download)</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
@@ -361,7 +361,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               </preprocessing>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: Erros de SaÃƒÂ­da</name>
+              <name>Porta {#PONNAME}: Erros de Saída</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
@@ -376,7 +376,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <trigger_prototypes>
                 <trigger_prototype>
                   <expression>{last()}&gt;10</expression>
-                  <name>Porta {#PONNAME}: Taxa de erros de saÃƒÂ­da elevada</name>
+                  <name>Porta {#PONNAME}: Taxa de erros de saída elevada</name>
                   <priority>WARNING</priority>
                   <manual_close>YES</manual_close>
                   <tags>
@@ -393,7 +393,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               </trigger_prototypes>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: TrÃƒÂ¡fego de SaÃƒÂ­da (Upload)</name>
+              <name>Porta {#PONNAME}: Tráfego de Saída (Upload)</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
@@ -455,7 +455,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
             </trigger_prototype>
             <trigger_prototype>
               <expression>{OLT ZTE - NETSTREAM:gpon.onu.online[{#SNMPINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;=0 and ({OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}-{OLT ZTE - NETSTREAM:gpon.onu.online[{#SNMPINDEX}].last()})&gt;={$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2</expression>
-              <name>Porta {#PONNAME}: Queda massiva de ONUs (MÃƒÂ­nimo {$GPON_DROP_MIN} ONUs)</name>
+              <name>Porta {#PONNAME}: Queda massiva de ONUs (Mínimo {$GPON_DROP_MIN} ONUs)</name>
               <priority>DISASTER</priority>
               <manual_close>YES</manual_close>
               <tags>
@@ -776,7 +776,7 @@ and
               </trigger_prototypes>
             </item_prototype>
             <item_prototype>
-              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de MemÃƒÂ³ria</name>
+              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de Memória</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.11.{#SNMPINDEX}</snmp_oid>
@@ -791,14 +791,14 @@ and
               <trigger_prototypes>
                 <trigger_prototype>
                   <expression>{min(10m)}&gt;90</expression>
-                  <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de memÃƒÂ³ria RAM elevado (&gt;90% por 10m)</name>
+                  <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de memória RAM elevado (&gt;90% por 10m)</name>
                   <priority>AVERAGE</priority>
                   <manual_close>YES</manual_close>
                 </trigger_prototype>
               </trigger_prototypes>
             </item_prototype>
             <item_prototype>
-              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Tipo de Placa FÃƒÂ­sico</name>
+              <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Tipo de Placa Físico</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.8.{#SNMPINDEX}</snmp_oid>
@@ -918,7 +918,7 @@ and
         </mapping>
         <mapping>
           <value>3</value>
-          <newvalue>hwOnline (Software nÃ£o carregado)</newvalue>
+          <newvalue>hwOnline (Software não carregado)</newvalue>
         </mapping>
         <mapping>
           <value>4</value>
@@ -1000,7 +1000,7 @@ and
         </mapping>
         <mapping>
           <value>2</value>
-          <newvalue>SFi ( Falha de sinal atÃ© a ONU )</newvalue>
+          <newvalue>SFi ( Falha de sinal até a ONU )</newvalue>
         </mapping>
         <mapping>
           <value>3</value>
