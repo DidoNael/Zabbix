@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
   <version>4.4</version>
   <date>2026-05-21T03:03:15Z</date>
@@ -391,7 +391,7 @@ function getProprietaryIndex(snmpIndex) {
         var rem = snmpIndex - 268435456;
         var slot = Math.floor(rem / 65536);
         var port = Math.floor((rem % 65536) / 256) + 1;
-        return 285278208 + (slot * 256) + port;
+        return 285278208 + ((slot + 1) * 256) + port;
     }
     return null;
 }
@@ -698,7 +698,7 @@ function getProprietaryIndex(snmpIndex) {
         var rem = snmpIndex - 268435456;
         var slot = Math.floor(rem / 65536);
         var port = Math.floor((rem % 65536) / 256) + 1;
-        return 285278208 + (slot * 256) + port;
+        return 285278208 + ((slot + 1) * 256) + port;
     }
     return null;
 }
