@@ -841,6 +841,18 @@ and
                   <priority>HIGH</priority>
                   <manual_close>YES</manual_close>
                 </trigger_prototype>
+                <trigger_prototype>
+                  <expression>{last()}=4</expression>
+                  <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Desconectada / Offline</name>
+                  <priority>HIGH</priority>
+                  <manual_close>YES</manual_close>
+                </trigger_prototype>
+                <trigger_prototype>
+                  <expression>{last()}=2</expression>
+                  <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Fora de Servico (Not in Service)</name>
+                  <priority>WARNING</priority>
+                  <manual_close>YES</manual_close>
+                </trigger_prototype>
               </trigger_prototypes>
             </item_prototype>
           </item_prototypes>
