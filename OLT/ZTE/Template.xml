@@ -256,6 +256,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
               <key>gpon.port.status[{#SNMPINDEX}]</key>
+              <delay>1m</delay>
             </item_prototype>
             <item_prototype>
               <name>Porta {#PONNAME}: Temperatura do SFP</name>
@@ -263,6 +264,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.1.1.{#SNMPINDEX}</snmp_oid>
               <key>gpon.sfp.temp[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
               <value_type>FLOAT</value_type>
               <units>Ã‚ÂºC</units>
               <preprocessing>
@@ -278,6 +280,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.1.4.{#SNMPINDEX}</snmp_oid>
               <key>gpon.sfp.txpower[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
               <value_type>FLOAT</value_type>
               <units>dBm</units>
               <preprocessing>
@@ -327,6 +330,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
               <key>net.if.in[{#SNMPINDEX}]</key>
+              <delay>1m</delay>
               <units>bps</units>
               <preprocessing>
                 <step>
@@ -377,6 +381,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
               <key>net.if.out[{#SNMPINDEX}]</key>
+              <delay>1m</delay>
               <units>bps</units>
               <preprocessing>
                 <step>
@@ -603,7 +608,7 @@ return JSON.stringify(result);</params>
               <name>ONU Autorizadas: {#PONNAME} : {#PONDESC}</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-              <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#PROPRIETARYINDEX}</snmp_oid>
+              <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#SNMPINDEX}</snmp_oid>
               <key>onuauth.[{#SNMPINDEX}]</key>
               <delay>1d</delay>
               <trends>0</trends>
@@ -619,6 +624,7 @@ return JSON.stringify(result);</params>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
               <key>statuspon.[{#SNMPINDEX}]</key>
+              <delay>1m</delay>
               <trends>90d</trends>
               <applications>
                 <application>
@@ -684,6 +690,7 @@ and
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1012.3.28.2.1.4.{#SNMPINDEX}</snmp_oid>
               <key>onu.status.[{#SNMPINDEX}]</key>
+              <delay>5m</delay>
               <trends>90d</trends>
               <status>DISABLED</status>
               <port>161</port>
