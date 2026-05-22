@@ -216,6 +216,62 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                 </step>
               </preprocessing>
             </item_prototype>
+            <item_prototype>
+              <name>ONU {#ONUID}: Status (Phase State)</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1012.3.28.2.1.4.{#SNMPINDEX}.{#ONUID}</snmp_oid>
+              <key>gpon.onu.phase_state[{#SNMPINDEX},{#ONUID}]</key>
+              <delay>5m</delay>
+              <status>DISABLED</status>
+              <applications>
+                <application>
+                  <name>onu</name>
+                </application>
+                <application>
+                  <name>onu-state</name>
+                </application>
+              </applications>
+              <valuemap>
+                <name>OLT-ZTE-STATUS-ONT</name>
+              </valuemap>
+              <trigger_prototypes>
+                <trigger_prototype>
+                  <expression>{last()}=1</expression>
+                  <name>ONU {#ONUID} no slot {#SNMPINDEX}: Fibra óptica rompida (LOS)</name>
+                  <priority>AVERAGE</priority>
+                  <status>DISABLED</status>
+                  <manual_close>YES</manual_close>
+                </trigger_prototype>
+                <trigger_prototype>
+                  <expression>{last()}=4</expression>
+                  <name>ONU {#ONUID} no slot {#SNMPINDEX}: Sem energia elétrica (Dying Gasp)</name>
+                  <priority>WARNING</priority>
+                  <status>DISABLED</status>
+                  <manual_close>YES</manual_close>
+                </trigger_prototype>
+              </trigger_prototypes>
+            </item_prototype>
+            <item_prototype>
+              <name>ONU {#ONUID}: Motivo da última queda (Last Offline Reason)</name>
+              <type>SNMPV2</type>
+              <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+              <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7.{#SNMPINDEX}.{#ONUID}</snmp_oid>
+              <key>gpon.onu.last_offline_reason[{#SNMPINDEX},{#ONUID}]</key>
+              <delay>5m</delay>
+              <status>DISABLED</status>
+              <applications>
+                <application>
+                  <name>onu</name>
+                </application>
+                <application>
+                  <name>onu-state</name>
+                </application>
+              </applications>
+              <valuemap>
+                <name>OLT-ZTE-OFFLINE-REASON</name>
+              </valuemap>
+            </item_prototype>
           </item_prototypes>
         </discovery_rule>
         <discovery_rule>
@@ -1026,6 +1082,27 @@ and
         <mapping>
           <value>3</value>
           <newvalue>offline</newvalue>
+        </mapping>
+      </mappings>
+    </value_map>
+    <value_map>
+      <name>OLT-ZTE-OFFLINE-REASON</name>
+      <mappings>
+        <mapping>
+          <value>1</value>
+          <newvalue>unknown</newvalue>
+        </mapping>
+        <mapping>
+          <value>2</value>
+          <newvalue>los (Loss of Signal)</newvalue>
+        </mapping>
+        <mapping>
+          <value>3</value>
+          <newvalue>losi (Loss of Signal of ONUs)</newvalue>
+        </mapping>
+        <mapping>
+          <value>9</value>
+          <newvalue>powerOff (Dying Gasp)</newvalue>
         </mapping>
       </mappings>
     </value_map>
