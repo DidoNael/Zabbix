@@ -294,7 +294,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
           </filter>
           <item_prototypes>
             <item_prototype>
-              <name>Porta {#PONNAME}: ONUs Autorizadas</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): ONUs Autorizadas</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#PROPRIETARYINDEX}</snmp_oid>
@@ -302,14 +302,14 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <delay>1h</delay>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: ONUs Offline</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): ONUs Offline</name>
               <type>CALCULATED</type>
               <key>gpon.onu.offline[{#SNMPINDEX}]</key>
               <delay>5m</delay>
               <params>last("gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]")-last("gpon.onu.online[{#SNMPINDEX}]")</params>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: ONUs Online</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): ONUs Online</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15.{#PROPRIETARYINDEX}</snmp_oid>
@@ -317,14 +317,14 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <delay>5m</delay>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: ONUs Online Antes</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): ONUs Online Antes</name>
               <type>CALCULATED</type>
               <key>gpon.onu.online_antes[{#SNMPINDEX}]</key>
               <delay>5m</delay>
               <params>last("gpon.onu.online[{#SNMPINDEX}]",#2)</params>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: Status Operacional</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): Status Operacional</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
@@ -332,7 +332,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <delay>1m</delay>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: Temperatura do SFP</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): Temperatura do SFP</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1082.30.40.2.4.1.8.{#PROPRIETARYINDEX}</snmp_oid>
@@ -348,7 +348,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               </preprocessing>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: Potência de Saída do SFP (TX Power)</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): Potência de Saída do SFP (TX Power)</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.4.1.3902.1082.30.40.2.4.1.3.{#PROPRIETARYINDEX}</snmp_oid>
@@ -364,7 +364,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               </preprocessing>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: Erros de Entrada</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): Erros de Entrada</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
@@ -381,7 +381,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                   <expression>{last()}&gt;10</expression>
                   <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                   <recovery_expression>{avg(1)}=0</recovery_expression>
-                  <name>Porta {#PONNAME}: Taxa de erros de entrada elevada</name>
+                  <name>Porta {#PONNAME} ({#PONDESC}): Taxa de erros de entrada elevada</name>
                   <priority>WARNING</priority>
                   <manual_close>YES</manual_close>
                   <tags>
@@ -398,7 +398,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               </trigger_prototypes>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: Tráfego de Entrada (Download)</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): Tráfego de Entrada (Download)</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
@@ -417,7 +417,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               </preprocessing>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: Erros de Saída</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): Erros de Saída</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
@@ -432,7 +432,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               <trigger_prototypes>
                 <trigger_prototype>
                   <expression>{last()}&gt;10</expression>
-                  <name>Porta {#PONNAME}: Taxa de erros de saída elevada</name>
+                  <name>Porta {#PONNAME} ({#PONDESC}): Taxa de erros de saída elevada</name>
                   <priority>WARNING</priority>
                   <manual_close>YES</manual_close>
                   <tags>
@@ -449,7 +449,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
               </trigger_prototypes>
             </item_prototype>
             <item_prototype>
-              <name>Porta {#PONNAME}: Tráfego de Saída (Upload)</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): Tráfego de Saída (Upload)</name>
               <type>SNMPV2</type>
               <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
               <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
@@ -471,7 +471,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
           <trigger_prototypes>
             <trigger_prototype>
               <expression>{OLT ZTE - NETSTREAM:gpon.port.status[{#SNMPINDEX}].last()}=2 and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2 and {OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;=0</expression>
-              <name>Porta {#PONNAME}: Porta GPON Apagada (Inativa)</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Apagada (Inativa)</name>
               <priority>HIGH</priority>
               <manual_close>YES</manual_close>
               <tags>
@@ -495,7 +495,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
             </trigger_prototype>
             <trigger_prototype>
               <expression>{OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;127 and {OLT ZTE - NETSTREAM:gpon.port.status[{#SNMPINDEX}].last()}=1</expression>
-              <name>Porta {#PONNAME}: Porta GPON Cheia (&gt;127 ONUs autorizadas)</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Cheia (&gt;127 ONUs autorizadas)</name>
               <priority>WARNING</priority>
               <manual_close>YES</manual_close>
               <tags>
@@ -511,7 +511,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
             </trigger_prototype>
             <trigger_prototype>
               <expression>{OLT ZTE - NETSTREAM:gpon.onu.online[{#SNMPINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;=0 and ({OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}-{OLT ZTE - NETSTREAM:gpon.onu.online[{#SNMPINDEX}].last()})&gt;={$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2</expression>
-              <name>Porta {#PONNAME}: Queda massiva de ONUs (Mínimo {$GPON_DROP_MIN} ONUs)</name>
+              <name>Porta {#PONNAME} ({#PONDESC}): Queda massiva de ONUs (Mínimo {$GPON_DROP_MIN} ONUs)</name>
               <priority>DISASTER</priority>
               <manual_close>YES</manual_close>
               <tags>
