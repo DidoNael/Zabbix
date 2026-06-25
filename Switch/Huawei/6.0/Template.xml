@@ -269,7 +269,7 @@
                     </triggers>
                 </item>
                 <item>
-                    <uuid>c33da2dfdcf149429af7163721164263</uuid>
+                    <uuid>d474f6aad96f4ab3a104b59d8ff0abc3</uuid>
                     <name>PSU 1 - Tipo de fonte</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.5</snmp_oid>
@@ -287,7 +287,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>c080b05b381c48749c1e6d98b69c06d2</uuid>
+                    <uuid>6ad10be0861d4db68bce4dce32a652e2</uuid>
                     <name>PSU 2 - Tipo de fonte</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.6</snmp_oid>
@@ -305,7 +305,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>8fd3da0a5d364a4688ad8221cf7c9724</uuid>
+                    <uuid>f6807ccedcff4c44805f34e64628adc5</uuid>
                     <name>PSU 1 - Potencia</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.5</snmp_oid>
@@ -321,7 +321,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>656a01a4d05e4f30a3fbbe3ff22913c5</uuid>
+                    <uuid>45d04967ff864891b48cde0021810a60</uuid>
                     <name>PSU 2 - Potencia</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.6</snmp_oid>
@@ -337,7 +337,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>a68720f010014cf39f3fc6224edd87b8</uuid>
+                    <uuid>a07cc1f8a2e04b0f90fe011b4fcdb469</uuid>
                     <name>PSU 1 - Hardware Presente ?</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.5</snmp_oid>
@@ -355,7 +355,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>b9d46a0ddd274beabf2b2f7996d0d019</uuid>
+                    <uuid>f38e8217153d4be08c9225fd99c2be29</uuid>
                     <name>PSU 2 - Hardware Presente ?</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.6</snmp_oid>
@@ -373,7 +373,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>768722aa888d4b03962a6c06e1ad85a4</uuid>
+                    <uuid>60c5188cb640417ba19d8bb58402bee4</uuid>
                     <name>PSU 1 - Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.5</snmp_oid>
@@ -391,7 +391,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>176e853178454e219ae94d936654c6e8</uuid>
+                    <uuid>35c7ccd9a0a84766ab9db3df8252439b</uuid>
                     <name>PSU 2 - Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.6</snmp_oid>
@@ -409,7 +409,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>11c7160833a243eda73821e452a2209c</uuid>
+                    <uuid>3a9fd2b67b8e41a1992985942d6818a8</uuid>
                     <name>Tabela Mac</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.2011.5.25.42.2.1.14.0</snmp_oid>
@@ -847,7 +847,7 @@
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>a7b02b2756c440fa89a656bc071f4180</uuid>
+                            <uuid>5710f2a255f5408bbde77729d5ec15c5</uuid>
                             <name>Uso em 1 min</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.{#SNMPINDEX}</snmp_oid>
@@ -863,7 +863,7 @@
                             <trends>365d</trends>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>9bc1ebc32e834aa890304bc276180c7a</uuid>
+                            <uuid>98a6b66aa201432eb0180d84e410a96e</uuid>
                             <name>Uso em 5 min</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.{#SNMPINDEX}</snmp_oid>
@@ -872,7 +872,7 @@
                             <units>%</units>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>a74df63f045f439fba47a728578665b3</uuid>
+                                    <uuid>8f528c18e4d0410da451257a6bbf8913</uuid>
                                     <expression>{min(5m)}&gt;60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(5m)}&lt;60</recovery_expression>
@@ -880,7 +880,7 @@
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <uuid>3b331c9b8efc46a3a5f98306d35c58fe</uuid>
+                                    <uuid>022bcadfe5494944ac6bd1a0d2e7d49c</uuid>
                                     <expression>{min(5m)}&gt;80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(5m)}&lt;80</recovery_expression>
@@ -1498,7 +1498,7 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <parameters>last(//hwMemoryDevFree[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</parameters>
+                            <params>last(//hwMemoryDevFree[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</params>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1535,7 +1535,7 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <parameters>last(//hwMemoryDevRawSliceUsed[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</parameters>
+                            <params>last(//hwMemoryDevRawSliceUsed[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</params>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1846,7 +1846,7 @@
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>57d3ee2dcc044deb859aa07148bc1787</uuid>
+                            <uuid>152f6d5b24ef4a0196839384887ff839</uuid>
                             <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
@@ -1873,7 +1873,7 @@
                             <trends>365d</trends>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>336353deae00416cad7b293374b18f56</uuid>
+                            <uuid>53306d6d86de4426913545f97236202a</uuid>
                             <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
@@ -1900,7 +1900,7 @@
                             <trends>365d</trends>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>b68a3e1094e34b0ba09beef7bb113589</uuid>
+                            <uuid>5459672c8daf426cade2a2b3bbc1b264</uuid>
                             <name>Inbound errors on interface - {#IF}: ({#IFALIAS}) 2</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
@@ -1918,7 +1918,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>5420f8b9274b4930a4a6e76955bb6fa9</uuid>
+                            <uuid>6c0186ad086c4c139655074a4166f320</uuid>
                             <name>Inbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
@@ -1941,7 +1941,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>979b06edaac948a3bf4affe252f3fcf8</uuid>
+                            <uuid>fff0c7a6de9e466dbbfa033e156e3909</uuid>
                             <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
@@ -1954,7 +1954,7 @@
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>c0478417409d4da6b3b17931f2e7972a</uuid>
+                                    <uuid>81c244b052d54c8f8977bf86e79533f9</uuid>
                                     <expression>{diff(0)}=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{last(0)}=1</recovery_expression>
@@ -1986,7 +1986,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>7ce84acd7a7c420a9002675feb2226af</uuid>
+                            <uuid>d6dfd65a01fe425d8912971226561068</uuid>
                             <name>Outbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOutErrors.{#SNMPINDEX}</snmp_oid>
@@ -2013,7 +2013,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>34afe6f71f8a465bb5ab1bb2e1ff9844</uuid>
+                            <uuid>f5fe53dafadc453fa036c27f31821600</uuid>
                             <name>Total errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>ifInErrors.{#SNMPINDEX}</snmp_oid>
@@ -2024,7 +2024,7 @@
                             <description>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>e205cc0df707457691161688582685ea</uuid>
+                                    <uuid>9b88c7fd92554c5b862db64f6e1ef3e4</uuid>
                                     <expression>{change()}&gt;100</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(1h)}={max(1h)}</recovery_expression>
@@ -2064,7 +2064,7 @@
                             <priority>HIGH</priority>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <uuid>dd051ba626cf47a5a5c287060f53b884</uuid>
+                            <uuid>e7450fbbe0584e5da97c876543e9c296</uuid>
                             <expression>diff(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}],0)=1 and last(/Template Switch Huawei 6700 Series - Netstream/total.Errors.bk[{#IF}.{#SNMPINDEX}])=5</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}],0)=1</recovery_expression>
