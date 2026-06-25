@@ -1498,7 +1498,7 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <params>last(//hwMemoryDevFree[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</params>
+                            <parameters>last(//hwMemoryDevFree[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</parameters>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1535,7 +1535,7 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <params>last(//hwMemoryDevRawSliceUsed[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</params>
+                            <parameters>last(//hwMemoryDevRawSliceUsed[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</parameters>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1857,11 +1857,11 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params />
+                                    <parameters />
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>8</parameters>
                                 </step>
                             </preprocessing>
                             <tags>
@@ -1884,11 +1884,11 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params />
+                                    <parameters />
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>8</parameters>
                                 </step>
                             </preprocessing>
                             <tags>
@@ -1930,7 +1930,7 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params />
+                                    <parameters />
                                 </step>
                             </preprocessing>
                             <tags>
@@ -1998,7 +1998,7 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params />
+                                    <parameters />
                                 </step>
                             </preprocessing>
                             <tags>
