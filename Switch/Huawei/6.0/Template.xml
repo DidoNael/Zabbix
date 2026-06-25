@@ -1857,11 +1857,15 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <parameters />
+                                    <parameters>
+                                        <parameter />
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <parameters>8</parameters>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <tags>
@@ -1884,11 +1888,15 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <parameters />
+                                    <parameters>
+                                        <parameter />
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <parameters>8</parameters>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <tags>
@@ -1930,7 +1938,9 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <parameters />
+                                    <parameters>
+                                        <parameter />
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <tags>
@@ -1998,7 +2008,9 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <parameters />
+                                    <parameters>
+                                        <parameter />
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <tags>
