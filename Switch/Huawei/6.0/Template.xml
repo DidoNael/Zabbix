@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2026-06-25T01:59:21Z</date>
+    <date>2026-06-25T03:00:00Z</date>
     <groups>
         <group>
-            <uuid>fce43a3b1d6743efa891de651c826d68</uuid>
+            <uuid>e61c36d2d29aa674406614dff99f4902</uuid>
             <name>Templates</name>
         </group>
     </groups>
     <templates>
         <template>
-            <uuid>3f38cd2d1f9b48a7a3250a1f14d82f3d</uuid>
+            <uuid>376e4d30c1dc0ea48e77219986fb639f</uuid>
             <template>Template Switch Huawei 6700 Series - Netstream</template>
             <name>Template Switch Huawei 6700 Series - Netstream</name>
             <groups>
@@ -20,11 +20,39 @@
             </groups>
             <items>
                 <item>
-                    <uuid>f535cbe568d8437484c9509afb5f434f</uuid>
+                    <uuid>072ddf920611c32ab1873c2a359e7ad2</uuid>
+                    <name>CPU - Medio - 1m</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.0.0.0</snmp_oid>
+                    <key>hwAvgDuty1min[{#SNMPINDEX}]</key>
+                    <units>%</units>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>CPU</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>dde0e2ba88947504b5a583c5d39bf376</uuid>
+                    <name>CPU - Medio - 5m</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.0.0.0</snmp_oid>
+                    <key>hwAvgDuty5min[{#SNMPINDEX}]</key>
+                    <units>%</units>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>CPU</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>7f794890cb47d7b5859f275876435b5e</uuid>
                     <name>PSU 1 - Tipo de fonte</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.5</snmp_oid>
-                    <key>hwEntityPwrMode5</key>
+                    <key>hwEntityPwrMode5.[{#SNMPINDEX}]</key>
                     <delay>6h</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -38,11 +66,11 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>6f56ac8043d0427aa317934dc818b789</uuid>
+                    <uuid>deff713ba95d279387ad545ab7bf528a</uuid>
                     <name>PSU 2 - Tipo de fonte</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.6</snmp_oid>
-                    <key>hwEntityPwrMode6</key>
+                    <key>hwEntityPwrMode6.[{#SNMPINDEX}]</key>
                     <delay>6h</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -56,11 +84,11 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>4ea37dd61d6948d5b0d686256d9069f8</uuid>
+                    <uuid>58f411570ea113fb320f1abc51c0f6fc</uuid>
                     <name>PSU 1 - Potencia</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.5</snmp_oid>
-                    <key>hwEntityPwrPower5</key>
+                    <key>hwEntityPwrPower5.[{#SNMPINDEX}]</key>
                     <delay>6h</delay>
                     <trends>365d</trends>
                     <units>watts</units>
@@ -72,11 +100,11 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>634b2c3a9e824e98a4359676b755ded1</uuid>
+                    <uuid>4f6070dda5b74cec6897977f3d9c7d8f</uuid>
                     <name>PSU 2 - Potencia</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.6</snmp_oid>
-                    <key>hwEntityPwrPower6</key>
+                    <key>hwEntityPwrPower6.[{#SNMPINDEX}]</key>
                     <delay>6h</delay>
                     <trends>365d</trends>
                     <units>watts</units>
@@ -88,11 +116,11 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>de60246cf33d43779e4904ab1a27cc66</uuid>
+                    <uuid>b37eab50aefe60adf2c85743f209a324</uuid>
                     <name>PSU 1 - Hardware Presente ?</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.5</snmp_oid>
-                    <key>hwEntityPwrPresente5</key>
+                    <key>hwEntityPwrPresente5.[{#SNMPINDEX}]</key>
                     <delay>5m</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -106,11 +134,11 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>114b414691954c17a9ac27ce07c7f5c5</uuid>
+                    <uuid>26091881870150c5395b6e8c23686b07</uuid>
                     <name>PSU 2 - Hardware Presente ?</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.6</snmp_oid>
-                    <key>hwEntityPwrPresente6</key>
+                    <key>hwEntityPwrPresente6.[{#SNMPINDEX}]</key>
                     <delay>5m</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -124,11 +152,11 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>234764f42a3e4de8abf46f98be28425a</uuid>
+                    <uuid>b7ba2f5c188a6cf2dc8bc4d218052dda</uuid>
                     <name>PSU 1 - Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.5</snmp_oid>
-                    <key>hwEntityPwrState5</key>
+                    <key>hwEntityPwrState5.[{#SNMPINDEX}]</key>
                     <delay>10m</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -142,11 +170,11 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>f249b9160f8046718ad480ecaeadf419</uuid>
+                    <uuid>574b9832dd589cefefd9e709dcffdc3c</uuid>
                     <name>PSU 2 - Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.6</snmp_oid>
-                    <key>hwEntityPwrState6</key>
+                    <key>hwEntityPwrState6.[{#SNMPINDEX}]</key>
                     <delay>10m</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -160,7 +188,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>e7a4745eadb54e50aa4f397108250b83</uuid>
+                    <uuid>3a74fdd038fd65e01a544a75abb8cde6</uuid>
                     <name>Consumo de energia</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.14.1.3.0</snmp_oid>
@@ -174,21 +202,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3</uuid>
-                    <name>Tabela Mac</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.2011.5.25.42.2.1.14.0</snmp_oid>
-                    <key>mactable</key>
-                    <trends>365d</trends>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>mac-table</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>69085198442f4bf8aa158e7fa6df9bff</uuid>
+                    <uuid>bf0f5b3be91f15f192da9dba47982e7e</uuid>
                     <name>Number of network interfaces</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>IF-MIB::ifNumber.0</snmp_oid>
@@ -205,7 +219,20 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>a1b2c3d4e5f6472a8b9c0d1e2f3a4b5c</uuid>
+                    <uuid>3abc4ab32a111d1131d9a54b7b85e517</uuid>
+                    <name>Tabela Mac</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.2011.5.25.42.2.1.14.0</snmp_oid>
+                    <key>mactable</key>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>mac-table</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>8962cb496f8ca3b532dab5ad2161218e</uuid>
                     <name>Uso de RAM</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.7.67108873</snmp_oid>
@@ -219,10 +246,10 @@
                     </tags>
                     <triggers>
                         <trigger>
-                            <uuid>b2c3d4e5f6a74b2b8c9d0e1f2a3b4c5d</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/memousage)&gt;80</expression>
+                            <uuid>b7f945c4fc03ae056fb43682cc5f9dbe</uuid>
+                            <expression>last(SELF)&gt;80</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/memousage)&lt;80</recovery_expression>
+                            <recovery_expression>last(SELF)&lt;80</recovery_expression>
                             <name>Uso alto de memoria RAM</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
@@ -230,7 +257,7 @@
                     </triggers>
                 </item>
                 <item>
-                    <uuid>ada54c5f5f5c49d881fa03a0c0665d57</uuid>
+                    <uuid>62e680e14d82a39e750b5a5d9247cf11</uuid>
                     <name>Versão do Sistema e Hardware</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.2.1.1.1.0</snmp_oid>
@@ -247,7 +274,7 @@
                     </tags>
                 </item>
                 <item>
-                    <uuid>470f762657504aeeb6cf82bb99ef8e31</uuid>
+                    <uuid>7081ba5381de69f482e0c194200c4783</uuid>
                     <name>Uptime do Sistema</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.2.1.1.3.0</snmp_oid>
@@ -272,10 +299,10 @@
                     </tags>
                     <triggers>
                         <trigger>
-                            <uuid>3ff3424d36824f8996baeb4e0ddc4cc3</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/sysUpTime.0)&lt;60</expression>
+                            <uuid>23d1a121153deae5c763e8980a28d1d7</uuid>
+                            <expression>last(SELF)&lt;60</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/sysUpTime.0)&lt;3600</recovery_expression>
+                            <recovery_expression>last(SELF)&gt;3600</recovery_expression>
                             <name>{HOST.NAME1} Reiniciou</name>
                             <priority>INFO</priority>
                             <manual_close>YES</manual_close>
@@ -285,15 +312,16 @@
             </items>
             <discovery_rules>
                 <discovery_rule>
-                    <uuid>8a2518192831462fadb4a79392569e79</uuid>
+                    <uuid>7fc44a1df8ca6e082ef83e16768516be</uuid>
                     <name>Discovery: BGP4 Peer(s)</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ASN},1.3.6.1.2.1.15.3.1.9, {#IP},1.3.6.1.2.1.15.3.1.7]</snmp_oid>
                     <key>bgppeerv4</key>
                     <delay>1d</delay>
+                    <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>f642277b97aa4c2d97dcac7dab0bb8c9</uuid>
+                            <uuid>616a0657bc734e31d30d697811897ef1</uuid>
                             <name>AS Name for IPv4 peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>EXTERNAL</type>
                             <key>as.name["-p","{#SNMPINDEX}"]</key>
@@ -307,7 +335,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>93b8792849ab4e2096492904340dff71</uuid>
+                            <uuid>b6e99c75a467bcee47d9b548e8129b96</uuid>
                             <name>Administrative status for peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.3.{#SNMPINDEX}</snmp_oid>
@@ -320,7 +348,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>5542d35f45a547b78bc4e89e20e5214e</uuid>
+                            <uuid>dc28e2c962a0679ad7ea4345b3704df5</uuid>
                             <name>Established time for peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.15.3.1.16.{#SNMPINDEX}</snmp_oid>
@@ -334,7 +362,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>2bd19b87d2bb446091857de55234685d</uuid>
+                            <uuid>e5a0fdba12edc62d36827f4ae18fc57b</uuid>
                             <name>Total IPv4 routes from peer - IP {#IP}: ASN ({#ASN})c</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.1.1.1.4.{#SNMPINDEX}</snmp_oid>
@@ -348,7 +376,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>c1f0e37f0c0b41a59aa0152e812475f4</uuid>
+                            <uuid>76d2933a3960eb6caf987bc0c4ede9c7</uuid>
                             <name>Remote AS for peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.9.{#SNMPINDEX}</snmp_oid>
@@ -363,7 +391,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>20820f3a3b68434da5b4805181677e7d</uuid>
+                            <uuid>7b150d0c19791218b13a56941d686406</uuid>
                             <name>Operational status for peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.2.{#SNMPINDEX}</snmp_oid>
@@ -376,54 +404,60 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>43346ba3877a47cf8de1dd5b9bbd35b1</uuid>
+                            <uuid>2f4b9601668a1b31418fcb48e4101719</uuid>
                             <name>ASN Owner: {#IP} - {#ASN}</name>
                             <type>EXTERNAL</type>
                             <key>get_asn_owner_v2.sh[{#ASN}]</key>
                             <delay>1h</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Peer V4</value>
-                                </tag>
-                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <uuid>fe0b98bd1ecb43c09abca85cb045b4a6</uuid>
-                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN}]))&gt;0</expression>
+                            <uuid>ecc1eec35a9f371d5c38442cc6b5164d</uuid>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=0 and {Template Switch Huawei 6700 Series - Netstream:BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN}].strlen()}&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>AVERAGE</priority>
+                            <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <uuid>acaa76fd99fb4516bc1f9b6476340a00</uuid>
-                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN}]))&gt;0</expression>
+                            <uuid>ecc1eec35a9f371d5c38442cc6b5164d</uuid>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and 
+{Template Switch Huawei 6700 Series - Netstream:BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and 
+{Template Switch Huawei 6700 Series - Netstream:BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN}].strlen()}&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>DISASTER</priority>
+                            <description>Trigger for peer that has a remote AS matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <uuid>67246939f0514c618eba0c7aee0f874e</uuid>
-                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerAdminStatus[{#IP}.{#ASN}])=2</expression>
+                            <uuid>4a9236ee282721c1221935d737a94e6d</uuid>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=0 and {Template Switch Huawei 6700 Series - Netstream:BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN}) - DOWN</name>
                             <priority>AVERAGE</priority>
+                            <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <uuid>eed11e531e624f3499c8794b17b4d2a6</uuid>
-                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerAdminStatus[{#IP}.{#ASN}])=2</expression>
+                            <uuid>f558232a74a7ed2d6314b6e2bf02a60c</uuid>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and {Template Switch Huawei 6700 Series - Netstream:BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})  -  DOWN</name>
                             <priority>DISASTER</priority>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>4a9236ee282721c1221935d737a94e6d</uuid>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and {Template Switch Huawei 6700 Series - Netstream:BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2</expression>
+                            <name>BGP peer - IP {#IP}: ASN ({#ASN}) - DOWN</name>
+                            <priority>AVERAGE</priority>
+                            <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>b7c4ade9822f4309a7dc9de0fd3f795b</uuid>
+                    <uuid>18446173a6761bc3f9cf480bcd7ffb35</uuid>
                     <name>Discovery: Temperatura</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#BOARD}, 1.3.6.1.2.1.47.1.1.1.1.2]</snmp_oid>
@@ -431,7 +465,7 @@
                     <delay>1d</delay>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>9482f75cc65644bcb471164be66f7445</uuid>
+                            <uuid>11041571bf159966267ed401e394e78c</uuid>
                             <name>Slot - {#BOARD}</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11.{#SNMPINDEX}</snmp_oid>
@@ -445,8 +479,8 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>79a2249af051414ca8b3bcae46be1285</uuid>
-                                    <expression>count(/Template Switch Huawei 6700 Series - Netstream/tempslot[{#SNMPINDEX}],#5,"ge",50)&gt;=5</expression>
+                                    <uuid>f4872083b8d2e1253659372d08621198</uuid>
+                                    <expression>count(SELF,#5)&gt;=50</expression>
                                     <name>Temperatura alta</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
@@ -455,7 +489,7 @@
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>3ea78af894a04be88ac82af3f30b2398</uuid>
+                    <uuid>5a8bcb3db97b007f98ac1f216a096e2f</uuid>
                     <name>Discovery | Network interfaces Virtual</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
@@ -465,33 +499,32 @@
                         <conditions>
                             <condition>
                                 <macro>{#IF}</macro>
-                                <value>Eth-Trunk.*</value>
-                                <formulaid>A</formulaid>
+                                <value>Vlanif.*</value>
+                                <formulaid>C</formulaid>
                             </condition>
                             <condition>
                                 <macro>{#IF}</macro>
-                                <value>Virtual-Ethernet.*</value>
+                                <value>Eth-Trunk.*</value>
                                 <formulaid>B</formulaid>
                             </condition>
                             <condition>
                                 <macro>{#IF}</macro>
-                                <value>Vlanif.*</value>
-                                <formulaid>C</formulaid>
+                                <value>Virtual-Ethernet.*</value>
+                                <formulaid>A</formulaid>
                             </condition>
                         </conditions>
                     </filter>
                     <lifetime>7d</lifetime>
                     <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.
-{$SNMP_COMMUNITY} is a global macro.
-</description>
+{$SNMP_COMMUNITY} is a global macro.</description>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>22f6b034c4694d468bf9b2c681439d29</uuid>
+                            <uuid>7a8632419c40b5cd8efc84cc6604268e</uuid>
                             <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
                             <key>ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <units>bps</units>
                             <preprocessing>
                                 <step>
@@ -509,12 +542,12 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d0c35ec554ac4706ab2074ba4db5d538</uuid>
+                            <uuid>b99689b9ebab989cf286c854e49389e4</uuid>
                             <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
                             <key>ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <units>bps</units>
                             <preprocessing>
                                 <step>
@@ -532,7 +565,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>9738ff2e98d74224945f64b210dfabf9</uuid>
+                            <uuid>378eb054fd0d61a58b98d7a6c7e0e323</uuid>
                             <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
@@ -541,16 +574,16 @@
                             <trends>365d</trends>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>01176f5e1150445b8fd386949d9fcc76</uuid>
-                                    <expression>(last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}],#1)&lt;&gt;last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}],#2))=1</expression>
+                                    <uuid>aa3f0a2dfea3ad389453154c2ceec933</uuid>
+                                    <expression>diff(SELF)=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=1</recovery_expression>
+                                    <recovery_expression>last(SELF)=1</recovery_expression>
                                     <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <uuid>e95db2acd2d54254a48f70ff59950560</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=2</expression>
+                                    <uuid>c6a5b4cc176a1ae6b619b85115c951ee</uuid>
+                                    <expression>change(SELF)=2</expression>
                                     <name>Vlan down - {#IF}: ({#IFALIAS})</name>
                                     <priority>INFO</priority>
                                 </trigger_prototype>
@@ -559,7 +592,7 @@
                     </item_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
-                            <uuid>9889a3d21de54461ae9712a3365a0e9d</uuid>
+                            <uuid>ee38043d37624d800eac14700bcc628d</uuid>
                             <name>Traffic on interface virtual {#IF}: ({#IFALIAS})</name>
                             <graph_items>
                                 <graph_item>
@@ -582,7 +615,7 @@
                     </graph_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>193ed592317c4db1b6cbf1b94f42b40c</uuid>
+                    <uuid>34b2978e4619224fff4c629736f46744</uuid>
                     <name>Discovery OSPF PEER</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IFNB},1.3.6.1.4.1.2011.5.25.155.6.1.5.1.0.0.0.0,{#IFNBIP},1.3.6.1.4.1.2011.5.25.155.6.1.4.1.0.0.0.0]</snmp_oid>
@@ -591,7 +624,7 @@
                     <lifetime>0</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>a6fc2bc73e7648b8a99595489ceef639</uuid>
+                            <uuid>01a07b51f095866dc4a48ee09a0ae326</uuid>
                             <name>OSPF {#IFNB} - MTU</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.8.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
@@ -604,7 +637,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>feb149f8e2db49d598c64e95f322d21c</uuid>
+                            <uuid>d697ed48acd25678e9a0a45e50784340</uuid>
                             <name>OSPF {#IFNB} - State</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.10.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
@@ -620,15 +653,15 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>a950dded041b470f802509cece14acbe</uuid>
-                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/ospf.state[{#IFNB}.{#SNMPINDEX}])&lt;8</expression>
+                                    <uuid>ba3e32b8a0c389d1bb40b5a47b3bec77</uuid>
+                                    <expression>last(SELF)&lt;8</expression>
                                     <name>Alteração no OSPF: {#IFNB}</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>77dba7753b9e4b1b87af752e76e0fb30</uuid>
+                            <uuid>01d3902869e65085b709a20dfb5096de</uuid>
                             <name>OSPF {#IFNB} - Neighbor ({#IFNBIP}) - Uptime</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.155.6.1.13.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
@@ -639,10 +672,10 @@
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>f9bd8f28701944888460c0da899fcabb</uuid>
-                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/ospf.uptime.[{#IFNB}.{#SNMPINDEX}])&lt;600</expression>
+                                    <uuid>df9466eeea2dd5ef011df215d79421c5</uuid>
+                                    <expression>last(SELF)&lt;600</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ospf.uptime.[{#IFNB}.{#SNMPINDEX}])&gt;3600</recovery_expression>
+                                    <recovery_expression>last(SELF)&gt;3600</recovery_expression>
                                     <name>Uptime baixo no OSPF: {#IFNB}</name>
                                     <priority>AVERAGE</priority>
                                 </trigger_prototype>
@@ -651,20 +684,20 @@
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>129cd5f7947f477fa56599ea45faba79</uuid>
+                    <uuid>908c1b86830b26896a68d54c5ed92edc</uuid>
                     <name>Discovery: Uso de CPU</name>
                     <type>SNMP_AGENT</type>
-                    <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.6.3.4.1.3]</snmp_oid>
+                    <snmp_oid>discovery[{#CPU},1.3.6.1.4.1.2011.6.3.4.1.3]</snmp_oid>
                     <key>hwAvgDuty</key>
                     <delay>1d</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>360c7f717a6f4264969b2c3f7ffbb771</uuid>
+                            <uuid>28f26228d97c0837dec6c4923cfb9b6d</uuid>
                             <name>Uso em 1 min</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.{#SNMPINDEX}</snmp_oid>
-                            <key>hwAvgDuty1min[{#SNMPINDEX}]</key>
+                            <key>hwAvgDuty1min.[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
                             <tags>
@@ -675,11 +708,11 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>31cd906bbdf84bf180bd3035da8c1f71</uuid>
+                            <uuid>b2f1be41d67d81bdcfe553aedfc3159d</uuid>
                             <name>Uso em 5 min</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.{#SNMPINDEX}</snmp_oid>
-                            <key>hwAvgDuty5min[{#SNMPINDEX}]</key>
+                            <key>hwAvgDuty5min.[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
                             <tags>
@@ -690,19 +723,19 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>8b1b86f8d5c445d9b5c1f835e9a7a22e</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min[{#SNMPINDEX}],5m)&gt;60</expression>
+                                    <uuid>c1e203c3cc74709d0f4f9415df2f4b66</uuid>
+                                    <expression>min(SELF,5m)&gt;60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
-                                    <name>Uso está acima de 60% for 5min em - {HOST.NAME}</name>
+                                    <recovery_expression>min(SELF,5m)&lt;60</recovery_expression>
+                                    <name>Uso esta acima de 60% for 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <uuid>afc1e39b03c54dbf85896aeebf5a4d18</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min[{#SNMPINDEX}],5m)&gt;80</expression>
+                                    <uuid>12cee329907f3d014a1708fd0339a91e</uuid>
+                                    <expression>min(SELF,5m)&gt;80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
-                                    <name>Uso está acima de 80% por 5min em - {HOST.NAME}</name>
+                                    <recovery_expression>min(SELF,5m)&lt;80</recovery_expression>
+                                    <name>Uso esta acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
                             </trigger_prototypes>
@@ -710,7 +743,7 @@
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>6403af11c6f84b90b531cac2de3b27e7</uuid>
+                    <uuid>40c83e9044b85b4dc9450322d94329a6</uuid>
                     <name>Discovery: Fan</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.1]</snmp_oid>
@@ -719,7 +752,7 @@
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>4939913f2436445fb924f53889d83835</uuid>
+                            <uuid>36309ef5626407f4698a0a8529f7a92d</uuid>
                             <name>Velocidade modulo Fan [{#SNMPINDEX}] (%)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.10.1.5.{#SNMPINDEX}</snmp_oid>
@@ -736,17 +769,17 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>a128276b1e6242b6aeec7978c948d60d</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/hwEntityFanSpeed[{#SNMPINDEX}],5m)&gt;=80</expression>
+                                    <uuid>c9c26db068943a4cba3815882503e27b</uuid>
+                                    <expression>min(SELF,5m)&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/hwEntityFanSpeed[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
-                                    <name>Modulo Fan [{#SNMPINDEX}] velocidade está acima de 80% em - {HOST.NAME}</name>
+                                    <recovery_expression>min(SELF,5m)&lt;80</recovery_expression>
+                                    <name>Modulo Fan [{#SNMPINDEX}] velocidade esta acima de 80% em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>328d32bb5487453da84864c90af2ac2e</uuid>
+                            <uuid>52f8ec53a1c0c48fa4a44f600160d0c3</uuid>
                             <name>Status modulo Fan [{#SNMPINDEX}]</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.10.1.7.{#SNMPINDEX}</snmp_oid>
@@ -765,11 +798,11 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>6bded8e5a7f44b7e8473fa48bd552eb5</uuid>
-                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/hwEntityFanState[{#SNMPINDEX}])&lt;&gt;1</expression>
+                                    <uuid>347b57f73e2f13cd4a4d3a2d51890099</uuid>
+                                    <expression>last(SELF)&lt;&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/hwEntityFanState[{#SNMPINDEX}])=1</recovery_expression>
-                                    <name>Modulo Fan [{#SNMPINDEX}] status está anormal em - {HOST.NAME}</name>
+                                    <recovery_expression>last(SELF)=1</recovery_expression>
+                                    <name>Modulo Fan [{#SNMPINDEX}] status esta anormal em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                             </trigger_prototypes>
@@ -777,8 +810,8 @@
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>6303bfc046c747ae862fd3dfc9e97f04</uuid>
-                    <name>Discovery | Network interfaces optical single lan</name>
+                    <uuid>9b8a5b8b3f61e53b7ae7ff1d03f14082</uuid>
+                    <name>Discovery | Network interfaces | Sinal optico single lan</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7,{#HWTEMP},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5, {#RXPWLAN}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32]</snmp_oid>
                     <key>hwentityopticaltxpower</key>
@@ -807,13 +840,13 @@
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>6852d919bc4c46cba8b86fb97074c80e</uuid>
+                            <uuid>013989a152d646649ddacdd61bd70172</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -840,8 +873,8 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>455a465d381e4651a253bdd9d0697af8</uuid>
-                                    <expression>count(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#4)&lt;0.8</expression>
+                                    <uuid>de938604a981e515ff863bca5e49f64d</uuid>
+                                    <expression>count(SELF,#4)&lt;0.8</expression>
                                     <name>Sinal óptico alterado - {#ENTPHYSICALNAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -854,14 +887,13 @@
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>279ce9df2a62455da706b0ea88a7d1cc</uuid>
+                            <uuid>6315e4f92482f419f7fd5d92a4997c95</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalLaneTxPower.[{#ENTPHYSICALNAME}]</key>
                             <delay>1h</delay>
-                            <history>1d</history>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <preprocessing>
                                 <step>
@@ -879,14 +911,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>434ab83914b24c7684ca6d19eded876f</uuid>
+                            <uuid>5158c0797f74855aedebcadc1ad7e6ee</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalRxHighThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>7d</history>
-                            <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -913,7 +944,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>af769c324560458dae0564a02da98de4</uuid>
+                            <uuid>cf66d0e7490ea8c8e5ef40ed391d362b</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Warning</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
@@ -947,7 +978,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>0dd2e28e9b3844ae864da4ce7cb8e474</uuid>
+                            <uuid>3606e2bb70ede3bd788ab59d4f2115fd</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
@@ -981,7 +1012,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>5829b7dcb89446488dd35f92c76f9455</uuid>
+                            <uuid>32ca23da41ac45ae869c33a4e6c2515c</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
@@ -1007,7 +1038,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>2d20ae2ddc6a4a22b2840c9dad6593d9</uuid>
+                            <uuid>c4f67ec7c491ff2c0b4b2b031312a824</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Temperature</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
@@ -1025,17 +1056,16 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>6f4acd56f66f460a9d341294e7119c21</uuid>
+                            <uuid>ca9321d7606c58905fce9740b3e9a80c</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Optical Transfer Distance</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalTransferDistance.[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>f40bbe63643043b59407dfdd34bade40</uuid>
+                            <uuid>618c8b14d0b7d91dc341a6b347cce872</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
@@ -1061,7 +1091,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>197f0cf6152e469ba0f5a54deafed7c2</uuid>
+                            <uuid>7d7157ea5025b7b8913d4ab6ce6f95a9</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Warning</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
@@ -1095,7 +1125,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d02b4e7d2cd04a41af9f35cb7bc6a48f</uuid>
+                            <uuid>09410e3a09265adac07618167a97b7b6</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
@@ -1125,7 +1155,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d2723da92e3c47de89bc0760a0b593a7</uuid>
+                            <uuid>9429a4e8dff90238ddfacb7dcb5e2fb8</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Warning</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
@@ -1155,13 +1185,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>820ca0b4d59242ac9f20e6672511f088</uuid>
+                            <uuid>0d092340089d4a07bdf066b8e357828e</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Vendor</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalVenderName[{#ENTPHYSICALNAME}]</key>
                             <delay>1d</delay>
-                            <history>1d</history>
+                            <history>365d</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
                             <tags>
@@ -1172,13 +1202,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>8698e7e837d84c07916fa5a4cb9e515b</uuid>
+                            <uuid>e367ddb6e154cb32c0f248edccbfc8c3</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Type</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalVenderPn.[{#SNMPINDEX}]</key>
-                            <delay>1d</delay>
-                            <history>1d</history>
+                            <delay>5m</delay>
+                            <history>1w</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
                             <tags>
@@ -1191,10 +1221,11 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <uuid>b8c96570469247c5a7fc99589757703b</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#3) &lt; last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]) and last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#3) &gt;= -39</expression>
+                            <uuid>4d2f2297eca35dd9d9a91adcc7fa277c</uuid>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}].last(#3)} &lt; {Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}].last()} and {Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}].last(#3)} &gt;= -39</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME}</name>
                             <priority>AVERAGE</priority>
+                            <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
                                     <tag>opticsignal</tag>
@@ -1205,7 +1236,7 @@
                     </trigger_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>5e8b13c67de142c1ae8ef8d160d3c4df</uuid>
+                    <uuid>9012e0973700b3492cc53fea167038ad</uuid>
                     <name>Discovery: Memoria</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.6.3.5.1.1.2]</snmp_oid>
@@ -1214,7 +1245,7 @@
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>eb323a73676641d28d02efb42a82fcd0</uuid>
+                            <uuid>10828bb903af2c4c7ac8054629fad6da</uuid>
                             <name>Falhas de alocação de memória devido a falta de memória inativa</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.7.{#SNMPINDEX}</snmp_oid>
@@ -1230,7 +1261,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>c2f6636e817c46108d703eabd20a79b1</uuid>
+                            <uuid>2407da2c10ce729b80183395848674a2</uuid>
                             <name>Contagem de falhas de alocação de memória</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.6.{#SNMPINDEX}</snmp_oid>
@@ -1246,7 +1277,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>80a4d15685f04299aeffbc2a9f954128</uuid>
+                            <uuid>51204917757eb490d71707af01d2b66b</uuid>
                             <name>Memoria Livre</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.3.{#SNMPINDEX}</snmp_oid>
@@ -1264,7 +1295,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>51f1c28f849c4495974f5ab863a14426</uuid>
+                            <uuid>fc86ea0717cd03f26b048e83d76ad0ae</uuid>
                             <name>Memoria Utilizada</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.4.{#SNMPINDEX}</snmp_oid>
@@ -1282,7 +1313,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>9fdb949765aa473389256e212eb28ddc</uuid>
+                            <uuid>e5be8e34aa7d85fae611e15b5a635cad</uuid>
                             <name>Tamanho total da memória</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.2.{#SNMPINDEX}</snmp_oid>
@@ -1300,7 +1331,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>0436bb9ec763452c9fe90fa12cab9d66</uuid>
+                            <uuid>4bc120035ba4e63bd1783028ffe7513b</uuid>
                             <name>Memoria Livre (%)</name>
                             <type>CALCULATED</type>
                             <key>memFreePercentage[{#SNMPINDEX}]</key>
@@ -1309,7 +1340,7 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <params>last(//hwMemoryDevFree[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</params>
+                            <params>last("hwMemoryDevFree[{#SNMPINDEX}]")/last("hwMemoryDevSize[{#SNMPINDEX}]")*100</params>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1318,26 +1349,26 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>d8ae2a48fbb341dc857b3c9d7906f666</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/memFreePercentage[{#SNMPINDEX}],5m)&lt;=40</expression>
+                                    <uuid>e0e6fa8e5db33e9bfaee577011681b62</uuid>
+                                    <expression>min(SELF,5m)&lt;=40</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/memFreePercentage[{#SNMPINDEX}],5m)&gt;40</recovery_expression>
+                                    <recovery_expression>min(SELF,5m)&gt;40</recovery_expression>
                                     <name>Memória disponível abaixo 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <uuid>67e417628e4541268dbcba1e1845e5e0</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/memFreePercentage[{#SNMPINDEX}],5m)&lt;=20</expression>
+                                    <uuid>6aa2ab244993aa9123bad6d955fb2f3e</uuid>
+                                    <expression>min(SELF,5m)&lt;=20</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/memFreePercentage[{#SNMPINDEX}],5m)&gt;20</recovery_expression>
+                                    <recovery_expression>min(SELF,5m)&gt;20</recovery_expression>
                                     <name>Memória disponível esta abaixo de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>c7a336f0c9004d4e89f4e59582594709</uuid>
+                            <uuid>180107d6d68ae2e1668833ed80323ab5</uuid>
                             <name>Memoria Utilizada (%)</name>
                             <type>CALCULATED</type>
                             <key>memUsedPercentage[{#SNMPINDEX}]</key>
@@ -1346,7 +1377,7 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <params>last(//hwMemoryDevRawSliceUsed[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</params>
+                            <params>last("hwMemoryDevRawSliceUsed[{#SNMPINDEX}]")/last("hwMemoryDevSize[{#SNMPINDEX}]")*100</params>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1355,19 +1386,19 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>a0e585bb0dcb40cabc9b003b124a0aeb</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/memUsedPercentage[{#SNMPINDEX}],5m)&gt;=60</expression>
+                                    <uuid>f5b3d52e38eeb4c4e857101d0ef97b05</uuid>
+                                    <expression>min(SELF,5m)&gt;=60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/memUsedPercentage[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
+                                    <recovery_expression>min(SELF,5m)&lt;60</recovery_expression>
                                     <name>Uso de memória está acima de 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <uuid>225f9ce4a54a49c0bf5ab24b7d1b8d54</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/memUsedPercentage[{#SNMPINDEX}],5m)&gt;=80</expression>
+                                    <uuid>c0f915dde57e0716ed2043d284607b20</uuid>
+                                    <expression>min(SELF,5m)&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/memUsedPercentage[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
+                                    <recovery_expression>min(SELF,5m)&lt;80</recovery_expression>
                                     <name>Uso de memória está acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
@@ -1376,7 +1407,7 @@
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>148390136ebc4b7e965a50e15c42e51b</uuid>
+                    <uuid>4b6d176e1a64fe617e869a99eb574001</uuid>
                     <name>Discovery | Network interfaces</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
@@ -1389,59 +1420,57 @@
                                 <macro>{#IFALIAS}</macro>
                                 <value>NOT_USE</value>
                                 <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>A</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>Eth-Trunk.*</value>
-                                <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>B</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>InLoopBack.*</value>
-                                <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>C</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>Tunnel.*</value>
-                                <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>D</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>Virtual-Access.*</value>
-                                <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>E</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>Virtual-Ethernet.*</value>
-                                <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>F</formulaid>
+                                <formulaid>G</formulaid>
                             </condition>
                             <condition>
                                 <macro>{#IF}</macro>
                                 <value>Vlanif.*</value>
                                 <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>G</formulaid>
+                                <formulaid>E</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>Eth-Trunk.*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>F</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>InLoopBack.*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>D</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>Tunnel.*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>C</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>Virtual-Ethernet.*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>Virtual-Access.*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>B</formulaid>
                             </condition>
                         </conditions>
                     </filter>
                     <lifetime>7d</lifetime>
                     <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.
-{$SNMP_COMMUNITY} is a global macro.
-</description>
+{$SNMP_COMMUNITY} is a global macro.</description>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>037f83a783c34f988b0442804c79dc76</uuid>
+                            <uuid>2d1a9eeebb9ea0e335747691633b1342</uuid>
                             <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
-                            <history>1w</history>
-                            <trends>90d</trends>
+                            <key>ifHCInOctets.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <history>365d</history>
                             <units>bps</units>
                             <description>The number of octets in valid MAC frames received on this interface, including the MAC header and FCS.</description>
                             <preprocessing>
@@ -1466,13 +1495,12 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>ead83b81264e4146b7eda29218f62d54</uuid>
+                            <uuid>52985e03e9100a0f5606affadf0d45b8</uuid>
                             <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
-                            <history>1w</history>
-                            <trends>90d</trends>
+                            <key>ifHCOutOctets.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <history>365d</history>
                             <units>bps</units>
                             <description>The number of octets transmitted in MAC frames on this interface, including the MAC header and FCS.</description>
                             <preprocessing>
@@ -1497,18 +1525,36 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>40f65434a4ac4d2592da4a04d6dfb0af</uuid>
+                            <uuid>2ef5c4243c98f0de935497e32f01781e</uuid>
+                            <name>Inbound errors on interface - {#IF}: ({#IFALIAS}) 2</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
+                            <key>ifInErrors.bk2[{#IF}.{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>1w</history>
+                            <trends>365d</trends>
+                            <status>DISABLED</status>
+                            <description>For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.  For character-oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>74d3e160a36402654c248dbc897cc85a</uuid>
                             <name>Inbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifInErrors[{#IF}.{#SNMPINDEX}]</key>
+                            <key>ifInErrors.bk[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
-                            <trends>90d</trends>
+                            <trends>365d</trends>
                             <description>For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.  For character-oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol.</description>
                             <preprocessing>
                                 <step>
-                                    <type>CHANGE_PER_SECOND</type>
+                                    <type>SIMPLE_CHANGE</type>
                                     <parameters>
                                         <parameter/>
                                     </parameters>
@@ -1522,13 +1568,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>e9a536367ceb41a5b49843da9e181360</uuid>
+                            <uuid>449c20fe52cb1168823dd55b62a60cc3</uuid>
                             <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOperStatus[{#IF}]</key>
+                            <key>ifOperStatus.bk[{#IF}]</key>
                             <history>1w</history>
-                            <trends>90d</trends>
+                            <trends>365d</trends>
                             <description>The current operational state of the interface.</description>
                             <valuemap>
                                 <name>SNMP interface status (ifOperStatus)</name>
@@ -1541,10 +1587,10 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>2bd84781fe1f4c6383f40d301548afe7</uuid>
-                                    <expression>(last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}],#1)&lt;&gt;last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}],#2))=1</expression>
+                                    <uuid>2f7355dee49240043ad61d3758e59d52</uuid>
+                                    <expression>diff(SELF,0)=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}])=1</recovery_expression>
+                                    <recovery_expression>last(SELF,0)=1</recovery_expression>
                                     <name>Status Interface {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
@@ -1567,18 +1613,18 @@
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>8a2de8813d1e4976a456ce984a3a585f</uuid>
+                            <uuid>3d70965516c705019b64c6b250e935e6</uuid>
                             <name>Outbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOutErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOutErrors[{#IF}.{#SNMPINDEX}]</key>
+                            <key>ifOutErrors.bk[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
-                            <trends>90d</trends>
+                            <trends>365d</trends>
                             <description>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</description>
                             <preprocessing>
                                 <step>
-                                    <type>CHANGE_PER_SECOND</type>
+                                    <type>SIMPLE_CHANGE</type>
                                     <parameters>
                                         <parameter/>
                                     </parameters>
@@ -1587,16 +1633,21 @@
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
+                                    <value>if-error-in</value>
+                                </tag>
+                                <tag>
+                                    <tag>Application</tag>
                                     <value>Interfaces</value>
                                 </tag>
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>0b10b872f5ba4f1cb5daf53b4a4c06a4</uuid>
+                            <uuid>168eca0cd8ec1dd8a78b6702542f8587</uuid>
                             <name>Interface speed {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>ifspeed.[{#IF}.{#SNMPINDEX}]</key>
+                            <trends>365d</trends>
                             <units>bps</units>
                             <preprocessing>
                                 <step>
@@ -1614,14 +1665,14 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>8139c06c490d43c4ae1bcc5b73b3e6b5</uuid>
+                            <uuid>dbcaac39cb0b7a428b65f1cfabc96fe7</uuid>
                             <name>Total errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>total.Errors[{#IF}.{#SNMPINDEX}]</key>
+                            <key>total.Errors.bk[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
-                            <trends>90d</trends>
+                            <trends>365d</trends>
                             <description>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</description>
                             <tags>
                                 <tag>
@@ -1631,11 +1682,11 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>1d16d58735824297b55dd7911f588b7f</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}])&gt;100</expression>
+                                    <uuid>82e68525ebf817bd79695f04c016c94f</uuid>
+                                    <expression>change(SELF)&gt;100</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}],1h)=max(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}],1h)</recovery_expression>
-                                    <name>Taxa de erros:  {#IF}: ({#IFALIAS})</name>
+                                    <recovery_expression>min(SELF,1h)=max(SELF,1h)</recovery_expression>
+                                    <name>Interface taxando erros</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
                                     <manual_close>YES</manual_close>
@@ -1659,15 +1710,54 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <uuid>1f421dc466584e31a217d9fd2759e3e3</uuid>
-                            <expression>(last(/Template Switch Huawei 6700 Series - Netstream/ifHCOutOctets[{#IF}.{#SNMPINDEX}]) or last(/Template Switch Huawei 6700 Series - Netstream/ifHCInOctets[{#IF}.{#SNMPINDEX}])) &gt; last(/Template Switch Huawei 6700 Series - Netstream/ifspeed.[{#IF}.{#SNMPINDEX}])&gt;=0.9</expression>
+                            <uuid>a30030adc096fedc7ef6e42bdcbc746c</uuid>
+                            <expression>({Template Switch Huawei 6700 Series - Netstream:ifHCInOctets.bk[{#IF}.{#SNMPINDEX}].last()}/{Template Switch Huawei 6700 Series - Netstream:ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9 or ({Template Switch Huawei 6700 Series - Netstream:ifHCOutOctets.bk[{#IF}.{#SNMPINDEX}].last()}/{Template Switch Huawei 6700 Series - Netstream:ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9</expression>
                             <name>Consumo maior que 90% da porta - {#IF}: ({#IFALIAS})</name>
                             <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>IF</tag>
+                                    <value>{#IF}</value>
+                                </tag>
+                                <tag>
+                                    <tag>IFERROR</tag>
+                                    <value>IFERROR</value>
+                                </tag>
+                                <tag>
+                                    <tag>IFNAME</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>4db8b40937e2a83b0eef1fef9307775f</uuid>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:ifOperStatus.bk[{#IF}].diff(0)}=1 and {Template Switch Huawei 6700 Series - Netstream:total.Errors.bk[{#IF}.{#SNMPINDEX}].last()}=5</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{Template Switch Huawei 6700 Series - Netstream:ifOperStatus.bk[{#IF}].last(0)}=1</recovery_expression>
+                            <name>Status Interface 2 {#IF}: ({#IFALIAS})</name>
+                            <priority>HIGH</priority>
+                            <description>({#IFALIAS})</description>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>IF</tag>
+                                    <value>{#IF}</value>
+                                </tag>
+                                <tag>
+                                    <tag>IFNAME</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>RXPW</tag>
+                                    <value>{#RXPOWER}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
-                            <uuid>758a024e05e846118249988380e4c8e1</uuid>
+                            <uuid>f33524fabbc77b4d4af13871eca7669a</uuid>
                             <name>Traffic on interface {#IF}: ({#IFALIAS})</name>
                             <graph_items>
                                 <graph_item>
@@ -1675,7 +1765,7 @@
                                     <color>00FF00</color>
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
-                                        <key>ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
+                                        <key>ifHCInOctets.bk[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -1684,7 +1774,7 @@
                                     <color>FF0000</color>
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
-                                        <key>ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
+                                        <key>ifHCOutOctets.bk[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -1692,8 +1782,8 @@
                     </graph_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>1bf17715c1ce4086a3ada62aae006e6e</uuid>
-                    <name>Discovery | Network interfaces Modules Multi Lane</name>
+                    <uuid>a8c22a7ca6a7ced9c18eae937e2b1278</uuid>
+                    <name>Discovery | Network interfaces | Sinal Optico modules multi lane</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7, {#TMP}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5]</snmp_oid>
                     <key>net.optical.ml.discovery</key>
@@ -1721,13 +1811,13 @@
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>2a69086e131c4dc2adaddcdd50444fa2</uuid>
+                            <uuid>514b21e585ec5caa9e56c1719533f80b</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane0</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -1753,13 +1843,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>9a1613fed1e941f5b379084642cb0d7e</uuid>
+                            <uuid>91ad0f1b05a5a69bdb3dc27a4d05f17b</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane1</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -1785,13 +1875,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d8af4657ef574a17ac96d54e7e3d66ac</uuid>
+                            <uuid>859227f1e5408da8094da37ca4f9024a</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane2</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -1817,13 +1907,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>e70bc54dd3d541bbbabcbafe3d06f1b0</uuid>
+                            <uuid>41b9c187fb5c5ca8e74c3dbc8d318fe8</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane3</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -1849,13 +1939,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>67d474cf079943968e5b45817d82bab0</uuid>
+                            <uuid>47bba11ec513ce0a710ec600ec2bea3c</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane0</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalLaneTxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -1881,13 +1971,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>4ddd3472ed6548c083cb8dd3c3c8694c</uuid>
+                            <uuid>49ba0b7ad7a15d284a908d7b686ca42b</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane1</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalLaneTxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -1913,13 +2003,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>3c29cb6f0a0a4579a80d49f126617f8c</uuid>
+                            <uuid>f4816b0c69a16326a9e767d70538f1b9</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane2</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalLaneTxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -1945,13 +2035,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>75bd9448e3cc4a1c89d2ce3d6f131721</uuid>
+                            <uuid>a3574eb5cbb2a1acb93bba16e6b3fee5</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane3</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalLaneTxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -1977,23 +2067,22 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>afff6f857e574ae4a3f321cebbc57ba1</uuid>
+                            <uuid>c513c87b84fa194a19d253e8393df075</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Optical Transfer Distance</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalmultilanTransferDistance.[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>23cab34956004eb3ae57e18525762643</uuid>
+                            <uuid>5bf290297ad1e8ba20ed621ab99ebeab</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalRxHighThresholdML[{#ENTPHYSICALNAME}]</key>
                             <history>7d</history>
-                            <trends>365d</trends>
+                            <trends>7d</trends>
                             <value_type>FLOAT</value_type>
                             <preprocessing>
                                 <step>
@@ -2011,12 +2100,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>9e8ba765c60146b6a2b29cc01771e2d2</uuid>
+                            <uuid>5a18deb543e39f6dbafabc25d3a301bb</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalRxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <trends>365d</trends>
+                            <history>7d</history>
+                            <trends>7d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -2035,13 +2125,14 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>8ee158e5ff8345c882218e32fd095ea6</uuid>
+                            <uuid>a93771c7648c9d933d10a189b559a32d</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
-                            <trends>365d</trends>
+                            <history>7d</history>
+                            <trends>7d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <preprocessing>
@@ -2060,7 +2151,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>ad18fadd656d4f349ae308d1fab68df2</uuid>
+                            <uuid>557f627344cecb346ec53b8ab7354dca</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
@@ -2084,7 +2175,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>f4f94b252c834e3aa07eee550fe52df6</uuid>
+                            <uuid>0fcda3a6d6c30c41091b5dd55d359978</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Temperature</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
@@ -2102,7 +2193,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>ed4dff6230cb472a935995c2878ee615</uuid>
+                            <uuid>ee605f53a5fc60fb9d4838c64ed447dc</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
@@ -2127,7 +2218,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>4b9df66aa0594766a82b724170b9c825</uuid>
+                            <uuid>dea631c0e476bc97b451fed23a35519e</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
@@ -2151,7 +2242,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>0325db55c0d24fd78d12d59631e11cc0</uuid>
+                            <uuid>d37d98a7a374930e9070d026374e64ee</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
@@ -2175,7 +2266,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d4b18d272e824010bae746bbd8ba62d7</uuid>
+                            <uuid>83531b7bbc4ec35de48fc29e4d36a98c</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
@@ -2199,12 +2290,13 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>bda42aca38694973adf56463aa7a367b</uuid>
+                            <uuid>6afb0e16653bde04c407f835c9760270</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Vendor Name</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalVenderNameML[{#ENTPHYSICALNAME}]</key>
                             <delay>1h</delay>
+                            <history>365d</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
                             <tags>
@@ -2215,12 +2307,12 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>f5b5d7cecd9c418c9e1bc5cec4fc42f2</uuid>
+                            <uuid>14eb8d4b06fc2f1ae774fff1ddf53fbc</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Type</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
                             <key>hwEntityOpticalVenderPnML[{#ENTPHYSICALNAME}]</key>
-                            <delay>1d</delay>
+                            <delay>5m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
@@ -2234,17 +2326,17 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <uuid>9fa04b183d0c4cefb2e92928cf55926d</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
+                            <uuid>c9d635e814e84bf519393da64f281557</uuid>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
 or
-last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
+{Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
 or
-last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
-or
-last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
-</expression>
+{Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
+or 
+{Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME}</name>
                             <priority>AVERAGE</priority>
+                            <manual_close>YES</manual_close>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
@@ -2267,176 +2359,17 @@ last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerM
                     <value>70</value>
                 </macro>
             </macros>
-            <valuemaps>
-                <valuemap>
-                    <uuid>b84e97edc3584e08b4832c2c241e56f1</uuid>
-                    <name>HUAWEI - OSPF</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>down</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>attempt</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>init</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>twoWay</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>5</value>
-                            <newvalue>exchangeStart</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>6</value>
-                            <newvalue>exchange</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>7</value>
-                            <newvalue>loading</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>8</value>
-                            <newvalue>full</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>1f6a86a087824dbea16ed5fbfd2f6f9a</uuid>
-                    <name>hwEntityFanState</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>normal</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>anormal</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>4e1d6c15c7b746c3852a0204a3db71cd</uuid>
-                    <name>PSU HUAWEI PRESENTE</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Presente</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>Sem Fonte</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>5fd7a57ef855465fb72d3f7672a1e365</uuid>
-                    <name>PSU HUAWEI STATUS</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Alimentação ( fornecendo energia )</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>NotSupply ( não está fornecendo energia)</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>Sleep ( estado de hibernação)</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>Desconhecido ( informação não pode ser obtida )</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>742db5adbecc45ff9a49036b87e61be4</uuid>
-                    <name>Queda de energia</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Energia OK</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>!!!Queda de energia!!!</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>4fe3f52637ad459fa2ebed67c1209214</uuid>
-                    <name>SNMP interface status (ifOperStatus)</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>up</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>down</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>testing</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>unknown</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>5</value>
-                            <newvalue>dormant</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>6</value>
-                            <newvalue>notPresent</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>7</value>
-                            <newvalue>lowerLayerDown</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>5ef9dd7213fc4df286cc64c24315ab60</uuid>
-                    <name>Tipo de fonte HUAWEI</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Desconhecido</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>DC</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>AC</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-            </valuemaps>
         </template>
     </templates>
     <triggers>
         <trigger>
-            <uuid>255b84afc1de4d439370c2567bb8f4c6</uuid>
-            <expression>change(/Template Switch Huawei 6700 Series - Netstream/hwEntityPwrState5)&gt;1 or change(/Template Switch Huawei 6700 Series - Netstream/hwEntityPwrState6)&gt;1</expression>
-            <name>Alteração de alimentação</name>
-            <priority>HIGH</priority>
-            <tags>
-                <tag>
-                    <tag>PSUHUAWEI</tag>
-                    <value>PSUHUAWEI</value>
-                </tag>
-            </tags>
+            <uuid>d430843df9dec6b2ed3b06b7d29a18b0</uuid>
+            <expression>last(SELF)&gt;80</expression>
+            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+            <recovery_expression>last(SELF)&lt;80</recovery_expression>
+            <name>Uso alto de memoria RAM</name>
+            <priority>DISASTER</priority>
+            <manual_close>YES</manual_close>
         </trigger>
     </triggers>
 </zabbix_export>
