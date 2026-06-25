@@ -1965,7 +1965,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>81c244b052d54c8f8977bf86e79533f9</uuid>
-                                    <expression>diff(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}],0)=1</expression>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}])<>0</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}],0)=1</recovery_expression>
                                     <name>Status Interface {#IF}: ({#IFALIAS})</name>
@@ -2077,7 +2077,7 @@
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>e7450fbbe0584e5da97c876543e9c296</uuid>
-                            <expression>diff(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}],0)=1 and last(/Template Switch Huawei 6700 Series - Netstream/total.Errors.bk[{#IF}.{#SNMPINDEX}])=5</expression>
+                            <expression>change(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}])<>0 and last(/Template Switch Huawei 6700 Series - Netstream/total.Errors.bk[{#IF}.{#SNMPINDEX}])=5</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}],0)=1</recovery_expression>
                             <name>Status Interface 2 {#IF}: ({#IFALIAS})</name>
