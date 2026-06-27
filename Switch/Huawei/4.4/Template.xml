@@ -60,6 +60,9 @@
                     <name>Optical</name>
                 </application>
                 <application>
+                    <name>OSPF</name>
+                </application>
+                <application>
                     <name>ospf-mtu</name>
                 </application>
                 <application>
