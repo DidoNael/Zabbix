@@ -23,17 +23,20 @@ import yaml
 class ZabbixAPI:
     def __init__(self, url: str, token: str = "", user: str = "", password: str = ""):
         self.url = url.rstrip("/") + "/api_jsonrpc.php"
-        self.token = token
+        self._auth = None   # sessão (4.4) ou token (6.0+)
+        self._use_bearer = False
         self._id = 0
 
-        if not token:
-            self.token = self._login(user, password)
+        if token:
+            # Zabbix 6.0+ com API token
+            self._auth = token
+            self._use_bearer = True
+        else:
+            self._auth = self._login(user, password)
 
     def _call(self, method: str, params: dict) -> dict:
         self._id += 1
         headers = {"Content-Type": "application/json"}
-        if self.token:
-            headers["Authorization"] = f"Bearer {self.token}"
 
         payload = {
             "jsonrpc": "2.0",
@@ -41,6 +44,13 @@ class ZabbixAPI:
             "params": params,
             "id": self._id,
         }
+
+        if self._use_bearer:
+            # Zabbix 6.0+ — token no header
+            headers["Authorization"] = f"Bearer {self._auth}"
+        elif self._auth and method != "user.login":
+            # Zabbix 4.4 / 5.x — auth no body
+            payload["auth"] = self._auth
 
         resp = requests.post(self.url, json=payload, headers=headers, timeout=30)
         resp.raise_for_status()
@@ -55,7 +65,7 @@ class ZabbixAPI:
         payload = {
             "jsonrpc": "2.0",
             "method": "user.login",
-            "params": {"username": user, "password": password},
+            "params": {"user": user, "password": password},  # 4.4 usa "user", 6.0 usa "username"
             "id": self._id,
         }
         resp = requests.post(self.url, json=payload, timeout=30)
