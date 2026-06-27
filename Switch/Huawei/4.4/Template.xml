@@ -751,7 +751,7 @@
                             <key>ospf.area[{#IFNB}.{#SNMPINDEX}]</key>
                             <delay>1h</delay>
                             <trends>0</trends>
-                            <value_type>4</value_type>
+                            <value_type>TEXT</value_type>
                             <applications>
                                 <application>
                                     <name>OSPF</name>
