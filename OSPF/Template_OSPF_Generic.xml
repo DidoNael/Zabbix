@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <date>2026-06-26T21:30:00Z</date>
+    <groups>
+        <group>
+            <uuid>a571c0d144b14fd4a87a9d988e5f1cc4</uuid>
+            <name>Templates/Network devices</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>b8e2f1a3c4d5e6f7a8b9c0d1e2f3a4b5</uuid>
+            <template>Template OSPF Generic - Netstream</template>
+            <name>Template OSPF Generic - Netstream</name>
+            <description>Template genérico para monitoramento OSPF via SNMP (RFC 1850 - OSPF-MIB). Compatível com qualquer fabricante que suporte OSPF-MIB padrão (Huawei, Cisco, Mikrotik, Juniper, etc).</description>
+            <groups>
+                <group>
+                    <name>Templates/Network devices</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <!-- Discovery: Interfaces OSPF -->
+                <discovery_rule>
+                    <uuid>c1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6</uuid>
+                    <name>Discovery: OSPF Interfaces</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#OSPFIFIP},1.3.6.1.2.1.14.7.1.1,{#OSPFIFTYPE},1.3.6.1.2.1.14.7.1.3]</snmp_oid>
+                    <key>ospf.if.discovery</key>
+                    <delay>1h</delay>
+                    <lifetime>7d</lifetime>
+                    <description>Descobre interfaces OSPF via ospfIfTable (RFC 1850). {#OSPFIFIP} = IP da área, {#OSPFIFTYPE} = tipo de rede.</description>
+                    <item_prototypes>
+                        <!-- OSPF Interface Cost -->
+                        <item_prototype>
+                            <uuid>d2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7</uuid>
+                            <name>OSPF Interface {#SNMPINDEX} - Cost</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.8.1.4.{#SNMPINDEX}.0.0</snmp_oid>
+                            <key>ospf.if.cost[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <description>Custo OSPF da interface (ospfIfMetricValue). Quanto menor, mais preferida a rota.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>ospf-cost</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8</uuid>
+                                    <expression>change(/Template OSPF Generic - Netstream/ospf.if.cost[{#SNMPINDEX}])&lt;&gt;0</expression>
+                                    <name>OSPF Cost alterado na interface {#SNMPINDEX} em {HOST.NAME}</name>
+                                    <priority>WARNING</priority>
+                                    <description>O custo OSPF da interface mudou. Verificar se foi alteração planejada.</description>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <!-- OSPF Interface Area ID -->
+                        <item_prototype>
+                            <uuid>f4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9</uuid>
+                            <name>OSPF Interface {#SNMPINDEX} - Area ID</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.1.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.if.area[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>90d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <description>Área OSPF da interface (ospfIfAreaId). Formato IP (ex: 0.0.0.0 = backbone).</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>ospf-area</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <!-- OSPF Interface Type -->
+                        <item_prototype>
+                            <uuid>a5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0</uuid>
+                            <name>OSPF Interface {#SNMPINDEX} - Network Type</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.3.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.if.nettype[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <description>Tipo de rede OSPF da interface (ospfIfType). 1=Broadcast, 2=NBMA, 3=Point-to-Point, 5=Point-to-Multipoint.</description>
+                            <valuemap>
+                                <name>OSPF Network Type</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>ospf-nettype</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <!-- OSPF Interface Hello Interval -->
+                        <item_prototype>
+                            <uuid>b6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1</uuid>
+                            <name>OSPF Interface {#SNMPINDEX} - Hello Interval</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.10.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.if.hello[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <units>s</units>
+                            <description>Intervalo de Hello OSPF (ospfIfHelloInterval).</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>ospf-timers</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <!-- OSPF Interface Dead Interval -->
+                        <item_prototype>
+                            <uuid>c7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2</uuid>
+                            <name>OSPF Interface {#SNMPINDEX} - Dead Interval</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.11.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.if.dead[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <units>s</units>
+                            <description>Intervalo Dead OSPF (ospfIfRtrDeadInterval).</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>ospf-timers</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <!-- Discovery: Vizinhos OSPF -->
+                <discovery_rule>
+                    <uuid>d8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3</uuid>
+                    <name>Discovery: OSPF Neighbors</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#OSPFNBRIP},1.3.6.1.2.1.14.10.1.1,{#OSPFNBRRTRID},1.3.6.1.2.1.14.10.1.3]</snmp_oid>
+                    <key>ospf.nbr.discovery</key>
+                    <delay>1h</delay>
+                    <lifetime>7d</lifetime>
+                    <description>Descobre vizinhos OSPF via ospfNbrTable (RFC 1850). {#OSPFNBRIP} = IP do vizinho, {#OSPFNBRRTRID} = Router ID do vizinho.</description>
+                    <item_prototypes>
+                        <!-- OSPF Neighbor State -->
+                        <item_prototype>
+                            <uuid>e9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4</uuid>
+                            <name>OSPF Neighbor {#OSPFNBRIP} ({#OSPFNBRRTRID}) - State</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.10.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>ospf.nbr.state[{#SNMPINDEX}]</key>
+                            <delay>60s</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <description>Estado da adjacência OSPF (ospfNbrState). 8=Full (operacional), 1=Down.</description>
+                            <valuemap>
+                                <name>OSPF Neighbor State</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>ospf-neighbor</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>f0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5</uuid>
+                                    <expression>last(/Template OSPF Generic - Netstream/ospf.nbr.state[{#SNMPINDEX}])&lt;8</expression>
+                                    <name>OSPF Neighbor {#OSPFNBRIP} ({#OSPFNBRRTRID}) não está Full em {HOST.NAME}</name>
+                                    <priority>HIGH</priority>
+                                    <description>O vizinho OSPF não está no estado Full. Pode indicar problema de adjacência.</description>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>a1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6</uuid>
+                                    <expression>last(/Template OSPF Generic - Netstream/ospf.nbr.state[{#SNMPINDEX}])=1</expression>
+                                    <name>OSPF Neighbor {#OSPFNBRIP} ({#OSPFNBRRTRID}) DOWN em {HOST.NAME}</name>
+                                    <priority>DISASTER</priority>
+                                    <description>Vizinho OSPF caiu (estado Down).</description>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <!-- OSPF Neighbor Events -->
+                        <item_prototype>
+                            <uuid>b2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7</uuid>
+                            <name>OSPF Neighbor {#OSPFNBRIP} ({#OSPFNBRRTRID}) - Events</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.10.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>ospf.nbr.events[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <description>Número de mudanças de estado do vizinho OSPF (ospfNbrEvents). Indica instabilidade se crescer rápido.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>ospf-neighbor</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>c3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8</uuid>
+                                    <expression>change(/Template OSPF Generic - Netstream/ospf.nbr.events[{#SNMPINDEX}])&gt;3</expression>
+                                    <name>OSPF flapping: {#OSPFNBRIP} ({#OSPFNBRRTRID}) em {HOST.NAME} (+{ITEM.VALUE} eventos)</name>
+                                    <priority>HIGH</priority>
+                                    <description>Vizinho OSPF com muitas mudanças de estado em curto período. Indica instabilidade no link ou configuração.</description>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <valuemaps>
+                <valuemap>
+                    <uuid>d4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9</uuid>
+                    <name>OSPF Neighbor State</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Down</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Attempt</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Init</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>2-Way</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>ExStart</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>Exchange</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>Loading</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>8</value>
+                            <newvalue>Full</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>e5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0</uuid>
+                    <name>OSPF Network Type</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Broadcast</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>NBMA</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Point-to-Point</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>Point-to-Multipoint</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+        </template>
+    </templates>
+</zabbix_export>
