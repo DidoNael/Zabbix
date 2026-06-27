@@ -1,0 +1,19 @@
+zabbix:
+  url: https://zabbix.empresa.com
+  token: ""          # Token de API (preferido)
+  # user: admin      # Alternativa: usuário + senha
+  # password: ""
+
+discovery:
+  ospf_item_pattern: "ospf.state[*]"
+  bgp_item_pattern: "bgp.peer.state[*]"
+  external_node_icon: "cloud"
+
+layout:
+  canvas_width: 1200
+  canvas_height: 800
+  spring_k: 200
+  spring_iterations: 50
+
+output:
+  file: topology.json
