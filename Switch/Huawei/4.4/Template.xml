@@ -739,7 +739,7 @@
                                     <expression>{diff()}&lt;&gt;0</expression>
                                     <name>OSPF Cost alterado: {#IFNB}</name>
                                     <priority>WARNING</priority>
-                                    <manual_close>1</manual_close>
+                                    <manual_close>YES</manual_close>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
