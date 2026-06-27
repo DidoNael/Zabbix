@@ -722,6 +722,86 @@
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
+                        <item_prototype>
+                            <name>OSPF {#IFNB} - Cost</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.14.8.1.4.{#SNMPINDEX}.0.0</snmp_oid>
+                            <key>ospf.cost[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <applications>
+                                <application>
+                                    <name>OSPF</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{diff()}&lt;&gt;0</expression>
+                                    <name>OSPF Cost alterado: {#IFNB}</name>
+                                    <priority>WARNING</priority>
+                                    <manual_close>1</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OSPF {#IFNB} - Area ID</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.1.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.area[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <trends>0</trends>
+                            <value_type>4</value_type>
+                            <applications>
+                                <application>
+                                    <name>OSPF</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OSPF {#IFNB} - Network Type</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.3.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.nettype[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <applications>
+                                <application>
+                                    <name>OSPF</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>OSPF Network Type</name>
+                            </valuemap>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OSPF {#IFNB} - Hello Interval</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.10.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.hello[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <units>s</units>
+                            <applications>
+                                <application>
+                                    <name>OSPF</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OSPF {#IFNB} - Dead Interval</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.11.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.dead[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <units>s</units>
+                            <applications>
+                                <application>
+                                    <name>OSPF</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
@@ -2395,6 +2475,27 @@ or &#13;
                 <mapping>
                     <value>3</value>
                     <newvalue>AC</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>OSPF Network Type</name>
+            <mappings>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Broadcast</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>NBMA</newvalue>
+                </mapping>
+                <mapping>
+                    <value>3</value>
+                    <newvalue>Point-to-Point</newvalue>
+                </mapping>
+                <mapping>
+                    <value>5</value>
+                    <newvalue>Point-to-Multipoint</newvalue>
                 </mapping>
             </mappings>
         </value_map>

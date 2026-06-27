@@ -787,6 +787,106 @@
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
+                        <item_prototype>
+                            <uuid>d2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7</uuid>
+                            <name>OSPF {#IFNB} - Cost</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.8.1.4.{#SNMPINDEX}.0.0</snmp_oid>
+                            <key>ospf.cost[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <description>Custo OSPF da interface (ospfIfMetricValue - RFC 1850)</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8</uuid>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/ospf.cost[{#IFNB}.{#SNMPINDEX}])&lt;&gt;0</expression>
+                                    <name>OSPF Cost alterado: {#IFNB} em {HOST.NAME}</name>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9</uuid>
+                            <name>OSPF {#IFNB} - Area ID</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.1.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.area[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>90d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <description>Área OSPF da interface (ospfIfAreaId - RFC 1850). 0.0.0.0 = backbone</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>a5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0</uuid>
+                            <name>OSPF {#IFNB} - Network Type</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.3.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.nettype[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <description>Tipo de rede OSPF (ospfIfType - RFC 1850). 1=Broadcast, 2=NBMA, 3=P2P, 5=P2MP</description>
+                            <valuemap>
+                                <name>OSPF Network Type</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>b6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1</uuid>
+                            <name>OSPF {#IFNB} - Hello Interval</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.10.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.hello[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <units>s</units>
+                            <description>Intervalo Hello OSPF (ospfIfHelloInterval - RFC 1850)</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>c7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2</uuid>
+                            <name>OSPF {#IFNB} - Dead Interval</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.14.7.1.11.{#SNMPINDEX}.0</snmp_oid>
+                            <key>ospf.dead[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <units>s</units>
+                            <description>Intervalo Dead OSPF (ospfIfRtrDeadInterval - RFC 1850)</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
@@ -2853,6 +2953,28 @@ last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerM
                         <mapping>
                             <value>3</value>
                             <newvalue>AC</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>e5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0</uuid>
+                    <name>OSPF Network Type</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Broadcast</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>NBMA</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Point-to-Point</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>Point-to-Multipoint</newvalue>
                         </mapping>
                     </mappings>
                 </valuemap>
