@@ -747,57 +747,12 @@
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>OSPF {#IFNB} - Area ID</name>
+                            <name>OSPF {#IFNB} - Uptime</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.2.1.14.7.1.1.{#SNMPINDEX}.0</snmp_oid>
-                            <key>ospf.area[{#IFNB}.{#SNMPINDEX}]</key>
-                            <delay>1h</delay>
-                            <trends>0</trends>
-                            <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>OSPF</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>OSPF {#IFNB} - Network Type</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.2.1.14.7.1.3.{#SNMPINDEX}.0</snmp_oid>
-                            <key>ospf.nettype[{#IFNB}.{#SNMPINDEX}]</key>
-                            <delay>1h</delay>
-                            <applications>
-                                <application>
-                                    <name>OSPF</name>
-                                </application>
-                            </applications>
-                            <valuemap>
-                                <name>OSPF Network Type</name>
-                            </valuemap>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>OSPF {#IFNB} - Hello Interval</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.2.1.14.7.1.10.{#SNMPINDEX}.0</snmp_oid>
-                            <key>ospf.hello[{#IFNB}.{#SNMPINDEX}]</key>
-                            <delay>1h</delay>
-                            <units>s</units>
-                            <applications>
-                                <application>
-                                    <name>OSPF</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>OSPF {#IFNB} - Dead Interval</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.2.1.14.7.1.11.{#SNMPINDEX}.0</snmp_oid>
-                            <key>ospf.dead[{#IFNB}.{#SNMPINDEX}]</key>
-                            <delay>1h</delay>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.13.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
+                            <key>ospf.uptime2[{#IFNB}.{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
                             <units>s</units>
                             <applications>
                                 <application>
