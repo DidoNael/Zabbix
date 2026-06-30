@@ -435,7 +435,7 @@
                             <uuid>f642277b97aa4c2d97dcac7dab0bb8c9</uuid>
                             <name>AS Name for IPv4 peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>EXTERNAL</type>
-                            <key>netstream.as.name["-p","{#SNMPINDEX}"]</key>
+                            <key>as.name["-p","{#SNMPINDEX}"]</key>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
                             <tags>
@@ -518,7 +518,7 @@
                             <uuid>43346ba3877a47cf8de1dd5b9bbd35b1</uuid>
                             <name>ASN Owner: {#IP} - {#ASN}</name>
                             <type>EXTERNAL</type>
-                            <key>netstream.get_asn_owner_v2.sh[{#ASN}]</key>
+                            <key>get_asn_owner_v2.sh[{#ASN}]</key>
                             <delay>1h</delay>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
@@ -533,14 +533,14 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>fe0b98bd1ecb43c09abca85cb045b4a6</uuid>
-                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/netstream.get_asn_owner_v2.sh[{#ASN}]))&gt;0</expression>
+                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN}]))&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>acaa76fd99fb4516bc1f9b6476340a00</uuid>
-                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/netstream.get_asn_owner_v2.sh[{#ASN}]))&gt;0</expression>
+                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN}]))&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
