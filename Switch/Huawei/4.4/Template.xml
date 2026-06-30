@@ -390,7 +390,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#ASN},1.3.6.1.2.1.15.3.1.9, {#IP},1.3.6.1.2.1.15.3.1.7]</snmp_oid>
                     <key>netstream.bgppeerv4</key>
-                    <delay>5m</delay>
+                    <delay>1d</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -522,7 +522,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#BOARD}, 1.3.6.1.2.1.47.1.1.1.1.2]</snmp_oid>
                     <key>netstream.discovery.temp</key>
-                    <delay>5m</delay>
+                    <delay>1d</delay>
                     <item_prototypes>
                         <item_prototype>
                             <name>Slot - {#BOARD}</name>
@@ -552,7 +552,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>netstream.discovery.vlanif</key>
-                    <delay>5m</delay>
+                    <delay>1d</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -668,7 +668,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#IFNB},1.3.6.1.4.1.2011.5.25.155.6.1.5.1.0.0.0.0,{#IFNBIP},1.3.6.1.4.1.2011.5.25.155.6.1.4.1.0.0.0.0]</snmp_oid>
                     <key>netstream.discovery[ospfpeer]</key>
-                    <delay>5m</delay>
+                    <delay>1d</delay>
                     <lifetime>0</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -747,7 +747,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#CPU},1.3.6.1.4.1.2011.6.3.4.1.3]</snmp_oid>
                     <key>netstream.hwAvgDuty</key>
-                    <delay>5m</delay>
+                    <delay>1d</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -802,7 +802,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.1]</snmp_oid>
                     <key>netstream.hwEntityFan</key>
-                    <delay>5m</delay>
+                    <delay>1d</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -865,7 +865,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7,{#HWTEMP},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5, {#RXPWLAN}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32]</snmp_oid>
                     <key>netstream.hwentityopticaltxpower</key>
-                    <delay>5m</delay>
+                    <delay>1d</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -1244,7 +1244,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.6.3.5.1.1.2]</snmp_oid>
                     <key>netstream.hwMemoryDev</key>
-                    <delay>5m</delay>
+                    <delay>1d</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -1402,7 +1402,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>netstream.ifDescr</key>
-                    <delay>5m</delay>
+                    <delay>1d</delay>
                     <filter>
                         <evaltype>AND</evaltype>
                         <conditions>
@@ -1450,7 +1450,7 @@
                             </condition>
                         </conditions>
                     </filter>
-                    <lifetime>0</lifetime>
+                    <lifetime>7d</lifetime>
                     <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.&#13;
 &#13;
 {$SNMP_COMMUNITY} is a global macro.</description>
@@ -1733,7 +1733,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7, {#TMP}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5]</snmp_oid>
                     <key>netstream.net.optical.ml.discovery</key>
-                    <delay>5m</delay>
+                    <delay>1d</delay>
                     <filter>
                         <conditions>
                             <condition>
