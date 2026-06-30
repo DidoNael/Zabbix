@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-06-25T01:49:01Z</date>
@@ -390,7 +390,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#ASN},1.3.6.1.2.1.15.3.1.9, {#IP},1.3.6.1.2.1.15.3.1.7]</snmp_oid>
                     <key>bgppeerv4</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -522,7 +522,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#BOARD}, 1.3.6.1.2.1.47.1.1.1.1.2]</snmp_oid>
                     <key>discovery.temp</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <item_prototypes>
                         <item_prototype>
                             <name>Slot - {#BOARD}</name>
@@ -552,7 +552,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>discovery.vlanif</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -668,7 +668,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#IFNB},1.3.6.1.4.1.2011.5.25.155.6.1.5.1.0.0.0.0,{#IFNBIP},1.3.6.1.4.1.2011.5.25.155.6.1.4.1.0.0.0.0]</snmp_oid>
                     <key>discovery[ospfpeer]</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <lifetime>0</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -747,7 +747,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#CPU},1.3.6.1.4.1.2011.6.3.4.1.3]</snmp_oid>
                     <key>hwAvgDuty</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -802,7 +802,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.1]</snmp_oid>
                     <key>hwEntityFan</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -865,7 +865,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7,{#HWTEMP},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5, {#RXPWLAN}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32]</snmp_oid>
                     <key>hwentityopticaltxpower</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -1244,7 +1244,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.6.3.5.1.1.2]</snmp_oid>
                     <key>hwMemoryDev</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -1402,7 +1402,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>ifDescr</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <filter>
                         <evaltype>AND</evaltype>
                         <conditions>
@@ -1450,7 +1450,7 @@
                             </condition>
                         </conditions>
                     </filter>
-                    <lifetime>7d</lifetime>
+                    <lifetime>0</lifetime>
                     <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.&#13;
 &#13;
 {$SNMP_COMMUNITY} is a global macro.</description>
@@ -1460,7 +1460,7 @@
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCInOctets.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <key>ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
                             <history>365d</history>
                             <units>bps</units>
                             <description>The number of octets in valid MAC frames received on this interface, including the MAC header and FCS.</description>
@@ -1485,7 +1485,7 @@
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCOutOctets.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <key>ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
                             <history>365d</history>
                             <units>bps</units>
                             <description>The number of octets transmitted in MAC frames on this interface, including the MAC header and FCS.</description>
@@ -1506,28 +1506,11 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Inbound errors on interface - {#IF}: ({#IFALIAS}) 2</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifInErrors.bk2[{#IF}.{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>DISABLED</status>
-                            <description>For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.  For character-oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol.</description>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
                             <name>Inbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifInErrors.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <key>ifInErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -1549,7 +1532,7 @@
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOperStatus.bk[{#IF}]</key>
+                            <key>ifOperStatus[{#IF}]</key>
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>The current operational state of the interface.</description>
@@ -1592,7 +1575,7 @@
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifOutErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOutErrors.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <key>ifOutErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -1637,7 +1620,7 @@
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>total.Errors.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <key>total.Errors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -1676,7 +1659,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>({Template Switch Huawei 6700 Series - Netstream:ifHCInOctets.bk[{#IF}.{#SNMPINDEX}].last()}/{Template Switch Huawei 6700 Series - Netstream:ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9 or ({Template Switch Huawei 6700 Series - Netstream:ifHCOutOctets.bk[{#IF}.{#SNMPINDEX}].last()}/{Template Switch Huawei 6700 Series - Netstream:ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9</expression>
+                            <expression>({Template Switch Huawei 6700 Series - Netstream:ifHCInOctets[{#IF}.{#SNMPINDEX}].last()}/{Template Switch Huawei 6700 Series - Netstream:ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9 or ({Template Switch Huawei 6700 Series - Netstream:ifHCOutOctets[{#IF}.{#SNMPINDEX}].last()}/{Template Switch Huawei 6700 Series - Netstream:ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9</expression>
                             <name>Consumo maior que 90% da porta - {#IF}: ({#IFALIAS})</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -1696,9 +1679,9 @@
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:ifOperStatus.bk[{#IF}].diff(0)}=1 and {Template Switch Huawei 6700 Series - Netstream:total.Errors.bk[{#IF}.{#SNMPINDEX}].last()}=5</expression>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:ifOperStatus[{#IF}].diff(0)}=1 and {Template Switch Huawei 6700 Series - Netstream:total.Errors[{#IF}.{#SNMPINDEX}].last()}=5</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{Template Switch Huawei 6700 Series - Netstream:ifOperStatus.bk[{#IF}].last(0)}=1</recovery_expression>
+                            <recovery_expression>{Template Switch Huawei 6700 Series - Netstream:ifOperStatus[{#IF}].last(0)}=1</recovery_expression>
                             <name>Status Interface 2 {#IF}: ({#IFALIAS})</name>
                             <priority>HIGH</priority>
                             <description>({#IFALIAS})</description>
@@ -1728,7 +1711,7 @@
                                     <color>00FF00</color>
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
-                                        <key>ifHCInOctets.bk[{#IF}.{#SNMPINDEX}]</key>
+                                        <key>ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -1737,7 +1720,7 @@
                                     <color>FF0000</color>
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
-                                        <key>ifHCOutOctets.bk[{#IF}.{#SNMPINDEX}]</key>
+                                        <key>ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -1750,7 +1733,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7, {#TMP}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5]</snmp_oid>
                     <key>net.optical.ml.discovery</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <filter>
                         <conditions>
                             <condition>

@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-06-25T12:44:09Z</date>
@@ -429,7 +429,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ASN},1.3.6.1.2.1.15.3.1.9, {#IP},1.3.6.1.2.1.15.3.1.7]</snmp_oid>
                     <key>bgppeerv4</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>f642277b97aa4c2d97dcac7dab0bb8c9</uuid>
@@ -567,7 +567,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#BOARD}, 1.3.6.1.2.1.47.1.1.1.1.2]</snmp_oid>
                     <key>discovery.temp</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>9482f75cc65644bcb471164be66f7445</uuid>
@@ -599,7 +599,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>discovery.vlanif</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -726,7 +726,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IFNB},1.3.6.1.4.1.2011.5.25.155.6.1.5.1.0.0.0.0,{#IFNBIP},1.3.6.1.4.1.2011.5.25.155.6.1.4.1.0.0.0.0]</snmp_oid>
                     <key>discovery[ospfpeer]</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <lifetime>0</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -895,7 +895,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.6.3.4.1.3]</snmp_oid>
                     <key>hwAvgDuty</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -1004,7 +1004,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.1]</snmp_oid>
                     <key>hwEntityFan</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -1071,7 +1071,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7,{#HWTEMP},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5, {#RXPWLAN}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32]</snmp_oid>
                     <key>hwentityopticaltxpower</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -1499,7 +1499,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.6.3.5.1.1.2]</snmp_oid>
                     <key>hwMemoryDev</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -1670,7 +1670,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>ifDescr</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <filter>
                         <evaltype>AND</evaltype>
                         <conditions>
@@ -1718,7 +1718,7 @@
                             </condition>
                         </conditions>
                     </filter>
-                    <lifetime>7d</lifetime>
+                    <lifetime>0</lifetime>
                     <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.
 
 {$SNMP_COMMUNITY} is a global macro.</description>
@@ -1950,7 +1950,7 @@
                             <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCInOctets.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <key>ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
                             <history>365d</history>
                             <units>bps</units>
                             <description>The number of octets in valid MAC frames received on this interface, including the MAC header and FCS.</description>
@@ -1981,7 +1981,7 @@
                             <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCOutOctets.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <key>ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
                             <history>365d</history>
                             <units>bps</units>
                             <description>The number of octets transmitted in MAC frames on this interface, including the MAC header and FCS.</description>
@@ -2008,29 +2008,11 @@
                             <trends>365d</trends>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>5459672c8daf426cade2a2b3bbc1b264</uuid>
-                            <name>Inbound errors on interface - {#IF}: ({#IFALIAS}) 2</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifInErrors.bk2[{#IF}.{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>DISABLED</status>
-                            <description>For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.  For character-oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol.</description>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Interfaces</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
                             <uuid>6c0186ad086c4c139655074a4166f320</uuid>
                             <name>Inbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifInErrors.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <key>ifInErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -2055,7 +2037,7 @@
                             <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOperStatus.bk[{#IF}]</key>
+                            <key>ifOperStatus[{#IF}]</key>
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>The current operational state of the interface.</description>
@@ -2065,9 +2047,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>81c244b052d54c8f8977bf86e79533f9</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}])&lt;&gt;0</expression>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}])&lt;&gt;0</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}])=1</recovery_expression>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}])=1</recovery_expression>
                                     <name>Status Interface {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
@@ -2100,7 +2082,7 @@
                             <name>Outbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOutErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOutErrors.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <key>ifOutErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -2129,7 +2111,7 @@
                             <name>Total errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>total.Errors.bk[{#IF}.{#SNMPINDEX}]</key>
+                            <key>total.Errors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -2137,9 +2119,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>9b88c7fd92554c5b862db64f6e1ef3e4</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/total.Errors.bk[{#IF}.{#SNMPINDEX}])&gt;100</expression>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}])&gt;100</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/total.Errors.bk[{#IF}.{#SNMPINDEX}],1h)=max(/Template Switch Huawei 6700 Series - Netstream/total.Errors.bk[{#IF}.{#SNMPINDEX}],1h)</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}],1h)=max(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}],1h)</recovery_expression>
                                     <name>Interface taxando erros</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
@@ -2177,9 +2159,9 @@
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>e7450fbbe0584e5da97c876543e9c296</uuid>
-                            <expression>change(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}])&lt;&gt;0 and last(/Template Switch Huawei 6700 Series - Netstream/total.Errors.bk[{#IF}.{#SNMPINDEX}])=5</expression>
+                            <expression>change(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}])&lt;&gt;0 and last(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}])=5</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.bk[{#IF}])=1</recovery_expression>
+                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}])=1</recovery_expression>
                             <name>Status Interface 2 {#IF}: ({#IFALIAS})</name>
                             <priority>HIGH</priority>
                             <description>({#IFALIAS})</description>
@@ -2232,7 +2214,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7, {#TMP}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5]</snmp_oid>
                     <key>net.optical.ml.discovery</key>
-                    <delay>1d</delay>
+                    <delay>5m</delay>
                     <filter>
                         <conditions>
                             <condition>
