@@ -1,0 +1,113 @@
+# Guia de Edição de Templates Zabbix
+
+## Regras obrigatórias por versão
+
+### Zabbix 4.4 (`Switch/Huawei/4.4/`)
+
+| Campo | Valor correto |
+|---|---|
+| `<type>` SNMP | `SNMPV2` |
+| `<value_type>` texto | `TEXT` (não `4`) |
+| `<manual_close>` | `YES` (não `1`) |
+| UUIDs | **Não usar** — 4.4 não suporta |
+| `<tags>` em itens | **Não usar** — usar `<applications>` |
+| `<valuemaps>` | `<value_maps>` com `<value_map>` (sem UUID) |
+
+### Zabbix 6.0 (`Switch/Huawei/6.0/`)
+
+| Campo | Valor correto |
+|---|---|
+| `<type>` SNMP | `SNMP_AGENT` |
+| `<value_type>` texto | `TEXT` |
+| `<manual_close>` | `YES` |
+| UUIDs | **Obrigatório em todos os elementos** |
+| `<tags>` em itens | Usar `<tags>`, não `<applications>` |
+| `<valuemaps>` | `<valuemaps>` com `<valuemap>` + `<uuid>` |
+
+---
+
+## UUIDs — regras críticas (6.0)
+
+Todo elemento novo no template 6.0 exige um `<uuid>` **UUIDv4 válido**.
+
+### O que precisa de UUID no 6.0
+- `<template>`
+- `<discovery_rule>`
+- `<item>` e `<item_prototype>`
+- `<trigger>` e `<trigger_prototype>`
+- `<graph>` e `<graph_prototype>`
+- `<valuemap>` (dentro de `<valuemaps>`)
+- `<host_prototype>`
+
+### Como gerar UUID válido
+
+```powershell
+# PowerShell — gera 1 UUID
+[System.Guid]::NewGuid().ToString("N")
+
+# Gerar vários de uma vez
+1..10 | ForEach-Object { [System.Guid]::NewGuid().ToString("N") }
+```
+
+### Como validar UUIDs existentes
+
+```powershell
+$content = Get-Content "Template.xml" -Raw
+$uuids = [regex]::Matches($content, '<uuid>([0-9a-f]{32})</uuid>')
+$invalid = $uuids | Where-Object { $_.Groups[1].Value[12] -ne '4' }
+if ($invalid) { $invalid | ForEach-Object { Write-Output "INVÁLIDO: $($_.Groups[1].Value)" } }
+else { Write-Output "OK — todos UUIDv4 válidos" }
+```
+
+> **Regra rápida:** o 13º caractere do UUID (sem hífens) deve ser sempre `4`.
+> `xxxxxxxx xxxx `**`4`**`xxx xxxx xxxxxxxxxxxx`
+
+---
+
+## Checklist antes de importar
+
+### Template 4.4 → Zabbix 4.4
+- [ ] Nenhum `<uuid>` presente
+- [ ] `<type>SNMPV2</type>` em todos os itens SNMP
+- [ ] `<value_type>TEXT</value_type>` (não número)
+- [ ] `<manual_close>YES</manual_close>`
+- [ ] Applications declaradas no nível do template em `<applications>`
+- [ ] Valuemaps em `<value_maps><value_map>` sem UUID
+
+### Template 6.0 → Zabbix 6.0+
+- [ ] UUID presente em **todos** os elementos listados acima
+- [ ] 13º char do UUID é `4` (validar com o script acima)
+- [ ] `<type>SNMP_AGENT</type>` em todos os itens SNMP
+- [ ] Tags em `<tags><tag>` (não `<applications>`)
+- [ ] Valuemaps em `<valuemaps><valuemap>` com UUID
+
+---
+
+## Erros comuns de importação e correções
+
+| Erro | Causa | Correção |
+|---|---|---|
+| `UUIDv4 is expected` | UUID ausente ou inválido (13º char ≠ `4`) | Gerar UUID com PowerShell e substituir |
+| `unexpected constant '1'` para `manual_close` | Valor `1` no lugar de `YES` | Substituir `<manual_close>1</manual_close>` por `YES` |
+| `unexpected constant '4'` para `value_type` | Número no lugar de string | Substituir pelo nome: `TEXT`, `FLOAT`, `UNSIGNED`, etc. |
+| `Application ... not available` | Application referenciada mas não declarada no template | Adicionar em `<applications>` na raiz do template |
+| `SNMPV2` inválido no 6.0 | Tipo errado | Usar `SNMP_AGENT` |
+
+---
+
+## Mapeamento de value_type (4.4 numérico → nome)
+
+| Número | String |
+|---|---|
+| 0 | `FLOAT` |
+| 1 | `CHARACTER` |
+| 2 | `LOG` |
+| 3 | `UNSIGNED` |
+| 4 | `TEXT` |
+
+---
+
+## Sincronismo entre 4.4 e 6.0
+
+Ao adicionar um item novo, adicionar nos **dois templates** com as adaptações de formato acima.
+Nunca copiar XML de um para o outro sem ajustar os campos de versão.

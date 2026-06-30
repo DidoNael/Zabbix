@@ -788,7 +788,7 @@
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7</uuid>
+                            <uuid>3b92d3373d6b49ccb1e7c9251e742a15</uuid>
                             <name>OSPF {#IFNB} - Cost</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.14.8.1.4.{#SNMPINDEX}.0.0</snmp_oid>
@@ -805,7 +805,7 @@
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8</uuid>
+                                    <uuid>d613955e7322490fb97c165da2a4fbac</uuid>
                                     <expression>change(/Template Switch Huawei 6700 Series - Netstream/ospf.cost[{#IFNB}.{#SNMPINDEX}])&lt;&gt;0</expression>
                                     <name>OSPF Cost alterado: {#IFNB} em {HOST.NAME}</name>
                                     <priority>WARNING</priority>
@@ -814,7 +814,7 @@
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>f4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9</uuid>
+                            <uuid>f66d4847e9a7461d9be3fef07ba0dc90</uuid>
                             <name>OSPF {#IFNB} - Area ID</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.14.7.1.1.{#SNMPINDEX}.0</snmp_oid>
@@ -832,7 +832,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>a5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0</uuid>
+                            <uuid>2d4fab1bf810488d9bd609cd264a8148</uuid>
                             <name>OSPF {#IFNB} - Network Type</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.14.7.1.3.{#SNMPINDEX}.0</snmp_oid>
@@ -852,7 +852,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>b6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1</uuid>
+                            <uuid>1902f4713f9c49688d4b229e842664d3</uuid>
                             <name>OSPF {#IFNB} - Hello Interval</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.14.7.1.10.{#SNMPINDEX}.0</snmp_oid>
@@ -870,7 +870,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>c7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2</uuid>
+                            <uuid>a8d7f25fc63441a6bd999f7ae06b3128</uuid>
                             <name>OSPF {#IFNB} - Dead Interval</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.14.7.1.11.{#SNMPINDEX}.0</snmp_oid>
@@ -2939,7 +2939,7 @@ last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerM
                     </mappings>
                 </valuemap>
                 <valuemap>
-                    <uuid>e5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0</uuid>
+                    <uuid>64de793c3ba74281929f95be8ea0e3f4</uuid>
                     <name>OSPF Network Type</name>
                     <mappings>
                         <mapping>
