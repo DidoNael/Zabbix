@@ -24,7 +24,7 @@
                     <name>PSU 1 - Tipo de fonte</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.5</snmp_oid>
-                    <key>hwEntityPwrMode5</key>
+                    <key>netstream.hwEntityPwrMode5</key>
                     <delay>6h</delay>
                     <trends>0</trends>
                     <valuemap>
@@ -42,7 +42,7 @@
                     <name>PSU 2 - Tipo de fonte</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.6</snmp_oid>
-                    <key>hwEntityPwrMode6</key>
+                    <key>netstream.hwEntityPwrMode6</key>
                     <delay>6h</delay>
                     <trends>0</trends>
                     <valuemap>
@@ -60,7 +60,7 @@
                     <name>PSU 1 - Potencia</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.5</snmp_oid>
-                    <key>hwEntityPwrPower5</key>
+                    <key>netstream.hwEntityPwrPower5</key>
                     <delay>6h</delay>
                     <trends>0</trends>
                     <units>watts</units>
@@ -76,7 +76,7 @@
                     <name>PSU 2 - Potencia</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.6</snmp_oid>
-                    <key>hwEntityPwrPower6</key>
+                    <key>netstream.hwEntityPwrPower6</key>
                     <delay>6h</delay>
                     <trends>0</trends>
                     <units>watts</units>
@@ -92,7 +92,7 @@
                     <name>PSU 1 - Hardware Presente ?</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.5</snmp_oid>
-                    <key>hwEntityPwrPresente5</key>
+                    <key>netstream.hwEntityPwrPresente5</key>
                     <delay>5m</delay>
                     <trends>0</trends>
                     <valuemap>
@@ -110,7 +110,7 @@
                     <name>PSU 2 - Hardware Presente ?</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.6</snmp_oid>
-                    <key>hwEntityPwrPresente6</key>
+                    <key>netstream.hwEntityPwrPresente6</key>
                     <delay>5m</delay>
                     <trends>0</trends>
                     <valuemap>
@@ -128,7 +128,7 @@
                     <name>PSU 1 - Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.5</snmp_oid>
-                    <key>hwEntityPwrState5</key>
+                    <key>netstream.hwEntityPwrState5</key>
                     <delay>10m</delay>
                     <trends>0</trends>
                     <valuemap>
@@ -146,7 +146,7 @@
                     <name>PSU 2 - Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.6</snmp_oid>
-                    <key>hwEntityPwrState6</key>
+                    <key>netstream.hwEntityPwrState6</key>
                     <delay>10m</delay>
                     <trends>0</trends>
                     <valuemap>
@@ -164,7 +164,7 @@
                     <name>Consumo de energia</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.14.1.3.0</snmp_oid>
-                    <key>hwSystemPowerUsedPower</key>
+                    <key>netstream.hwSystemPowerUsedPower</key>
                     <units>w</units>
                     <tags>
                         <tag>
@@ -178,7 +178,7 @@
                     <name>Number of network interfaces</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>IF-MIB::ifNumber.0</snmp_oid>
-                    <key>ifNumber</key>
+                    <key>netstream.ifNumber</key>
                     <delay>1h</delay>
                     <history>1d</history>
                     <trends>365d</trends>
@@ -195,7 +195,7 @@
                     <name>Uso de RAM</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.7.67108873</snmp_oid>
-                    <key>memousage</key>
+                    <key>netstream.memousage</key>
                     <units>%</units>
                     <tags>
                         <tag>
@@ -206,9 +206,9 @@
                     <triggers>
                         <trigger>
                             <uuid>b2c3d4e5f6a74b2b8c9d0e1f2a3b4c5d</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/memousage)&gt;80</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.memousage)&gt;80</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/memousage)&lt;80</recovery_expression>
+                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.memousage)&lt;80</recovery_expression>
                             <name>Uso alto de memoria RAM</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
@@ -220,7 +220,7 @@
                     <name>Versão do Sistema e Hardware</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.2.1.1.1.0</snmp_oid>
-                    <key>sysDescr.0</key>
+                    <key>netstream.sysDescr.0</key>
                     <delay>1h</delay>
                     <history>30d</history>
                     <trends>0</trends>
@@ -237,7 +237,7 @@
                     <name>Uptime do Sistema</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.2.1.1.3.0</snmp_oid>
-                    <key>sysUpTime.0</key>
+                    <key>netstream.sysUpTime.0</key>
                     <delay>5m</delay>
                     <history>1d</history>
                     <trends>365d</trends>
@@ -259,9 +259,9 @@
                     <triggers>
                         <trigger>
                             <uuid>3ff3424d36824f8996baeb4e0ddc4cc3</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/sysUpTime.0)&lt;60</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.sysUpTime.0)&lt;60</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/sysUpTime.0)&lt;3600</recovery_expression>
+                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.sysUpTime.0)&lt;3600</recovery_expression>
                             <name>{HOST.NAME1} Reiniciou</name>
                             <priority>INFO</priority>
                             <manual_close>YES</manual_close>
@@ -273,7 +273,7 @@
                     <name>PSU 1 - Tipo de fonte</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.5</snmp_oid>
-                    <key>hwEntityPwrMode5.[{#SNMPINDEX}]</key>
+                    <key>netstream.hwEntityPwrMode5.[{#SNMPINDEX}]</key>
                     <delay>6h</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -291,7 +291,7 @@
                     <name>PSU 2 - Tipo de fonte</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.6</snmp_oid>
-                    <key>hwEntityPwrMode6.[{#SNMPINDEX}]</key>
+                    <key>netstream.hwEntityPwrMode6.[{#SNMPINDEX}]</key>
                     <delay>6h</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -309,7 +309,7 @@
                     <name>PSU 1 - Potencia</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.5</snmp_oid>
-                    <key>hwEntityPwrPower5.[{#SNMPINDEX}]</key>
+                    <key>netstream.hwEntityPwrPower5.[{#SNMPINDEX}]</key>
                     <delay>6h</delay>
                     <trends>365d</trends>
                     <units>watts</units>
@@ -325,7 +325,7 @@
                     <name>PSU 2 - Potencia</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.6</snmp_oid>
-                    <key>hwEntityPwrPower6.[{#SNMPINDEX}]</key>
+                    <key>netstream.hwEntityPwrPower6.[{#SNMPINDEX}]</key>
                     <delay>6h</delay>
                     <trends>365d</trends>
                     <units>watts</units>
@@ -341,7 +341,7 @@
                     <name>PSU 1 - Hardware Presente ?</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.5</snmp_oid>
-                    <key>hwEntityPwrPresente5.[{#SNMPINDEX}]</key>
+                    <key>netstream.hwEntityPwrPresente5.[{#SNMPINDEX}]</key>
                     <delay>5m</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -359,7 +359,7 @@
                     <name>PSU 2 - Hardware Presente ?</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.6</snmp_oid>
-                    <key>hwEntityPwrPresente6.[{#SNMPINDEX}]</key>
+                    <key>netstream.hwEntityPwrPresente6.[{#SNMPINDEX}]</key>
                     <delay>5m</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -377,7 +377,7 @@
                     <name>PSU 1 - Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.5</snmp_oid>
-                    <key>hwEntityPwrState5.[{#SNMPINDEX}]</key>
+                    <key>netstream.hwEntityPwrState5.[{#SNMPINDEX}]</key>
                     <delay>10m</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -395,7 +395,7 @@
                     <name>PSU 2 - Status</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.6</snmp_oid>
-                    <key>hwEntityPwrState6.[{#SNMPINDEX}]</key>
+                    <key>netstream.hwEntityPwrState6.[{#SNMPINDEX}]</key>
                     <delay>10m</delay>
                     <trends>365d</trends>
                     <valuemap>
@@ -413,7 +413,7 @@
                     <name>Tabela Mac</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.2011.5.25.42.2.1.14.0</snmp_oid>
-                    <key>mactable</key>
+                    <key>netstream.mactable</key>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -428,14 +428,14 @@
                     <name>Discovery: BGP4 Peer(s)</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ASN},1.3.6.1.2.1.15.3.1.9, {#IP},1.3.6.1.2.1.15.3.1.7]</snmp_oid>
-                    <key>bgppeerv4</key>
+                    <key>netstream.bgppeerv4</key>
                     <delay>5m</delay>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>f642277b97aa4c2d97dcac7dab0bb8c9</uuid>
                             <name>AS Name for IPv4 peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>EXTERNAL</type>
-                            <key>as.name["-p","{#SNMPINDEX}"]</key>
+                            <key>netstream.as.name["-p","{#SNMPINDEX}"]</key>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
                             <tags>
@@ -450,7 +450,7 @@
                             <name>Administrative status for peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.3.{#SNMPINDEX}</snmp_oid>
-                            <key>BgpPeerAdminStatus[{#IP}.{#ASN}]</key>
+                            <key>netstream.BgpPeerAdminStatus[{#IP}.{#ASN}]</key>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -463,7 +463,7 @@
                             <name>Established time for peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.15.3.1.16.{#SNMPINDEX}</snmp_oid>
-                            <key>BgpPeerFsmEstablishedTime.[{#IP}.{#ASN}]</key>
+                            <key>netstream.BgpPeerFsmEstablishedTime.[{#IP}.{#ASN}]</key>
                             <units>uptime</units>
                             <tags>
                                 <tag>
@@ -477,7 +477,7 @@
                             <name>Total IPv4 routes from peer - IP {#IP}: ASN ({#ASN})c</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.1.1.1.4.{#SNMPINDEX}</snmp_oid>
-                            <key>BgpPeerIPv4Routes[{#IP}.{#ASN}]</key>
+                            <key>netstream.BgpPeerIPv4Routes[{#IP}.{#ASN}]</key>
                             <units>prefixes</units>
                             <tags>
                                 <tag>
@@ -491,7 +491,7 @@
                             <name>Remote AS for peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.9.{#SNMPINDEX}</snmp_oid>
-                            <key>BgpPeerRemoteAs[{#IP}.{#ASN}]</key>
+                            <key>netstream.BgpPeerRemoteAs[{#IP}.{#ASN}]</key>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
                             <tags>
@@ -506,7 +506,7 @@
                             <name>Operational status for peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.2.{#SNMPINDEX}</snmp_oid>
-                            <key>BgpPeerState.[{#IP}.{#ASN}]</key>
+                            <key>netstream.BgpPeerState.[{#IP}.{#ASN}]</key>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -518,7 +518,7 @@
                             <uuid>43346ba3877a47cf8de1dd5b9bbd35b1</uuid>
                             <name>ASN Owner: {#IP} - {#ASN}</name>
                             <type>EXTERNAL</type>
-                            <key>get_asn_owner_v2.sh[{#ASN}]</key>
+                            <key>netstream.get_asn_owner_v2.sh[{#ASN}]</key>
                             <delay>1h</delay>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
@@ -533,28 +533,28 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>fe0b98bd1ecb43c09abca85cb045b4a6</uuid>
-                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN}]))&gt;0</expression>
+                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/netstream.get_asn_owner_v2.sh[{#ASN}]))&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>acaa76fd99fb4516bc1f9b6476340a00</uuid>
-                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN}]))&gt;0</expression>
+                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/netstream.get_asn_owner_v2.sh[{#ASN}]))&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>67246939f0514c618eba0c7aee0f874e</uuid>
-                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerAdminStatus[{#IP}.{#ASN}])=2</expression>
+                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN}) - DOWN</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>eed11e531e624f3499c8794b17b4d2a6</uuid>
-                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/BgpPeerAdminStatus[{#IP}.{#ASN}])=2</expression>
+                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAs[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})  -  DOWN</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
@@ -566,7 +566,7 @@
                     <name>Discovery: Temperatura</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#BOARD}, 1.3.6.1.2.1.47.1.1.1.1.2]</snmp_oid>
-                    <key>discovery.temp</key>
+                    <key>netstream.discovery.temp</key>
                     <delay>5m</delay>
                     <item_prototypes>
                         <item_prototype>
@@ -574,7 +574,7 @@
                             <name>Slot - {#BOARD}</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11.{#SNMPINDEX}</snmp_oid>
-                            <key>tempslot[{#SNMPINDEX}]</key>
+                            <key>netstream.tempslot[{#SNMPINDEX}]</key>
                             <units>ºC</units>
                             <tags>
                                 <tag>
@@ -585,7 +585,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>79a2249af051414ca8b3bcae46be1285</uuid>
-                                    <expression>count(/Template Switch Huawei 6700 Series - Netstream/tempslot[{#SNMPINDEX}],#5,"ge",50)&gt;=5</expression>
+                                    <expression>count(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],#5,"ge",50)&gt;=5</expression>
                                     <name>Temperatura alta</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
@@ -598,7 +598,7 @@
                     <name>Discovery | Network interfaces Virtual</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
-                    <key>discovery.vlanif</key>
+                    <key>netstream.discovery.vlanif</key>
                     <delay>5m</delay>
                     <filter>
                         <conditions>
@@ -629,7 +629,7 @@
                             <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                             <trends>0</trends>
                             <units>bps</units>
                             <preprocessing>
@@ -652,7 +652,7 @@
                             <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                             <trends>0</trends>
                             <units>bps</units>
                             <preprocessing>
@@ -675,21 +675,21 @@
                             <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                             <history>1w</history>
                             <trends>0</trends>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>01176f5e1150445b8fd386949d9fcc76</uuid>
-                                    <expression>(last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}],#1)&lt;&gt;last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}],#2))=1</expression>
+                                    <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}],#1)&lt;&gt;last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}],#2))=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=1</recovery_expression>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=1</recovery_expression>
                                     <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>e95db2acd2d54254a48f70ff59950560</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=2</expression>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=2</expression>
                                     <name>Vlan down - {#IF}: ({#IFALIAS})</name>
                                     <priority>INFO</priority>
                                 </trigger_prototype>
@@ -705,7 +705,7 @@
                                     <color>00FF00</color>
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
-                                        <key>ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
+                                        <key>netstream.ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -713,7 +713,7 @@
                                     <color>FF0000</color>
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
-                                        <key>ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
+                                        <key>netstream.ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -725,7 +725,7 @@
                     <name>Discovery OSPF PEER</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IFNB},1.3.6.1.4.1.2011.5.25.155.6.1.5.1.0.0.0.0,{#IFNBIP},1.3.6.1.4.1.2011.5.25.155.6.1.4.1.0.0.0.0]</snmp_oid>
-                    <key>discovery[ospfpeer]</key>
+                    <key>netstream.discovery[ospfpeer]</key>
                     <delay>5m</delay>
                     <lifetime>0</lifetime>
                     <item_prototypes>
@@ -734,7 +734,7 @@
                             <name>OSPF {#IFNB} - MTU</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.8.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
-                            <key>ospf.mtu.[{#IFNB}.{#SNMPINDEX}]</key>
+                            <key>netstream.ospf.mtu.[{#IFNB}.{#SNMPINDEX}]</key>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -747,7 +747,7 @@
                             <name>OSPF {#IFNB} - State</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.10.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
-                            <key>ospf.state[{#IFNB}.{#SNMPINDEX}]</key>
+                            <key>netstream.ospf.state[{#IFNB}.{#SNMPINDEX}]</key>
                             <valuemap>
                                 <name>HUAWEI - OSPF</name>
                             </valuemap>
@@ -760,7 +760,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>a950dded041b470f802509cece14acbe</uuid>
-                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/ospf.state[{#IFNB}.{#SNMPINDEX}])&lt;8</expression>
+                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ospf.state[{#IFNB}.{#SNMPINDEX}])&lt;8</expression>
                                     <name>Alteração no OSPF: {#IFNB}</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
@@ -771,7 +771,7 @@
                             <name>OSPF {#IFNB} - Neighbor ({#IFNBIP}) - Uptime</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.155.6.1.13.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
-                            <key>ospf.uptime.[{#IFNB}.{#SNMPINDEX}]</key>
+                            <key>netstream.ospf.uptime.[{#IFNB}.{#SNMPINDEX}]</key>
                             <units>s</units>
                             <valuemap>
                                 <name>HUAWEI - OSPF</name>
@@ -779,9 +779,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>f9bd8f28701944888460c0da899fcabb</uuid>
-                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/ospf.uptime.[{#IFNB}.{#SNMPINDEX}])&lt;600</expression>
+                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ospf.uptime.[{#IFNB}.{#SNMPINDEX}])&lt;600</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ospf.uptime.[{#IFNB}.{#SNMPINDEX}])&gt;3600</recovery_expression>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ospf.uptime.[{#IFNB}.{#SNMPINDEX}])&gt;3600</recovery_expression>
                                     <name>Uptime baixo no OSPF: {#IFNB}</name>
                                     <priority>AVERAGE</priority>
                                 </trigger_prototype>
@@ -792,7 +792,7 @@
                             <name>OSPF {#IFNB} - Cost</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.14.8.1.4.{#SNMPINDEX}.0.0</snmp_oid>
-                            <key>ospf.cost[{#IFNB}.{#SNMPINDEX}]</key>
+                            <key>netstream.ospf.cost[{#IFNB}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -806,7 +806,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>d613955e7322490fb97c165da2a4fbac</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/ospf.cost[{#IFNB}.{#SNMPINDEX}])&lt;&gt;0</expression>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.ospf.cost[{#IFNB}.{#SNMPINDEX}])&lt;&gt;0</expression>
                                     <name>OSPF Cost alterado: {#IFNB} em {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
@@ -818,7 +818,7 @@
                             <name>OSPF {#IFNB} - Area ID</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.14.7.1.1.{#SNMPINDEX}.0</snmp_oid>
-                            <key>ospf.area[{#IFNB}.{#SNMPINDEX}]</key>
+                            <key>netstream.ospf.area[{#IFNB}.{#SNMPINDEX}]</key>
                             <delay>1h</delay>
                             <history>90d</history>
                             <trends>0</trends>
@@ -836,7 +836,7 @@
                             <name>OSPF {#IFNB} - Network Type</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.14.7.1.3.{#SNMPINDEX}.0</snmp_oid>
-                            <key>ospf.nettype[{#IFNB}.{#SNMPINDEX}]</key>
+                            <key>netstream.ospf.nettype[{#IFNB}.{#SNMPINDEX}]</key>
                             <delay>1h</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -856,7 +856,7 @@
                             <name>OSPF {#IFNB} - Hello Interval</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.14.7.1.10.{#SNMPINDEX}.0</snmp_oid>
-                            <key>ospf.hello[{#IFNB}.{#SNMPINDEX}]</key>
+                            <key>netstream.ospf.hello[{#IFNB}.{#SNMPINDEX}]</key>
                             <delay>1h</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -874,7 +874,7 @@
                             <name>OSPF {#IFNB} - Dead Interval</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.14.7.1.11.{#SNMPINDEX}.0</snmp_oid>
-                            <key>ospf.dead[{#IFNB}.{#SNMPINDEX}]</key>
+                            <key>netstream.ospf.dead[{#IFNB}.{#SNMPINDEX}]</key>
                             <delay>1h</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -894,7 +894,7 @@
                     <name>Discovery: Uso de CPU</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.6.3.4.1.3]</snmp_oid>
-                    <key>hwAvgDuty</key>
+                    <key>netstream.hwAvgDuty</key>
                     <delay>5m</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
@@ -903,7 +903,7 @@
                             <name>Uso em 1 min</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.{#SNMPINDEX}</snmp_oid>
-                            <key>hwAvgDuty1min[{#SNMPINDEX}]</key>
+                            <key>netstream.hwAvgDuty1min[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
                             <tags>
@@ -918,7 +918,7 @@
                             <name>Uso em 5 min</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.{#SNMPINDEX}</snmp_oid>
-                            <key>hwAvgDuty5min[{#SNMPINDEX}]</key>
+                            <key>netstream.hwAvgDuty5min[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
                             <tags>
@@ -930,17 +930,17 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>8b1b86f8d5c445d9b5c1f835e9a7a22e</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min[{#SNMPINDEX}],5m)&gt;60</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&gt;60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
                                     <name>Uso está acima de 60% for 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>afc1e39b03c54dbf85896aeebf5a4d18</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min[{#SNMPINDEX}],5m)&gt;80</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&gt;80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
                                     <name>Uso está acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
@@ -951,7 +951,7 @@
                             <name>Uso em 1 min</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.{#SNMPINDEX}</snmp_oid>
-                            <key>hwAvgDuty1min.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwAvgDuty1min.[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
                             <tags>
@@ -967,23 +967,23 @@
                             <name>Uso em 5 min</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.{#SNMPINDEX}</snmp_oid>
-                            <key>hwAvgDuty5min.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwAvgDuty5min.[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>8f528c18e4d0410da451257a6bbf8913</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min.[{#SNMPINDEX}],5m)&gt;60</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min.[{#SNMPINDEX}],5m)&gt;60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min.[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min.[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
                                     <name>Uso esta acima de 60% for 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>022bcadfe5494944ac6bd1a0d2e7d49c</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min.[{#SNMPINDEX}],5m)&gt;80</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min.[{#SNMPINDEX}],5m)&gt;80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/hwAvgDuty5min.[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min.[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
                                     <name>Uso esta acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
@@ -1003,7 +1003,7 @@
                     <name>Discovery: Fan</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.1]</snmp_oid>
-                    <key>hwEntityFan</key>
+                    <key>netstream.hwEntityFan</key>
                     <delay>5m</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
@@ -1012,7 +1012,7 @@
                             <name>Velocidade modulo Fan [{#SNMPINDEX}] (%)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.10.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityFanSpeed[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityFanSpeed[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -1026,9 +1026,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>a128276b1e6242b6aeec7978c948d60d</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/hwEntityFanSpeed[{#SNMPINDEX}],5m)&gt;=80</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanSpeed[{#SNMPINDEX}],5m)&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/hwEntityFanSpeed[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanSpeed[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
                                     <name>Modulo Fan [{#SNMPINDEX}] velocidade está acima de 80% em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
@@ -1039,7 +1039,7 @@
                             <name>Status modulo Fan [{#SNMPINDEX}]</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.10.1.7.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityFanState[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityFanState[{#SNMPINDEX}]</key>
                             <delay>300</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -1055,9 +1055,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>6bded8e5a7f44b7e8473fa48bd552eb5</uuid>
-                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/hwEntityFanState[{#SNMPINDEX}])&lt;&gt;1</expression>
+                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanState[{#SNMPINDEX}])&lt;&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/hwEntityFanState[{#SNMPINDEX}])=1</recovery_expression>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanState[{#SNMPINDEX}])=1</recovery_expression>
                                     <name>Modulo Fan [{#SNMPINDEX}] status está anormal em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
@@ -1070,7 +1070,7 @@
                     <name>Discovery | Network interfaces optical single lan</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7,{#HWTEMP},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5, {#RXPWLAN}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32]</snmp_oid>
-                    <key>hwentityopticaltxpower</key>
+                    <key>netstream.hwentityopticaltxpower</key>
                     <delay>5m</delay>
                     <filter>
                         <conditions>
@@ -1100,7 +1100,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -1130,7 +1130,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>455a465d381e4651a253bdd9d0697af8</uuid>
-                                    <expression>count(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#4)&lt;0.8</expression>
+                                    <expression>count(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#4)&lt;0.8</expression>
                                     <name>Sinal óptico alterado - {#ENTPHYSICALNAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -1147,7 +1147,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalLaneTxPower.[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalLaneTxPower.[{#ENTPHYSICALNAME}]</key>
                             <delay>1h</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -1172,7 +1172,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalRxHighThreshold.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityOpticalRxHighThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>7d</history>
                             <trends>0</trends>
@@ -1206,7 +1206,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Warning</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalRxHighWarnThreshold.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityOpticalRxHighWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -1240,7 +1240,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]</key>
                             <delay>10m</delay>
                             <history>7d</history>
                             <trends>0</trends>
@@ -1274,7 +1274,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalRxLowWarnThreshold.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityOpticalRxLowWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>10m</delay>
                             <history>7d</history>
                             <trends>0</trends>
@@ -1300,7 +1300,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Temperature</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTemperature.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityOpticalTemperature.[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>30d</history>
                             <trends>0</trends>
@@ -1318,7 +1318,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Optical Transfer Distance</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTransferDistance.[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalTransferDistance.[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
@@ -1328,7 +1328,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTxHighThreshold.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityOpticalTxHighThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -1354,7 +1354,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Warning</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTxHighWarnThreshold.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityOpticalTxHighWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -1388,7 +1388,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTxLowThreshold.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityOpticalTxLowThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -1418,7 +1418,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Warning</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTxLowWarnThreshold.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityOpticalTxLowWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -1448,7 +1448,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Vendor</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalVenderName[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalVenderName[{#ENTPHYSICALNAME}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -1465,7 +1465,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Type</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalVenderPn.[{#SNMPINDEX}]</key>
+                            <key>netstream.hwEntityOpticalVenderPn.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -1481,7 +1481,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>b8c96570469247c5a7fc99589757703b</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#3) &lt; last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]) and last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#3) &gt;= -39</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#3) &lt; last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]) and last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#3) &gt;= -39</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME}</name>
                             <priority>AVERAGE</priority>
                             <tags>
@@ -1498,7 +1498,7 @@
                     <name>Discovery: Memoria</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.6.3.5.1.1.2]</snmp_oid>
-                    <key>hwMemoryDev</key>
+                    <key>netstream.hwMemoryDev</key>
                     <delay>5m</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
@@ -1507,7 +1507,7 @@
                             <name>Falhas de alocação de memória devido a falta de memória inativa</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.7.{#SNMPINDEX}</snmp_oid>
-                            <key>hwMemoryDevFailNoMem[{#SNMPINDEX}]</key>
+                            <key>netstream.hwMemoryDevFailNoMem[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -1523,7 +1523,7 @@
                             <name>Contagem de falhas de alocação de memória</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.6.{#SNMPINDEX}</snmp_oid>
-                            <key>hwMemoryDevFail[{#SNMPINDEX}]</key>
+                            <key>netstream.hwMemoryDevFail[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -1539,7 +1539,7 @@
                             <name>Memoria Livre</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.3.{#SNMPINDEX}</snmp_oid>
-                            <key>hwMemoryDevFree[{#SNMPINDEX}]</key>
+                            <key>netstream.hwMemoryDevFree[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -1557,7 +1557,7 @@
                             <name>Memoria Utilizada</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.4.{#SNMPINDEX}</snmp_oid>
-                            <key>hwMemoryDevRawSliceUsed[{#SNMPINDEX}]</key>
+                            <key>netstream.hwMemoryDevRawSliceUsed[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -1575,7 +1575,7 @@
                             <name>Tamanho total da memória</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.2.{#SNMPINDEX}</snmp_oid>
-                            <key>hwMemoryDevSize[{#SNMPINDEX}]</key>
+                            <key>netstream.hwMemoryDevSize[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -1592,7 +1592,7 @@
                             <uuid>0436bb9ec763452c9fe90fa12cab9d66</uuid>
                             <name>Memoria Livre (%)</name>
                             <type>CALCULATED</type>
-                            <key>memFreePercentage[{#SNMPINDEX}]</key>
+                            <key>netstream.memFreePercentage[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -1608,18 +1608,18 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>d8ae2a48fbb341dc857b3c9d7906f666</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/memFreePercentage[{#SNMPINDEX}],5m)&lt;=40</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&lt;=40</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/memFreePercentage[{#SNMPINDEX}],5m)&gt;40</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&gt;40</recovery_expression>
                                     <name>Memória disponível abaixo 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>67e417628e4541268dbcba1e1845e5e0</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/memFreePercentage[{#SNMPINDEX}],5m)&lt;=20</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&lt;=20</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/memFreePercentage[{#SNMPINDEX}],5m)&gt;20</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&gt;20</recovery_expression>
                                     <name>Memória disponível esta abaixo de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
@@ -1629,7 +1629,7 @@
                             <uuid>c7a336f0c9004d4e89f4e59582594709</uuid>
                             <name>Memoria Utilizada (%)</name>
                             <type>CALCULATED</type>
-                            <key>memUsedPercentage[{#SNMPINDEX}]</key>
+                            <key>netstream.memUsedPercentage[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -1645,18 +1645,18 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>a0e585bb0dcb40cabc9b003b124a0aeb</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/memUsedPercentage[{#SNMPINDEX}],5m)&gt;=60</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&gt;=60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/memUsedPercentage[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
                                     <name>Uso de memória está acima de 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>225f9ce4a54a49c0bf5ab24b7d1b8d54</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/memUsedPercentage[{#SNMPINDEX}],5m)&gt;=80</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/memUsedPercentage[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
                                     <name>Uso de memória está acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
@@ -1669,7 +1669,7 @@
                     <name>Discovery | Network interfaces</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
-                    <key>ifDescr</key>
+                    <key>netstream.ifDescr</key>
                     <delay>5m</delay>
                     <filter>
                         <evaltype>AND</evaltype>
@@ -1728,7 +1728,7 @@
                             <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
                             <history>1w</history>
                             <trends>365d</trends>
                             <units>bps</units>
@@ -1759,7 +1759,7 @@
                             <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
                             <history>1w</history>
                             <trends>365d</trends>
                             <units>bps</units>
@@ -1790,7 +1790,7 @@
                             <name>Inbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifInErrors[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifInErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -1815,7 +1815,7 @@
                             <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOperStatus[{#IF}]</key>
+                            <key>netstream.ifOperStatus[{#IF}]</key>
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>The current operational state of the interface.</description>
@@ -1831,9 +1831,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>2bd84781fe1f4c6383f40d301548afe7</uuid>
-                                    <expression>(last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}],#1)&lt;&gt;last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}],#2))=1</expression>
+                                    <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}],#1)&lt;&gt;last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}],#2))=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}])=1</recovery_expression>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}])=1</recovery_expression>
                                     <name>Status Interface {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
@@ -1860,7 +1860,7 @@
                             <name>Outbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOutErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOutErrors[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifOutErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -1885,7 +1885,7 @@
                             <name>Interface speed {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.15.{#SNMPINDEX}</snmp_oid>
-                            <key>ifspeed.[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifspeed.[{#IF}.{#SNMPINDEX}]</key>
                             <units>bps</units>
                             <preprocessing>
                                 <step>
@@ -1907,7 +1907,7 @@
                             <name>Total errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>total.Errors[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.total.Errors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -1921,9 +1921,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>1d16d58735824297b55dd7911f588b7f</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}])&gt;100</expression>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}])&gt;100</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}],1h)=max(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}],1h)</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}],1h)=max(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}],1h)</recovery_expression>
                                     <name>Taxa de erros:  {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
@@ -1950,7 +1950,7 @@
                             <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
                             <history>365d</history>
                             <units>bps</units>
                             <description>The number of octets in valid MAC frames received on this interface, including the MAC header and FCS.</description>
@@ -1981,7 +1981,7 @@
                             <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
                             <history>365d</history>
                             <units>bps</units>
                             <description>The number of octets transmitted in MAC frames on this interface, including the MAC header and FCS.</description>
@@ -2012,7 +2012,7 @@
                             <name>Inbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifInErrors[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifInErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -2037,7 +2037,7 @@
                             <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOperStatus[{#IF}]</key>
+                            <key>netstream.ifOperStatus[{#IF}]</key>
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>The current operational state of the interface.</description>
@@ -2047,9 +2047,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>81c244b052d54c8f8977bf86e79533f9</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}])&lt;&gt;0</expression>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}])&lt;&gt;0</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}])=1</recovery_expression>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}])=1</recovery_expression>
                                     <name>Status Interface {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
@@ -2082,7 +2082,7 @@
                             <name>Outbound errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOutErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOutErrors[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.ifOutErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -2111,7 +2111,7 @@
                             <name>Total errors on interface - {#IF}: ({#IFALIAS})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>total.Errors[{#IF}.{#SNMPINDEX}]</key>
+                            <key>netstream.total.Errors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>1w</history>
                             <trends>365d</trends>
@@ -2119,9 +2119,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>9b88c7fd92554c5b862db64f6e1ef3e4</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}])&gt;100</expression>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}])&gt;100</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}],1h)=max(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}],1h)</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}],1h)=max(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}],1h)</recovery_expression>
                                     <name>Interface taxando erros</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
@@ -2153,15 +2153,15 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>1f421dc466584e31a217d9fd2759e3e3</uuid>
-                            <expression>(last(/Template Switch Huawei 6700 Series - Netstream/ifHCOutOctets[{#IF}.{#SNMPINDEX}]) or last(/Template Switch Huawei 6700 Series - Netstream/ifHCInOctets[{#IF}.{#SNMPINDEX}])) &gt; last(/Template Switch Huawei 6700 Series - Netstream/ifspeed.[{#IF}.{#SNMPINDEX}])&gt;=0.9</expression>
+                            <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]) or last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}])) &gt; last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifspeed.[{#IF}.{#SNMPINDEX}])&gt;=0.9</expression>
                             <name>Consumo maior que 90% da porta - {#IF}: ({#IFALIAS})</name>
                             <priority>HIGH</priority>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>e7450fbbe0584e5da97c876543e9c296</uuid>
-                            <expression>change(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}])&lt;&gt;0 and last(/Template Switch Huawei 6700 Series - Netstream/total.Errors[{#IF}.{#SNMPINDEX}])=5</expression>
+                            <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}])&lt;&gt;0 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}])=5</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/ifOperStatus[{#IF}])=1</recovery_expression>
+                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}])=1</recovery_expression>
                             <name>Status Interface 2 {#IF}: ({#IFALIAS})</name>
                             <priority>HIGH</priority>
                             <description>({#IFALIAS})</description>
@@ -2192,7 +2192,7 @@
                                     <color>00FF00</color>
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
-                                        <key>ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
+                                        <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -2201,7 +2201,7 @@
                                     <color>FF0000</color>
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
-                                        <key>ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
+                                        <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -2213,7 +2213,7 @@
                     <name>Discovery | Network interfaces Modules Multi Lane</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7, {#TMP}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5]</snmp_oid>
-                    <key>net.optical.ml.discovery</key>
+                    <key>netstream.net.optical.ml.discovery</key>
                     <delay>5m</delay>
                     <filter>
                         <conditions>
@@ -2242,7 +2242,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane0</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2274,7 +2274,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane1</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2306,7 +2306,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane2</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2338,7 +2338,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane3</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2370,7 +2370,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane0</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalLaneTxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalLaneTxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2402,7 +2402,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane1</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalLaneTxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalLaneTxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2434,7 +2434,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane2</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalLaneTxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalLaneTxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2466,7 +2466,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane3</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalLaneTxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalLaneTxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2498,7 +2498,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Optical Transfer Distance</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalmultilanTransferDistance.[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalmultilanTransferDistance.[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
@@ -2508,7 +2508,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalRxHighThresholdML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalRxHighThresholdML[{#ENTPHYSICALNAME}]</key>
                             <history>7d</history>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2532,7 +2532,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalRxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalRxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2556,7 +2556,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2581,7 +2581,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalRxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalRxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2605,7 +2605,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Temperature</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTemperatureML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalTemperatureML[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <history>30d</history>
                             <trends>0</trends>
@@ -2623,7 +2623,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTxHighThresholdML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalTxHighThresholdML[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
@@ -2648,7 +2648,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalTxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2672,7 +2672,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTxLowThresholdML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalTxLowThresholdML[{#ENTPHYSICALNAME}]</key>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2696,7 +2696,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalTxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalTxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2720,7 +2720,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Vendor Name</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalVenderNameML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalVenderNameML[{#ENTPHYSICALNAME}]</key>
                             <delay>1h</delay>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
@@ -2736,7 +2736,7 @@
                             <name>Optical Module Interface {#ENTPHYSICALNAME}: Type</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
-                            <key>hwEntityOpticalVenderPnML[{#ENTPHYSICALNAME}]</key>
+                            <key>netstream.hwEntityOpticalVenderPnML[{#ENTPHYSICALNAME}]</key>
                             <delay>1d</delay>
                             <history>7d</history>
                             <trends>0</trends>
@@ -2752,13 +2752,13 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>9fa04b183d0c4cefb2e92928cf55926d</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
 or
-last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
+last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
 or
-last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
+last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
 or
-last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])</expression>
+last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME}</name>
                             <priority>AVERAGE</priority>
                         </trigger_prototype>
@@ -2966,7 +2966,7 @@ last(/Template Switch Huawei 6700 Series - Netstream/hwEntityOpticalLaneRxPowerM
     <triggers>
         <trigger>
             <uuid>255b84afc1de4d439370c2567bb8f4c6</uuid>
-            <expression>change(/Template Switch Huawei 6700 Series - Netstream/hwEntityPwrState5)&gt;1 or change(/Template Switch Huawei 6700 Series - Netstream/hwEntityPwrState6)&gt;1</expression>
+            <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityPwrState5)&gt;1 or change(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityPwrState6)&gt;1</expression>
             <name>Alteração de alimentação</name>
             <priority>HIGH</priority>
             <tags>
