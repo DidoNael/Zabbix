@@ -1729,7 +1729,7 @@
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
-                            <history>1w</history>
+                            <history>365d</history>
                             <trends>365d</trends>
                             <units>bps</units>
                             <description>The number of octets in valid MAC frames received on this interface, including the MAC header and FCS.</description>
@@ -1760,7 +1760,7 @@
                             <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
-                            <history>1w</history>
+                            <history>365d</history>
                             <trends>365d</trends>
                             <units>bps</units>
                             <description>The number of octets transmitted in MAC frames on this interface, including the MAC header and FCS.</description>
@@ -1945,211 +1945,7 @@
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
-                        <item_prototype>
-                            <uuid>152f6d5b24ef4a0196839384887ff839</uuid>
-                            <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
-                            <history>365d</history>
-                            <units>bps</units>
-                            <description>The number of octets in valid MAC frames received on this interface, including the MAC header and FCS.</description>
-                            <preprocessing>
-                                <step>
-                                    <type>CHANGE_PER_SECOND</type>
-                                    <parameters>
-                                        <parameter />
-                                    </parameters>
-                                </step>
-                                <step>
-                                    <type>MULTIPLIER</type>
-                                    <parameters>
-                                        <parameter>8</parameter>
-                                    </parameters>
-                                </step>
-                            </preprocessing>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Interfaces</value>
-                                </tag>
-                            </tags>
-                            <trends>365d</trends>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>53306d6d86de4426913545f97236202a</uuid>
-                            <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
-                            <history>365d</history>
-                            <units>bps</units>
-                            <description>The number of octets transmitted in MAC frames on this interface, including the MAC header and FCS.</description>
-                            <preprocessing>
-                                <step>
-                                    <type>CHANGE_PER_SECOND</type>
-                                    <parameters>
-                                        <parameter />
-                                    </parameters>
-                                </step>
-                                <step>
-                                    <type>MULTIPLIER</type>
-                                    <parameters>
-                                        <parameter>8</parameter>
-                                    </parameters>
-                                </step>
-                            </preprocessing>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Interfaces</value>
-                                </tag>
-                            </tags>
-                            <trends>365d</trends>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>6c0186ad086c4c139655074a4166f320</uuid>
-                            <name>Inbound errors on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.ifInErrors[{#IF}.{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <description>For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.  For character-oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol.</description>
-                            <preprocessing>
-                                <step>
-                                    <type>SIMPLE_CHANGE</type>
-                                    <parameters>
-                                        <parameter />
-                                    </parameters>
-                                </step>
-                            </preprocessing>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Interfaces</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>fff0c7a6de9e466dbbfa033e156e3909</uuid>
-                            <name>Status da interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.ifOperStatus[{#IF}]</key>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <description>The current operational state of the interface.</description>
-                            <valuemap>
-                                <name>SNMP interface status (ifOperStatus)</name>
-                            </valuemap>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>81c244b052d54c8f8977bf86e79533f9</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}])&lt;&gt;0</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}])=1</recovery_expression>
-                                    <name>Status Interface {#IF}: ({#IFALIAS})</name>
-                                    <priority>HIGH</priority>
-                                    <description>({#IFALIAS})</description>
-                                    <manual_close>YES</manual_close>
-                                    <tags>
-                                        <tag>
-                                            <tag>IF</tag>
-                                            <value>{#IF}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>IFNAME</tag>
-                                            <value>{#IFALIAS}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>RXPW</tag>
-                                            <value>{#RXPOWER}</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                            </trigger_prototypes>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Interfaces</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>d6dfd65a01fe425d8912971226561068</uuid>
-                            <name>Outbound errors on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>IF-MIB::ifOutErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.ifOutErrors[{#IF}.{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <description>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</description>
-                            <preprocessing>
-                                <step>
-                                    <type>SIMPLE_CHANGE</type>
-                                    <parameters>
-                                        <parameter />
-                                    </parameters>
-                                </step>
-                            </preprocessing>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>if-error-in</value>
-                                </tag>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Interfaces</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>f5fe53dafadc453fa036c27f31821600</uuid>
-                            <name>Total errors on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>ifInErrors.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.total.Errors[{#IF}.{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <description>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</description>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>9b88c7fd92554c5b862db64f6e1ef3e4</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}])&gt;100</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}],1h)=max(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}],1h)</recovery_expression>
-                                    <name>Interface taxando erros</name>
-                                    <priority>HIGH</priority>
-                                    <description>({#IFALIAS})</description>
-                                    <manual_close>YES</manual_close>
-                                    <tags>
-                                        <tag>
-                                            <tag>IF</tag>
-                                            <value>{#IF}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>IFERROR</tag>
-                                            <value>IFERROR</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>IFNAME</tag>
-                                            <value>{#IFALIAS}</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                            </trigger_prototypes>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Interfaces</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                    </item_prototypes>
+                        </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>1f421dc466584e31a217d9fd2759e3e3</uuid>
