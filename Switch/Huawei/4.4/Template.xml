@@ -639,6 +639,91 @@
                     </trigger_prototypes>
                 </discovery_rule>
                 <discovery_rule>
+                    <name>Discovery: BFD Sessions</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#BFD_DISCRIMINATOR},1.3.6.1.4.1.2011.5.25.161.1.1.1.3,{#BFD_PEER},1.3.6.1.4.1.2011.5.25.161.1.1.1.11,{#BFD_TYPE},1.3.6.1.4.1.2011.5.25.161.1.1.1.2]</snmp_oid>
+                    <key>netstream.bfd.discovery</key>
+                    <delay>1h</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>BFD Session State: Peer {#BFD_PEER} (Discr: {#BFD_DISCRIMINATOR})</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.161.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bfd.state[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <applications>
+                                <application>
+                                    <name>BFD</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>BFD Diagnostic Code: Peer {#BFD_PEER} (Discr: {#BFD_DISCRIMINATOR})</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.161.1.1.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bfd.diag[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <applications>
+                                <application>
+                                    <name>BFD</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>BFD Remote Discriminator: Peer {#BFD_PEER} (Discr: {#BFD_DISCRIMINATOR})</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.161.1.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bfd.remote_discr[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <applications>
+                                <application>
+                                    <name>BFD</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>BFD Application Type: Peer {#BFD_PEER} (Discr: {#BFD_DISCRIMINATOR})</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.161.1.1.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bfd.application[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <applications>
+                                <application>
+                                    <name>BFD</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>BFD Address Type (1=IPv4, 2=IPv6): Peer {#BFD_PEER} (Discr: {#BFD_DISCRIMINATOR})</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.161.1.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bfd.addr_type[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <applications>
+                                <application>
+                                    <name>BFD</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.bfd.state[{#SNMPINDEX}].last(#2)}=2</expression>
+                            <name>BFD Session DOWN: Peer {#BFD_PEER} (Discr: {#BFD_DISCRIMINATOR})</name>
+                            <priority>HIGH</priority>
+                            <description>Sessao BFD com o peer {#BFD_PEER} (Discriminator Local {#BFD_DISCRIMINATOR}) esta no estado DOWN (2).</description>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+                <discovery_rule>
                     <name>Discovery: Temperatura</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
