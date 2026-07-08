@@ -391,7 +391,7 @@
             </items>
             <discovery_rules>
                 <discovery_rule>
-                    <name>Discovery: BGP4 Peer(s)</name>
+                    <name>Discovery: BGP4 IPv4 Peer(s)</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#ASN},1.3.6.1.2.1.15.3.1.9, {#IP},1.3.6.1.2.1.15.3.1.7]</snmp_oid>
