@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2026-07-08T19:25:57Z</date>
+    <date>2026-07-08T19:33:02Z</date>
     <groups>
         <group>
             <name>ZTE</name>
@@ -1047,12 +1047,93 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <history>7d</history>
                             <trends>365d</trends>
                             <status>ENABLED</status>
-                            <value_type>UINT</value_type>
+                            <value_type>FLOAT</value_type>
                             <units>m</units>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
                                     <value>Clientes Dedicados</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>LAN 1 - Status da Porta - Cliente Dedicado: {#ONTDESC}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.11.2.1.3.{#SNMPINDEX}.1</snmp_oid>
+                            <key>netstream.dedicado.lan.status[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>ENABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.dedicado.lan.status[{#SNMPINDEX}].min(#3)}=2 and {OLT ZTE - NETSTREAM:netstream.onu.status.[{#SNMPINDEX}].last()}=1</expression>
+                                    <name>Cliente Dedicado {#ONTDESC}: Cabo LAN Desconectado / Porta Ethernet DOWN</name>
+                                    <priority>WARNING</priority>
+                                    <description>A ONU dedicada esta online na fibra, porem o cabo de rede RJ45 (LAN 1) que liga ao cliente esta desconectado ou DOWN.</description>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados - LAN</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>LAN 1 - Velocidade Negociada - Cliente Dedicado: {#ONTDESC}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.11.2.1.4.{#SNMPINDEX}.1</snmp_oid>
+                            <key>netstream.dedicado.lan.speed[{#SNMPINDEX}]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>ENABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>Mbps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var s = parseInt(value);
+if (s === 2 || s === 10) return 10;
+if (s === 3 || s === 100) return 100;
+if (s === 4 || s === 1000) return 1000;
+return s;</params>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.dedicado.lan.speed[{#SNMPINDEX}].last()}=100 and {OLT ZTE - NETSTREAM:netstream.dedicado.lan.status[{#SNMPINDEX}].last()}=1</expression>
+                                    <name>Cliente Dedicado {#ONTDESC}: Porta LAN Negociando a apenas 100 Mbps (Degradacao Cabo RJ45)</name>
+                                    <priority>WARNING</priority>
+                                    <description>O cabo de rede do cliente dedicado negociou a 100 Mbps em vez de Gigabit (1000 Mbps). Verificar crimpagem, oxidacao de conector RJ45 ou porta do firewall.</description>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados - LAN</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>LAN 1 - Modo Duplex - Cliente Dedicado: {#ONTDESC}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.11.2.1.5.{#SNMPINDEX}.1</snmp_oid>
+                            <key>netstream.dedicado.lan.duplex[{#SNMPINDEX}]</key>
+                            <delay>30m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>ENABLED</status>
+                            <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados - LAN</value>
                                 </tag>
                             </tags>
                         </item_prototype>
@@ -1258,6 +1339,143 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </tags>
                         </item_prototype>
                     </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>NETSTREAM - Descoberta de Portas LAN / Uplink da OLT</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#IFNAME},1.3.6.1.2.1.31.1.1.1.1,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18,{#IFOPERSTATUS},1.3.6.1.2.1.2.2.1.8]</snmp_oid>
+                    <key>netstream.olt.uplink.discovery</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFNAME}</macro>
+                                <value>^(gei|xgei|smartgroup|10GE|100GE|eth|GigabitEthernet|TenGigabitEthernet)</value>
+                                <operator>8</operator>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME} ({#IFALIAS}): Trafego de Entrada (Download)</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.in[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>ENABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Uplink / LAN OLT</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME} ({#IFALIAS}): Trafego de Saida (Upload)</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.out[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>ENABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Uplink / LAN OLT</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME} ({#IFALIAS}): Status Operacional</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.status[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>ENABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2</expression>
+                                    <name>Uplink {#IFNAME} ({#IFALIAS}): Link DOWN / Desconectado</name>
+                                    <priority>HIGH</priority>
+                                    <description>A porta LAN/Uplink fisica da OLT caiu e permanece indisponivel.</description>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Uplink / LAN OLT</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Uplink {#IFNAME} ({#IFALIAS}): Trafego (Download / Upload)</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <item>
+                                        <host>OLT ZTE - NETSTREAM</host>
+                                        <key>netstream.uplink.in[{#SNMPINDEX}]</key>
+                                        <tags>
+                                            <tag>
+                                                <tag>Application</tag>
+                                                <value>GPON OLT</value>
+                                            </tag>
+                                        </tags>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <color>2774A4</color>
+                                    <drawtype>LINE</drawtype>
+                                    <item>
+                                        <host>OLT ZTE - NETSTREAM</host>
+                                        <key>netstream.uplink.out[{#SNMPINDEX}]</key>
+                                        <tags>
+                                            <tag>
+                                                <tag>Application</tag>
+                                                <value>GPON OLT</value>
+                                            </tag>
+                                        </tags>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
                 </discovery_rule>
             </discovery_rules>
             <macros>
