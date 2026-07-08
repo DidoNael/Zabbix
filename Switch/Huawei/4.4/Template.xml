@@ -27,6 +27,9 @@
                     <name>BFD</name>
                 </application>
                 <application>
+                    <name>BGP</name>
+                </application>
+                <application>
                     <name>CPU</name>
                 </application>
                 <application>
@@ -39,13 +42,7 @@
                     <name>if-speed</name>
                 </application>
                 <application>
-                    <name>Info Sistema</name>
-                </application>
-                <application>
                     <name>Interface-name</name>
-                </application>
-                <application>
-                    <name>Interface 100/40GB</name>
                 </application>
                 <application>
                     <name>Interfaces</name>
@@ -78,16 +75,7 @@
                     <name>Peer V6</name>
                 </application>
                 <application>
-                    <name>pw-power</name>
-                </application>
-                <application>
-                    <name>pw-present</name>
-                </application>
-                <application>
-                    <name>pw-state</name>
-                </application>
-                <application>
-                    <name>pw-type</name>
+                    <name>Power Supply (PSU)</name>
                 </application>
                 <application>
                     <name>RX</name>
@@ -96,13 +84,10 @@
                     <name>Sistema</name>
                 </application>
                 <application>
-                    <name>Speed If</name>
+                    <name>temperatura</name>
                 </application>
                 <application>
                     <name>Temperatura</name>
-                </application>
-                <application>
-                    <name>temperatura</name>
                 </application>
                 <application>
                     <name>TX</name>
@@ -112,9 +97,6 @@
                 </application>
                 <application>
                     <name>Uptime do Sistema</name>
-                </application>
-                <application>
-                    <name>watts</name>
                 </application>
             </applications>
             <items>
