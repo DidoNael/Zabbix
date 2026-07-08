@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-05-22T13:36:26Z</date>
@@ -480,7 +480,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:gpon.port.status[{#SNMPINDEX}].max(#3)}=2 and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2 and {OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;=0</expression>
+                            <expression>{OLT ZTE - NETSTREAM:gpon.port.status[{#SNMPINDEX}].max(#3)}=2 and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2 and {OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;0</expression>
                             <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Apagada (Inativa)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -739,11 +739,7 @@ return JSON.stringify(result);</params>
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}=2
-and
-{prev()}=1
-and 
-{min(#3)}=1</expression>
+                                    <expression>{last()}=2 and {min(#3)}=2</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{last()}=1</recovery_expression>
                                     <name>{#PONNAME} : {#PONDESC}</name>
