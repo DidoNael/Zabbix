@@ -562,6 +562,144 @@
                     </trigger_prototypes>
                 </discovery_rule>
                 <discovery_rule>
+                    <uuid>8a2518192831462fadb4a79392569e7a</uuid>
+                    <name>Discovery: BGP4+ IPv6 Peer(s)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#ASN},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.2, {#IP},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.3]</snmp_oid>
+                    <key>netstream.bgppeerv6</key>
+                    <delay>1d</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>1a112233445566778899aabbccddeef0</uuid>
+                            <name>AS Name for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
+                            <type>EXTERNAL</type>
+                            <key>as.name["-p","{#SNMPINDEX}"]</key>
+                            <trends>365d</trends>
+                            <value_type>CHAR</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Peer V6</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>1a112233445566778899aabbccddeef1</uuid>
+                            <name>Administrative status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}]</key>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Peer V6</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>1a112233445566778899aabbccddeef2</uuid>
+                            <name>Established time for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.15.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.BgpPeerFsmEstablishedTimeV6.[{#IP}.{#ASN}]</key>
+                            <units>uptime</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Peer V6</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>1a112233445566778899aabbccddeef3</uuid>
+                            <name>Total IPv6 routes from peer - IP {#IP}: ASN ({#ASN})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.2.1.2.4.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.BgpPeerIPv6Routes[{#IP}.{#ASN}]</key>
+                            <units>prefixes</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Peer V6</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>1a112233445566778899aabbccddeef4</uuid>
+                            <name>Remote AS for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}]</key>
+                            <trends>365d</trends>
+                            <value_type>CHAR</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Peer V6</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>1a112233445566778899aabbccddeef5</uuid>
+                            <name>Operational status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.BgpPeerStateV6.[{#IP}.{#ASN}]</key>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Peer V6</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>1a112233445566778899aabbccddeef6</uuid>
+                            <name>ASN Owner V6: {#IP} - {#ASN}</name>
+                            <type>EXTERNAL</type>
+                            <key>get_asn_owner_v2.sh[{#ASN},v6]</key>
+                            <delay>1h</delay>
+                            <trends>365d</trends>
+                            <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Peer V6</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <uuid>2b112233445566778899aabbccddeef0</uuid>
+                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN},v6]))&gt;0</expression>
+                            <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
+                            <priority>AVERAGE</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>2b112233445566778899aabbccddeef1</uuid>
+                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN},v6]))&gt;0</expression>
+                            <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>2b112233445566778899aabbccddeef2</uuid>
+                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2</expression>
+                            <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN}) - DOWN</name>
+                            <priority>AVERAGE</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>2b112233445566778899aabbccddeef3</uuid>
+                            <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2</expression>
+                            <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})  -  DOWN</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+                <discovery_rule>
                     <uuid>b7c4ade9822f4309a7dc9de0fd3f795b</uuid>
                     <name>Discovery: Temperatura</name>
                     <type>SNMP_AGENT</type>
