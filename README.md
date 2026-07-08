@@ -22,6 +22,19 @@ Template otimizado e corrigido para compatibilidade com o **Zabbix 4.4+**.
 
 ---
 
+### 2. Switch / Roteador Huawei S6700 / NE20 (`Switch/Huawei/`)
+Templates otimizados para monitoramento SNMP de equipamentos Huawei (versões **4.4** e **6.0**).
+
+#### Principais Características e Funcionalidades:
+* **Monitoramento Completo de Memória:** Compatibilidade nativa com NE20 e S6700 através de item calculado (`Size - Free`).
+* **Descoberta de Interfaces Físicas e Virtuais:** Filtros dedicados multi-vendor (`lag`, `Bundle`, `Port-channel`, `ae`).
+* **Sessões BGP IPv4 e IPv6 (BGP4+):** Monitoramento dual-stack utilizando MIB proprietária Huawei (`hwBgpPeerTable`), coletando estado da sessão, tempo estabelecido e rotas recebidas.
+* **Monitoramento de Sessões BFD (*Bidirectional Forwarding Detection*):** Descoberta automática de sessões BFD (`HUAWEI-BFD-MIB`), alarmando quedas críticas de failover em milissegundos.
+* **Scripts Externos Otimizados (`Switch/Huawei/externalscripts/`):**
+  * Inclui o script `get_asn_owner_v2.sh` com **cache local em disco (30 dias)** e **6 camadas de fallback WHOIS/API REST** para identificação de provedores BGP sem impacto de rede ou travamento de pollers.
+
+---
+
 ## Como Utilizar o Template ZTE
 
 1. **Importação:**
