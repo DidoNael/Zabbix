@@ -619,8 +619,23 @@
                             </condition>
                             <condition>
                                 <macro>{#IF}</macro>
-                                <value>(?i)^(lag|bundle|port-channel|ae).*</value>
+                                <value>(?i)^lag.*</value>
                                 <formulaid>D</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^bundle.*</value>
+                                <formulaid>E</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^port-channel.*</value>
+                                <formulaid>F</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^ae.*</value>
+                                <formulaid>G</formulaid>
                             </condition>
                         </conditions>
                     </filter>
@@ -1780,9 +1795,27 @@
                             </condition>
                             <condition>
                                 <macro>{#IF}</macro>
-                                <value>(?i)^(lag|bundle|port-channel|ae).*</value>
+                                <value>(?i)^lag.*</value>
                                 <operator>NOT_MATCHES_REGEX</operator>
                                 <formulaid>H</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^bundle.*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>I</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^port-channel.*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>J</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^ae.*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>K</formulaid>
                             </condition>
                         </conditions>
                     </filter>
