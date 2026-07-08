@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-05-22T13:36:26Z</date>
@@ -1026,8 +1026,8 @@ return s;</params>
                             <name>Cliente Dedicado: {#ONTDESC} - Sinal Optico RX (dBm)</name>
                             <ymin_type_1>FIXED</ymin_type_1>
                             <ymax_type_1>FIXED</ymax_type_1>
-                            <ymin_item_1>-35</ymin_item_1>
-                            <ymax_item_1>-10</ymax_item_1>
+                            <yaxismin>-35.0000</yaxismin>
+                            <yaxismax>-10.0000</yaxismax>
                             <graph_items>
                                 <graph_item>
                                     <color>1A7C11</color>
