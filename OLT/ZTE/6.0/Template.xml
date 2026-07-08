@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2026-07-08T19:48:13Z</date>
+    <date>2026-07-08T19:50:04Z</date>
     <groups>
         <group>
             <name>ZTE</name>
@@ -416,7 +416,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>netstream.gpon.sfp.temp[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <value_type>FLOAT</value_type>
-                            <units>ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂºC</units>
+                            <units>ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂºC</units>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -530,7 +530,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Erros de SaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â­da</name>
+                            <name>Porta {#PONNAME} ({#PONDESC}): Erros de SaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â­da</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
@@ -656,7 +656,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:netstream.gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;=0 and ({OLT ZTE - NETSTREAM:netstream.gpon.onu.online_antes[{#SNMPINDEX}].last()}-{OLT ZTE - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()})&gt;={$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2</expression>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Queda massiva de ONUs (MÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â­nimo {$GPON_DROP_MIN} ONUs)</name>
+                            <name>Porta {#PONNAME} ({#PONDESC}): Queda massiva de ONUs (MÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â­nimo {$GPON_DROP_MIN} ONUs)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1148,7 +1148,6 @@ return s;</params>
                             <graph_items>
                                 <graph_item>
                                     <color>1A7C11</color>
-                                    <drawtype>LINE</drawtype>
                                     <item>
                                         <host>OLT ZTE - NETSTREAM</host>
                                         <key>netstream.dedicado.rxpower[{#SNMPINDEX}]</key>
@@ -1206,7 +1205,7 @@ return s;</params>
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de MemÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³ria</name>
+                            <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de MemÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³ria</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.11.{#SNMPINDEX}</snmp_oid>
@@ -1447,7 +1446,6 @@ return s;</params>
                             <graph_items>
                                 <graph_item>
                                     <color>1A7C11</color>
-                                    <drawtype>GRADIENT_LINE</drawtype>
                                     <item>
                                         <host>OLT ZTE - NETSTREAM</host>
                                         <key>netstream.uplink.in[{#SNMPINDEX}]</key>
@@ -1461,7 +1459,6 @@ return s;</params>
                                 </graph_item>
                                 <graph_item>
                                     <color>2774A4</color>
-                                    <drawtype>LINE</drawtype>
                                     <item>
                                         <host>OLT ZTE - NETSTREAM</host>
                                         <key>netstream.uplink.out[{#SNMPINDEX}]</key>
@@ -1538,7 +1535,7 @@ return s;</params>
                 </mapping>
                 <mapping>
                     <value>3</value>
-                    <newvalue>hwOnline (Software nÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o carregado)</newvalue>
+                    <newvalue>hwOnline (Software nÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o carregado)</newvalue>
                 </mapping>
                 <mapping>
                     <value>4</value>
@@ -1620,7 +1617,7 @@ return s;</params>
                 </mapping>
                 <mapping>
                     <value>2</value>
-                    <newvalue>SFi ( Falha de sinal atÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© a ONU )</newvalue>
+                    <newvalue>SFi ( Falha de sinal atÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© a ONU )</newvalue>
                 </mapping>
                 <mapping>
                     <value>3</value>
