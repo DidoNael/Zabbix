@@ -556,7 +556,7 @@
                     <delay>1d</delay>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>1a112233445566778899aabbccddeef1</uuid>
+                            <uuid>f6de592aef854fc2bdab606a6ce43d88</uuid>
                             <name>Administrative status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.5.{#SNMPINDEX}</snmp_oid>
@@ -569,7 +569,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>1a112233445566778899aabbccddeef2</uuid>
+                            <uuid>4ddbb29908f94474a25fbd15ce14643d</uuid>
                             <name>Established time for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.15.{#SNMPINDEX}</snmp_oid>
@@ -583,7 +583,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>1a112233445566778899aabbccddeef3</uuid>
+                            <uuid>9b867fa0309449b696b0e36c6dd682a9</uuid>
                             <name>Total IPv6 routes from peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.2.1.2.4.{#SNMPINDEX}</snmp_oid>
@@ -597,7 +597,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>1a112233445566778899aabbccddeef4</uuid>
+                            <uuid>9af2b10c9eac40178775f9586b2ee6df</uuid>
                             <name>Remote AS for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.2.{#SNMPINDEX}</snmp_oid>
@@ -612,7 +612,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>1a112233445566778899aabbccddeef5</uuid>
+                            <uuid>d85ac0233f314921a472c7f8b920f1f8</uuid>
                             <name>Operational status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.4.{#SNMPINDEX}</snmp_oid>
@@ -625,7 +625,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>1a112233445566778899aabbccddeef6</uuid>
+                            <uuid>bd2e671ea8a34c10ab8bf641be53d799</uuid>
                             <name>ASN Owner V6: {#IP} - {#ASN}</name>
                             <type>EXTERNAL</type>
                             <key>get_asn_owner_v2.sh[{#ASN},v6]</key>
@@ -642,28 +642,28 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <uuid>2b112233445566778899aabbccddeef0</uuid>
+                            <uuid>015341c9aed74a079ebaac2ef95f79fd</uuid>
                             <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN},v6]))&gt;0</expression>
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <uuid>2b112233445566778899aabbccddeef1</uuid>
+                            <uuid>5c4c5322a1534e73901196c52c705c3c</uuid>
                             <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN},v6]))&gt;0</expression>
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <uuid>2b112233445566778899aabbccddeef2</uuid>
+                            <uuid>5f5e8df819a847e3863d9b73cb1fbb76</uuid>
                             <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=0 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2</expression>
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN}) - DOWN</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <uuid>2b112233445566778899aabbccddeef3</uuid>
+                            <uuid>08229422c27745e7853893b43c93c974</uuid>
                             <expression>find(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}],,"regexp","{$BGP_PEER_AS}")=1 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2</expression>
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})  -  DOWN</name>
                             <priority>DISASTER</priority>
@@ -672,7 +672,7 @@
                     </trigger_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>3c112233445566778899aabbccddeef0</uuid>
+                    <uuid>d3187374fadd46dfbb0761bedb1c9aac</uuid>
                     <name>Discovery: BFD Sessions</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#BFD_DISCRIMINATOR},1.3.6.1.4.1.2011.5.25.38.2.3.1.8,{#BFD_PEER},1.3.6.1.4.1.2011.5.25.38.2.3.1.5,{#BFD_IFNAME},1.3.6.1.4.1.2011.5.25.38.2.3.1.7]</snmp_oid>
@@ -680,7 +680,7 @@
                     <delay>1d</delay>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>4d112233445566778899aabbccddeef0</uuid>
+                            <uuid>3d7247167c1e40b3961c8542b1488eca</uuid>
                             <name>BFD Session State: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.17.{#SNMPINDEX}</snmp_oid>
@@ -697,7 +697,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>4d112233445566778899aabbccddeef1</uuid>
+                            <uuid>de88ea8fc7374196bf75bd0d3e749f1c</uuid>
                             <name>BFD Diagnostic Code: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.18.{#SNMPINDEX}</snmp_oid>
@@ -714,7 +714,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>4d112233445566778899aabbccddeef2</uuid>
+                            <uuid>bca6f226e33c4114b5c4fc97256db90d</uuid>
                             <name>BFD Remote Discriminator: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.9.{#SNMPINDEX}</snmp_oid>
@@ -728,7 +728,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>4d112233445566778899aabbccddeef3</uuid>
+                            <uuid>728744509c3a4d7e8a968fc85cc210ff</uuid>
                             <name>BFD Application Type: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.3.{#SNMPINDEX}</snmp_oid>
@@ -742,7 +742,7 @@
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>4d112233445566778899aabbccddeef4</uuid>
+                            <uuid>df5972f054284a66a471084c6ffcbfad</uuid>
                             <name>BFD Address Type (1=IPv4, 2=IPv6): Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.22.{#SNMPINDEX}</snmp_oid>
@@ -761,7 +761,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <uuid>5e112233445566778899aabbccddeef0</uuid>
+                            <uuid>c3863640ea3c421b8c5a3fef04f8c60f</uuid>
                             <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.bfd.state[{#SNMPINDEX}],#2)=2</expression>
                             <name>BFD Session DOWN: Peer {#BFD_PEER} (Discr: {#BFD_DISCRIMINATOR})</name>
                             <priority>HIGH</priority>
