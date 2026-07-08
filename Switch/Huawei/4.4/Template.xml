@@ -24,6 +24,9 @@
                     <name>100GE-TX</name>
                 </application>
                 <application>
+                    <name>BFD</name>
+                </application>
+                <application>
                     <name>CPU</name>
                 </application>
                 <application>
@@ -70,6 +73,9 @@
                 </application>
                 <application>
                     <name>Peer V4</name>
+                </application>
+                <application>
+                    <name>Peer V6</name>
                 </application>
                 <application>
                     <name>pw-power</name>
