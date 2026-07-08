@@ -502,6 +502,7 @@
                             <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
                         </trigger_prototype>
+                    </trigger_prototypes>
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery: BGP4+ IPv6 Peer(s)</name>
