@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-06-25T12:44:09Z</date>
@@ -946,12 +946,6 @@
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                                        <tags>
-                                            <tag>
-                                                <tag>Application</tag>
-                                                <value>Interfaces</value>
-                                            </tag>
-                                        </tags>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -960,12 +954,6 @@
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                                        <tags>
-                                            <tag>
-                                                <tag>Application</tag>
-                                                <value>Interfaces</value>
-                                            </tag>
-                                        </tags>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -2784,12 +2772,6 @@
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
-                                        <tags>
-                                            <tag>
-                                                <tag>Application</tag>
-                                                <value>Interfaces</value>
-                                            </tag>
-                                        </tags>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -2799,12 +2781,6 @@
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
-                                        <tags>
-                                            <tag>
-                                                <tag>Application</tag>
-                                                <value>Interfaces</value>
-                                            </tag>
-                                        </tags>
                                     </item>
                                 </graph_item>
                             </graph_items>
