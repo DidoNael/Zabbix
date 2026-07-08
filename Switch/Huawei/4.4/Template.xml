@@ -570,6 +570,11 @@
                                 <value>Virtual-Ethernet.*</value>
                                 <formulaid>A</formulaid>
                             </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^(lag|bundle|port-channel|ae).*</value>
+                                <formulaid>D</formulaid>
+                            </condition>
                         </conditions>
                     </filter>
                     <lifetime>7d</lifetime>
@@ -1449,7 +1454,7 @@
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>Discovery | Network interfaces</name>
+                    <name>Discovery | Network interfaces Physical</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
@@ -1499,6 +1504,12 @@
                                 <value>Virtual-Access.*</value>
                                 <operator>NOT_MATCHES_REGEX</operator>
                                 <formulaid>B</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^(lag|bundle|port-channel|ae).*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>H</formulaid>
                             </condition>
                         </conditions>
                     </filter>

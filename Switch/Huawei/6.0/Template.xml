@@ -617,6 +617,11 @@
                                 <value>Vlanif.*</value>
                                 <formulaid>C</formulaid>
                             </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^(lag|bundle|port-channel|ae).*</value>
+                                <formulaid>D</formulaid>
+                            </condition>
                         </conditions>
                     </filter>
                     <lifetime>7d</lifetime>
@@ -1723,7 +1728,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <uuid>148390136ebc4b7e965a50e15c42e51b</uuid>
-                    <name>Discovery | Network interfaces</name>
+                    <name>Discovery | Network interfaces Physical</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>netstream.ifDescr</key>
@@ -1772,6 +1777,12 @@
                                 <value>Vlanif.*</value>
                                 <operator>NOT_MATCHES_REGEX</operator>
                                 <formulaid>G</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^(lag|bundle|port-channel|ae).*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>H</formulaid>
                             </condition>
                         </conditions>
                     </filter>
