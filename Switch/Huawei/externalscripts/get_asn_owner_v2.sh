@@ -16,17 +16,17 @@ CACHE_DIR="/tmp/zabbix_asn_cache"
 CACHE_FILE="${CACHE_DIR}/AS${ASN}.txt"
 CACHE_TTL=2592000 # 30 dias em segundos (ASNs raramente mudam de proprietário)
 
-# Cria o diretório de cache se não existir
-mkdir -p "$CACHE_DIR" 2>/dev/null
+# Cria o diretório de cache com permissão aberta para qualquer usuário (root/zabbix)
+mkdir -m 1777 -p "$CACHE_DIR" 2>/dev/null
+chmod 1777 "$CACHE_DIR" 2>/dev/null
 
 # CAMADA 0: Cache Local Válido (Resposta < 1 milissegundo)
-if [ -s "$CACHE_FILE" ]; then
+if [ -s "$CACHE_FILE" ] && [ -r "$CACHE_FILE" ]; then
     NOW=$(date +%s)
     FILE_TIME=$(stat -c %Y "$CACHE_FILE" 2>/dev/null || stat -f %m "$CACHE_FILE" 2>/dev/null || echo 0)
     AGE=$((NOW - FILE_TIME))
     if [ "$AGE" -lt "$CACHE_TTL" ]; then
-        cat "$CACHE_FILE"
-        exit 0
+        cat "$CACHE_FILE" 2>/dev/null && exit 0
     fi
 fi
 
@@ -59,13 +59,14 @@ fi
 
 # SALVAMENTO EM CACHE OU FALLBACK DE EMERGÊNCIA
 if [ -n "$RESULT" ]; then
-    echo "$RESULT" > "$CACHE_FILE"
+    # Grava no cache silenciosamente (sem erros no stderr se houver problema de permissão no arquivo antigo)
+    echo "$RESULT" > "$CACHE_FILE" 2>/dev/null
     echo "$RESULT"
 else
     # Se todas as conexões externas falharem (ex: queda de link ou falha de DNS):
-    if [ -s "$CACHE_FILE" ]; then
+    if [ -s "$CACHE_FILE" ] && [ -r "$CACHE_FILE" ]; then
         # Serve o cache antigo mesmo vencido
-        cat "$CACHE_FILE"
+        cat "$CACHE_FILE" 2>/dev/null
     else
         # Retorna o ASN formatado para evitar erro no Zabbix
         echo "AS${ASN}"
