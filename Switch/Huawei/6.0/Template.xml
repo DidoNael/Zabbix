@@ -20,160 +20,6 @@
             </groups>
             <items>
                 <item>
-                    <uuid>f535cbe568d8437484c9509afb5f434f</uuid>
-                    <name>PSU 1 - Tipo de fonte</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.5</snmp_oid>
-                    <key>netstream.hwEntityPwrMode5</key>
-                    <delay>6h</delay>
-                    <trends>0</trends>
-                    <valuemap>
-                        <name>Tipo de fonte HUAWEI</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-type</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>6f56ac8043d0427aa317934dc818b789</uuid>
-                    <name>PSU 2 - Tipo de fonte</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.6</snmp_oid>
-                    <key>netstream.hwEntityPwrMode6</key>
-                    <delay>6h</delay>
-                    <trends>0</trends>
-                    <valuemap>
-                        <name>Tipo de fonte HUAWEI</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-type</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>4ea37dd61d6948d5b0d686256d9069f8</uuid>
-                    <name>PSU 1 - Potencia</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.5</snmp_oid>
-                    <key>netstream.hwEntityPwrPower5</key>
-                    <delay>6h</delay>
-                    <trends>0</trends>
-                    <units>watts</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-power</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>634b2c3a9e824e98a4359676b755ded1</uuid>
-                    <name>PSU 2 - Potencia</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.6</snmp_oid>
-                    <key>netstream.hwEntityPwrPower6</key>
-                    <delay>6h</delay>
-                    <trends>0</trends>
-                    <units>watts</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-power</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>de60246cf33d43779e4904ab1a27cc66</uuid>
-                    <name>PSU 1 - Hardware Presente ?</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.5</snmp_oid>
-                    <key>netstream.hwEntityPwrPresente5</key>
-                    <delay>5m</delay>
-                    <trends>0</trends>
-                    <valuemap>
-                        <name>PSU HUAWEI PRESENTE</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-present</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>114b414691954c17a9ac27ce07c7f5c5</uuid>
-                    <name>PSU 2 - Hardware Presente ?</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.6</snmp_oid>
-                    <key>netstream.hwEntityPwrPresente6</key>
-                    <delay>5m</delay>
-                    <trends>0</trends>
-                    <valuemap>
-                        <name>PSU HUAWEI PRESENTE</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-present</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>234764f42a3e4de8abf46f98be28425a</uuid>
-                    <name>PSU 1 - Status</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.5</snmp_oid>
-                    <key>netstream.hwEntityPwrState5</key>
-                    <delay>10m</delay>
-                    <trends>0</trends>
-                    <valuemap>
-                        <name>PSU HUAWEI STATUS</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-state</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>f249b9160f8046718ad480ecaeadf419</uuid>
-                    <name>PSU 2 - Status</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.6</snmp_oid>
-                    <key>netstream.hwEntityPwrState6</key>
-                    <delay>10m</delay>
-                    <trends>0</trends>
-                    <valuemap>
-                        <name>PSU HUAWEI STATUS</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-state</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>e7a4745eadb54e50aa4f397108250b83</uuid>
-                    <name>Consumo de energia</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.14.1.3.0</snmp_oid>
-                    <key>netstream.hwSystemPowerUsedPower</key>
-                    <units>w</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>watts</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
                     <uuid>69085198442f4bf8aa158e7fa6df9bff</uuid>
                     <name>Number of network interfaces</name>
                     <type>SNMP_AGENT</type>
@@ -231,7 +77,7 @@
                 </item>
                 <item>
                     <uuid>ada54c5f5f5c49d881fa03a0c0665d57</uuid>
-                    <name>VersÃƒÂ£o do Sistema e Hardware</name>
+                    <name>VersÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o do Sistema e Hardware</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.2.1.1.1.0</snmp_oid>
                     <key>netstream.sysDescr.0</key>
@@ -295,146 +141,6 @@
                             </tags>
                         </trigger>
                     </triggers>
-                </item>
-                <item>
-                    <uuid>d474f6aad96f4ab3a104b59d8ff0abc3</uuid>
-                    <name>PSU 1 - Tipo de fonte</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.5</snmp_oid>
-                    <key>netstream.hwEntityPwrMode5.[{#SNMPINDEX}]</key>
-                    <delay>6h</delay>
-                    <trends>365d</trends>
-                    <valuemap>
-                        <name>Tipo de fonte HUAWEI</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-type</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>6ad10be0861d4db68bce4dce32a652e2</uuid>
-                    <name>PSU 2 - Tipo de fonte</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.0.6</snmp_oid>
-                    <key>netstream.hwEntityPwrMode6.[{#SNMPINDEX}]</key>
-                    <delay>6h</delay>
-                    <trends>365d</trends>
-                    <valuemap>
-                        <name>Tipo de fonte HUAWEI</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-type</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>f6807ccedcff4c44805f34e64628adc5</uuid>
-                    <name>PSU 1 - Potencia</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.5</snmp_oid>
-                    <key>netstream.hwEntityPwrPower5.[{#SNMPINDEX}]</key>
-                    <delay>6h</delay>
-                    <trends>365d</trends>
-                    <units>watts</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-power</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>45d04967ff864891b48cde0021810a60</uuid>
-                    <name>PSU 2 - Potencia</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.0.6</snmp_oid>
-                    <key>netstream.hwEntityPwrPower6.[{#SNMPINDEX}]</key>
-                    <delay>6h</delay>
-                    <trends>365d</trends>
-                    <units>watts</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-power</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>a07cc1f8a2e04b0f90fe011b4fcdb469</uuid>
-                    <name>PSU 1 - Hardware Presente ?</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.5</snmp_oid>
-                    <key>netstream.hwEntityPwrPresente5.[{#SNMPINDEX}]</key>
-                    <delay>5m</delay>
-                    <trends>365d</trends>
-                    <valuemap>
-                        <name>PSU HUAWEI PRESENTE</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-present</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>f38e8217153d4be08c9225fd99c2be29</uuid>
-                    <name>PSU 2 - Hardware Presente ?</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.0.6</snmp_oid>
-                    <key>netstream.hwEntityPwrPresente6.[{#SNMPINDEX}]</key>
-                    <delay>5m</delay>
-                    <trends>365d</trends>
-                    <valuemap>
-                        <name>PSU HUAWEI PRESENTE</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-present</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>60c5188cb640417ba19d8bb58402bee4</uuid>
-                    <name>PSU 1 - Status</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.5</snmp_oid>
-                    <key>netstream.hwEntityPwrState5.[{#SNMPINDEX}]</key>
-                    <delay>10m</delay>
-                    <trends>365d</trends>
-                    <valuemap>
-                        <name>PSU HUAWEI STATUS</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-state</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>35c7ccd9a0a84766ab9db3df8252439b</uuid>
-                    <name>PSU 2 - Status</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.0.6</snmp_oid>
-                    <key>netstream.hwEntityPwrState6.[{#SNMPINDEX}]</key>
-                    <delay>10m</delay>
-                    <trends>365d</trends>
-                    <valuemap>
-                        <name>PSU HUAWEI STATUS</name>
-                    </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>pw-state</value>
-                        </tag>
-                    </tags>
                 </item>
                 <item>
                     <uuid>3a9fd2b67b8e41a1992985942d6818a8</uuid>
@@ -1013,7 +719,7 @@
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.tempslot[{#SNMPINDEX}]</key>
-                            <units>Ã‚ÂºC</units>
+                            <units>ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂºC</units>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1118,6 +824,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>d0c35ec554ac4706ab2074ba4db5d538</uuid>
@@ -1141,6 +853,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>9738ff2e98d74224945f64b210dfabf9</uuid>
@@ -1210,6 +928,12 @@
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <graph_prototypes>
@@ -1222,6 +946,12 @@
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
+                                        <tags>
+                                            <tag>
+                                                <tag>Application</tag>
+                                                <value>Interfaces</value>
+                                            </tag>
+                                        </tags>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -1230,6 +960,12 @@
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
+                                        <tags>
+                                            <tag>
+                                                <tag>Application</tag>
+                                                <value>Interfaces</value>
+                                            </tag>
+                                        </tags>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -1277,7 +1013,7 @@
                                 <trigger_prototype>
                                     <uuid>a950dded041b470f802509cece14acbe</uuid>
                                     <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ospf.state[{#IFNB}.{#SNMPINDEX}])&lt;8</expression>
-                                    <name>AlteraÃƒÂ§ÃƒÂ£o no OSPF: {#IFNB}</name>
+                                    <name>AlteraÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o no OSPF: {#IFNB}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -1338,6 +1074,12 @@
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>3b92d3373d6b49ccb1e7c9251e742a15</uuid>
@@ -1393,7 +1135,7 @@
                             <history>90d</history>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
-                            <description>ÃƒÂrea OSPF da interface (ospfIfAreaId - RFC 1850). 0.0.0.0 = backbone</description>
+                            <description>ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Ârea OSPF da interface (ospfIfAreaId - RFC 1850). 0.0.0.0 = backbone</description>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1503,7 +1245,7 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&gt;60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
-                                    <name>Uso estÃƒÂ¡ acima de 60% for 5min em - {HOST.NAME}</name>
+                                    <name>Uso estÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ acima de 60% for 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>
@@ -1525,7 +1267,7 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&gt;80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
-                                    <name>Uso estÃƒÂ¡ acima de 80% por 5min em - {HOST.NAME}</name>
+                                    <name>Uso estÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -1740,7 +1482,7 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanSpeed[{#SNMPINDEX}],5m)&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanSpeed[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
-                                    <name>Modulo Fan [{#SNMPINDEX}] velocidade estÃƒÂ¡ acima de 80% em - {HOST.NAME}</name>
+                                    <name>Modulo Fan [{#SNMPINDEX}] velocidade estÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ acima de 80% em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>
@@ -1787,7 +1529,7 @@
                                     <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanState[{#SNMPINDEX}])&lt;&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanState[{#SNMPINDEX}])=1</recovery_expression>
-                                    <name>Modulo Fan [{#SNMPINDEX}] status estÃƒÂ¡ anormal em - {HOST.NAME}</name>
+                                    <name>Modulo Fan [{#SNMPINDEX}] status estÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ anormal em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>
@@ -1834,7 +1576,7 @@
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
-                                    <value>pw-present</value>
+                                    <value>Power Supply (PSU)</value>
                                 </tag>
                             </tags>
                         </item_prototype>
@@ -1852,7 +1594,7 @@
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
-                                    <value>pw-state</value>
+                                    <value>Power Supply (PSU)</value>
                                 </tag>
                             </tags>
                             <trigger_prototypes>
@@ -1895,7 +1637,7 @@
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
-                                    <value>pw-power</value>
+                                    <value>Power Supply (PSU)</value>
                                 </tag>
                             </tags>
                         </item_prototype>
@@ -1913,7 +1655,7 @@
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
-                                    <value>pw-type</value>
+                                    <value>Power Supply (PSU)</value>
                                 </tag>
                             </tags>
                         </item_prototype>
@@ -1939,7 +1681,7 @@
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
-                                    <value>watts</value>
+                                    <value>Power Supply (PSU)</value>
                                 </tag>
                             </tags>
                         </item_prototype>
@@ -2011,7 +1753,7 @@
                                 <trigger_prototype>
                                     <uuid>455a465d381e4651a253bdd9d0697af8</uuid>
                                     <expression>count(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#4)&lt;0.8</expression>
-                                    <name>Sinal ÃƒÂ³ptico alterado - {#ENTPHYSICALNAME}</name>
+                                    <name>Sinal ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³ptico alterado - {#ENTPHYSICALNAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -2197,7 +1939,7 @@
                             <history>30d</history>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
-                            <units>Ã‚Â°C</units>
+                            <units>ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°C</units>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -2214,6 +1956,12 @@
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>f40bbe63643043b59407dfdd34bade40</uuid>
@@ -2408,7 +2156,7 @@
                     <item_prototypes>
                         <item_prototype>
                             <uuid>eb323a73676641d28d02efb42a82fcd0</uuid>
-                            <name>Falhas de alocaÃƒÂ§ÃƒÂ£o de memÃƒÂ³ria devido a falta de memÃƒÂ³ria inativa</name>
+                            <name>Falhas de alocaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o de memÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³ria devido a falta de memÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³ria inativa</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.7.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevFailNoMem[{#SNMPINDEX}]</key>
@@ -2424,7 +2172,7 @@
                         </item_prototype>
                         <item_prototype>
                             <uuid>c2f6636e817c46108d703eabd20a79b1</uuid>
-                            <name>Contagem de falhas de alocaÃƒÂ§ÃƒÂ£o de memÃƒÂ³ria</name>
+                            <name>Contagem de falhas de alocaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o de memÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³ria</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.6.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevFail[{#SNMPINDEX}]</key>
@@ -2476,7 +2224,7 @@
                         </item_prototype>
                         <item_prototype>
                             <uuid>9fdb949765aa473389256e212eb28ddc</uuid>
-                            <name>Tamanho total da memÃƒÂ³ria</name>
+                            <name>Tamanho total da memÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³ria</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevSize[{#SNMPINDEX}]</key>
@@ -2515,7 +2263,7 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&lt;=40</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&gt;40</recovery_expression>
-                                    <name>MemÃƒÂ³ria disponÃƒÂ­vel abaixo 60% por 5min em - {HOST.NAME}</name>
+                                    <name>MemÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³ria disponÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­vel abaixo 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
                                     <tags>
@@ -2538,7 +2286,7 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&lt;=20</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&gt;20</recovery_expression>
-                                    <name>MemÃƒÂ³ria disponÃƒÂ­vel esta abaixo de 80% por 5min em - {HOST.NAME}</name>
+                                    <name>MemÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³ria disponÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­vel esta abaixo de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -2580,7 +2328,7 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&gt;=60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
-                                    <name>Uso de memÃƒÂ³ria estÃƒÂ¡ acima de 60% por 5min em - {HOST.NAME}</name>
+                                    <name>Uso de memÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³ria estÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ acima de 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
                                     <tags>
@@ -2603,7 +2351,7 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
-                                    <name>Uso de memÃƒÂ³ria estÃƒÂ¡ acima de 80% por 5min em - {HOST.NAME}</name>
+                                    <name>Uso de memÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³ria estÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -3020,6 +2768,12 @@
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
+                                        <tags>
+                                            <tag>
+                                                <tag>Application</tag>
+                                                <value>Interfaces</value>
+                                            </tag>
+                                        </tags>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -3029,6 +2783,12 @@
                                     <item>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
+                                        <tags>
+                                            <tag>
+                                                <tag>Application</tag>
+                                                <value>Interfaces</value>
+                                            </tag>
+                                        </tags>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -3329,6 +3089,12 @@
                             <delay>5m</delay>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>23cab34956004eb3ae57e18525762643</uuid>
@@ -3437,7 +3203,7 @@
                             <history>30d</history>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
-                            <units>Ã‚ÂºC</units>
+                            <units>ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂºC</units>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -3767,19 +3533,19 @@ last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLa
                     <mappings>
                         <mapping>
                             <value>1</value>
-                            <newvalue>AlimentaÃƒÂ§ÃƒÂ£o ( fornecendo energia )</newvalue>
+                            <newvalue>AlimentaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o ( fornecendo energia )</newvalue>
                         </mapping>
                         <mapping>
                             <value>2</value>
-                            <newvalue>NotSupply ( nÃƒÂ£o estÃƒÂ¡ fornecendo energia)</newvalue>
+                            <newvalue>NotSupply ( nÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o estÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ fornecendo energia)</newvalue>
                         </mapping>
                         <mapping>
                             <value>3</value>
-                            <newvalue>Sleep ( estado de hibernaÃƒÂ§ÃƒÂ£o)</newvalue>
+                            <newvalue>Sleep ( estado de hibernaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o)</newvalue>
                         </mapping>
                         <mapping>
                             <value>4</value>
-                            <newvalue>Desconhecido ( informaÃƒÂ§ÃƒÂ£o nÃƒÂ£o pode ser obtida )</newvalue>
+                            <newvalue>Desconhecido ( informaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o nÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o pode ser obtida )</newvalue>
                         </mapping>
                     </mappings>
                 </valuemap>
@@ -3874,26 +3640,5 @@ last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLa
             </valuemaps>
         </template>
     </templates>
-    <triggers>
-        <trigger>
-            <uuid>255b84afc1de4d439370c2567bb8f4c6</uuid>
-            <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityPwrState5)&gt;1 or change(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityPwrState6)&gt;1</expression>
-            <name>AlteraÃƒÂ§ÃƒÂ£o de alimentaÃƒÂ§ÃƒÂ£o</name>
-            <priority>HIGH</priority>
-            <tags>
-                <tag>
-                    <tag>Scope</tag>
-                    <value>Power</value>
-                </tag>
-                <tag>
-                    <tag>Alert</tag>
-                    <value>PowerSupplyStateChanged</value>
-                </tag>
-                <tag>
-                    <tag>Severity</tag>
-                    <value>High</value>
-                </tag>
-            </tags>
-        </trigger>
-    </triggers>
+    <triggers></triggers>
 </zabbix_export>
