@@ -1612,14 +1612,14 @@
                         <item_prototype>
                             <uuid>51f1c28f849c4495974f5ab863a14426</uuid>
                             <name>Memoria Utilizada</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <type>CALCULATED</type>
                             <key>netstream.hwMemoryDevRawSliceUsed[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>B</units>
+                            <params>last(//hwMemoryDevSize[{#SNMPINDEX}])-last(//hwMemoryDevFree[{#SNMPINDEX}])</params>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1692,7 +1692,7 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <params>last(//hwMemoryDevRawSliceUsed[{#SNMPINDEX}])/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</params>
+                            <params>(last(//hwMemoryDevSize[{#SNMPINDEX}])-last(//hwMemoryDevFree[{#SNMPINDEX}]))/last(//hwMemoryDevSize[{#SNMPINDEX}])*100</params>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
