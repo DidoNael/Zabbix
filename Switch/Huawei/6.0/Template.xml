@@ -171,6 +171,38 @@
                         </tag>
                     </tags>
                 </item>
+                <item>
+                    <name>PPPoE / BNG: Maximo de Clientes Ativos (24h)</name>
+                    <type>CALCULATED</type>
+                    <key>netstream.pppoe.total.max24h</key>
+                    <delay>5m</delay>
+                    <history>30d</history>
+                    <trends>365d</trends>
+                    <units>users</units>
+                    <params>max(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.total,1d)</params>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>BNG PPPoE</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <name>PPPoE / BNG: Minimo de Clientes Ativos (24h)</name>
+                    <type>CALCULATED</type>
+                    <key>netstream.pppoe.total.min24h</key>
+                    <delay>5m</delay>
+                    <history>30d</history>
+                    <trends>365d</trends>
+                    <units>users</units>
+                    <params>min(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.total,1d)</params>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>BNG PPPoE</value>
+                        </tag>
+                    </tags>
+                </item>
             </items>
             <discovery_rules>
                 <discovery_rule>
@@ -3242,6 +3274,38 @@ last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLa
                                 </tag>
                             </tags>
                         </item_prototype>
+                        <item_prototype>
+                            <name>PPPoE Dominio [{#DOMAIN}]: Maximo de Clientes (24h)</name>
+                            <type>CALCULATED</type>
+                            <key>netstream.pppoe.domain.users.max24h[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <trends>365d</trends>
+                            <units>users</units>
+                            <params>max(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.domain.users[{#SNMPINDEX}],1d)</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BNG PPPoE</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PPPoE Dominio [{#DOMAIN}]: Minimo de Clientes (24h)</name>
+                            <type>CALCULATED</type>
+                            <key>netstream.pppoe.domain.users.min24h[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <trends>365d</trends>
+                            <units>users</units>
+                            <params>min(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.domain.users[{#SNMPINDEX}],1d)</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BNG PPPoE</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
@@ -3249,6 +3313,24 @@ last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLa
                             <name>PPPoE Dominio [{#DOMAIN}]: Queda brusca de clientes (&gt;50% de desconexoes)</name>
                             <priority>HIGH</priority>
                             <description>Evita falsos positivos: so dispara se o dominio tinha mais de {} clientes ativos e caiu mais de 50%.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BNG</value>
+                                </tag>
+                                <tag>
+                                    <tag>Domain</tag>
+                                    <value>{#DOMAIN}</value>
+                                </tag>
+                                <tag>
+                                    <tag>UsersNow</tag>
+                                    <value>{ITEM.LASTVALUE1}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>PPPoE</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                     <graph_prototypes>
@@ -3295,6 +3377,38 @@ last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLa
                                 </tag>
                             </tags>
                         </item_prototype>
+                        <item_prototype>
+                            <name>PPPoE Interface [{#HWBASIFNAME} - {#IFALIAS}]: Maximo de Clientes (24h)</name>
+                            <type>CALCULATED</type>
+                            <key>netstream.pppoe.interface.users.max24h[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <trends>365d</trends>
+                            <units>users</units>
+                            <params>max(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.interface.users[{#SNMPINDEX}],1d)</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BNG PPPoE</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PPPoE Interface [{#HWBASIFNAME} - {#IFALIAS}]: Minimo de Clientes (24h)</name>
+                            <type>CALCULATED</type>
+                            <key>netstream.pppoe.interface.users.min24h[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <trends>365d</trends>
+                            <units>users</units>
+                            <params>min(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.interface.users[{#SNMPINDEX}],1d)</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BNG PPPoE</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
@@ -3302,6 +3416,28 @@ last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLa
                             <name>PPPoE Interface [{#HWBASIFNAME} - {#IFALIAS}]: Queda brusca de clientes (&gt;50% de desconexoes)</name>
                             <priority>HIGH</priority>
                             <description>Evita falsos positivos: so dispara se a interface tinha mais de {} clientes ativos e caiu mais de 50%.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BNG</value>
+                                </tag>
+                                <tag>
+                                    <tag>UsersNow</tag>
+                                    <value>{ITEM.LASTVALUE1}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alias</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Interface</tag>
+                                    <value>{#HWBASIFNAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>PPPoE</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                     <graph_prototypes>
