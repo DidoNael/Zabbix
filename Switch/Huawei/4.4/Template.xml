@@ -642,6 +642,9 @@
                                     <name>BFD</name>
                                 </application>
                             </applications>
+                            <valuemap>
+                                <name>HUAWEI - BFD Session State</name>
+                            </valuemap>
                         </item_prototype>
                         <item_prototype>
                             <name>BFD Diagnostic Code: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
@@ -655,6 +658,9 @@
                                     <name>BFD</name>
                                 </application>
                             </applications>
+                            <valuemap>
+                                <name>HUAWEI - BFD Diagnostic Code</name>
+                            </valuemap>
                         </item_prototype>
                         <item_prototype>
                             <name>BFD Remote Discriminator: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
@@ -694,6 +700,9 @@
                                     <name>BFD</name>
                                 </application>
                             </applications>
+                            <valuemap>
+                                <name>HUAWEI - BFD Address Type</name>
+                            </valuemap>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -2730,6 +2739,69 @@ or &#13;
                 <mapping>
                     <value>5</value>
                     <newvalue>Point-to-Multipoint</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>HUAWEI - BFD Session State</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>AdminDown</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Down</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>Init</newvalue>
+                </mapping>
+                <mapping>
+                    <value>3</value>
+                    <newvalue>Up</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>HUAWEI - BFD Diagnostic Code</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>No Diagnostic</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Control Detection Time Expired</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>Echo Function Failed</newvalue>
+                </mapping>
+                <mapping>
+                    <value>3</value>
+                    <newvalue>Neighbor Signaled Session Down</newvalue>
+                </mapping>
+                <mapping>
+                    <value>4</value>
+                    <newvalue>Forwarding Plane Reset</newvalue>
+                </mapping>
+                <mapping>
+                    <value>5</value>
+                    <newvalue>Path Down</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>HUAWEI - BFD Address Type</name>
+            <mappings>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>IPv4</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>IPv6</newvalue>
                 </mapping>
             </mappings>
         </value_map>
