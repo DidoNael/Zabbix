@@ -17,8 +17,9 @@ CACHE_FILE="${CACHE_DIR}/AS${ASN}.txt"
 CACHE_TTL=2592000 # 30 dias em segundos (ASNs raramente mudam de proprietário)
 
 # Cria o diretório de cache com permissão aberta para qualquer usuário (root/zabbix)
-mkdir -m 1777 -p "$CACHE_DIR" 2>/dev/null
-chmod 1777 "$CACHE_DIR" 2>/dev/null
+mkdir -m 0755 -p "$CACHE_DIR" 2>/dev/null
+# Ajusta proprietário para zabbix caso executado como root
+chown zabbix:zabbix "$CACHE_DIR" "$CACHE_FILE" 2>/dev/null
 
 # CAMADA 0: Cache Local Válido (Resposta < 1 milissegundo)
 if [ -s "$CACHE_FILE" ] && [ -r "$CACHE_FILE" ]; then
