@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-06-25T01:49:01Z</date>
@@ -337,11 +337,25 @@
                             <name>Uso alto de memoria RAM</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>Memory</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>RAMUsageHigh</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>High</value>
+                                </tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
                 <item>
-                    <name>Versão do Sistema e Hardware</name>
+                    <name>VersÃƒÂ£o do Sistema e Hardware</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>.1.3.6.1.2.1.1.1.0</snmp_oid>
@@ -385,6 +399,20 @@
                             <name>{HOST.NAME1} Reiniciou</name>
                             <priority>INFO</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>System</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>DeviceRebooted</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Warning</value>
+                                </tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
@@ -479,15 +507,59 @@
                             <priority>AVERAGE</priority>
                             <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDownOwnerWarning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and &#13;
-{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and &#13;
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and 
+{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and 
 {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN}].strlen()}&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>DISASTER</priority>
                             <description>Trigger for peer that has a remote AS matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDownOwnerCritical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Disaster</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=0 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2</expression>
@@ -495,11 +567,55 @@
                             <priority>AVERAGE</priority>
                             <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDownWarning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})  -  DOWN</name>
                             <priority>DISASTER</priority>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDownCritical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Disaster</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2</expression>
@@ -507,6 +623,28 @@
                             <priority>AVERAGE</priority>
                             <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDownWarning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
@@ -599,6 +737,28 @@
                             <priority>AVERAGE</priority>
                             <description>Trigger for IPv6 peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGPv6</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpV6PeerDownOwnerWarning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerStateV6.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},v6].strlen()}&gt;0</expression>
@@ -606,6 +766,28 @@
                             <priority>DISASTER</priority>
                             <description>Trigger for IPv6 peer that has a remote AS matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGPv6</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpV6PeerDownOwnerCritical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Disaster</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=0 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerStateV6.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}].last(0)}=2</expression>
@@ -613,11 +795,55 @@
                             <priority>AVERAGE</priority>
                             <description>Trigger for IPv6 peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGPv6</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpV6PeerDownWarning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerStateV6.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}].last(0)}=2</expression>
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})  -  DOWN</name>
                             <priority>DISASTER</priority>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGPv6</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpV6PeerDownCritical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Disaster</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
@@ -712,6 +938,32 @@
                             <priority>HIGH</priority>
                             <description>Sessao BFD com o peer {#BFD_PEER} (Discriminator Local {#BFD_DISCRIMINATOR}) esta no estado DOWN (2).</description>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BFD</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BfdSessionDown</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>High</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#BFD_PEER}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Interface</tag>
+                                    <value>{#BFD_IFNAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Discr</tag>
+                                    <value>{#BFD_DISCRIMINATOR}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
@@ -729,7 +981,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.tempslot[{#SNMPINDEX}]</key>
-                            <units>ºC</units>
+                            <units>Ã‚ÂºC</units>
                             <applications>
                                 <application>
                                     <name>temperatura</name>
@@ -740,6 +992,20 @@
                                     <expression>{count(#5)}&gt;=50</expression>
                                     <name>Temperatura alta</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Temperature</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>TemperatureHigh</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -792,8 +1058,8 @@
                         </conditions>
                     </filter>
                     <lifetime>7d</lifetime>
-                    <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.&#13;
-&#13;
+                    <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.
+
 {$SNMP_COMMUNITY} is a global macro.</description>
                     <item_prototypes>
                         <item_prototype>
@@ -807,7 +1073,7 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <params />
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -826,7 +1092,7 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <params />
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -849,11 +1115,55 @@
                                     <recovery_expression>{last()}=1</recovery_expression>
                                     <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>InterfaceVirtual</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>VirtualInterfaceDown</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Average</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Interface</tag>
+                                            <value>{#IF}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alias</tag>
+                                            <value>{#IFALIAS}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <expression>{change()}=2</expression>
                                     <name>Vlan down - {#IF}: ({#IFALIAS})</name>
                                     <priority>INFO</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>InterfaceVirtual</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>VlanInterfaceDown</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Average</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Interface</tag>
+                                            <value>{#IF}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alias</tag>
+                                            <value>{#IFALIAS}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -919,8 +1229,26 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{last()}&lt;8</expression>
-                                    <name>Alteração no OSPF: {#IFNB}</name>
+                                    <name>AlteraÃƒÂ§ÃƒÂ£o no OSPF: {#IFNB}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>OSPF</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>OspfNeighborChange</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Neighbor</tag>
+                                            <value>{#IFNB}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -941,6 +1269,24 @@
                                     <recovery_expression>{last()}&gt;3600</recovery_expression>
                                     <name>Uptime baixo no OSPF: {#IFNB}</name>
                                     <priority>AVERAGE</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>OSPF</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>OspfNeighborLowUptime</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Neighbor</tag>
+                                            <value>{#IFNB}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1003,6 +1349,20 @@
                                     <recovery_expression>{min(5m)}&lt;60</recovery_expression>
                                     <name>Uso esta acima de 60% for 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>CpuUsageHigh60</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <expression>{min(5m)}&gt;80</expression>
@@ -1010,6 +1370,20 @@
                                     <recovery_expression>{min(5m)}&lt;80</recovery_expression>
                                     <name>Uso esta acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>CpuUsageHigh80</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1083,6 +1457,20 @@
                                     <recovery_expression>{min(5m)}&lt;60</recovery_expression>
                                     <name>CPU (NE) acima de 60% por 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU_NE</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>CpuNeUsageHigh60</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <expression>{min(5m)}&gt;80</expression>
@@ -1090,6 +1478,20 @@
                                     <recovery_expression>{min(5m)}&lt;80</recovery_expression>
                                     <name>CPU (NE) acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU_NE</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>CpuNeUsageHigh80</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1126,6 +1528,24 @@
                                     <recovery_expression>{min(5m)}&lt;80</recovery_expression>
                                     <name>Modulo Fan [{#SNMPINDEX}] velocidade esta acima de 80% em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Fan</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>FanSpeedHigh80</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>FanIndex</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1153,6 +1573,24 @@
                                     <recovery_expression>{last()}=1</recovery_expression>
                                     <name>Modulo Fan [{#SNMPINDEX}] status esta anormal em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Fan</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>FanStatusAbnormal</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>FanIndex</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1218,12 +1656,24 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{count(#4)}&lt;0.8</expression>
-                                    <name>Sinal óptico alterado - {#ENTPHYSICALNAME}</name>
+                                    <name>Sinal ÃƒÂ³ptico alterado - {#ENTPHYSICALNAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
-                                            <tag>opticsignal</tag>
-                                            <value>change</value>
+                                            <tag>Scope</tag>
+                                            <value>Optical</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>OpticalSignalChanged</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Average</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Port</tag>
+                                            <value>{#ENTPHYSICALNAME}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -1369,7 +1819,7 @@
                             <history>30d</history>
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
-                            <units>°C</units>
+                            <units>Ã‚Â°C</units>
                             <applications>
                                 <application>
                                     <name>Temperatura</name>
@@ -1530,8 +1980,20 @@
                             <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
-                                    <tag>opticsignal</tag>
-                                    <value>limit</value>
+                                    <tag>Scope</tag>
+                                    <value>Optical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>OpticalSignalLimit</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Port</tag>
+                                    <value>{#ENTPHYSICALNAME}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1547,7 +2009,7 @@
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Falhas de alocação de memória devido a falta de memória inativa</name>
+                            <name>Falhas de alocaÃƒÂ§ÃƒÂ£o de memÃƒÂ³ria devido a falta de memÃƒÂ³ria inativa</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.7.{#SNMPINDEX}</snmp_oid>
@@ -1562,7 +2024,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Contagem de falhas de alocação de memória</name>
+                            <name>Contagem de falhas de alocaÃƒÂ§ÃƒÂ£o de memÃƒÂ³ria</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.6.{#SNMPINDEX}</snmp_oid>
@@ -1602,7 +2064,7 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>B</units>
-                            <params>last(&quot;netstream.hwMemoryDevSize[{#SNMPINDEX}]&quot;)-last(&quot;netstream.hwMemoryDevFree[{#SNMPINDEX}]&quot;)</params>
+                            <params>last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")-last("netstream.hwMemoryDevFree[{#SNMPINDEX}]")</params>
                             <applications>
                                 <application>
                                     <name>Memoria</name>
@@ -1610,7 +2072,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Tamanho total da memória</name>
+                            <name>Tamanho total da memÃƒÂ³ria</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.2.{#SNMPINDEX}</snmp_oid>
@@ -1635,7 +2097,7 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <params>last(&quot;netstream.hwMemoryDevFree[{#SNMPINDEX}]&quot;)/last(&quot;netstream.hwMemoryDevSize[{#SNMPINDEX}]&quot;)*100</params>
+                            <params>last("netstream.hwMemoryDevFree[{#SNMPINDEX}]")/last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")*100</params>
                             <applications>
                                 <application>
                                     <name>Memoria</name>
@@ -1646,16 +2108,44 @@
                                     <expression>{min(5m)}&lt;=40</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(5m)}&gt;40</recovery_expression>
-                                    <name>Memória disponível abaixo 60% por 5min em - {HOST.NAME}</name>
+                                    <name>MemÃƒÂ³ria disponÃƒÂ­vel abaixo 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Memory</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>MemoryAvailableLow60</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <expression>{min(5m)}&lt;=20</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(5m)}&gt;20</recovery_expression>
-                                    <name>Memória disponível esta abaixo de 80% por 5min em - {HOST.NAME}</name>
+                                    <name>MemÃƒÂ³ria disponÃƒÂ­vel esta abaixo de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Memory</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>MemoryAvailableLow80</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1668,7 +2158,7 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <params>(last(&quot;netstream.hwMemoryDevSize[{#SNMPINDEX}]&quot;)-last(&quot;netstream.hwMemoryDevFree[{#SNMPINDEX}]&quot;))/last(&quot;netstream.hwMemoryDevSize[{#SNMPINDEX}]&quot;)*100</params>
+                            <params>(last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")-last("netstream.hwMemoryDevFree[{#SNMPINDEX}]"))/last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")*100</params>
                             <applications>
                                 <application>
                                     <name>Memoria</name>
@@ -1679,16 +2169,44 @@
                                     <expression>{min(5m)}&gt;=60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(5m)}&lt;60</recovery_expression>
-                                    <name>Uso de memória está acima de 60% por 5min em - {HOST.NAME}</name>
+                                    <name>Uso de memÃƒÂ³ria estÃƒÂ¡ acima de 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Memory</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>MemoryUsageHigh60</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <expression>{min(5m)}&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(5m)}&lt;80</recovery_expression>
-                                    <name>Uso de memória está acima de 80% por 5min em - {HOST.NAME}</name>
+                                    <name>Uso de memÃƒÂ³ria estÃƒÂ¡ acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Memory</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>MemoryUsageHigh80</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1773,8 +2291,8 @@
                         </conditions>
                     </filter>
                     <lifetime>7d</lifetime>
-                    <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.&#13;
-&#13;
+                    <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.
+
 {$SNMP_COMMUNITY} is a global macro.</description>
                     <item_prototypes>
                         <item_prototype>
@@ -1794,7 +2312,7 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <params />
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1819,7 +2337,7 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <params />
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1845,7 +2363,7 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params/>
+                                    <params />
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1877,16 +2395,24 @@
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>IF</tag>
+                                            <tag>Scope</tag>
+                                            <value>InterfacePhysical</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>PhysicalInterfaceDown</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Average</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Interface</tag>
                                             <value>{#IF}</value>
                                         </tag>
                                         <tag>
-                                            <tag>IFNAME</tag>
+                                            <tag>Alias</tag>
                                             <value>{#IFALIAS}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>RXPW</tag>
-                                            <value>{#RXPOWER}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -1913,7 +2439,7 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params/>
+                                    <params />
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1964,15 +2490,23 @@
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>IF</tag>
+                                            <tag>Scope</tag>
+                                            <value>InterfacePhysical</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>PhysicalInterfaceErrorRate</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Interface</tag>
                                             <value>{#IF}</value>
                                         </tag>
                                         <tag>
-                                            <tag>IFERROR</tag>
-                                            <value>IFERROR</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>IFNAME</tag>
+                                            <tag>Alias</tag>
                                             <value>{#IFALIAS}</value>
                                         </tag>
                                     </tags>
@@ -1988,15 +2522,23 @@
                             <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
-                                    <tag>IF</tag>
+                                    <tag>Scope</tag>
+                                    <value>InterfacePhysical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>PhysicalInterfaceHighTraffic90</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Warning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Interface</tag>
                                     <value>{#IF}</value>
                                 </tag>
                                 <tag>
-                                    <tag>IFERROR</tag>
-                                    <value>IFERROR</value>
-                                </tag>
-                                <tag>
-                                    <tag>IFNAME</tag>
+                                    <tag>Alias</tag>
                                     <value>{#IFALIAS}</value>
                                 </tag>
                             </tags>
@@ -2011,16 +2553,24 @@
                             <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
-                                    <tag>IF</tag>
+                                    <tag>Scope</tag>
+                                    <value>InterfacePhysical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>PhysicalInterfaceDownAlt</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Interface</tag>
                                     <value>{#IF}</value>
                                 </tag>
                                 <tag>
-                                    <tag>IFNAME</tag>
+                                    <tag>Alias</tag>
                                     <value>{#IFALIAS}</value>
-                                </tag>
-                                <tag>
-                                    <tag>RXPW</tag>
-                                    <value>{#RXPOWER}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -2401,7 +2951,7 @@
                             <history>30d</history>
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
-                            <units>ºC</units>
+                            <units>Ã‚ÂºC</units>
                             <applications>
                                 <application>
                                     <name>Temperatura</name>
@@ -2528,16 +3078,34 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}&#13;
-or&#13;
-{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}&#13;
-or&#13;
-{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}&#13;
-or &#13;
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
+or
+{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
+or
+{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
+or 
 {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME}</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>OpticalMultiLane</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>OpticalMultiLaneSignalLimit</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Port</tag>
+                                    <value>{#ENTPHYSICALNAME}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
@@ -2565,25 +3133,47 @@ or &#13;
     <triggers>
         <trigger>
             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityPwrState5.[{#SNMPINDEX}].change()}&gt;1 or {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityPwrState6.[{#SNMPINDEX}].change()}&gt;1</expression>
-            <name>Alteração de alimentação</name>
+            <name>AlteraÃƒÂ§ÃƒÂ£o de alimentaÃƒÂ§ÃƒÂ£o</name>
             <priority>HIGH</priority>
             <tags>
                 <tag>
-                    <tag>PSUHUAWEI</tag>
-                    <value>PSUHUAWEI</value>
+                    <tag>Scope</tag>
+                    <value>Power</value>
+                </tag>
+                <tag>
+                    <tag>Alert</tag>
+                    <value>PowerSupplyStateChanged</value>
+                </tag>
+                <tag>
+                    <tag>Severity</tag>
+                    <value>High</value>
                 </tag>
             </tags>
         </trigger>
         <trigger>
-            <expression>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &gt; 80) or&#13;
+            <expression>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &gt; 80) or
 ({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty5min[{#SNMPINDEX}].last()} &gt; 80)</expression>
             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-            <recovery_expression>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &lt; 80) or&#13;
+            <recovery_expression>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &lt; 80) or
 ({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty5min[{#SNMPINDEX}].last()} &lt; 80)</recovery_expression>
             <name>CPU Alta</name>
             <priority>HIGH</priority>
-            <description>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &gt; 80) or&#13;
+            <description>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &gt; 80) or
 ({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty5min[{#SNMPINDEX}].last()} &gt; 80)</description>
+            <tags>
+                <tag>
+                    <tag>Scope</tag>
+                    <value>CPU</value>
+                </tag>
+                <tag>
+                    <tag>Alert</tag>
+                    <value>CpuUsageHigh60Alt</value>
+                </tag>
+                <tag>
+                    <tag>Severity</tag>
+                    <value>Warning</value>
+                </tag>
+            </tags>
         </trigger>
     </triggers>
     <value_maps>
@@ -2655,19 +3245,19 @@ or &#13;
             <mappings>
                 <mapping>
                     <value>1</value>
-                    <newvalue>Alimentação ( fornecendo energia )</newvalue>
+                    <newvalue>AlimentaÃƒÂ§ÃƒÂ£o ( fornecendo energia )</newvalue>
                 </mapping>
                 <mapping>
                     <value>2</value>
-                    <newvalue>NotSupply ( não está fornecendo energia)</newvalue>
+                    <newvalue>NotSupply ( nÃƒÂ£o estÃƒÂ¡ fornecendo energia)</newvalue>
                 </mapping>
                 <mapping>
                     <value>3</value>
-                    <newvalue>Sleep ( estado de hibernação)</newvalue>
+                    <newvalue>Sleep ( estado de hibernaÃƒÂ§ÃƒÂ£o)</newvalue>
                 </mapping>
                 <mapping>
                     <value>4</value>
-                    <newvalue>Desconhecido ( informação não pode ser obtida )</newvalue>
+                    <newvalue>Desconhecido ( informaÃƒÂ§ÃƒÂ£o nÃƒÂ£o pode ser obtida )</newvalue>
                 </mapping>
             </mappings>
         </value_map>

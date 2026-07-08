@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-06-25T12:44:09Z</date>
@@ -212,12 +212,26 @@
                             <name>Uso alto de memoria RAM</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>Memory</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>RAMUsageHigh</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>High</value>
+                                </tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
                 <item>
                     <uuid>ada54c5f5f5c49d881fa03a0c0665d57</uuid>
-                    <name>Versão do Sistema e Hardware</name>
+                    <name>VersÃ£o do Sistema e Hardware</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.2.1.1.1.0</snmp_oid>
                     <key>netstream.sysDescr.0</key>
@@ -265,6 +279,20 @@
                             <name>{HOST.NAME1} Reiniciou</name>
                             <priority>INFO</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>System</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>DeviceRebooted</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Warning</value>
+                                </tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
@@ -523,6 +551,28 @@
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDownOwnerWarning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>acaa76fd99fb4516bc1f9b6476340a00</uuid>
@@ -530,6 +580,28 @@
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDownOwnerCritical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Disaster</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>67246939f0514c618eba0c7aee0f874e</uuid>
@@ -537,6 +609,28 @@
                             <name>BGP peer - IP {#IP}: ASN ({#ASN}) - DOWN</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDownWarning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>eed11e531e624f3499c8794b17b4d2a6</uuid>
@@ -544,6 +638,28 @@
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})  -  DOWN</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDownCritical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Disaster</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
@@ -647,6 +763,28 @@
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGPv6</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpV6PeerDownOwnerWarning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>5c4c5322a1534e73901196c52c705c3c</uuid>
@@ -654,6 +792,28 @@
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGPv6</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpV6PeerDownOwnerCritical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Disaster</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>5f5e8df819a847e3863d9b73cb1fbb76</uuid>
@@ -661,6 +821,28 @@
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN}) - DOWN</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGPv6</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpV6PeerDownWarning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>08229422c27745e7853893b43c93c974</uuid>
@@ -668,6 +850,28 @@
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})  -  DOWN</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGPv6</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpV6PeerDownCritical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Disaster</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ASN</tag>
+                                    <value>{#ASN}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
@@ -766,6 +970,32 @@
                             <name>BFD Session DOWN: Peer {#BFD_PEER} (Discr: {#BFD_DISCRIMINATOR})</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BFD</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BfdSessionDown</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>High</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#BFD_PEER}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Interface</tag>
+                                    <value>{#BFD_IFNAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Discr</tag>
+                                    <value>{#BFD_DISCRIMINATOR}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
@@ -783,7 +1013,7 @@
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.tempslot[{#SNMPINDEX}]</key>
-                            <units>ºC</units>
+                            <units>ÂºC</units>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -796,6 +1026,20 @@
                                     <expression>count(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],#5,"ge",50)&gt;=5</expression>
                                     <name>Temperatura alta</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Temperature</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>TemperatureHigh</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -914,12 +1158,56 @@
                                     <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=1</recovery_expression>
                                     <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>InterfaceVirtual</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>VirtualInterfaceDown</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Average</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Interface</tag>
+                                            <value>{#IF}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alias</tag>
+                                            <value>{#IFALIAS}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>e95db2acd2d54254a48f70ff59950560</uuid>
                                     <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=2</expression>
                                     <name>Vlan down - {#IF}: ({#IFALIAS})</name>
                                     <priority>INFO</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>InterfaceVirtual</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>VlanInterfaceDown</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Average</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Interface</tag>
+                                            <value>{#IF}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alias</tag>
+                                            <value>{#IFALIAS}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -989,8 +1277,26 @@
                                 <trigger_prototype>
                                     <uuid>a950dded041b470f802509cece14acbe</uuid>
                                     <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ospf.state[{#IFNB}.{#SNMPINDEX}])&lt;8</expression>
-                                    <name>Alteração no OSPF: {#IFNB}</name>
+                                    <name>AlteraÃ§Ã£o no OSPF: {#IFNB}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>OSPF</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>OspfNeighborChange</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Neighbor</tag>
+                                            <value>{#IFNB}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1012,6 +1318,24 @@
                                     <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ospf.uptime.[{#IFNB}.{#SNMPINDEX}])&gt;3600</recovery_expression>
                                     <name>Uptime baixo no OSPF: {#IFNB}</name>
                                     <priority>AVERAGE</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>OSPF</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>OspfNeighborLowUptime</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Neighbor</tag>
+                                            <value>{#IFNB}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1038,6 +1362,24 @@
                                     <name>OSPF Cost alterado: {#IFNB} em {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>OSPF</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>OspfCostChanged</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Information</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Neighbor</tag>
+                                            <value>{#IFNB}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1051,7 +1393,7 @@
                             <history>90d</history>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
-                            <description>Área OSPF da interface (ospfIfAreaId - RFC 1850). 0.0.0.0 = backbone</description>
+                            <description>Ãrea OSPF da interface (ospfIfAreaId - RFC 1850). 0.0.0.0 = backbone</description>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1161,16 +1503,44 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&gt;60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
-                                    <name>Uso está acima de 60% for 5min em - {HOST.NAME}</name>
+                                    <name>Uso estÃ¡ acima de 60% for 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>CpuUsageHigh60</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>afc1e39b03c54dbf85896aeebf5a4d18</uuid>
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&gt;80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
-                                    <name>Uso está acima de 80% por 5min em - {HOST.NAME}</name>
+                                    <name>Uso estÃ¡ acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>CpuUsageHigh80</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1206,6 +1576,20 @@
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min.[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
                                     <name>Uso esta acima de 60% for 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>CpuUsageHigh60Alt</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>022bcadfe5494944ac6bd1a0d2e7d49c</uuid>
@@ -1214,6 +1598,20 @@
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min.[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
                                     <name>Uso esta acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>CpuUsageHigh80Alt</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                             <tags>
@@ -1270,6 +1668,20 @@
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityCpuUsage[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
                                     <name>CPU (NE) acima de 60% por 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU_NE</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>CpuNeUsageHigh60</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>65a56f717a2b4d08ad2f8de024e14664</uuid>
@@ -1278,6 +1690,20 @@
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityCpuUsage[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
                                     <name>CPU (NE) acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU_NE</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>CpuNeUsageHigh80</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1314,8 +1740,26 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanSpeed[{#SNMPINDEX}],5m)&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanSpeed[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
-                                    <name>Modulo Fan [{#SNMPINDEX}] velocidade está acima de 80% em - {HOST.NAME}</name>
+                                    <name>Modulo Fan [{#SNMPINDEX}] velocidade estÃ¡ acima de 80% em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Fan</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>FanSpeedHigh80</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>FanIndex</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1343,8 +1787,26 @@
                                     <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanState[{#SNMPINDEX}])&lt;&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanState[{#SNMPINDEX}])=1</recovery_expression>
-                                    <name>Modulo Fan [{#SNMPINDEX}] status está anormal em - {HOST.NAME}</name>
+                                    <name>Modulo Fan [{#SNMPINDEX}] status estÃ¡ anormal em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Fan</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>FanStatusAbnormal</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>FanIndex</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1416,12 +1878,24 @@
                                 <trigger_prototype>
                                     <uuid>455a465d381e4651a253bdd9d0697af8</uuid>
                                     <expression>count(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#4)&lt;0.8</expression>
-                                    <name>Sinal óptico alterado - {#ENTPHYSICALNAME}</name>
+                                    <name>Sinal Ã³ptico alterado - {#ENTPHYSICALNAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
-                                            <tag>opticsignal</tag>
-                                            <value>change</value>
+                                            <tag>Scope</tag>
+                                            <value>Optical</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>OpticalSignalChanged</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Average</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Port</tag>
+                                            <value>{#ENTPHYSICALNAME}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -1590,7 +2064,7 @@
                             <history>30d</history>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
-                            <units>°C</units>
+                            <units>Â°C</units>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1771,8 +2245,20 @@
                             <priority>AVERAGE</priority>
                             <tags>
                                 <tag>
-                                    <tag>opticsignal</tag>
-                                    <value>limit</value>
+                                    <tag>Scope</tag>
+                                    <value>Optical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>OpticalSignalLimit</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Port</tag>
+                                    <value>{#ENTPHYSICALNAME}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1789,7 +2275,7 @@
                     <item_prototypes>
                         <item_prototype>
                             <uuid>eb323a73676641d28d02efb42a82fcd0</uuid>
-                            <name>Falhas de alocação de memória devido a falta de memória inativa</name>
+                            <name>Falhas de alocaÃ§Ã£o de memÃ³ria devido a falta de memÃ³ria inativa</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.7.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevFailNoMem[{#SNMPINDEX}]</key>
@@ -1805,7 +2291,7 @@
                         </item_prototype>
                         <item_prototype>
                             <uuid>c2f6636e817c46108d703eabd20a79b1</uuid>
-                            <name>Contagem de falhas de alocação de memória</name>
+                            <name>Contagem de falhas de alocaÃ§Ã£o de memÃ³ria</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.6.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevFail[{#SNMPINDEX}]</key>
@@ -1857,7 +2343,7 @@
                         </item_prototype>
                         <item_prototype>
                             <uuid>9fdb949765aa473389256e212eb28ddc</uuid>
-                            <name>Tamanho total da memória</name>
+                            <name>Tamanho total da memÃ³ria</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevSize[{#SNMPINDEX}]</key>
@@ -1896,17 +2382,45 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&lt;=40</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&gt;40</recovery_expression>
-                                    <name>Memória disponível abaixo 60% por 5min em - {HOST.NAME}</name>
+                                    <name>MemÃ³ria disponÃ­vel abaixo 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Memory</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>MemoryAvailableLow60</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>67e417628e4541268dbcba1e1845e5e0</uuid>
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&lt;=20</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&gt;20</recovery_expression>
-                                    <name>Memória disponível esta abaixo de 80% por 5min em - {HOST.NAME}</name>
+                                    <name>MemÃ³ria disponÃ­vel esta abaixo de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Memory</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>MemoryAvailableLow80</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1933,17 +2447,45 @@
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&gt;=60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
-                                    <name>Uso de memória está acima de 60% por 5min em - {HOST.NAME}</name>
+                                    <name>Uso de memÃ³ria estÃ¡ acima de 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Memory</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>MemoryUsageHigh60</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>225f9ce4a54a49c0bf5ab24b7d1b8d54</uuid>
                                     <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
-                                    <name>Uso de memória está acima de 80% por 5min em - {HOST.NAME}</name>
+                                    <name>Uso de memÃ³ria estÃ¡ acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Memory</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>MemoryUsageHigh80</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -2149,16 +2691,24 @@
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>IF</tag>
+                                            <tag>Scope</tag>
+                                            <value>InterfacePhysical</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>PhysicalInterfaceDown</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Average</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Interface</tag>
                                             <value>{#IF}</value>
                                         </tag>
                                         <tag>
-                                            <tag>IFNAME</tag>
+                                            <tag>Alias</tag>
                                             <value>{#IFALIAS}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>RXPW</tag>
-                                            <value>{#RXPOWER}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -2240,28 +2790,58 @@
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>IF</tag>
+                                            <tag>Scope</tag>
+                                            <value>InterfacePhysical</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>PhysicalInterfaceErrorRate</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>Warning</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Interface</tag>
                                             <value>{#IF}</value>
                                         </tag>
                                         <tag>
-                                            <tag>IFERROR</tag>
-                                            <value>IFERROR</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>IFNAME</tag>
+                                            <tag>Alias</tag>
                                             <value>{#IFALIAS}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
-                        </item_prototypes>
+                    </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>1f421dc466584e31a217d9fd2759e3e3</uuid>
                             <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]) or last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}])) &gt; last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifspeed.[{#IF}.{#SNMPINDEX}])&gt;=0.9</expression>
                             <name>Consumo maior que 90% da porta - {#IF}: ({#IFALIAS})</name>
                             <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>InterfacePhysical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>PhysicalInterfaceHighTraffic90</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Warning</value>
+                                </tag>
+                                <tag>
+                                    <tag>Interface</tag>
+                                    <value>{#IF}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alias</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>e7450fbbe0584e5da97c876543e9c296</uuid>
@@ -2274,16 +2854,24 @@
                             <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
-                                    <tag>IF</tag>
+                                    <tag>Scope</tag>
+                                    <value>InterfacePhysical</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>PhysicalInterfaceDownAlt</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Interface</tag>
                                     <value>{#IF}</value>
                                 </tag>
                                 <tag>
-                                    <tag>IFNAME</tag>
+                                    <tag>Alias</tag>
                                     <value>{#IFALIAS}</value>
-                                </tag>
-                                <tag>
-                                    <tag>RXPW</tag>
-                                    <value>{#RXPOWER}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -2716,7 +3304,7 @@
                             <history>30d</history>
                             <trends>0</trends>
                             <value_type>FLOAT</value_type>
-                            <units>ºC</units>
+                            <units>ÂºC</units>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -2867,6 +3455,24 @@ or
 last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}],#1:now-5m)&lt;0.9*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME}</name>
                             <priority>AVERAGE</priority>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>OpticalMultiLane</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>OpticalMultiLaneSignalLimit</value>
+                                </tag>
+                                <tag>
+                                    <tag>Severity</tag>
+                                    <value>Average</value>
+                                </tag>
+                                <tag>
+                                    <tag>Port</tag>
+                                    <value>{#ENTPHYSICALNAME}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
@@ -3028,19 +3634,19 @@ last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLa
                     <mappings>
                         <mapping>
                             <value>1</value>
-                            <newvalue>Alimentação ( fornecendo energia )</newvalue>
+                            <newvalue>AlimentaÃ§Ã£o ( fornecendo energia )</newvalue>
                         </mapping>
                         <mapping>
                             <value>2</value>
-                            <newvalue>NotSupply ( não está fornecendo energia)</newvalue>
+                            <newvalue>NotSupply ( nÃ£o estÃ¡ fornecendo energia)</newvalue>
                         </mapping>
                         <mapping>
                             <value>3</value>
-                            <newvalue>Sleep ( estado de hibernação)</newvalue>
+                            <newvalue>Sleep ( estado de hibernaÃ§Ã£o)</newvalue>
                         </mapping>
                         <mapping>
                             <value>4</value>
-                            <newvalue>Desconhecido ( informação não pode ser obtida )</newvalue>
+                            <newvalue>Desconhecido ( informaÃ§Ã£o nÃ£o pode ser obtida )</newvalue>
                         </mapping>
                     </mappings>
                 </valuemap>
@@ -3139,12 +3745,20 @@ last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLa
         <trigger>
             <uuid>255b84afc1de4d439370c2567bb8f4c6</uuid>
             <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityPwrState5)&gt;1 or change(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityPwrState6)&gt;1</expression>
-            <name>Alteração de alimentação</name>
+            <name>AlteraÃ§Ã£o de alimentaÃ§Ã£o</name>
             <priority>HIGH</priority>
             <tags>
                 <tag>
-                    <tag>PSUHUAWEI</tag>
-                    <value>PSUHUAWEI</value>
+                    <tag>Scope</tag>
+                    <value>Power</value>
+                </tag>
+                <tag>
+                    <tag>Alert</tag>
+                    <value>PowerSupplyStateChanged</value>
+                </tag>
+                <tag>
+                    <tag>Severity</tag>
+                    <value>High</value>
                 </tag>
             </tags>
         </trigger>
