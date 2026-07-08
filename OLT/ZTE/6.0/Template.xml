@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2026-07-08T19:20:49Z</date>
+    <date>2026-07-08T19:25:57Z</date>
     <groups>
         <group>
             <name>ZTE</name>
@@ -416,7 +416,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>netstream.gpon.sfp.temp[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <value_type>FLOAT</value_type>
-                            <units>Ã‚ÂºC</units>
+                            <units>ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂºC</units>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -453,7 +453,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Erros de Entrada</name>
+                            <name>Porta {#PONNAME} ({#PONDESC}): Erros CRC / Entrada (Taxa)</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
@@ -467,24 +467,32 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.net.if.in.errors[{#SNMPINDEX}])&gt;10</expression>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.net.if.in.errors[{#SNMPINDEX}].min(#3)}&gt;5</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{avg(1)}=0</recovery_expression>
-                                    <name>Porta {#PONNAME} ({#PONDESC}): Taxa de erros de entrada elevada</name>
+                                    <name>Porta {#PONNAME} ({#PONDESC}): Alta Taxa de Erros CRC ({ITEM.LASTVALUE1}/s)</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>erros_in</tag>
-                                            <value>{ITEM.VALUE1}</value>
+                                            <tag>Scope</tag>
+                                            <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>pon_name</tag>
+                                            <tag>Alias</tag>
+                                            <value>{#PONDESC}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>CRCRate</tag>
+                                            <value>{ITEM.LASTVALUE1}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>PON</tag>
                                             <value>{#PONNAME}</value>
                                         </tag>
                                         <tag>
-                                            <tag>pon_desc</tag>
-                                            <value>{#PONDESC}</value>
+                                            <tag>Application</tag>
+                                            <value>GPON</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -522,7 +530,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Erros de SaÃƒÂ­da</name>
+                            <name>Porta {#PONNAME} ({#PONDESC}): Erros de SaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â­da</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
@@ -648,7 +656,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:netstream.gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;=0 and ({OLT ZTE - NETSTREAM:netstream.gpon.onu.online_antes[{#SNMPINDEX}].last()}-{OLT ZTE - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()})&gt;={$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2</expression>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Queda massiva de ONUs (MÃƒÂ­nimo {$GPON_DROP_MIN} ONUs)</name>
+                            <name>Porta {#PONNAME} ({#PONDESC}): Queda massiva de ONUs (MÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â­nimo {$GPON_DROP_MIN} ONUs)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -919,24 +927,28 @@ return JSON.stringify(result);</params>
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>min(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#5)=1</expression>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.onu.status.[{#SNMPINDEX}].min(#3)}=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{last()}=3</recovery_expression>
-                                    <name>Status ONU - {#ONTDESC}</name>
-                                    <priority>INFO</priority>
+                                    <name>Cliente Dedicado Offline / Desconectado: {#ONTDESC}</name>
+                                    <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>ONUDEDICADO</tag>
-                                            <value>ONUDEDICADO</value>
+                                            <tag>Scope</tag>
+                                            <value>Customer</value>
                                         </tag>
                                         <tag>
-                                            <tag>ONUSTATUS</tag>
-                                            <value>{ITEM.LASTVALUE}</value>
+                                            <tag>Status</tag>
+                                            <value>Offline</value>
                                         </tag>
                                         <tag>
-                                            <tag>ont_desc</tag>
+                                            <tag>Customer</tag>
                                             <value>{#ONTDESC}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Application</tag>
+                                            <value>Dedicated Link</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -948,7 +960,128 @@ return JSON.stringify(result);</params>
                                 </tag>
                             </tags>
                         </item_prototype>
+                        <item_prototype>
+                            <name>Sinal Optico RX (dBm) - Cliente Dedicado: {#ONTDESC}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.9.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.dedicado.rxpower[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>ENABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var power = parseFloat(value);
+if (power === 0 || isNaN(power) || power &gt; 100000) return -40;
+return ((power * 0.002) - 30).toFixed(2);</params>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&lt;=-28 and {OLT ZTE - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&gt;-40</expression>
+                                    <name>Cliente Dedicado {#ONTDESC}: Sinal Optico Critico ({ITEM.LASTVALUE1})</name>
+                                    <priority>HIGH</priority>
+                                    <description>Sinal optico da ONU dedicada extremamente baixo (&lt; -28 dBm). Risco iminente de queda do link.</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Customer</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Signal</tag>
+                                            <value>{ITEM.LASTVALUE1}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Customer</tag>
+                                            <value>{#ONTDESC}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Application</tag>
+                                            <value>Dedicated Link</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&lt;=-25 and {OLT ZTE - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&gt;-28</expression>
+                                    <name>Cliente Dedicado {#ONTDESC}: Sinal Optico Degradado ({ITEM.LASTVALUE1})</name>
+                                    <priority>WARNING</priority>
+                                    <description>Sinal optico do cliente dedicado abaixo de -25 dBm.</description>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Motivo da Ultima Queda - Cliente Dedicado: {#ONTDESC}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.dedicado.offline_reason[{#SNMPINDEX}]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>ENABLED</status>
+                            <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Distancia da ONU (m) - Cliente Dedicado: {#ONTDESC}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.dedicado.distance[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>ENABLED</status>
+                            <value_type>UINT</value_type>
+                            <units>m</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
                     </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Cliente Dedicado: {#ONTDESC} - Sinal Optico RX (dBm)</name>
+                            <ymin_type_1>FIXED</ymin_type_1>
+                            <ymax_type_1>FIXED</ymax_type_1>
+                            <ymin_item_1>-35</ymin_item_1>
+                            <ymax_item_1>-10</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <drawtype>LINE</drawtype>
+                                    <item>
+                                        <host>OLT ZTE - NETSTREAM</host>
+                                        <key>netstream.dedicado.rxpower[{#SNMPINDEX}]</key>
+                                        <tags>
+                                            <tag>
+                                                <tag>Application</tag>
+                                                <value>GPON OLT</value>
+                                            </tag>
+                                        </tags>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
                 </discovery_rule>
                 <discovery_rule>
                     <name>NETSTREAM - Descoberta de Placas</name>
@@ -992,7 +1125,7 @@ return JSON.stringify(result);</params>
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de MemÃƒÂ³ria</name>
+                            <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de MemÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³ria</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.11.{#SNMPINDEX}</snmp_oid>
@@ -1187,7 +1320,7 @@ return JSON.stringify(result);</params>
                 </mapping>
                 <mapping>
                     <value>3</value>
-                    <newvalue>hwOnline (Software nÃƒÂ£o carregado)</newvalue>
+                    <newvalue>hwOnline (Software nÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o carregado)</newvalue>
                 </mapping>
                 <mapping>
                     <value>4</value>
@@ -1269,7 +1402,7 @@ return JSON.stringify(result);</params>
                 </mapping>
                 <mapping>
                     <value>2</value>
-                    <newvalue>SFi ( Falha de sinal atÃƒÂ© a ONU )</newvalue>
+                    <newvalue>SFi ( Falha de sinal atÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© a ONU )</newvalue>
                 </mapping>
                 <mapping>
                     <value>3</value>
