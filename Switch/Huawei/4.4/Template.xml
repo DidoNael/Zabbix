@@ -355,7 +355,7 @@
                     </triggers>
                 </item>
                 <item>
-                    <name>VersÃƒÂ£o do Sistema e Hardware</name>
+                    <name>VersÃƒÆ’Ã‚Â£o do Sistema e Hardware</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>.1.3.6.1.2.1.1.1.0</snmp_oid>
@@ -981,7 +981,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.tempslot[{#SNMPINDEX}]</key>
-                            <units>Ã‚ÂºC</units>
+                            <units>Ãƒâ€šÃ‚ÂºC</units>
                             <applications>
                                 <application>
                                     <name>temperatura</name>
@@ -1229,7 +1229,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{last()}&lt;8</expression>
-                                    <name>AlteraÃƒÂ§ÃƒÂ£o no OSPF: {#IFNB}</name>
+                                    <name>AlteraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o no OSPF: {#IFNB}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -1597,6 +1597,127 @@
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
+                    <name>Discovery: Power Supply (PSU)</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5]</snmp_oid>
+                    <key>netstream.psu.discovery</key>
+                    <delay>1d</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>PSU [{#SNMPINDEX}]: Hardware Presente</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.hwEntityPwrPresente.discovery[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <trends>365d</trends>
+                            <valuemap>PSU HUAWEI PRESENTE</valuemap>
+                            <applications>
+                                <application>
+                                    <name>pw-present</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PSU [{#SNMPINDEX}]: Status</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.hwEntityPwrState.discovery[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <trends>365d</trends>
+                            <valuemap>PSU HUAWEI STATUS</valuemap>
+                            <applications>
+                                <application>
+                                    <name>pw-state</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;1</expression>
+                                    <name>PSU [{#SNMPINDEX}]: Status anormal em - {HOST.NAME}</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Power</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>PsuStatusAbnormal</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>PsuIndex</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PSU [{#SNMPINDEX}]: Potencia</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.hwEntityPwrPower.discovery[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <trends>365d</trends>
+                            <units>watts</units>
+                            <applications>
+                                <application>
+                                    <name>pw-power</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PSU [{#SNMPINDEX}]: Tipo de fonte</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.hwEntityPwrMode.discovery[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <trends>365d</trends>
+                            <valuemap>Tipo de fonte HUAWEI</valuemap>
+                            <applications>
+                                <application>
+                                    <name>pw-type</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Discovery: Consumo de Energia</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.14.1.3]</snmp_oid>
+                    <key>netstream.power.discovery</key>
+                    <delay>1d</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Consumo de energia total [{#SNMPINDEX}]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.14.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.hwSystemPowerUsedPower.discovery[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <trends>365d</trends>
+                            <units>watts</units>
+                            <applications>
+                                <application>
+                                    <name>watts</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
                     <name>Discovery | Network interfaces | Sinal optico single lan</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
@@ -1656,7 +1777,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{count(#4)}&lt;0.8</expression>
-                                    <name>Sinal ÃƒÂ³ptico alterado - {#ENTPHYSICALNAME}</name>
+                                    <name>Sinal ÃƒÆ’Ã‚Â³ptico alterado - {#ENTPHYSICALNAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -1819,7 +1940,7 @@
                             <history>30d</history>
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
-                            <units>Ã‚Â°C</units>
+                            <units>Ãƒâ€šÃ‚Â°C</units>
                             <applications>
                                 <application>
                                     <name>Temperatura</name>
@@ -2009,7 +2130,7 @@
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Falhas de alocaÃƒÂ§ÃƒÂ£o de memÃƒÂ³ria devido a falta de memÃƒÂ³ria inativa</name>
+                            <name>Falhas de alocaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de memÃƒÆ’Ã‚Â³ria devido a falta de memÃƒÆ’Ã‚Â³ria inativa</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.7.{#SNMPINDEX}</snmp_oid>
@@ -2024,7 +2145,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Contagem de falhas de alocaÃƒÂ§ÃƒÂ£o de memÃƒÂ³ria</name>
+                            <name>Contagem de falhas de alocaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de memÃƒÆ’Ã‚Â³ria</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.6.{#SNMPINDEX}</snmp_oid>
@@ -2072,7 +2193,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Tamanho total da memÃƒÂ³ria</name>
+                            <name>Tamanho total da memÃƒÆ’Ã‚Â³ria</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.2.{#SNMPINDEX}</snmp_oid>
@@ -2108,7 +2229,7 @@
                                     <expression>{min(5m)}&lt;=40</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(5m)}&gt;40</recovery_expression>
-                                    <name>MemÃƒÂ³ria disponÃƒÂ­vel abaixo 60% por 5min em - {HOST.NAME}</name>
+                                    <name>MemÃƒÆ’Ã‚Â³ria disponÃƒÆ’Ã‚Â­vel abaixo 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
                                     <tags>
@@ -2130,7 +2251,7 @@
                                     <expression>{min(5m)}&lt;=20</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(5m)}&gt;20</recovery_expression>
-                                    <name>MemÃƒÂ³ria disponÃƒÂ­vel esta abaixo de 80% por 5min em - {HOST.NAME}</name>
+                                    <name>MemÃƒÆ’Ã‚Â³ria disponÃƒÆ’Ã‚Â­vel esta abaixo de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -2169,7 +2290,7 @@
                                     <expression>{min(5m)}&gt;=60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(5m)}&lt;60</recovery_expression>
-                                    <name>Uso de memÃƒÂ³ria estÃƒÂ¡ acima de 60% por 5min em - {HOST.NAME}</name>
+                                    <name>Uso de memÃƒÆ’Ã‚Â³ria estÃƒÆ’Ã‚Â¡ acima de 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
                                     <tags>
@@ -2191,7 +2312,7 @@
                                     <expression>{min(5m)}&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(5m)}&lt;80</recovery_expression>
-                                    <name>Uso de memÃƒÂ³ria estÃƒÂ¡ acima de 80% por 5min em - {HOST.NAME}</name>
+                                    <name>Uso de memÃƒÆ’Ã‚Â³ria estÃƒÆ’Ã‚Â¡ acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -2951,7 +3072,7 @@
                             <history>30d</history>
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
-                            <units>Ã‚ÂºC</units>
+                            <units>Ãƒâ€šÃ‚ÂºC</units>
                             <applications>
                                 <application>
                                     <name>Temperatura</name>
@@ -3133,7 +3254,7 @@ or
     <triggers>
         <trigger>
             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityPwrState5.[{#SNMPINDEX}].change()}&gt;1 or {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityPwrState6.[{#SNMPINDEX}].change()}&gt;1</expression>
-            <name>AlteraÃƒÂ§ÃƒÂ£o de alimentaÃƒÂ§ÃƒÂ£o</name>
+            <name>AlteraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de alimentaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o</name>
             <priority>HIGH</priority>
             <tags>
                 <tag>
@@ -3245,19 +3366,19 @@ or
             <mappings>
                 <mapping>
                     <value>1</value>
-                    <newvalue>AlimentaÃƒÂ§ÃƒÂ£o ( fornecendo energia )</newvalue>
+                    <newvalue>AlimentaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o ( fornecendo energia )</newvalue>
                 </mapping>
                 <mapping>
                     <value>2</value>
-                    <newvalue>NotSupply ( nÃƒÂ£o estÃƒÂ¡ fornecendo energia)</newvalue>
+                    <newvalue>NotSupply ( nÃƒÆ’Ã‚Â£o estÃƒÆ’Ã‚Â¡ fornecendo energia)</newvalue>
                 </mapping>
                 <mapping>
                     <value>3</value>
-                    <newvalue>Sleep ( estado de hibernaÃƒÂ§ÃƒÂ£o)</newvalue>
+                    <newvalue>Sleep ( estado de hibernaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o)</newvalue>
                 </mapping>
                 <mapping>
                     <value>4</value>
-                    <newvalue>Desconhecido ( informaÃƒÂ§ÃƒÂ£o nÃƒÂ£o pode ser obtida )</newvalue>
+                    <newvalue>Desconhecido ( informaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o nÃƒÆ’Ã‚Â£o pode ser obtida )</newvalue>
                 </mapping>
             </mappings>
         </value_map>
