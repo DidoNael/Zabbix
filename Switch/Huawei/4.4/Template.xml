@@ -3041,7 +3041,7 @@ or
                 </macro>
                 <macro>
                     <macro>{$PPPOE_MIN_USERS}</macro>
-                    <value>50</value>
+                    <value>10</value>
                     <description>Minimum active PPPoE users required on interface/domain before triggering mass disconnection alerts</description>
                 </macro>
             </macros>
