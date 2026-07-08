@@ -394,18 +394,6 @@
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <name>AS Name for IPv4 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>EXTERNAL</type>
-                            <key>as.name[&quot;-p&quot;,&quot;{#SNMPINDEX}&quot;]</key>
-                            <trends>365d</trends>
-                            <value_type>CHAR</value_type>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
                             <name>Administrative status for peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
@@ -524,18 +512,6 @@
                     <delay>1d</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
-                        <item_prototype>
-                            <name>AS Name for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>EXTERNAL</type>
-                            <key>as.name["-p","{#SNMPINDEX}"]</key>
-                            <trends>365d</trends>
-                            <value_type>CHAR</value_type>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
                         <item_prototype>
                             <name>Administrative status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMPV2</type>

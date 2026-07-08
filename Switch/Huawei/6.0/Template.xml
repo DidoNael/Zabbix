@@ -432,20 +432,6 @@
                     <delay>1d</delay>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>f642277b97aa4c2d97dcac7dab0bb8c9</uuid>
-                            <name>AS Name for IPv4 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>EXTERNAL</type>
-                            <key>as.name["-p","{#SNMPINDEX}"]</key>
-                            <trends>0</trends>
-                            <value_type>CHAR</value_type>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Peer V4</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
                             <uuid>93b8792849ab4e2096492904340dff71</uuid>
                             <name>Administrative status for peer - IP {#IP}: ASN ({#ASN})</name>
                             <type>SNMP_AGENT</type>
@@ -569,20 +555,6 @@
                     <key>netstream.bgppeerv6</key>
                     <delay>1d</delay>
                     <item_prototypes>
-                        <item_prototype>
-                            <uuid>1a112233445566778899aabbccddeef0</uuid>
-                            <name>AS Name for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>EXTERNAL</type>
-                            <key>as.name["-p","{#SNMPINDEX}"]</key>
-                            <trends>365d</trends>
-                            <value_type>CHAR</value_type>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Peer V6</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
                         <item_prototype>
                             <uuid>1a112233445566778899aabbccddeef1</uuid>
                             <name>Administrative status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
