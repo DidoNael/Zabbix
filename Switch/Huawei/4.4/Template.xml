@@ -349,7 +349,7 @@
                         <item_prototype>
                             <name>ASN Owner: {#IP} - {#ASN}</name>
                             <type>EXTERNAL</type>
-                            <key>get_asn_owner_v2.sh[{#ASN}]</key>
+                            <key>get_asn_owner_v2.sh[{#ASN},{#IP}]</key>
                             <delay>1h</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
@@ -362,7 +362,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=0 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN}].strlen()}&gt;0</expression>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=0 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},{#IP}].strlen()}&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>AVERAGE</priority>
                             <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
@@ -393,7 +393,7 @@
                         <trigger_prototype>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAs[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and 
 {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and 
-{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN}].strlen()}&gt;0</expression>
+{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},{#IP}].strlen()}&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>DISASTER</priority>
                             <description>Trigger for peer that has a remote AS matching {$BGP_PEER_AS} macro.</description>
@@ -584,7 +584,7 @@
                         <item_prototype>
                             <name>ASN Owner V6: {#IP} - {#ASN}</name>
                             <type>EXTERNAL</type>
-                            <key>get_asn_owner_v2.sh[{#ASN},v6]</key>
+                            <key>get_asn_owner_v2.sh[{#ASN},{#IP},v6]</key>
                             <delay>1h</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
@@ -597,7 +597,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=0 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerStateV6.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},v6].strlen()}&gt;0</expression>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=0 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerStateV6.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},{#IP},v6].strlen()}&gt;0</expression>
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>AVERAGE</priority>
                             <description>Trigger for IPv6 peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
@@ -626,7 +626,7 @@
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerStateV6.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},v6].strlen()}&gt;0</expression>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}].regexp({$BGP_PEER_AS})}=1 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerStateV6.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},{#IP},v6].strlen()}&gt;0</expression>
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
                             <priority>DISASTER</priority>
                             <description>Trigger for IPv6 peer that has a remote AS matching {$BGP_PEER_AS} macro.</description>
