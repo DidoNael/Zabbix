@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
-    <version>4.4</version>
-    <date>2026-05-22T13:36:26Z</date>
+    <version>6.0</version>
+    <date>2026-07-08T18:56:57Z</date>
     <groups>
         <group>
             <name>ZTE</name>
@@ -56,36 +56,42 @@
                     <status>DISABLED</status>
                     <triggers>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:sensor.fan.status.last()}=4</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/sensor.fan.status)=4</expression>
                             <name>OLT: Falha no Ventilador (Fan Fail)</name>
                             <priority>HIGH</priority>
                             <description>Status do ventilador indica falha de hardware na OLT.</description>
                         </trigger>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:sensor.psu.status[1].last()}=2</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/sensor.psu.status[1])=2</expression>
                             <name>OLT: Falha na Fonte de Energia 1 (PSU 1 Fail)</name>
                             <priority>HIGH</priority>
                             <description>Fonte de alimentacao 1 reporta falha.</description>
                         </trigger>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:sensor.psu.status[1].last()}=3</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/sensor.psu.status[1])=3</expression>
                             <name>OLT: Fonte de Energia 1 Desconectada / Offline</name>
                             <priority>WARNING</priority>
                             <description>Fonte 1 sem alimentacao AC/DC.</description>
                         </trigger>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:sensor.psu.status[2].last()}=2</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/sensor.psu.status[2])=2</expression>
                             <name>OLT: Falha na Fonte de Energia 2 (PSU 2 Fail)</name>
                             <priority>HIGH</priority>
                             <description>Fonte de alimentacao 2 reporta falha.</description>
                         </trigger>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:sensor.psu.status[2].last()}=3</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/sensor.psu.status[2])=3</expression>
                             <name>OLT: Fonte de Energia 2 Desconectada / Offline</name>
                             <priority>WARNING</priority>
                             <description>Fonte 2 sem alimentacao AC/DC.</description>
                         </trigger>
                     </triggers>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>GPON OLT</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <name>OLT: Status da Fonte de Energia</name>
@@ -97,6 +103,12 @@
                     <valuemap>
                         <name>OLT-ZTE-STATUS-PSU</name>
                     </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>GPON OLT</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <name>OLT: Status da Fonte de Energia 1</name>
@@ -109,6 +121,12 @@
                         <name>OLT-ZTE-STATUS-PSU</name>
                     </valuemap>
                     <status>DISABLED</status>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>GPON OLT</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <name>OLT: Status da Fonte de Energia 2</name>
@@ -121,6 +139,12 @@
                         <name>OLT-ZTE-STATUS-PSU</name>
                     </valuemap>
                     <status>DISABLED</status>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>GPON OLT</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <name>Uso de CPU (Geral)</name>
@@ -129,6 +153,12 @@
                     <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.3</snmp_oid>
                     <key>system.cpu.util</key>
                     <delay>5m</delay>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>GPON OLT</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <name>Uptime OLT</name>
@@ -141,17 +171,18 @@
                     <trends>0</trends>
                     <value_type>FLOAT</value_type>
                     <units>d</units>
-                    <applications>
-                        <application>
-                            <name>uptime</name>
-                        </application>
-                    </applications>
                     <preprocessing>
                         <step>
                             <type>MULTIPLIER</type>
                             <params>0.01</params>
                         </step>
                     </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>uptime</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <name>Temperatura das Placas</name>
@@ -160,6 +191,12 @@
                     <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.8</snmp_oid>
                     <key>temp.cards</key>
                     <delay>5m</delay>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>GPON OLT</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
                     <name>Uso de memoria RAM</name>
@@ -168,6 +205,12 @@
                     <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.4</snmp_oid>
                     <key>vm.memory.util</key>
                     <delay>5m</delay>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>GPON OLT</value>
+                        </tag>
+                    </tags>
                 </item>
             </items>
             <discovery_rules>
@@ -197,6 +240,12 @@ if (power === 0 || isNaN(power) || power &gt; 100000) return -40; // Sem sinal /
 return ((power * 0.002) - 30).toFixed(2);</params>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>ONU {#ONUID}: Status (Phase State)</name>
@@ -206,20 +255,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>gpon.onu.phase_state[{#SNMPINDEX},{#ONUID}]</key>
                             <delay>5m</delay>
                             <status>DISABLED</status>
-                            <applications>
-                                <application>
-                                    <name>onu</name>
-                                </application>
-                                <application>
-                                    <name>onu-state</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT-ZTE-STATUS-ONT</name>
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}=1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/gpon.onu.phase_state[{#SNMPINDEX},{#ONUID}])=1</expression>
                                     <name>ONU {#ONUID} no slot {#SNMPINDEX}: Fibra optica rompida (LOS)</name>
                                     <priority>AVERAGE</priority>
                                     <status>DISABLED</status>
@@ -236,7 +277,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{last()}=4</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/gpon.onu.phase_state[{#SNMPINDEX},{#ONUID}])=4</expression>
                                     <name>ONU {#ONUID} no slot {#SNMPINDEX}: Sem energia eletrica (Dying Gasp)</name>
                                     <priority>WARNING</priority>
                                     <status>DISABLED</status>
@@ -253,6 +294,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>onu</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>ONU {#ONUID}: Motivo da Ãºltima queda (Last Offline Reason)</name>
@@ -262,17 +309,15 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>gpon.onu.last_offline_reason[{#SNMPINDEX},{#ONUID}]</key>
                             <delay>5m</delay>
                             <status>DISABLED</status>
-                            <applications>
-                                <application>
-                                    <name>onu</name>
-                                </application>
-                                <application>
-                                    <name>onu-state</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT-ZTE-OFFLINE-REASON</name>
                             </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>onu</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
@@ -302,6 +347,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#PROPRIETARYINDEX}</snmp_oid>
                             <key>gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]</key>
                             <delay>1h</delay>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): ONUs Offline</name>
@@ -309,6 +360,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>gpon.onu.offline[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <params>last("gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]")-last("gpon.onu.online[{#SNMPINDEX}]")</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): ONUs Online</name>
@@ -317,6 +374,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15.{#PROPRIETARYINDEX}</snmp_oid>
                             <key>gpon.onu.online[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): ONUs Online Antes</name>
@@ -324,6 +387,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>gpon.onu.online_antes[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <params>last("gpon.onu.online[{#SNMPINDEX}]",#2)</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): Status Operacional</name>
@@ -332,6 +401,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
                             <key>gpon.port.status[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): Temperatura do SFP</name>
@@ -348,6 +423,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <params>0.001</params>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): PotÃªncia de SaÃ­da do SFP (TX Power)</name>
@@ -364,6 +445,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <params>0.001</params>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): Erros de Entrada</name>
@@ -380,7 +467,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}&gt;10</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/net.if.in.errors[{#SNMPINDEX}])&gt;10</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{avg(1)}=0</recovery_expression>
                                     <name>Porta {#PONNAME} ({#PONDESC}): Taxa de erros de entrada elevada</name>
@@ -402,6 +489,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): TrÃ¡fego de Entrada (Download)</name>
@@ -421,6 +514,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <params>8</params>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): Erros de SaÃ­da</name>
@@ -437,7 +536,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}&gt;10</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/net.if.out.errors[{#SNMPINDEX}])&gt;10</expression>
                                     <name>Porta {#PONNAME} ({#PONDESC}): Taxa de erros de saida elevada</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
@@ -457,6 +556,12 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): TrÃ¡fego de SaÃ­da (Upload)</name>
@@ -476,11 +581,17 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <params>8</params>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>GPON OLT</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:gpon.port.status[{#SNMPINDEX}].max(#3)}=2 and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2 and {OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;=0</expression>
+                            <expression>max(/OLT ZTE - NETSTREAM/gpon.port.status[{#SNMPINDEX}],#3)=2 and last(/OLT ZTE - NETSTREAM/gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}])&gt;2 and last(/OLT ZTE - NETSTREAM/gpon.onu.online_antes[{#SNMPINDEX}])&gt;=0</expression>
                             <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Apagada (Inativa)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -508,7 +619,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;127 and {OLT ZTE - NETSTREAM:gpon.port.status[{#SNMPINDEX}].last()}=1</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}])&gt;127 and last(/OLT ZTE - NETSTREAM/gpon.port.status[{#SNMPINDEX}])=1</expression>
                             <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Cheia (&gt;127 ONUs autorizadas)</name>
                             <priority>WARNING</priority>
                             <manual_close>YES</manual_close>
@@ -536,7 +647,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:gpon.onu.online[{#SNMPINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;=0 and {OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}&gt;=0 and ({OLT ZTE - NETSTREAM:gpon.onu.online_antes[{#SNMPINDEX}].last()}-{OLT ZTE - NETSTREAM:gpon.onu.online[{#SNMPINDEX}].last()})&gt;={$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;2</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/gpon.onu.online[{#SNMPINDEX}])&gt;=0 and last(/OLT ZTE - NETSTREAM/gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}])&gt;=0 and last(/OLT ZTE - NETSTREAM/gpon.onu.online_antes[{#SNMPINDEX}])&gt;=0 and (last(/OLT ZTE - NETSTREAM/gpon.onu.online_antes[{#SNMPINDEX}])-last(/OLT ZTE - NETSTREAM/gpon.onu.online[{#SNMPINDEX}]))&gt;={$GPON_DROP_MIN} and last(/OLT ZTE - NETSTREAM/gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}])&gt;2</expression>
                             <name>Porta {#PONNAME} ({#PONDESC}): Queda massiva de ONUs (MÃ­nimo {$GPON_DROP_MIN} ONUs)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
@@ -715,11 +826,12 @@ return JSON.stringify(result);</params>
                             <key>onuauth.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <trends>0</trends>
-                            <applications>
-                                <application>
-                                    <name>onu</name>
-                                </application>
-                            </applications>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>onu</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Operational Status: {#PONNAME} : {#PONDESC}</name>
@@ -729,21 +841,16 @@ return JSON.stringify(result);</params>
                             <key>statuspon.[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
                             <trends>90d</trends>
-                            <applications>
-                                <application>
-                                    <name>ifstatus</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT</name>
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}=2
+                                    <expression>last(/OLT ZTE - NETSTREAM/statuspon.[{#SNMPINDEX}])=2
 and
-{prev()}=1
+last(/OLT ZTE - NETSTREAM/statuspon.[{#SNMPINDEX}],#2)=1
 and 
-{min(#3)}=1</expression>
+min(/OLT ZTE - NETSTREAM/statuspon.[{#SNMPINDEX}],#3)=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{last()}=1</recovery_expression>
                                     <name>{#PONNAME} : {#PONDESC}</name>
@@ -774,6 +881,12 @@ and
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>ifstatus</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
@@ -805,20 +918,12 @@ and
                             <trends>90d</trends>
                             <status>DISABLED</status>
                             <port>161</port>
-                            <applications>
-                                <application>
-                                    <name>onu-dedicado</name>
-                                </application>
-                                <application>
-                                    <name>onu-state</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT-ZTE-STATUS-ONT</name>
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{min(#5)}=1</expression>
+                                    <expression>min(/OLT ZTE - NETSTREAM/onu.status.[{#SNMPINDEX}],#5)=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{last()}=3</recovery_expression>
                                     <name>Status ONU - {#ONTDESC}</name>
@@ -840,6 +945,12 @@ and
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>onu-dedicado</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
@@ -859,14 +970,9 @@ and
                             <key>zte.card.cpu[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <units>%</units>
-                            <applications>
-                                <application>
-                                    <name>cpu</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{min(10m)}&gt;90</expression>
+                                    <expression>min(/OLT ZTE - NETSTREAM/zte.card.cpu[{#SNMPINDEX}],10m)&gt;90</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de CPU elevado (&gt;90% por 10m)</name>
                                     <priority>AVERAGE</priority>
                                     <manual_close>YES</manual_close>
@@ -882,6 +988,12 @@ and
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>cpu</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de MemÃ³ria</name>
@@ -891,14 +1003,9 @@ and
                             <key>zte.card.mem[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <units>%</units>
-                            <applications>
-                                <application>
-                                    <name>cpu</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{min(10m)}&gt;90</expression>
+                                    <expression>min(/OLT ZTE - NETSTREAM/zte.card.mem[{#SNMPINDEX}],10m)&gt;90</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de memoria RAM elevado (&gt;90% por 10m)</name>
                                     <priority>AVERAGE</priority>
                                     <manual_close>YES</manual_close>
@@ -914,6 +1021,12 @@ and
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>cpu</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Tipo de Placa FÃ­sico</name>
@@ -922,14 +1035,15 @@ and
                             <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.8.{#SNMPINDEX}</snmp_oid>
                             <key>zte.card.realtype[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
-                            <applications>
-                                <application>
-                                    <name>cpu</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT-ZTE-CARD-TYPE</name>
                             </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>cpu</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Status Operacional</name>
@@ -938,17 +1052,12 @@ and
                             <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>zte.card.status[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <applications>
-                                <application>
-                                    <name>cpu</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT-ZTE-STATUS-CARD</name>
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}=9</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/zte.card.status[{#SNMPINDEX}])=9</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa com defeito (Faulty)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -964,7 +1073,7 @@ and
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{last()}=11</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/zte.card.status[{#SNMPINDEX}])=11</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Sem energia eletrica Power)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -980,7 +1089,7 @@ and
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{last()}=4</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/zte.card.status[{#SNMPINDEX}])=4</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Desconectada / Offline</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -996,7 +1105,7 @@ and
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{last()}=2</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/zte.card.status[{#SNMPINDEX}])=2</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Fora de Servico (Not in Service)</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
@@ -1012,6 +1121,12 @@ and
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>cpu</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
