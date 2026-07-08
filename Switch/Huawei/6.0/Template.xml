@@ -425,7 +425,7 @@
             <discovery_rules>
                 <discovery_rule>
                     <uuid>8a2518192831462fadb4a79392569e79</uuid>
-                    <name>Discovery: BGP4 IPv4 Peer(s)</name>
+                    <name>Discovery: BGP IPv4 Peer</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ASN},1.3.6.1.2.1.15.3.1.9, {#IP},1.3.6.1.2.1.15.3.1.7]</snmp_oid>
                     <key>netstream.bgppeerv4</key>
@@ -549,7 +549,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <uuid>8a2518192831462fadb4a79392569e7a</uuid>
-                    <name>Discovery: BGP4+ IPv6 Peer(s)</name>
+                    <name>Discovery: BGP IPv6 Peer</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ASN},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.2, {#IP},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.3]</snmp_oid>
                     <key>netstream.bgppeerv6</key>
