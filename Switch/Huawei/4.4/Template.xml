@@ -240,7 +240,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>.1.3.6.1.2.1.1.3.0</snmp_oid>
                     <key>netstream.sysUpTime.0</key>
-                    <delay>5m</delay>
+                    <delay>3m</delay>
                     <history>1d</history>
                     <trends>15d</trends>
                     <units>uptime</units>
@@ -257,24 +257,42 @@
                     </preprocessing>
                     <triggers>
                         <trigger>
-                            <expression>{last()}&lt;60</expression>
-                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{last()}&gt;3600</recovery_expression>
-                            <name>{HOST.NAME1} Reiniciou</name>
-                            <priority>INFO</priority>
-                            <manual_close>YES</manual_close>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.sysUpTime.0.last()}&lt;600 or {Template Switch Huawei 6700 Series - Netstream:netstream.sysUpTime.0.change()}&lt;0</expression>
+                            <name>Switch Huawei: Equipamento Reiniciou (Uptime &lt; 10m)</name>
+                            <priority>WARNING</priority>
+                            <description>O switch reiniciou recentemente ou perdeu energia.</description>
                             <tags>
                                 <tag>
                                     <tag>Scope</tag>
+                                    <value>Availability</value>
+                                </tag>
+                                <tag>
+                                    <tag>Event</tag>
+                                    <value>Reboot</value>
+                                </tag>
+                                <tag>
+                                    <tag>Application</tag>
                                     <value>System</value>
                                 </tag>
+                            </tags>
+                        </trigger>
+                        <trigger>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.sysUpTime.0.nodata(5m)}=1</expression>
+                            <name>Switch Huawei: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 5m)</name>
+                            <priority>DISASTER</priority>
+                            <description>Nenhuma resposta SNMP foi recebida do switch nos ultimos 5 minutos. Equipamento pode estar desligado ou desconectado.</description>
+                            <tags>
                                 <tag>
-                                    <tag>Alert</tag>
-                                    <value>DeviceRebooted</value>
+                                    <tag>Scope</tag>
+                                    <value>Availability</value>
                                 </tag>
                                 <tag>
-                                    <tag>Severity</tag>
-                                    <value>Warning</value>
+                                    <tag>Event</tag>
+                                    <value>Offline</value>
+                                </tag>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>System</value>
                                 </tag>
                             </tags>
                         </trigger>
