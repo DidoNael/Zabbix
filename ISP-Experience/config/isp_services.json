@@ -1,0 +1,97 @@
+[
+  {
+    "id": "valorant_br",
+    "name": "Valorant / League of Legends (Riot BR)",
+    "category": "Jogos",
+    "target": "br.leagueoflegends.com",
+    "port": 443,
+    "expected_route": "IX"
+  },
+  {
+    "id": "cs2_valve",
+    "name": "CS2 / Steam (Valve BR)",
+    "category": "Jogos",
+    "target": "gru.valve.net",
+    "port": 443,
+    "expected_route": "IX"
+  },
+  {
+    "id": "fortnite_sp",
+    "name": "Fortnite (Epic AWS SP)",
+    "category": "Jogos",
+    "target": "ping-sa-east-1.ds.on.epicgames.com",
+    "port": 443,
+    "expected_route": "IX"
+  },
+  {
+    "id": "freefire_garena",
+    "name": "Free Fire (Garena BR)",
+    "category": "Jogos",
+    "target": "freefiremobile.com",
+    "port": 443,
+    "expected_route": "IX"
+  },
+  {
+    "id": "roblox",
+    "name": "Roblox Online",
+    "category": "Jogos",
+    "target": "www.roblox.com",
+    "port": 443,
+    "expected_route": "IX"
+  },
+  {
+    "id": "netflix_oca",
+    "name": "Netflix CDN (OCA)",
+    "category": "Streaming",
+    "target": "www.netflix.com",
+    "port": 443,
+    "expected_route": "IX"
+  },
+  {
+    "id": "youtube_ggc",
+    "name": "YouTube / Google CDN (GGC)",
+    "category": "Streaming",
+    "target": "www.youtube.com",
+    "port": 443,
+    "expected_route": "IX"
+  },
+  {
+    "id": "twitch_tv",
+    "name": "Twitch TV Live",
+    "category": "Streaming",
+    "target": "www.twitch.tv",
+    "port": 443,
+    "expected_route": "IX"
+  },
+  {
+    "id": "instagram_meta",
+    "name": "Instagram / WhatsApp (Meta Cache)",
+    "category": "Sociais",
+    "target": "www.instagram.com", "port": 443,
+    "expected_route": "IX"
+  },
+  {
+    "id": "tiktok_cdn",
+    "name": "TikTok Video Edge",
+    "category": "Sociais",
+    "target": "www.tiktok.com",
+    "port": 443,
+    "expected_route": "IX"
+  },
+  {
+    "id": "pix_bcb",
+    "name": "Banco Central / Pix",
+    "category": "Financeiro",
+    "target": "www.bcb.gov.br",
+    "port": 443,
+    "expected_route": "TRANSITO"
+  },
+  {
+    "id": "caju_fintech",
+    "name": "Caju Beneficios",
+    "category": "Financeiro",
+    "target": "caju.com.br",
+    "port": 443,
+    "expected_route": "TRANSITO"
+  }
+]

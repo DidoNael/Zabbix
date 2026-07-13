@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2026-07-13T18:13:27Z</date>
+    <groups>
+        <group>
+            <name>Templates/Network/ISP Experience</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Web &amp; Game Experience - IX vs Transit</template>
+            <name>Template Web &amp; Game Experience - IX vs Transit</name>
+            <description>Template Inteligente para monitoramento de ExperiÃªncia do Assinante ISP (Jogos, Streaming, Redes Sociais e Bancos) com detecÃ§Ã£o automÃ¡tica de desvio de rota (IX.br vs TrÃ¢nsito IP).</description>
+            <groups>
+                <group>
+                    <name>Templates/Network/ISP Experience</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>ISP Experience - Geral</name>
+                </application>
+                <application>
+                    <name>ISP Experience - Rota &amp; Desvio</name>
+                </application>
+                <application>
+                    <name>ISP Experience - LatÃªncia &amp; Perda</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Descoberta de ServiÃ§os Web &amp; Jogos (IX vs TrÃ¢nsito)</name>
+                    <type>EXTERNAL</type>
+                    <key>discovery_isp_services.sh["{.CONFIG_PATH}"]</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: Coleta Bruta ExperiÃªncia &amp; Rota</name>
+                            <type>EXTERNAL</type>
+                            <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            <delay>1m</delay>
+                            <history>1d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - Geral</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: Rota Atual (IX ou TrÃ¢nsito)</name>
+                            <type>DEPENDENT</type>
+                            <key>isp.service.current_route["{#ID}"]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - Rota &amp; Desvio</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.current_route</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: Status da Rota / Desvio</name>
+                            <type>DEPENDENT</type>
+                            <key>isp.service.route_status["{#ID}"]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - Rota &amp; Desvio</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.route_status</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: Indicador de Desvio de Rota</name>
+                            <type>DEPENDENT</type>
+                            <key>isp.service.route_changed["{#ID}"]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - Rota &amp; Desvio</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.route_changed</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: Resumo do Salto e IP</name>
+                            <type>DEPENDENT</type>
+                            <key>isp.service.route_summary["{#ID}"]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - Rota &amp; Desvio</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.route_summary</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: LatÃªncia TCP Handshake</name>
+                            <type>DEPENDENT</type>
+                            <key>isp.service.tcp_handshake["{#ID}"]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - LatÃªncia &amp; Perda</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.tcp_handshake_ms</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: Tempo de Resposta HTTP</name>
+                            <type>DEPENDENT</type>
+                            <key>isp.service.http_time["{#ID}"]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - LatÃªncia &amp; Perda</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.http_time_ms</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: LatÃªncia ICMP Ping</name>
+                            <type>DEPENDENT</type>
+                            <key>isp.service.icmp_ping["{#ID}"]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - LatÃªncia &amp; Perda</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.icmp_ping_ms</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: Perda de Pacotes ICMP</name>
+                            <type>DEPENDENT</type>
+                            <key>isp.service.icmp_loss["{#ID}"]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - LatÃªncia &amp; Perda</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.icmp_loss_pct</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            </master_item>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Web &amp; Game Experience - IX vs Transit:isp.service.route_changed["{#ID}"].last()}=1</expression>
+                            <name>[{#CATEGORY}] {#NAME}: TrÃ¡fego desviado da rota esperada ({#EXPECTED_ROUTE})</name>
+                            <priority>WARNING</priority>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Web &amp; Game Experience - IX vs Transit:isp.service.icmp_loss["{#ID}"].min(3m)}=100</expression>
+                            <name>[{#CATEGORY}] {#NAME}: ServiÃ§o InacessÃ­vel (100% de perda hÃ¡ 3m via rota {#CURRENT_ROUTE})</name>
+                            <priority>DISASTER</priority>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{.CONFIG_PATH}</macro>
+                    <value>/etc/zabbix/isp_services.json</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+</zabbix_export>
