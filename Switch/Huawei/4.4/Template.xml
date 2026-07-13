@@ -281,6 +281,7 @@
                         <trigger>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.sysUpTime.0.nodata(15m)}=1</expression>
                             <name>Switch Huawei: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 15m)</name>
+                            <status>DISABLED</status>
                             <priority>DISASTER</priority>
                             <description>Nenhuma resposta SNMP foi recebida do switch nos ultimos 5 minutos. Equipamento pode estar desligado ou desconectado.</description>
                             <tags>
