@@ -1554,7 +1554,7 @@
                     <name>Discovery | Network interfaces | Sinal optico single lan</name>
                     <type>EXTERNAL</type>
                     <key>discovery_huawei_optical.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","single"]</key>
-                    <delay>1d</delay>
+                    <delay>1h</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -2197,9 +2197,9 @@
                     <name>Discovery | Network interfaces Physical</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
+                    <snmp_oid>discovery[{#IF},1.3.6.1.2.1.2.2.1.2, {#IFALIAS},1.3.6.1.2.1.31.1.1.1.18, {#IFADMIN},1.3.6.1.2.1.2.2.1.7]</snmp_oid>
                     <key>netstream.ifDescr</key>
-                    <delay>1d</delay>
+                    <delay>1h</delay>
                     <filter>
                         <evaltype>AND</evaltype>
                         <conditions>
@@ -2268,6 +2268,18 @@
                                 <value>(?i)^ae.*</value>
                                 <operator>NOT_MATCHES_REGEX</operator>
                                 <formulaid>K</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFADMIN}</macro>
+                                <value>^1$</value>
+                                <operator>MATCHES_REGEX</operator>
+                                <formulaid>L</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFALIAS}</macro>
+                                <value>[^[:space:]]+</value>
+                                <operator>MATCHES_REGEX</operator>
+                                <formulaid>M</formulaid>
                             </condition>
                         </conditions>
                     </filter>
@@ -2585,7 +2597,7 @@
                     <name>Discovery | Network interfaces | Sinal Optico modules multi lane</name>
                     <type>EXTERNAL</type>
                     <key>discovery_huawei_optical.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","multi"]</key>
-                    <delay>1d</delay>
+                    <delay>1h</delay>
                     <filter>
                         <conditions>
                             <condition>
