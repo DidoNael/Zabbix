@@ -300,6 +300,7 @@
                 <item>
                     <name>PPPoE / BNG: Total de Clientes Ativos no Equipamento</name>
                     <type>SNMPV2</type>
+                    <snmp_community>{}</snmp_community>
                     <snmp_oid>1.3.6.1.4.1.2011.5.2.1.14.1.2.0</snmp_oid>
                     <key>netstream.pppoe.total</key>
                     <delay>2m</delay>
@@ -345,6 +346,7 @@
                 <item>
                     <name>RADIUS / AAA: Requisicoes de Autenticacao PPPoE (Taxa)</name>
                     <type>SNMPV2</type>
+                    <snmp_community>{}</snmp_community>
                     <snmp_oid>1.3.6.1.4.1.2011.5.2.1.14.1.3.1.0</snmp_oid>
                     <key>netstream.aaa.auth.requests</key>
                     <delay>2m</delay>
@@ -360,6 +362,7 @@
                 <item>
                     <name>RADIUS / AAA: Autenticacoes Aprovadas (Sucesso)</name>
                     <type>SNMPV2</type>
+                    <snmp_community>{}</snmp_community>
                     <snmp_oid>1.3.6.1.4.1.2011.5.2.1.14.1.3.2.0</snmp_oid>
                     <key>netstream.aaa.auth.success</key>
                     <delay>2m</delay>
@@ -375,6 +378,7 @@
                 <item>
                     <name>RADIUS / AAA: Autenticacoes Rejeitadas (Falha)</name>
                     <type>SNMPV2</type>
+                    <snmp_community>{}</snmp_community>
                     <snmp_oid>1.3.6.1.4.1.2011.5.2.1.14.1.3.3.0</snmp_oid>
                     <key>netstream.aaa.auth.fail</key>
                     <delay>2m</delay>
@@ -3124,6 +3128,7 @@ or
                 <discovery_rule>
                     <name>PPPoE / BNG - Descoberta de Dominios de Autenticacao</name>
                     <type>SNMPV2</type>
+                    <snmp_community>{}</snmp_community>
                     <snmp_oid>discovery[{#DOMAIN},1.3.6.1.4.1.2011.5.2.1.4.1.1]</snmp_oid>
                     <key>netstream.pppoe.domain.discovery</key>
                     <delay>1h</delay>
@@ -3132,6 +3137,7 @@ or
                         <item_prototype>
                             <name>PPPoE Dominio [{#DOMAIN}]: Clientes Ativos</name>
                             <type>SNMPV2</type>
+                            <snmp_community>{}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.2.1.6.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.pppoe.domain.users[{#SNMPINDEX}]</key>
                             <delay>2m</delay>
@@ -3223,6 +3229,7 @@ or
                 <discovery_rule>
                     <name>PPPoE / BNG - Descoberta de Interfaces de Acesso</name>
                     <type>SNMPV2</type>
+                    <snmp_community>{}</snmp_community>
                     <snmp_oid>discovery[{#HWBASIFNAME},1.3.6.1.4.1.2011.5.25.40.1.1.20.1.6,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18]</snmp_oid>
                     <key>netstream.pppoe.interface.discovery</key>
                     <delay>1h</delay>
@@ -3231,6 +3238,7 @@ or
                         <item_prototype>
                             <name>PPPoE Interface [{#HWBASIFNAME} - {#IFALIAS}]: Clientes Ativos</name>
                             <type>SNMPV2</type>
+                            <snmp_community>{}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.40.1.1.20.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.pppoe.interface.users[{#SNMPINDEX}]</key>
                             <delay>2m</delay>

@@ -91,12 +91,29 @@ Em templates exportados para o Zabbix 4.4 (`ZABBIX_EXPORT_VERSION = '4.4'`), tod
 
 ---
 
+## 6. Comunidade SNMP Ausente em Itens `SNMPV2` (`CItemGeneral->checkInput()`)
+
+### Mensagem de Erro:
+```text
+Não foi especificada a comunidade SNMP. [... CApiService::exception() in include/classes/api/services/CItemGeneral.php:565]
+```
+
+### Causa:
+No Zabbix 6.0+ (`SNMP_AGENT`), a comunidade SNMP é herdada diretamente das configurações de interface do Host e é omitida no XML do item. No entanto, no **Zabbix 4.4 e 5.0**, cada item, protótipo de item ou regra de descoberta do tipo `SNMPV2` exige obrigatoriamente a tag `<snmp_community>{$SNMP_COMMUNITY}</snmp_community>`.
+
+### Como Prevenir / Solucionar:
+Em todos os elementos com `<type>SNMPV2</type>` no Zabbix 4.4, adicione sempre a tag `<snmp_community>{$SNMP_COMMUNITY}</snmp_community>`.
+
+---
+
 ## Checklist de Validação Antes do Commit
 
 Antes de publicar uma nova versão de template XML:
-1. [ ] Nenhum `<trigger>` possui tag `<status>` no Zabbix 4.4.
+1. [ ] Nenhum `<trigger>`, `<item>` ou `<discovery_rule>` ativo possui tag `<status>` no Zabbix 4.4.
 2. [ ] Itens SNMP no Zabbix 4.4 utilizam `<type>SNMPV2</type>` (e não `SNMP_AGENT`).
-3. [ ] Regras e itens `<type>EXTERNAL</type>` não possuem tags `<snmp_oid>` ou `<snmp_community>`.
-4. [ ] Todos os `<step>` de pré-processamento possuem `<params>`.
-5. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
+3. [ ] Todos os itens e regras `<type>SNMPV2</type>` possuem `<snmp_community>{$SNMP_COMMUNITY}</snmp_community>`.
+4. [ ] Regras e itens `<type>EXTERNAL</type>` não possuem tags `<snmp_oid>` ou `<snmp_community>`.
+5. [ ] Todos os `<step>` de pré-processamento possuem `<params>`.
+6. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
+
 
