@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template Web and Game Experience - IX vs Transit</template>
-            <name>Template Web and Game Experience - IX vs Transit</name>
+            <template>Template Web and Game Experience - NETSTREAM</template>
+            <name>Template Web and Game Experience - NETSTREAM</name>
             <description>Template Inteligente para monitoramento de Experiencia do Assinante ISP (Jogos, Streaming, Redes Sociais e Bancos) com deteccao automatica de desvio de rota (IX.br vs Transito IP).</description>
             <groups>
                 <group>
@@ -240,12 +240,12 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Web and Game Experience - IX vs Transit:isp.service.route_changed["{#ID}"].last()}=1</expression>
+                            <expression>{Template Web and Game Experience - NETSTREAM:isp.service.route_changed["{#ID}"].last()}=1</expression>
                             <name>[{#CATEGORY}] {#NAME}: Trafego desviado da rota esperada ({#EXPECTED_ROUTE})</name>
                             <priority>WARNING</priority>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Web and Game Experience - IX vs Transit:isp.service.icmp_loss["{#ID}"].min(3m)}=100</expression>
+                            <expression>{Template Web and Game Experience - NETSTREAM:isp.service.icmp_loss["{#ID}"].min(3m)}=100</expression>
                             <name>[{#CATEGORY}] {#NAME}: Servico Inacessivel (100% de perda ha 3m via rota {#CURRENT_ROUTE})</name>
                             <priority>DISASTER</priority>
                         </trigger_prototype>
