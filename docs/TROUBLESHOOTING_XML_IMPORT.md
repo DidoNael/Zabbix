@@ -77,10 +77,27 @@ Sempre verifique se todos os nomes de aplicações listados nos itens e protóti
 
 ---
 
+## 5. Tipo de Item SNMP (`SNMP_AGENT` vs `SNMPV2`)
+
+### Mensagem de Erro:
+```text
+Tag inválida "/zabbix_export/templates/template(1)/items/item(X)/type": unexpected constant "SNMP_AGENT".
+```
+
+### Causa:
+O Zabbix 6.0+ unificou os itens SNMP v1/v2c/v3 sob a constante `<type>SNMP_AGENT</type>`. No entanto, o **Zabbix 4.4 e 5.0** exigem que itens SNMPv2c utilizem a constante `<type>SNMPV2</type>`.
+
+### Como Prevenir / Solucionar:
+Em templates exportados para o Zabbix 4.4 (`ZABBIX_EXPORT_VERSION = '4.4'`), todos os itens e regras SNMP devem possuir a tag `<type>SNMPV2</type>`. Nunca utilize `SNMP_AGENT` em templates da versão 4.4.
+
+---
+
 ## Checklist de Validação Antes do Commit
 
 Antes de publicar uma nova versão de template XML:
 1. [ ] Nenhum `<trigger>` possui tag `<status>` no Zabbix 4.4.
-2. [ ] Regras e itens `<type>EXTERNAL</type>` não possuem tags `<snmp_oid>` ou `<snmp_community>`.
-3. [ ] Todos os `<step>` de pré-processamento possuem `<params>`.
-4. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
+2. [ ] Itens SNMP no Zabbix 4.4 utilizam `<type>SNMPV2</type>` (e não `SNMP_AGENT`).
+3. [ ] Regras e itens `<type>EXTERNAL</type>` não possuem tags `<snmp_oid>` ou `<snmp_community>`.
+4. [ ] Todos os `<step>` de pré-processamento possuem `<params>`.
+5. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
+
