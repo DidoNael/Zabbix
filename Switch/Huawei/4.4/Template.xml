@@ -423,6 +423,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.15.3.1.16.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerFsmEstablishedTime.[{#IP}.{#ASN}]</key>
+                            <delay>5m</delay>
                             <units>uptime</units>
                             <applications>
                                 <application>
@@ -436,6 +437,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.1.1.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerIPv4Routes[{#IP}.{#ASN}]</key>
+                            <delay>5m</delay>
                             <units>prefixes</units>
                             <applications>
                                 <application>
@@ -449,6 +451,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.9.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerRemoteAs[{#IP}.{#ASN}]</key>
+                            <delay>5m</delay>
                             <trends>365d</trends>
                             <value_type>CHAR</value_type>
                             <applications>
@@ -546,6 +549,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerFsmEstablishedTimeV6.[{#IP}.{#ASN}]</key>
+                            <delay>5m</delay>
                             <units>uptime</units>
                             <applications>
                                 <application>
@@ -559,6 +563,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.2.1.2.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerIPv6Routes[{#IP}.{#ASN}]</key>
+                            <delay>5m</delay>
                             <units>prefixes</units>
                             <applications>
                                 <application>
@@ -572,6 +577,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}]</key>
+                            <delay>5m</delay>
                             <trends>365d</trends>
                             <value_type>CHAR</value_type>
                             <applications>
@@ -1136,7 +1142,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwAvgDuty1min.[{#SNMPINDEX}]</key>
-                            <delay>60</delay>
+                            <delay>3m</delay>
                             <units>%</units>
                             <applications>
                                 <application>
@@ -1150,7 +1156,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwAvgDuty5min.[{#SNMPINDEX}]</key>
-                            <delay>60</delay>
+                            <delay>3m</delay>
                             <units>%</units>
                             <applications>
                                 <application>
@@ -2028,7 +2034,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevFree[{#SNMPINDEX}]</key>
-                            <delay>60</delay>
+                            <delay>5m</delay>
                             <history>7d</history>
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
@@ -2061,7 +2067,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevSize[{#SNMPINDEX}]</key>
-                            <delay>60</delay>
+                            <delay>5m</delay>
                             <history>7d</history>
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
