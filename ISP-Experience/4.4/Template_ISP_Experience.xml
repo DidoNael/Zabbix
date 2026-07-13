@@ -52,7 +52,7 @@
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Status Online (0=Offline, 1=Online)</name>
                             <type>DEPENDENT</type>
-                            <key>isp.service.status["{#ID}"]</key>
+                            <key>netstream.isp.status["{#ID}"]</key>
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -75,7 +75,7 @@
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Rota Atual (IX ou Transito)</name>
                             <type>DEPENDENT</type>
-                            <key>isp.service.current_route["{#ID}"]</key>
+                            <key>netstream.isp.current_route["{#ID}"]</key>
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>0</trends>
@@ -98,7 +98,7 @@
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Status da Rota / Desvio</name>
                             <type>DEPENDENT</type>
-                            <key>isp.service.route_status["{#ID}"]</key>
+                            <key>netstream.isp.route_status["{#ID}"]</key>
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>0</trends>
@@ -121,7 +121,7 @@
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Indicador de Desvio de Rota</name>
                             <type>DEPENDENT</type>
-                            <key>isp.service.route_changed["{#ID}"]</key>
+                            <key>netstream.isp.route_changed["{#ID}"]</key>
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -144,7 +144,7 @@
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Resumo do Salto e IP</name>
                             <type>DEPENDENT</type>
-                            <key>isp.service.route_summary["{#ID}"]</key>
+                            <key>netstream.isp.route_summary["{#ID}"]</key>
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>0</trends>
@@ -167,7 +167,7 @@
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: MTR Trace Completo</name>
                             <type>DEPENDENT</type>
-                            <key>isp.service.mtr_trace["{#ID}"]</key>
+                            <key>netstream.isp.mtr_trace["{#ID}"]</key>
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>0</trends>
@@ -190,7 +190,7 @@
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Latencia TCP Handshake</name>
                             <type>DEPENDENT</type>
-                            <key>isp.service.tcp_handshake["{#ID}"]</key>
+                            <key>netstream.isp.tcp_handshake["{#ID}"]</key>
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -214,7 +214,7 @@
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Tempo de Resposta HTTP</name>
                             <type>DEPENDENT</type>
-                            <key>isp.service.http_time["{#ID}"]</key>
+                            <key>netstream.isp.http_time["{#ID}"]</key>
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -238,7 +238,7 @@
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Latencia ICMP Ping</name>
                             <type>DEPENDENT</type>
-                            <key>isp.service.icmp_ping["{#ID}"]</key>
+                            <key>netstream.isp.icmp_ping["{#ID}"]</key>
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -262,7 +262,7 @@
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Perda Efetiva ICMP (Normalizada)</name>
                             <type>DEPENDENT</type>
-                            <key>isp.service.icmp_loss["{#ID}"]</key>
+                            <key>netstream.isp.icmp_loss["{#ID}"]</key>
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>365d</trends>
@@ -286,12 +286,12 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Netstream - Templates/Network/ISP Experience:isp.service.route_changed["{#ID}"].min(15m)}=1</expression>
+                            <expression>{Netstream - Templates/Network/ISP Experience:netstream.isp.route_changed["{#ID}"].min(15m)}=1</expression>
                             <name>[{#CATEGORY}] {#NAME}: Trafego desviado da rota esperada ({#EXPECTED_ROUTE}) ha 15m</name>
                             <priority>WARNING</priority>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Netstream - Templates/Network/ISP Experience:isp.service.status["{#ID}"].max(3m)}=0</expression>
+                            <expression>{Netstream - Templates/Network/ISP Experience:netstream.isp.status["{#ID}"].max(3m)}=0</expression>
                             <name>[{#CATEGORY}] {#NAME}: Servico totalmente Inacessivel (HTTP, TCP e Ping indisponiveis ha 3m)</name>
                             <priority>DISASTER</priority>
                         </trigger_prototype>
