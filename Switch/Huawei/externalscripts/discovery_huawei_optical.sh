@@ -156,8 +156,7 @@ END {
         printf "{\"{#SNMPINDEX}\":\"%s\", \"{#ENTPHYSICALNAME}\":\"%s\", \"{#IFALIAS}\":\"%s\", \"{#ENTALIAS}\":\"%s\"}", entIdx, portName, portAlias, portAlias
     }
     printf "]}\n"
-}
-' <(echo "$WALK_IFNAME"; echo "$WALK_IFDESCR"; echo "$WALK_IFALIAS"; echo "$WALK_IFADMIN"; echo "$WALK_ENTNAME"; echo "$WALK_OPTICAL")
+' <(echo "$WALK_IFNAME"; echo "$WALK_IFDESCR"; echo "$WALK_IFALIAS"; echo "$WALK_IFADMIN"; echo "$WALK_ENTNAME"; echo "$WALK_OPTICAL"))
 
 if [ -n "$RESULT" ]; then
     echo "$RESULT" > "$CACHE_FILE" 2>/dev/null
