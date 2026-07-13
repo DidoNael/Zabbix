@@ -1554,7 +1554,7 @@
                     <name>Discovery | Network interfaces | Sinal optico single lan</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7,{#HWTEMP},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5, {#RXPWLAN}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32]</snmp_oid>
+                    <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7, {#ENTALIAS},1.3.6.1.2.1.47.1.1.1.1.14, {#ENTDESCR},1.3.6.1.2.1.47.1.1.1.1.2, {#HWTEMP},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5, {#RXPWLAN}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32]</snmp_oid>
                     <key>netstream.hwentityopticaltxpower</key>
                     <delay>1d</delay>
                     <filter>
@@ -1581,7 +1581,7 @@
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
@@ -1610,7 +1610,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{count(#4)}&lt;0.8</expression>
-                                    <name>Sinal optico alterado - {#ENTPHYSICALNAME}</name>
+                                    <name>Sinal optico alterado - {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -1629,12 +1629,16 @@
                                             <tag>Port</tag>
                                             <value>{#ENTPHYSICALNAME}</value>
                                         </tag>
+                                        <tag>
+                                            <tag>Description</tag>
+                                            <value>{#ENTALIAS}</value>
+                                        </tag>
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
@@ -1655,7 +1659,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
@@ -1683,7 +1687,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Warning</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Warning</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
@@ -1712,7 +1716,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
@@ -1741,7 +1745,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Warning Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Warning Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
@@ -1764,7 +1768,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: Temperature</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Temperature</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
@@ -1781,7 +1785,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: Optical Transfer Distance</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Optical Transfer Distance</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
@@ -1795,7 +1799,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
@@ -1818,7 +1822,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Warning</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Warning</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
@@ -1847,7 +1851,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
@@ -1873,7 +1877,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Warning</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Warning</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
@@ -1899,7 +1903,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: Vendor</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Vendor</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
@@ -1915,7 +1919,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: Type</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Type</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
@@ -1930,11 +1934,21 @@
                                 </application>
                             </applications>
                         </item_prototype>
+                        <item_prototype>
+    <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Description / Alias</name>
+    <type>SNMP_AGENT</type>
+    <snmp_oid>1.3.6.1.2.1.47.1.1.1.1.14.{#SNMPINDEX}</snmp_oid>
+    <key>netstream.hwEntityOpticalAlias[{#ENTPHYSICALNAME}]</key>
+    <delay>15m</delay>
+    <history>7d</history>
+    <trends>0</trends>
+    <value_type>CHAR</value_type>
+</item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}].last(#3)} &lt; {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}].last()} and {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}].last(#3)} &gt;= -39</expression>
-                            <name>Sinal optico no limite: {#ENTPHYSICALNAME}</name>
+                            <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1953,6 +1967,10 @@
                                 <tag>
                                     <tag>Port</tag>
                                     <value>{#ENTPHYSICALNAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Description</tag>
+                                    <value>{#ENTALIAS}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -2443,7 +2461,7 @@
                                     <expression>{change()}&gt;100</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{min(1h)}={max(1h)}</recovery_expression>
-                                    <name>Interface taxando erros</name>
+                                    <name>Erros na Interface {#IF} ({#IFALIAS}): Taxa elevada de erros de CRC/Pacotes</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
                                     <manual_close>YES</manual_close>
@@ -2563,7 +2581,7 @@
                     <name>Discovery | Network interfaces | Sinal Optico modules multi lane</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7, {#TMP}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5]</snmp_oid>
+                    <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7, {#ENTALIAS},1.3.6.1.2.1.47.1.1.1.1.14, {#ENTDESCR},1.3.6.1.2.1.47.1.1.1.1.2, {#TMP}, 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5]</snmp_oid>
                     <key>netstream.net.optical.ml.discovery</key>
                     <delay>1d</delay>
                     <filter>
@@ -2589,7 +2607,7 @@
                     <lifetime>7d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane0</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane0</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
@@ -2616,7 +2634,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane1</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane1</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
@@ -2643,7 +2661,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane2</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane2</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
@@ -2670,7 +2688,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Lane3</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane3</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
@@ -2697,7 +2715,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane0</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane0</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
@@ -2724,7 +2742,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane1</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane1</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
@@ -2751,7 +2769,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane2</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane2</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
@@ -2778,7 +2796,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Lane3</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane3</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
@@ -2805,7 +2823,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: Optical Transfer Distance</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Optical Transfer Distance</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
@@ -2819,7 +2837,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
@@ -2840,7 +2858,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower High Warning Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Warning Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
@@ -2862,7 +2880,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
@@ -2885,7 +2903,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: RxPower Low Warning Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Warning Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
@@ -2906,7 +2924,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: Temperature</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Temperature</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
@@ -2923,7 +2941,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
@@ -2945,7 +2963,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower High Warning Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Warning Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
@@ -2966,7 +2984,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
@@ -2987,7 +3005,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: TxPower Low Warning Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Warning Threshold</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
@@ -3008,7 +3026,7 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: Vendor Name</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Vendor Name</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
@@ -3024,7 +3042,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME}: Type</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Type</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
@@ -3039,6 +3057,16 @@
                                 </application>
                             </applications>
                         </item_prototype>
+                        <item_prototype>
+    <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Description / Alias</name>
+    <type>SNMP_AGENT</type>
+    <snmp_oid>1.3.6.1.2.1.47.1.1.1.1.14.{#SNMPINDEX}</snmp_oid>
+    <key>netstream.hwEntityOpticalAliasML[{#ENTPHYSICALNAME}]</key>
+    <delay>15m</delay>
+    <history>7d</history>
+    <trends>0</trends>
+    <value_type>CHAR</value_type>
+</item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
@@ -3049,7 +3077,7 @@ or
 {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
 or 
 {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}</expression>
-                            <name>Sinal optico no limite: {#ENTPHYSICALNAME}</name>
+                            <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -3068,6 +3096,10 @@ or
                                 <tag>
                                     <tag>Port</tag>
                                     <value>{#ENTPHYSICALNAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Description</tag>
+                                    <value>{#ENTALIAS}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
