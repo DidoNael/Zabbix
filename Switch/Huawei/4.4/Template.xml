@@ -228,7 +228,7 @@
                     <key>netstream.sysDescr.0</key>
                     <delay>1h</delay>
                     <history>30d</history>
-                    <trends>365d</trends>
+                    <trends>90d</trends>
                     <value_type>CHAR</value_type>
                     <applications>
                         <application>
@@ -309,7 +309,7 @@
                     <key>netstream.pppoe.total</key>
                     <delay>2m</delay>
                     <history>30d</history>
-                    <trends>365d</trends>
+                    <trends>90d</trends>
                     <units>users</units>
                     <applications>
                         <application>
@@ -323,7 +323,7 @@
                     <key>netstream.pppoe.total.max24h</key>
                     <delay>5m</delay>
                     <history>30d</history>
-                    <trends>365d</trends>
+                    <trends>90d</trends>
                     <units>users</units>
                     <params>max(//netstream.pppoe.total,1d)</params>
                     <applications>
@@ -338,7 +338,7 @@
                     <key>netstream.pppoe.total.min24h</key>
                     <delay>5m</delay>
                     <history>30d</history>
-                    <trends>365d</trends>
+                    <trends>90d</trends>
                     <units>users</units>
                     <params>min(//netstream.pppoe.total,1d)</params>
                     <applications>
@@ -355,7 +355,7 @@
                     <key>netstream.aaa.auth.requests</key>
                     <delay>2m</delay>
                     <history>30d</history>
-                    <trends>365d</trends>
+                    <trends>90d</trends>
                     <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
                     <applications>
                         <application>
@@ -371,7 +371,7 @@
                     <key>netstream.aaa.auth.success</key>
                     <delay>2m</delay>
                     <history>30d</history>
-                    <trends>365d</trends>
+                    <trends>90d</trends>
                     <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
                     <applications>
                         <application>
@@ -387,7 +387,7 @@
                     <key>netstream.aaa.auth.fail</key>
                     <delay>2m</delay>
                     <history>30d</history>
-                    <trends>365d</trends>
+                    <trends>90d</trends>
                     <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
                     <applications>
                         <application>
@@ -453,7 +453,7 @@
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.9.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerRemoteAs[{#IP}.{#ASN}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
@@ -478,7 +478,7 @@
                             <type>EXTERNAL</type>
                             <key>get_asn_owner_v2.sh[{#ASN},{#IP}]</key>
                             <delay>1h</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>TEXT</value_type>
                             <applications>
                                 <application>
@@ -579,7 +579,7 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
@@ -604,7 +604,7 @@
                             <type>EXTERNAL</type>
                             <key>get_asn_owner_v2.sh[{#ASN},{#IP},v6]</key>
                             <delay>1h</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>TEXT</value_type>
                             <applications>
                                 <application>
@@ -870,7 +870,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                            <history>365d</history>
+                            <history>30d</history>
                             <units>bps</units>
                             <preprocessing>
                                 <step>
@@ -894,7 +894,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                            <history>365d</history>
+                            <history>30d</history>
                             <units>bps</units>
                             <preprocessing>
                                 <step>
@@ -918,8 +918,8 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                            <history>1w</history>
-                            <trends>365d</trends>
+                            <history>7d</history>
+                            <trends>90d</trends>
                             <applications>
                                 <application>
                                     <name>Interfaces</name>
@@ -1375,7 +1375,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityPwrPresente.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <valuemap>
                                 <name>PSU HUAWEI PRESENTE</name>
                             </valuemap>
@@ -1392,7 +1392,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityPwrState.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <valuemap>
                                 <name>PSU HUAWEI STATUS</name>
                             </valuemap>
@@ -1435,7 +1435,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.7.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityPwrPower.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <units>watts</units>
                             <applications>
                                 <application>
@@ -1450,7 +1450,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityPwrMode.discovery[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <valuemap>
                                 <name>Tipo de fonte HUAWEI</name>
                             </valuemap>
@@ -1467,7 +1467,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.8.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityPwrConsumedPower.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <units>watts</units>
                             <applications>
                                 <application>
@@ -1492,7 +1492,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.14.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwSystemPowerUsedPower.discovery[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <units>watts</units>
                             <applications>
                                 <application>
@@ -1537,7 +1537,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
-                            <history>365d</history>
+                            <history>30d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1594,7 +1594,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPower.[{#ENTPHYSICALNAME}]</key>
                             <delay>1h</delay>
-                            <history>365d</history>
+                            <history>30d</history>
                             <value_type>FLOAT</value_type>
                             <applications>
                                 <application>
@@ -1644,7 +1644,7 @@
                             <key>netstream.hwEntityOpticalRxHighWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1673,7 +1673,7 @@
                             <key>netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]</key>
                             <delay>10m</delay>
                             <history>7d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1702,7 +1702,7 @@
                             <key>netstream.hwEntityOpticalRxLowWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>10m</delay>
                             <history>7d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1725,7 +1725,7 @@
                             <key>netstream.hwEntityOpticalTemperature.[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>30d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
                             <applications>
@@ -1740,7 +1740,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTransferDistance.[{#ENTPHYSICALNAME}]</key>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>TEXT</value_type>
                             <applications>
                                 <application>
@@ -1756,7 +1756,7 @@
                             <key>netstream.hwEntityOpticalTxHighThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1779,7 +1779,7 @@
                             <key>netstream.hwEntityOpticalTxHighWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1808,7 +1808,7 @@
                             <key>netstream.hwEntityOpticalTxLowThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1834,7 +1834,7 @@
                             <key>netstream.hwEntityOpticalTxLowWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
                             <history>1d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1859,8 +1859,8 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderName[{#ENTPHYSICALNAME}]</key>
                             <delay>1d</delay>
-                            <history>365d</history>
-                            <trends>365d</trends>
+                            <history>30d</history>
+                            <trends>90d</trends>
                             <value_type>TEXT</value_type>
                             <applications>
                                 <application>
@@ -1875,8 +1875,8 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderPn.[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
+                            <history>7d</history>
+                            <trends>90d</trends>
                             <value_type>TEXT</value_type>
                             <applications>
                                 <application>
@@ -2246,7 +2246,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
-                            <history>365d</history>
+                            <history>30d</history>
                             <units>bps</units>
                             <description>The number of octets in valid MAC frames received on this interface, including the MAC header and FCS.</description>
                             <applications>
@@ -2271,7 +2271,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
-                            <history>365d</history>
+                            <history>30d</history>
                             <units>bps</units>
                             <description>The number of octets transmitted in MAC frames on this interface, including the MAC header and FCS.</description>
                             <applications>
@@ -2297,8 +2297,8 @@
                             <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifInErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
+                            <history>7d</history>
+                            <trends>90d</trends>
                             <description>For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.  For character-oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol.</description>
                             <applications>
                                 <application>
@@ -2318,8 +2318,8 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifOperStatus[{#IF}]</key>
-                            <history>1w</history>
-                            <trends>365d</trends>
+                            <history>7d</history>
+                            <trends>90d</trends>
                             <description>The current operational state of the interface.</description>
                             <applications>
                                 <application>
@@ -2370,8 +2370,8 @@
                             <snmp_oid>IF-MIB::ifOutErrors.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifOutErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
+                            <history>7d</history>
+                            <trends>90d</trends>
                             <description>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</description>
                             <applications>
                                 <application>
@@ -2395,7 +2395,7 @@
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifspeed.[{#IF}.{#SNMPINDEX}]</key>
                             <delay>1h</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <units>bps</units>
                             <applications>
                                 <application>
@@ -2416,8 +2416,8 @@
                             <snmp_oid>ifInErrors.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.total.Errors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
+                            <history>7d</history>
+                            <trends>90d</trends>
                             <description>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</description>
                             <applications>
                                 <application>
@@ -2579,7 +2579,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>365d</history>
+                            <history>30d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2606,7 +2606,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>365d</history>
+                            <history>30d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2633,7 +2633,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>365d</history>
+                            <history>30d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2660,7 +2660,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>365d</history>
+                            <history>30d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2687,7 +2687,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>365d</history>
+                            <history>30d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2714,7 +2714,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>365d</history>
+                            <history>30d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2741,7 +2741,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>365d</history>
+                            <history>30d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2768,7 +2768,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>365d</history>
+                            <history>30d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2794,7 +2794,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalmultilanTransferDistance.[{#ENTPHYSICALNAME}]</key>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>TEXT</value_type>
                             <applications>
                                 <application>
@@ -2874,7 +2874,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2897,7 +2897,7 @@
                             <key>netstream.hwEntityOpticalTemperatureML[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <history>30d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
                             <applications>
@@ -2913,7 +2913,7 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighThresholdML[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2934,7 +2934,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2955,7 +2955,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2976,7 +2976,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2998,8 +2998,8 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderNameML[{#ENTPHYSICALNAME}]</key>
                             <delay>1h</delay>
-                            <history>365d</history>
-                            <trends>365d</trends>
+                            <history>30d</history>
+                            <trends>90d</trends>
                             <value_type>TEXT</value_type>
                             <applications>
                                 <application>
@@ -3015,7 +3015,7 @@
                             <key>netstream.hwEntityOpticalVenderPnML[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
                             <history>7d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <value_type>TEXT</value_type>
                             <applications>
                                 <application>
@@ -3094,7 +3094,7 @@ or
                             <key>netstream.pppoe.domain.users[{#SNMPINDEX}]</key>
                             <delay>2m</delay>
                             <history>30d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <units>users</units>
                             <applications>
                                 <application>
@@ -3108,7 +3108,7 @@ or
                             <key>netstream.pppoe.domain.users.max24h[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>30d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <units>users</units>
                             <params>max(//netstream.pppoe.domain.users[{#SNMPINDEX}],1d)</params>
                             <applications>
@@ -3123,7 +3123,7 @@ or
                             <key>netstream.pppoe.domain.users.min24h[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>30d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <units>users</units>
                             <params>min(//netstream.pppoe.domain.users[{#SNMPINDEX}],1d)</params>
                             <applications>
@@ -3195,7 +3195,7 @@ or
                             <key>netstream.pppoe.interface.users[{#SNMPINDEX}]</key>
                             <delay>2m</delay>
                             <history>30d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <units>users</units>
                             <applications>
                                 <application>
@@ -3209,7 +3209,7 @@ or
                             <key>netstream.pppoe.interface.users.max24h[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>30d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <units>users</units>
                             <params>max(//netstream.pppoe.interface.users[{#SNMPINDEX}],1d)</params>
                             <applications>
@@ -3224,7 +3224,7 @@ or
                             <key>netstream.pppoe.interface.users.min24h[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>30d</history>
-                            <trends>365d</trends>
+                            <trends>90d</trends>
                             <units>users</units>
                             <params>min(//netstream.pppoe.interface.users[{#SNMPINDEX}],1d)</params>
                             <applications>
