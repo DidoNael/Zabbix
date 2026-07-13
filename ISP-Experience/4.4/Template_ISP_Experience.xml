@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Netstream - Templates/Network/ISP Experience</template>
-            <name>Netstream - Templates/Network/ISP Experience</name>
+            <template>Template ISP Experience - Netstream</template>
+            <name>Template ISP Experience - Netstream</name>
             <description>Template v2.0 com MTR Trace integrado e protecao anti-falso positivo contra bloqueio de ICMP Ping em Bancos/CDNs.</description>
             <groups>
                 <group>
@@ -286,12 +286,12 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Netstream - Templates/Network/ISP Experience:netstream.isp.route_changed["{#ID}"].min(15m)}=1</expression>
+                            <expression>{Template ISP Experience - Netstream:netstream.isp.route_changed["{#ID}"].min(15m)}=1</expression>
                             <name>[{#CATEGORY}] {#NAME}: Trafego desviado da rota esperada ({#EXPECTED_ROUTE}) ha 15m</name>
                             <priority>WARNING</priority>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Netstream - Templates/Network/ISP Experience:netstream.isp.status["{#ID}"].max(3m)}=0</expression>
+                            <expression>{Template ISP Experience - Netstream:netstream.isp.status["{#ID}"].max(3m)}=0</expression>
                             <name>[{#CATEGORY}] {#NAME}: Servico totalmente Inacessivel (HTTP, TCP e Ping indisponiveis ha 3m)</name>
                             <priority>DISASTER</priority>
                         </trigger_prototype>
