@@ -920,64 +920,6 @@
                             <key>netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                             <history>1w</history>
                             <trends>365d</trends>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <expression>{diff()}=1</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{last()}=1</recovery_expression>
-                                    <name>Status da interface - {#IF}: ({#IFALIAS})</name>
-                                    <priority>HIGH</priority>
-                                    <tags>
-                                        <tag>
-                                            <tag>Scope</tag>
-                                            <value>InterfaceVirtual</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alert</tag>
-                                            <value>VirtualInterfaceDown</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Severity</tag>
-                                            <value>Average</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Interface</tag>
-                                            <value>{#IF}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alias</tag>
-                                            <value>{#IFALIAS}</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                                <trigger_prototype>
-                                    <expression>{change()}=2</expression>
-                                    <name>Vlan down - {#IF}: ({#IFALIAS})</name>
-                                    <priority>INFO</priority>
-                                    <tags>
-                                        <tag>
-                                            <tag>Scope</tag>
-                                            <value>InterfaceVirtual</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alert</tag>
-                                            <value>VlanInterfaceDown</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Severity</tag>
-                                            <value>Average</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Interface</tag>
-                                            <value>{#IF}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alias</tag>
-                                            <value>{#IFALIAS}</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                            </trigger_prototypes>
                             <applications>
                                 <application>
                                     <name>Interfaces</name>
