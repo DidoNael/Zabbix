@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-07-13T18:44:02Z</date>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template Web and Game Experience - NETSTREAM</template>
-            <name>Template Web and Game Experience - NETSTREAM</name>
+            <template>Netstream - Templates/Network/ISP Experience</template>
+            <name>Netstream - Templates/Network/ISP Experience</name>
             <description>Template v2.0 com MTR Trace integrado e protecao anti-falso positivo contra bloqueio de ICMP Ping em Bancos/CDNs.</description>
             <groups>
                 <group>
@@ -286,12 +286,12 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Web and Game Experience - NETSTREAM:isp.service.route_changed["{#ID}"].min(15m)}=1</expression>
+                            <expression>{Netstream - Templates/Network/ISP Experience:isp.service.route_changed["{#ID}"].min(15m)}=1</expression>
                             <name>[{#CATEGORY}] {#NAME}: Trafego desviado da rota esperada ({#EXPECTED_ROUTE}) ha 15m</name>
                             <priority>WARNING</priority>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Web and Game Experience - NETSTREAM:isp.service.status["{#ID}"].max(3m)}=0</expression>
+                            <expression>{Netstream - Templates/Network/ISP Experience:isp.service.status["{#ID}"].max(3m)}=0</expression>
                             <name>[{#CATEGORY}] {#NAME}: Servico totalmente Inacessivel (HTTP, TCP e Ping indisponiveis ha 3m)</name>
                             <priority>DISASTER</priority>
                         </trigger_prototype>
