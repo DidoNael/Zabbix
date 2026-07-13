@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
-    <date>2026-07-13T18:13:27Z</date>
+    <date>2026-07-13T18:16:48Z</date>
     <groups>
         <group>
             <name>Templates/Network/ISP Experience</name>
@@ -9,9 +9,9 @@
     </groups>
     <templates>
         <template>
-            <template>Template Web &amp; Game Experience - IX vs Transit</template>
-            <name>Template Web &amp; Game Experience - IX vs Transit</name>
-            <description>Template Inteligente para monitoramento de ExperiÃªncia do Assinante ISP (Jogos, Streaming, Redes Sociais e Bancos) com detecÃ§Ã£o automÃ¡tica de desvio de rota (IX.br vs TrÃ¢nsito IP).</description>
+            <template>Template Web and Game Experience - IX vs Transit</template>
+            <name>Template Web and Game Experience - IX vs Transit</name>
+            <description>Template Inteligente para monitoramento de Experiencia do Assinante ISP (Jogos, Streaming, Redes Sociais e Bancos) com deteccao automatica de desvio de rota (IX.br vs Transito IP).</description>
             <groups>
                 <group>
                     <name>Templates/Network/ISP Experience</name>
@@ -22,21 +22,21 @@
                     <name>ISP Experience - Geral</name>
                 </application>
                 <application>
-                    <name>ISP Experience - Rota &amp; Desvio</name>
+                    <name>ISP Experience - Rota e Desvio</name>
                 </application>
                 <application>
-                    <name>ISP Experience - LatÃªncia &amp; Perda</name>
+                    <name>ISP Experience - Latencia e Perda</name>
                 </application>
             </applications>
             <discovery_rules>
                 <discovery_rule>
-                    <name>Descoberta de ServiÃ§os Web &amp; Jogos (IX vs TrÃ¢nsito)</name>
+                    <name>Descoberta de Servicos Web e Jogos (IX vs Transito)</name>
                     <type>EXTERNAL</type>
                     <key>discovery_isp_services.sh["{.CONFIG_PATH}"]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
-                            <name>[{#CATEGORY}] {#NAME}: Coleta Bruta ExperiÃªncia &amp; Rota</name>
+                            <name>[{#CATEGORY}] {#NAME}: Coleta Bruta Experiencia e Rota</name>
                             <type>EXTERNAL</type>
                             <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             <delay>1m</delay>
@@ -50,7 +50,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>[{#CATEGORY}] {#NAME}: Rota Atual (IX ou TrÃ¢nsito)</name>
+                            <name>[{#CATEGORY}] {#NAME}: Rota Atual (IX ou Transito)</name>
                             <type>DEPENDENT</type>
                             <key>isp.service.current_route["{#ID}"]</key>
                             <delay>0</delay>
@@ -59,7 +59,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - Rota &amp; Desvio</name>
+                                    <name>ISP Experience - Rota e Desvio</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -82,7 +82,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - Rota &amp; Desvio</name>
+                                    <name>ISP Experience - Rota e Desvio</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -105,7 +105,7 @@
                             <value_type>UNSIGNED</value_type>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - Rota &amp; Desvio</name>
+                                    <name>ISP Experience - Rota e Desvio</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -128,7 +128,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - Rota &amp; Desvio</name>
+                                    <name>ISP Experience - Rota e Desvio</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -142,7 +142,7 @@
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>[{#CATEGORY}] {#NAME}: LatÃªncia TCP Handshake</name>
+                            <name>[{#CATEGORY}] {#NAME}: Latencia TCP Handshake</name>
                             <type>DEPENDENT</type>
                             <key>isp.service.tcp_handshake["{#ID}"]</key>
                             <delay>0</delay>
@@ -152,7 +152,7 @@
                             <units>ms</units>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - LatÃªncia &amp; Perda</name>
+                                    <name>ISP Experience - Latencia e Perda</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -176,7 +176,7 @@
                             <units>ms</units>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - LatÃªncia &amp; Perda</name>
+                                    <name>ISP Experience - Latencia e Perda</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -190,7 +190,7 @@
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>[{#CATEGORY}] {#NAME}: LatÃªncia ICMP Ping</name>
+                            <name>[{#CATEGORY}] {#NAME}: Latencia ICMP Ping</name>
                             <type>DEPENDENT</type>
                             <key>isp.service.icmp_ping["{#ID}"]</key>
                             <delay>0</delay>
@@ -200,7 +200,7 @@
                             <units>ms</units>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - LatÃªncia &amp; Perda</name>
+                                    <name>ISP Experience - Latencia e Perda</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -224,7 +224,7 @@
                             <units>%</units>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - LatÃªncia &amp; Perda</name>
+                                    <name>ISP Experience - Latencia e Perda</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -240,13 +240,13 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Web &amp; Game Experience - IX vs Transit:isp.service.route_changed["{#ID}"].last()}=1</expression>
-                            <name>[{#CATEGORY}] {#NAME}: TrÃ¡fego desviado da rota esperada ({#EXPECTED_ROUTE})</name>
+                            <expression>{Template Web and Game Experience - IX vs Transit:isp.service.route_changed["{#ID}"].last()}=1</expression>
+                            <name>[{#CATEGORY}] {#NAME}: Trafego desviado da rota esperada ({#EXPECTED_ROUTE})</name>
                             <priority>WARNING</priority>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Web &amp; Game Experience - IX vs Transit:isp.service.icmp_loss["{#ID}"].min(3m)}=100</expression>
-                            <name>[{#CATEGORY}] {#NAME}: ServiÃ§o InacessÃ­vel (100% de perda hÃ¡ 3m via rota {#CURRENT_ROUTE})</name>
+                            <expression>{Template Web and Game Experience - IX vs Transit:isp.service.icmp_loss["{#ID}"].min(3m)}=100</expression>
+                            <name>[{#CATEGORY}] {#NAME}: Servico Inacessivel (100% de perda ha 3m via rota {#CURRENT_ROUTE})</name>
                             <priority>DISASTER</priority>
                         </trigger_prototype>
                     </trigger_prototypes>
