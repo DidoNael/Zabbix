@@ -4,22 +4,21 @@ Este guia documenta os erros mais frequentes de validação XML (`CXmlValidatorG
 
 ---
 
-## 1. Erro na Tag `<status>` em Triggers (`C44XmlValidator`)
+## 1. Erro na Tag `<status>` em Triggers e Itens Ativos (`C44XmlValidator`)
 
 ### Mensagem de Erro:
 ```text
-Tag inválida "/zabbix_export/templates/template(1)/items/item(5)/triggers/trigger(2)/status": unexpected constant "0" (ou "1").
+Tag inválida "/zabbix_export/templates/template(1)/items/item(X)/status": unexpected constant "0" (ou "1").
 ```
 ```text
 CXmlValidatorGeneral->validateConstant() in include/classes/import/validators/CXmlValidatorGeneral.php:85
 ```
 
 ### Causa:
-No esquema oficial XML de exportação do **Zabbix 4.4**, a entidade `<trigger>` (dentro de itens ou no bloco global de triggers) **não deve possuir a tag `<status>`**. A inclusão da tag `<status>0</status>` ou `<status>1</status>` em um `<trigger>` faz com que o validador `C44XmlValidator` rejeite a importação.
+No esquema oficial XML de exportação do **Zabbix 4.4**, entidades que estão **ATIVAS (Enabled)** — como `<trigger>`, `<item>` e `<discovery_rule>` — **não devem possuir a tag `<status>0</status>`**. A inclusão de `<status>0</status>` faz com que o validador `C44XmlValidator` rejeite a importação com `unexpected constant "0"`. Apenas itens explicitamente desativados utilizam `<status>1</status>`.
 
 ### Como Prevenir / Solucionar:
-- Em templates compatíveis com Zabbix 4.4, **nunca inclua a tag `<status>` dentro de elementos `<trigger>`**.
-- *(Nota: Em `<trigger_prototype>` dentro de `<discovery_rule>`, a tag `<status>` aceita strings como `DISABLED` ou `ENABLED`, mas em `<trigger>` simples ela deve ser omitida)*.
+- Em templates compatíveis com Zabbix 4.4, **omita completamente a tag `<status>`** de qualquer `<item>`, `<trigger>` ou `<discovery_rule>` que esteja ativo por padrão.
 
 ---
 
