@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
-    <date>2026-07-13T18:16:48Z</date>
+    <date>2026-07-13T18:44:02Z</date>
     <groups>
         <group>
             <name>Templates/Network/ISP Experience</name>
@@ -11,7 +11,7 @@
         <template>
             <template>Template Web and Game Experience - NETSTREAM</template>
             <name>Template Web and Game Experience - NETSTREAM</name>
-            <description>Template Inteligente para monitoramento de Experiencia do Assinante ISP (Jogos, Streaming, Redes Sociais e Bancos) com deteccao automatica de desvio de rota (IX.br vs Transito IP).</description>
+            <description>Template v2.0 com MTR Trace integrado e protecao anti-falso positivo contra bloqueio de ICMP Ping em Bancos/CDNs.</description>
             <groups>
                 <group>
                     <name>Templates/Network/ISP Experience</name>
@@ -22,7 +22,7 @@
                     <name>ISP Experience - Geral</name>
                 </application>
                 <application>
-                    <name>ISP Experience - Rota e Desvio</name>
+                    <name>ISP Experience - Rota e MTR</name>
                 </application>
                 <application>
                     <name>ISP Experience - Latencia e Perda</name>
@@ -32,7 +32,7 @@
                 <discovery_rule>
                     <name>Descoberta de Servicos Web e Jogos (IX vs Transito)</name>
                     <type>EXTERNAL</type>
-                    <key>discovery_isp_services.sh["{$ISP_CONFIG_PATH}"]</key>
+                    <key>discovery_isp_services.sh["{}"]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
@@ -50,6 +50,29 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: Status Online (0=Offline, 1=Online)</name>
+                            <type>DEPENDENT</type>
+                            <key>isp.service.status["{#ID}"]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - Geral</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.status</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Rota Atual (IX ou Transito)</name>
                             <type>DEPENDENT</type>
                             <key>isp.service.current_route["{#ID}"]</key>
@@ -59,7 +82,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - Rota e Desvio</name>
+                                    <name>ISP Experience - Rota e MTR</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -82,7 +105,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - Rota e Desvio</name>
+                                    <name>ISP Experience - Rota e MTR</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -105,7 +128,7 @@
                             <value_type>UNSIGNED</value_type>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - Rota e Desvio</name>
+                                    <name>ISP Experience - Rota e MTR</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -128,13 +151,36 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>ISP Experience - Rota e Desvio</name>
+                                    <name>ISP Experience - Rota e MTR</name>
                                 </application>
                             </applications>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
                                     <params>$.route_summary</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>[{#CATEGORY}] {#NAME}: MTR Trace Completo</name>
+                            <type>DEPENDENT</type>
+                            <key>isp.service.mtr_trace["{#ID}"]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>ISP Experience - Rota e MTR</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.mtr_trace</params>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -214,7 +260,7 @@
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>[{#CATEGORY}] {#NAME}: Perda de Pacotes ICMP</name>
+                            <name>[{#CATEGORY}] {#NAME}: Perda Efetiva ICMP (Normalizada)</name>
                             <type>DEPENDENT</type>
                             <key>isp.service.icmp_loss["{#ID}"]</key>
                             <delay>0</delay>
@@ -240,13 +286,13 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Web and Game Experience - NETSTREAM:isp.service.route_changed["{#ID}"].last()}=1</expression>
-                            <name>[{#CATEGORY}] {#NAME}: Trafego desviado da rota esperada ({#EXPECTED_ROUTE})</name>
+                            <expression>{Template Web and Game Experience - NETSTREAM:isp.service.route_changed["{#ID}"].min(15m)}=1</expression>
+                            <name>[{#CATEGORY}] {#NAME}: Trafego desviado da rota esperada ({#EXPECTED_ROUTE}) ha 15m</name>
                             <priority>WARNING</priority>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Web and Game Experience - NETSTREAM:isp.service.icmp_loss["{#ID}"].min(3m)}=100</expression>
-                            <name>[{#CATEGORY}] {#NAME}: Servico Inacessivel (100% de perda ha 3m via rota {#CURRENT_ROUTE})</name>
+                            <expression>{Template Web and Game Experience - NETSTREAM:isp.service.status["{#ID}"].max(3m)}=0</expression>
+                            <name>[{#CATEGORY}] {#NAME}: Servico totalmente Inacessivel (HTTP, TCP e Ping indisponiveis ha 3m)</name>
                             <priority>DISASTER</priority>
                         </trigger_prototype>
                     </trigger_prototypes>
