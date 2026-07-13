@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-07-09T01:15:27Z</date>
@@ -276,8 +276,8 @@
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>nodata(/Template Switch Huawei 6700 Series - Netstream/netstream.sysUpTime.0,5m)=1</expression>
-                            <name>Switch Huawei: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 5m)</name>
+                            <expression>nodata(/Template Switch Huawei 6700 Series - Netstream/netstream.sysUpTime.0,15m)=1</expression>
+                            <name>Switch Huawei: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 15m)</name>
                             <priority>DISASTER</priority>
                             <description>Nenhuma resposta SNMP foi recebida do switch nos ultimos 5 minutos. Equipamento pode estar desligado ou desconectado.</description>
                             <tags>
