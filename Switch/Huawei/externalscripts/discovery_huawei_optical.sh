@@ -10,7 +10,7 @@
 #   Filtra automaticamente portas sem descrição ou administratively shutdown (desligadas).
 #   Retorna JSON LLD compatível com Zabbix 4.4 e Zabbix 6.0+:
 #     {#SNMPINDEX}       -> Índice físico (entPhysicalIndex, ex: 67469390)
-#     {#ENTPHYSICALNAME} -> Nome da porta (ex: 100GE0/0/3)
+#     {#ENTPHYSICALNAME} -> Nome da porta (ex: XGigabitEthernet0/0/3)
 #     {#IFALIAS}         -> Descrição da interface (ex: PE1 - Dutra)
 #     {#ENTALIAS}        -> Descrição da interface (ex: PE1 - Dutra)
 # ==============================================================================
@@ -18,21 +18,21 @@
 IP="$1"
 COMMUNITY="$2"
 MODE="${3:-single}"
+FORCE="$4"
 
 if [ -z "$IP" ] || [ -z "$COMMUNITY" ]; then
     echo '{"data":[]}'
     exit 0
 fi
 
-# Diretório de cache em disco (TTL padrão 1 hora = 3600s, pois descrições raramente mudam)
 CACHE_DIR="/tmp/zabbix_huawei_optical_cache"
 CACHE_FILE="${CACHE_DIR}/${IP}_${MODE}.json"
-CACHE_TTL=3600
+CACHE_TTL=3600 # 1 hora de cache
 
 mkdir -m 0755 -p "$CACHE_DIR" 2>/dev/null
 chown zabbix:zabbix "$CACHE_DIR" "$CACHE_FILE" 2>/dev/null
 
-if [ -s "$CACHE_FILE" ] && [ -r "$CACHE_FILE" ]; then
+if [ "$FORCE" != "force" ] && [ "$FORCE" != "--no-cache" ] && [ -s "$CACHE_FILE" ] && [ -r "$CACHE_FILE" ]; then
     NOW=$(date +%s)
     FILE_TIME=$(stat -c %Y "$CACHE_FILE" 2>/dev/null || stat -f %m "$CACHE_FILE" 2>/dev/null || echo 0)
     AGE=$((NOW - FILE_TIME))
@@ -41,74 +41,86 @@ if [ -s "$CACHE_FILE" ] && [ -r "$CACHE_FILE" ]; then
     fi
 fi
 
-# OID de verificação de portas ópticas (Single Lane vs Multi Lane)
 if [ "$MODE" = "multi" ]; then
-    OPTICAL_BASE=".1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5" # hwEntityOpticalTemperatureML
+    OPTICAL_BASE="1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5"
 else
-    OPTICAL_BASE=".1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32" # hwEntityOpticalLaneRxPower
+    OPTICAL_BASE="1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32"
 fi
 
-# Executa coletas SNMP
-WALK_OPTICAL=$(snmpwalk -v2c -c "$COMMUNITY" -Oqn "$IP" "$OPTICAL_BASE" 2>/dev/null)
+# Usamos -On (sem -Oq) para formato padronizado OID = TIPO: VALOR
+WALK_OPTICAL=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" "$OPTICAL_BASE" 2>/dev/null)
 if [ -z "$WALK_OPTICAL" ]; then
     echo '{"data":[]}'
     exit 0
 fi
 
-WALK_ENTNAME=$(snmpwalk -v2c -c "$COMMUNITY" -Oqn "$IP" .1.3.6.1.2.1.47.1.1.1.1.7 2>/dev/null)
-WALK_IFNAME=$(snmpwalk -v2c -c "$COMMUNITY" -Oqn "$IP" .1.3.6.1.2.1.31.1.1.1.1 2>/dev/null)
-[ -z "$WALK_IFNAME" ] && WALK_IFNAME=$(snmpwalk -v2c -c "$COMMUNITY" -Oqn "$IP" .1.3.6.1.2.1.2.2.1.2 2>/dev/null)
-WALK_IFALIAS=$(snmpwalk -v2c -c "$COMMUNITY" -Oqn "$IP" .1.3.6.1.2.1.31.1.1.1.18 2>/dev/null)
-WALK_IFADMIN=$(snmpwalk -v2c -c "$COMMUNITY" -Oqn "$IP" .1.3.6.1.2.1.2.2.1.7 2>/dev/null)
+WALK_ENTNAME=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" 1.3.6.1.2.1.47.1.1.1.1.7 2>/dev/null)
+WALK_IFNAME=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" 1.3.6.1.2.1.31.1.1.1.1 2>/dev/null)
+WALK_IFDESCR=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" 1.3.6.1.2.1.2.2.1.2 2>/dev/null)
+WALK_IFALIAS=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" 1.3.6.1.2.1.31.1.1.1.18 2>/dev/null)
+WALK_IFADMIN=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" 1.3.6.1.2.1.2.2.1.7 2>/dev/null)
 
-# Processa correlação e filtragem via AWK
 RESULT=$(awk '
-BEGIN {
-    FS = " "
+function clean_val(str) {
+    sub(/^[^=]*=[ \t]*/, "", str)
+    sub(/^(STRING|INTEGER|Hex-STRING|Gauge32|Counter32|Counter64):[ \t]*/, "", str)
+    sub(/^"/, "", str)
+    sub(/"$/, "", str)
+    gsub(/^[ \t]+|[ \t]+$/, "", str)
+    return str
 }
-# 1. Carrega IFNAME
-$1 ~ /^\.1\.3\.6\.1\.2\.1\.(31\.1\.1\.1\.1|2\.2\.1\.2)\./ {
-    idx = $1
-    sub(/^.*\.1\.3\.6\.1\.2\.1\.(31\.1\.1\.1\.1|2\.2\.1\.2)\./, "", idx)
-    val = $0
-    sub(/^[^"]*"/, "", val)
-    sub(/".*$/, "", val)
-    ifIndexToName[idx] = val
-    nameToIfIndex[val] = idx
+function clean_oid(str) {
+    sub(/^\./, "", str)
+    return str
+}
+# 1. IFNAME (1.3.6.1.2.1.31.1.1.1.1.<ifIndex>)
+$1 ~ /\.?1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.1\.[0-9]+/ {
+    oid = clean_oid($1)
+    idx = oid; sub(/^1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.1\./, "", idx)
+    val = clean_val($0)
+    if (val != "") {
+        nameToIfIndex[val] = idx
+    }
     next
 }
-# 2. Carrega IFALIAS
-$1 ~ /^\.1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.18\./ {
-    idx = $1
-    sub(/^.*\.1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.18\./, "", idx)
-    val = $0
-    sub(/^[^"]*"/, "", val)
-    sub(/".*$/, "", val)
+# 2. IFDESCR (1.3.6.1.2.1.2.2.1.2.<ifIndex>) - fallback de mapeamento de nome
+$1 ~ /\.?1\.3\.6\.1\.2\.1\.2\.2\.1\.2\.[0-9]+/ {
+    oid = clean_oid($1)
+    idx = oid; sub(/^1\.3\.6\.1\.2\.1\.2\.2\.1\.2\./, "", idx)
+    val = clean_val($0)
+    if (val != "") {
+        nameToIfIndex[val] = idx
+    }
+    next
+}
+# 3. IFALIAS (1.3.6.1.2.1.31.1.1.1.18.<ifIndex>)
+$1 ~ /\.?1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.18\.[0-9]+/ {
+    oid = clean_oid($1)
+    idx = oid; sub(/^1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.18\./, "", idx)
+    val = clean_val($0)
     ifIndexToAlias[idx] = val
     next
 }
-# 3. Carrega IFADMIN (1=up, 2=down)
-$1 ~ /^\.1\.3\.6\.1\.2\.1\.2\.2\.1\.7\./ {
-    idx = $1
-    sub(/^.*\.1\.3\.6\.1\.2\.1\.2\.2\.1\.7\./, "", idx)
-    val = $2
+# 4. IFADMIN (1.3.6.1.2.1.2.2.1.7.<ifIndex>) -> 1=up, 2=down
+$1 ~ /\.?1\.3\.6\.1\.2\.1\.2\.2\.1\.7\.[0-9]+/ {
+    oid = clean_oid($1)
+    idx = oid; sub(/^1\.3\.6\.1\.2\.1\.2\.2\.1\.7\./, "", idx)
+    val = clean_val($0)
     ifIndexToAdmin[idx] = val
     next
 }
-# 4. Carrega ENTNAME
-$1 ~ /^\.1\.3\.6\.1\.2\.1\.47\.1\.1\.1\.1\.7\./ {
-    idx = $1
-    sub(/^.*\.1\.3\.6\.1\.2\.1\.47\.1\.1\.1\.1\.7\./, "", idx)
-    val = $0
-    sub(/^[^"]*"/, "", val)
-    sub(/".*$/, "", val)
+# 5. ENTNAME (1.3.6.1.2.1.47.1.1.1.1.7.<entIndex>)
+$1 ~ /\.?1\.3\.6\.1\.2\.1\.47\.1\.1\.1\.1\.7\.[0-9]+/ {
+    oid = clean_oid($1)
+    idx = oid; sub(/^1\.3\.6\.1\.2\.1\.47\.1\.1\.1\.1\.7\./, "", idx)
+    val = clean_val($0)
     entIndexToName[idx] = val
     next
 }
-# 5. Processa portas ópticas ativas
+# 6. Portas Ópticas Ativas
 {
-    idx = $1
-    sub(/^.*\.1\.3\.6\.1\.4\.1\.2011\.5\.25\.31\.1\.1\.3\.1\.(5|32)\./, "", idx)
+    oid = clean_oid($1)
+    idx = oid; sub(/^1\.3\.6\.1\.4\.1\.2011\.5\.25\.31\.1\.1\.3\.1\.(5|32)\./, "", idx)
     if (idx != "" && !seen[idx]++) {
         activeOpticals[++count] = idx
     }
@@ -129,10 +141,10 @@ END {
             adminState = ifIndexToAdmin[ifIdx]
         }
         
-        # Filtra portas desligadas (admin shutdown = 2) ou sem descrição
+        # Ignora portas administratively shutdown (2)
         if (adminState == "2") continue
-        # Remove espaços nas pontas
-        gsub(/^[ \t]+|[ \t]+$/, "", portAlias)
+        
+        # Ignora portas sem descrição ou NOT_USE
         if (portAlias == "" || portAlias == "NOT_USE") continue
         
         if (!first) printf ","
@@ -145,7 +157,7 @@ END {
     }
     printf "]}\n"
 }
-' <(echo "$WALK_IFNAME"; echo "$WALK_IFALIAS"; echo "$WALK_IFADMIN"; echo "$WALK_ENTNAME"; echo "$WALK_OPTICAL"))
+' <(echo "$WALK_IFNAME"; echo "$WALK_IFDESCR"; echo "$WALK_IFALIAS"; echo "$WALK_IFADMIN"; echo "$WALK_ENTNAME"; echo "$WALK_OPTICAL")
 
 if [ -n "$RESULT" ]; then
     echo "$RESULT" > "$CACHE_FILE" 2>/dev/null
