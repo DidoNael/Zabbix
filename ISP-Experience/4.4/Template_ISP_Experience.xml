@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-07-13T18:16:48Z</date>
@@ -32,7 +32,7 @@
                 <discovery_rule>
                     <name>Descoberta de Servicos Web e Jogos (IX vs Transito)</name>
                     <type>EXTERNAL</type>
-                    <key>discovery_isp_services.sh["{.CONFIG_PATH}"]</key>
+                    <key>discovery_isp_services.sh["{$ISP_CONFIG_PATH}"]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
@@ -254,7 +254,7 @@
             </discovery_rules>
             <macros>
                 <macro>
-                    <macro>{.CONFIG_PATH}</macro>
+                    <macro>{$ISP_CONFIG_PATH}</macro>
                     <value>/etc/zabbix/isp_services.json</value>
                 </macro>
             </macros>
