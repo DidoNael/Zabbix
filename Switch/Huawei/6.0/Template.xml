@@ -22,7 +22,7 @@
                 <item>
                     <uuid>84aa59bf53824d84808eccd36ce2057e</uuid>
                     <name>CPU - Medio - 1m</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.0.0.0</snmp_oid>
                     <key>netstream.hwAvgDuty1min[{#SNMPINDEX}]</key>
                     <units>%</units>
@@ -30,7 +30,7 @@
                 <item>
                     <uuid>116a5ea5b7a74f1285dbc5c33ad1fcd6</uuid>
                     <name>CPU - Medio - 5m</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.0.0.0</snmp_oid>
                     <key>netstream.hwAvgDuty5min[{#SNMPINDEX}]</key>
                     <units>%</units>
@@ -38,7 +38,7 @@
                 <item>
                     <uuid>11abbb50e3f541749ecdcf2c801e8e02</uuid>
                     <name>Number of network interfaces</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>IF-MIB::ifNumber.0</snmp_oid>
                     <key>netstream.ifNumber</key>
                     <delay>1h</delay>
@@ -49,14 +49,14 @@
                 <item>
                     <uuid>4aab10dcc6ab4058a8fef08dc86b7c68</uuid>
                     <name>Tabela Mac</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.2011.5.25.42.2.1.14.0</snmp_oid>
                     <key>netstream.mactable</key>
                 </item>
                 <item>
                     <uuid>e6841d2170464ee6bafe0e197be7f97f</uuid>
                     <name>Uso de RAM</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.7.67108873</snmp_oid>
                     <key>netstream.memousage</key>
                     <units>%</units>
@@ -108,7 +108,7 @@
                 <item>
                     <uuid>f6bb394dcafc4fa88eb8030a957bffc5</uuid>
                     <name>Versao do Sistema e Hardware</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.2.1.1.1.0</snmp_oid>
                     <key>netstream.sysDescr.0</key>
                     <delay>1h</delay>
@@ -119,7 +119,7 @@
                 <item>
                     <uuid>dd345789de364067a9b33437c5316044</uuid>
                     <name>Uptime do Sistema</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.2.1.1.3.0</snmp_oid>
                     <key>netstream.sysUpTime.0</key>
                     <delay>1m</delay>
@@ -248,7 +248,7 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Discovery: BGP IPv4 Peer</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ASN},1.3.6.1.2.1.15.3.1.9, {#IP},1.3.6.1.2.1.15.3.1.7]</snmp_oid>
                     <key>netstream.bgppeerv4</key>
                     <delay>1d</delay>
@@ -257,14 +257,14 @@
                         <item_prototype>
                             <uuid>6acb272ed4504d048ca4607fb12c4519</uuid>
                             <name>Administrative status for peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerAdminStatus[{#IP}.{#ASN}]</key>
                         </item_prototype>
                         <item_prototype>
                             <uuid>c64d818eac7041979044ef4ccab30698</uuid>
                             <name>Established time for peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.15.3.1.16.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerFsmEstablishedTime.[{#IP}.{#ASN}]</key>
                             <units>uptime</units>
@@ -272,7 +272,7 @@
                         <item_prototype>
                             <uuid>7ef44fdb8c2e462fafa3d63f58e382ec</uuid>
                             <name>Total IPv4 routes from peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.1.1.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerIPv4Routes[{#IP}.{#ASN}]</key>
                             <units>prefixes</units>
@@ -280,7 +280,7 @@
                         <item_prototype>
                             <uuid>8b1e2cf5272f4b03986dd0422b944004</uuid>
                             <name>Remote AS for peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.9.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerRemoteAs[{#IP}.{#ASN}]</key>
                             <trends>365d</trends>
@@ -289,7 +289,7 @@
                         <item_prototype>
                             <uuid>538e07f65700435db11cde5773f0d923</uuid>
                             <name>Operational status for peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerState.[{#IP}.{#ASN}]</key>
                         </item_prototype>
@@ -341,7 +341,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery: BGP IPv6 Peer</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#ASN},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.2, {#IP},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.3]</snmp_oid>
                     <key>netstream.bgppeerv6</key>
                     <delay>1d</delay>
@@ -350,14 +350,14 @@
                         <item_prototype>
                             <uuid>d9fb813de27845b6909d9e3e78294b80</uuid>
                             <name>Administrative status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}]</key>
                         </item_prototype>
                         <item_prototype>
                             <uuid>2127bcb3a40047b484564e0360fc4ac7</uuid>
                             <name>Established time for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerFsmEstablishedTimeV6.[{#IP}.{#ASN}]</key>
                             <units>uptime</units>
@@ -365,7 +365,7 @@
                         <item_prototype>
                             <uuid>0a989d8f066643f3963728d2ae215473</uuid>
                             <name>Total IPv6 routes from peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.2.1.2.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerIPv6Routes[{#IP}.{#ASN}]</key>
                             <units>prefixes</units>
@@ -373,7 +373,7 @@
                         <item_prototype>
                             <uuid>8784397985b443b29e3f97492e174757</uuid>
                             <name>Remote AS for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}]</key>
                             <trends>365d</trends>
@@ -382,7 +382,7 @@
                         <item_prototype>
                             <uuid>5028892cba7442e39bd1c51af871b8c8</uuid>
                             <name>Operational status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerStateV6.[{#IP}.{#ASN}]</key>
                         </item_prototype>
@@ -434,7 +434,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery: BFD Sessions</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#BFD_DISCRIMINATOR},1.3.6.1.4.1.2011.5.25.38.2.3.1.8,{#BFD_PEER},1.3.6.1.4.1.2011.5.25.38.2.3.1.5,{#BFD_IFNAME},1.3.6.1.4.1.2011.5.25.38.2.3.1.7]</snmp_oid>
                     <key>netstream.bfd.discovery</key>
                     <delay>1d</delay>
@@ -443,7 +443,7 @@
                         <item_prototype>
                             <uuid>4ebe3f08e52149ac91f5df62895d5c1b</uuid>
                             <name>BFD Session State: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.17.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.state[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
@@ -451,7 +451,7 @@
                         <item_prototype>
                             <uuid>9fa0f3c08b4643b59aa46c0d42336693</uuid>
                             <name>BFD Diagnostic Code: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.18.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.diag[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -459,7 +459,7 @@
                         <item_prototype>
                             <uuid>55013b77e2bb4ffeaa095a563e615f27</uuid>
                             <name>BFD Remote Discriminator: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.9.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.remote_discr[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
@@ -467,7 +467,7 @@
                         <item_prototype>
                             <uuid>21cb5644d33a4f9dae0550ab249424ae</uuid>
                             <name>BFD Application Type: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.application[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
@@ -475,7 +475,7 @@
                         <item_prototype>
                             <uuid>59a5f59853c546ea955db318090aeda3</uuid>
                             <name>BFD Address Type (1=IPv4, 2=IPv6): Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.22.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.addr_type[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
@@ -519,7 +519,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery: Temperatura</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#BOARD}, 1.3.6.1.2.1.47.1.1.1.1.2]</snmp_oid>
                     <key>netstream.discovery.temp</key>
                     <delay>1d</delay>
@@ -527,7 +527,7 @@
                         <item_prototype>
                             <uuid>ea55adddbb3843bfa3afcbf0ed6711f9</uuid>
                             <name>Slot - {#BOARD}</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.tempslot[{#SNMPINDEX}]</key>
                             <units>C</units>
@@ -557,7 +557,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery | Network interfaces Virtual</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>netstream.discovery.vlanif</key>
                     <delay>1d</delay>
@@ -608,7 +608,7 @@
                         <item_prototype>
                             <uuid>ca65e1374806404c873894928bd455fa</uuid>
                             <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                             <history>365d</history>
@@ -627,7 +627,7 @@
                         <item_prototype>
                             <uuid>bccafa99c9a542ca8e191b6c6b5e1e63</uuid>
                             <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                             <history>365d</history>
@@ -646,7 +646,7 @@
                         <item_prototype>
                             <uuid>63211a1bced64eabaa2e7e7c497bf04b</uuid>
                             <name>Status da interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                             <history>1w</history>
@@ -738,7 +738,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery OSPF PEER</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IFNB},1.3.6.1.4.1.2011.5.25.155.6.1.5.1.0.0.0.0,{#IFNBIP},1.3.6.1.4.1.2011.5.25.155.6.1.4.1.0.0.0.0]</snmp_oid>
                     <key>netstream.discovery[ospfpeer]</key>
                     <delay>1d</delay>
@@ -747,14 +747,14 @@
                         <item_prototype>
                             <uuid>48a5aebfac1543b9aecb57bd39fbaa48</uuid>
                             <name>OSPF {#IFNB} - MTU</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.8.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.mtu.[{#IFNB}.{#SNMPINDEX}]</key>
                         </item_prototype>
                         <item_prototype>
                             <uuid>4530a659b3f64fffa31be95c4c93c83a</uuid>
                             <name>OSPF {#IFNB} - State</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.10.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.state[{#IFNB}.{#SNMPINDEX}]</key>
                             <trigger_prototypes>
@@ -786,7 +786,7 @@
                         <item_prototype>
                             <uuid>24b8e4104bd84cc290a838363bb10f33</uuid>
                             <name>OSPF {#IFNB} - Neighbor ({#IFNBIP}) - Uptime</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.155.6.1.13.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.uptime.[{#IFNB}.{#SNMPINDEX}]</key>
                             <units>s</units>
@@ -821,7 +821,7 @@
                         <item_prototype>
                             <uuid>b3b733359da84c8cad315de71523e17f</uuid>
                             <name>OSPF {#IFNB} - Uptime</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.13.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.uptime2[{#IFNB}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -831,7 +831,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery: Uso de CPU</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#CPU},1.3.6.1.4.1.2011.6.3.4.1.3]</snmp_oid>
                     <key>netstream.hwAvgDuty</key>
                     <delay>1d</delay>
@@ -840,7 +840,7 @@
                         <item_prototype>
                             <uuid>000d0c3fb10240deafbdab0c5b718a80</uuid>
                             <name>Uso em 1 min</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwAvgDuty1min.[{#SNMPINDEX}]</key>
                             <delay>60</delay>
@@ -849,7 +849,7 @@
                         <item_prototype>
                             <uuid>24beb51a4444483ea3a65ed1226b3f99</uuid>
                             <name>Uso em 5 min</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwAvgDuty5min.[{#SNMPINDEX}]</key>
                             <delay>60</delay>
@@ -932,7 +932,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery: Uso de CPU NE (NetEngine)</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.5]</snmp_oid>
                     <key>netstream.hwEntityCpuUsage</key>
                     <delay>1d</delay>
@@ -952,7 +952,7 @@
                         <item_prototype>
                             <uuid>db45f56f17db49d3950c9642b30c84b2</uuid>
                             <name>Uso de CPU NE - Entidade {#SNMPINDEX}</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityCpuUsage[{#SNMPINDEX}]</key>
                             <delay>60</delay>
@@ -1007,7 +1007,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery: Fan</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.1]</snmp_oid>
                     <key>netstream.hwEntityFan</key>
                     <delay>1d</delay>
@@ -1016,7 +1016,7 @@
                         <item_prototype>
                             <uuid>ec987a332fd3495cbdfb965792a88f92</uuid>
                             <name>Velocidade modulo Fan [{#SNMPINDEX}] (%)</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.10.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityFanSpeed[{#SNMPINDEX}]</key>
                             <delay>60</delay>
@@ -1054,7 +1054,7 @@
                         <item_prototype>
                             <uuid>4f4ea53f3c1842a1916a498e2be8eff6</uuid>
                             <name>Status modulo Fan [{#SNMPINDEX}]</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.10.1.7.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityFanState[{#SNMPINDEX}]</key>
                             <delay>300</delay>
@@ -1092,7 +1092,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery: Power Supply (PSU)</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5]</snmp_oid>
                     <key>netstream.psu.discovery</key>
                     <delay>1d</delay>
@@ -1100,7 +1100,7 @@
                         <item_prototype>
                             <uuid>54789cd156224a3cbb497abb396e2f71</uuid>
                             <name>PSU [{#SNMPINDEX}]: Hardware Presente</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityPwrPresente.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -1109,7 +1109,7 @@
                         <item_prototype>
                             <uuid>7c45eeb8b03a401397ff25322103a05e</uuid>
                             <name>PSU [{#SNMPINDEX}]: Status</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.6.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityPwrState.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -1144,7 +1144,7 @@
                         <item_prototype>
                             <uuid>de609ae125894b31a422edaab03f084b</uuid>
                             <name>PSU [{#SNMPINDEX}]: Potencia Nominal (Rated Power)</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.7.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityPwrPower.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -1154,7 +1154,7 @@
                         <item_prototype>
                             <uuid>9311ca11abeb4f3f87325a0a84742c4a</uuid>
                             <name>PSU [{#SNMPINDEX}]: Tipo de fonte</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityPwrMode.discovery[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
@@ -1163,7 +1163,7 @@
                         <item_prototype>
                             <uuid>3b579fe989104cc2b8bc43e7072f5b1f</uuid>
                             <name>PSU [{#SNMPINDEX}]: Potencia Consumida (W)</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.18.1.8.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityPwrConsumedPower.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -1174,7 +1174,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery: Consumo de Energia</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.14.1.2]</snmp_oid>
                     <key>netstream.power.discovery</key>
                     <delay>1d</delay>
@@ -1182,7 +1182,7 @@
                         <item_prototype>
                             <uuid>769dc0ba14a34f4a80b1bc7c249bdae1</uuid>
                             <name>Consumo de energia total [{#SNMPINDEX}]</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.14.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwSystemPowerUsedPower.discovery[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
@@ -1222,7 +1222,7 @@
                         <item_prototype>
                             <uuid>175b4ed411dc42cdabc2d86cf8e68b33</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
@@ -1268,7 +1268,7 @@
                         <item_prototype>
                             <uuid>5b5b340ab721402183ab1c7388558924</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPower.[{#ENTPHYSICALNAME}]</key>
                             <delay>1h</delay>
@@ -1284,7 +1284,7 @@
                         <item_prototype>
                             <uuid>e1f49ef8ab574b569bd75da6e7f8e6fa</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxHighThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
@@ -1301,7 +1301,7 @@
                         <item_prototype>
                             <uuid>03683e9b93c14e54b08921e882e0a0a5</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Warning</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxHighWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
@@ -1319,7 +1319,7 @@
                         <item_prototype>
                             <uuid>0d88532170c24cf4b4bb9ea062a3df1f</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]</key>
                             <delay>10m</delay>
@@ -1337,7 +1337,7 @@
                         <item_prototype>
                             <uuid>fb3d9255319347e98b9162baddb88aff</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Warning Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>10m</delay>
@@ -1355,7 +1355,7 @@
                         <item_prototype>
                             <uuid>6e9841b4c67641509d9f5dca03b633cf</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Temperature</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTemperature.[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -1367,7 +1367,7 @@
                         <item_prototype>
                             <uuid>6ebfe986fff64693908e88606cbb9523</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Optical Transfer Distance</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTransferDistance.[{#ENTPHYSICALNAME}]</key>
                             <trends>365d</trends>
@@ -1376,7 +1376,7 @@
                         <item_prototype>
                             <uuid>718b5da99c664dc2a560eed78bf0a3a8</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
@@ -1394,7 +1394,7 @@
                         <item_prototype>
                             <uuid>b328265ee36f495694c759ce700fe0fd</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Warning</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
@@ -1412,7 +1412,7 @@
                         <item_prototype>
                             <uuid>71db6a4e194d4df4b183602befe6f5e1</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
@@ -1430,7 +1430,7 @@
                         <item_prototype>
                             <uuid>9595cb06e60e4b7ba90a01d8c94ca081</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Warning</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowWarnThreshold.[{#SNMPINDEX}]</key>
                             <delay>1d</delay>
@@ -1448,7 +1448,7 @@
                         <item_prototype>
                             <uuid>95b5e25c4fa04c1886ebb9baf5bf6d4f</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Vendor</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderName[{#ENTPHYSICALNAME}]</key>
                             <delay>1d</delay>
@@ -1459,7 +1459,7 @@
                         <item_prototype>
                             <uuid>a8e6c7e8b8da4185ae576db66649c495</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Type</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderPn.[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -1512,7 +1512,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery: Memoria</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.6.3.5.1.1.2]</snmp_oid>
                     <key>netstream.hwMemoryDev</key>
                     <delay>1d</delay>
@@ -1521,7 +1521,7 @@
                         <item_prototype>
                             <uuid>17cc0ede937e4866a1af80178cb77e33</uuid>
                             <name>Falhas de alocacao de memoria devido a falta de memoria inativa</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.7.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevFailNoMem[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -1531,7 +1531,7 @@
                         <item_prototype>
                             <uuid>8dc09a1e8cdd404eb34824ea5915aaaa</uuid>
                             <name>Contagem de falhas de alocacao de memoria</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.6.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevFail[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -1541,7 +1541,7 @@
                         <item_prototype>
                             <uuid>db56314a5bf04cdca155fd6dc60fd8f6</uuid>
                             <name>Memoria Livre</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevFree[{#SNMPINDEX}]</key>
                             <delay>60</delay>
@@ -1565,7 +1565,7 @@
                         <item_prototype>
                             <uuid>1f595e0bdf414e07817dd4cd51be2c47</uuid>
                             <name>Tamanho total da memoria</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.3.5.1.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwMemoryDevSize[{#SNMPINDEX}]</key>
                             <delay>60</delay>
@@ -1692,7 +1692,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery | Network interfaces Physical</name>
-                    <type>SNMPV2</type>
+                    <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IF},1.3.6.1.2.1.2.2.1.2, {#IFALIAS},1.3.6.1.2.1.31.1.1.1.18, {#IFADMIN},1.3.6.1.2.1.2.2.1.7]</snmp_oid>
                     <key>netstream.ifDescr</key>
                     <delay>1h</delay>
@@ -1787,7 +1787,7 @@
                         <item_prototype>
                             <uuid>50d7a5ef64b4442f881a54f5b0337cde</uuid>
                             <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
                             <history>365d</history>
@@ -1807,7 +1807,7 @@
                         <item_prototype>
                             <uuid>c9a064b315c9453bb298e717f2827f8a</uuid>
                             <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
                             <history>365d</history>
@@ -1827,7 +1827,7 @@
                         <item_prototype>
                             <uuid>a75410cc309f4fb0bef51e75ab476e82</uuid>
                             <name>Inbound errors on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifInErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -1844,7 +1844,7 @@
                         <item_prototype>
                             <uuid>afc49e475cc14c6d8488e4aa88c95e75</uuid>
                             <name>Status da interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifOperStatus[{#IF}]</key>
                             <history>1w</history>
@@ -1887,7 +1887,7 @@
                         <item_prototype>
                             <uuid>e2278d2fe21a4099be97499aa125ba28</uuid>
                             <name>Outbound errors on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>IF-MIB::ifOutErrors.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifOutErrors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -1904,7 +1904,7 @@
                         <item_prototype>
                             <uuid>c6dce60fdd31403097202a02feaf9163</uuid>
                             <name>Interface speed {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifspeed.[{#IF}.{#SNMPINDEX}]</key>
                             <delay>1h</delay>
@@ -1920,7 +1920,7 @@
                         <item_prototype>
                             <uuid>6e0028fd94ca4ea2a2ea72d2962b0389</uuid>
                             <name>Total errors on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>ifInErrors.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.total.Errors[{#IF}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -2080,7 +2080,7 @@
                         <item_prototype>
                             <uuid>4e3349e2957d4d51bb253cd185218e44</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane0</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
@@ -2102,7 +2102,7 @@
                         <item_prototype>
                             <uuid>15c0d5bb3aa74e559f5249485fd84c03</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane1</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
@@ -2124,7 +2124,7 @@
                         <item_prototype>
                             <uuid>e19b8c8af3114391be4a4b5cebee94d3</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane2</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
@@ -2146,7 +2146,7 @@
                         <item_prototype>
                             <uuid>7eaeb6d4841143e1a4238f69bcf7c892</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane3</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
@@ -2168,7 +2168,7 @@
                         <item_prototype>
                             <uuid>63e74d0149674ecd82e4a915fbb8d481</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane0</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
@@ -2190,7 +2190,7 @@
                         <item_prototype>
                             <uuid>6c9b26a7abc04975ae0f242e3f938050</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane1</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
@@ -2212,7 +2212,7 @@
                         <item_prototype>
                             <uuid>b84344d3ac1c42829247d8b35c2bff20</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane2</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
@@ -2234,7 +2234,7 @@
                         <item_prototype>
                             <uuid>dbabb4db61af4f4a81c045719e036aa9</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane3</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
@@ -2256,7 +2256,7 @@
                         <item_prototype>
                             <uuid>fd7128f84b6c4df99137786c4595f694</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Optical Transfer Distance</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalmultilanTransferDistance.[{#ENTPHYSICALNAME}]</key>
                             <trends>365d</trends>
@@ -2265,7 +2265,7 @@
                         <item_prototype>
                             <uuid>51d908fa43ea49f2b6d10ea9507a07d2</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxHighThresholdML[{#ENTPHYSICALNAME}]</key>
                             <history>7d</history>
@@ -2281,7 +2281,7 @@
                         <item_prototype>
                             <uuid>54d2776bd07843d0bd44be680e3647a9</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Warning Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
                             <history>7d</history>
@@ -2298,7 +2298,7 @@
                         <item_prototype>
                             <uuid>81bcd64bed484f5192ab91513e5870ac</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
@@ -2316,7 +2316,7 @@
                         <item_prototype>
                             <uuid>099fdb302f654604b2e16a6eab790424</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Warning Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
                             <trends>365d</trends>
@@ -2332,7 +2332,7 @@
                         <item_prototype>
                             <uuid>1986f5b7ed904d0ab2c6fe62b26a16a0</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Temperature</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTemperatureML[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
@@ -2344,7 +2344,7 @@
                         <item_prototype>
                             <uuid>2b2f65947f0845909dd4d8bcb9b01d0a</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighThresholdML[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
@@ -2361,7 +2361,7 @@
                         <item_prototype>
                             <uuid>31a3306d968549c187716bc7945d4622</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Warning Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
                             <trends>365d</trends>
@@ -2377,7 +2377,7 @@
                         <item_prototype>
                             <uuid>24a1255c4cd94008b0f8b8c2c9aec933</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowThresholdML[{#ENTPHYSICALNAME}]</key>
                             <trends>365d</trends>
@@ -2393,7 +2393,7 @@
                         <item_prototype>
                             <uuid>259e3d90d0ab4316847c32304a26a281</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Warning Threshold</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
                             <trends>365d</trends>
@@ -2409,7 +2409,7 @@
                         <item_prototype>
                             <uuid>261ae9f9b43b48e0b2f36834cae7461c</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Vendor Name</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderNameML[{#ENTPHYSICALNAME}]</key>
                             <delay>1h</delay>
@@ -2420,7 +2420,7 @@
                         <item_prototype>
                             <uuid>3437f9e1919a44a3a0f35fb9cce8826c</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Type</name>
-                            <type>SNMPV2</type>
+                            <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderPnML[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
