@@ -442,9 +442,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.17.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.state[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
-                            <valuemap>
-                                <name>HUAWEI - BFD Session State</name>
-                            </valuemap>
                         </item_prototype>
                         <item_prototype>
                             <name>BFD Diagnostic Code: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
@@ -453,9 +450,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.18.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.diag[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <valuemap>
-                                <name>HUAWEI - BFD Diagnostic Code</name>
-                            </valuemap>
                         </item_prototype>
                         <item_prototype>
                             <name>BFD Remote Discriminator: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
@@ -480,9 +474,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.22.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.addr_type[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
-                            <valuemap>
-                                <name>HUAWEI - BFD Address Type</name>
-                            </valuemap>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -762,9 +753,6 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.10.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.state[{#IFNB}.{#SNMPINDEX}]</key>
-                            <valuemap>
-                                <name>HUAWEI - OSPF</name>
-                            </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{last()}&lt;8</expression>
@@ -798,9 +786,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.155.6.1.13.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.uptime.[{#IFNB}.{#SNMPINDEX}]</key>
                             <units>s</units>
-                            <valuemap>
-                                <name>HUAWEI - OSPF</name>
-                            </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{last()}&lt;600</expression>
@@ -1072,9 +1057,6 @@
                             <delay>300</delay>
                             <history>7d</history>
                             <trends>3d</trends>
-                            <valuemap>
-                                <name>hwEntityFanState</name>
-                            </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{last()}&lt;&gt;1</expression>
@@ -1121,9 +1103,6 @@
                             <key>netstream.hwEntityPwrPresente.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <trends>365d</trends>
-                            <valuemap>
-                                <name>PSU HUAWEI PRESENTE</name>
-                            </valuemap>
                         </item_prototype>
                         <item_prototype>
                             <name>PSU [{#SNMPINDEX}]: Status</name>
@@ -1133,9 +1112,6 @@
                             <key>netstream.hwEntityPwrState.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <trends>365d</trends>
-                            <valuemap>
-                                <name>PSU HUAWEI STATUS</name>
-                            </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{last()}&gt;1</expression>
@@ -1181,9 +1157,6 @@
                             <key>netstream.hwEntityPwrMode.discovery[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
                             <trends>365d</trends>
-                            <valuemap>
-                                <name>Tipo de fonte HUAWEI</name>
-                            </valuemap>
                         </item_prototype>
                         <item_prototype>
                             <name>PSU [{#SNMPINDEX}]: Potencia Consumida (W)</name>
@@ -1874,9 +1847,6 @@
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>The current operational state of the interface.</description>
-                            <valuemap>
-                                <name>SNMP interface status (ifOperStatus)</name>
-                            </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{diff(0)}=1</expression>
@@ -2699,226 +2669,6 @@ or
                     <description>Minimum active PPPoE users required on interface/domain before triggering mass disconnection alerts</description>
                 </macro>
             </macros>
-            <value_maps>
-                <value_map>
-                    <name>HUAWEI - OSPF</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>down</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>attempt</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>init</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>twoWay</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>5</value>
-                            <newvalue>exchangeStart</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>6</value>
-                            <newvalue>exchange</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>7</value>
-                            <newvalue>loading</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>8</value>
-                            <newvalue>full</newvalue>
-                        </mapping>
-                    </mappings>
-                </value_map>
-                <value_map>
-                    <name>hwEntityFanState</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>normal</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>anormal</newvalue>
-                        </mapping>
-                    </mappings>
-                </value_map>
-                <value_map>
-                    <name>PSU HUAWEI PRESENTE</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Presente</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>Sem Fonte</newvalue>
-                        </mapping>
-                    </mappings>
-                </value_map>
-                <value_map>
-                    <name>PSU HUAWEI STATUS</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Alimentacao ( fornecendo energia )</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>NotSupply ( nao esta fornecendo energia )</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>Sleep ( estado de hibernacao )</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>Desconhecido ( informacao nao pode ser obtida )</newvalue>
-                        </mapping>
-                    </mappings>
-                </value_map>
-                <value_map>
-                    <name>SNMP interface status (ifOperStatus)</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>up</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>down</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>testing</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>unknown</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>5</value>
-                            <newvalue>dormant</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>6</value>
-                            <newvalue>notPresent</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>7</value>
-                            <newvalue>lowerLayerDown</newvalue>
-                        </mapping>
-                    </mappings>
-                </value_map>
-                <value_map>
-                    <name>Tipo de fonte HUAWEI</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Desconhecido</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>DC</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>AC</newvalue>
-                        </mapping>
-                    </mappings>
-                </value_map>
-                <value_map>
-                    <name>OSPF Network Type</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Broadcast</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>NBMA</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>Point-to-Point</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>5</value>
-                            <newvalue>Point-to-Multipoint</newvalue>
-                        </mapping>
-                    </mappings>
-                </value_map>
-                <value_map>
-                    <name>HUAWEI - BFD Session State</name>
-                    <mappings>
-                        <mapping>
-                            <value>0</value>
-                            <newvalue>AdminDown</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Down</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>Init</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>Up</newvalue>
-                        </mapping>
-                    </mappings>
-                </value_map>
-                <value_map>
-                    <name>HUAWEI - BFD Diagnostic Code</name>
-                    <mappings>
-                        <mapping>
-                            <value>0</value>
-                            <newvalue>No Diagnostic</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Control Detection Time Expired</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>Echo Function Failed</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>Neighbor Signaled Session Down</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>Forwarding Plane Reset</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>5</value>
-                            <newvalue>Path Down</newvalue>
-                        </mapping>
-                    </mappings>
-                </value_map>
-                <value_map>
-                    <name>HUAWEI - BFD Address Type</name>
-                    <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>IPv4</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>IPv6</newvalue>
-                        </mapping>
-                    </mappings>
-                </value_map>
-            </value_maps>
         </template>
     </templates>
     <triggers>
