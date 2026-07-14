@@ -211,7 +211,7 @@
                     <snmp_oid>.1.3.6.1.2.1.1.1.0</snmp_oid>
                     <key>netstream.sysDescr.0</key>
                     <delay>1h</delay>
-                    <history>30d</history>
+                    <history>14d</history>
                     <trends>90d</trends>
                     <value_type>CHAR</value_type>
                     <applications>
@@ -292,7 +292,7 @@
                     <snmp_oid>1.3.6.1.4.1.2011.5.2.1.14.1.2.0</snmp_oid>
                     <key>netstream.pppoe.total</key>
                     <delay>2m</delay>
-                    <history>30d</history>
+                    <history>14d</history>
                     <trends>90d</trends>
                     <units>users</units>
                     <applications>
@@ -306,7 +306,7 @@
                     <type>CALCULATED</type>
                     <key>netstream.pppoe.total.max24h</key>
                     <delay>5m</delay>
-                    <history>30d</history>
+                    <history>14d</history>
                     <trends>90d</trends>
                     <units>users</units>
                     <params>max(//netstream.pppoe.total,1d)</params>
@@ -321,7 +321,7 @@
                     <type>CALCULATED</type>
                     <key>netstream.pppoe.total.min24h</key>
                     <delay>5m</delay>
-                    <history>30d</history>
+                    <history>14d</history>
                     <trends>90d</trends>
                     <units>users</units>
                     <params>min(//netstream.pppoe.total,1d)</params>
@@ -826,7 +826,7 @@
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                             <delay>1m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <units>bps</units>
                             <preprocessing>
                                 <step>
@@ -851,7 +851,7 @@
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                             <delay>1m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <units>bps</units>
                             <preprocessing>
                                 <step>
@@ -1494,7 +1494,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}]</key>
                             <delay>10m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1551,7 +1551,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPower.[{#ENTPHYSICALNAME}]</key>
                             <delay>1h</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <applications>
                                 <application>
@@ -1681,7 +1681,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTemperature.[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
@@ -1816,7 +1816,7 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderName[{#ENTPHYSICALNAME}]</key>
                             <delay>1d</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <trends>90d</trends>
                             <value_type>TEXT</value_type>
                             <applications>
@@ -2204,7 +2204,7 @@
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
                             <delay>1m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <units>bps</units>
                             <description>The number of octets in valid MAC frames received on this interface, including the MAC header and FCS.</description>
                             <applications>
@@ -2230,7 +2230,7 @@
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
                             <delay>1m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <units>bps</units>
                             <description>The number of octets transmitted in MAC frames on this interface, including the MAC header and FCS.</description>
                             <applications>
@@ -2539,7 +2539,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2566,7 +2566,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2593,7 +2593,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2620,7 +2620,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2647,7 +2647,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2674,7 +2674,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2701,7 +2701,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2728,7 +2728,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -2859,7 +2859,7 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTemperatureML[{#ENTPHYSICALNAME}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
@@ -2964,7 +2964,7 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderNameML[{#ENTPHYSICALNAME}]</key>
                             <delay>1h</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <trends>90d</trends>
                             <value_type>TEXT</value_type>
                             <applications>
@@ -3059,7 +3059,7 @@ or
                             <snmp_oid>.1.3.6.1.4.1.2011.5.2.1.6.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.pppoe.domain.users[{#SNMPINDEX}]</key>
                             <delay>2m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <trends>90d</trends>
                             <units>users</units>
                             <applications>
@@ -3073,7 +3073,7 @@ or
                             <type>CALCULATED</type>
                             <key>netstream.pppoe.domain.users.max24h[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <trends>90d</trends>
                             <units>users</units>
                             <params>max(//netstream.pppoe.domain.users[{#SNMPINDEX}],1d)</params>
@@ -3088,7 +3088,7 @@ or
                             <type>CALCULATED</type>
                             <key>netstream.pppoe.domain.users.min24h[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <trends>90d</trends>
                             <units>users</units>
                             <params>min(//netstream.pppoe.domain.users[{#SNMPINDEX}],1d)</params>
@@ -3160,7 +3160,7 @@ or
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.40.1.1.20.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.pppoe.interface.users[{#SNMPINDEX}]</key>
                             <delay>2m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <trends>90d</trends>
                             <units>users</units>
                             <applications>
@@ -3174,7 +3174,7 @@ or
                             <type>CALCULATED</type>
                             <key>netstream.pppoe.interface.users.max24h[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <trends>90d</trends>
                             <units>users</units>
                             <params>max(//netstream.pppoe.interface.users[{#SNMPINDEX}],1d)</params>
@@ -3189,7 +3189,7 @@ or
                             <type>CALCULATED</type>
                             <key>netstream.pppoe.interface.users.min24h[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <history>30d</history>
+                            <history>14d</history>
                             <trends>90d</trends>
                             <units>users</units>
                             <params>min(//netstream.pppoe.interface.users[{#SNMPINDEX}],1d)</params>
