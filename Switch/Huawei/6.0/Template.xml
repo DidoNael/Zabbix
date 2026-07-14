@@ -4,11 +4,13 @@
     <date>2026-07-09T01:15:27Z</date>
     <groups>
         <group>
+            <uuid>d42b462d276d4547bb30320e9c059b80</uuid>
             <name>Templates</name>
         </group>
     </groups>
     <templates>
         <template>
+            <uuid>f917f143bb3348b7bb1c09fecf6a8f8e</uuid>
             <template>Template Switch Huawei 6700 Series - Netstream</template>
             <name>Template Switch Huawei 6700 Series - Netstream</name>
             <groups>
