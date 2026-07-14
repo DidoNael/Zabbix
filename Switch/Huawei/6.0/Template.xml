@@ -18,95 +18,6 @@
                     <name>Templates</name>
                 </group>
             </groups>
-            <applications>
-                <application>
-                    <name>100GE-RX</name>
-                </application>
-                <application>
-                    <name>100GE-TX</name>
-                </application>
-                <application>
-                    <name>BFD</name>
-                </application>
-                <application>
-                    <name>BGP</name>
-                </application>
-                <application>
-                    <name>CPU</name>
-                </application>
-                <application>
-                    <name>Fan</name>
-                </application>
-                <application>
-                    <name>if-error-in</name>
-                </application>
-                <application>
-                    <name>if-speed</name>
-                </application>
-                <application>
-                    <name>Interface-name</name>
-                </application>
-                <application>
-                    <name>Interfaces</name>
-                </application>
-                <application>
-                    <name>mac-table</name>
-                </application>
-                <application>
-                    <name>Memoria</name>
-                </application>
-                <application>
-                    <name>memory</name>
-                </application>
-                <application>
-                    <name>Optical</name>
-                </application>
-                <application>
-                    <name>OSPF</name>
-                </application>
-                <application>
-                    <name>ospf-mtu</name>
-                </application>
-                <application>
-                    <name>ospf-state</name>
-                </application>
-                <application>
-                    <name>Peer V4</name>
-                </application>
-                <application>
-                    <name>Peer V6</name>
-                </application>
-                <application>
-                    <name>Power Supply (PSU)</name>
-                </application>
-                <application>
-                    <name>RX</name>
-                </application>
-                <application>
-                    <name>Sistema</name>
-                </application>
-                <application>
-                    <name>temperatura</name>
-                </application>
-                <application>
-                    <name>Temperatura</name>
-                </application>
-                <application>
-                    <name>TX</name>
-                </application>
-                <application>
-                    <name>type-tranceiver</name>
-                </application>
-                <application>
-                    <name>Uptime do Sistema</name>
-                </application>
-                <application>
-                    <name>BNG PPPoE</name>
-                </application>
-                <application>
-                    <name>RADIUS / AAA</name>
-                </application>
-            </applications>
             <items>
                 <item>
                     <name>CPU - Medio - 1m</name>
@@ -115,11 +26,6 @@
                     <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.0.0.0</snmp_oid>
                     <key>netstream.hwAvgDuty1min[{#SNMPINDEX}]</key>
                     <units>%</units>
-                    <applications>
-                        <application>
-                            <name>CPU</name>
-                        </application>
-                    </applications>
                 </item>
                 <item>
                     <name>CPU - Medio - 5m</name>
@@ -128,11 +34,6 @@
                     <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.0.0.0</snmp_oid>
                     <key>netstream.hwAvgDuty5min[{#SNMPINDEX}]</key>
                     <units>%</units>
-                    <applications>
-                        <application>
-                            <name>CPU</name>
-                        </application>
-                    </applications>
                 </item>
                 <item>
                     <name>Number of network interfaces</name>
@@ -144,11 +45,6 @@
                     <history>1d</history>
                     <trends>15d</trends>
                     <description>The number of network interfaces (regardless of their current state) present on this system.</description>
-                    <applications>
-                        <application>
-                            <name>Interfaces</name>
-                        </application>
-                    </applications>
                 </item>
                 <item>
                     <name>Tabela Mac</name>
@@ -156,11 +52,6 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>.1.3.6.1.4.1.2011.5.25.42.2.1.14.0</snmp_oid>
                     <key>netstream.mactable</key>
-                    <applications>
-                        <application>
-                            <name>mac-table</name>
-                        </application>
-                    </applications>
                 </item>
                 <item>
                     <name>Uso de RAM</name>
@@ -169,11 +60,6 @@
                     <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.7.67108873</snmp_oid>
                     <key>netstream.memousage</key>
                     <units>%</units>
-                    <applications>
-                        <application>
-                            <name>memory</name>
-                        </application>
-                    </applications>
                     <triggers>
                         <trigger>
                             <expression>{last()}&gt;80</expression>
@@ -229,11 +115,6 @@
                     <history>30d</history>
                     <trends>365d</trends>
                     <value_type>CHAR</value_type>
-                    <applications>
-                        <application>
-                            <name>Sistema</name>
-                        </application>
-                    </applications>
                 </item>
                 <item>
                     <name>Uptime do Sistema</name>
@@ -245,11 +126,6 @@
                     <history>1d</history>
                     <trends>15d</trends>
                     <units>uptime</units>
-                    <applications>
-                        <application>
-                            <name>Uptime do Sistema</name>
-                        </application>
-                    </applications>
                     <preprocessing>
                         <step>
                             <type>MULTIPLIER</type>
@@ -308,11 +184,6 @@
                     <history>30d</history>
                     <trends>365d</trends>
                     <units>users</units>
-                    <applications>
-                        <application>
-                            <name>BNG PPPoE</name>
-                        </application>
-                    </applications>
                 </item>
                 <item>
                     <name>PPPoE / BNG: Maximo de Clientes Ativos (24h)</name>
@@ -323,11 +194,6 @@
                     <trends>365d</trends>
                     <units>users</units>
                     <params>max(//netstream.pppoe.total,1d)</params>
-                    <applications>
-                        <application>
-                            <name>BNG PPPoE</name>
-                        </application>
-                    </applications>
                 </item>
                 <item>
                     <name>PPPoE / BNG: Minimo de Clientes Ativos (24h)</name>
@@ -338,11 +204,6 @@
                     <trends>365d</trends>
                     <units>users</units>
                     <params>min(//netstream.pppoe.total,1d)</params>
-                    <applications>
-                        <application>
-                            <name>BNG PPPoE</name>
-                        </application>
-                    </applications>
                 </item>
                 <item>
                     <name>RADIUS / AAA: Requisicoes de Autenticacao PPPoE (Taxa)</name>
@@ -354,11 +215,6 @@
                     <trends>365d</trends>
                     <status>0</status>
                     <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
-                    <applications>
-                        <application>
-                            <name>RADIUS / AAA</name>
-                        </application>
-                    </applications>
                 </item>
                 <item>
                     <name>RADIUS / AAA: Autenticacoes Aprovadas (Sucesso)</name>
@@ -370,11 +226,6 @@
                     <trends>365d</trends>
                     <status>0</status>
                     <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
-                    <applications>
-                        <application>
-                            <name>RADIUS / AAA</name>
-                        </application>
-                    </applications>
                 </item>
                 <item>
                     <name>RADIUS / AAA: Autenticacoes Rejeitadas (Falha)</name>
@@ -386,11 +237,6 @@
                     <trends>365d</trends>
                     <status>0</status>
                     <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
-                    <applications>
-                        <application>
-                            <name>RADIUS / AAA</name>
-                        </application>
-                    </applications>
                 </item>
             </items>
             <discovery_rules>
@@ -409,11 +255,6 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerAdminStatus[{#IP}.{#ASN}]</key>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Established time for peer - IP {#IP}: ASN ({#ASN})</name>
@@ -422,11 +263,6 @@
                             <snmp_oid>1.3.6.1.2.1.15.3.1.16.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerFsmEstablishedTime.[{#IP}.{#ASN}]</key>
                             <units>uptime</units>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Total IPv4 routes from peer - IP {#IP}: ASN ({#ASN})</name>
@@ -435,11 +271,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.1.1.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerIPv4Routes[{#IP}.{#ASN}]</key>
                             <units>prefixes</units>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Remote AS for peer - IP {#IP}: ASN ({#ASN})</name>
@@ -449,11 +280,6 @@
                             <key>netstream.BgpPeerRemoteAs[{#IP}.{#ASN}]</key>
                             <trends>365d</trends>
                             <value_type>CHAR</value_type>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Operational status for peer - IP {#IP}: ASN ({#ASN})</name>
@@ -461,11 +287,6 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerState.[{#IP}.{#ASN}]</key>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>ASN Owner: {#IP} - {#ASN}</name>
@@ -474,11 +295,6 @@
                             <delay>1h</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>BGP</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -532,11 +348,6 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}]</key>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Established time for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
@@ -545,11 +356,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerFsmEstablishedTimeV6.[{#IP}.{#ASN}]</key>
                             <units>uptime</units>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Total IPv6 routes from peer - IP {#IP}: ASN ({#ASN})</name>
@@ -558,11 +364,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.2.1.2.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerIPv6Routes[{#IP}.{#ASN}]</key>
                             <units>prefixes</units>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Remote AS for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
@@ -572,11 +373,6 @@
                             <key>netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}]</key>
                             <trends>365d</trends>
                             <value_type>CHAR</value_type>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Operational status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
@@ -584,11 +380,6 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerStateV6.[{#IP}.{#ASN}]</key>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>ASN Owner V6: {#IP} - {#ASN}</name>
@@ -597,11 +388,6 @@
                             <delay>1h</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>BGP</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -656,11 +442,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.17.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.state[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
-                            <applications>
-                                <application>
-                                    <name>BFD</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>HUAWEI - BFD Session State</name>
                             </valuemap>
@@ -672,11 +453,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.18.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.diag[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <applications>
-                                <application>
-                                    <name>BFD</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>HUAWEI - BFD Diagnostic Code</name>
                             </valuemap>
@@ -688,11 +464,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.9.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.remote_discr[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
-                            <applications>
-                                <application>
-                                    <name>BFD</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>BFD Application Type: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
@@ -701,11 +472,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.application[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
-                            <applications>
-                                <application>
-                                    <name>BFD</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>BFD Address Type (1=IPv4, 2=IPv6): Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
@@ -714,11 +480,6 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.22.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.addr_type[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
-                            <applications>
-                                <application>
-                                    <name>BFD</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>HUAWEI - BFD Address Type</name>
                             </valuemap>
@@ -775,11 +536,6 @@
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.tempslot[{#SNMPINDEX}]</key>
                             <units>C</units>
-                            <applications>
-                                <application>
-                                    <name>temperatura</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{count(#5)}&gt;=50</expression>
@@ -873,11 +629,6 @@
                                     <params>8</params>
                                 </step>
                             </preprocessing>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
@@ -897,11 +648,6 @@
                                     <params>8</params>
                                 </step>
                             </preprocessing>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Status da interface - {#IF}: ({#IFALIAS})</name>
@@ -969,11 +715,6 @@
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                     </item_prototypes>
                     <graph_prototypes>
@@ -1014,11 +755,6 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.8.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.mtu.[{#IFNB}.{#SNMPINDEX}]</key>
-                            <applications>
-                                <application>
-                                    <name>ospf-mtu</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>OSPF {#IFNB} - State</name>
@@ -1026,11 +762,6 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.10.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.state[{#IFNB}.{#SNMPINDEX}]</key>
-                            <applications>
-                                <application>
-                                    <name>ospf-state</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>HUAWEI - OSPF</name>
                             </valuemap>
@@ -1097,11 +828,6 @@
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
-                            <applications>
-                                <application>
-                                    <name>OSPF</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>OSPF {#IFNB} - Uptime</name>
@@ -1111,11 +837,6 @@
                             <key>netstream.ospf.uptime2[{#IFNB}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <units>s</units>
-                            <applications>
-                                <application>
-                                    <name>OSPF</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
@@ -1136,11 +857,6 @@
                             <key>netstream.hwAvgDuty1min.[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
-                            <applications>
-                                <application>
-                                    <name>CPU</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Uso em 5 min</name>
@@ -1150,11 +866,6 @@
                             <key>netstream.hwAvgDuty5min.[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
-                            <applications>
-                                <application>
-                                    <name>CPU</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{min(5m)}&gt;60</expression>
@@ -1258,11 +969,6 @@
                             <delay>60</delay>
                             <units>%</units>
                             <description>Uso de CPU para roteadores Huawei NetEngine (NE20/NE40). HUAWEI-ENTITY-EXTENT-MIB::hwEntityCpuUsage.</description>
-                            <applications>
-                                <application>
-                                    <name>CPU</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{min(5m)}&gt;60</expression>
@@ -1329,11 +1035,6 @@
                             <history>7d</history>
                             <trends>3d</trends>
                             <units>%</units>
-                            <applications>
-                                <application>
-                                    <name>Fan</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{min(5m)}&gt;=80</expression>
@@ -1371,11 +1072,6 @@
                             <delay>300</delay>
                             <history>7d</history>
                             <trends>3d</trends>
-                            <applications>
-                                <application>
-                                    <name>Fan</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>hwEntityFanState</name>
                             </valuemap>
@@ -1428,11 +1124,6 @@
                             <valuemap>
                                 <name>PSU HUAWEI PRESENTE</name>
                             </valuemap>
-                            <applications>
-                                <application>
-                                    <name>Power Supply (PSU)</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>PSU [{#SNMPINDEX}]: Status</name>
@@ -1445,11 +1136,6 @@
                             <valuemap>
                                 <name>PSU HUAWEI STATUS</name>
                             </valuemap>
-                            <applications>
-                                <application>
-                                    <name>Power Supply (PSU)</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{last()}&gt;1</expression>
@@ -1486,11 +1172,6 @@
                             <delay>5m</delay>
                             <trends>365d</trends>
                             <units>watts</units>
-                            <applications>
-                                <application>
-                                    <name>Power Supply (PSU)</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>PSU [{#SNMPINDEX}]: Tipo de fonte</name>
@@ -1503,11 +1184,6 @@
                             <valuemap>
                                 <name>Tipo de fonte HUAWEI</name>
                             </valuemap>
-                            <applications>
-                                <application>
-                                    <name>Power Supply (PSU)</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>PSU [{#SNMPINDEX}]: Potencia Consumida (W)</name>
@@ -1518,11 +1194,6 @@
                             <delay>5m</delay>
                             <trends>365d</trends>
                             <units>watts</units>
-                            <applications>
-                                <application>
-                                    <name>Power Supply (PSU)</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
@@ -1543,11 +1214,6 @@
                             <delay>1m</delay>
                             <trends>365d</trends>
                             <units>watts</units>
-                            <applications>
-                                <application>
-                                    <name>Power Supply (PSU)</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
@@ -1589,17 +1255,6 @@
                             <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                                <application>
-                                    <name>Optical</name>
-                                </application>
-                                <application>
-                                    <name>RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1645,11 +1300,6 @@
                             <delay>1h</delay>
                             <history>365d</history>
                             <value_type>FLOAT</value_type>
-                            <applications>
-                                <application>
-                                    <name>TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1667,17 +1317,6 @@
                             <history>7d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                                <application>
-                                    <name>Optical</name>
-                                </application>
-                                <application>
-                                    <name>RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1696,17 +1335,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                                <application>
-                                    <name>Optical</name>
-                                </application>
-                                <application>
-                                    <name>RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1725,17 +1353,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                                <application>
-                                    <name>Optical</name>
-                                </application>
-                                <application>
-                                    <name>RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1754,11 +1371,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1777,11 +1389,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
-                            <applications>
-                                <application>
-                                    <name>Temperatura</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Optical Transfer Distance</name>
@@ -1791,11 +1398,6 @@
                             <key>netstream.hwEntityOpticalTransferDistance.[{#ENTPHYSICALNAME}]</key>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>Optical</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Threshold</name>
@@ -1808,11 +1410,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1831,17 +1428,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                                <application>
-                                    <name>Optical</name>
-                                </application>
-                                <application>
-                                    <name>TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1860,14 +1446,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                                <application>
-                                    <name>TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1886,14 +1464,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                                <application>
-                                    <name>TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -1911,11 +1481,6 @@
                             <history>365d</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>Interface-name</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Type</name>
@@ -1927,11 +1492,6 @@
                             <history>1w</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>type-tranceiver</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Description / Alias</name>
@@ -1993,11 +1553,6 @@
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>30d</trends>
-                            <applications>
-                                <application>
-                                    <name>Memoria</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Contagem de falhas de alocacao de memoria</name>
@@ -2008,11 +1563,6 @@
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>30d</trends>
-                            <applications>
-                                <application>
-                                    <name>Memoria</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Memoria Livre</name>
@@ -2025,11 +1575,6 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>B</units>
-                            <applications>
-                                <application>
-                                    <name>Memoria</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Memoria Utilizada</name>
@@ -2041,11 +1586,6 @@
                             <value_type>FLOAT</value_type>
                             <units>B</units>
                             <params>last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")-last("netstream.hwMemoryDevFree[{#SNMPINDEX}]")</params>
-                            <applications>
-                                <application>
-                                    <name>Memoria</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Tamanho total da memoria</name>
@@ -2058,11 +1598,6 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>B</units>
-                            <applications>
-                                <application>
-                                    <name>Memoria</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Memoria Livre (%)</name>
@@ -2074,11 +1609,6 @@
                             <value_type>FLOAT</value_type>
                             <units>%</units>
                             <params>last("netstream.hwMemoryDevFree[{#SNMPINDEX}]")/last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")*100</params>
-                            <applications>
-                                <application>
-                                    <name>Memoria</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{min(5m)}&lt;=40</expression>
@@ -2135,11 +1665,6 @@
                             <value_type>FLOAT</value_type>
                             <units>%</units>
                             <params>(last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")-last("netstream.hwMemoryDevFree[{#SNMPINDEX}]"))/last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")*100</params>
-                            <applications>
-                                <application>
-                                    <name>Memoria</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{min(5m)}&gt;=60</expression>
@@ -2292,11 +1817,6 @@
                             <history>365d</history>
                             <units>bps</units>
                             <description>The number of octets in valid MAC frames received on this interface, including the MAC header and FCS.</description>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
@@ -2317,11 +1837,6 @@
                             <history>365d</history>
                             <units>bps</units>
                             <description>The number of octets transmitted in MAC frames on this interface, including the MAC header and FCS.</description>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
@@ -2343,11 +1858,6 @@
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.  For character-oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol.</description>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
@@ -2364,11 +1874,6 @@
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>The current operational state of the interface.</description>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>SNMP interface status (ifOperStatus)</name>
                             </valuemap>
@@ -2416,14 +1921,6 @@
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</description>
-                            <applications>
-                                <application>
-                                    <name>if-error-in</name>
-                                </application>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
@@ -2440,11 +1937,6 @@
                             <delay>1h</delay>
                             <trends>365d</trends>
                             <units>bps</units>
-                            <applications>
-                                <application>
-                                    <name>if-speed</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -2462,11 +1954,6 @@
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</description>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{change()}&gt;100</expression>
@@ -2625,11 +2112,6 @@
                             <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
@@ -2652,11 +2134,6 @@
                             <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
@@ -2679,11 +2156,6 @@
                             <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
@@ -2706,11 +2178,6 @@
                             <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
@@ -2733,11 +2200,6 @@
                             <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
@@ -2760,11 +2222,6 @@
                             <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
@@ -2787,11 +2244,6 @@
                             <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
@@ -2814,11 +2266,6 @@
                             <history>365d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
@@ -2839,11 +2286,6 @@
                             <key>netstream.hwEntityOpticalmultilanTransferDistance.[{#ENTPHYSICALNAME}]</key>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>Optical</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Threshold</name>
@@ -2854,11 +2296,6 @@
                             <history>7d</history>
                             <trends>7d</trends>
                             <value_type>FLOAT</value_type>
-                            <applications>
-                                <application>
-                                    <name>100GE-RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -2876,11 +2313,6 @@
                             <trends>7d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -2899,11 +2331,6 @@
                             <trends>7d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -2920,11 +2347,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-RX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -2943,11 +2365,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
-                            <applications>
-                                <application>
-                                    <name>Temperatura</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Threshold</name>
@@ -2959,11 +2376,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -2980,11 +2392,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -3001,11 +2408,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -3022,11 +2424,6 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>100GE-TX</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -3044,11 +2441,6 @@
                             <history>365d</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>Interface-name</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Type</name>
@@ -3060,11 +2452,6 @@
                             <history>7d</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>type-tranceiver</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Description / Alias</name>
@@ -3132,11 +2519,6 @@ or
                             <history>30d</history>
                             <trends>365d</trends>
                             <units>users</units>
-                            <applications>
-                                <application>
-                                    <name>BNG PPPoE</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>PPPoE Dominio [{#DOMAIN}]: Maximo de Clientes (24h)</name>
@@ -3147,11 +2529,6 @@ or
                             <trends>365d</trends>
                             <units>users</units>
                             <params>max(//netstream.pppoe.domain.users[{#SNMPINDEX}],1d)</params>
-                            <applications>
-                                <application>
-                                    <name>BNG PPPoE</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>PPPoE Dominio [{#DOMAIN}]: Minimo de Clientes (24h)</name>
@@ -3162,11 +2539,6 @@ or
                             <trends>365d</trends>
                             <units>users</units>
                             <params>min(//netstream.pppoe.domain.users[{#SNMPINDEX}],1d)</params>
-                            <applications>
-                                <application>
-                                    <name>BNG PPPoE</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -3232,11 +2604,6 @@ or
                             <history>30d</history>
                             <trends>365d</trends>
                             <units>users</units>
-                            <applications>
-                                <application>
-                                    <name>BNG PPPoE</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>PPPoE Interface [{#HWBASIFNAME} - {#IFALIAS}]: Maximo de Clientes (24h)</name>
@@ -3247,11 +2614,6 @@ or
                             <trends>365d</trends>
                             <units>users</units>
                             <params>max(//netstream.pppoe.interface.users[{#SNMPINDEX}],1d)</params>
-                            <applications>
-                                <application>
-                                    <name>BNG PPPoE</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>PPPoE Interface [{#HWBASIFNAME} - {#IFALIAS}]: Minimo de Clientes (24h)</name>
@@ -3262,11 +2624,6 @@ or
                             <trends>365d</trends>
                             <units>users</units>
                             <params>min(//netstream.pppoe.interface.users[{#SNMPINDEX}],1d)</params>
-                            <applications>
-                                <application>
-                                    <name>BNG PPPoE</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
