@@ -2669,6 +2669,250 @@ or
                     <description>Minimum active PPPoE users required on interface/domain before triggering mass disconnection alerts</description>
                 </macro>
             </macros>
+            <valuemaps>
+                <valuemap>
+                    <uuid>c91e97edc3584e08b4832c2c241e56f3</uuid>
+                    <name>HUAWEI - BFD Address Type</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>IPv4</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>IPv6</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>c91e97edc3584e08b4832c2c241e56f2</uuid>
+                    <name>HUAWEI - BFD Diagnostic Code</name>
+                    <mappings>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>No Diagnostic</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Control Detection Time Expired</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Echo Function Failed</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Neighbor Signaled Session Down</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>Forwarding Plane Reset</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>Path Down</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>c91e97edc3584e08b4832c2c241e56f1</uuid>
+                    <name>HUAWEI - BFD Session State</name>
+                    <mappings>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>AdminDown</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Down</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Init</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Up</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>b84e97edc3584e08b4832c2c241e56f1</uuid>
+                    <name>HUAWEI - OSPF</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>down</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>attempt</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>init</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>twoWay</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>exchangeStart</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>exchange</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>loading</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>8</value>
+                            <newvalue>full</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>1f6a86a087824dbea16ed5fbfd2f6f9a</uuid>
+                    <name>hwEntityFanState</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>normal</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>anormal</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>64de793c3ba74281929f95be8ea0e3f4</uuid>
+                    <name>OSPF Network Type</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Broadcast</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>NBMA</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Point-to-Point</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>Point-to-Multipoint</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>4e1d6c15c7b746c3852a0204a3db71cd</uuid>
+                    <name>PSU HUAWEI PRESENTE</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Presente</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Sem Fonte</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>5fd7a57ef855465fb72d3f7672a1e365</uuid>
+                    <name>PSU HUAWEI STATUS</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Alimentação ( fornecendo energia )</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>NotSupply ( não está fornecendo energia)</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Sleep ( estado de hibernação)</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>Desconhecido ( informação não pode ser obtida )</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>742db5adbecc45ff9a49036b87e61be4</uuid>
+                    <name>Queda de energia</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Energia OK</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>!!!Queda de energia!!!</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>4fe3f52637ad459fa2ebed67c1209214</uuid>
+                    <name>SNMP interface status (ifOperStatus)</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>up</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>down</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>testing</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>unknown</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>dormant</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>notPresent</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>lowerLayerDown</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>5ef9dd7213fc4df286cc64c24315ab60</uuid>
+                    <name>Tipo de fonte HUAWEI</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Desconhecido</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>DC</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>AC</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
         </template>
     </templates>
     <triggers>
