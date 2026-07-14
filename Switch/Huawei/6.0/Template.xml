@@ -131,7 +131,7 @@
                     <preprocessing>
                         <step>
                             <type>MULTIPLIER</type>
-                            <params>0.01</params>
+                            <parameters>0.01</parameters>
                         </step>
                     </preprocessing>
                     <triggers>
@@ -620,11 +620,11 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params />
+                                    <parameters></parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>8</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -639,11 +639,11 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params />
+                                    <parameters></parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>8</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1236,7 +1236,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                             <trigger_prototypes>
@@ -1281,7 +1281,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1298,7 +1298,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1316,7 +1316,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1334,7 +1334,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1352,7 +1352,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1391,7 +1391,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1409,7 +1409,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1427,7 +1427,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1445,7 +1445,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1800,11 +1800,11 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params />
+                                    <parameters></parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>8</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1820,11 +1820,11 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params />
+                                    <parameters></parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>8</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1841,7 +1841,7 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params />
+                                    <parameters></parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1901,7 +1901,7 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params />
+                                    <parameters></parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1917,7 +1917,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>1000000</params>
+                                    <parameters>1000000</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2094,12 +2094,12 @@
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
-                                    <params>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
-\1</params>
+                                    <parameters>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
+\1</parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2116,12 +2116,12 @@
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
-                                    <params>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
-\2</params>
+                                    <parameters>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
+\2</parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2138,12 +2138,12 @@
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
-                                    <params>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
-\3</params>
+                                    <parameters>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
+\3</parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2160,12 +2160,12 @@
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
-                                    <params>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
-\4</params>
+                                    <parameters>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
+\4</parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2182,12 +2182,12 @@
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
-                                    <params>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
-\1</params>
+                                    <parameters>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
+\1</parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2204,12 +2204,12 @@
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
-                                    <params>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
-\2</params>
+                                    <parameters>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
+\2</parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2226,12 +2226,12 @@
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
-                                    <params>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
-\3</params>
+                                    <parameters>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
+\3</parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2248,12 +2248,12 @@
                             <preprocessing>
                                 <step>
                                     <type>REGEX</type>
-                                    <params>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
-\4</params>
+                                    <parameters>([^\,\s]*),([^\,\s]*),([^,\s]*),([^,\s]*)
+\4</parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2278,7 +2278,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2295,7 +2295,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2313,7 +2313,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2329,7 +2329,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2358,7 +2358,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2374,7 +2374,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2390,7 +2390,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2406,7 +2406,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <parameters>0.01</parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
