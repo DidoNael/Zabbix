@@ -62,6 +62,7 @@
                     <units>%</units>
                     <triggers>
                         <trigger>
+                            <uuid>5a36137e9cf744439a11ac103c3c2dc5</uuid>
                             <expression>{last()}&gt;80</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{last()}&lt;80</recovery_expression>
@@ -84,6 +85,7 @@
                             </tags>
                         </trigger>
                         <trigger>
+                            <uuid>4c65f080111a4a25a8130d8683ab192b</uuid>
                             <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.aaa.auth.fail)&gt;50</expression>
                             <name>RADIUS / AAA: Surto de Falhas de Autenticacao PPPoE (&gt;50 falhas por coleta)</name>
                             <priority>HIGH</priority>
@@ -134,6 +136,7 @@
                     </preprocessing>
                     <triggers>
                         <trigger>
+                            <uuid>728fb36f37244d799543cc50658aee45</uuid>
                             <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.sysUpTime.0)&lt;600 or change(/Template Switch Huawei 6700 Series - Netstream/netstream.sysUpTime.0)&lt;0</expression>
                             <name>Switch Huawei: Equipamento Reiniciou (Uptime &lt; 10m)</name>
                             <priority>WARNING</priority>
@@ -154,6 +157,7 @@
                             </tags>
                         </trigger>
                         <trigger>
+                            <uuid>e38f51658cee44298facdf09b93ef812</uuid>
                             <expression>nodata(/Template Switch Huawei 6700 Series - Netstream/netstream.sysUpTime.0,15m)=1</expression>
                             <name>Switch Huawei: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 15m)</name>
                             <priority>DISASTER</priority>
@@ -2931,6 +2935,7 @@ or
     </templates>
     <triggers>
         <trigger>
+            <uuid>c012bd8942fe4b7c8578262e101d3c16</uuid>
             <expression>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &gt; 80) or
 ({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty5min[{#SNMPINDEX}].last()} &gt; 80)</expression>
             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
