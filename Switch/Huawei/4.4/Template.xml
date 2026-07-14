@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-06-25T01:49:01Z</date>
@@ -887,6 +887,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
                             <history>30d</history>
                             <units>bps</units>
                             <preprocessing>
@@ -911,6 +912,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
                             <history>30d</history>
                             <units>bps</units>
                             <preprocessing>
@@ -2263,6 +2265,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
                             <history>30d</history>
                             <units>bps</units>
                             <description>The number of octets in valid MAC frames received on this interface, including the MAC header and FCS.</description>
@@ -2288,6 +2291,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
                             <history>30d</history>
                             <units>bps</units>
                             <description>The number of octets transmitted in MAC frames on this interface, including the MAC header and FCS.</description>
