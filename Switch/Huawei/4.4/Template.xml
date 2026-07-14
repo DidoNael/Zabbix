@@ -202,26 +202,6 @@
                                 </tag>
                             </tags>
                         </trigger>
-                        <trigger>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.aaa.auth.fail.change()}&gt;50</expression>
-                            <name>RADIUS / AAA: Surto de Falhas de Autenticacao PPPoE (&gt;50 falhas por coleta)</name>
-                            <priority>HIGH</priority>
-                            <description>Alerta quando o numero de rejeicoes de autenticacao PPPoE/AAA cresce subitamente em uma coleta (indicativo de falha no servidor RADIUS ou IXC/SGP).</description>
-                            <tags>
-                                <tag>
-                                    <tag>Scope</tag>
-                                    <value>BNG</value>
-                                </tag>
-                                <tag>
-                                    <tag>FailuresNow</tag>
-                                    <value>{ITEM.LASTVALUE1}</value>
-                                </tag>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>RADIUS/AAA</value>
-                                </tag>
-                            </tags>
-                        </trigger>
                     </triggers>
                 </item>
                 <item>
@@ -348,54 +328,6 @@
                     <applications>
                         <application>
                             <name>BNG PPPoE</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
-                    <name>RADIUS / AAA: Requisicoes de Autenticacao PPPoE (Taxa)</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{}</snmp_community>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.2.1.14.1.3.1.0</snmp_oid>
-                    <key>netstream.aaa.auth.requests</key>
-                    <delay>2m</delay>
-                    <history>30d</history>
-                    <trends>90d</trends>
-                    <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
-                    <applications>
-                        <application>
-                            <name>RADIUS / AAA</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
-                    <name>RADIUS / AAA: Autenticacoes Aprovadas (Sucesso)</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{}</snmp_community>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.2.1.14.1.3.2.0</snmp_oid>
-                    <key>netstream.aaa.auth.success</key>
-                    <delay>2m</delay>
-                    <history>30d</history>
-                    <trends>90d</trends>
-                    <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
-                    <applications>
-                        <application>
-                            <name>RADIUS / AAA</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
-                    <name>RADIUS / AAA: Autenticacoes Rejeitadas (Falha)</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{}</snmp_community>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.2.1.14.1.3.3.0</snmp_oid>
-                    <key>netstream.aaa.auth.fail</key>
-                    <delay>2m</delay>
-                    <history>30d</history>
-                    <trends>90d</trends>
-                    <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
-                    <applications>
-                        <application>
-                            <name>RADIUS / AAA</name>
                         </application>
                     </applications>
                 </item>
