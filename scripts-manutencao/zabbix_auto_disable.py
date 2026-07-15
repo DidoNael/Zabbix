@@ -30,8 +30,10 @@ ZABBIX_PASSWORD = os.getenv("ZABBIX_PASSWORD", "zabbix")
 # Tempo minimo (em minutos) que um item deve estar com erro antes de ser desabilitado
 MIN_ERROR_MINUTES = int(os.getenv("MIN_ERROR_MINUTES", "10"))
 
-# Tipos de item SNMP (SNMPv1=1, SNMPv2c=4, SNMPv3=6)
-SNMP_ITEM_TYPES = [1, 4, 6]
+# Tipos de item a verificar
+# SNMP: SNMPv1=1, SNMPv2c=4, SNMPv3=6
+# Calculado=15 (depende de outros itens que podem nao existir mais)
+ITEM_TYPES = [1, 4, 6, 15]
 
 # Erros que indicam timeout/conexao (item.error)
 ERROR_PATTERNS = [
@@ -45,6 +47,8 @@ ERROR_PATTERNS = [
     "preprocessing failed",
     "not suitable for value type",
     "cannot parse",
+    "does not exist",
+    "cannot evaluate",
 ]
 
 # Modo dry-run: se True, apenas lista os itens sem desabilitar
@@ -104,7 +108,7 @@ def get_unsupported_snmp_items(url, auth):
         "filter": {
             "state": 1,       # not supported
             "status": 0,      # habilitado
-            "type": SNMP_ITEM_TYPES,
+            "type": ITEM_TYPES,
         },
         "selectHosts": ["host", "name"],
         "limit": 500,
@@ -120,7 +124,7 @@ def get_unsupported_item_prototypes(url, auth):
             "filter": {
                 "state": 1,
                 "status": 0,
-                "type": SNMP_ITEM_TYPES,
+                "type": ITEM_TYPES,
             },
             "selectHosts": ["host", "name"],
             "limit": 500,
