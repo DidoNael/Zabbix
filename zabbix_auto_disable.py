@@ -40,6 +40,11 @@ ERROR_PATTERNS = [
     "cannot connect",
     "no response",
     "unreachable",
+    "no such instance",
+    "no such object",
+    "preprocessing failed",
+    "not suitable for value type",
+    "cannot parse",
 ]
 
 # Modo dry-run: se True, apenas lista os itens sem desabilitar
