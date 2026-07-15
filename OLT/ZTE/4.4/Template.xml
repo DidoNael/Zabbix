@@ -352,7 +352,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.onu.offline[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <params>last("gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]")-last("gpon.onu.online[{#SNMPINDEX}]")</params>
+                            <params>last("netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]")-last("netstream.gpon.onu.online[{#SNMPINDEX}]")</params>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): ONUs Online</name>
@@ -367,7 +367,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.onu.online_antes[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <params>last("gpon.onu.online[{#SNMPINDEX}]",#2)</params>
+                            <params>last("netstream.gpon.onu.online[{#SNMPINDEX}]",#2)</params>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): Status Operacional</name>
