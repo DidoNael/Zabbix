@@ -63,30 +63,100 @@
                             <name>OLT: Falha no Ventilador (Fan Fail)</name>
                             <priority>HIGH</priority>
                             <description>Status do ventilador indica falha de hardware na OLT.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Hardware</value>
+                                </tag>
+                                <tag>
+                                    <tag>vendor</tag>
+                                    <value>ZTE</value>
+                                </tag>
+                            </tags>
                         </trigger>
                         <trigger>
                             <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[1].last()}=2</expression>
                             <name>OLT: Falha na Fonte de Energia 1 (PSU 1 Fail)</name>
                             <priority>HIGH</priority>
                             <description>Fonte de alimentacao 1 reporta falha.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Hardware</value>
+                                </tag>
+                                <tag>
+                                    <tag>vendor</tag>
+                                    <value>ZTE</value>
+                                </tag>
+                            </tags>
                         </trigger>
                         <trigger>
                             <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[1].last()}=3</expression>
                             <name>OLT: Fonte de Energia 1 Desconectada / Offline</name>
                             <priority>WARNING</priority>
                             <description>Fonte 1 sem alimentacao AC/DC.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Hardware</value>
+                                </tag>
+                                <tag>
+                                    <tag>vendor</tag>
+                                    <value>ZTE</value>
+                                </tag>
+                            </tags>
                         </trigger>
                         <trigger>
                             <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[2].last()}=2</expression>
                             <name>OLT: Falha na Fonte de Energia 2 (PSU 2 Fail)</name>
                             <priority>HIGH</priority>
                             <description>Fonte de alimentacao 2 reporta falha.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Hardware</value>
+                                </tag>
+                                <tag>
+                                    <tag>vendor</tag>
+                                    <value>ZTE</value>
+                                </tag>
+                            </tags>
                         </trigger>
                         <trigger>
                             <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[2].last()}=3</expression>
                             <name>OLT: Fonte de Energia 2 Desconectada / Offline</name>
                             <priority>WARNING</priority>
                             <description>Fonte 2 sem alimentacao AC/DC.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Hardware</value>
+                                </tag>
+                                <tag>
+                                    <tag>vendor</tag>
+                                    <value>ZTE</value>
+                                </tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
@@ -163,16 +233,16 @@
                             <description>O equipamento reiniciou recentemente ou perdeu energia.</description>
                             <tags>
                                 <tag>
-                                    <tag>Scope</tag>
-                                    <value>Availability</value>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
                                 </tag>
                                 <tag>
-                                    <tag>Event</tag>
-                                    <value>Reboot</value>
+                                    <tag>tipo</tag>
+                                    <value>Reinicializacao</value>
                                 </tag>
                                 <tag>
-                                    <tag>Application</tag>
-                                    <value>System</value>
+                                    <tag>vendor</tag>
+                                    <value>ZTE</value>
                                 </tag>
                             </tags>
                         </trigger>
@@ -183,16 +253,16 @@
                             <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 5 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
                             <tags>
                                 <tag>
-                                    <tag>Scope</tag>
-                                    <value>Availability</value>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
                                 </tag>
                                 <tag>
-                                    <tag>Event</tag>
-                                    <value>Offline</value>
+                                    <tag>tipo</tag>
+                                    <value>Conectividade</value>
                                 </tag>
                                 <tag>
-                                    <tag>Application</tag>
-                                    <value>System</value>
+                                    <tag>vendor</tag>
+                                    <value>ZTE</value>
                                 </tag>
                             </tags>
                         </trigger>
@@ -271,6 +341,22 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>LOS</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>ZTE</value>
+                                        </tag>
+                                        <tag>
                                             <tag>onu_id</tag>
                                             <value>{#ONUID}</value>
                                         </tag>
@@ -287,6 +373,22 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <status>DISABLED</status>
                                     <manual_close>YES</manual_close>
                                     <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Dying Gasp</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>ZTE</value>
+                                        </tag>
                                         <tag>
                                             <tag>onu_id</tag>
                                             <value>{#ONUID}</value>
@@ -432,24 +534,24 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>Scope</tag>
+                                            <tag>scope</tag>
                                             <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>Alias</tag>
-                                            <value>{#PONDESC}</value>
+                                            <tag>tipo</tag>
+                                            <value>Performance</value>
                                         </tag>
                                         <tag>
-                                            <tag>CRCRate</tag>
-                                            <value>{ITEM.LASTVALUE1}</value>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
                                         </tag>
                                         <tag>
-                                            <tag>PON</tag>
+                                            <tag>pon</tag>
                                             <value>{#PONNAME}</value>
                                         </tag>
                                         <tag>
-                                            <tag>Application</tag>
-                                            <value>GPON</value>
+                                            <tag>pon_desc</tag>
+                                            <value>{#PONDESC}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -499,11 +601,19 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>erros_out</tag>
-                                            <value>{ITEM.VALUE1}</value>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>pon_name</tag>
+                                            <tag>tipo</tag>
+                                            <value>Performance</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>pon</tag>
                                             <value>{#PONNAME}</value>
                                         </tag>
                                         <tag>
@@ -546,24 +656,28 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
-                                    <tag>Scope</tag>
+                                    <tag>scope</tag>
                                     <value>OLT</value>
                                 </tag>
                                 <tag>
-                                    <tag>Alias</tag>
-                                    <value>{#PONDESC}</value>
+                                    <tag>tipo</tag>
+                                    <value>Conectividade</value>
                                 </tag>
                                 <tag>
-                                    <tag>ONUsOnline</tag>
-                                    <value>{ITEM.LASTVALUE1}</value>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
                                 </tag>
                                 <tag>
-                                    <tag>PON</tag>
+                                    <tag>pon</tag>
                                     <value>{#PONNAME}</value>
                                 </tag>
                                 <tag>
-                                    <tag>Application</tag>
-                                    <value>GPON</value>
+                                    <tag>pon_desc</tag>
+                                    <value>{#PONDESC}</value>
+                                </tag>
+                                <tag>
+                                    <tag>onus_online</tag>
+                                    <value>{ITEM.LASTVALUE1}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -574,24 +688,28 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
-                                    <tag>Scope</tag>
+                                    <tag>scope</tag>
                                     <value>OLT</value>
                                 </tag>
                                 <tag>
-                                    <tag>Alias</tag>
-                                    <value>{#PONDESC}</value>
+                                    <tag>tipo</tag>
+                                    <value>Capacidade</value>
                                 </tag>
                                 <tag>
-                                    <tag>ONUsOnline</tag>
-                                    <value>{ITEM.LASTVALUE1}</value>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
                                 </tag>
                                 <tag>
-                                    <tag>PON</tag>
+                                    <tag>pon</tag>
                                     <value>{#PONNAME}</value>
                                 </tag>
                                 <tag>
-                                    <tag>Application</tag>
-                                    <value>GPON</value>
+                                    <tag>pon_desc</tag>
+                                    <value>{#PONDESC}</value>
+                                </tag>
+                                <tag>
+                                    <tag>onus_online</tag>
+                                    <value>{ITEM.LASTVALUE1}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -602,24 +720,28 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
-                                    <tag>Scope</tag>
+                                    <tag>scope</tag>
                                     <value>OLT</value>
                                 </tag>
                                 <tag>
-                                    <tag>Alias</tag>
-                                    <value>{#PONDESC}</value>
+                                    <tag>tipo</tag>
+                                    <value>LOS</value>
                                 </tag>
                                 <tag>
-                                    <tag>ONUsOnline</tag>
-                                    <value>{ITEM.LASTVALUE1}</value>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
                                 </tag>
                                 <tag>
-                                    <tag>PON</tag>
+                                    <tag>pon</tag>
                                     <value>{#PONNAME}</value>
                                 </tag>
                                 <tag>
-                                    <tag>Application</tag>
-                                    <value>GPON</value>
+                                    <tag>pon_desc</tag>
+                                    <value>{#PONDESC}</value>
+                                </tag>
+                                <tag>
+                                    <tag>onus_online</tag>
+                                    <value>{ITEM.LASTVALUE1}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -806,19 +928,19 @@ return JSON.stringify(result);</params>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>PONDOWN</tag>
-                                            <value>PONDOWN</value>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>PONOLT</tag>
-                                            <value>{#PONNAME}</value>
+                                            <tag>tipo</tag>
+                                            <value>Conectividade</value>
                                         </tag>
                                         <tag>
-                                            <tag>PONZTE</tag>
-                                            <value>PONZTE</value>
+                                            <tag>vendor</tag>
+                                            <value>ZTE</value>
                                         </tag>
                                         <tag>
-                                            <tag>pon_name</tag>
+                                            <tag>pon</tag>
                                             <value>{#PONNAME}</value>
                                         </tag>
                                         <tag>
@@ -880,20 +1002,20 @@ return JSON.stringify(result);</params>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>Scope</tag>
-                                            <value>Customer</value>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>Status</tag>
-                                            <value>Offline</value>
+                                            <tag>tipo</tag>
+                                            <value>Conectividade</value>
                                         </tag>
                                         <tag>
-                                            <tag>Customer</tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_id</tag>
                                             <value>{#ONTDESC}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Application</tag>
-                                            <value>Dedicated Link</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -932,20 +1054,24 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <description>Sinal optico da ONU dedicada extremamente baixo (&lt; -28 dBm). Risco iminente de queda do link.</description>
                                     <tags>
                                         <tag>
-                                            <tag>Scope</tag>
-                                            <value>Customer</value>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>Signal</tag>
-                                            <value>{ITEM.LASTVALUE1}</value>
+                                            <tag>tipo</tag>
+                                            <value>Optico</value>
                                         </tag>
                                         <tag>
-                                            <tag>Customer</tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_id</tag>
                                             <value>{#ONTDESC}</value>
                                         </tag>
                                         <tag>
-                                            <tag>Application</tag>
-                                            <value>Dedicated Link</value>
+                                            <tag>sinal_rx</tag>
+                                            <value>{ITEM.LASTVALUE1}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -1119,6 +1245,14 @@ return s;</params>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Performance</value>
+                                        </tag>
+                                        <tag>
                                             <tag>slot</tag>
                                             <value>{#SNMPINDEX}</value>
                                         </tag>
@@ -1150,6 +1284,14 @@ return s;</params>
                                     <priority>AVERAGE</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Performance</value>
+                                        </tag>
                                         <tag>
                                             <tag>slot</tag>
                                             <value>{#SNMPINDEX}</value>
@@ -1201,6 +1343,14 @@ return s;</params>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
+                                        <tag>
                                             <tag>slot</tag>
                                             <value>{#SNMPINDEX}</value>
                                         </tag>
@@ -1216,6 +1366,14 @@ return s;</params>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
                                         <tag>
                                             <tag>slot</tag>
                                             <value>{#SNMPINDEX}</value>
@@ -1233,6 +1391,14 @@ return s;</params>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
+                                        <tag>
                                             <tag>slot</tag>
                                             <value>{#SNMPINDEX}</value>
                                         </tag>
@@ -1248,6 +1414,14 @@ return s;</params>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
                                         <tag>
                                             <tag>slot</tag>
                                             <value>{#SNMPINDEX}</value>
@@ -1358,6 +1532,20 @@ return s;</params>
                                     <name>Uplink {#IFNAME} ({#IFALIAS}): Link DOWN / Desconectado</name>
                                     <priority>HIGH</priority>
                                     <description>A porta LAN/Uplink fisica da OLT caiu e permanece indisponivel.</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Conectividade</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>interface</tag>
+                                            <value>{#IFNAME}</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
