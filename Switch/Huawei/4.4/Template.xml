@@ -1521,24 +1521,64 @@
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
-                                            <tag>Scope</tag>
-                                            <value>Optical</value>
+                                            <tag>scope</tag>
+                                            <value>Switch</value>
                                         </tag>
                                         <tag>
-                                            <tag>Alert</tag>
-                                            <value>OpticalSignalChanged</value>
+                                            <tag>tipo</tag>
+                                            <value>Optico</value>
                                         </tag>
                                         <tag>
-                                            <tag>Severity</tag>
-                                            <value>Average</value>
+                                            <tag>interface</tag>
+                                            <value>{#ENTPHYSICALNAME}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <expression>{avg(#3)}&gt;{$OPTICAL_RX_HIGH_WARN}</expression>
+                                    <name>RX Power alto - {#ENTPHYSICALNAME} ({#ENTALIAS}): {ITEM.LASTVALUE} dBm (limiar: {$OPTICAL_RX_HIGH_WARN} dBm)</name>
+                                    <priority>WARNING</priority>
+                                    <description>Sinal RX acima do limiar de warning. Receptor pode estar saturando, causando erros de bit e perda de pacotes intermitente sem queda de link. Verifique necessidade de atenuador optico.</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>Switch</value>
                                         </tag>
                                         <tag>
-                                            <tag>Port</tag>
+                                            <tag>tipo</tag>
+                                            <value>Optico</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>interface</tag>
                                             <value>{#ENTPHYSICALNAME}</value>
                                         </tag>
                                         <tag>
-                                            <tag>Description</tag>
-                                            <value>{#ENTALIAS}</value>
+                                            <tag>sinal_rx</tag>
+                                            <value>{ITEM.LASTVALUE}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <expression>{avg(#3)}&lt;{$OPTICAL_RX_LOW_WARN}</expression>
+                                    <name>RX Power baixo - {#ENTPHYSICALNAME} ({#ENTALIAS}): {ITEM.LASTVALUE} dBm (limiar: {$OPTICAL_RX_LOW_WARN} dBm)</name>
+                                    <priority>WARNING</priority>
+                                    <description>Sinal RX abaixo do limiar de warning. Pode indicar degradacao de fibra, conector sujo, atenuacao excessiva ou falha do laser remoto.</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>Switch</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Optico</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>interface</tag>
+                                            <value>{#ENTPHYSICALNAME}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>sinal_rx</tag>
+                                            <value>{ITEM.LASTVALUE}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -3271,6 +3311,16 @@ or
                     <macro>{$PPPOE_MIN_USERS}</macro>
                     <value>10</value>
                     <description>Minimum active PPPoE users required on interface/domain before triggering mass disconnection alerts</description>
+                </macro>
+                <macro>
+                    <macro>{$OPTICAL_RX_HIGH_WARN}</macro>
+                    <value>0.5</value>
+                    <description>RX Power high warning threshold in dBm. IEEE 802.3ae 10GBASE-LR receiver linear range is up to +0.5 dBm. Values above this indicate saturation risk causing packet loss without link drop.</description>
+                </macro>
+                <macro>
+                    <macro>{$OPTICAL_RX_LOW_WARN}</macro>
+                    <value>-12</value>
+                    <description>RX Power low warning threshold in dBm. Values below this indicate signal degradation — dirty connector, excessive attenuation, or fiber fault.</description>
                 </macro>
             </macros>
         </template>
