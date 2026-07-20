@@ -427,7 +427,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},{#IP}].strlen()}&gt;0</expression>
-                            <name>BGP peer - IP {#IP}: ASN ({#ASN}) - DOWN - {ITEM.LASTVALUE4}</name>
+                            <name>BGP peer - IP {#IP}: ASN ({#ASN}) - DOWN - {ITEM.LASTVALUE3}</name>
                             <priority>HIGH</priority>
                             <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
@@ -454,7 +454,7 @@
                                 </tag>
                                 <tag>
                                     <tag>Provider</tag>
-                                    <value>{ITEM.LASTVALUE4}</value>
+                                    <value>{ITEM.LASTVALUE3}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -554,7 +554,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerStateV6.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},{#IP},v6].strlen()}&gt;0</expression>
-                            <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN}) - DOWN - {ITEM.LASTVALUE4}</name>
+                            <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN}) - DOWN - {ITEM.LASTVALUE3}</name>
                             <priority>HIGH</priority>
                             <description>Trigger for IPv6 peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
                             <manual_close>YES</manual_close>
@@ -581,7 +581,7 @@
                                 </tag>
                                 <tag>
                                     <tag>Provider</tag>
-                                    <value>{ITEM.LASTVALUE4}</value>
+                                    <value>{ITEM.LASTVALUE3}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
