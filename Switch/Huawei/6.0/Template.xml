@@ -744,7 +744,6 @@
                                 <graph_item>
                                     <color>00FF00</color>
                                     <item>
-                                        <uuid>e9ed57513c0c444fa34b989c95059623</uuid>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
@@ -753,7 +752,6 @@
                                     <sortorder>1</sortorder>
                                     <color>FF0000</color>
                                     <item>
-                                        <uuid>ff7c3c2b76964a9cbe0012a174f1adf8</uuid>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
@@ -945,7 +943,6 @@
                                     <sortorder>0</sortorder>
                                     <color>1A7C11</color>
                                     <item>
-                                        <uuid>1ad0bec896de4bd29868b33e8c6984f3</uuid>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.hwAvgDuty1min.[{#SNMPINDEX}]</key>
                                     </item>
@@ -954,7 +951,6 @@
                                     <sortorder>1</sortorder>
                                     <color>F63100</color>
                                     <item>
-                                        <uuid>11a3af726fe84d3caf8646f6f834bcbd</uuid>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.hwAvgDuty5min.[{#SNMPINDEX}]</key>
                                     </item>
@@ -2121,7 +2117,6 @@
                                     <drawtype>GRADIENT_LINE</drawtype>
                                     <color>00FF00</color>
                                     <item>
-                                        <uuid>2c38532d0a2a45cd937257e7116dfde1</uuid>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
@@ -2131,7 +2126,6 @@
                                     <drawtype>GRADIENT_LINE</drawtype>
                                     <color>FF0000</color>
                                     <item>
-                                        <uuid>9f272336cbc24f29afe5298c57e18f84</uuid>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}]</key>
                                     </item>
@@ -2700,7 +2694,6 @@ or
                                     <color>1A7C11</color>
                                     <drawtype>GRADIENT_LINE</drawtype>
                                     <item>
-                                        <uuid>cc188bc1f61c42eea248d72bf7303dc5</uuid>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.pppoe.domain.users[{#SNMPINDEX}]</key>
                                     </item>
@@ -2796,7 +2789,6 @@ or
                                     <color>1A7C11</color>
                                     <drawtype>GRADIENT_LINE</drawtype>
                                     <item>
-                                        <uuid>e67f2b0cab8a4f8bab21d97212753d6d</uuid>
                                         <host>Template Switch Huawei 6700 Series - Netstream</host>
                                         <key>netstream.pppoe.interface.users[{#SNMPINDEX}]</key>
                                     </item>
