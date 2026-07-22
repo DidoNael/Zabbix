@@ -63,9 +63,9 @@
                     <triggers>
                         <trigger>
                             <uuid>5a36137e9cf744439a11ac103c3c2dc5</uuid>
-                            <expression>{last()}&gt;80</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.memousage)&gt;80</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{last()}&lt;80</recovery_expression>
+                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.memousage)&lt;80</recovery_expression>
                             <name>Uso alto de memoria RAM</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
@@ -313,7 +313,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>c9675beee022592a84748d467304c971</uuid>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},{#IP}].strlen()}&gt;0</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN},{#IP}]))&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN}) - DOWN - {ITEM.LASTVALUE3}</name>
                             <priority>HIGH</priority>
                             <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
@@ -408,7 +408,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>86432c19bf725503bf3d457f70c9907a</uuid>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerStateV6.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},{#IP},v6].strlen()}&gt;0</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN},{#IP},v6]))&gt;0</expression>
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN}) - DOWN - {ITEM.LASTVALUE3}</name>
                             <priority>HIGH</priority>
                             <description>Trigger for IPv6 peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
@@ -495,7 +495,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>461a1e645de9527bb8f68483dfd9e637</uuid>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.bfd.state[{#SNMPINDEX}].last(#2)}=2</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.bfd.state[{#SNMPINDEX}],#2)=2</expression>
                             <name>BFD Session DOWN: Peer {#BFD_PEER} (Discr: {#BFD_DISCRIMINATOR})</name>
                             <priority>HIGH</priority>
                             <description>Sessao BFD com o peer {#BFD_PEER} (Discriminator Local {#BFD_DISCRIMINATOR}) esta no estado DOWN (2).</description>
@@ -547,7 +547,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>31a645cc8be25d809c6b8200d44c201e</uuid>
-                                    <expression>{count(#5)}&gt;=50</expression>
+                                    <expression>count(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],#5)&gt;=50</expression>
                                     <name>Temperatura alta</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -677,9 +677,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>27daded60c4c530486d345e58949a8c3</uuid>
-                                    <expression>{diff()}=1</expression>
+                                    <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}],#1)&lt;&gt;last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}],#2))=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{last()}=1</recovery_expression>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=1</recovery_expression>
                                     <name>Status da interface - {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -707,7 +707,7 @@
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>4b30bac4c43e5a468112f33c61cdce66</uuid>
-                                    <expression>{change()}=2</expression>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=2</expression>
                                     <name>Vlan down - {#IF}: ({#IFALIAS})</name>
                                     <priority>INFO</priority>
                                     <tags>
@@ -785,7 +785,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>870c0c00c38457bd808850d5043d8c1e</uuid>
-                                    <expression>{last()}&lt;8</expression>
+                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ospf.state[{#IFNB}.{#SNMPINDEX}])&lt;8</expression>
                                     <name>Alteracao no OSPF: {#IFNB}</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -819,9 +819,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>8b32ebdd2f85539ba18571b88478fcfd</uuid>
-                                    <expression>{last()}&lt;600</expression>
+                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ospf.uptime.[{#IFNB}.{#SNMPINDEX}])&lt;600</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{last()}&gt;3600</recovery_expression>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ospf.uptime.[{#IFNB}.{#SNMPINDEX}])&gt;3600</recovery_expression>
                                     <name>Uptime baixo no OSPF: {#IFNB}</name>
                                     <priority>AVERAGE</priority>
                                     <tags>
@@ -885,9 +885,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>23032ed1aeea5416b43f939ac9e18c0b</uuid>
-                                    <expression>{min(5m)}&gt;60</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min.[{#SNMPINDEX}],5m)&gt;60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{min(5m)}&lt;60</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min.[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
                                     <name>Uso esta acima de 60% por 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                     <tags>
@@ -907,9 +907,9 @@
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>3e671782945b5588ad1bc11eecae2991</uuid>
-                                    <expression>{min(5m)}&gt;80</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min.[{#SNMPINDEX}],5m)&gt;80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{min(5m)}&lt;80</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min.[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
                                     <name>Uso esta acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -991,9 +991,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>1ace21b8f9ce53ea820dc68ac513f4a5</uuid>
-                                    <expression>{min(5m)}&gt;60</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityCpuUsage[{#SNMPINDEX}],5m)&gt;60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{min(5m)}&lt;60</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityCpuUsage[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
                                     <name>CPU (NE) acima de 60% por 5min em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                     <tags>
@@ -1013,9 +1013,9 @@
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>b1dd581f39c05a199e34fbcd9c7ad8b9</uuid>
-                                    <expression>{min(5m)}&gt;80</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityCpuUsage[{#SNMPINDEX}],5m)&gt;80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{min(5m)}&lt;80</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityCpuUsage[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
                                     <name>CPU (NE) acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -1059,9 +1059,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>528f69f8de1c5120abaf7f84e7ec07e4</uuid>
-                                    <expression>{min(5m)}&gt;=80</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanSpeed[{#SNMPINDEX}],5m)&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{min(5m)}&lt;80</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanSpeed[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
                                     <name>Modulo Fan [{#SNMPINDEX}] velocidade esta acima de 80% em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                     <tags>
@@ -1097,9 +1097,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>86f47612139d52ae97cccf865e989f4d</uuid>
-                                    <expression>{last()}&lt;&gt;1</expression>
+                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanState[{#SNMPINDEX}])&lt;&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{last()}=1</recovery_expression>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityFanState[{#SNMPINDEX}])=1</recovery_expression>
                                     <name>Modulo Fan [{#SNMPINDEX}] status esta anormal em - {HOST.NAME}</name>
                                     <priority>WARNING</priority>
                                     <tags>
@@ -1153,7 +1153,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>ab897b8a7a4d55549e6dd814e3ff93a2</uuid>
-                                    <expression>{last()}&gt;1</expression>
+                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityPwrState.discovery[{#SNMPINDEX}])&gt;1</expression>
                                     <name>PSU [{#SNMPINDEX}]: Status anormal em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1279,7 +1279,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>cac28a6863f151c285d2f9fc7d84d53f</uuid>
-                                    <expression>{count(#4)}&lt;0.8</expression>
+                                    <expression>count(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#4)&lt;0.8</expression>
                                     <name>Sinal optico alterado - {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -1542,7 +1542,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>e0cb28af204352309dc4a638a3934be6</uuid>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}].last(#3)} &lt; {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}].last()} and {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}].last(#3)} &gt;= -39</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#3) &lt; last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]) and last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#3) &gt;= -39</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
@@ -1650,9 +1650,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>da98f957691a544a9dc4e7b8c8065e8d</uuid>
-                                    <expression>{min(5m)}&lt;=40</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&lt;=40</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{min(5m)}&gt;40</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&gt;40</recovery_expression>
                                     <name>Memoria disponivel abaixo 60% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
@@ -1673,9 +1673,9 @@
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>0e54439ceb2e5954b4857bdc6f03307e</uuid>
-                                    <expression>{min(5m)}&lt;=20</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&lt;=20</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{min(5m)}&gt;20</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memFreePercentage[{#SNMPINDEX}],5m)&gt;20</recovery_expression>
                                     <name>Memoria disponivel esta abaixo de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -1709,9 +1709,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>e7544ffa0f6e55979bfb7c2c6d1fcae9</uuid>
-                                    <expression>{min(5m)}&gt;=60</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&gt;=60</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{min(5m)}&lt;60</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&lt;60</recovery_expression>
                                     <name>Uso de memoria esta acima de 80% por 5min em - {HOST.NAME}</name>
                                     <status>DISABLED</status>
                                     <priority>WARNING</priority>
@@ -1732,9 +1732,9 @@
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>1fee523f5062534d915bbae5995844d2</uuid>
-                                    <expression>{min(5m)}&gt;=80</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&gt;=80</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{min(5m)}&lt;80</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.memUsedPercentage[{#SNMPINDEX}],5m)&lt;80</recovery_expression>
                                     <name>Uso de memoria esta acima de 80% por 5min em - {HOST.NAME}</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -1930,9 +1930,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>ac64c7614f2d562887c9d5baca42c1c9</uuid>
-                                    <expression>{diff(0)}=1</expression>
+                                    <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}],#1)&lt;&gt;last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}],#2))=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{last(0)}=1</recovery_expression>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}])=1</recovery_expression>
                                     <name>Status Interface {#IF}: ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
@@ -2012,9 +2012,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>174f56d9634b5dbb850a87ba1fc27897</uuid>
-                                    <expression>{change()}&gt;100</expression>
+                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}])&gt;100</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{min(1h)}={max(1h)}</recovery_expression>
+                                    <recovery_expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}],1h)=max(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}],1h)</recovery_expression>
                                     <name>Erros na Interface {#IF} ({#IFALIAS}): Taxa elevada de erros de CRC/Pacotes</name>
                                     <priority>HIGH</priority>
                                     <description>({#IFALIAS})</description>
@@ -2048,7 +2048,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>2b9ddfcaa31c500d8dabb123b7993de3</uuid>
-                            <expression>({Template Switch Huawei 6700 Series - Netstream:netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}].last()}/{Template Switch Huawei 6700 Series - Netstream:netstream.ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9 or ({Template Switch Huawei 6700 Series - Netstream:netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}].last()}/{Template Switch Huawei 6700 Series - Netstream:netstream.ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9</expression>
+                            <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}])/last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifspeed.[{#IF}.{#SNMPINDEX}]))&gt;0.9 or (last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}])/last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifspeed.[{#IF}.{#SNMPINDEX}]))&gt;0.9</expression>
                             <name>Consumo maior que 90% da porta - {#IF}: ({#IFALIAS})</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -2077,9 +2077,9 @@
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>bd847bedca37522dbcb88ba6257a76e4</uuid>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.ifOperStatus[{#IF}].diff(0)}=1 and {Template Switch Huawei 6700 Series - Netstream:netstream.total.Errors[{#IF}.{#SNMPINDEX}].last()}=5</expression>
+                            <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}],#1)&lt;&gt;last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}],#2))=1 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.total.Errors[{#IF}.{#SNMPINDEX}])=5</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{Template Switch Huawei 6700 Series - Netstream:netstream.ifOperStatus[{#IF}].last(0)}=1</recovery_expression>
+                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus[{#IF}])=1</recovery_expression>
                             <name>Status Interface 2 {#IF}: ({#IFALIAS})</name>
                             <priority>HIGH</priority>
                             <description>({#IFALIAS})</description>
@@ -2576,13 +2576,13 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>fe93aefbd7d3535d98ee816da3cc6747</uuid>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}],,5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
 or
-{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
+last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}],,5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
 or
-{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
+last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}],,5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
 or 
-{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}</expression>
+last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}],,5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
@@ -2658,7 +2658,7 @@ or
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>cffe3ec1557854d495e015701d83c3a2</uuid>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.pppoe.domain.users[{#SNMPINDEX}].last(#5)}&gt;{$PPPOE_MIN_USERS} and {Template Switch Huawei 6700 Series - Netstream:netstream.pppoe.domain.users[{#SNMPINDEX}].last(0)}&lt;({Template Switch Huawei 6700 Series - Netstream:netstream.pppoe.domain.users[{#SNMPINDEX}].last(#5)}*0.5)</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.domain.users[{#SNMPINDEX}],#5)&gt;{$PPPOE_MIN_USERS} and last(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.domain.users[{#SNMPINDEX}])&lt;(last(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.domain.users[{#SNMPINDEX}],#5)*0.5)</expression>
                             <name>PPPoE Dominio [{#DOMAIN}]: Queda brusca de clientes (&gt;50% de desconexoes)</name>
                             <priority>HIGH</priority>
                             <description>Evita falsos positivos: so dispara se o dominio tinha mais de {} clientes ativos e caiu mais de 50%.</description>
@@ -2749,7 +2749,7 @@ or
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>be77ed64f23c50089f54d656eed1f56f</uuid>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.pppoe.interface.users[{#SNMPINDEX}].last(#5)}&gt;{$PPPOE_MIN_USERS} and {Template Switch Huawei 6700 Series - Netstream:netstream.pppoe.interface.users[{#SNMPINDEX}].last(0)}&lt;({Template Switch Huawei 6700 Series - Netstream:netstream.pppoe.interface.users[{#SNMPINDEX}].last(#5)}*0.5)</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.interface.users[{#SNMPINDEX}],#5)&gt;{$PPPOE_MIN_USERS} and last(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.interface.users[{#SNMPINDEX}])&lt;(last(/Template Switch Huawei 6700 Series - Netstream/netstream.pppoe.interface.users[{#SNMPINDEX}],#5)*0.5)</expression>
                             <name>PPPoE Interface [{#HWBASIFNAME} - {#IFALIAS}]: Queda brusca de clientes (&gt;50% de desconexoes)</name>
                             <priority>HIGH</priority>
                             <description>Evita falsos positivos: so dispara se a interface tinha mais de {} clientes ativos e caiu mais de 50%.</description>
@@ -3070,15 +3070,15 @@ or
     <triggers>
         <trigger>
             <uuid>c012bd8942fe4b7c8578262e101d3c16</uuid>
-            <expression>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &gt; 80) or
-({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty5min[{#SNMPINDEX}].last()} &gt; 80)</expression>
+            <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty1min[{#SNMPINDEX}]) &gt; 80) or
+(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}]) &gt; 80)</expression>
             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-            <recovery_expression>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &lt; 80) or
-({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty5min[{#SNMPINDEX}].last()} &lt; 80)</recovery_expression>
+            <recovery_expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty1min[{#SNMPINDEX}]) &lt; 80) or
+(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}]) &lt; 80)</recovery_expression>
             <name>CPU Alta</name>
             <priority>HIGH</priority>
-            <description>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &gt; 80) or
-({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty5min[{#SNMPINDEX}].last()} &gt; 80)</description>
+            <description>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty1min[{#SNMPINDEX}]) &gt; 80) or
+(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}]) &gt; 80)</description>
             <tags>
                 <tag>
                     <tag>Scope</tag>
