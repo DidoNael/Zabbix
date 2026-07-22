@@ -1,6 +1,11 @@
 # Guia de Troubleshooting: Erros Comuns na Importação de Templates XML no Zabbix
 
-Este guia documenta os erros mais frequentes de validação XML (`CXmlValidatorGeneral`) ao importar ou modificar templates nas versões 4.4, 5.x e 6.0+ do Zabbix, e as regras estritas que devem ser seguidas para evitá-los.
+Este guia documenta os erros mais frequentes de validação XML ao importar ou modificar
+templates nas versões 4.4, 5.x e 6.0+ do Zabbix, e as regras estritas que devem ser
+seguidas para evitá-los.
+
+> **Erros 1–6**: específicos do Zabbix 4.4/5.x. **Erros 7–11**: específicos do Zabbix 6.0+
+> ou comuns a ambas as versões.
 
 ---
 
@@ -106,14 +111,177 @@ Em todos os elementos com `<type>SNMPV2</type>` no Zabbix 4.4, adicione sempre a
 
 ---
 
+## 7. Tag `<status>` com Valor Numérico no Zabbix 6.0
+
+### Mensagem de Erro:
+```text
+Invalid tag "/zabbix_export/templates/template(1)/items/item(X)/status": unexpected constant "0".
+```
+
+### Causa:
+No **Zabbix 6.0+**, a tag `<status>` exige constantes textuais (`ENABLED` ou `DISABLED`),
+**nunca** valores numéricos (`0` ou `1`). Isso é diferente do Zabbix 4.4, onde itens ativos
+simplesmente omitem a tag `<status>`.
+
+### Como Prevenir / Solucionar:
+- **Itens/discovery rules ativos**: omita a tag `<status>` por completo (o padrão é
+  `ENABLED`).
+- **Itens/discovery rules desativados**: use `<status>DISABLED</status>`.
+- **Nunca** use `<status>0</status>` ou `<status>1</status>` em templates 6.0.
+
+> **Atenção:** não remova `<status>DISABLED</status>` de entidades que devem permanecer
+> desativadas — remover a tag as **ativaria** indevidamente.
+
+---
+
+## 8. Tag `<uuid>` Ausente em Entidades do Template (Zabbix 6.0)
+
+### Mensagem de Erro:
+```text
+Invalid tag "/zabbix_export/templates/template(1)/discovery_rules/discovery_rule(1)": the tag "uuid" is missing.
+```
+
+### Causa:
+O Zabbix 6.0 exige a tag `<uuid>` como **primeiro filho** de toda entidade dentro de um
+template: `template`, `item`, `discovery_rule`, `item_prototype`, `trigger`,
+`trigger_prototype`, `graph`, `graph_prototype`, `valuemap`, etc. Templates migrados do 4.4
+frequentemente não possuem essa tag.
+
+### Como Prevenir / Solucionar:
+Gere UUIDs **determinísticos** (uuid5 com namespace fixo + identificador da entidade —
+`key`, `name` ou `expression`) para que re-gerações produzam os mesmos valores e não poluam
+o diff. Exemplo em Python:
+```python
+import uuid
+NS = uuid.UUID("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
+seed = "template_name|entity_type|key=minha.chave"
+u = uuid.uuid5(NS, seed).hex  # 32 hex chars, sem hífens
+```
+O `<uuid>` deve ser a **primeira** tag filha do elemento, antes de `<name>`, `<key>`, etc.
+
+---
+
+## 9. Tag `<uuid>` Inesperada Dentro de `<graph_item>/<item>` (Zabbix 6.0)
+
+### Mensagem de Erro:
+```text
+Invalid tag "/zabbix_export/templates/template(1)/graph_prototypes/graph_prototype(1)/graph_items/graph_item(1)/item": unexpected tag "uuid".
+```
+
+### Causa:
+Dentro de `<graph_items>`, a referência `<item>` é um **ponteiro** para um item existente
+(apenas `<host>` + `<key>`), **não** uma definição completa. A tag `<uuid>` não é permitida
+nesse contexto — ela só é válida na **definição** do item/prototype, não na referência.
+
+### Como Prevenir / Solucionar:
+Remova qualquer `<uuid>` que esteja dentro de `<graph_item>/<item>`. A estrutura correta é:
+```xml
+<graph_item>
+    <drawtype>GRADIENT_LINE</drawtype>
+    <color>1A7C11</color>
+    <item>
+        <host>Template Switch Huawei 6700 Series - Netstream</host>
+        <key>netstream.optical.rx[{#ENTPHYSICALNAME}]</key>
+    </item>
+</graph_item>
+```
+
+---
+
+## 10. "No permissions to referred object or it does not exist!" (Zabbix 6.0)
+
+### Mensagem de Erro:
+```text
+Import failed.
+* No permissions to referred object or it does not exist!
+```
+
+### Causa:
+Erro genérico que indica que o XML referencia algo que **não existe no servidor de destino**
+ou que o usuário importador **não tem permissão** para acessar. As causas mais comuns (em
+ordem de frequência):
+
+1. **Host group inexistente**: o template referencia `<group><name>Templates</name></group>`,
+   mas no servidor de destino o grupo pode ter outro nome (ex.: `Templates/Network devices`).
+2. **UUID de host group divergente**: o XML declara um UUID para o grupo na seção
+   `<groups>` do topo do export, e esse UUID não corresponde ao do grupo homônimo no
+   servidor. O Zabbix tenta localizar pelo UUID primeiro.
+3. **Usuário sem permissão ao grupo**: o usuário que importa não tem leitura/escrita no host
+   group referenciado (verificar: Administration → User groups → permissões).
+4. **Valuemap com UUID conflitante**: um valuemap com o mesmo nome mas UUID diferente já
+   existe no servidor (comum após migração 4.4 → 6.0).
+5. **Template linkado inexistente**: se o XML possui `<templates>` linkados na seção de
+   dependências, e eles não existem no destino.
+
+### Como Diagnosticar:
+1. **Validar referências internas** com o script `xref.py` (na raiz do repositório ou em
+   `/tmp`). Se retornar zero referências quebradas, o problema é no servidor.
+2. **Verificar o grupo** no servidor: Administration → Host groups → procurar o grupo
+   exato referenciado no XML.
+3. **Comparar UUIDs**: no XML do export, o UUID do grupo está em
+   `<zabbix_export><groups><group><uuid>`. Compare com o UUID do grupo no servidor (via API
+   ou exportando um template existente do servidor).
+4. **Testar com Super Admin**: se funcionar com Super Admin mas não com o usuário normal, é
+   permissão.
+
+### Como Prevenir / Solucionar:
+- **Grupo inexistente**: crie o grupo no servidor antes de importar, ou altere o `<name>`
+  no XML para corresponder ao grupo existente.
+- **UUID divergente**: substitua o UUID do grupo no XML pelo UUID real do servidor, ou
+  remova a seção `<groups>` do topo do export (mantendo apenas a referência dentro do
+  `<template>`).
+- **Permissão**: conceda ao usuário acesso Read-write ao host group via
+  Administration → User groups.
+- **Valuemap**: exporte um template do servidor 6.0, compare os UUIDs dos valuemaps
+  homônimos, e alinhe no XML a ser importado.
+
+---
+
+## 11. `{ITEM.LASTVALUEN}` com Índice Incorreto nos Triggers
+
+### Sintoma:
+Triggers exibem `*UNKNOWN*` em vez do valor esperado no nome ou nas tags. Não é um erro de
+importação — o template importa normalmente, mas o trigger não resolve a macro.
+
+### Causa:
+A macro `{ITEM.LASTVALUEN}` referencia o N-ésimo item **na ordem em que aparecem na
+expressão do trigger**. Se a expressão usa 3 itens, o índice máximo válido é `3`. Um índice
+`4` retorna `*UNKNOWN*`.
+
+### Como Diagnosticar:
+Conte os itens distintos (pares `host:key`) na expressão do trigger. Exemplo:
+```
+{Template:BgpPeerState.last()}=1
+  and {Template:BgpPeerAdminStatus.last()}=2
+  and {Template:get_asn_owner_v2.sh[{#IP}].strlen()}>0
+```
+São 3 itens → índices válidos: `{ITEM.LASTVALUE1}` a `{ITEM.LASTVALUE3}`.
+
+### Como Prevenir / Solucionar:
+Ajuste o índice da macro para corresponder à posição real do item na expressão.
+
+---
+
 ## Checklist de Validação Antes do Commit
 
-Antes de publicar uma nova versão de template XML:
-1. [ ] Nenhum `<trigger>`, `<item>` ou `<discovery_rule>` ativo possui tag `<status>` no Zabbix 4.4.
-2. [ ] Itens SNMP no Zabbix 4.4 utilizam `<type>SNMPV2</type>` (e não `SNMP_AGENT`).
-3. [ ] Todos os itens e regras `<type>SNMPV2</type>` possuem `<snmp_community>{$SNMP_COMMUNITY}</snmp_community>`.
+### Zabbix 4.4
+1. [ ] Nenhum `<trigger>`, `<item>` ou `<discovery_rule>` ativo possui tag `<status>`.
+2. [ ] Itens SNMP utilizam `<type>SNMPV2</type>` (e não `SNMP_AGENT`).
+3. [ ] Todos os itens `<type>SNMPV2</type>` possuem `<snmp_community>{$SNMP_COMMUNITY}</snmp_community>`.
 4. [ ] Regras e itens `<type>EXTERNAL</type>` não possuem tags `<snmp_oid>` ou `<snmp_community>`.
 5. [ ] Todos os `<step>` de pré-processamento possuem `<params>`.
-6. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
+6. [ ] Aplicações referenciadas nos itens estão declaradas no bloco `<applications>` do template.
+
+### Zabbix 6.0
+7. [ ] `<status>` usa constante textual (`ENABLED`/`DISABLED`), nunca numérica.
+8. [ ] Toda entidade do template possui `<uuid>` como primeiro filho.
+9. [ ] Referências `<item>` dentro de `<graph_item>` **não** possuem `<uuid>`.
+10. [ ] Host group referenciado existe no servidor de destino com mesmo nome.
+11. [ ] UUIDs de valuemaps, host groups e templates linkados são compatíveis com o servidor.
+12. [ ] Índices `{ITEM.LASTVALUEN}` nos triggers correspondem à contagem real de itens na expressão.
+
+### Ambas as versões
+13. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
+14. [ ] Rodar `xref.py` confirma zero referências internas quebradas.
 
 
