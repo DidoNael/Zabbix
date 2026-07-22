@@ -1473,18 +1473,6 @@
                                 <value>XGigabitEthernet.*</value>
                                 <formulaid>A</formulaid>
                             </condition>
-                            <condition>
-                                <macro>{#HWTEMP}</macro>
-                                <value>-255</value>
-                                <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>B</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#RXPWLAN}</macro>
-                                <value>-40</value>
-                                <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>C</formulaid>
-                            </condition>
                         </conditions>
                     </filter>
                     <lifetime>7d</lifetime>
@@ -2565,12 +2553,6 @@
                                 <macro>{#ENTPHYSICALNAME}</macro>
                                 <value>100GE.*</value>
                                 <formulaid>B</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#TMP}</macro>
-                                <value>-255</value>
-                                <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>C</formulaid>
                             </condition>
                         </conditions>
                     </filter>
