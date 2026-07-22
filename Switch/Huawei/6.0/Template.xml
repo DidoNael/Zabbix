@@ -223,7 +223,7 @@
                     <delay>2m</delay>
                     <history>30d</history>
                     <trends>365d</trends>
-                    <status>0</status>
+                    <status>DISABLED</status>
                     <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
                 </item>
                 <item>
@@ -235,7 +235,7 @@
                     <delay>2m</delay>
                     <history>30d</history>
                     <trends>365d</trends>
-                    <status>0</status>
+                    <status>DISABLED</status>
                     <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
                 </item>
                 <item>
@@ -247,7 +247,7 @@
                     <delay>2m</delay>
                     <history>30d</history>
                     <trends>365d</trends>
-                    <status>0</status>
+                    <status>DISABLED</status>
                     <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
                 </item>
             </items>
@@ -2579,7 +2579,7 @@ or
                     <snmp_oid>discovery[{#DOMAIN},1.3.6.1.4.1.2011.5.2.1.4.1.1]</snmp_oid>
                     <key>netstream.pppoe.domain.discovery</key>
                     <delay>1h</delay>
-                    <status>0</status>
+                    <status>DISABLED</status>
                     <description>Descobre automaticamente dominios PPPoE configurados no concentrador BNG Huawei. Desativada por padrao.</description>
                     <item_prototypes>
                         <item_prototype>
@@ -2668,7 +2668,7 @@ or
                     <snmp_oid>discovery[{#HWBASIFNAME},1.3.6.1.4.1.2011.5.25.40.1.1.20.1.6,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18]</snmp_oid>
                     <key>netstream.pppoe.interface.discovery</key>
                     <delay>1h</delay>
-                    <status>0</status>
+                    <status>DISABLED</status>
                     <description>Descobre automaticamente interfaces BNG/PPPoE que possuem clientes conectados. Desativada por padrao.</description>
                     <item_prototypes>
                         <item_prototype>
