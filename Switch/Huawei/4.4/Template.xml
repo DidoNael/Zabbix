@@ -1461,8 +1461,10 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery | Network interfaces | Sinal optico single lan</name>
-                    <type>EXTERNAL</type>
-                    <key>discovery_huawei_optical.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","single"]</key>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7,{#HWTEMP},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5,{#RXPWLAN},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32]</snmp_oid>
+                    <key>netstream.optical.single.discovery</key>
                     <delay>1h</delay>
                     <filter>
                         <conditions>
@@ -2547,8 +2549,10 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery | Network interfaces | Sinal Optico modules multi lane</name>
-                    <type>EXTERNAL</type>
-                    <key>discovery_huawei_optical.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","multi"]</key>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#ENTPHYSICALNAME},1.3.6.1.2.1.47.1.1.1.1.7,{#TMP},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5]</snmp_oid>
+                    <key>netstream.optical.ml.discovery</key>
                     <delay>1h</delay>
                     <filter>
                         <conditions>
