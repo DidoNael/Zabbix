@@ -15,9 +15,54 @@ Huawei, OSPF genérico e ISP Experience, além de scripts de descoberta externa
 
 ---
 
-## [Não versionado]
+## [v2.5.0] — 2026-07-23
 
-Mudanças na `main` ainda sem tag de versão (posteriores à `v2.3.5`).
+### Corrigido
+
+- **ZTE 6.0 — `<newvalue>` corrompidos nos valuemaps.** Dois valores estavam truncados:
+  `hwOnline (Software não carregado)` e `SFi (Falha de sinal ativa)`. (`a3cc871`)
+- **ZTE 6.0 — 20 expressões de trigger no formato 4.4.** Convertidas para o formato
+  Zabbix 6.0 (`{Host:key.func(params)}` → `func(/Host/key,params)`). (`dcdea0d`)
+- **ZTE 6.0 — 11 trigger prototypes com `{last()}` sem host/key.** Cada trigger
+  recebeu a chave correta da sua discovery rule (ONU phase state, PON status, card
+  status, CPU/RAM). (`dcdea0d`)
+- **ZTE 6.0 — `delta()` substituído por `(max()-min())`.** A função `delta()` foi
+  removida no Zabbix 6.0; afetava os triggers de DyingGasp e LOS. (`fc174b8`)
+- **ZTE 4.4 — sincronização com as correções do 6.0.** Newvalues corrompidos e 10
+  trigger prototypes com `{last()}` sem host/key corrigidos na sintaxe 4.4. (`86b9982`)
+- **Huawei 4.4 — 5 trigger prototypes com `{last()}` sem host/key** (OSPF, Fan, PSU,
+  RAM, temperatura). Corrigidos com XML-escape e sintaxe 4.4. (`86b9982`)
+- **Huawei 4.4 — `snmp_community {}` → `{$SNMP_COMMUNITY}`** em 5 itens. O campo vazio
+  causava falha silenciosa de SNMP → "first network error, wait 30 seconds" em
+  cascata → unreachable pollers >75% busy → lacunas de dados → gráficos picotando.
+  Era a raiz dos picos nos gráficos PPPoE dos 13 roteadores core. (`2c4b250`)
+
+### Adicionado
+
+- **Huawei 4.4 e 6.0 — item prototype `netstream.tempthreshold[{#SNMPINDEX}]`.**
+  Coleta o threshold de temperatura configurado no dispositivo (OID
+  `1.3.6.1.4.1.2011.5.25.31.1.1.1.1.14.{#SNMPINDEX}`, hwEntityTempThreshold).
+  Triggers de temperatura agora comparam contra o limite real do hardware em vez de
+  valores fixos. (`aea6401`)
+- **`docs/REGRAS_MANUTENCAO_TEMPLATES.md`** — documento de 5 regras de processo:
+  (1) sempre atualizar 4.4 e 6.0; (2) verificar sintaxe antes de subir;
+  (3) revisar guia de problemas; (4) criar tag de versionamento; (5) atualizar
+  CHANGELOG a cada mudança. (`6036f2b`)
+
+### Alterado
+
+- **Huawei 4.4 e 6.0 — itens desativados por padrão:** `netstream.pppoe.total`,
+  `netstream.pppoe.total.max24h`, `netstream.pppoe.total.min24h`, `Tabela Mac`,
+  discovery `CPU NE (NetEngine)`, `netstream.hwEntityCpuUsage[{#SNMPINDEX}]`.
+  (`aea6401`)
+- **Huawei 4.4 — itens removidos:** `netstream.ifNumber` (item global) e
+  `netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}]` (item prototype). (`aea6401`)
+- **Huawei 4.4 e 6.0 — delay alterado para `1d`** em 5 discovery rules: Physical,
+  Sinal single, Multi lane, Domínios PPPoE, Interfaces Acesso. (`aea6401`)
+
+---
+
+## [v2.4.1] — 2026-07-23
 
 ### Corrigido
 
@@ -263,7 +308,8 @@ Versão inicial: template de **OLT GPON ZTE**.
 
 ---
 
-[Não versionado]: https://github.com/DidoNael/zabbix-templates/compare/v2.3.5...HEAD
+[v2.5.0]: https://github.com/DidoNael/zabbix-templates/compare/v2.4.1...v2.5.0
+[v2.4.1]: https://github.com/DidoNael/zabbix-templates/compare/v2.3.5...v2.4.1
 [v2.3.x]: https://github.com/DidoNael/zabbix-templates/compare/v2.2.0...v2.3.5
 [v2.2.0]: https://github.com/DidoNael/zabbix-templates/compare/v2.1.6...v2.2.0
 [v2.0.0 – v2.1.6]: https://github.com/DidoNael/zabbix-templates/compare/v1.7.4...v2.1.6

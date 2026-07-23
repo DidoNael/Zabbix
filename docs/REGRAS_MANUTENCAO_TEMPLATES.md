@@ -104,6 +104,42 @@ git push origin v1.2.0-20260723
 
 ---
 
+## Regra 5 — Atualizar o CHANGELOG a cada mudança
+
+O arquivo `CHANGELOG.md` na raiz do repositório deve ser atualizado **no mesmo commit** (ou imediatamente após) qualquer alteração nos templates ou scripts.
+
+### Formato da entrada
+
+```markdown
+## [vX.Y.Z] — AAAA-MM-DD
+
+### Adicionado
+- Descrição objetiva da feature. (`hash-do-commit`)
+
+### Corrigido
+- Descrição objetiva do fix. (`hash-do-commit`)
+
+### Alterado
+- Descrição objetiva da mudança. (`hash-do-commit`)
+
+### Removido
+- Descrição do que foi removido. (`hash-do-commit`)
+```
+
+### O que registrar
+
+| Registrar | Não registrar |
+|---|---|
+| Novo item/trigger/discovery rule | Ajuste de indentação |
+| Remoção ou desativação de item | Mudança de comentário interno |
+| Mudança de threshold ou delay | Correção de typo em nome de variável |
+| Correção de erro de importação | Reordenação sem mudança funcional |
+| Nova tag de versão | |
+
+> O CHANGELOG é a fonte de verdade para qualquer operador que precise saber "o que mudou desde ontem". Ele deve ser legível sem contexto de código.
+
+---
+
 ## Ordem de trabalho recomendada
 
 ```
@@ -112,10 +148,11 @@ git push origin v1.2.0-20260723
 3. Fazer a mudança no 4.4
 4. Fazer a mudança equivalente no 6.0 (adaptar sintaxe)
 5. Validar XML: [System.Xml.XmlDocument].Load() nos dois arquivos
-6. git add + git commit + git push
-7. Criar tag de versionamento (Regra 4) + git push origin <tag>
-8. Importar no Zabbix e confirmar resultado
-9. Se erro → registrar em TROUBLESHOOTING_XML_IMPORT.md
+6. Atualizar CHANGELOG.md (Regra 5)
+7. git add + git commit + git push
+8. Criar tag de versionamento (Regra 4) + git push origin <tag>
+9. Importar no Zabbix e confirmar resultado
+10. Se erro → registrar em TROUBLESHOOTING_XML_IMPORT.md
 ```
 
 ---
