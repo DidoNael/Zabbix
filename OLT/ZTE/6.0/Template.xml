@@ -1195,7 +1195,8 @@ return s;</parameter>
                             <graph_items>
                                 <graph_item>
                                     <color>1A7C11</color>
-                                    <item>`r`n                                        <host>OLT ZTE - NETSTREAM</host>
+                                    <item>
+                                        <host>OLT ZTE - NETSTREAM</host>
                                         <key>netstream.dedicado.rxpower[{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
@@ -1462,13 +1463,15 @@ return s;</parameter>
                             <graph_items>
                                 <graph_item>
                                     <color>1A7C11</color>
-                                    <item>`r`n                                        <host>OLT ZTE - NETSTREAM</host>
+                                    <item>
+                                        <host>OLT ZTE - NETSTREAM</host>
                                         <key>netstream.uplink.in[{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
                                     <color>2774A4</color>
-                                    <item>`r`n                                        <host>OLT ZTE - NETSTREAM</host>
+                                    <item>
+                                        <host>OLT ZTE - NETSTREAM</host>
                                         <key>netstream.uplink.out[{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
