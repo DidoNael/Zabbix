@@ -125,7 +125,9 @@
                     <preprocessing>
                         <step>
                             <type>MULTIPLIER</type>
-                            <params>0.01</params>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
                         </step>
                     </preprocessing>
                     <triggers>
@@ -222,7 +224,9 @@
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
-                            <params>var a=JSON.parse(value); return a["auth"] || 0;</params>
+                            <parameters>
+                                <parameter>var a=JSON.parse(value); return a["auth"] || 0;</parameter>
+                            </parameters>
                         </step>
                     </preprocessing>
                     <master_item>
@@ -240,7 +244,9 @@
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
-                            <params>var a=JSON.parse(value); return a["online"] || 0;</params>
+                            <parameters>
+                                <parameter>var a=JSON.parse(value); return a["online"] || 0;</parameter>
+                            </parameters>
                         </step>
                     </preprocessing>
                     <master_item>
@@ -258,7 +264,9 @@
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
-                            <params>var a=JSON.parse(value); return a["offline"] || 0;</params>
+                            <parameters>
+                                <parameter>var a=JSON.parse(value); return a["offline"] || 0;</parameter>
+                            </parameters>
                         </step>
                     </preprocessing>
                     <master_item>
@@ -276,7 +284,9 @@
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
-                            <params>var a=JSON.parse(value); return a["dg"] || 0;</params>
+                            <parameters>
+                                <parameter>var a=JSON.parse(value); return a["dg"] || 0;</parameter>
+                            </parameters>
                         </step>
                     </preprocessing>
                     <master_item>
@@ -294,7 +304,9 @@
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
-                            <params>var a=JSON.parse(value); return a["los"] || 0;</params>
+                            <parameters>
+                                <parameter>var a=JSON.parse(value); return a["los"] || 0;</parameter>
+                            </parameters>
                         </step>
                     </preprocessing>
                     <master_item>
@@ -312,7 +324,9 @@
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
-                            <params>var a=JSON.parse(value); return a["losi"] || 0;</params>
+                            <parameters>
+                                <parameter>var a=JSON.parse(value); return a["losi"] || 0;</parameter>
+                            </parameters>
                         </step>
                     </preprocessing>
                     <master_item>
@@ -330,7 +344,9 @@
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
-                            <params>var a=JSON.parse(value); return a["lof"] || 0;</params>
+                            <parameters>
+                                <parameter>var a=JSON.parse(value); return a["lof"] || 0;</parameter>
+                            </parameters>
                         </step>
                     </preprocessing>
                     <master_item>
@@ -348,7 +364,9 @@
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
-                            <params>var a=JSON.parse(value); return a["unk"] || 0;</params>
+                            <parameters>
+                                <parameter>var a=JSON.parse(value); return a["unk"] || 0;</parameter>
+                            </parameters>
                         </step>
                     </preprocessing>
                     <master_item>
@@ -378,9 +396,11 @@
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>var power = parseFloat(value);
+                                    <parameters>
+                                        <parameter>var power = parseFloat(value);
 if (power === 0 || isNaN(power) || power &gt; 100000) return -40; // Sem sinal / LOS
-return ((power * 0.002) - 30).toFixed(2);</params>
+return ((power * 0.002) - 30).toFixed(2);</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -481,7 +501,9 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>netstream.gpon.onu.offline[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <status>DISABLED</status>
-                            <params>last("netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]")-last("netstream.gpon.onu.online[{#SNMPINDEX}]")</params>
+                            <parameters>
+                                <parameter>last("netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]")-last("netstream.gpon.onu.online[{#SNMPINDEX}]")</parameter>
+                            </parameters>
                         </item_prototype>
                         <item_prototype>
                             <uuid>95b5ad9693cb4b79a13a3af4a4c84f1d</uuid>
@@ -499,7 +521,9 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>netstream.gpon.onu.online_antes[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <status>DISABLED</status>
-                            <params>last("netstream.gpon.onu.online[{#SNMPINDEX}]",#2)</params>
+                            <parameters>
+                                <parameter>last("netstream.gpon.onu.online[{#SNMPINDEX}]",#2)</parameter>
+                            </parameters>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8ff71fd0dc1d4d37a618a60fc78540cb</uuid>
@@ -521,7 +545,9 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.001</params>
+                                    <parameters>
+                                        <parameter>0.001</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -537,7 +563,9 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.001</params>
+                                    <parameters>
+                                        <parameter>0.001</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -551,7 +579,9 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params />
+                                    <parameters>
+                                        <parameter></parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <trigger_prototypes>
@@ -599,15 +629,21 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params />
+                                    <parameters>
+                                        <parameter></parameter>
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>if (value &gt; 12500000000) { return null; } return value;</params>
+                                    <parameters>
+                                        <parameter>if (value &gt; 12500000000) { return null; } return value;</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -621,7 +657,9 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params />
+                                    <parameters>
+                                        <parameter></parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <trigger_prototypes>
@@ -659,15 +697,21 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params />
+                                    <parameters>
+                                        <parameter></parameter>
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>if (value &gt; 12500000000) { return null; } return value;</params>
+                                    <parameters>
+                                        <parameter>if (value &gt; 12500000000) { return null; } return value;</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -735,7 +779,8 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
-                            <params>var lld = JSON.parse(value);
+                            <parameters>
+                                <parameter>var lld = JSON.parse(value);
 var map = {};
 
 function getProprietaryIndex(snmpIndex) {
@@ -846,7 +891,8 @@ for (var propKey in map) {
     }
 }
 
-return JSON.stringify(result);</params>
+return JSON.stringify(result);</parameter>
+                            </parameters>
                         </step>
                     </preprocessing>
                 </discovery_rule>
@@ -1009,9 +1055,11 @@ return JSON.stringify(result);</params>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>var power = parseFloat(value);
+                                    <parameters>
+                                        <parameter>var power = parseFloat(value);
 if (power === 0 || isNaN(power) || power &gt; 100000) return -40;
-return ((power * 0.002) - 30).toFixed(2);</params>
+return ((power * 0.002) - 30).toFixed(2);</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <trigger_prototypes>
@@ -1110,11 +1158,13 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>var s = parseInt(value);
+                                    <parameters>
+                                        <parameter>var s = parseInt(value);
 if (s === 2 || s === 10) return 10;
 if (s === 3 || s === 100) return 100;
 if (s === 4 || s === 1000) return 1000;
-return s;</params>
+return s;</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <trigger_prototypes>
@@ -1352,11 +1402,15 @@ return s;</params>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params></params>
+                                    <parameters>
+                                        <parameter></parameter>
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1375,11 +1429,15 @@ return s;</params>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params></params>
+                                    <parameters>
+                                        <parameter></parameter>
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1461,7 +1519,9 @@ return s;</params>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].auth;} return 0;</params>
+                                    <parameters>
+                                        <parameter>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].auth;} return 0;</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -1483,7 +1543,9 @@ return s;</params>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].online;} return 0;</params>
+                                    <parameters>
+                                        <parameter>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].online;} return 0;</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -1505,7 +1567,9 @@ return s;</params>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].offline;} return 0;</params>
+                                    <parameters>
+                                        <parameter>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].offline;} return 0;</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -1527,7 +1591,9 @@ return s;</params>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].dg;} return 0;</params>
+                                    <parameters>
+                                        <parameter>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].dg;} return 0;</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -1549,7 +1615,9 @@ return s;</params>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].los;} return 0;</params>
+                                    <parameters>
+                                        <parameter>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].los;} return 0;</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -1571,7 +1639,9 @@ return s;</params>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].losi;} return 0;</params>
+                                    <parameters>
+                                        <parameter>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].losi;} return 0;</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -1593,7 +1663,9 @@ return s;</params>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].lof;} return 0;</params>
+                                    <parameters>
+                                        <parameter>var a=JSON.parse(value); for(var i=0;i&lt;a.length;i++){if(a[i].idx=="{#NETSTREAM.PON_INDEX}") return a[i].lof;} return 0;</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -1607,7 +1679,9 @@ return s;</params>
                             <key>netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.online[{#NETSTREAM.PON_INDEX}]")</params>
+                            <parameters>
+                                <parameter>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.online[{#NETSTREAM.PON_INDEX}]")</parameter>
+                            </parameters>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -1621,7 +1695,9 @@ return s;</params>
                             <key>netstream.gpon.pon.calc.offline[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.offline[{#NETSTREAM.PON_INDEX}]")</params>
+                            <parameters>
+                                <parameter>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.offline[{#NETSTREAM.PON_INDEX}]")</parameter>
+                            </parameters>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -1635,7 +1711,9 @@ return s;</params>
                             <key>netstream.gpon.pon.calc.dg[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.dg[{#NETSTREAM.PON_INDEX}]")</params>
+                            <parameters>
+                                <parameter>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.dg[{#NETSTREAM.PON_INDEX}]")</parameter>
+                            </parameters>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -1649,7 +1727,9 @@ return s;</params>
                             <key>netstream.gpon.pon.calc.los[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.los[{#NETSTREAM.PON_INDEX}]")</params>
+                            <parameters>
+                                <parameter>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.los[{#NETSTREAM.PON_INDEX}]")</parameter>
+                            </parameters>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
