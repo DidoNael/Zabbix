@@ -41,9 +41,14 @@ ITEM_TYPES = [1, 4, 6, 15]
 # para hosts que ja tinham o item ativo).
 # Formato: lista de chaves exatas (key_) ou prefixos terminados em '*'
 FORCE_DISABLE_KEYS = os.getenv("FORCE_DISABLE_KEYS", "").split(",") if os.getenv("FORCE_DISABLE_KEYS") else [
+    # PPPoE totais (template Huawei marcou como DISABLED — hosts existentes ignoram)
     "netstream.pppoe.total",
     "netstream.pppoe.total.max24h",
     "netstream.pppoe.total.min24h",
+    # PPPoE por interface (LLD) — nao suportado em roteadores core
+    "netstream.pppoe.interface.users*",
+    # ifOperStatus.vlanif — item prototype removido do template, ainda existe nos hosts
+    "netstream.ifOperStatus.vlanif*",
 ]
 # Remover entradas vazias
 FORCE_DISABLE_KEYS = [k.strip() for k in FORCE_DISABLE_KEYS if k.strip()]
