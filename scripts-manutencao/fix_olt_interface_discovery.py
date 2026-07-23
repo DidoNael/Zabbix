@@ -228,18 +228,24 @@ def add_onu_filter(url, auth, drule_id, drule_name):
     new_id = next_formulaid(existing_ids)
 
     # Nova condição: excluir interfaces ONU (PON slot/porta/onu)
+    # Operador 9 = NOT_MATCHES_REGEX na API do Zabbix 4.x (valor numérico obrigatório)
     new_condition = {
         "macro": iface_macro,
         "value": r"(?i)^\S*pon[ _]?\d+/\d+/\d+",
-        "operator": "NOT_MATCHES_REGEX",
+        "operator": "9",
         "formulaid": new_id,
     }
     conditions.append(new_condition)
 
-    new_filter = dict(current_filter)
-    new_filter["conditions"] = conditions
-    if not new_filter.get("evaltype"):
-        new_filter["evaltype"] = "AND"
+    # Monta novo filtro enviando apenas campos aceitos pelo update
+    # eval_formula é campo somente leitura — deve ser removido antes do update
+    new_filter = {
+        "evaltype": current_filter.get("evaltype", "0"),
+        "conditions": conditions,
+    }
+    # formula só é necessário quando evaltype=3 (CUSTOM_EXPRESSION)
+    if current_filter.get("evaltype") == "3" and current_filter.get("formula"):
+        new_filter["formula"] = current_filter["formula"]
 
     prefix = "[DRY-RUN] " if DRY_RUN else ""
     log(f"  {prefix}Adicionando filtro NOT_MATCHES_REGEX '{new_condition['value']}' "
