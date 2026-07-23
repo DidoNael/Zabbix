@@ -225,7 +225,11 @@ def log_disabled_item(host, item_name, item_key, error, reason):
 
 
 def process_items(url, auth, items, min_error_seconds, reason_label, check_age=True):
-    """Processa uma lista de itens, desativando os que satisfazem os criterios."""
+    """Processa uma lista de itens, desativando os que satisfazem os criterios.
+
+    Para Fase 1 (check_age=True): o gate e o tempo em state=1, nao o padrao de erro.
+    O campo error pode estar vazio mesmo com state=1 — nao use como filtro obrigatorio.
+    """
     disabled = 0
     skipped = 0
 
@@ -234,9 +238,6 @@ def process_items(url, auth, items, min_error_seconds, reason_label, check_age=T
         error_text = item.get("error", "")
 
         if check_age:
-            if not matches_error_pattern(error_text):
-                continue
-
             error_age = get_item_error_age(url, auth, item["itemid"],
                                            item.get("lastclock", 0))
             if error_age < min_error_seconds:
@@ -246,8 +247,9 @@ def process_items(url, auth, items, min_error_seconds, reason_label, check_age=T
                 continue
 
         prefix = "[DRY-RUN] " if DRY_RUN else ""
+        erro_display = error_text[:80] if error_text else "(sem mensagem de erro)"
         log(f"  {prefix}DESABILITAR ({reason_label}): "
-            f"[{host_name}] {item['name']} ({item['key_']}) — {error_text[:80]}")
+            f"[{host_name}] {item['name']} ({item['key_']}) — {erro_display}")
 
         if not DRY_RUN:
             try:
