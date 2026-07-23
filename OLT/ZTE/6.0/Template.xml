@@ -1698,7 +1698,7 @@ return s;</parameter>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>141e6b7454134ed9a4b8fc6089ec7a91</uuid>
-                            <expression>delta(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg[{#NETSTREAM.PON_INDEX}],900)&gt;=3</expression>
+                            <expression>(max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg[{#NETSTREAM.PON_INDEX}],900)-min(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg[{#NETSTREAM.PON_INDEX}],900))&gt;=3</expression>
                             <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
@@ -1731,7 +1731,7 @@ return s;</parameter>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>c3761a38d39f4eb1b97b8b3ad153fc2a</uuid>
-                            <expression>delta(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los[{#NETSTREAM.PON_INDEX}],900)&gt;=3</expression>
+                            <expression>(max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los[{#NETSTREAM.PON_INDEX}],900)-min(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los[{#NETSTREAM.PON_INDEX}],900))&gt;=3</expression>
                             <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
