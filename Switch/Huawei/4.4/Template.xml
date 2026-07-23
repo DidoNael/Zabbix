@@ -114,7 +114,7 @@
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.0.0.0</snmp_oid>
-                    <key>netstream.hwAvgDuty1min[{#SNMPINDEX}]</key>
+                    <key>netstream.hwAvgDuty1min[{#SNMPINDEX}]</key><status>DISABLED</status>
                     <delay>3m</delay>
                     <units>%</units>
                     <applications>
@@ -128,7 +128,7 @@
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.0.0.0</snmp_oid>
-                    <key>netstream.hwAvgDuty5min[{#SNMPINDEX}]</key>
+                    <key>netstream.hwAvgDuty5min[{#SNMPINDEX}]</key><status>DISABLED</status>
                     <delay>3m</delay>
                     <units>%</units>
                     <applications>
@@ -138,27 +138,11 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Number of network interfaces</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>IF-MIB::ifNumber.0</snmp_oid>
-                    <key>netstream.ifNumber</key>
-                    <delay>1h</delay>
-                    <history>1d</history>
-                    <trends>15d</trends>
-                    <description>The number of network interfaces (regardless of their current state) present on this system.</description>
-                    <applications>
-                        <application>
-                            <name>Interfaces</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
                     <name>Tabela Mac</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>.1.3.6.1.4.1.2011.5.25.42.2.1.14.0</snmp_oid>
-                    <key>netstream.mactable</key>
+                    <key>netstream.mactable</key><status>DISABLED</status>
                     <delay>10m</delay>
                     <applications>
                         <application>
@@ -342,596 +326,6 @@
                     <delay>1d</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
-                        <item_prototype>
-                            <name>Administrative status for peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.2.1.15.3.1.3.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.BgpPeerAdminStatus[{#IP}.{#ASN}]</key>
-                            <delay>5m</delay>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Established time for peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.2.1.15.3.1.16.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.BgpPeerFsmEstablishedTime.[{#IP}.{#ASN}]</key>
-                            <delay>5m</delay>
-                            <units>uptime</units>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Total IPv4 routes from peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.1.1.1.4.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.BgpPeerIPv4Routes[{#IP}.{#ASN}]</key>
-                            <delay>5m</delay>
-                            <units>prefixes</units>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Remote AS for peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.2.1.15.3.1.9.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.BgpPeerRemoteAs[{#IP}.{#ASN}]</key>
-                            <delay>5m</delay>
-                            <trends>90d</trends>
-                            <value_type>CHAR</value_type>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Operational status for peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.2.1.15.3.1.2.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.BgpPeerState.[{#IP}.{#ASN}]</key>
-                            <applications>
-                                <application>
-                                    <name>Peer V4</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>ASN Owner: {#IP} - {#ASN}</name>
-                            <type>EXTERNAL</type>
-                            <key>get_asn_owner_v2.sh[{#ASN},{#IP}]</key>
-                            <delay>1h</delay>
-                            <trends>90d</trends>
-                            <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>BGP</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                    </item_prototypes>
-                    <trigger_prototypes>
-                        <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerState.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatus[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},{#IP}].strlen()}&gt;0</expression>
-                            <name>BGP peer - IP {#IP}: ASN ({#ASN}) - DOWN - {ITEM.LASTVALUE3}</name>
-                            <priority>HIGH</priority>
-                            <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
-                            <manual_close>YES</manual_close>
-                            <tags>
-                                <tag>
-                                    <tag>Scope</tag>
-                                    <value>BGP</value>
-                                </tag>
-                                <tag>
-                                    <tag>Alert</tag>
-                                    <value>BgpPeerDownWarning</value>
-                                </tag>
-                                <tag>
-                                    <tag>Severity</tag>
-                                    <value>Average</value>
-                                </tag>
-                                <tag>
-                                    <tag>Peer</tag>
-                                    <value>{#IP}</value>
-                                </tag>
-                                <tag>
-                                    <tag>ASN</tag>
-                                    <value>{#ASN}</value>
-                                </tag>
-                                <tag>
-                                    <tag>Provider</tag>
-                                    <value>{ITEM.LASTVALUE3}</value>
-                                </tag>
-                            </tags>
-                        </trigger_prototype>
-                    </trigger_prototypes>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discovery: BGP IPv6 Peer</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#ASN},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.2, {#IP},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.3]</snmp_oid>
-                    <key>netstream.bgppeerv6</key>
-                    <delay>1d</delay>
-                    <lifetime>7d</lifetime>
-                    <item_prototypes>
-                        <item_prototype>
-                            <name>Administrative status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}]</key>
-                            <delay>5m</delay>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Established time for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.15.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.BgpPeerFsmEstablishedTimeV6.[{#IP}.{#ASN}]</key>
-                            <delay>5m</delay>
-                            <units>uptime</units>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Total IPv6 routes from peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.2.1.2.4.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.BgpPeerIPv6Routes[{#IP}.{#ASN}]</key>
-                            <delay>5m</delay>
-                            <units>prefixes</units>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Remote AS for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.2.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}]</key>
-                            <delay>5m</delay>
-                            <trends>90d</trends>
-                            <value_type>CHAR</value_type>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Operational status for IPv6 peer - IP {#IP}: ASN ({#ASN})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.4.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.BgpPeerStateV6.[{#IP}.{#ASN}]</key>
-                            <applications>
-                                <application>
-                                    <name>Peer V6</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>ASN Owner V6: {#IP} - {#ASN}</name>
-                            <type>EXTERNAL</type>
-                            <key>get_asn_owner_v2.sh[{#ASN},{#IP},v6]</key>
-                            <delay>1h</delay>
-                            <trends>90d</trends>
-                            <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>BGP</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                    </item_prototypes>
-                    <trigger_prototypes>
-                        <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerStateV6.[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Huawei 6700 Series - Netstream:netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}].last(0)}=2 and {Template Switch Huawei 6700 Series - Netstream:get_asn_owner_v2.sh[{#ASN},{#IP},v6].strlen()}&gt;0</expression>
-                            <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN}) - DOWN - {ITEM.LASTVALUE3}</name>
-                            <priority>HIGH</priority>
-                            <description>Trigger for IPv6 peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
-                            <manual_close>YES</manual_close>
-                            <tags>
-                                <tag>
-                                    <tag>Scope</tag>
-                                    <value>BGPv6</value>
-                                </tag>
-                                <tag>
-                                    <tag>Alert</tag>
-                                    <value>BgpV6PeerDownWarning</value>
-                                </tag>
-                                <tag>
-                                    <tag>Severity</tag>
-                                    <value>Average</value>
-                                </tag>
-                                <tag>
-                                    <tag>Peer</tag>
-                                    <value>{#IP}</value>
-                                </tag>
-                                <tag>
-                                    <tag>ASN</tag>
-                                    <value>{#ASN}</value>
-                                </tag>
-                                <tag>
-                                    <tag>Provider</tag>
-                                    <value>{ITEM.LASTVALUE3}</value>
-                                </tag>
-                            </tags>
-                        </trigger_prototype>
-                    </trigger_prototypes>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discovery: BFD Sessions</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#BFD_DISCRIMINATOR},1.3.6.1.4.1.2011.5.25.38.2.3.1.8,{#BFD_PEER},1.3.6.1.4.1.2011.5.25.38.2.3.1.5,{#BFD_IFNAME},1.3.6.1.4.1.2011.5.25.38.2.3.1.7]</snmp_oid>
-                    <key>netstream.bfd.discovery</key>
-                    <delay>1d</delay>
-                    <lifetime>7d</lifetime>
-                    <item_prototypes>
-                        <item_prototype>
-                            <name>BFD Session State: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.17.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.bfd.state[{#SNMPINDEX}]</key>
-                            <delay>1m</delay>
-                            <applications>
-                                <application>
-                                    <name>BFD</name>
-                                </application>
-                            </applications>
-                            <valuemap>
-                                <name>HUAWEI - BFD Session State</name>
-                            </valuemap>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>BFD Diagnostic Code: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.18.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.bfd.diag[{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <applications>
-                                <application>
-                                    <name>BFD</name>
-                                </application>
-                            </applications>
-                            <valuemap>
-                                <name>HUAWEI - BFD Diagnostic Code</name>
-                            </valuemap>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>BFD Remote Discriminator: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.9.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.bfd.remote_discr[{#SNMPINDEX}]</key>
-                            <delay>1h</delay>
-                            <applications>
-                                <application>
-                                    <name>BFD</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>BFD Application Type: Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.3.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.bfd.application[{#SNMPINDEX}]</key>
-                            <delay>1h</delay>
-                            <applications>
-                                <application>
-                                    <name>BFD</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>BFD Address Type (1=IPv4, 2=IPv6): Peer {#BFD_PEER} [{#BFD_IFNAME}] (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.22.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.bfd.addr_type[{#SNMPINDEX}]</key>
-                            <delay>1h</delay>
-                            <applications>
-                                <application>
-                                    <name>BFD</name>
-                                </application>
-                            </applications>
-                            <valuemap>
-                                <name>HUAWEI - BFD Address Type</name>
-                            </valuemap>
-                        </item_prototype>
-                    </item_prototypes>
-                    <trigger_prototypes>
-                        <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.bfd.state[{#SNMPINDEX}].last(#2)}=2</expression>
-                            <name>BFD Session DOWN: Peer {#BFD_PEER} (Discr: {#BFD_DISCRIMINATOR})</name>
-                            <priority>HIGH</priority>
-                            <description>Sessao BFD com o peer {#BFD_PEER} (Discriminator Local {#BFD_DISCRIMINATOR}) esta no estado DOWN (2).</description>
-                            <manual_close>YES</manual_close>
-                            <tags>
-                                <tag>
-                                    <tag>Scope</tag>
-                                    <value>BFD</value>
-                                </tag>
-                                <tag>
-                                    <tag>Alert</tag>
-                                    <value>BfdSessionDown</value>
-                                </tag>
-                                <tag>
-                                    <tag>Severity</tag>
-                                    <value>High</value>
-                                </tag>
-                                <tag>
-                                    <tag>Peer</tag>
-                                    <value>{#BFD_PEER}</value>
-                                </tag>
-                                <tag>
-                                    <tag>Interface</tag>
-                                    <value>{#BFD_IFNAME}</value>
-                                </tag>
-                                <tag>
-                                    <tag>Discr</tag>
-                                    <value>{#BFD_DISCRIMINATOR}</value>
-                                </tag>
-                            </tags>
-                        </trigger_prototype>
-                    </trigger_prototypes>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discovery: Temperatura</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#BOARD}, 1.3.6.1.2.1.47.1.1.1.1.2, {#TEMP}, 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11]</snmp_oid>
-                    <key>netstream.discovery.temp</key>
-                    <delay>1d</delay>
-                    <filter>
-                        <evaltype>AND</evaltype>
-                        <conditions>
-                            <condition>
-                                <macro>{#TEMP}</macro>
-                                <value>^0$</value>
-                                <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>A</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#TEMP}</macro>
-                                <value>^-</value>
-                                <operator>NOT_MATCHES_REGEX</operator>
-                                <formulaid>B</formulaid>
-                            </condition>
-                        </conditions>
-                    </filter>
-                    <item_prototypes>
-                        <item_prototype>
-                            <name>Slot - {#BOARD}</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.tempslot[{#SNMPINDEX}]</key>
-                            <units>C</units>
-                            <applications>
-                                <application>
-                                    <name>temperatura</name>
-                                </application>
-                            </applications>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <expression>{count(#5)}&gt;=50</expression>
-                                    <name>Temperatura alta</name>
-                                    <priority>HIGH</priority>
-                                    <tags>
-                                        <tag>
-                                            <tag>Scope</tag>
-                                            <value>Temperature</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alert</tag>
-                                            <value>TemperatureHigh</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Severity</tag>
-                                            <value>High</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                            
-                                <trigger_prototype>
-                                    <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.tempslot[{#SNMPINDEX}].min(5m)}&gt;=65</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{Template Switch Huawei 6700 Series - Netstream:netstream.tempslot[{#SNMPINDEX}].max(5m)}&lt;62</recovery_expression>
-                                    <name>Temperatura critica no slot {#BOARD}: acima de 65C</name>
-                                    <priority>HIGH</priority>
-                                    <tags>
-                                        <tag>
-                                            <tag>Scope</tag>
-                                            <value>Temperature</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alert</tag>
-                                            <value>TemperatureCritical</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Severity</tag>
-                                            <value>High</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                                <trigger_prototype>
-                                    <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.tempslot[{#SNMPINDEX}].min(5m)}&gt;=55</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{Template Switch Huawei 6700 Series - Netstream:netstream.tempslot[{#SNMPINDEX}].max(5m)}&lt;52</recovery_expression>
-                                    <name>Temperatura elevada no slot {#BOARD}: acima de 55C</name>
-                                    <priority>WARNING</priority>
-                                    <dependencies>
-                                        <dependency>
-                                            <name>Temperatura critica no slot {#BOARD}: acima de 65C</name>
-                                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.tempslot[{#SNMPINDEX}].min(5m)}&gt;=65</expression>
-                                            <recovery_expression>{Template Switch Huawei 6700 Series - Netstream:netstream.tempslot[{#SNMPINDEX}].max(5m)}&lt;62</recovery_expression>
-                                        </dependency>
-                                    </dependencies>
-                                    <tags>
-                                        <tag>
-                                            <tag>Scope</tag>
-                                            <value>Temperature</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alert</tag>
-                                            <value>TemperatureHigh</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Severity</tag>
-                                            <value>Warning</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype></trigger_prototypes>
-                        </item_prototype>
-                    </item_prototypes>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discovery | Network interfaces Virtual</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#IF},IF-MIB::ifDescr, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
-                    <key>netstream.discovery.vlanif</key>
-                    <delay>1d</delay>
-                    <filter>
-                        <conditions>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>Vlanif.*</value>
-                                <formulaid>C</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>Eth-Trunk.*</value>
-                                <formulaid>B</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>Virtual-Ethernet.*</value>
-                                <formulaid>A</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>(?i)^lag.*</value>
-                                <formulaid>D</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>(?i)^bundle.*</value>
-                                <formulaid>E</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>(?i)^port-channel.*</value>
-                                <formulaid>F</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IF}</macro>
-                                <value>(?i)^ae.*</value>
-                                <formulaid>G</formulaid>
-                            </condition>
-                        </conditions>
-                    </filter>
-                    <lifetime>7d</lifetime>
-                    <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.
-
-{$SNMP_COMMUNITY} is a global macro.</description>
-                    <item_prototypes>
-                        <item_prototype>
-                            <name>Incoming traffic on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.ifHCInOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                            <delay>1m</delay>
-                            <history>14d</history>
-                            <units>bps</units>
-                            <preprocessing>
-                                <step>
-                                    <type>CHANGE_PER_SECOND</type>
-                                    <params />
-                                </step>
-                                <step>
-                                    <type>MULTIPLIER</type>
-                                    <params>8</params>
-                                </step>
-                            </preprocessing>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Outgoing traffic on interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.ifHCOutOctets.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                            <delay>1m</delay>
-                            <history>14d</history>
-                            <units>bps</units>
-                            <preprocessing>
-                                <step>
-                                    <type>CHANGE_PER_SECOND</type>
-                                    <params />
-                                </step>
-                                <step>
-                                    <type>MULTIPLIER</type>
-                                    <params>8</params>
-                                </step>
-                            </preprocessing>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Status da interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                            <history>7d</history>
-                            <trends>90d</trends>
-                            <applications>
-                                <application>
-                                    <name>Interfaces</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
                     </item_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
@@ -1191,7 +585,7 @@
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.5]</snmp_oid>
-                    <key>netstream.hwEntityCpuUsage</key>
+                    <status>DISABLED</status><key>netstream.hwEntityCpuUsage</key>
                     <delay>1d</delay>
                     <lifetime>7d</lifetime>
                     <filter>
@@ -1512,7 +906,7 @@
                     <name>Discovery | Network interfaces | Sinal optico single lan</name>
                     <type>EXTERNAL</type>
                     <key>discovery_huawei_optical.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","single"]</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -2137,7 +1531,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#IF},1.3.6.1.2.1.2.2.1.2, {#IFALIAS},1.3.6.1.2.1.31.1.1.1.18, {#IFADMIN},1.3.6.1.2.1.2.2.1.7]</snmp_oid>
                     <key>netstream.ifDescr</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
                     <filter>
                         <evaltype>AND</evaltype>
                         <conditions>
@@ -2538,7 +1932,7 @@
                     <name>Discovery | Network interfaces | Sinal Optico modules multi lane</name>
                     <type>EXTERNAL</type>
                     <key>discovery_huawei_optical.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","multi"]</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -3072,7 +2466,7 @@ or
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#DOMAIN},1.3.6.1.4.1.2011.5.2.1.4.1.1]</snmp_oid>
                     <key>netstream.pppoe.domain.discovery</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
                     <description>Descobre automaticamente dominios PPPoE configurados no concentrador BNG Huawei. Desativada por padrao.</description>
                     <item_prototypes>
                         <item_prototype>
@@ -3173,7 +2567,7 @@ or
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#HWBASIFNAME},1.3.6.1.4.1.2011.5.25.40.1.1.20.1.6,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18]</snmp_oid>
                     <key>netstream.pppoe.interface.discovery</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
                     <description>Descobre automaticamente interfaces BNG/PPPoE que possuem clientes conectados. Desativada por padrao.</description>
                     <item_prototypes>
                         <item_prototype>

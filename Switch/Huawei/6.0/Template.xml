@@ -540,9 +540,9 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>31a645cc8be24d80bc6b8200d44c201e</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&gt;=65</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&gt;=last(/Template Switch Huawei 6700 Series - Netstream/netstream.tempthreshold[{#SNMPINDEX}])</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>max(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&lt;62</recovery_expression>
+                                    <recovery_expression>max(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&lt;(last(/Template Switch Huawei 6700 Series - Netstream/netstream.tempthreshold[{#SNMPINDEX}])-3)</recovery_expression>
                                     <name>Temperatura critica no slot {#BOARD}: acima de 65C</name>
                                     <priority>HIGH</priority>
                                     <tags>
@@ -562,16 +562,16 @@
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>a7c3e82f1d4b49e6b2081b3c5d9a7e14</uuid>
-                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&gt;=55</expression>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&gt;=(last(/Template Switch Huawei 6700 Series - Netstream/netstream.tempthreshold[{#SNMPINDEX}])*0.85)</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>max(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&lt;52</recovery_expression>
+                                    <recovery_expression>max(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&lt;(last(/Template Switch Huawei 6700 Series - Netstream/netstream.tempthreshold[{#SNMPINDEX}])*0.82)</recovery_expression>
                                     <name>Temperatura elevada no slot {#BOARD}: acima de 55C</name>
                                     <priority>WARNING</priority>
                                     <dependencies>
                                         <dependency>
                                             <name>Temperatura critica no slot {#BOARD}: acima de 65C</name>
-                                            <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&gt;=65</expression>
-                                            <recovery_expression>max(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&lt;62</recovery_expression>
+                                            <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&gt;=last(/Template Switch Huawei 6700 Series - Netstream/netstream.tempthreshold[{#SNMPINDEX}])</expression>
+                                            <recovery_expression>max(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&lt;(last(/Template Switch Huawei 6700 Series - Netstream/netstream.tempthreshold[{#SNMPINDEX}])-3)</recovery_expression>
                                         </dependency>
                                     </dependencies>
                                     <tags>
@@ -591,7 +591,24 @@
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
-                    </item_prototypes>
+                    
+                                <item_prototype>
+                                    <uuid>b3f7a291c4e84d15a9c2e6f038b1d7e5</uuid>
+                                    <name>Slot - {#BOARD}: Limite de temperatura configurado</name>
+                                    <type>SNMP_AGENT</type>
+                                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.14.{#SNMPINDEX}</snmp_oid>
+                                    <key>netstream.tempthreshold[{#SNMPINDEX}]</key>
+                                    <delay>10m</delay>
+                                    <history>7d</history>
+                                    <trends>30d</trends>
+                                    <units>°C</units>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Temperature</value>
+                                        </tag>
+                                    </tags>
+                                </item_prototype></item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
                     <uuid>3278eb2fb3284169920d4db91b02a64e</uuid>
