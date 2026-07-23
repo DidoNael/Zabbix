@@ -17,59 +17,6 @@
                     <name>ZTE</name>
                 </group>
             </groups>
-            <applications>
-                <application>
-                    <name>Clientes Dedicados</name>
-                </application>
-                <application>
-                    <name>Clientes Dedicados - LAN</name>
-                </application>
-                <application>
-                    <name>cpu</name>
-                </application>
-                <application>
-                    <name>ifstatus</name>
-                </application>
-                <application>
-                    <name>onu</name>
-                </application>
-                <application>
-                    <name>onu-dedicado</name>
-                </application>
-                <application>
-                    <name>onu-state</name>
-                </application>
-                <application>
-                    <name>Uplink / LAN OLT</name>
-                </application>
-                <application>
-                    <name>uptime</name>
-                </application>
-                <application>
-                    <name>ONUs Autorizadas</name>
-                </application>
-                <application>
-                    <name>ONUs Dying Gasp</name>
-                </application>
-                <application>
-                    <name>ONUs LOF</name>
-                </application>
-                <application>
-                    <name>ONUs LOS</name>
-                </application>
-                <application>
-                    <name>ONUs LOSI</name>
-                </application>
-                <application>
-                    <name>ONUs Offline</name>
-                </application>
-                <application>
-                    <name>ONUs Online</name>
-                </application>
-                <application>
-                    <name>Totais OLT</name>
-                </application>
-            </applications>
             <items>
                 <item>
                     <name>OLT: Status dos Ventiladores</name>
@@ -169,11 +116,6 @@
                     <trends>0</trends>
                     <value_type>FLOAT</value_type>
                     <units>uptime</units>
-                    <applications>
-                        <application>
-                            <name>uptime</name>
-                        </application>
-                    </applications>
                     <preprocessing>
                         <step>
                             <type>MULTIPLIER</type>
@@ -266,11 +208,6 @@
                     <delay>0</delay>
                     <history>30d</history>
                     <units>ONUs</units>
-                    <applications>
-                        <application>
-                            <name>Totais OLT</name>
-                        </application>
-                    </applications>
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
@@ -288,11 +225,6 @@
                     <delay>0</delay>
                     <history>30d</history>
                     <units>ONUs</units>
-                    <applications>
-                        <application>
-                            <name>Totais OLT</name>
-                        </application>
-                    </applications>
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
@@ -310,11 +242,6 @@
                     <delay>0</delay>
                     <history>30d</history>
                     <units>ONUs</units>
-                    <applications>
-                        <application>
-                            <name>Totais OLT</name>
-                        </application>
-                    </applications>
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
@@ -332,11 +259,6 @@
                     <delay>0</delay>
                     <history>30d</history>
                     <units>ONUs</units>
-                    <applications>
-                        <application>
-                            <name>Totais OLT</name>
-                        </application>
-                    </applications>
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
@@ -354,11 +276,6 @@
                     <delay>0</delay>
                     <history>30d</history>
                     <units>ONUs</units>
-                    <applications>
-                        <application>
-                            <name>Totais OLT</name>
-                        </application>
-                    </applications>
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
@@ -376,11 +293,6 @@
                     <delay>0</delay>
                     <history>30d</history>
                     <units>ONUs</units>
-                    <applications>
-                        <application>
-                            <name>Totais OLT</name>
-                        </application>
-                    </applications>
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
@@ -398,11 +310,6 @@
                     <delay>0</delay>
                     <history>30d</history>
                     <units>ONUs</units>
-                    <applications>
-                        <application>
-                            <name>Totais OLT</name>
-                        </application>
-                    </applications>
                     <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
@@ -467,14 +374,6 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>netstream.gpon.onu.phase_state[{#SNMPINDEX},{#ONUID}]</key>
                             <delay>5m</delay>
                             <status>DISABLED</status>
-                            <applications>
-                                <application>
-                                    <name>onu</name>
-                                </application>
-                                <application>
-                                    <name>onu-state</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT-ZTE-STATUS-ONT</name>
                             </valuemap>
@@ -523,14 +422,6 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>netstream.gpon.onu.last_offline_reason[{#SNMPINDEX},{#ONUID}]</key>
                             <delay>5m</delay>
                             <status>DISABLED</status>
-                            <applications>
-                                <application>
-                                    <name>onu</name>
-                                </application>
-                                <application>
-                                    <name>onu-state</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT-ZTE-OFFLINE-REASON</name>
                             </valuemap>
@@ -965,11 +856,6 @@ return JSON.stringify(result);</params>
                             <delay>1d</delay>
                             <trends>0</trends>
                             <status>DISABLED</status>
-                            <applications>
-                                <application>
-                                    <name>onu</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Operational Status: {#PONNAME} : {#PONDESC}</name>
@@ -980,11 +866,6 @@ return JSON.stringify(result);</params>
                             <delay>1m</delay>
                             <trends>90d</trends>
                             <status>DISABLED</status>
-                            <applications>
-                                <application>
-                                    <name>ifstatus</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT</name>
                             </valuemap>
@@ -1053,14 +934,6 @@ return JSON.stringify(result);</params>
                             <trends>90d</trends>
                             <status>DISABLED</status>
                             <port>161</port>
-                            <applications>
-                                <application>
-                                    <name>onu-dedicado</name>
-                                </application>
-                                <application>
-                                    <name>onu-state</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT-ZTE-STATUS-ONT</name>
                             </valuemap>
@@ -1105,11 +978,6 @@ return JSON.stringify(result);</params>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1162,11 +1030,6 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <trends>365d</trends>
                             <status>ENABLED</status>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>Distancia da ONU (m) - Cliente Dedicado: {#ONTDESC}</name>
@@ -1180,11 +1043,6 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>m</units>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>LAN 1 - Status da Porta - Cliente Dedicado: {#ONTDESC}</name>
@@ -1197,11 +1055,6 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <trends>365d</trends>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados - LAN</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{OLT ZTE - NETSTREAM:netstream.dedicado.lan.status[{#SNMPINDEX}].min(#3)}=2 and {OLT ZTE - NETSTREAM:netstream.onu.status.[{#SNMPINDEX}].last()}=1</expression>
@@ -1223,11 +1076,6 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>Mbps</units>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados - LAN</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1258,11 +1106,6 @@ return s;</params>
                             <trends>365d</trends>
                             <status>ENABLED</status>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados - LAN</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                     </item_prototypes>
                     <graph_prototypes>
@@ -1300,11 +1143,6 @@ return s;</params>
                             <key>netstream.zte.card.cpu[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <units>%</units>
-                            <applications>
-                                <application>
-                                    <name>cpu</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{min(10m)}&gt;90</expression>
@@ -1332,11 +1170,6 @@ return s;</params>
                             <key>netstream.zte.card.mem[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <units>%</units>
-                            <applications>
-                                <application>
-                                    <name>cpu</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{min(10m)}&gt;90</expression>
@@ -1363,11 +1196,6 @@ return s;</params>
                             <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.8.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.zte.card.realtype[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
-                            <applications>
-                                <application>
-                                    <name>cpu</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT-ZTE-CARD-TYPE</name>
                             </valuemap>
@@ -1379,11 +1207,6 @@ return s;</params>
                             <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.zte.card.status[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
-                            <applications>
-                                <application>
-                                    <name>cpu</name>
-                                </application>
-                            </applications>
                             <valuemap>
                                 <name>OLT-ZTE-STATUS-CARD</name>
                             </valuemap>
@@ -1486,11 +1309,6 @@ return s;</params>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>bps</units>
-                            <applications>
-                                <application>
-                                    <name>Uplink / LAN OLT</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
@@ -1514,11 +1332,6 @@ return s;</params>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>bps</units>
-                            <applications>
-                                <application>
-                                    <name>Uplink / LAN OLT</name>
-                                </application>
-                            </applications>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
@@ -1541,11 +1354,6 @@ return s;</params>
                             <trends>365d</trends>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
-                            <applications>
-                                <application>
-                                    <name>Uplink / LAN OLT</name>
-                                </application>
-                            </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{OLT ZTE - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2</expression>
@@ -1599,11 +1407,6 @@ return s;</params>
                             <key>netstream.gpon.pon.auth[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <applications>
-                                <application>
-                                    <name>ONUs Autorizadas</name>
-                                </application>
-                            </applications>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -1625,11 +1428,6 @@ return s;</params>
                             <key>netstream.gpon.pon.online[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <applications>
-                                <application>
-                                    <name>ONUs Online</name>
-                                </application>
-                            </applications>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -1651,11 +1449,6 @@ return s;</params>
                             <key>netstream.gpon.pon.offline[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <applications>
-                                <application>
-                                    <name>ONUs Offline</name>
-                                </application>
-                            </applications>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -1677,11 +1470,6 @@ return s;</params>
                             <key>netstream.gpon.pon.dg[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <applications>
-                                <application>
-                                    <name>ONUs Dying Gasp</name>
-                                </application>
-                            </applications>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -1703,11 +1491,6 @@ return s;</params>
                             <key>netstream.gpon.pon.los[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <applications>
-                                <application>
-                                    <name>ONUs LOS</name>
-                                </application>
-                            </applications>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -1729,11 +1512,6 @@ return s;</params>
                             <key>netstream.gpon.pon.losi[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <applications>
-                                <application>
-                                    <name>ONUs LOSI</name>
-                                </application>
-                            </applications>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -1755,11 +1533,6 @@ return s;</params>
                             <key>netstream.gpon.pon.lof[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <applications>
-                                <application>
-                                    <name>ONUs LOF</name>
-                                </application>
-                            </applications>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
