@@ -36,22 +36,12 @@
                     <units>%</units>
                 </item>
                 <item>
-                    <uuid>11abbb50e3f541749ecdcf2c801e8e02</uuid>
-                    <name>Number of network interfaces</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>IF-MIB::ifNumber.0</snmp_oid>
-                    <key>netstream.ifNumber</key>
-                    <delay>1h</delay>
-                    <history>1d</history>
-                    <trends>15d</trends>
-                    <description>The number of network interfaces (regardless of their current state) present on this system.</description>
-                </item>
-                <item>
                     <uuid>4aab10dcc6ab4058a8fef08dc86b7c68</uuid>
                     <name>Tabela Mac</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.2011.5.25.42.2.1.14.0</snmp_oid>
                     <key>netstream.mactable</key>
+                    <status>DISABLED</status>
                 </item>
                 <item>
                     <uuid>e6841d2170464ee6bafe0e197be7f97f</uuid>
@@ -191,6 +181,7 @@
                     <history>30d</history>
                     <trends>365d</trends>
                     <units>users</units>
+                    <status>DISABLED</status>
                 </item>
                 <item>
                     <uuid>feedabfe48ad4b8787e980a808252b89</uuid>
@@ -202,6 +193,7 @@
                     <trends>365d</trends>
                     <units>users</units>
                     <params>max(//netstream.pppoe.total,1d)</params>
+                    <status>DISABLED</status>
                 </item>
                 <item>
                     <uuid>37056986d249446e87e2bcf686e3a625</uuid>
@@ -213,6 +205,7 @@
                     <trends>365d</trends>
                     <units>users</units>
                     <params>min(//netstream.pppoe.total,1d)</params>
+                    <status>DISABLED</status>
                 </item>
                 <item>
                     <uuid>defc2b4990ef4c06af0801d9d9a492ef</uuid>
@@ -547,9 +540,39 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>31a645cc8be25d809c6b8200d44c201e</uuid>
-                                    <expression>count(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],#5)&gt;=50</expression>
-                                    <name>Temperatura alta</name>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&gt;=65</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>max(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&lt;62</recovery_expression>
+                                    <name>Temperatura critica no slot {#BOARD}: acima de 65C</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Temperature</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>TemperatureCritical</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Severity</tag>
+                                            <value>High</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>a7c3e82f1d4b59e6f2081b3c5d9a7e14</uuid>
+                                    <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&gt;=55</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>max(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&lt;52</recovery_expression>
+                                    <name>Temperatura elevada no slot {#BOARD}: acima de 55C</name>
+                                    <priority>WARNING</priority>
+                                    <dependencies>
+                                        <dependency>
+                                            <name>Temperatura critica no slot {#BOARD}: acima de 65C</name>
+                                            <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.tempslot[{#SNMPINDEX}],5m)&gt;=65</expression>
+                                        </dependency>
+                                    </dependencies>
                                     <tags>
                                         <tag>
                                             <tag>Scope</tag>
@@ -561,7 +584,7 @@
                                         </tag>
                                         <tag>
                                             <tag>Severity</tag>
-                                            <value>High</value>
+                                            <value>Warning</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -665,75 +688,6 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>63211a1bced64eabaa2e7e7c497bf04b</uuid>
-                            <name>Status da interface - {#IF}: ({#IFALIAS})</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}]</key>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>27daded60c4c530486d345e58949a8c3</uuid>
-                                    <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}],#1)&lt;&gt;last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}],#2))=1</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=1</recovery_expression>
-                                    <name>Status da interface - {#IF}: ({#IFALIAS})</name>
-                                    <priority>HIGH</priority>
-                                    <tags>
-                                        <tag>
-                                            <tag>Scope</tag>
-                                            <value>InterfaceVirtual</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alert</tag>
-                                            <value>VirtualInterfaceDown</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Severity</tag>
-                                            <value>Average</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Interface</tag>
-                                            <value>{#IF}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alias</tag>
-                                            <value>{#IFALIAS}</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                                <trigger_prototype>
-                                    <uuid>4b30bac4c43e5a468112f33c61cdce66</uuid>
-                                    <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.vlanif.[{#IF}.{#SNMPINDEX}])=2</expression>
-                                    <name>Vlan down - {#IF}: ({#IFALIAS})</name>
-                                    <priority>INFO</priority>
-                                    <tags>
-                                        <tag>
-                                            <tag>Scope</tag>
-                                            <value>InterfaceVirtual</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alert</tag>
-                                            <value>VlanInterfaceDown</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Severity</tag>
-                                            <value>Average</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Interface</tag>
-                                            <value>{#IF}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alias</tag>
-                                            <value>{#IFALIAS}</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                            </trigger_prototypes>
                         </item_prototype>
                     </item_prototypes>
                     <graph_prototypes>
@@ -966,6 +920,7 @@
                     <snmp_oid>discovery[{#SNMPVALUE}, 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.5]</snmp_oid>
                     <key>netstream.hwEntityCpuUsage</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <lifetime>7d</lifetime>
                     <filter>
                         <evaltype>AND</evaltype>
@@ -987,6 +942,7 @@
                             <key>netstream.hwEntityCpuUsage[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
+                            <status>DISABLED</status>
                             <description>Uso de CPU para roteadores Huawei NetEngine (NE20/NE40). HUAWEI-ENTITY-EXTENT-MIB::hwEntityCpuUsage.</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
@@ -1234,7 +1190,7 @@
                     <name>Discovery | Network interfaces | Sinal optico single lan</name>
                     <type>EXTERNAL</type>
                     <key>discovery_huawei_optical.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","single"]</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -1750,7 +1706,7 @@
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#IF},1.3.6.1.2.1.2.2.1.2, {#IFALIAS},1.3.6.1.2.1.31.1.1.1.18, {#IFADMIN},1.3.6.1.2.1.2.2.1.7]</snmp_oid>
                     <key>netstream.ifDescr</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
                     <filter>
                         <evaltype>AND</evaltype>
                         <conditions>
@@ -2127,7 +2083,7 @@
                     <name>Discovery | Network interfaces | Sinal Optico modules multi lane</name>
                     <type>EXTERNAL</type>
                     <key>discovery_huawei_optical.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","multi"]</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
                     <filter>
                         <conditions>
                             <condition>
@@ -2599,7 +2555,7 @@ last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLa
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#DOMAIN},1.3.6.1.4.1.2011.5.2.1.4.1.1]</snmp_oid>
                     <key>netstream.pppoe.domain.discovery</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
                     <status>DISABLED</status>
                     <description>Descobre automaticamente dominios PPPoE configurados no concentrador BNG Huawei. Desativada por padrao.</description>
                     <item_prototypes>
@@ -2690,7 +2646,7 @@ last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLa
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#HWBASIFNAME},1.3.6.1.4.1.2011.5.25.40.1.1.20.1.6,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18]</snmp_oid>
                     <key>netstream.pppoe.interface.discovery</key>
-                    <delay>1h</delay>
+                    <delay>1d</delay>
                     <status>DISABLED</status>
                     <description>Descobre automaticamente interfaces BNG/PPPoE que possuem clientes conectados. Desativada por padrao.</description>
                     <item_prototypes>
