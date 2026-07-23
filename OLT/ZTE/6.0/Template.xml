@@ -501,9 +501,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <key>netstream.gpon.onu.offline[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <status>DISABLED</status>
-                            <parameters>
-                                <parameter>last("netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]")-last("netstream.gpon.onu.online[{#SNMPINDEX}]")</parameter>
-                            </parameters>
+                            <params>last(//netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}])-last(//netstream.gpon.onu.online[{#SNMPINDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>95b5ad9693cb4b79a13a3af4a4c84f1d</uuid>
@@ -521,9 +519,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <key>netstream.gpon.onu.online_antes[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <status>DISABLED</status>
-                            <parameters>
-                                <parameter>last("netstream.gpon.onu.online[{#SNMPINDEX}]",#2)</parameter>
-                            </parameters>
+                            <params>last(//netstream.gpon.onu.online[{#SNMPINDEX}],#2)</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8ff71fd0dc1d4d37a618a60fc78540cb</uuid>
@@ -1511,11 +1507,6 @@ return s;</parameter>
                             <key>netstream.gpon.pon.auth[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1535,11 +1526,6 @@ return s;</parameter>
                             <key>netstream.gpon.pon.online[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1559,11 +1545,6 @@ return s;</parameter>
                             <key>netstream.gpon.pon.offline[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1583,11 +1564,6 @@ return s;</parameter>
                             <key>netstream.gpon.pon.dg[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1607,11 +1583,6 @@ return s;</parameter>
                             <key>netstream.gpon.pon.los[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1631,11 +1602,6 @@ return s;</parameter>
                             <key>netstream.gpon.pon.losi[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1655,11 +1621,6 @@ return s;</parameter>
                             <key>netstream.gpon.pon.lof[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1679,14 +1640,7 @@ return s;</parameter>
                             <key>netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <parameters>
-                                <parameter>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.online[{#NETSTREAM.PON_INDEX}]")</parameter>
-                            </parameters>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
+                            <params>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.online[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>5f22daf6d77142ec92ffebff58b53816</uuid>
@@ -1695,14 +1649,7 @@ return s;</parameter>
                             <key>netstream.gpon.pon.calc.offline[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <parameters>
-                                <parameter>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.offline[{#NETSTREAM.PON_INDEX}]")</parameter>
-                            </parameters>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
+                            <params>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.offline[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>f78c161489f34388ba7867757ef2b2e2</uuid>
@@ -1711,14 +1658,7 @@ return s;</parameter>
                             <key>netstream.gpon.pon.calc.dg[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <parameters>
-                                <parameter>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.dg[{#NETSTREAM.PON_INDEX}]")</parameter>
-                            </parameters>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
+                            <params>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.dg[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>4c7d188b437d464282f517f8d41e4a96</uuid>
@@ -1727,14 +1667,7 @@ return s;</parameter>
                             <key>netstream.gpon.pon.calc.los[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <parameters>
-                                <parameter>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.los[{#NETSTREAM.PON_INDEX}]")</parameter>
-                            </parameters>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
-                                </application_prototype>
-                            </application_prototypes>
+                            <params>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.los[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
