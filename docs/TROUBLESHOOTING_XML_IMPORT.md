@@ -262,6 +262,32 @@ Ajuste o índice da macro para corresponder à posição real do item na express
 
 ---
 
+## 12. Sintaxe de `<params>` em Itens Calculados (Zabbix 6.0)
+
+### Mensagem de Erro:
+```text
+Parâmetro inválido "/N/params": uso incorreto da função "last".
+```
+
+### Causa:
+Itens do tipo `CALCULATED` (`<type>CALCULATED</type>`) usam uma fórmula na tag `<params>`.
+No **Zabbix 4.4/5.0**, a sintaxe para referenciar um item do mesmo host era:
+```
+last("key")
+```
+No **Zabbix 6.0**, a sintaxe mudou para:
+```
+last(//key)
+```
+O `//` significa "host atual". Para referenciar um host específico: `last(/hostname/key)`.
+
+### Como Prevenir / Solucionar:
+Substitua todas as ocorrências de `last("key")` por `last(//key)` nos `<params>` de itens
+calculados em templates 6.0. O mesmo vale para outras funções de série temporal usadas em
+`<params>`: `min`, `max`, `avg`, `sum`, `count`, etc.
+
+---
+
 ## Checklist de Validação Antes do Commit
 
 ### Zabbix 4.4
@@ -274,11 +300,12 @@ Ajuste o índice da macro para corresponder à posição real do item na express
 
 ### Zabbix 6.0
 7. [ ] `<status>` usa constante textual (`ENABLED`/`DISABLED`), nunca numérica.
-8. [ ] Toda entidade do template possui `<uuid>` como primeiro filho.
+8. [ ] Toda entidade do template possui `<uuid>` como primeiro filho e é UUIDv4 (13° hex = `4`).
 9. [ ] Referências `<item>` dentro de `<graph_item>` **não** possuem `<uuid>`.
 10. [ ] Host group referenciado existe no servidor de destino com mesmo nome.
 11. [ ] UUIDs de valuemaps, host groups e templates linkados são compatíveis com o servidor.
 12. [ ] Índices `{ITEM.LASTVALUEN}` nos triggers correspondem à contagem real de itens na expressão.
+13. [ ] `<params>` de itens `CALCULATED` usam sintaxe 6.0: `last(//key)` e não `last("key")`.
 
 ### Ambas as versões
 13. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
