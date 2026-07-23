@@ -418,7 +418,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>1c8114d1e6ad4a528fb4fe3dc1c81658</uuid>
-                                    <expression>{last()}=1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.onu.last_offline_reason[{#SNMPINDEX},{#ONUID}])=2</expression>
                                     <name>ONU {#ONUID} no slot {#SNMPINDEX}: Fibra optica rompida (LOS)</name>
                                     <priority>AVERAGE</priority>
                                     <status>DISABLED</status>
@@ -436,7 +436,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>30a314b85df840daad64a4e241d9189e</uuid>
-                                    <expression>{last()}=4</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.onu.phase_state[{#SNMPINDEX},{#ONUID}])=4</expression>
                                     <name>ONU {#ONUID} no slot {#SNMPINDEX}: Sem energia eletrica (Dying Gasp)</name>
                                     <priority>WARNING</priority>
                                     <status>DISABLED</status>
@@ -583,9 +583,9 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>30d0c543888b4300bb8f6b66c614d556</uuid>
-                                    <expression>{OLT ZTE - NETSTREAM:netstream.net.if.in.errors[{#SNMPINDEX}].min(#3)}&gt;5</expression>
+                                    <expression>min(/OLT ZTE - NETSTREAM/netstream.net.if.in.errors[{#SNMPINDEX}],#3)&gt;5</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{avg(1)}=0</recovery_expression>
+                                    <recovery_expression>avg(/OLT ZTE - NETSTREAM/netstream.net.if.in.errors[{#SNMPINDEX}],1)=0</recovery_expression>
                                     <name>Porta {#PONNAME} ({#PONDESC}): Alta Taxa de Erros CRC ({ITEM.LASTVALUE1}/s)</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
@@ -661,7 +661,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>c0cd98d84c004f8c8823a099c518cb4a</uuid>
-                                    <expression>{last()}&gt;10</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.net.if.out.errors[{#SNMPINDEX}])>10</expression>
                                     <name>Porta {#PONNAME} ({#PONDESC}): Taxa de erros de saida elevada</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
@@ -715,7 +715,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>59c9a4068fef44b3a33abd4d7671fadc</uuid>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].max(#3)}=2</expression>
+                            <expression>max(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],#3)=2</expression>
                             <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Apagada (Inativa)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -744,7 +744,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>61db861a0e554d9abb4cbac305b05da3</uuid>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;127 and {OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].last()}=1</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}])&gt;127 and last(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}])=1</expression>
                             <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Cheia (&gt;127 ONUs autorizadas)</name>
                             <priority>WARNING</priority>
                             <manual_close>YES</manual_close>
@@ -940,9 +940,9 @@ return JSON.stringify(result);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>ac965e45782747f4bfc18a3f7e10d944</uuid>
-                                    <expression>{last()}=2 and {min(#3)}=2</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.statuspon.[{#SNMPINDEX}])=2 and min(/OLT ZTE - NETSTREAM/netstream.statuspon.[{#SNMPINDEX}],#3)=2</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{last()}=1</recovery_expression>
+                                    <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.statuspon.[{#SNMPINDEX}])=1</recovery_expression>
                                     <name>{#PONNAME} : {#PONDESC}</name>
                                     <status>DISABLED</status>
                                     <priority>HIGH</priority>
@@ -1007,9 +1007,9 @@ return JSON.stringify(result);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>7b970cb6a6c94e3497d1b8e2434a886b</uuid>
-                                    <expression>{OLT ZTE - NETSTREAM:netstream.onu.status.[{#SNMPINDEX}].min(#3)}=1</expression>
+                                    <expression>min(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{last()}=3</recovery_expression>
+                                    <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=3</recovery_expression>
                                     <name>Cliente Dedicado Offline / Desconectado: {#ONTDESC}</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1059,7 +1059,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>ccb82f91053643f4a46ea8ed23c79431</uuid>
-                                    <expression>{OLT ZTE - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&lt;=-28 and {OLT ZTE - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&gt;-40</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-28 and last(/OLT ZTE - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-40</expression>
                                     <name>Cliente Dedicado {#ONTDESC}: Sinal Optico Critico ({ITEM.LASTVALUE1})</name>
                                     <priority>HIGH</priority>
                                     <description>Sinal optico da ONU dedicada extremamente baixo (&lt; -28 dBm). Risco iminente de queda do link.</description>
@@ -1084,7 +1084,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>65bd3326331f4889a3bd219018dbdd72</uuid>
-                                    <expression>{OLT ZTE - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&lt;=-25 and {OLT ZTE - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&gt;-28</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-25 and last(/OLT ZTE - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-28</expression>
                                     <name>Cliente Dedicado {#ONTDESC}: Sinal Optico Degradado ({ITEM.LASTVALUE1})</name>
                                     <priority>WARNING</priority>
                                     <description>Sinal optico do cliente dedicado abaixo de -25 dBm.</description>
@@ -1130,7 +1130,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>c130941faaf041e1b59a32aa421f767b</uuid>
-                                    <expression>{OLT ZTE - NETSTREAM:netstream.dedicado.lan.status[{#SNMPINDEX}].min(#3)}=2 and {OLT ZTE - NETSTREAM:netstream.onu.status.[{#SNMPINDEX}].last()}=1</expression>
+                                    <expression>min(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}],#3)=2 and last(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=1</expression>
                                     <name>Cliente Dedicado {#ONTDESC}: Cabo LAN Desconectado / Porta Ethernet DOWN</name>
                                     <priority>WARNING</priority>
                                     <description>A ONU dedicada esta online na fibra, porem o cabo de rede RJ45 (LAN 1) que liga ao cliente esta desconectado ou DOWN.</description>
@@ -1164,7 +1164,7 @@ return s;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>cc750faf40784e07826254812b7759ff</uuid>
-                                    <expression>{OLT ZTE - NETSTREAM:netstream.dedicado.lan.speed[{#SNMPINDEX}].last()}=100 and {OLT ZTE - NETSTREAM:netstream.dedicado.lan.status[{#SNMPINDEX}].last()}=1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.speed[{#SNMPINDEX}])=100 and last(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])=1</expression>
                                     <name>Cliente Dedicado {#ONTDESC}: Porta LAN Negociando a apenas 100 Mbps (Degradacao Cabo RJ45)</name>
                                     <priority>WARNING</priority>
                                     <description>O cabo de rede do cliente dedicado negociou a 100 Mbps em vez de Gigabit (1000 Mbps). Verificar crimpagem, oxidacao de conector RJ45 ou porta do firewall.</description>
@@ -1223,7 +1223,7 @@ return s;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>b076234790b947cab309241f62444713</uuid>
-                                    <expression>{min(10m)}&gt;90</expression>
+                                    <expression>min(/OLT ZTE - NETSTREAM/netstream.zte.card.cpu[{#SNMPINDEX}],10m)>90</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de CPU elevado (&gt;90% por 10m)</name>
                                     <priority>AVERAGE</priority>
                                     <manual_close>YES</manual_close>
@@ -1251,7 +1251,7 @@ return s;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>bba563c7be334c7393293b18ba1a3f79</uuid>
-                                    <expression>{min(10m)}&gt;90</expression>
+                                    <expression>min(/OLT ZTE - NETSTREAM/netstream.zte.card.mem[{#SNMPINDEX}],10m)>90</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de memoria RAM elevado (&gt;90% por 10m)</name>
                                     <priority>AVERAGE</priority>
                                     <manual_close>YES</manual_close>
@@ -1292,7 +1292,7 @@ return s;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>35b31439015d4a36a59a33eb74c3a24e</uuid>
-                                    <expression>{last()}=9</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=9</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa com defeito (Faulty)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1309,7 +1309,7 @@ return s;</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>b96b923fe66e416e858b4564e2efb2e3</uuid>
-                                    <expression>{last()}=11</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=11</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Sem energia eletrica Power)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1326,7 +1326,7 @@ return s;</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>04dfa5afce624d0e84f0d1589a2164b7</uuid>
-                                    <expression>{last()}=4</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=4</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Desconectada / Offline</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1343,7 +1343,7 @@ return s;</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>353faee01d114bfe9f398a1c53112c3d</uuid>
-                                    <expression>{last()}=2</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=2</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Fora de Servico (Not in Service)</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
@@ -1448,7 +1448,7 @@ return s;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>5eeec1f352b545ec9769a687e81db9ac</uuid>
-                                    <expression>{OLT ZTE - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2</expression>
+                                    <expression>max(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2</expression>
                                     <name>Uplink {#IFNAME} ({#IFALIAS}): Link DOWN / Desconectado</name>
                                     <priority>HIGH</priority>
                                     <description>A porta LAN/Uplink fisica da OLT caiu e permanece indisponivel.</description>
@@ -1668,9 +1668,9 @@ return s;</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>f9a93c13c35c45618122cc4c70dd9318</uuid>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}].last()}=0</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}])=0</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
+                            <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
                             <priority>DISASTER</priority>
                             <tags>
@@ -1698,7 +1698,7 @@ return s;</parameter>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>141e6b7454134ed9a4b8fc6089ec7a91</uuid>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3</expression>
+                            <expression>delta(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg[{#NETSTREAM.PON_INDEX}],900)&gt;=3</expression>
                             <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
@@ -1731,7 +1731,7 @@ return s;</parameter>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>c3761a38d39f4eb1b97b8b3ad153fc2a</uuid>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3</expression>
+                            <expression>delta(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los[{#NETSTREAM.PON_INDEX}],900)&gt;=3</expression>
                             <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -1764,7 +1764,7 @@ return s;</parameter>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>2c2c45b1d01348b3a6db6b9377622b51</uuid>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}].change()}&lt;-{$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}].last()}&gt;0</expression>
+                            <expression>change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}])&lt;-{$GPON_DROP_MIN} and last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}])&gt;0</expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda parcial de ONUs</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
