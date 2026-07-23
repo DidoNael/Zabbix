@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-07-09T01:15:27Z</date>
@@ -1958,11 +1958,10 @@ return s;</params>
                     <value>5</value>
                 </macro>
             </macros>
-        </template>
-    </templates>
-    <value_maps>
-        <value_map>
-            <name>OLT</name>
+                    <valuemaps>
+        <valuemap>
+                        <uuid>a21cb46992f647fd8787af6e708536e4</uuid>
+        <name>OLT</name>
             <mappings>
                 <mapping>
                     <value>1</value>
@@ -1973,9 +1972,10 @@ return s;</params>
                     <newvalue>GPON APAGADA</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-        <value_map>
-            <name>OLT-ZTE-CARD-TYPE</name>
+        </valuemap>
+        <valuemap>
+                        <uuid>93cf9daccaf54fedb00b54016125c609</uuid>
+        <name>OLT-ZTE-CARD-TYPE</name>
             <mappings>
                 <mapping>
                     <value>1</value>
@@ -1998,9 +1998,10 @@ return s;</params>
                     <newvalue>Placa do tipo GTOH</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-        <value_map>
-            <name>OLT-ZTE-STATUS-CARD</name>
+        </valuemap>
+        <valuemap>
+                        <uuid>5b400484220b4e75b10fa4eab56112d2</uuid>
+        <name>OLT-ZTE-STATUS-CARD</name>
             <mappings>
                 <mapping>
                     <value>1</value>
@@ -2059,9 +2060,10 @@ return s;</params>
                     <newvalue>powerSaving</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-        <value_map>
-            <name>OLT-ZTE-STATUS-FAN</name>
+        </valuemap>
+        <valuemap>
+                        <uuid>b253af5d03804bd492f38597f6b913d8</uuid>
+        <name>OLT-ZTE-STATUS-FAN</name>
             <mappings>
                 <mapping>
                     <value>1</value>
@@ -2080,9 +2082,10 @@ return s;</params>
                     <newvalue>fail</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-        <value_map>
-            <name>OLT-ZTE-STATUS-ONT</name>
+        </valuemap>
+        <valuemap>
+                        <uuid>eb9b468514a14997aeed9e48a4ff30d7</uuid>
+        <name>OLT-ZTE-STATUS-ONT</name>
             <mappings>
                 <mapping>
                     <value>0</value>
@@ -2105,9 +2108,10 @@ return s;</params>
                     <newvalue>Dyinggasp ( Desligada / Queda de Enegia )</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-        <value_map>
-            <name>OLT-ZTE-STATUS-PSU</name>
+        </valuemap>
+        <valuemap>
+                        <uuid>0259562ac2954a3c8107826670f05afb</uuid>
+        <name>OLT-ZTE-STATUS-PSU</name>
             <mappings>
                 <mapping>
                     <value>1</value>
@@ -2122,9 +2126,10 @@ return s;</params>
                     <newvalue>offline</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-        <value_map>
-            <name>OLT-ZTE-OFFLINE-REASON</name>
+        </valuemap>
+        <valuemap>
+                        <uuid>3a1125f11f774855851b204eeb3772da</uuid>
+        <name>OLT-ZTE-OFFLINE-REASON</name>
             <mappings>
                 <mapping>
                     <value>1</value>
@@ -2143,6 +2148,7 @@ return s;</params>
                     <newvalue>powerOff (Dying Gasp)</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-    </value_maps>
-</zabbix_export>
+        </valuemap>
+                </valuemaps>
+</template>
+    </templates></zabbix_export>
