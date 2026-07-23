@@ -1566,7 +1566,7 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>B</units>
-                            <params>last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")-last("netstream.hwMemoryDevFree[{#SNMPINDEX}]")</params>
+                            <params>last(//netstream.hwMemoryDevSize[{#SNMPINDEX}])-last(//netstream.hwMemoryDevFree[{#SNMPINDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>1f595e0bdf414e07817dd4cd51be2c47</uuid>
@@ -1590,7 +1590,7 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <params>last("netstream.hwMemoryDevFree[{#SNMPINDEX}]")/last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")*100</params>
+                            <params>last(//netstream.hwMemoryDevFree[{#SNMPINDEX}])/last(//netstream.hwMemoryDevSize[{#SNMPINDEX}])*100</params>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>fbb2943aadef40a083967c433962ddba</uuid>
@@ -1649,7 +1649,7 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
-                            <params>(last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")-last("netstream.hwMemoryDevFree[{#SNMPINDEX}]"))/last("netstream.hwMemoryDevSize[{#SNMPINDEX}]")*100</params>
+                            <params>(last(//netstream.hwMemoryDevSize[{#SNMPINDEX}])-last(//netstream.hwMemoryDevFree[{#SNMPINDEX}]))/last(//netstream.hwMemoryDevSize[{#SNMPINDEX}])*100</params>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>1ecc80e87e9c46c88d607cfe8543f66c</uuid>
