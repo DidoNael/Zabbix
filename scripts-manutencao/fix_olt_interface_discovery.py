@@ -105,40 +105,28 @@ def get_onu_items(url, auth):
     onu_items = []
     pattern = re.compile(ONU_IFACE_PATTERN)
 
-    # Busca em lotes por cada prefixo de chave
     for prefix in ONU_KEY_PREFIXES:
-        offset = 0
-        limit = 1000
-        while True:
-            items = api_call(url, "item.get", {
-                "output": ["itemid", "name", "key_", "hostid", "templateid"],
-                "search": {"key_": prefix},
-                "startSearch": True,
-                "selectHosts": ["host", "name"],
-                "limit": limit,
-                "limitselect": 1,
-            }, auth)
+        # Uma única chamada com limite alto — Zabbix item.get não tem paginação por offset
+        items = api_call(url, "item.get", {
+            "output": ["itemid", "name", "key_", "hostid"],
+            "search": {"key_": prefix},
+            "startSearch": True,
+            "selectHosts": ["host", "name"],
+            "limit": 50000,
+            "limitselect": 1,
+        }, auth)
 
-            if not items:
-                break
+        matched = 0
+        for item in items:
+            key = item["key_"]
+            m = re.match(r"[^[]+\[(.+)\]", key)
+            if m and pattern.match(m.group(1)):
+                onu_items.append(item)
+                matched += 1
 
-            for item in items:
-                key = item["key_"]
-                # Extrai o nome da interface da chave: ifHCInOctets[PON 15/3/6] → PON 15/3/6
-                m = re.match(r"[^[]+\[(.+)\]", key)
-                if m:
-                    iface_name = m.group(1)
-                    if pattern.match(iface_name):
-                        onu_items.append(item)
+        log(f"  {prefix}: {matched} itens de ONU (de {len(items)} total com esse prefixo)")
 
-            if len(items) < limit:
-                break
-
-            offset += limit
-
-        log(f"  {prefix}: {len([i for i in onu_items if i['key_'].startswith(prefix)])} itens de ONU encontrados")
-
-    # Deduplicar
+    # Deduplicar por itemid
     seen = set()
     unique = []
     for item in onu_items:
