@@ -2514,13 +2514,13 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>451b7f6d67214828bd26558ecefcbe51</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}],,5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
+                            <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}],5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
 or
-last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}],,5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
+min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}],5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
 or
-last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}],,5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
-or 
-last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}],,5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])</expression>
+min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}],5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
+or
+min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}],5m)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
