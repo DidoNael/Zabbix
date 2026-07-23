@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # zabbix_auto_disable.py
-# Desabilita automaticamente itens SNMP que estao com erro repetido (not supported)
-# evitando que timeouts SNMP marquem hosts como unreachable e causem gaps nos graficos.
+# Desabilita automaticamente itens SNMP/calculados que estao com erro repetido
+# (not supported), e itens definidos em FORCE_DISABLE_KEYS que estejam ativos
+# no host mas que o template ja marcou como desativados.
 #
 # Instalacao:
 #   1. Copiar para /usr/local/bin/zabbix_auto_disable.py
 #   2. chmod +x /usr/local/bin/zabbix_auto_disable.py
-#   3. Adicionar no cron: */5 * * * * /usr/local/bin/zabbix_auto_disable.py >> /var/log/zabbix/auto_disable.log 2>&1
+#   3. Cron: */5 * * * * /usr/local/bin/zabbix_auto_disable.py >> /var/log/zabbix/auto_disable.log 2>&1
 #
 # Configuracao: editar as variaveis abaixo ou usar variaveis de ambiente
 
@@ -30,13 +31,26 @@ ZABBIX_PASSWORD = os.getenv("ZABBIX_PASSWORD", "zabbix")
 # Tempo minimo (em minutos) que um item deve estar com erro antes de ser desabilitado
 MIN_ERROR_MINUTES = int(os.getenv("MIN_ERROR_MINUTES", "10"))
 
-# Tipos de item a verificar
-# SNMP: SNMPv1=1, SNMPv2c=4, SNMPv3=6
-# Calculado=15 (depende de outros itens que podem nao existir mais)
+# Tipos de item a verificar (state=1)
+# SNMP: SNMPv1=1, SNMPv2c=4, SNMPv3=6  |  Calculado=15
 ITEM_TYPES = [1, 4, 6, 15]
 
-# Erros que indicam timeout/conexao (item.error)
+# Itens a desativar SEMPRE que estiverem habilitados no host, independente do estado.
+# Usado para forcar desativacao de itens que o template marcou como DISABLED mas que
+# hosts existentes ainda mantem ativos (Zabbix nao propaga status DISABLED do template
+# para hosts que ja tinham o item ativo).
+# Formato: lista de chaves exatas (key_) ou prefixos terminados em '*'
+FORCE_DISABLE_KEYS = os.getenv("FORCE_DISABLE_KEYS", "").split(",") if os.getenv("FORCE_DISABLE_KEYS") else [
+    "netstream.pppoe.total",
+    "netstream.pppoe.total.max24h",
+    "netstream.pppoe.total.min24h",
+]
+# Remover entradas vazias
+FORCE_DISABLE_KEYS = [k.strip() for k in FORCE_DISABLE_KEYS if k.strip()]
+
+# Erros que indicam falha no item
 ERROR_PATTERNS = [
+    # SNMP / conectividade
     "timeout",
     "network error",
     "cannot connect",
@@ -44,17 +58,26 @@ ERROR_PATTERNS = [
     "unreachable",
     "no such instance",
     "no such object",
+    # Preprocessing / tipo
     "preprocessing failed",
     "not suitable for value type",
     "cannot parse",
+    # Itens calculados
     "does not exist",
     "cannot evaluate",
+    "cannot find value",           # "Cannot find value for expression"
+    "history for item",            # "History for item X is empty"
+    "invalid value of type",       # "Cannot evaluate expression: invalid value..."
+    "not found",                   # chave referenciada ausente
+    # Macro invalida (snmp_community vazio ou macro errada)
+    "is not a valid macro",
+    "unknown macro",
+    "macro is not supported",
 ]
 
 # Modo dry-run: se True, apenas lista os itens sem desabilitar
 DRY_RUN = os.getenv("DRY_RUN", "false").lower() == "true"
 
-# Log file para itens desabilitados (historico)
 LOG_FILE = os.getenv("LOG_FILE", "/var/log/zabbix/auto_disable_history.log")
 
 
@@ -101,131 +124,179 @@ def logout(url, auth):
         pass
 
 
-def get_unsupported_snmp_items(url, auth):
-    """Busca itens SNMP com estado 'not supported' (state=1)"""
-    items = api_call(url, "item.get", {
-        "output": ["itemid", "name", "key_", "type", "state", "error", "status", "hostid"],
+def get_unsupported_items(url, auth):
+    """Busca itens habilitados com state=1 (not supported) nos tipos configurados."""
+    return api_call(url, "item.get", {
+        "output": ["itemid", "name", "key_", "type", "state", "error", "status",
+                   "hostid", "lastclock"],
         "filter": {
-            "state": 1,       # not supported
-            "status": 0,      # habilitado
+            "state": 1,
+            "status": 0,
             "type": ITEM_TYPES,
         },
         "selectHosts": ["host", "name"],
-        "limit": 500,
+        "limit": 1000,
     }, auth)
-    return items
 
 
-def get_unsupported_item_prototypes(url, auth):
-    """Busca item prototypes SNMP com estado 'not supported'"""
-    try:
-        items = api_call(url, "itemprototype.get", {
-            "output": ["itemid", "name", "key_", "type", "state", "error", "status"],
-            "filter": {
-                "state": 1,
-                "status": 0,
-                "type": ITEM_TYPES,
-            },
+def get_items_by_keys(url, auth, keys):
+    """Busca itens habilitados (status=0) com chaves exatas ou prefixo (key*).
+
+    Retorna itens de QUALQUER estado — usado para FORCE_DISABLE_KEYS.
+    """
+    if not keys:
+        return []
+
+    results = []
+    for key in keys:
+        search_key = key.rstrip("*")
+        items = api_call(url, "item.get", {
+            "output": ["itemid", "name", "key_", "type", "state", "error",
+                       "status", "hostid", "lastclock"],
+            "filter": {"status": 0},
+            "search": {"key_": search_key},
+            "startSearch": True,
             "selectHosts": ["host", "name"],
             "limit": 500,
         }, auth)
-        return items
-    except Exception:
-        return []
+        # Se a chave nao termina em *, exigir match exato
+        if not key.endswith("*"):
+            items = [i for i in items if i["key_"] == key]
+        results.extend(items)
+
+    # Deduplicar por itemid
+    seen = set()
+    unique = []
+    for item in results:
+        if item["itemid"] not in seen:
+            seen.add(item["itemid"])
+            unique.append(item)
+    return unique
 
 
 def matches_error_pattern(error_text):
-    """Verifica se o erro do item bate com os padroes conhecidos"""
     if not error_text:
         return False
     error_lower = error_text.lower()
     return any(p in error_lower for p in ERROR_PATTERNS)
 
 
-def get_events_for_item(url, auth, itemid):
-    """Busca eventos internos recentes do item para ver ha quanto tempo esta com erro"""
+def get_item_error_age(url, auth, itemid, lastclock):
+    """Retorna em segundos ha quanto tempo o item esta com erro.
+
+    Prefere evento interno mais recente; cai para lastclock como fallback.
+    """
     events = api_call(url, "event.get", {
         "output": ["clock", "value"],
         "objectids": itemid,
-        "source": 3,        # internal events
-        "object": 4,         # item
+        "source": 3,   # internal
+        "object": 4,   # item
         "sortfield": "clock",
         "sortorder": "DESC",
         "limit": 5,
     }, auth)
-    return events
+
+    now = int(time.time())
+
+    if events:
+        return now - int(events[0]["clock"])
+
+    # Fallback: usar lastclock (ultima vez que o item coletou — mesmo que com erro)
+    if lastclock and int(lastclock) > 0:
+        return now - int(lastclock)
+
+    # Sem referencia: assume erro antigo o suficiente para desativar
+    return now
 
 
 def disable_item(url, auth, itemid):
-    """Desabilita um item (status=1)"""
-    return api_call(url, "item.update", {
-        "itemid": itemid,
-        "status": 1,
-    }, auth)
+    return api_call(url, "item.update", {"itemid": itemid, "status": 1}, auth)
 
 
-def log_disabled_item(host, item_name, item_key, error):
-    """Registra item desabilitado no historico"""
+def log_disabled_item(host, item_name, item_key, error, reason):
     try:
         ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        line = f"{ts} | HOST: {host} | ITEM: {item_name} | KEY: {item_key} | ERRO: {error}\n"
+        line = (f"{ts} | HOST: {host} | ITEM: {item_name} | KEY: {item_key} | "
+                f"RAZAO: {reason} | ERRO: {error}\n")
         with open(LOG_FILE, "a") as f:
             f.write(line)
     except Exception:
         pass
 
 
+def process_items(url, auth, items, min_error_seconds, reason_label, check_age=True):
+    """Processa uma lista de itens, desativando os que satisfazem os criterios."""
+    disabled = 0
+    skipped = 0
+
+    for item in items:
+        host_name = item["hosts"][0]["name"] if item.get("hosts") else "desconhecido"
+        error_text = item.get("error", "")
+
+        if check_age:
+            if not matches_error_pattern(error_text):
+                continue
+
+            error_age = get_item_error_age(url, auth, item["itemid"],
+                                           item.get("lastclock", 0))
+            if error_age < min_error_seconds:
+                skipped += 1
+                log(f"  SKIP (erro ha {error_age // 60}min < {MIN_ERROR_MINUTES}min): "
+                    f"[{host_name}] {item['name']} ({item['key_']})")
+                continue
+
+        prefix = "[DRY-RUN] " if DRY_RUN else ""
+        log(f"  {prefix}DESABILITAR ({reason_label}): "
+            f"[{host_name}] {item['name']} ({item['key_']}) — {error_text[:80]}")
+
+        if not DRY_RUN:
+            try:
+                disable_item(url, auth, item["itemid"])
+                disabled += 1
+                log_disabled_item(host_name, item["name"], item["key_"],
+                                  error_text, reason_label)
+            except Exception as e:
+                log(f"  ERRO ao desabilitar: {e}")
+        else:
+            disabled += 1
+
+    return disabled, skipped
+
+
 def main():
     log("=== Inicio da verificacao ===")
-
     if DRY_RUN:
         log("MODO DRY-RUN: nenhum item sera desabilitado")
 
     auth = login(ZABBIX_API_URL, ZABBIX_USER, ZABBIX_PASSWORD)
     log("Login OK")
 
+    min_error_seconds = MIN_ERROR_MINUTES * 60
+    total_disabled = 0
+    total_skipped = 0
+
     try:
-        items = get_unsupported_snmp_items(ZABBIX_API_URL, auth)
-        log(f"Encontrados {len(items)} itens SNMP com erro")
+        # --- Fase 1: itens not supported (state=1) com erro conhecido ---
+        items_broken = get_unsupported_items(ZABBIX_API_URL, auth)
+        log(f"[Fase 1] {len(items_broken)} itens com state=not supported")
+        d, s = process_items(ZABBIX_API_URL, auth, items_broken,
+                             min_error_seconds, "not-supported", check_age=True)
+        total_disabled += d
+        total_skipped += s
 
-        disabled_count = 0
-        skipped_count = 0
-        now = int(time.time())
-        min_error_seconds = MIN_ERROR_MINUTES * 60
+        # --- Fase 2: itens em FORCE_DISABLE_KEYS (ativo no host, template ja desativou) ---
+        if FORCE_DISABLE_KEYS:
+            log(f"[Fase 2] Buscando itens de desativacao forcada: {FORCE_DISABLE_KEYS}")
+            items_forced = get_items_by_keys(ZABBIX_API_URL, auth, FORCE_DISABLE_KEYS)
+            log(f"[Fase 2] {len(items_forced)} itens encontrados habilitados")
+            d, _ = process_items(ZABBIX_API_URL, auth, items_forced,
+                                 min_error_seconds, "force-disable", check_age=False)
+            total_disabled += d
+        else:
+            log("[Fase 2] FORCE_DISABLE_KEYS vazio — pulando")
 
-        for item in items:
-            error_text = item.get("error", "")
-            if not matches_error_pattern(error_text):
-                continue
-
-            host_name = item["hosts"][0]["name"] if item.get("hosts") else "desconhecido"
-            host_id = item["hosts"][0]["host"] if item.get("hosts") else ""
-
-            events = get_events_for_item(ZABBIX_API_URL, auth, item["itemid"])
-
-            if events:
-                last_error_time = int(events[0]["clock"])
-                error_age = now - last_error_time
-                if error_age < min_error_seconds:
-                    skipped_count += 1
-                    log(f"  SKIP (erro ha {error_age//60}min < {MIN_ERROR_MINUTES}min): "
-                        f"[{host_name}] {item['name']} ({item['key_']})")
-                    continue
-
-            log(f"  {'[DRY-RUN] ' if DRY_RUN else ''}DESABILITAR: "
-                f"[{host_name}] {item['name']} ({item['key_']}) - {error_text[:80]}")
-
-            if not DRY_RUN:
-                try:
-                    disable_item(ZABBIX_API_URL, auth, item["itemid"])
-                    disabled_count += 1
-                    log_disabled_item(host_name, item["name"], item["key_"], error_text)
-                except Exception as e:
-                    log(f"  ERRO ao desabilitar: {e}")
-            else:
-                disabled_count += 1
-
-        log(f"=== Resultado: {disabled_count} desabilitados, {skipped_count} ignorados (erro recente) ===")
+        log(f"=== Resultado: {total_disabled} desabilitados, "
+            f"{total_skipped} ignorados (erro recente) ===")
 
     finally:
         logout(ZABBIX_API_URL, auth)
