@@ -982,7 +982,6 @@ return JSON.stringify(result);</parameter>
                     <snmp_oid>discovery[{#ONTDESC},1.3.6.1.4.1.3902.1012.3.28.1.1.2]</snmp_oid>
                     <key>netstream.oltonudedicado</key>
                     <delay>1d</delay>
-                    <port>161</port>
                     <filter>
                         <conditions>
                             <condition>
@@ -1002,7 +1001,6 @@ return JSON.stringify(result);</parameter>
                             <delay>5m</delay>
                             <trends>90d</trends>
                             <status>DISABLED</status>
-                            <port>161</port>
                             <valuemap>
                                 <name>OLT-ZTE-STATUS-ONT</name>
                             </valuemap>
