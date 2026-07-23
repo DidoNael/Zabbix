@@ -253,7 +253,8 @@ def add_onu_filter(url, auth, drule_id, drule_name):
     if not new_filter.get("evaltype"):
         new_filter["evaltype"] = "AND"
 
-    log(f"  {'[DRY-RUN] ' if DRY_RUN}Adicionando filtro NOT_MATCHES_REGEX '{new_condition['value']}' "
+    prefix = "[DRY-RUN] " if DRY_RUN else ""
+    log(f"  {prefix}Adicionando filtro NOT_MATCHES_REGEX '{new_condition['value']}' "
         f"em macro {iface_macro} na rule '{drule_name}' (ID={drule_id})")
 
     if not DRY_RUN:
@@ -294,7 +295,8 @@ def delete_onu_items(url, auth, items):
         return 0
 
     total = len(items)
-    log(f"{'[DRY-RUN] ' if DRY_RUN}Deletando {total} itens de sub-interface de ONU...")
+    prefix = "[DRY-RUN] " if DRY_RUN else ""
+    log(f"{prefix}Deletando {total} itens de sub-interface de ONU...")
 
     if DRY_RUN:
         # Mostra amostra
