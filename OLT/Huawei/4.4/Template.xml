@@ -858,7 +858,7 @@ Dying Gasp:  {ITEM.VALUE4}</description>
                     <filter>
                         <conditions>
                             <condition>
-                                <macro>{#IFNAME}</macro>
+                                <macro>{#OLTPORT}</macro>
                                 <value>(?i)^\S*pon[ _]?\d+/\d+/\d+</value>
                                 <operator>NOT_MATCHES_REGEX</operator>
                                 <formulaid>A</formulaid>
