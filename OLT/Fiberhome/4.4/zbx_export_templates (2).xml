@@ -1,0 +1,2005 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2026-07-24T01:09:10Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template SNMP OLT FiberHome - NETSTREAM</template>
+            <name>Template SNMP OLT FiberHome - NETSTREAM</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>download</name>
+                </application>
+                <application>
+                    <name>Interfaces</name>
+                </application>
+                <application>
+                    <name>MGMT Card</name>
+                </application>
+                <application>
+                    <name>ONU</name>
+                </application>
+                <application>
+                    <name>onu-state</name>
+                </application>
+                <application>
+                    <name>ONUs Autorizadas</name>
+                </application>
+                <application>
+                    <name>ONUs Dying Gasp</name>
+                </application>
+                <application>
+                    <name>ONUs LOF</name>
+                </application>
+                <application>
+                    <name>ONUs LOS</name>
+                </application>
+                <application>
+                    <name>ONUs LOSI</name>
+                </application>
+                <application>
+                    <name>ONUs Offline</name>
+                </application>
+                <application>
+                    <name>ONUs Online</name>
+                </application>
+                <application>
+                    <name>Optical-rx</name>
+                </application>
+                <application>
+                    <name>PON</name>
+                </application>
+                <application>
+                    <name>System</name>
+                </application>
+                <application>
+                    <name>Totais OLT</name>
+                </application>
+                <application>
+                    <name>Uplinks OLT</name>
+                </application>
+                <application>
+                    <name>upload</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>NETSTREAM - Total ONUs Autorizadas na OLT</name>
+                    <type>DEPENDENT</type>
+                    <key>netstream.gpon.olt.total.auth.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <units>ONUs</units>
+                    <applications>
+                        <application>
+                            <name>Totais OLT</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <params>var a=JSON.parse(value); return a[&quot;auth&quot;] || 0;</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>NETSTREAM - Total ONUs com DyingGasp na OLT</name>
+                    <type>DEPENDENT</type>
+                    <key>netstream.gpon.olt.total.dg.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <units>ONUs</units>
+                    <applications>
+                        <application>
+                            <name>Totais OLT</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <params>var a=JSON.parse(value); return a[&quot;dg&quot;] || 0;</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>NETSTREAM - Total ONUs com LOF na OLT</name>
+                    <type>DEPENDENT</type>
+                    <key>netstream.gpon.olt.total.lof.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <units>ONUs</units>
+                    <applications>
+                        <application>
+                            <name>Totais OLT</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <params>var a=JSON.parse(value); return a[&quot;lof&quot;] || 0;</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>NETSTREAM - Total ONUs com LOS na OLT</name>
+                    <type>DEPENDENT</type>
+                    <key>netstream.gpon.olt.total.los.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <units>ONUs</units>
+                    <applications>
+                        <application>
+                            <name>Totais OLT</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <params>var a=JSON.parse(value); return a[&quot;los&quot;] || 0;</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>NETSTREAM - Total ONUs com LOSi na OLT</name>
+                    <type>DEPENDENT</type>
+                    <key>netstream.gpon.olt.total.losi.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <units>ONUs</units>
+                    <applications>
+                        <application>
+                            <name>Totais OLT</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <params>var a=JSON.parse(value); return a[&quot;losi&quot;] || 0;</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>NETSTREAM - Total ONUs Offline na OLT</name>
+                    <type>DEPENDENT</type>
+                    <key>netstream.gpon.olt.total.offline.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <units>ONUs</units>
+                    <applications>
+                        <application>
+                            <name>Totais OLT</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <params>var a=JSON.parse(value); return a[&quot;offline&quot;] || 0;</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>NETSTREAM - Total ONUs Online na OLT</name>
+                    <type>DEPENDENT</type>
+                    <key>netstream.gpon.olt.total.online.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <units>ONUs</units>
+                    <applications>
+                        <application>
+                            <name>Totais OLT</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <params>var a=JSON.parse(value); return a[&quot;online&quot;] || 0;</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>NETSTREAM - Status PONs GPON FiberHome (master)</name>
+                    <type>EXTERNAL</type>
+                    <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>5m</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>Master item PON FiberHome - cache pattern</description>
+                </item>
+                <item>
+                    <name>NETSTREAM - Total de ONUs por Estado (OLT FiberHome)</name>
+                    <type>EXTERNAL</type>
+                    <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>300s</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>JSON com totais de ONUs agrupados por estado em toda a OLT</description>
+                </item>
+                <item>
+                    <name>Clientes Total OLT</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.4.6.0</snmp_oid>
+                    <key>onuCount</key>
+                    <delay>60s</delay>
+                    <history>7d</history>
+                    <value_type>FLOAT</value_type>
+                    <applications>
+                        <application>
+                            <name>ONU</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Uptime</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
+                    <key>uptime</key>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <units>uptime</units>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;1m</expression>
+                            <name>OLT Reiniciada</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Card Info Table</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#SNMPVALUE},.1.3.6.1.4.1.5875.800.3.9.2.1.1.2]</snmp_oid>
+                    <key>card.info.discovery</key>
+                    <delay>1d</delay>
+                    <status>DISABLED</status>
+                    <lifetime>1w</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Card Available Ports Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.2.1.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>cardAvailablePorts.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <history>15d</history>
+                            <trends>90d</trends>
+                            <status>DISABLED</status>
+                            <applications>
+                                <application>
+                                    <name>System</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Card CPU Util Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.2.1.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>cardCpuUtil.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>10m</delay>
+                            <history>15d</history>
+                            <trends>90d</trends>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>System</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;80</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()}&lt;80</recovery_expression>
+                                    <name>Slot #SNMPINDEX CPU is HIGH</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Card Hardware Version Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.2.1.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>cardHardwareVersion.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>System</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Card Mem Util Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.2.1.1.9.{#SNMPINDEX}</snmp_oid>
+                            <key>cardMemUtil.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>10m</delay>
+                            <history>15d</history>
+                            <trends>90d</trends>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>System</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;80</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()}&lt;80</recovery_expression>
+                                    <name>Slot #SNMPINDEX MEM is HIGH</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Card Num of Ports Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.2.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>cardNumOfPorts.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <history>15d</history>
+                            <trends>90d</trends>
+                            <status>DISABLED</status>
+                            <applications>
+                                <application>
+                                    <name>System</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Card Software Version Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.2.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>cardSoftwateVersion.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>System</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.2.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>cardStatus.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>10m</delay>
+                            <history>15d</history>
+                            <trends>90d</trends>
+                            <status>DISABLED</status>
+                            <description>Column Description:&#13;
+1:normal(1)&#13;
+2:communication interrupt(0)</description>
+                            <applications>
+                                <application>
+                                    <name>System</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}=0</expression>
+                                    <name>Slot  #SNMPINDEX is Down</name>
+                                    <priority>DISASTER</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Card Type Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.2.1.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>cardType.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <history>15d</history>
+                            <trends>90d</trends>
+                            <status>DISABLED</status>
+                            <description>Column Description:&#13;
+260:EC2&#13;
+724:EC2-X&#13;
+16384:AC16&#13;
+the other type could see the card type table</description>
+                            <applications>
+                                <application>
+                                    <name>System</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>CPU/Mem SLOT  {#SNMPINDEX}</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>FF0000</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>cardMemUtil.[&quot;{#SNMPINDEX}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>00FF00</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>cardCpuUtil.[&quot;{#SNMPINDEX}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Network Interfaces</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#SNMPVALUE},IF-MIB::ifDescr]</snmp_oid>
+                    <key>ifDescr_64</key>
+                    <delay>1d</delay>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#SNMPVALUE}</macro>
+                                <value>^FE .+$</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>C</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#SNMPVALUE}</macro>
+                                <value>^LAN </value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>B</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFNAME}</macro>
+                                <value>(?i)^\S*pon[ _]?\d+/\d+/\d+</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>1h</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Incoming Traffic on Interface $1</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
+                            <key>ifHCInOctets[{#SNMPVALUE}]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <units>bps</units>
+                            <applications>
+                                <application>
+                                    <name>Interfaces</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Outgoing Traffic on Interface $1</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
+                            <key>ifHCOutOctets[{#SNMPVALUE}]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <units>bps</units>
+                            <applications>
+                                <application>
+                                    <name>Interfaces</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Incoming Discards on Interface $1</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>IF-MIB::ifInDiscards.{#SNMPINDEX}</snmp_oid>
+                            <key>ifInDiscards[{#SNMPVALUE}]</key>
+                            <delay>1h</delay>
+                            <history>7d</history>
+                            <applications>
+                                <application>
+                                    <name>Interfaces</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Incoming Errors on Interface $1</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>IF-MIB::ifInErrors.{#SNMPINDEX}</snmp_oid>
+                            <key>ifInErrors[{#SNMPVALUE}]</key>
+                            <delay>1h</delay>
+                            <history>7d</history>
+                            <applications>
+                                <application>
+                                    <name>Interfaces</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Outgoing Discards on Interface $1</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>IF-MIB::ifOutDiscards.{#SNMPINDEX}</snmp_oid>
+                            <key>ifOutDiscards[{#SNMPVALUE}]</key>
+                            <delay>1h</delay>
+                            <history>7d</history>
+                            <applications>
+                                <application>
+                                    <name>Interfaces</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Outgoing Errors on Interface $1</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>IF-MIB::ifOutErrors.{#SNMPINDEX}</snmp_oid>
+                            <key>ifOutErrors[{#SNMPVALUE}]</key>
+                            <delay>1h</delay>
+                            <history>7d</history>
+                            <applications>
+                                <application>
+                                    <name>Interfaces</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Network Traffic on Interface {#SNMPVALUE}</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>00DF00</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>ifHCInOctets[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>FF0000</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>ifHCOutOctets[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>2774A4</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>ifInDiscards[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>A54F10</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>ifInErrors[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>4</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>FC6EA3</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>ifOutDiscards[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>5</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>6C59DC</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>ifOutErrors[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>MGMT Card Info Table</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#SNMPVALUE},GEPON-OLT-COMMON-MIB::mgrCardType,{#IFOPERSTATUS},GEPON-OLT-COMMON-MIB::mgrCardWorkStatus]</snmp_oid>
+                    <key>mgmtcard.info.discovery</key>
+                    <delay>1d</delay>
+                    <status>DISABLED</status>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFOPERSTATUS}</macro>
+                                <value>1</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>1w</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>MGMT Card CPU Util Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::mgrCardCpuUtil.{#SNMPINDEX}</snmp_oid>
+                            <key>MgmtCardCpuUtil.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <status>DISABLED</status>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>MGMT Card</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>MGMT Card Hardware Version Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::mgrCardHandwareVersion.{#SNMPINDEX}</snmp_oid>
+                            <key>mgmtCardHardwareVersion.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>MGMT Card</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>MGMT Card Mem Util Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::mgrCardMemUtil.{#SNMPINDEX}</snmp_oid>
+                            <key>MgmtCardMemUtil.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <status>DISABLED</status>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>MGMT Card</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>MGMT Card Software Version Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::mgrCardSoftwareVession.{#SNMPINDEX}</snmp_oid>
+                            <key>mgmtCardSoftwareVersion.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>MGMT Card</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>MGMT Card Work Status Slot [&quot;{#SNMPINDEX}&quot;]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::mgrCardWorkStatus.{#SNMPINDEX}</snmp_oid>
+                            <key>mgrCardWorkStatus.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <status>DISABLED</status>
+                            <applications>
+                                <application>
+                                    <name>MGMT Card</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>MGMT {#SNMPINDEX} CPU/Mem</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>FF0000</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>MgmtCardMemUtil.[&quot;{#SNMPINDEX}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>00FF00</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>MgmtCardCpuUtil.[&quot;{#SNMPINDEX}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>NETSTREAM - Descoberta de PONs GPON FiberHome</name>
+                    <type>EXTERNAL</type>
+                    <key>netstream.gpon.pon.discovery.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>1h</delay>
+                    <description>LLD PONs GPON FiberHome</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Alerta LOS+Queda</name>
+                            <type>CALCULATED</type>
+                            <key>netstream.gpon.pon.alerta.los.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <params>(last(&quot;netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}]&quot;)&gt;0 and change(&quot;netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}]&quot;)&lt;-5)</params>
+                            <applications>
+                                <application>
+                                    <name>ONUs LOS</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PON {#NETSTREAM.PON_NAME} - ONUs Autorizadas</name>
+                            <type>DEPENDENT</type>
+                            <key>netstream.gpon.pon.auth.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <delay>0</delay>
+                            <history>365d</history>
+                            <applications>
+                                <application>
+                                    <name>ONUs Autorizadas</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var a=JSON.parse(value);
+for(var i=0;i&lt;a.length;i++){
+  if(String(a[i].idx)==String(&quot;{#NETSTREAM.PON_INDEX}&quot;)) return a[i].auth;
+}
+return 0;</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Dying Gasp (calc)</name>
+                            <type>CALCULATED</type>
+                            <key>netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <params>last(&quot;Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.dg.fiberhome[{#NETSTREAM.PON_INDEX}]&quot;)</params>
+                            <applications>
+                                <application>
+                                    <name>ONUs Dying Gasp</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - LOS (calc)</name>
+                            <type>CALCULATED</type>
+                            <key>netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <params>last(&quot;Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}]&quot;)</params>
+                            <applications>
+                                <application>
+                                    <name>ONUs LOS</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Offline (calc)</name>
+                            <type>CALCULATED</type>
+                            <key>netstream.gpon.pon.calc.offline.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <params>last(&quot;Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.offline.fiberhome[{#NETSTREAM.PON_INDEX}]&quot;)</params>
+                            <applications>
+                                <application>
+                                    <name>ONUs Offline</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Online (calc)</name>
+                            <type>CALCULATED</type>
+                            <key>netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <params>last(&quot;Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}]&quot;)</params>
+                            <applications>
+                                <application>
+                                    <name>ONUs Online</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PON {#NETSTREAM.PON_NAME} - DyingGasp (Energia)</name>
+                            <type>DEPENDENT</type>
+                            <key>netstream.gpon.pon.dg.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <delay>0</delay>
+                            <history>365d</history>
+                            <applications>
+                                <application>
+                                    <name>ONUs Dying Gasp</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var a=JSON.parse(value);
+for(var i=0;i&lt;a.length;i++){
+  if(String(a[i].idx)==String(&quot;{#NETSTREAM.PON_INDEX}&quot;)) return a[i].dg;
+}
+return 0;</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PON {#NETSTREAM.PON_NAME} - LOF</name>
+                            <type>DEPENDENT</type>
+                            <key>netstream.gpon.pon.lof.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <delay>0</delay>
+                            <history>365d</history>
+                            <applications>
+                                <application>
+                                    <name>ONUs LOF</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var a=JSON.parse(value);
+for(var i=0;i&lt;a.length;i++){
+  if(String(a[i].idx)==String(&quot;{#NETSTREAM.PON_INDEX}&quot;)) return a[i].lof;
+}
+return 0;</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PON {#NETSTREAM.PON_NAME} - LOS (Fibra)</name>
+                            <type>DEPENDENT</type>
+                            <key>netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <delay>0</delay>
+                            <history>365d</history>
+                            <applications>
+                                <application>
+                                    <name>ONUs LOS</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var a=JSON.parse(value);
+for(var i=0;i&lt;a.length;i++){
+  if(String(a[i].idx)==String(&quot;{#NETSTREAM.PON_INDEX}&quot;)) return a[i].los;
+}
+return 0;</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PON {#NETSTREAM.PON_NAME} - LOSi</name>
+                            <type>DEPENDENT</type>
+                            <key>netstream.gpon.pon.losi.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <delay>0</delay>
+                            <history>365d</history>
+                            <applications>
+                                <application>
+                                    <name>ONUs LOSI</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var a=JSON.parse(value);
+for(var i=0;i&lt;a.length;i++){
+  if(String(a[i].idx)==String(&quot;{#NETSTREAM.PON_INDEX}&quot;)) return a[i].losi;
+}
+return 0;</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PON {#NETSTREAM.PON_NAME} - ONUs Offline</name>
+                            <type>DEPENDENT</type>
+                            <key>netstream.gpon.pon.offline.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <delay>0</delay>
+                            <history>365d</history>
+                            <applications>
+                                <application>
+                                    <name>ONUs Offline</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var a=JSON.parse(value);
+for(var i=0;i&lt;a.length;i++){
+  if(String(a[i].idx)==String(&quot;{#NETSTREAM.PON_INDEX}&quot;)) return a[i].offline;
+}
+return 0;</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PON {#NETSTREAM.PON_NAME} - ONUs Online</name>
+                            <type>DEPENDENT</type>
+                            <key>netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
+                            <delay>0</delay>
+                            <history>365d</history>
+                            <applications>
+                                <application>
+                                    <name>ONUs Online</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var a=JSON.parse(value);
+for(var i=0;i&lt;a.length;i++){
+  if(String(a[i].idx)==String(&quot;{#NETSTREAM.PON_INDEX}&quot;)) return a[i].online;
+}
+return 0;</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                            </master_item>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;4 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.offline.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;=0</expression>
+                            <name>PON {#NETSTREAM.PON_NAME} - LOS em multiplas ONUs (possivel rompimento)</name>
+                            <status>DISABLED</status>
+                            <priority>AVERAGE</priority>
+                            <description>Mais de 4 ONUs com LOS na PON {#NETSTREAM.PON_NAME}.
+Possivel rompimento de fibra.
+
+LOS:         {ITEM.VALUE1}
+Online:      {ITEM.VALUE2}
+Offline:     {ITEM.VALUE3}
+Dying Gasp:  {ITEM.VALUE4}</description>
+                            <tags>
+                                <tag>
+                                    <tag>PON</tag>
+                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>Tipo</tag>
+                                    <value>LOS</value>
+                                </tag>
+                                <tag>
+                                    <tag>Vendor</tag>
+                                    <value>FiberHome</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>NETSTREAM - Descoberta de Uplinks</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#IFDESC},1.3.6.1.2.1.2.2.1.2]</snmp_oid>
+                    <key>netstream.uplink.discovery</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFDESC}</macro>
+                                <value>^(XFP|SFP)</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Uplink {#IFDESC} - Trafego Entrada</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.in.bps[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>Bps</units>
+                            <applications>
+                                <application>
+                                    <name>Uplinks OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFDESC} - Drops Entrada</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.13.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.in.drops[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>drops/s</units>
+                            <applications>
+                                <application>
+                                    <name>Uplinks OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{avg(5m)}&gt;10</expression>
+                                    <name>Uplink {#IFDESC} - Alto volume de drops de entrada (&gt;10/s por 5min)</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFDESC} - Erros Entrada</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.in.errors[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>err/s</units>
+                            <applications>
+                                <application>
+                                    <name>Uplinks OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFDESC} - Trafego Saida</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.out.bps[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>Bps</units>
+                            <applications>
+                                <application>
+                                    <name>Uplinks OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFDESC} - Drops Saida</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.19.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.out.drops[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>drops/s</units>
+                            <applications>
+                                <application>
+                                    <name>Uplinks OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{avg(5m)}&gt;10</expression>
+                                    <name>Uplink {#IFDESC} - Alto volume de drops de saida (&gt;10/s por 5min)</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFDESC} - Sinal RX</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.5875.91.1.17.2.1.13.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.rxpower[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <applications>
+                                <application>
+                                    <name>Uplinks OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFDESC} - Status</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.status[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <applications>
+                                <application>
+                                    <name>Uplinks OLT</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFDESC} - Temperatura</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.5875.91.1.17.2.1.11.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.temp[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>C</units>
+                            <applications>
+                                <application>
+                                    <name>Uplinks OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFDESC} - Sinal TX</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.5875.91.1.17.2.1.12.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.txpower[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <applications>
+                                <application>
+                                    <name>Uplinks OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Discovery ONU DEDICADO</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#ONUSN}, 1.3.6.1.4.1.5875.800.3.10.1.1.10, {#ONTDESC}, 1.3.6.1.4.1.5875.800.3.10.1.1.7]</snmp_oid>
+                    <key>oltonudedicado</key>
+                    <delay>1d</delay>
+                    <status>DISABLED</status>
+                    <port>161</port>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Cliente - {#ONTDESC} - {#ONUSN} - Download</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>onuPondown.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <history>7d</history>
+                            <units>bps</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>download</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Cliente - {#ONTDESC} - {#ONUSN} - RX Power</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.3.3.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <history>7d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <applications>
+                                <application>
+                                    <name>Optical-rx</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Cliente - {#ONTDESC} - {#ONUSN} - Upload</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>onuPonup.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <history>7d</history>
+                            <units>bps</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>upload</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Cliente - {#ONTDESC} - {#ONUSN}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::onuStatus.{#SNMPINDEX}</snmp_oid>
+                            <key>state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}]</key>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>onu-state</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>OLT-FIBERHOME-STATUS-ONT</name>
+                            </valuemap>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=0 or {Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=4</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last(#3)}=1 and {Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].last()}&lt;0</recovery_expression>
+                            <name>Cliente - {#ONTDESC}</name>
+                            <priority>INFO</priority>
+                            <tags>
+                                <tag>
+                                    <tag>ONUDEDICADO</tag>
+                                    <value>ONUDEDICADO</value>
+                                </tag>
+                                <tag>
+                                    <tag>ONUSTATUS</tag>
+                                    <value>{ITEM.LASTVALUE}</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=1 &#13;
+and &#13;
+{Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].last()}&lt;-28</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].last()}&gt;-28</recovery_expression>
+                            <name>Cliente - {#ONTDESC} - Sinal RX Baixo</name>
+                            <priority>INFO</priority>
+                            <tags>
+                                <tag>
+                                    <tag>ONUDEDICADO</tag>
+                                    <value>ONUDEDICADO</value>
+                                </tag>
+                                <tag>
+                                    <tag>ONURX</tag>
+                                    <value>{ITEM.LASTVALUE2}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ONUSTATUS</tag>
+                                    <value>{ITEM.LASTVALUE}</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>PON Info Table</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#SNMPVALUE},GEPON-OLT-COMMON-MIB::oltPonDesc, {#PONNAME},1.3.6.1.2.1.31.1.1.1.1]</snmp_oid>
+                    <key>oltPonDesc</key>
+                    <delay>1d</delay>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#SNMPVALUE}</macro>
+                                <value>11/3:LAB-Claudio</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>3d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#SNMPVALUE} ONU Number</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::oltPonAuthOnuNum.{#SNMPINDEX}</snmp_oid>
+                            <key>oltPonAuthOnuNum[{#SNMPVALUE}]</key>
+                            <delay>1d</delay>
+                            <history>7d</history>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>PON</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;=127</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()}&lt;127</recovery_expression>
+                                    <name>{#SNMPVALUE} PON cheia. Numero de ONUs ({ITEM.LASTVALUE})</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#SNMPVALUE} Name</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::oltPonName.{#SNMPINDEX}</snmp_oid>
+                            <key>oltPonName[{#SNMPVALUE}]</key>
+                            <delay>1d</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>PON</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#SNMPVALUE} Pon Status</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::oltPonOnlineStatus.{#SNMPINDEX}</snmp_oid>
+                            <key>oltPonOnlineStatus[{#SNMPVALUE}]</key>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <applications>
+                                <application>
+                                    <name>PON</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>Status de PON</name>
+                            </valuemap>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#SNMPVALUE} Optical Current</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::oltPonOpticalCurrent.{#SNMPINDEX}</snmp_oid>
+                            <key>oltPonOpticalCurrent[{#SNMPVALUE}]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>mA</units>
+                            <applications>
+                                <application>
+                                    <name>PON</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#SNMPVALUE} Optical Temperature</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::oltPonOpticalTemperature.{#SNMPINDEX}</snmp_oid>
+                            <key>oltPonOpticalTemperature[{#SNMPVALUE}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <units>ºC</units>
+                            <applications>
+                                <application>
+                                    <name>PON</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#SNMPVALUE} Optical Voltage</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::oltPonOpticalVltage.{#SNMPINDEX}</snmp_oid>
+                            <key>oltPonOpticalVltage[{#SNMPVALUE}]</key>
+                            <delay>30m</delay>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>V</units>
+                            <applications>
+                                <application>
+                                    <name>PON</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#SNMPVALUE} RX Optical Power</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::oltPonRxOpticalPower.{#SNMPINDEX}</snmp_oid>
+                            <key>oltPonRxOpticalPower[{#SNMPVALUE}]</key>
+                            <delay>20m</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <applications>
+                                <application>
+                                    <name>PON</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#SNMPVALUE} Downstream Speed</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::oltPonSpeed.{#SNMPINDEX}</snmp_oid>
+                            <key>oltPonSpeed[{#SNMPVALUE}]</key>
+                            <delay>1d</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <units>bps</units>
+                            <applications>
+                                <application>
+                                    <name>PON</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>1000000</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#SNMPVALUE} TX Optical Power</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::oltPonTxOpticalPower.{#SNMPINDEX}</snmp_oid>
+                            <key>oltPonTxOpticalPower[{#SNMPVALUE}]</key>
+                            <delay>20m</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <applications>
+                                <application>
+                                    <name>PON</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#SNMPVALUE} Upstream Speed</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::oltPonUpStreamSpeed.{#SNMPINDEX}</snmp_oid>
+                            <key>oltPonUpStreamSpeed[{#SNMPVALUE}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <units>bps</units>
+                            <applications>
+                                <application>
+                                    <name>PON</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>1000000</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>({Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].last(,1m)}=0)and({Template SNMP OLT FiberHome - NETSTREAM:oltPonAuthOnuNum[{#SNMPVALUE}].prev()}&gt;2)</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].last()}=1</recovery_expression>
+                            <name>gpon_{#SNMPVALUE}:</name>
+                            <priority>HIGH</priority>
+                            <description>{#PONNAME}</description>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>PONDOWN</tag>
+                                    <value>PONDOWN</value>
+                                </tag>
+                                <tag>
+                                    <tag>PONFH</tag>
+                                    <value>PONFH</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>ONU Info Table</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.4.1.5875.800.3.9.3.3.1.2]</snmp_oid>
+                    <key>onuPonInfoTable</key>
+                    <delay>1d;h5</delay>
+                    <status>DISABLED</status>
+                    <port>161</port>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>ONU Name {#SNMPVALUE}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.3.3.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>onuPonName.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <history>15d</history>
+                            <trends>0</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>ONU</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>ONU Opt Temperature {#SNMPVALUE}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.5875.800.3.9.3.3.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>onuPonOpticalTemperature.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <history>1w</history>
+                            <trends>60d</trends>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>ºC</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>ONU</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>ONU RX Power {#SNMPVALUE}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.3.3.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>onuPonRXOpticalPower.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <history>1w</history>
+                            <trends>60d</trends>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>ONU</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{avg(24h)}&lt;=-28</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{avg(24h)}&gt;-28</recovery_expression>
+                                    <name>ONU com sinal BAIXO ({ITEM.LASTVALUE}) on {#SNMPVALUE}</name>
+                                    <status>DISABLED</status>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>ONU TX Power {#SNMPVALUE}</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.3.3.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>onuPonTXOpticalPower.[&quot;{#SNMPINDEX}&quot;]</key>
+                            <delay>1d</delay>
+                            <history>1w</history>
+                            <trends>60d</trends>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>ONU</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <name>Clientes Total OLT</name>
+            <show_work_period>NO</show_work_period>
+            <show_triggers>NO</show_triggers>
+            <graph_items>
+                <graph_item>
+                    <drawtype>BOLD_LINE</drawtype>
+                    <color>00FF00</color>
+                    <item>
+                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                        <key>onuCount</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+    <value_maps>
+        <value_map>
+            <name>OLT-FIBERHOME-STATUS-ONT</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>Inativa ( Sem Comunicação com ONU)</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Working ( Ativa )</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>Dyinggasp ( Desligada / Queda de Enegia )</newvalue>
+                </mapping>
+                <mapping>
+                    <value>3</value>
+                    <newvalue>Offline ( Desligada a muito tempo)</newvalue>
+                </mapping>
+                <mapping>
+                    <value>4</value>
+                    <newvalue>LOS (ONU perdeu o link óptico)</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>Status de PON</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>down</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>up</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>
