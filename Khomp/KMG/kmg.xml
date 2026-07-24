@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2026-07-24T13:50:44Z</date>
+    <groups>
+        <group>
+            <name>E1</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Khomp E1</template>
+            <name>Khomp E1</name>
+            <groups>
+                <group>
+                    <name>E1</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Discovery Link</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#E1DESCLINK}, k3lDeviceLinkDescr.169900]</snmp_oid>
+                    <key>E1.discovery</key>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>LINK [{#E1DESCLINK}] - Status</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>KHOMP-MIB::k3lDeviceLinkOperStatus.169900.{#SNMPINDEX}</snmp_oid>
+                            <key>link.[{#E1DESCLINK}]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <port>161</port>
+                            <valuemap>
+                                <name>UP / DOWN</name>
+                            </valuemap>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}=0</expression>
+                                    <name>LINK E1 - [{#E1DESCLINK}]</name>
+                                    <priority>DISASTER</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>E1</tag>
+                                            <value>E1</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Discovery NAP</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#E1DESCNAP}, app.1.1.1.2.1.2]</snmp_oid>
+                    <key>E1.discoverynap</key>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>CANAL LIVRE NAP [{#E1DESCNAP}]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.32624.3.1.1.1.2.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>nap.livre[{#E1DESCNAP}]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <port>161</port>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OCUPAÇÂO CANAL NAP [{#E1DESCNAP}]</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.32624.3.1.1.1.2.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>nap.ocupation[{#E1DESCNAP}]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <port>161</port>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>FALHA DE NAP [{#E1DESCNAP}] - Status</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.32624.3.1.1.1.2.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>nap.state[{#E1DESCNAP}]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <port>161</port>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{min(5)}=30</expression>
+                                    <name>NAP E1 [{#E1DESCNAP}] - {SNMPVALUE}</name>
+                                    <priority>DISASTER</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+    <value_maps>
+        <value_map>
+            <name>UP / DOWN</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>down</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>up</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>
