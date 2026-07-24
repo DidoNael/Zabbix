@@ -924,7 +924,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}]</key>
-                            <delay>10m</delay>
+                            <delay>1m</delay>
                             <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -973,7 +973,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPower.[{#ENTPHYSICALNAME}]</key>
-                            <delay>1h</delay>
+                            <delay>1m</delay>
                             <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <applications>
@@ -1051,7 +1051,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]</key>
-                            <delay>10m</delay>
+                            <delay>1d</delay>
                             <history>7d</history>
                             <trends>90d</trends>
                             <value_type>FLOAT</value_type>
@@ -1080,7 +1080,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowWarnThreshold.[{#SNMPINDEX}]</key>
-                            <delay>10m</delay>
+                            <delay>1d</delay>
                             <history>7d</history>
                             <trends>90d</trends>
                             <value_type>FLOAT</value_type>
@@ -1254,7 +1254,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderPn.[{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
+                            <delay>1d</delay>
                             <history>7d</history>
                             <trends>90d</trends>
                             <value_type>TEXT</value_type>
@@ -1955,7 +1955,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
+                            <delay>1m</delay>
                             <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -1982,7 +1982,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
+                            <delay>1m</delay>
                             <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2009,7 +2009,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
+                            <delay>1m</delay>
                             <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2036,7 +2036,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
+                            <delay>1m</delay>
                             <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2063,7 +2063,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
+                            <delay>1m</delay>
                             <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2090,7 +2090,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
+                            <delay>1m</delay>
                             <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2117,7 +2117,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
+                            <delay>1m</delay>
                             <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2144,7 +2144,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
+                            <delay>1m</delay>
                             <history>14d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2185,7 +2185,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxHighThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <delay>10m</delay>
+                            <delay>1d</delay>
                             <history>7d</history>
                             <trends>7d</trends>
                             <value_type>FLOAT</value_type>
@@ -2207,7 +2207,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <delay>10m</delay>
+                            <delay>1d</delay>
                             <history>7d</history>
                             <trends>7d</trends>
                             <value_type>FLOAT</value_type>
@@ -2230,7 +2230,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <delay>10m</delay>
+                            <delay>1d</delay>
                             <history>7d</history>
                             <trends>7d</trends>
                             <value_type>FLOAT</value_type>
@@ -2253,7 +2253,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <delay>10m</delay>
+                            <delay>1d</delay>
                             <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2292,7 +2292,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <delay>10m</delay>
+                            <delay>1d</delay>
                             <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2314,7 +2314,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <delay>10m</delay>
+                            <delay>1d</delay>
                             <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2336,7 +2336,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <delay>10m</delay>
+                            <delay>1d</delay>
                             <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2358,7 +2358,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
-                            <delay>10m</delay>
+                            <delay>1d</delay>
                             <trends>90d</trends>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
@@ -2380,7 +2380,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderNameML[{#ENTPHYSICALNAME}]</key>
-                            <delay>1h</delay>
+                            <delay>1d</delay>
                             <history>14d</history>
                             <trends>90d</trends>
                             <value_type>TEXT</value_type>
@@ -2396,7 +2396,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderPnML[{#ENTPHYSICALNAME}]</key>
-                            <delay>5m</delay>
+                            <delay>1d</delay>
                             <history>7d</history>
                             <trends>90d</trends>
                             <value_type>TEXT</value_type>
