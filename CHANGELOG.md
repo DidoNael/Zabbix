@@ -6,12 +6,27 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o
 versionamento segue [SemVer](https://semver.org/lang/pt-BR/).
 
 **Escopo do repositório:** templates Zabbix (4.4 e 6.0) para OLT ZTE, Switch/Router
-Huawei, OSPF genérico e ISP Experience, além de scripts de descoberta externa
+Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descoberta externa
 (`externalscripts`), scripts de manutenção e documentação.
 
 > **Convenção de compatibilidade:** cada template existe em pastas por versão do
 > Zabbix (`4.4/` e `6.0/`). As duas versões têm esquemas XML incompatíveis entre si —
 > ver [docs/TROUBLESHOOTING_XML_IMPORT.md](docs/TROUBLESHOOTING_XML_IMPORT.md).
+
+---
+
+## [v2.6.0] — 2026-07-27
+
+### Adicionado
+
+- **Template DNS Monitor (4.4 e 6.0)** — monitoramento de servidores DNS via DIG e
+  NSLOOKUP com LLD. Discovery automático de combinações servidor × domínio × tipo de
+  registro a partir de macros configuráveis no host (`{$DNS_SERVERS}`, `{$DNS_DOMAINS}`,
+  `{$DNS_TYPES}`). Itens por combinação: tempo de resposta (ms), status (0/1), RCODE e
+  resultado da consulta, para ambas as ferramentas. Triggers de lentidão em dois limiares
+  (WARNING/CRITICAL) e de RCODE anormal. Graph prototype sobrepondo DIG e NSLOOKUP.
+  Scripts externos: `dns_check.sh` (coleta) e `dns_discover.py` (LLD JSON).
+  Pasta: `DNS-Monitor/`.
 
 ---
 
@@ -308,6 +323,7 @@ Versão inicial: template de **OLT GPON ZTE**.
 
 ---
 
+[v2.6.0]: https://github.com/DidoNael/zabbix-templates/compare/v2.5.0...v2.6.0
 [v2.5.0]: https://github.com/DidoNael/zabbix-templates/compare/v2.4.1...v2.5.0
 [v2.4.1]: https://github.com/DidoNael/zabbix-templates/compare/v2.3.5...v2.4.1
 [v2.3.x]: https://github.com/DidoNael/zabbix-templates/compare/v2.2.0...v2.3.5
