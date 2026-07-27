@@ -131,7 +131,7 @@ Compativel com: Zabbix 4.4</description>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>0</trends>
-                            <value_type>CHARACTER</value_type>
+                            <value_type>CHAR</value_type>
                             <description>Codigo de resposta DNS: NOERROR, NXDOMAIN, SERVFAIL, REFUSED, TIMEOUT.</description>
                             <applications>
                                 <application>
