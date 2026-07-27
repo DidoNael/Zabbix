@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# dns_check.sh — coleta métricas DNS via DIG e NSLOOKUP para Zabbix External Check
-# Uso: dns_check.sh <server> <domain> <type> <tool> <metric> [timeout]
+# netstream_dns_check.sh — coleta métricas DNS via DIG e NSLOOKUP para Zabbix External Check
+# Uso: netstream_dns_check.sh <server> <domain> <type> <tool> <metric> [timeout]
 #   tool:   dig | nslookup
 #   metric: time | status | rcode | result
-# Instalar em: /usr/lib/zabbix/externalscripts/dns_check.sh
-# Permissão:   chmod +x dns_check.sh
+# Instalar em: /usr/lib/zabbix/externalscripts/netstream_dns_check.sh
+# Permissão:   chmod +x netstream_dns_check.sh
 
 SERVER="$1"
 DOMAIN="$2"

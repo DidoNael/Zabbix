@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-LLD Discovery para Template DNS Monitor.
-Uso: dns_discover.py "<servidores>" "<domínios>" "<tipos>"
+LLD Discovery para Template DNS Monitor - Netstream.
+Uso: netstream_dns_discover.py "<servidores>" "<domínios>" "<tipos>"
      Parâmetros separados por vírgula.
-Instalar em: /usr/lib/zabbix/externalscripts/dns_discover.py
-Permissão:   chmod +x dns_discover.py
+Instalar em: /usr/lib/zabbix/externalscripts/netstream_dns_discover.py
+Permissão:   chmod +x netstream_dns_discover.py
 """
 
 import sys
