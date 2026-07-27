@@ -90,20 +90,48 @@ else { Write-Output "OK — todos UUIDv4 válidos" }
 | `UUIDv4 is expected` | UUID ausente ou inválido (13º char ≠ `4`) | Gerar UUID com PowerShell e substituir |
 | `unexpected constant '1'` para `manual_close` | Valor `1` no lugar de `YES` | Substituir `<manual_close>1</manual_close>` por `YES` |
 | `unexpected constant '4'` para `value_type` | Número no lugar de string | Substituir pelo nome: `TEXT`, `FLOAT`, `UNSIGNED`, etc. |
+| `unexpected constant "CHARACTER"` | `CHARACTER` não é válido no 4.4 | Usar `CHAR` (verificado em produção no template Huawei 4.4) |
 | `Application ... not available` | Application referenciada mas não declarada no template | Adicionar em `<applications>` na raiz do template |
 | `SNMPV2` inválido no 6.0 | Tipo errado | Usar `SNMP_AGENT` |
+| `Expressão de trigger inválida` com string após `<>` | No 4.4, `<>` não funciona com valores do tipo `CHAR`/`TEXT` | Usar `.str(valor)=0` para "diferente de" e `.str(valor)=1` para "igual a" |
 
 ---
 
 ## Mapeamento de value_type (4.4 numérico → nome)
 
-| Número | String |
+| Número | String correta no XML |
 |---|---|
 | 0 | `FLOAT` |
-| 1 | `CHARACTER` |
+| 1 | `CHAR` ← **não** `CHARACTER` (causa erro de importação) |
 | 2 | `LOG` |
 | 3 | `UNSIGNED` |
 | 4 | `TEXT` |
+
+---
+
+## Itens External Check (scripts externos)
+
+Scripts em `/usr/lib/zabbix/externalscripts/`. O Zabbix chama o arquivo diretamente pelo nome da chave.
+
+| Campo | 4.4 | 6.0 |
+|---|---|---|
+| `<type>` | `EXTERNAL` | `EXTERNAL` |
+| Parâmetros na chave | `script.sh["param1","param2"]` | idem |
+| Discovery rule | `EXTERNAL` igual | `EXTERNAL` igual |
+
+**Comparação de strings em triggers com itens CHAR/TEXT:**
+
+| Versão | "igual a" | "diferente de" |
+|---|---|---|
+| 4.4 | `.str(valor)=1` | `.str(valor)=0` |
+| 6.0 | `last(...)="valor"` | `last(...)<>"valor"` |
+
+> No 4.4, `<>` com strings causa erro de importação — confirmado no template DNS Monitor.
+
+**Convenção de nomenclatura de scripts no repositório:**
+- Prefixo `netstream_` em todos os scripts externos (ex: `netstream_dns_check.sh`)
+- Macros com sufixo `_NETSTREAM` (ex: `{$DNS_SERVERS_NETSTREAM}`)
+- Nome do template com sufixo ` - Netstream` (ex: `Template DNS Monitor - Netstream`)
 
 ---
 
