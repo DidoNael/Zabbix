@@ -36,6 +36,32 @@ No **servidor Zabbix** (não no agente):
 
 ## Instalação
 
+### 0. Instalar dependências no servidor Zabbix
+
+Os scripts dependem de `dig` e `nslookup`, fornecidos pelo pacote `bind-utils` (CentOS/RHEL) ou `dnsutils` (Debian/Ubuntu).
+
+**CentOS / RHEL / Rocky Linux / AlmaLinux:**
+```bash
+yum install -y bind-utils
+```
+
+**Debian / Ubuntu:**
+```bash
+apt-get update && apt-get install -y dnsutils
+```
+
+> `dnsutils` inclui `dig`, `nslookup` e `host`. Não é necessário instalar pacotes adicionais.
+
+Após instalar, verificar:
+```bash
+dig -v 2>&1 | head -1    # deve mostrar a versão do BIND
+nslookup -version 2>&1   # deve mostrar a versão
+```
+
+> **Nota:** as ferramentas devem estar instaladas no **servidor Zabbix**, não no agente. O tipo dos itens é `External check` — os scripts rodam localmente no servidor.
+
+---
+
 ### 1. Copiar os scripts
 
 ```bash
