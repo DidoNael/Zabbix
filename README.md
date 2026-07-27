@@ -35,6 +35,20 @@ Templates otimizados para monitoramento SNMP de equipamentos Huawei (versões **
 
 ---
 
+### 5. DNS Monitor (`DNS-Monitor/`)
+Template para monitoramento de servidores DNS via **DIG** e **NSLOOKUP** com LLD (versões **4.4** e **6.0**).
+
+#### Principais Características:
+* **Descoberta automática (LLD):** gera combinações de servidor DNS × domínio × tipo de registro a partir de macros configuráveis no host (`{$DNS_SERVERS}`, `{$DNS_DOMAINS}`, `{$DNS_TYPES}`), sem necessidade de editar o template.
+* **DIG e NSLOOKUP em paralelo:** coleta tempo de resposta, status (0/1), RCODE (`NOERROR`, `NXDOMAIN`, `SERVFAIL`...) e resultado da consulta para ambas as ferramentas.
+* **Triggers em dois limiares:** alertas separados de WARNING e CRITICAL para latência, além de trigger para RCODE anormal.
+* **Graph prototype:** sobrepõe DIG e NSLOOKUP em um único gráfico por combinação para comparação visual de latência.
+* **Scripts externos:** `dns_check.sh` (coleta) e `dns_discover.py` (LLD JSON) — instalados no servidor Zabbix, sem agente adicional.
+
+> Guia completo de instalação e uso: [DNS-Monitor/README.md](DNS-Monitor/README.md)
+
+---
+
 ## Como Utilizar o Template ZTE
 
 1. **Importação:**
