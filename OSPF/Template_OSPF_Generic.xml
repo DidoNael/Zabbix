@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-06-26T21:30:00Z</date>
@@ -6,6 +6,10 @@
         <group>
             <uuid>a571c0d144b14fd4a87a9d988e5f1cc4</uuid>
             <name>Templates/Network devices</name>
+        </group>
+        <group>
+            <uuid>2d93b0766b5e4aef8d399801b8f11793</uuid>
+            <name>NETSTREAM</name>
         </group>
     </groups>
     <templates>
@@ -17,6 +21,9 @@
             <groups>
                 <group>
                     <name>Templates/Network devices</name>
+                </group>
+                <group>
+                    <name>NETSTREAM</name>
                 </group>
             </groups>
             <discovery_rules>

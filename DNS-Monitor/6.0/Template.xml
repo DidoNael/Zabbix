@@ -7,6 +7,10 @@
             <uuid>3a9400d1b2bf44a690853601386e90b3</uuid>
             <name>Templates/Network/DNS Monitor</name>
         </group>
+        <group>
+            <uuid>2d93b0766b5e4aef8d399801b8f11793</uuid>
+            <name>NETSTREAM</name>
+        </group>
     </groups>
     <templates>
         <template>
@@ -22,6 +26,9 @@ Compativel com: Zabbix 6.0 LTS</description>
             <groups>
                 <group>
                     <name>Templates/Network/DNS Monitor</name>
+                </group>
+                <group>
+                    <name>NETSTREAM</name>
                 </group>
             </groups>
             <macros>

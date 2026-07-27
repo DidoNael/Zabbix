@@ -6,6 +6,9 @@
         <group>
             <name>Templates/Network/DNS Monitor</name>
         </group>
+        <group>
+            <name>NETSTREAM</name>
+        </group>
     </groups>
     <templates>
         <template>
@@ -20,6 +23,9 @@ Compativel com: Zabbix 4.4</description>
             <groups>
                 <group>
                     <name>Templates/Network/DNS Monitor</name>
+                </group>
+                <group>
+                    <name>NETSTREAM</name>
                 </group>
             </groups>
             <applications>

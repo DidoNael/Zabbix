@@ -7,6 +7,10 @@
             <uuid>fce43a3b1d6743efa891de651c826d68</uuid>
             <name>Templates</name>
         </group>
+        <group>
+            <uuid>2d93b0766b5e4aef8d399801b8f11793</uuid>
+            <name>NETSTREAM</name>
+        </group>
     </groups>
     <templates>
         <template>
@@ -16,6 +20,9 @@
             <groups>
                 <group>
                     <name>Templates</name>
+                </group>
+                <group>
+                    <name>NETSTREAM</name>
                 </group>
             </groups>
             <items>

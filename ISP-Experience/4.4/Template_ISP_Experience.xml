@@ -6,6 +6,9 @@
         <group>
             <name>Templates/Network/ISP Experience</name>
         </group>
+        <group>
+            <name>NETSTREAM</name>
+        </group>
     </groups>
     <templates>
         <template>
@@ -15,6 +18,9 @@
             <groups>
                 <group>
                     <name>Templates/Network/ISP Experience</name>
+                </group>
+                <group>
+                    <name>NETSTREAM</name>
                 </group>
             </groups>
             <applications>

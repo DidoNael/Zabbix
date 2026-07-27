@@ -7,6 +7,10 @@
             <uuid>a9f3d2b14e8c4f70b1e5d3c2a7f90e81</uuid>
             <name>ZTE</name>
         </group>
+        <group>
+            <uuid>2d93b0766b5e4aef8d399801b8f11793</uuid>
+            <name>NETSTREAM</name>
+        </group>
     </groups>
     <templates>
         <template>
@@ -16,6 +20,9 @@
             <groups>
                 <group>
                     <name>ZTE</name>
+                </group>
+                <group>
+                    <name>NETSTREAM</name>
                 </group>
             </groups>
             <items>

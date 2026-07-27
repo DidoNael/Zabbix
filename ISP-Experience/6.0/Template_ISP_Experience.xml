@@ -7,6 +7,10 @@
             <uuid>e30e791244e84b6f84cc537d97cb7f3d</uuid>
             <name>Templates/Network/ISP Experience</name>
         </group>
+        <group>
+            <uuid>2d93b0766b5e4aef8d399801b8f11793</uuid>
+            <name>NETSTREAM</name>
+        </group>
     </groups>
     <templates>
         <template>
@@ -17,6 +21,9 @@
             <groups>
                 <group>
                     <name>Templates/Network/ISP Experience</name>
+                </group>
+                <group>
+                    <name>NETSTREAM</name>
                 </group>
             </groups>
             <discovery_rules>
