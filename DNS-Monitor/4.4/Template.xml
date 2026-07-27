@@ -140,7 +140,7 @@ Compativel com: Zabbix 4.4</description>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"].last()}&lt;&gt;"NOERROR"</expression>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"].str(NOERROR)}=0</expression>
                                     <name>DNS DIG RCODE anormal: {#DNS_SERVER} retornou {ITEM.LASTVALUE} para {#DNS_DOMAIN} ({#DNS_TYPE})</name>
                                     <priority>WARNING</priority>
                                     <description>O servidor DNS retornou codigo de erro diferente de NOERROR.</description>
