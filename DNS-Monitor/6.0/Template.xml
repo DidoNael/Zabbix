@@ -177,6 +177,27 @@ Compativel com: Zabbix 6.0 LTS</description>
                         </item_prototype>
 
                         <item_prototype>
+                            <uuid>3230122347f04531ba1635541a25b2f5</uuid>
+                            <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Qtd. Respostas</name>
+                            <type>EXTERNAL</type>
+                            <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"]</key>
+                            <delay>60s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <description>Numero de registros retornados na ANSWER SECTION. NOERROR com 0 respostas pode indicar anomalia ou redirecionamento indevido.</description>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>9680cd1ccc834baaa9b1f3b105d0a7d7</uuid>
+                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"])=0 and last(/Template DNS Monitor - Netstream/netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"])="NOERROR"</expression>
+                                    <name>DNS DIG: {#DNS_SERVER} retornou NOERROR sem respostas para {#DNS_DOMAIN} ({#DNS_TYPE})</name>
+                                    <priority>WARNING</priority>
+                                    <description>NOERROR com 0 respostas pode indicar redirecionamento indevido ou registro ausente.</description>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+
+                        <item_prototype>
                             <uuid>5b0a453b143b4e289ccdd975fae704f1</uuid>
                             <name>DNS NSLOOKUP [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Tempo de Resposta</name>
                             <type>EXTERNAL</type>

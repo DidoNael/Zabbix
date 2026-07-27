@@ -171,6 +171,30 @@ Compativel com: Zabbix 4.4</description>
                         </item_prototype>
 
                         <item_prototype>
+                            <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Qtd. Respostas</name>
+                            <type>EXTERNAL</type>
+                            <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"]</key>
+                            <delay>60</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <description>Numero de registros retornados na ANSWER SECTION. NOERROR com 0 respostas pode indicar anomalia ou redirecionamento indevido.</description>
+                            <applications>
+                                <application>
+                                    <name>DNS Monitor - DIG</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"].last()}=0 and {Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"].str(NOERROR)}=1</expression>
+                                    <name>DNS DIG: {#DNS_SERVER} retornou NOERROR sem respostas para {#DNS_DOMAIN} ({#DNS_TYPE})</name>
+                                    <priority>WARNING</priority>
+                                    <description>NOERROR com 0 respostas pode indicar redirecionamento indevido ou registro ausente.</description>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+
+                        <item_prototype>
                             <name>DNS NSLOOKUP [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Tempo de Resposta</name>
                             <type>EXTERNAL</type>
                             <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","nslookup","time","{$DNS_TIMEOUT_NETSTREAM}"]</key>
