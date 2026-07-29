@@ -321,6 +321,20 @@
                         </application>
                     </applications>
                 </item>
+                <item>
+                    <name>Optical Module Aliases: all interfaces (raw walk)</name>
+                    <type>EXTERNAL</type>
+                    <key>netstream.optical.aliases[{HOST.CONN},{$SNMP_COMMUNITY}]</key>
+                    <delay>1d</delay>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Switch Huawei 6700 Series - Netstream</name>
+                        </application>
+                    </applications>
+                </item>
             </items>
             <discovery_rules>
                 <discovery_rule>
@@ -1585,19 +1599,27 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Description / Alias</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>$SNMP_COMMUNITY</snmp_community>
-                            <snmp_oid>1.3.6.1.2.1.47.1.1.1.1.14.{#SNMPINDEX}</snmp_oid>
+                            <type>DEPENDENT</type>
                             <key>netstream.hwEntityOpticalAlias[{#ENTPHYSICALNAME}]</key>
-                            <delay>1d</delay>
+                            <delay>0</delay>
                             <history>7d</history>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <master_item>
+                                <key>netstream.optical.aliases[{HOST.CONN},{$SNMP_COMMUNITY}]</key>
+                            </master_item>
                             <applications>
                                 <application>
                                     <name>Switch Huawei 6700 Series - Netstream</name>
                                 </application>
                             </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$['{#SNMPINDEX}']</params>
+                                    <error_handler>DISCARD_VALUE</error_handler>
+                                </step>
+                            </preprocessing>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -2727,19 +2749,27 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Description / Alias</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>$SNMP_COMMUNITY</snmp_community>
-                            <snmp_oid>1.3.6.1.2.1.47.1.1.1.1.14.{#SNMPINDEX}</snmp_oid>
+                            <type>DEPENDENT</type>
                             <key>netstream.hwEntityOpticalAliasML[{#ENTPHYSICALNAME}]</key>
-                            <delay>1d</delay>
+                            <delay>0</delay>
                             <history>7d</history>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <master_item>
+                                <key>netstream.optical.aliases[{HOST.CONN},{$SNMP_COMMUNITY}]</key>
+                            </master_item>
                             <applications>
                                 <application>
                                     <name>Switch Huawei 6700 Series - Netstream</name>
                                 </application>
                             </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$['{#SNMPINDEX}']</params>
+                                    <error_handler>DISCARD_VALUE</error_handler>
+                                </step>
+                            </preprocessing>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
