@@ -2894,7 +2894,7 @@ or
                     </trigger_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
-                            <name>PPPoE Dominio [{#DOMAIN}]: Evolucao de Clientes Conectados</name>
+                            <name>PPPoE Dominio [{#DOMAIN}]: Clientes Conectados</name>
                             <width>900</width>
                             <height>200</height>
                             <ymin_type_1>FIXED</ymin_type_1>
@@ -3000,7 +3000,7 @@ or
                     </trigger_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
-                            <name>PPPoE Interface [{#HWBASIFNAME} - {#IFALIAS}]: Evolucao de Clientes Conectados</name>
+                            <name>PPPoE Interface [{#HWBASIFNAME} - {#IFALIAS}]: Clientes Conectados</name>
                             <width>900</width>
                             <height>200</height>
                             <ymin_type_1>FIXED</ymin_type_1>
