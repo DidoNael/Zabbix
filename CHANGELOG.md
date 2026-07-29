@@ -15,6 +15,29 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.7.0] — 2026-07-29
+
+### Corrigido
+
+- **Switch Huawei 6700 — OpticalAlias: thundering herd SNMP (gráficos picotando em série S).**
+  Após host recovery, os ~52 itens SNMP GET individuais de `entPhysicalAlias` disparavam
+  simultaneamente, sobrecarregando o agente SNMP do switch → timeouts em cascata → host
+  marcado indisponível novamente → spike nos gráficos de tráfego. Causa raiz: itens
+  individuais do tipo SNMPV2 com `delay=1d` todos com `nextcheck=NOW` após recovery.
+  Correção: redesign para master item (1 snmpwalk externo, `delay=1d`) + itens dependentes
+  (preprocessing JSONPath, `delay=0`). Adicionado script `netstream_optical_aliases.sh`.
+  Nota secundária: `entPhysicalAlias` fica vazio nos switches testados (aliases não
+  configurados no equipamento) — comportamento normal; o benefício é a redução de carga SNMP.
+
+### Adicionado
+
+- **Script `Switch/Huawei/externalscripts/netstream_optical_aliases.sh`** — walk único do
+  OID `entPhysicalAlias` (`.1.3.6.1.2.1.47.1.1.1.1.14`), retorna JSON `{snmpindex: alias}`.
+  Suporta porta customizada via `HOST:PORT`. Timeout interno de 12s (abaixo do
+  `Timeout=15` do `zabbix_server.conf`).
+
+---
+
 ## [v2.6.0] — 2026-07-27
 
 ### Adicionado
