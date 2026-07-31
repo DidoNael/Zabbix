@@ -13,6 +13,10 @@
 # Instalar em: /usr/lib/zabbix/externalscripts/netstream_dns_check.sh
 # Permissão:   chmod +x netstream_dns_check.sh
 
+# Caminhos absolutos — garante funcionamento independente do PATH do usuário zabbix
+DIG=$(command -v dig || echo /usr/bin/dig)
+NSLOOKUP=$(command -v nslookup || echo /usr/bin/nslookup)
+
 SERVER="$1"
 DOMAIN="$2"
 TYPE="${3:-A}"
@@ -31,7 +35,7 @@ fi
 
 dig_time() {
     local ms
-    ms=$(dig @"$SERVER" "$DOMAIN" "$TYPE" \
+    ms=$("$DIG" @"$SERVER" "$DOMAIN" "$TYPE" \
              +time="$TIMEOUT" +tries=1 +stats +noall +comments 2>/dev/null \
          | grep "Query time:" | awk '{print $4}')
     echo "${ms:-9999}"
@@ -39,7 +43,7 @@ dig_time() {
 
 dig_status() {
     local out
-    out=$(dig @"$SERVER" "$DOMAIN" "$TYPE" \
+    out=$("$DIG" @"$SERVER" "$DOMAIN" "$TYPE" \
               +time="$TIMEOUT" +tries=1 +short 2>/dev/null \
           | grep -v '^$')
     [[ -n "$out" ]] && echo 1 || echo 0
@@ -47,7 +51,7 @@ dig_status() {
 
 dig_rcode() {
     local rcode
-    rcode=$(dig @"$SERVER" "$DOMAIN" "$TYPE" \
+    rcode=$("$DIG" @"$SERVER" "$DOMAIN" "$TYPE" \
                 +time="$TIMEOUT" +tries=1 2>/dev/null \
             | grep -oP 'status:\s*\K[A-Z]+')
     echo "${rcode:-TIMEOUT}"
@@ -55,7 +59,7 @@ dig_rcode() {
 
 dig_result() {
     # +short: para AAAA retorna endereços IPv6; para MX retorna "10 mail.exemplo.com"
-    dig @"$SERVER" "$DOMAIN" "$TYPE" \
+    "$DIG" @"$SERVER" "$DOMAIN" "$TYPE" \
         +time="$TIMEOUT" +tries=1 +short 2>/dev/null \
     | grep -v '^$' \
     | head -5 \
@@ -65,7 +69,7 @@ dig_result() {
 dig_answers() {
     # Conta linhas na ANSWER SECTION — 0 com NOERROR indica possível anomalia
     local count
-    count=$(dig @"$SERVER" "$DOMAIN" "$TYPE" \
+    count=$("$DIG" @"$SERVER" "$DOMAIN" "$TYPE" \
                 +time="$TIMEOUT" +tries=1 +noall +answer 2>/dev/null \
             | grep -vc '^$')
     echo "${count:-0}"
@@ -77,14 +81,14 @@ dig_answers() {
 nslookup_time() {
     local start end
     start=$(date +%s%3N)
-    nslookup -timeout="$TIMEOUT" -type="$TYPE" "$DOMAIN" "$SERVER" >/dev/null 2>&1
+    "$NSLOOKUP" -timeout="$TIMEOUT" -type="$TYPE" "$DOMAIN" "$SERVER" >/dev/null 2>&1
     end=$(date +%s%3N)
     echo $(( end - start ))
 }
 
 nslookup_status() {
     local out
-    out=$(nslookup -timeout="$TIMEOUT" -type="$TYPE" "$DOMAIN" "$SERVER" 2>&1)
+    out=$("$NSLOOKUP" -timeout="$TIMEOUT" -type="$TYPE" "$DOMAIN" "$SERVER" 2>&1)
 
     if echo "$out" | grep -qE "NXDOMAIN|can't find|No answer|SERVFAIL|timed out|no servers|connection refused"; then
         echo 0
@@ -97,7 +101,7 @@ nslookup_status() {
 
 nslookup_result() {
     local out
-    out=$(nslookup -timeout="$TIMEOUT" -type="$TYPE" "$DOMAIN" "$SERVER" 2>/dev/null)
+    out=$("$NSLOOKUP" -timeout="$TIMEOUT" -type="$TYPE" "$DOMAIN" "$SERVER" 2>/dev/null)
 
     case "${TYPE^^}" in
         A|AAAA)
