@@ -36,7 +36,7 @@ fi
 dig_time() {
     local ms
     ms=$("$DIG" @"$SERVER" "$DOMAIN" "$TYPE" \
-             +time="$TIMEOUT" +tries=1 +stats +noall +comments 2>/dev/null \
+             +time="$TIMEOUT" +tries=1 +noall +stats 2>/dev/null \
          | grep "Query time:" | awk '{print $4}')
     echo "${ms:-9999}"
 }
