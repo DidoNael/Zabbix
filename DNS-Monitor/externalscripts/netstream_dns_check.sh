@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
-# netstream_dns_check.sh — coleta métricas DNS via DIG e NSLOOKUP para Zabbix External Check
+# netstream_dns_check.sh — coleta métricas DNS via DIG para Zabbix External Check
 # Suporta servidores DNS IPv4 e IPv6, registros A, AAAA, MX, NS, CNAME, PTR, TXT etc.
 #
 # Uso: netstream_dns_check.sh <server> <domain> <type> <tool> <metric> [timeout]
 #   server:  IP ou hostname do servidor DNS (IPv4 ou IPv6)
 #   domain:  domínio a consultar
 #   type:    tipo de registro (A, AAAA, MX, NS, CNAME, PTR, TXT ...)
-#   tool:    dig | nslookup
+#   tool:    dig
 #   metric:  time | status | rcode | result | answers
 #   timeout: segundos (padrão: 5)
 #
 # Instalar em: /usr/lib/zabbix/externalscripts/netstream_dns_check.sh
 # Permissão:   chmod +x netstream_dns_check.sh
 
-# Caminhos absolutos — garante funcionamento independente do PATH do usuário zabbix
+# Caminho absoluto — garante funcionamento independente do PATH do usuário zabbix
 DIG=$(command -v dig || echo /usr/bin/dig)
-NSLOOKUP=$(command -v nslookup || echo /usr/bin/nslookup)
 
 SERVER="$1"
 DOMAIN="$2"
@@ -75,79 +74,14 @@ dig_answers() {
     echo "${count:-0}"
 }
 
-# ── NSLOOKUP ─────────────────────────────────────────────────────────────────
-# nslookup suporta servidores IPv6 nativamente: nslookup domain 2001:4860:4860::8888
-
-nslookup_time() {
-    local start end
-    start=$(date +%s%3N)
-    "$NSLOOKUP" -timeout="$TIMEOUT" -type="$TYPE" "$DOMAIN" "$SERVER" >/dev/null 2>&1
-    end=$(date +%s%3N)
-    echo $(( end - start ))
-}
-
-nslookup_status() {
-    local out
-    out=$("$NSLOOKUP" -timeout="$TIMEOUT" -type="$TYPE" "$DOMAIN" "$SERVER" 2>&1)
-
-    if echo "$out" | grep -qE "NXDOMAIN|can't find|No answer|SERVFAIL|timed out|no servers|connection refused"; then
-        echo 0
-    elif echo "$out" | grep -qE "Address:|Name:|mail exchanger|nameserver|canonical name"; then
-        echo 1
-    else
-        echo 0
-    fi
-}
-
-nslookup_result() {
-    local out
-    out=$("$NSLOOKUP" -timeout="$TIMEOUT" -type="$TYPE" "$DOMAIN" "$SERVER" 2>/dev/null)
-
-    case "${TYPE^^}" in
-        A|AAAA)
-            # Linhas "Address: x" excluindo a do próprio servidor DNS (contém "#porta")
-            echo "$out" | grep -E "Address:" | grep -v "#" | awk '{print $NF}' \
-            | head -5 | paste -sd ',' -
-            ;;
-        MX)
-            echo "$out" | grep -E "mail exchanger" | awk '{print $(NF-1),$NF}' \
-            | head -5 | paste -sd ',' -
-            ;;
-        NS)
-            echo "$out" | grep -E "nameserver" | awk '{print $NF}' \
-            | head -5 | paste -sd ',' -
-            ;;
-        CNAME)
-            echo "$out" | grep -E "canonical name" | awk '{print $NF}' \
-            | head -3 | paste -sd ',' -
-            ;;
-        TXT)
-            echo "$out" | grep -E "text =" | sed 's/.*text = //' \
-            | head -3 | paste -sd ',' -
-            ;;
-        PTR)
-            echo "$out" | grep -E "name =" | awk '{print $NF}' \
-            | head -3 | paste -sd ',' -
-            ;;
-        *)
-            # Fallback genérico: remove cabeçalho do servidor e linhas vazias
-            echo "$out" | grep -v "^Server:\|^Address:.*#\|^$" \
-            | tail -n +2 | head -5 | paste -sd ',' -
-            ;;
-    esac
-}
-
 # ── Dispatcher ───────────────────────────────────────────────────────────────
 
 case "${TOOL}_${METRIC}" in
-    dig_time)          dig_time          ;;
-    dig_status)        dig_status        ;;
-    dig_rcode)         dig_rcode         ;;
-    dig_result)        dig_result        ;;
-    dig_answers)       dig_answers       ;;
-    nslookup_time)     nslookup_time     ;;
-    nslookup_status)   nslookup_status   ;;
-    nslookup_result)   nslookup_result   ;;
+    dig_time)    dig_time    ;;
+    dig_status)  dig_status  ;;
+    dig_rcode)   dig_rcode   ;;
+    dig_result)  dig_result  ;;
+    dig_answers) dig_answers ;;
     *)
         echo "ERRO: combinação inválida tool='$TOOL' metric='$METRIC'" >&2
         exit 1

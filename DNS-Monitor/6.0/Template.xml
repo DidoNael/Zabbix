@@ -17,11 +17,11 @@
             <uuid>bd5480fa5c214dea84f8d2dc3b75a3d4</uuid>
             <template>Template DNS Monitor - Netstream</template>
             <name>Template DNS Monitor - Netstream</name>
-            <description>Monitora servidores DNS via DIG e NSLOOKUP com LLD.
+            <description>Monitora servidores DNS via DIG com LLD.
 Pre-requisitos no servidor Zabbix:
   - netstream_dns_check.sh em /usr/lib/zabbix/externalscripts/
   - netstream_dns_discover.py em /usr/lib/zabbix/externalscripts/
-  - Pacotes: bind-utils (dig/nslookup), python3
+  - Pacotes: bind-utils (dig), python3
 Compativel com: Zabbix 6.0 LTS</description>
             <groups>
                 <group>
@@ -197,50 +197,6 @@ Compativel com: Zabbix 6.0 LTS</description>
                             </trigger_prototypes>
                         </item_prototype>
 
-                        <item_prototype>
-                            <uuid>5b0a453b143b4e289ccdd975fae704f1</uuid>
-                            <name>DNS NSLOOKUP [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Tempo de Resposta</name>
-                            <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","nslookup","time","{$DNS_TIMEOUT_NETSTREAM}"]</key>
-                            <delay>60s</delay>
-                            <history>7d</history>
-                            <trends>30d</trends>
-                            <value_type>UNSIGNED</value_type>
-                            <units>ms</units>
-                            <description>Tempo total medido para o NSLOOKUP completar (ms).</description>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>c5311535ed6947bfbb695db061451b42</uuid>
-                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","nslookup","time","{$DNS_TIMEOUT_NETSTREAM}"])>{$DNS_CRIT_TIME_NETSTREAM}</expression>
-                                    <name>DNS NSLOOKUP lento: {#DNS_SERVER} para {#DNS_DOMAIN} ({#DNS_TYPE}) &gt; {$DNS_CRIT_TIME_NETSTREAM}ms</name>
-                                    <priority>HIGH</priority>
-                                </trigger_prototype>
-                            </trigger_prototypes>
-                        </item_prototype>
-
-                        <item_prototype>
-                            <uuid>ffb00e745c084a07aaa905cbc17027e0</uuid>
-                            <name>DNS NSLOOKUP [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Status</name>
-                            <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","nslookup","status","{$DNS_TIMEOUT_NETSTREAM}"]</key>
-                            <delay>60s</delay>
-                            <history>7d</history>
-                            <trends>30d</trends>
-                            <value_type>UNSIGNED</value_type>
-                            <description>Status do NSLOOKUP: 1=Sucesso, 0=Falha.</description>
-                            <valuemap>
-                                <name>DNS Query Status</name>
-                            </valuemap>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>a9166c58867045abba21a7f7d1999b46</uuid>
-                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","nslookup","status","{$DNS_TIMEOUT_NETSTREAM}"])=0</expression>
-                                    <name>DNS NSLOOKUP falhou: {#DNS_SERVER} nao resolveu {#DNS_DOMAIN} ({#DNS_TYPE})</name>
-                                    <priority>AVERAGE</priority>
-                                </trigger_prototype>
-                            </trigger_prototypes>
-                        </item_prototype>
-
                     </item_prototypes>
 
                     <graph_prototypes>
@@ -254,14 +210,6 @@ Compativel com: Zabbix 6.0 LTS</description>
                                     <item>
                                         <host>Template DNS Monitor - Netstream</host>
                                         <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <color>2774A4</color>
-                                    <sortorder>1</sortorder>
-                                    <item>
-                                        <host>Template DNS Monitor - Netstream</host>
-                                        <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","nslookup","time","{$DNS_TIMEOUT_NETSTREAM}"]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
