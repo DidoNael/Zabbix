@@ -111,7 +111,7 @@ Compativel com: Zabbix 6.0 LTS</description>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>e60644979bd542719745572047d14e2c</uuid>
-                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"])>{$DNS_WARN_TIME_NETSTREAM} and last(/Template DNS Monitor - Netstream/netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"])<={$DNS_CRIT_TIME_NETSTREAM}</expression>
+                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"])&gt;{$DNS_WARN_TIME_NETSTREAM} and last(/Template DNS Monitor - Netstream/netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"])&lt;={$DNS_CRIT_TIME_NETSTREAM}</expression>
                                     <name>DNS DIG lento WARNING: {#DNS_SERVER} para {#DNS_DOMAIN} ({#DNS_TYPE}) &gt; {$DNS_WARN_TIME_NETSTREAM}ms</name>
                                     <priority>WARNING</priority>
                                     <description>Tempo de resposta DIG acima do limiar WARNING ({$DNS_WARN_TIME_NETSTREAM} ms).</description>
@@ -156,7 +156,7 @@ Compativel com: Zabbix 6.0 LTS</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>7e9e788072734e5f9222c71f84e4705b</uuid>
-                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"])<>"NOERROR"</expression>
+                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"])&lt;&gt;"NOERROR"</expression>
                                     <name>DNS DIG RCODE anormal: {#DNS_SERVER} retornou {ITEM.LASTVALUE} para {#DNS_DOMAIN} ({#DNS_TYPE})</name>
                                     <priority>WARNING</priority>
                                     <description>O servidor DNS retornou codigo de erro diferente de NOERROR.</description>
