@@ -29,9 +29,12 @@ Compativel com: Zabbix 4.4</description>
                 </group>
             </groups>
             <applications>
-                <application>
-                    <name>DNS Monitor - DIG</name>
-                </application>
+                <application><name>DNS Monitor - DIG</name></application>
+                <application><name>DNS Monitor - Tempo</name></application>
+                <application><name>DNS Monitor - Status</name></application>
+                <application><name>DNS Monitor - RCODE</name></application>
+                <application><name>DNS Monitor - Resultado</name></application>
+                <application><name>DNS Monitor - Respostas</name></application>
             </applications>
             <macros>
                 <macro>
@@ -80,9 +83,10 @@ Compativel com: Zabbix 4.4</description>
                             <units>ms</units>
                             <description>Tempo de resposta da consulta DIG em milissegundos. Retorna 9999 em timeout.</description>
                             <applications>
-                                <application>
-                                    <name>DNS Monitor - DIG</name>
-                                </application>
+                                <application><name>DNS Monitor - DIG</name></application>
+                                <application><name>DNS Monitor - Tempo</name></application>
+                                <application><name>DNS Monitor - {#DNS_DOMAIN}</name></application>
+                                <application><name>DNS Monitor - {#DNS_SERVER}</name></application>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
@@ -124,9 +128,10 @@ Compativel com: Zabbix 4.4</description>
                             <value_type>UNSIGNED</value_type>
                             <description>Status da consulta DIG: 1=Sucesso, 0=Falha (sem resposta ou timeout).</description>
                             <applications>
-                                <application>
-                                    <name>DNS Monitor - DIG</name>
-                                </application>
+                                <application><name>DNS Monitor - DIG</name></application>
+                                <application><name>DNS Monitor - Status</name></application>
+                                <application><name>DNS Monitor - {#DNS_DOMAIN}</name></application>
+                                <application><name>DNS Monitor - {#DNS_SERVER}</name></application>
                             </applications>
                             <valuemap>
                                 <name>DNS Query Status</name>
@@ -158,9 +163,10 @@ Compativel com: Zabbix 4.4</description>
                             <value_type>CHAR</value_type>
                             <description>Codigo de resposta DNS: NOERROR, NXDOMAIN, SERVFAIL, REFUSED, TIMEOUT.</description>
                             <applications>
-                                <application>
-                                    <name>DNS Monitor - DIG</name>
-                                </application>
+                                <application><name>DNS Monitor - DIG</name></application>
+                                <application><name>DNS Monitor - RCODE</name></application>
+                                <application><name>DNS Monitor - {#DNS_DOMAIN}</name></application>
+                                <application><name>DNS Monitor - {#DNS_SERVER}</name></application>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
@@ -189,9 +195,10 @@ Compativel com: Zabbix 4.4</description>
                             <value_type>TEXT</value_type>
                             <description>Registros retornados pelo DIG (primeiros 5, separados por virgula).</description>
                             <applications>
-                                <application>
-                                    <name>DNS Monitor - DIG</name>
-                                </application>
+                                <application><name>DNS Monitor - DIG</name></application>
+                                <application><name>DNS Monitor - Resultado</name></application>
+                                <application><name>DNS Monitor - {#DNS_DOMAIN}</name></application>
+                                <application><name>DNS Monitor - {#DNS_SERVER}</name></application>
                             </applications>
                         </item_prototype>
 
@@ -205,9 +212,10 @@ Compativel com: Zabbix 4.4</description>
                             <value_type>UNSIGNED</value_type>
                             <description>Numero de registros retornados na ANSWER SECTION. NOERROR com 0 respostas pode indicar anomalia ou redirecionamento indevido.</description>
                             <applications>
-                                <application>
-                                    <name>DNS Monitor - DIG</name>
-                                </application>
+                                <application><name>DNS Monitor - DIG</name></application>
+                                <application><name>DNS Monitor - Respostas</name></application>
+                                <application><name>DNS Monitor - {#DNS_DOMAIN}</name></application>
+                                <application><name>DNS Monitor - {#DNS_SERVER}</name></application>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
