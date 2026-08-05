@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-08-05T18:00:00Z</date>
@@ -19,7 +19,7 @@ Targets definidos diretamente nas macros do host, separados por virgula.
 == COMO USAR ==
 1. Importe este template
 2. Linke ao host Windows com o agente configurado
-3. VÃ¡ em Host > Macros e defina os destinos:
+3. Va em Host &gt; Macros e defina os destinos:
 
    {$PING_TARGETS}    = 8.8.8.8,1.1.1.1,meusite.com.br
    {$HTTP_TARGETS}    = https://meusite.com.br,https://erp.empresa.com
@@ -29,7 +29,7 @@ Targets definidos diretamente nas macros do host, separados por virgula.
    {$DNS_SERVERS}     = 8.8.8.8,1.1.1.1
 
 4. O Zabbix cria os items automaticamente em ate 1h (LLD interval)
-5. Para forcar imediatamente: Configuration > Hosts > Discovery rules > Check now
+5. Para forcar imediatamente: Configuration &gt; Hosts &gt; Discovery rules &gt; Check now
 
 == PRE-REQUISITOS ==
 - Scripts PowerShell em C:\zabbix\scripts\
@@ -43,11 +43,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                 </group>
             </groups>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
-            <!--                       MACROS                          -->
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <macros>
-                <!-- Targets de monitoramento â€” edite no host -->
                 <macro>
                     <macro>{$PING_TARGETS}</macro>
                     <value>8.8.8.8,1.1.1.1</value>
@@ -66,7 +62,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                 <macro>
                     <macro>{$MTR_TARGETS}</macro>
                     <value>google.com</value>
-                    <description>Hosts para MTR (use poucos â€” cada um demora 2-5 min). Ex: google.com</description>
+                    <description>Hosts para MTR (use poucos - cada um demora 2-5 min). Ex: google.com</description>
                 </macro>
                 <macro>
                     <macro>{$DNS_TARGETS}</macro>
@@ -78,8 +74,6 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     <value>8.8.8.8,1.1.1.1</value>
                     <description>Servidores DNS para testar, separados por virgula. Ex: 8.8.8.8,1.1.1.1,DNS_ISP</description>
                 </macro>
-
-                <!-- Limiares de alerta â€” ajuste conforme necessario -->
                 <macro>
                     <macro>{$LATENCY_WARN}</macro>
                     <value>150</value>
@@ -127,9 +121,32 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                 </macro>
             </macros>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
-            <!--               ITEMS FIXOS (sem LLD)                   -->
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <valuemaps>
+                <valuemap>
+                    <uuid>f6f6f6f6a7a7a7a7b8b8b8b8c9c9c9c9</uuid>
+                    <name>HTTP Status Code</name>
+                    <mappings>
+                        <mapping><value>0</value><newvalue>Inacessivel</newvalue></mapping>
+                        <mapping><value>200</value><newvalue>OK</newvalue></mapping>
+                        <mapping><value>301</value><newvalue>Redirect</newvalue></mapping>
+                        <mapping><value>400</value><newvalue>Bad Request</newvalue></mapping>
+                        <mapping><value>401</value><newvalue>Unauthorized</newvalue></mapping>
+                        <mapping><value>403</value><newvalue>Forbidden</newvalue></mapping>
+                        <mapping><value>404</value><newvalue>Not Found</newvalue></mapping>
+                        <mapping><value>500</value><newvalue>Server Error</newvalue></mapping>
+                        <mapping><value>503</value><newvalue>Unavailable</newvalue></mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>a7a7a7a7b8b8b8b8c9c9c9c9d0d0d0d0</uuid>
+                    <name>DNS Status</name>
+                    <mappings>
+                        <mapping><value>0</value><newvalue>Falhou</newvalue></mapping>
+                        <mapping><value>1</value><newvalue>Sucesso</newvalue></mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+
             <items>
                 <item>
                     <uuid>a1a1a1a1b2b2b2b2c3c3c3c3d4d4d4d4</uuid>
@@ -171,70 +188,9 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                 </item>
             </items>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
-            <!--                  TRIGGERS FIXAS                       -->
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
-            <triggers>
-                <trigger>
-                    <uuid>d4d4d4d4e5e5e5e5f6f6f6f6a7a7a7a7</uuid>
-                    <expression>last(/Template Internet Quality Windows LLD - Netstream/agent.ping)&lt;&gt;1</expression>
-                    <name>Agente Zabbix inativo</name>
-                    <priority>HIGH</priority>
-                    <description>O agente Zabbix nao esta respondendo. Verificar servico no Windows.</description>
-                    <manual_close>YES</manual_close>
-                    <tags>
-                        <tag><tag>component</tag><value>agent</value></tag>
-                    </tags>
-                </trigger>
-                <trigger>
-                    <uuid>e5e5e5e5f6f6f6f6a7a7a7a7b8b8b8b8</uuid>
-                    <expression>last(/Template Internet Quality Windows LLD - Netstream/internet.speed.download)&lt;{$SPEED_MIN_DOWN} and last(/Template Internet Quality Windows LLD - Netstream/internet.speed.download)&gt;0</expression>
-                    <name>Download abaixo de {$SPEED_MIN_DOWN} Mbps</name>
-                    <priority>WARNING</priority>
-                    <description>Velocidade de download abaixo do minimo esperado ({$SPEED_MIN_DOWN} Mbps).</description>
-                    <tags>
-                        <tag><tag>component</tag><value>speedtest</value></tag>
-                    </tags>
-                </trigger>
-            </triggers>
-
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
-            <!--                VALUE MAPS                             -->
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
-            <valuemaps>
-                <valuemap>
-                    <uuid>f6f6f6f6a7a7a7a7b8b8b8b8c9c9c9c9</uuid>
-                    <name>HTTP Status Code</name>
-                    <mappings>
-                        <mapping><value>0</value><newvalue>Inacessivel</newvalue></mapping>
-                        <mapping><value>200</value><newvalue>OK</newvalue></mapping>
-                        <mapping><value>301</value><newvalue>Redirect</newvalue></mapping>
-                        <mapping><value>400</value><newvalue>Bad Request</newvalue></mapping>
-                        <mapping><value>401</value><newvalue>Unauthorized</newvalue></mapping>
-                        <mapping><value>403</value><newvalue>Forbidden</newvalue></mapping>
-                        <mapping><value>404</value><newvalue>Not Found</newvalue></mapping>
-                        <mapping><value>500</value><newvalue>Server Error</newvalue></mapping>
-                        <mapping><value>503</value><newvalue>Unavailable</newvalue></mapping>
-                    </mappings>
-                </valuemap>
-                <valuemap>
-                    <uuid>a7a7a7a7b8b8b8b8c9c9c9c9d0d0d0d0</uuid>
-                    <name>DNS Status</name>
-                    <mappings>
-                        <mapping><value>0</value><newvalue>Falhou</newvalue></mapping>
-                        <mapping><value>1</value><newvalue>Sucesso</newvalue></mapping>
-                    </mappings>
-                </valuemap>
-            </valuemaps>
-
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
-            <!--                  LLD DISCOVERY RULES                  -->
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <discovery_rules>
 
-                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
-                <!--  REGRA 1: PING                                     -->
-                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+                <!-- REGRA 1: PING -->
                 <discovery_rule>
                     <uuid>b8b8b8b8c9c9c9c9d0d0d0d0e1e1e1e1</uuid>
                     <name>Descoberta de Targets de Ping</name>
@@ -405,9 +361,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     </graph_prototypes>
                 </discovery_rule>
 
-                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
-                <!--  REGRA 2: HTTP                                     -->
-                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+                <!-- REGRA 2: HTTP -->
                 <discovery_rule>
                     <uuid>a9a9a9a9b0b0b0b0c1c1c1c1d2d2d2d2</uuid>
                     <name>Descoberta de Sites HTTP</name>
@@ -555,9 +509,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     </graph_prototypes>
                 </discovery_rule>
 
-                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
-                <!--  REGRA 3: TRACERT                                  -->
-                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+                <!-- REGRA 3: TRACERT -->
                 <discovery_rule>
                     <uuid>e1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4</uuid>
                     <name>Descoberta de Targets de Tracert</name>
@@ -650,9 +602,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     </graph_prototypes>
                 </discovery_rule>
 
-                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
-                <!--  REGRA 4: MTR                                      -->
-                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+                <!-- REGRA 4: MTR -->
                 <discovery_rule>
                     <uuid>d6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3</uuid>
                     <name>Descoberta de Targets de MTR</name>
@@ -660,7 +610,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     <key>discover.mtr["{$MTR_TARGETS}"]</key>
                     <delay>1h</delay>
                     <lifetime>30d</lifetime>
-                    <description>Descobre targets de MTR a partir da macro {$MTR_TARGETS}. ATENCAO: poucos targets â€” cada um demora 2-5 min. Script: discover_mtr.ps1</description>
+                    <description>Descobre targets de MTR a partir da macro {$MTR_TARGETS}. ATENCAO: poucos targets - cada um demora 2-5 min. Script: discover_mtr.ps1</description>
 
                     <item_prototypes>
                         <item_prototype>
@@ -718,9 +668,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     </graph_prototypes>
                 </discovery_rule>
 
-                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
-                <!--  REGRA 5: DNS                                      -->
-                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+                <!-- REGRA 5: DNS -->
                 <discovery_rule>
                     <uuid>b0e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1</uuid>
                     <name>Descoberta de Combinacoes DNS</name>
@@ -823,5 +771,30 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
 
         </template>
     </templates>
-</zabbix_export>
 
+    <!-- Triggers de itens fixos ficam no nivel raiz do zabbix_export, nao dentro de <template> -->
+    <triggers>
+        <trigger>
+            <uuid>d4d4d4d4e5e5e5e5f6f6f6f6a7a7a7a7</uuid>
+            <expression>last(/Template Internet Quality Windows LLD - Netstream/agent.ping)&lt;&gt;1</expression>
+            <name>Agente Zabbix inativo</name>
+            <priority>HIGH</priority>
+            <description>O agente Zabbix nao esta respondendo. Verificar servico no Windows.</description>
+            <manual_close>YES</manual_close>
+            <tags>
+                <tag><tag>component</tag><value>agent</value></tag>
+            </tags>
+        </trigger>
+        <trigger>
+            <uuid>e5e5e5e5f6f6f6f6a7a7a7a7b8b8b8b8</uuid>
+            <expression>last(/Template Internet Quality Windows LLD - Netstream/internet.speed.download)&lt;{$SPEED_MIN_DOWN} and last(/Template Internet Quality Windows LLD - Netstream/internet.speed.download)&gt;0</expression>
+            <name>Download abaixo de {$SPEED_MIN_DOWN} Mbps</name>
+            <priority>WARNING</priority>
+            <description>Velocidade de download abaixo do minimo esperado ({$SPEED_MIN_DOWN} Mbps).</description>
+            <tags>
+                <tag><tag>component</tag><value>speedtest</value></tag>
+            </tags>
+        </trigger>
+    </triggers>
+
+</zabbix_export>
