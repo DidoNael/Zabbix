@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-08-05T18:00:00Z</date>
     <groups>
         <group>
             <uuid>aa11bb22cc33dd44ee55ff6677889900</uuid>
-            <name>Templates/Network/Internet Quality</name>
+            <name>Templates/Network/Internet Quality - Netstream</name>
         </group>
     </groups>
     <templates>
         <template>
             <uuid>11aa22bb33cc44dd55ee66ff77889900</uuid>
-            <template>Template Internet Quality Windows LLD</template>
-            <name>Template Internet Quality - Windows Agent Active (LLD)</name>
+            <template>Template Internet Quality Windows LLD - Netstream</template>
+            <name>Template Internet Quality - Windows Agent Active (LLD) - Netstream</name>
             <description>Monitoramento dinamico de qualidade de internet via Zabbix Agent Active + LLD.
 Targets definidos diretamente nas macros do host, separados por virgula.
 
 == COMO USAR ==
 1. Importe este template
 2. Linke ao host Windows com o agente configurado
-3. Vá em Host > Macros e defina os destinos:
+3. VÃ¡ em Host > Macros e defina os destinos:
 
    {$PING_TARGETS}    = 8.8.8.8,1.1.1.1,meusite.com.br
    {$HTTP_TARGETS}    = https://meusite.com.br,https://erp.empresa.com
@@ -39,15 +39,15 @@ Targets definidos diretamente nas macros do host, separados por virgula.
 Padrao baseado em: Template DNS Monitor - Netstream</description>
             <groups>
                 <group>
-                    <name>Templates/Network/Internet Quality</name>
+                    <name>Templates/Network/Internet Quality - Netstream</name>
                 </group>
             </groups>
 
-            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <!--                       MACROS                          -->
-            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <macros>
-                <!-- Targets de monitoramento — edite no host -->
+                <!-- Targets de monitoramento â€” edite no host -->
                 <macro>
                     <macro>{$PING_TARGETS}</macro>
                     <value>8.8.8.8,1.1.1.1</value>
@@ -66,7 +66,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                 <macro>
                     <macro>{$MTR_TARGETS}</macro>
                     <value>google.com</value>
-                    <description>Hosts para MTR (use poucos — cada um demora 2-5 min). Ex: google.com</description>
+                    <description>Hosts para MTR (use poucos â€” cada um demora 2-5 min). Ex: google.com</description>
                 </macro>
                 <macro>
                     <macro>{$DNS_TARGETS}</macro>
@@ -79,7 +79,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     <description>Servidores DNS para testar, separados por virgula. Ex: 8.8.8.8,1.1.1.1,DNS_ISP</description>
                 </macro>
 
-                <!-- Limiares de alerta — ajuste conforme necessario -->
+                <!-- Limiares de alerta â€” ajuste conforme necessario -->
                 <macro>
                     <macro>{$LATENCY_WARN}</macro>
                     <value>150</value>
@@ -127,9 +127,9 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                 </macro>
             </macros>
 
-            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <!--               ITEMS FIXOS (sem LLD)                   -->
-            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <items>
                 <item>
                     <uuid>a1a1a1a1b2b2b2b2c3c3c3c3d4d4d4d4</uuid>
@@ -171,13 +171,13 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                 </item>
             </items>
 
-            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <!--                  TRIGGERS FIXAS                       -->
-            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <triggers>
                 <trigger>
                     <uuid>d4d4d4d4e5e5e5e5f6f6f6f6a7a7a7a7</uuid>
-                    <expression>last(/Template Internet Quality Windows LLD/agent.ping)&lt;&gt;1</expression>
+                    <expression>last(/Template Internet Quality Windows LLD - Netstream/agent.ping)&lt;&gt;1</expression>
                     <name>Agente Zabbix inativo</name>
                     <priority>HIGH</priority>
                     <description>O agente Zabbix nao esta respondendo. Verificar servico no Windows.</description>
@@ -188,7 +188,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                 </trigger>
                 <trigger>
                     <uuid>e5e5e5e5f6f6f6f6a7a7a7a7b8b8b8b8</uuid>
-                    <expression>last(/Template Internet Quality Windows LLD/internet.speed.download)&lt;{$SPEED_MIN_DOWN} and last(/Template Internet Quality Windows LLD/internet.speed.download)&gt;0</expression>
+                    <expression>last(/Template Internet Quality Windows LLD - Netstream/internet.speed.download)&lt;{$SPEED_MIN_DOWN} and last(/Template Internet Quality Windows LLD - Netstream/internet.speed.download)&gt;0</expression>
                     <name>Download abaixo de {$SPEED_MIN_DOWN} Mbps</name>
                     <priority>WARNING</priority>
                     <description>Velocidade de download abaixo do minimo esperado ({$SPEED_MIN_DOWN} Mbps).</description>
@@ -198,9 +198,9 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                 </trigger>
             </triggers>
 
-            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <!--                VALUE MAPS                             -->
-            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <valuemaps>
                 <valuemap>
                     <uuid>f6f6f6f6a7a7a7a7b8b8b8b8c9c9c9c9</uuid>
@@ -227,14 +227,14 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                 </valuemap>
             </valuemaps>
 
-            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <!--                  LLD DISCOVERY RULES                  -->
-            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <discovery_rules>
 
-                <!-- ────────────────────────────────────────────────── -->
+                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
                 <!--  REGRA 1: PING                                     -->
-                <!-- ────────────────────────────────────────────────── -->
+                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
                 <discovery_rule>
                     <uuid>b8b8b8b8c9c9c9c9d0d0d0d0e1e1e1e1</uuid>
                     <name>Descoberta de Targets de Ping</name>
@@ -263,7 +263,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>d0d0d0d0e1e1e1e1f2f2f2f2a3a3a3a3</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/internet.ping.latency[{#TARGET}])&gt;{$LATENCY_HIGH}</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/internet.ping.latency[{#TARGET}])&gt;{$LATENCY_HIGH}</expression>
                                     <name>Latencia CRITICA - {#TARGET} acima de {$LATENCY_HIGH}ms</name>
                                     <priority>HIGH</priority>
                                     <description>Latencia ICMP para {#TARGET} acima de {$LATENCY_HIGH}ms.</description>
@@ -275,7 +275,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>e1e1e1e1f2f2f2f2a3a3a3a3b4b4b4b4</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/internet.ping.latency[{#TARGET}])&gt;{$LATENCY_WARN} and last(/Template Internet Quality Windows LLD/internet.ping.latency[{#TARGET}])&lt;={$LATENCY_HIGH}</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/internet.ping.latency[{#TARGET}])&gt;{$LATENCY_WARN} and last(/Template Internet Quality Windows LLD - Netstream/internet.ping.latency[{#TARGET}])&lt;={$LATENCY_HIGH}</expression>
                                     <name>Alta latencia - {#TARGET} acima de {$LATENCY_WARN}ms</name>
                                     <priority>WARNING</priority>
                                     <description>Latencia ICMP para {#TARGET} acima de {$LATENCY_WARN}ms.</description>
@@ -305,7 +305,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>a3a3a3a3b4b4b4b4c5c5c5c5d6d6d6d6</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/internet.ping.loss[{#TARGET}])&gt;=100</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/internet.ping.loss[{#TARGET}])&gt;=100</expression>
                                     <name>Internet INACESSIVEL - {#TARGET} 100% perda</name>
                                     <priority>DISASTER</priority>
                                     <description>Perda de pacotes 100% para {#TARGET}. Destino completamente indisponivel.</description>
@@ -317,7 +317,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>b4b4b4b4c5c5c5c5d6d6d6d6e7e7e7e7</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/internet.ping.loss[{#TARGET}])&gt;{$LOSS_HIGH} and last(/Template Internet Quality Windows LLD/internet.ping.loss[{#TARGET}])&lt;100</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/internet.ping.loss[{#TARGET}])&gt;{$LOSS_HIGH} and last(/Template Internet Quality Windows LLD - Netstream/internet.ping.loss[{#TARGET}])&lt;100</expression>
                                     <name>Alta perda de pacotes - {#TARGET} acima de {$LOSS_HIGH}%</name>
                                     <priority>HIGH</priority>
                                     <description>Perda de pacotes acima de {$LOSS_HIGH}% para {#TARGET}.</description>
@@ -329,7 +329,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>c5c5c5c5d6d6d6d6e7e7e7e7f8f8f8f8</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/internet.ping.loss[{#TARGET}])&gt;{$LOSS_WARN} and last(/Template Internet Quality Windows LLD/internet.ping.loss[{#TARGET}])&lt;={$LOSS_HIGH}</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/internet.ping.loss[{#TARGET}])&gt;{$LOSS_WARN} and last(/Template Internet Quality Windows LLD - Netstream/internet.ping.loss[{#TARGET}])&lt;={$LOSS_HIGH}</expression>
                                     <name>Perda de pacotes - {#TARGET} acima de {$LOSS_WARN}%</name>
                                     <priority>WARNING</priority>
                                     <description>Perda de pacotes acima de {$LOSS_WARN}% para {#TARGET}.</description>
@@ -370,7 +370,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                     <drawtype>BOLD_LINE</drawtype>
                                     <calc_fnc>AVG</calc_fnc>
                                     <item>
-                                        <host>Template Internet Quality Windows LLD</host>
+                                        <host>Template Internet Quality Windows LLD - Netstream</host>
                                         <key>internet.ping.latency[{#TARGET}]</key>
                                     </item>
                                 </graph_item>
@@ -380,7 +380,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                     <drawtype>BOLD_LINE</drawtype>
                                     <calc_fnc>AVG</calc_fnc>
                                     <item>
-                                        <host>Template Internet Quality Windows LLD</host>
+                                        <host>Template Internet Quality Windows LLD - Netstream</host>
                                         <key>internet.ping.jitter[{#TARGET}]</key>
                                     </item>
                                 </graph_item>
@@ -396,7 +396,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                     <drawtype>FILLED_REGION</drawtype>
                                     <calc_fnc>AVG</calc_fnc>
                                     <item>
-                                        <host>Template Internet Quality Windows LLD</host>
+                                        <host>Template Internet Quality Windows LLD - Netstream</host>
                                         <key>internet.ping.loss[{#TARGET}]</key>
                                     </item>
                                 </graph_item>
@@ -405,9 +405,9 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     </graph_prototypes>
                 </discovery_rule>
 
-                <!-- ────────────────────────────────────────────────── -->
+                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
                 <!--  REGRA 2: HTTP                                     -->
-                <!-- ────────────────────────────────────────────────── -->
+                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
                 <discovery_rule>
                     <uuid>a9a9a9a9b0b0b0b0c1c1c1c1d2d2d2d2</uuid>
                     <name>Descoberta de Sites HTTP</name>
@@ -436,7 +436,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>c1c1c1c1d2d2d2d2e3e3e3e3f4f4f4f4</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/site.http.time[{#URL}])&gt;{$HTTP_WARN_MS} and last(/Template Internet Quality Windows LLD/site.http.status[{#URL}])&gt;0</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/site.http.time[{#URL}])&gt;{$HTTP_WARN_MS} and last(/Template Internet Quality Windows LLD - Netstream/site.http.status[{#URL}])&gt;0</expression>
                                     <name>Site lento - {#HOST} acima de {$HTTP_WARN_MS}ms</name>
                                     <priority>WARNING</priority>
                                     <description>Tempo de resposta HTTP de {#URL} acima de {$HTTP_WARN_MS}ms.</description>
@@ -468,7 +468,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>e3e3e3e3f4f4f4f4a5a5a5a5b6b6b6b6</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/site.http.status[{#URL}])=0</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/site.http.status[{#URL}])=0</expression>
                                     <name>Site INACESSIVEL - {#HOST}</name>
                                     <priority>DISASTER</priority>
                                     <description>Sem resposta HTTP de {#URL}. Site fora do ar ou sem conectividade.</description>
@@ -480,7 +480,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>f4f4f4f4a5a5a5a5b6b6b6b6c7c7c7c7</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/site.http.status[{#URL}])&gt;=400 and last(/Template Internet Quality Windows LLD/site.http.status[{#URL}])&lt;&gt;0</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/site.http.status[{#URL}])&gt;=400 and last(/Template Internet Quality Windows LLD - Netstream/site.http.status[{#URL}])&lt;&gt;0</expression>
                                     <name>Erro HTTP - {#HOST} status &gt;= 400</name>
                                     <priority>HIGH</priority>
                                     <description>{#URL} retornando erro HTTP (4xx/5xx).</description>
@@ -511,7 +511,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>b6b6b6b6c7c7c7c7d8d8d8d8e9e9e9e9</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/site.http.ssl_days[{#URL}])&lt;{$SSL_HIGH_DAYS} and last(/Template Internet Quality Windows LLD/site.http.ssl_days[{#URL}])&gt;=0</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/site.http.ssl_days[{#URL}])&lt;{$SSL_HIGH_DAYS} and last(/Template Internet Quality Windows LLD - Netstream/site.http.ssl_days[{#URL}])&gt;=0</expression>
                                     <name>SSL expirando em menos de {$SSL_HIGH_DAYS} dias - {#HOST}</name>
                                     <priority>HIGH</priority>
                                     <description>Certificado SSL de {#URL} expira em menos de {$SSL_HIGH_DAYS} dias. Renovar URGENTE.</description>
@@ -522,7 +522,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>c7c7c7c7d8d8d8d8e9e9e9e9f0f0f0f0</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/site.http.ssl_days[{#URL}])&lt;{$SSL_WARN_DAYS} and last(/Template Internet Quality Windows LLD/site.http.ssl_days[{#URL}])&gt;={$SSL_HIGH_DAYS}</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/site.http.ssl_days[{#URL}])&lt;{$SSL_WARN_DAYS} and last(/Template Internet Quality Windows LLD - Netstream/site.http.ssl_days[{#URL}])&gt;={$SSL_HIGH_DAYS}</expression>
                                     <name>SSL expirando em menos de {$SSL_WARN_DAYS} dias - {#HOST}</name>
                                     <priority>WARNING</priority>
                                     <description>Certificado SSL de {#URL} expira em menos de {$SSL_WARN_DAYS} dias.</description>
@@ -546,7 +546,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                     <drawtype>BOLD_LINE</drawtype>
                                     <calc_fnc>AVG</calc_fnc>
                                     <item>
-                                        <host>Template Internet Quality Windows LLD</host>
+                                        <host>Template Internet Quality Windows LLD - Netstream</host>
                                         <key>site.http.time[{#URL}]</key>
                                     </item>
                                 </graph_item>
@@ -555,9 +555,9 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     </graph_prototypes>
                 </discovery_rule>
 
-                <!-- ────────────────────────────────────────────────── -->
+                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
                 <!--  REGRA 3: TRACERT                                  -->
-                <!-- ────────────────────────────────────────────────── -->
+                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
                 <discovery_rule>
                     <uuid>e1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4</uuid>
                     <name>Descoberta de Targets de Tracert</name>
@@ -631,7 +631,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                     <drawtype>BOLD_LINE</drawtype>
                                     <calc_fnc>AVG</calc_fnc>
                                     <item>
-                                        <host>Template Internet Quality Windows LLD</host>
+                                        <host>Template Internet Quality Windows LLD - Netstream</host>
                                         <key>site.tracert.last_rtt[{#TARGET}]</key>
                                     </item>
                                 </graph_item>
@@ -641,7 +641,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                     <drawtype>BOLD_LINE</drawtype>
                                     <calc_fnc>AVG</calc_fnc>
                                     <item>
-                                        <host>Template Internet Quality Windows LLD</host>
+                                        <host>Template Internet Quality Windows LLD - Netstream</host>
                                         <key>site.tracert.max_rtt[{#TARGET}]</key>
                                     </item>
                                 </graph_item>
@@ -650,9 +650,9 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     </graph_prototypes>
                 </discovery_rule>
 
-                <!-- ────────────────────────────────────────────────── -->
+                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
                 <!--  REGRA 4: MTR                                      -->
-                <!-- ────────────────────────────────────────────────── -->
+                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
                 <discovery_rule>
                     <uuid>d6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3</uuid>
                     <name>Descoberta de Targets de MTR</name>
@@ -660,7 +660,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     <key>discover.mtr["{$MTR_TARGETS}"]</key>
                     <delay>1h</delay>
                     <lifetime>30d</lifetime>
-                    <description>Descobre targets de MTR a partir da macro {$MTR_TARGETS}. ATENCAO: poucos targets — cada um demora 2-5 min. Script: discover_mtr.ps1</description>
+                    <description>Descobre targets de MTR a partir da macro {$MTR_TARGETS}. ATENCAO: poucos targets â€” cada um demora 2-5 min. Script: discover_mtr.ps1</description>
 
                     <item_prototypes>
                         <item_prototype>
@@ -709,7 +709,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                     <drawtype>BOLD_LINE</drawtype>
                                     <calc_fnc>AVG</calc_fnc>
                                     <item>
-                                        <host>Template Internet Quality Windows LLD</host>
+                                        <host>Template Internet Quality Windows LLD - Netstream</host>
                                         <key>site.mtr.avg_rtt[{#TARGET}]</key>
                                     </item>
                                 </graph_item>
@@ -718,9 +718,9 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                     </graph_prototypes>
                 </discovery_rule>
 
-                <!-- ────────────────────────────────────────────────── -->
+                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
                 <!--  REGRA 5: DNS                                      -->
-                <!-- ────────────────────────────────────────────────── -->
+                <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
                 <discovery_rule>
                     <uuid>b0e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1</uuid>
                     <name>Descoberta de Combinacoes DNS</name>
@@ -750,7 +750,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>d2a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/site.dns.resolve_time[{#DNS_DOMAIN},{#DNS_SERVER}])&gt;{$DNS_WARN_MS} and last(/Template Internet Quality Windows LLD/site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}])=1</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/site.dns.resolve_time[{#DNS_DOMAIN},{#DNS_SERVER}])&gt;{$DNS_WARN_MS} and last(/Template Internet Quality Windows LLD - Netstream/site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}])=1</expression>
                                     <name>DNS lento - {#DNS_SERVER} para {#DNS_DOMAIN} acima de {$DNS_WARN_MS}ms</name>
                                     <priority>WARNING</priority>
                                     <description>Resolucao DNS de {#DNS_DOMAIN} via {#DNS_SERVER} acima de {$DNS_WARN_MS}ms.</description>
@@ -784,7 +784,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>f4c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD/site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}])=0</expression>
+                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}])=0</expression>
                                     <name>DNS FALHOU - {#DNS_SERVER} nao resolveu {#DNS_DOMAIN}</name>
                                     <priority>HIGH</priority>
                                     <description>Falha na resolucao DNS de {#DNS_DOMAIN} via servidor {#DNS_SERVER}.</description>
@@ -810,7 +810,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                     <drawtype>BOLD_LINE</drawtype>
                                     <calc_fnc>AVG</calc_fnc>
                                     <item>
-                                        <host>Template Internet Quality Windows LLD</host>
+                                        <host>Template Internet Quality Windows LLD - Netstream</host>
                                         <key>site.dns.resolve_time[{#DNS_DOMAIN},{#DNS_SERVER}]</key>
                                     </item>
                                 </graph_item>
@@ -824,3 +824,4 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
         </template>
     </templates>
 </zabbix_export>
+
