@@ -14,7 +14,9 @@ if (-not (Test-Path $exe)) { $exe = (Get-Command speedtest -ErrorAction Silently
 if (-not $exe -or -not (Test-Path $exe)) { Write-Output 0; exit 0 }
 
 try {
-    $json = & $exe --format=json --accept-license --accept-gdpr 2>$null
+    $ErrorActionPreference = 'SilentlyContinue'
+    $raw  = $exe | ForEach-Object { & $_ --format=json --accept-license --accept-gdpr }
+    $json = ($raw | Where-Object { $_ -match '^\{' }) -join ''
     $data = $json | ConvertFrom-Json
 
     switch ($Metric) {
