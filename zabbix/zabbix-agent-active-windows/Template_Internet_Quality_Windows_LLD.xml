@@ -648,6 +648,22 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                                 <tag><tag>target</tag><value>{#TARGET}</value></tag>
                             </tags>
                         </item_prototype>
+
+                        <item_prototype>
+                            <uuid>23eb980564424836a495a8f57d71915a</uuid>
+                            <name>MTR - Relatorio Completo {#TARGET}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.mtr.report[{#TARGET}]</key>
+                            <delay>15m</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <description>Relatorio MTR completo hop a hop para {#TARGET}. Formato identico ao mtr --report do Linux.</description>
+                            <tags>
+                                <tag><tag>component</tag><value>mtr</value></tag>
+                                <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                            </tags>
+                        </item_prototype>
                     </item_prototypes>
 
                     <graph_prototypes>
