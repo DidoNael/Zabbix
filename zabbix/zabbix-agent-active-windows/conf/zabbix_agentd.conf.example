@@ -1,0 +1,73 @@
+# =============================================================================
+# zabbix_agentd.conf — UserParameters para monitoramento de qualidade de internet
+# Zabbix 6.0 LTS | Windows Agent Active
+# =============================================================================
+# Instruções:
+#   1. Copie os blocos abaixo para o seu zabbix_agentd.conf
+#   2. Ajuste os caminhos dos scripts se necessário
+#   3. Reinicie o serviço: Restart-Service "Zabbix Agent"
+# =============================================================================
+
+# ─── Configurações básicas (ajuste conforme seu ambiente) ─────────────────────
+Hostname=NOME_DO_HOST_AQUI
+ServerActive=IP_OU_FQDN_DO_SERVIDOR_ZABBIX
+Server=IP_OU_FQDN_DO_SERVIDOR_ZABBIX
+ListenPort=10050
+RefreshActiveChecks=120
+BufferSend=5
+BufferSize=100
+Timeout=30
+
+# ─── Ping geral (IPs) ─────────────────────────────────────────────────────────
+# Chave: internet.ping.latency[8.8.8.8]
+UserParameter=internet.ping.latency[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\ping_check.ps1" -Target $1 -Metric latency
+UserParameter=internet.ping.loss[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\ping_check.ps1" -Target $1 -Metric loss
+UserParameter=internet.ping.jitter[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\ping_check.ps1" -Target $1 -Metric jitter
+
+# ─── Speedtest (download/upload em Mbps) ─────────────────────────────────────
+# Pré-requisito: winget install Ookla.Speedtest
+# Chave: internet.speed.download
+UserParameter=internet.speed.download,powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\speedtest.ps1" -Metric download
+UserParameter=internet.speed.upload,powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\speedtest.ps1" -Metric upload
+
+# ─── DNS geral ────────────────────────────────────────────────────────────────
+# Chave: internet.dns.time[www.google.com]
+UserParameter=internet.dns.time[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\dns_check.ps1" -Domain $1
+
+# ─── HTTP geral ───────────────────────────────────────────────────────────────
+# Chave: internet.http.time[https://www.google.com]
+UserParameter=internet.http.time[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\http_check.ps1" -Url $1
+UserParameter=internet.http.status[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\http_check.ps1" -Url $1 -ReturnCode 1
+
+# ─── HTTP por site (com SSL) ──────────────────────────────────────────────────
+# Chave: site.http.time[https://www.meusite.com.br]
+UserParameter=site.http.time[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\site_http.ps1" -Url $1 -Metric time
+UserParameter=site.http.status[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\site_http.ps1" -Url $1 -Metric status
+UserParameter=site.http.ssl_days[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\site_http.ps1" -Url $1 -Metric ssl_days
+
+# ─── Ping por site/domínio ────────────────────────────────────────────────────
+# Chave: site.ping.latency[google.com]
+UserParameter=site.ping.latency[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\site_ping.ps1" -Target $1 -Metric latency
+UserParameter=site.ping.loss[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\site_ping.ps1" -Target $1 -Metric loss
+UserParameter=site.ping.jitter[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\site_ping.ps1" -Target $1 -Metric jitter
+
+# ─── Tracert ──────────────────────────────────────────────────────────────────
+# Chave: site.tracert.hops[google.com]
+UserParameter=site.tracert.hops[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\tracert_check.ps1" -Target $1 -Metric hops
+UserParameter=site.tracert.last_rtt[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\tracert_check.ps1" -Target $1 -Metric last_rtt
+UserParameter=site.tracert.max_rtt[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\tracert_check.ps1" -Target $1 -Metric max_rtt
+UserParameter=site.tracert.json[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\tracert_check.ps1" -Target $1 -Metric json
+
+# ─── MTR (intervalo mínimo recomendado: 15 min) ───────────────────────────────
+# Chave: site.mtr.avg_rtt[google.com]
+UserParameter=site.mtr.avg_rtt[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\mtr_check.ps1" -Target $1 -Metric avg_rtt
+UserParameter=site.mtr.max_rtt[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\mtr_check.ps1" -Target $1 -Metric max_rtt
+UserParameter=site.mtr.loss[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\mtr_check.ps1" -Target $1 -Metric loss
+UserParameter=site.mtr.json[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\mtr_check.ps1" -Target $1 -Metric json
+
+# ─── NSLookup avançado ────────────────────────────────────────────────────────
+# Chave: site.dns.resolve_time[google.com,8.8.8.8]
+UserParameter=site.dns.resolve_time[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\nslookup_check.ps1" -Domain $1 -DnsServer $2 -Metric time
+UserParameter=site.dns.resolved_ip[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\nslookup_check.ps1" -Domain $1 -DnsServer $2 -Metric ip
+UserParameter=site.dns.record_count[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\nslookup_check.ps1" -Domain $1 -DnsServer $2 -Metric count
+UserParameter=site.dns.status[*],powershell -NoProfile -ExecutionPolicy Bypass -File "C:\zabbix\scripts\nslookup_check.ps1" -Domain $1 -DnsServer $2 -Metric status
