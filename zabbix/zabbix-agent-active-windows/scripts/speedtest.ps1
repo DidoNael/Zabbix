@@ -8,10 +8,10 @@ param(
 
 [System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::InvariantCulture
 
-# Localizar o executavel (winget instala no PATH)
-$exe = (Get-Command speedtest -ErrorAction SilentlyContinue).Source
-if (-not $exe) { $exe = "C:\Program Files\Speedtest CLI\speedtest.exe" }
-if (-not (Test-Path $exe)) { Write-Output 0; exit 0 }
+# Localizar o executavel — copiar para C:\zabbix\scripts\ para acesso pelo servico SYSTEM
+$exe = "C:\zabbix\scripts\speedtest.exe"
+if (-not (Test-Path $exe)) { $exe = (Get-Command speedtest -ErrorAction SilentlyContinue).Source }
+if (-not $exe -or -not (Test-Path $exe)) { Write-Output 0; exit 0 }
 
 try {
     $json = & $exe --format=json --accept-license --accept-gdpr 2>$null
