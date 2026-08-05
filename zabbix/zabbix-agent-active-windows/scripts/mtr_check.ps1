@@ -1,88 +1,45 @@
-# mtr_check.ps1 — MTR simulado: múltiplos pings por hop com estatísticas
-# Uso: mtr_check.ps1 -Target google.com -Metric [avg_rtt|max_rtt|loss|json]
-# Compatível com: Zabbix 6.0 + Windows Agent Active
-# ATENÇÃO: Pode demorar 2-5 minutos. Recomenda-se intervalo mínimo de 15 minutos no Zabbix.
+# mtr_check.ps1 — MTR via NextTrace (nexttrace.exe)
+# Pre-requisito: nexttrace.exe em C:\zabbix\scripts\
+# Download: https://github.com/nxtrace/NTrace-core/releases/latest/download/nexttrace_windows_amd64.exe
+# Uso: mtr_check.ps1 -Target google.com -Metric [avg_rtt|loss]
+# Compativel com: Zabbix 6.0 + Windows Agent Active
 param(
-    [string]$Target      = "google.com",
-    [string]$Metric      = "avg_rtt",
-    [int]   $MaxHops     = 20,
-    [int]   $PingsPerHop = 3,
-    [int]   $Timeout     = 1000
+    [string]$Target  = "google.com",
+    [string]$Metric  = "avg_rtt",
+    [int]   $Queries = 5
 )
 [System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::InvariantCulture
 
-function Invoke-MTR {
-    param([string]$Target, [int]$MaxHops, [int]$PingsPerHop, [int]$Timeout)
+$exe = "C:\zabbix\scripts\nexttrace.exe"
+if (-not (Test-Path $exe)) { Write-Output 9999; exit 0 }
 
-    $report = @()
-    $ping   = New-Object System.Net.NetworkInformation.Ping
+try {
+    $raw  = & $exe --json --queries $Queries --no-rdns $Target 2>$null
+    $json = ($raw | Where-Object { $_ -match '^\{' }) -join ''
+    $data = $json | ConvertFrom-Json
 
-    # Descobrir IPs de cada hop (1 ping por TTL)
-    $hopIPs = @{}
-    for ($ttl = 1; $ttl -le $MaxHops; $ttl++) {
-        $opt = New-Object System.Net.NetworkInformation.PingOptions($ttl, $true)
-        try {
-            $r = $ping.Send($Target, $Timeout, [byte[]]@(0x61..0x77), $opt)
-            if ($r.Status -eq "TtlExpired" -or $r.Status -eq "Success") {
-                $hopIPs[$ttl] = $r.Address.ToString()
-            }
-        } catch { $hopIPs[$ttl] = "*" }
+    # Ultimo hop com pelo menos uma probe bem-sucedida
+    $lastHop = $data.Hops | Where-Object {
+        ($_ | Where-Object { $_.Success -eq $true }).Count -gt 0
+    } | Select-Object -Last 1
 
-        $opt2 = New-Object System.Net.NetworkInformation.PingOptions($ttl, $true)
-        try {
-            $final = $ping.Send($Target, $Timeout, [byte[]]@(0x61..0x77), $opt2)
-            if ($final.Status -eq "Success") { break }
-        } catch { }
-    }
+    if (-not $lastHop) { Write-Output 9999; exit 0 }
 
-    # Para cada hop descoberto, enviar múltiplos pings
-    foreach ($ttl in ($hopIPs.Keys | Sort-Object)) {
-        $ip   = $hopIPs[$ttl]
-        $rtts = @()
-        $lost = 0
+    $successful = $lastHop | Where-Object { $_.Success -eq $true }
+    $total      = $lastHop.Count
 
-        if ($ip -ne "*") {
-            for ($p = 0; $p -lt $PingsPerHop; $p++) {
-                try {
-                    $r = $ping.Send($ip, $Timeout)
-                    if ($r.Status -eq "Success") { $rtts += $r.RoundtripTime }
-                    else                          { $lost++ }
-                } catch { $lost++ }
-                Start-Sleep -Milliseconds 100
-            }
-        } else {
-            $lost = $PingsPerHop
+    switch ($Metric) {
+        "avg_rtt" {
+            # RTT em nanosegundos -> milissegundos
+            $avgNs = ($successful | Measure-Object -Property RTT -Average).Average
+            [math]::Round($avgNs / 1000000, 2)
         }
-
-        $avg  = if ($rtts.Count -gt 0) { [math]::Round(($rtts | Measure-Object -Average).Average, 2) } else { $null }
-        $max  = if ($rtts.Count -gt 0) { ($rtts | Measure-Object -Maximum).Maximum } else { $null }
-        $loss = [math]::Round(($lost / $PingsPerHop) * 100, 1)
-
-        $report += [PSCustomObject]@{
-            Hop    = $ttl
-            IP     = $ip
-            AvgRTT = $avg
-            MaxRTT = $max
-            Loss   = $loss
+        "loss" {
+            $lost = ($lastHop | Where-Object { $_.Success -eq $false }).Count
+            [math]::Round(($lost / $total) * 100, 1)
         }
+        default { 9999 }
     }
-    return $report
-}
-
-$report    = Invoke-MTR -Target $Target -MaxHops $MaxHops -PingsPerHop $PingsPerHop -Timeout $Timeout
-$lastValid = $report | Where-Object { $_.AvgRTT -ne $null } | Select-Object -Last 1
-
-switch ($Metric) {
-    "avg_rtt" {
-        if ($lastValid) { $lastValid.AvgRTT } else { 9999 }
-    }
-    "max_rtt" {
-        if ($lastValid) { $lastValid.MaxRTT } else { 9999 }
-    }
-    "loss" {
-        if ($lastValid) { $lastValid.Loss } else { 100 }
-    }
-    "json" {
-        $report | ConvertTo-Json -Compress
-    }
+} catch {
+    9999
 }
