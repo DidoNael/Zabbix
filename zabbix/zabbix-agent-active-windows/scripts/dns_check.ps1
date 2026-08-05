@@ -9,6 +9,9 @@ param(
 [System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::InvariantCulture
 
 try {
+    # Aquecimento: primeira chamada carrega o modulo DNS (.NET) — nao medir
+    Resolve-DnsName -Name $Domain -Server $DnsServer -Type A -ErrorAction SilentlyContinue | Out-Null
+
     $sw     = [System.Diagnostics.Stopwatch]::StartNew()
     $result = Resolve-DnsName -Name $Domain -Server $DnsServer -ErrorAction Stop -Type A
     $sw.Stop()
