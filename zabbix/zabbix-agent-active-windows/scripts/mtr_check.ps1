@@ -25,7 +25,8 @@ function Get-StDev($values) {
 }
 
 try {
-    $raw  = & $exe --json --queries $Queries --no-rdns $Target 2>$null
+    # TCP porta 80 bypasssa filtros ICMP dos ISPs
+    $raw  = & $exe --tcp --port 80 --json --queries $Queries --no-rdns $Target 2>$null
     $json = ($raw | Where-Object { $_ -match '^\{' }) -join ''
     $data = $json | ConvertFrom-Json
 
@@ -71,8 +72,9 @@ try {
                     $addr  = $ok[0].Address.IP
                     if (-not $addr) { $addr = "???" }
                 } else {
-                    $last = 0.0; $avg = 0.0; $best = 0.0; $wrst = 0.0; $stdev = 0.0
-                    $addr = "???"
+                    # Pular hops sem resposta (filtro ICMP do ISP)
+                    $hopNum++
+                    continue
                 }
 
                 $pad   = ' ' * [math]::Max(1, 36 - $addr.Length)
