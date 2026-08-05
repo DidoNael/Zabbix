@@ -85,9 +85,8 @@ try {
                     $addr  = $ok[0].Address.IP
                     if (-not $addr) { $addr = "???" }
                 } else {
-                    # Pular hops sem resposta
-                    $hopNum++
-                    continue
+                    $last = 0.0; $avg = 0.0; $best = 0.0; $wrst = 0.0; $stdev = 0.0
+                    $addr = "???"
                 }
 
                 $pad   = ' ' * [math]::Max(1, 36 - $addr.Length)
