@@ -4,9 +4,10 @@
 param(
     [string]$Target  = "google.com",
     [string]$Metric  = "hops",
-    [int]   $MaxHops = 30,
-    [int]   $Timeout = 3000
+    [int]   $MaxHops = 20,
+    [int]   $Timeout = 1500
 )
+[System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::InvariantCulture
 
 function Invoke-Traceroute {
     param([string]$Target, [int]$MaxHops, [int]$Timeout)

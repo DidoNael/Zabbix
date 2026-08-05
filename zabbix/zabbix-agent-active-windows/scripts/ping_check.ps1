@@ -6,6 +6,7 @@ param(
     [string]$Metric  = "latency",
     [int]   $Count   = 10
 )
+[System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::InvariantCulture
 
 $results = @()
 

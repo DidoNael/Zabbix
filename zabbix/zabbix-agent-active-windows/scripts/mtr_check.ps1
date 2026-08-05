@@ -5,10 +5,11 @@
 param(
     [string]$Target      = "google.com",
     [string]$Metric      = "avg_rtt",
-    [int]   $MaxHops     = 30,
-    [int]   $PingsPerHop = 10,
-    [int]   $Timeout     = 2000
+    [int]   $MaxHops     = 20,
+    [int]   $PingsPerHop = 3,
+    [int]   $Timeout     = 1000
 )
+[System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::InvariantCulture
 
 function Invoke-MTR {
     param([string]$Target, [int]$MaxHops, [int]$PingsPerHop, [int]$Timeout)

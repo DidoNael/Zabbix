@@ -6,6 +6,7 @@ param(
     [string]$DnsServer = "8.8.8.8",
     [string]$Metric    = "resolve_time"
 )
+[System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::InvariantCulture
 
 try {
     $sw     = [System.Diagnostics.Stopwatch]::StartNew()

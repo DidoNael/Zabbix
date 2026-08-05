@@ -5,6 +5,7 @@ param(
     [string]$Url    = "https://www.google.com",
     [string]$Metric = "time"
 )
+[System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::InvariantCulture
 
 # Ignora erros de certificado para medição de tempo
 Add-Type @"
