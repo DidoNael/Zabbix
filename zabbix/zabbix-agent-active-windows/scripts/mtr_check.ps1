@@ -1,5 +1,6 @@
 # mtr_check.ps1 — MTR via NextTrace (nexttrace.exe)
-# Pre-requisito: nexttrace.exe em C:\zabbix\scripts\
+# Pre-requisito: nexttrace.exe + WinDivert em C:\zabbix\scripts\
+#   Inicializar WinDivert (uma vez, como Admin): nexttrace.exe --init
 # Download: https://github.com/nxtrace/NTrace-core/releases/latest/download/nexttrace_windows_amd64.exe
 # Uso: mtr_check.ps1 -Target google.com -Metric [avg_rtt|loss|report]
 # Compativel com: Zabbix 6.0 + Windows Agent Active
@@ -25,13 +26,26 @@ function Get-StDev($values) {
 }
 
 try {
-    $raw  = & $exe --json --queries $Queries --no-rdns $Target 2>$null
+    # TCP 443 mostra hops intermediarios que ICMP nao revela (ISPs filtram ICMP TTL-exceeded)
+    # Requer WinDivert: nexttrace.exe --init (executar uma vez como Admin)
+    $raw  = & $exe --tcp --port 443 --json --queries $Queries --no-rdns $Target 2>$null
     $json = ($raw | Where-Object { $_ -match '^\{' }) -join ''
     $data = $json | ConvertFrom-Json
 
-    $lastHop = $data.Hops | Where-Object {
-        ($_ | Where-Object { $_.Success -eq $true }).Count -gt 0
-    } | Select-Object -Last 1
+    # Busca o hop que contem o IP de destino
+    $lastHop = $null
+    foreach ($hop in $data.Hops) {
+        if (@($hop | Where-Object { $_.Address -and $_.Address.IP -eq $Target }).Count -gt 0) {
+            $lastHop = $hop
+            break
+        }
+    }
+    # Se destino nao respondeu ao TCP (ex: porta fechada), usa ultimo hop com resposta
+    if (-not $lastHop) {
+        $lastHop = $data.Hops | Where-Object {
+            ($_ | Where-Object { $_.Success -eq $true }).Count -gt 0
+        } | Select-Object -Last 1
+    }
 
     if (-not $lastHop) {
         if ($Metric -eq "report") { Write-Output "Sem rota para $Target" }
@@ -71,7 +85,7 @@ try {
                     $addr  = $ok[0].Address.IP
                     if (-not $addr) { $addr = "???" }
                 } else {
-                    # Pular hops sem resposta (filtro ICMP do ISP)
+                    # Pular hops sem resposta
                     $hopNum++
                     continue
                 }
