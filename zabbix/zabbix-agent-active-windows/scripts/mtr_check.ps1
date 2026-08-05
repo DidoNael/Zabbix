@@ -25,8 +25,7 @@ function Get-StDev($values) {
 }
 
 try {
-    # TCP porta 80 bypasssa filtros ICMP dos ISPs
-    $raw  = & $exe --tcp --port 80 --json --queries $Queries --no-rdns $Target 2>$null
+    $raw  = & $exe --json --queries $Queries --no-rdns $Target 2>$null
     $json = ($raw | Where-Object { $_ -match '^\{' }) -join ''
     $data = $json | ConvertFrom-Json
 
