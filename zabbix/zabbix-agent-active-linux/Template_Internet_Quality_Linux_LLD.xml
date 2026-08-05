@@ -35,7 +35,11 @@ Targets definidos diretamente nas macros do host, separados por virgula.
 - Scripts bash em /usr/lib/zabbix/scripts/
 - UserParameters configurados no zabbix_agentd.conf
 - Pacotes: iputils-ping, curl, traceroute, mtr, dnsutils (dig)
-- Speedtest CLI: curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash &amp;&amp; apt install speedtest
+- Speedtest CLI (Ookla):
+    curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
+    apt install speedtest
+    speedtest --accept-license --accept-gdpr
+  Alternativa python: pip install speedtest-cli
 
 Padrao baseado em: Template Internet Quality Windows LLD - Netstream</description>
             <groups>

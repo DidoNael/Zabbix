@@ -34,7 +34,9 @@ Targets definidos diretamente nas macros do host, separados por virgula.
 == PRE-REQUISITOS ==
 - Scripts PowerShell em C:\zabbix\scripts\
 - UserParameters configurados no zabbix_agentd.conf
-- Speedtest CLI: winget install Ookla.Speedtest
+- Speedtest CLI: winget install Ookla.Speedtest.CLI
+  (se nao encontrar: baixar em https://www.speedtest.net/apps/cli e extrair em C:\Program Files\Speedtest CLI\)
+  Aceitar termos: speedtest.exe --accept-license --accept-gdpr
 
 Padrao baseado em: Template DNS Monitor - Netstream</description>
             <groups>
