@@ -224,7 +224,7 @@ Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force
 ### 4. Instalar Speedtest CLI (para métricas de velocidade)
 
 ```powershell
-winget install Ookla.Speedtest
+winget install Ookla.Speedtest.CLI
 # Aceitar os termos na primeira execução:
 & "C:\Program Files\Speedtest CLI\speedtest.exe" --accept-license --accept-gdpr
 ```

@@ -1,5 +1,5 @@
 # speedtest.ps1 — Velocidade de download e upload via Speedtest CLI (Ookla)
-# Pré-requisito: winget install Ookla.Speedtest
+# Pre-requisito: winget install Ookla.Speedtest.CLI
 # Uso: speedtest.ps1 -Metric [download|upload]
 # Compatível com: Zabbix 6.0 + Windows Agent Active
 param(
