@@ -1,0 +1,800 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <date>2026-08-05T18:00:00Z</date>
+    <groups>
+        <group>
+            <uuid>2a1d3d9314324ceb8c2335c443f5db92</uuid>
+            <name>Templates/Network/Internet Quality - Netstream</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>ce6e856ce8a549a1a7d57df8af1e9805</uuid>
+            <template>Template Internet Quality Linux LLD - Netstream</template>
+            <name>Template Internet Quality - Linux Agent Active (LLD) - Netstream</name>
+            <description>Monitoramento dinamico de qualidade de internet via Zabbix Agent Active + LLD.
+Targets definidos diretamente nas macros do host, separados por virgula.
+
+== COMO USAR ==
+1. Importe este template
+2. Linke ao host Linux com o agente configurado
+3. Va em Host &gt; Macros e defina os destinos:
+
+   {$PING_TARGETS}    = 8.8.8.8,1.1.1.1,meusite.com.br
+   {$HTTP_TARGETS}    = https://meusite.com.br,https://erp.empresa.com
+   {$TRACEROUTE_TARGETS} = google.com,cloudflare.com
+   {$MTR_TARGETS}     = google.com
+   {$DNS_TARGETS}     = google.com,meusite.com.br
+   {$DNS_SERVERS}     = 8.8.8.8,1.1.1.1
+
+4. O Zabbix cria os items automaticamente em ate 1h (LLD interval)
+5. Para forcar imediatamente: Configuration &gt; Hosts &gt; Discovery rules &gt; Check now
+
+== PRE-REQUISITOS ==
+- Scripts bash em /usr/lib/zabbix/scripts/
+- UserParameters configurados no zabbix_agentd.conf
+- Pacotes: iputils-ping, curl, traceroute, mtr, dnsutils (dig)
+- Speedtest CLI: curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash &amp;&amp; apt install speedtest
+
+Padrao baseado em: Template Internet Quality Windows LLD - Netstream</description>
+            <groups>
+                <group>
+                    <name>Templates/Network/Internet Quality - Netstream</name>
+                </group>
+            </groups>
+
+            <macros>
+                <macro>
+                    <macro>{$PING_TARGETS}</macro>
+                    <value>8.8.8.8,1.1.1.1</value>
+                    <description>IPs ou hosts para ping ICMP, separados por virgula. Ex: 8.8.8.8,1.1.1.1,meusite.com.br</description>
+                </macro>
+                <macro>
+                    <macro>{$HTTP_TARGETS}</macro>
+                    <value>https://www.google.com</value>
+                    <description>URLs completas para monitorar HTTP/SSL, separadas por virgula. Ex: https://meusite.com.br,https://erp.empresa.com</description>
+                </macro>
+                <macro>
+                    <macro>{$TRACEROUTE_TARGETS}</macro>
+                    <value>google.com</value>
+                    <description>Hosts para traceroute, separados por virgula. Ex: google.com,cloudflare.com</description>
+                </macro>
+                <macro>
+                    <macro>{$MTR_TARGETS}</macro>
+                    <value>google.com</value>
+                    <description>Hosts para MTR (use poucos - cada um demora 2-5 min). Ex: google.com</description>
+                </macro>
+                <macro>
+                    <macro>{$DNS_TARGETS}</macro>
+                    <value>google.com</value>
+                    <description>Dominios para testes DNS, separados por virgula. Ex: google.com,meusite.com.br</description>
+                </macro>
+                <macro>
+                    <macro>{$DNS_SERVERS}</macro>
+                    <value>8.8.8.8,1.1.1.1</value>
+                    <description>Servidores DNS para testar, separados por virgula. Ex: 8.8.8.8,1.1.1.1,DNS_ISP</description>
+                </macro>
+                <macro>
+                    <macro>{$LATENCY_WARN}</macro>
+                    <value>150</value>
+                    <description>Limiar WARNING de latencia ICMP (ms)</description>
+                </macro>
+                <macro>
+                    <macro>{$LATENCY_HIGH}</macro>
+                    <value>300</value>
+                    <description>Limiar HIGH de latencia ICMP (ms)</description>
+                </macro>
+                <macro>
+                    <macro>{$LOSS_WARN}</macro>
+                    <value>5</value>
+                    <description>Limiar WARNING de perda de pacotes (%)</description>
+                </macro>
+                <macro>
+                    <macro>{$LOSS_HIGH}</macro>
+                    <value>20</value>
+                    <description>Limiar HIGH de perda de pacotes (%)</description>
+                </macro>
+                <macro>
+                    <macro>{$HTTP_WARN_MS}</macro>
+                    <value>2000</value>
+                    <description>Limiar WARNING de tempo de resposta HTTP (ms)</description>
+                </macro>
+                <macro>
+                    <macro>{$SSL_WARN_DAYS}</macro>
+                    <value>30</value>
+                    <description>Aviso quando SSL expira em menos de X dias</description>
+                </macro>
+                <macro>
+                    <macro>{$SSL_HIGH_DAYS}</macro>
+                    <value>7</value>
+                    <description>Alerta HIGH quando SSL expira em menos de X dias</description>
+                </macro>
+                <macro>
+                    <macro>{$SPEED_MIN_DOWN}</macro>
+                    <value>10</value>
+                    <description>Velocidade minima de download esperada (Mbps)</description>
+                </macro>
+                <macro>
+                    <macro>{$DNS_WARN_MS}</macro>
+                    <value>300</value>
+                    <description>Limiar WARNING de tempo de resolucao DNS (ms)</description>
+                </macro>
+            </macros>
+
+            <valuemaps>
+                <valuemap>
+                    <uuid>79c9fdc21ae741bb867b0c4ff1152ac9</uuid>
+                    <name>HTTP Status Code</name>
+                    <mappings>
+                        <mapping><value>0</value><newvalue>Inacessivel</newvalue></mapping>
+                        <mapping><value>200</value><newvalue>OK</newvalue></mapping>
+                        <mapping><value>301</value><newvalue>Redirect</newvalue></mapping>
+                        <mapping><value>400</value><newvalue>Bad Request</newvalue></mapping>
+                        <mapping><value>401</value><newvalue>Unauthorized</newvalue></mapping>
+                        <mapping><value>403</value><newvalue>Forbidden</newvalue></mapping>
+                        <mapping><value>404</value><newvalue>Not Found</newvalue></mapping>
+                        <mapping><value>500</value><newvalue>Server Error</newvalue></mapping>
+                        <mapping><value>503</value><newvalue>Unavailable</newvalue></mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>292443ecfb314c25a263491d24c5d016</uuid>
+                    <name>DNS Status</name>
+                    <mappings>
+                        <mapping><value>0</value><newvalue>Falhou</newvalue></mapping>
+                        <mapping><value>1</value><newvalue>Sucesso</newvalue></mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+
+            <items>
+                <item>
+                    <uuid>26bacb86dc0b445aaf7aca57f768d0ac</uuid>
+                    <name>Agent - Conectividade</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>agent.ping</key>
+                    <delay>1m</delay>
+                    <value_type>UNSIGNED</value_type>
+                    <description>Verifica se o agente esta ativo. 1 = OK.</description>
+                    <tags>
+                        <tag><tag>component</tag><value>agent</value></tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>41eb90cc3b22430fa35846152865cd80</uuid>
+                    <name>Speedtest - Download</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>internet.speed.download</key>
+                    <delay>15m</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>Mbps</units>
+                    <description>Velocidade de download via Speedtest CLI (Ookla). Script: speedtest_check.sh</description>
+                    <tags>
+                        <tag><tag>component</tag><value>speedtest</value></tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>cbf6f92f3d5b4c019b0f2269a22c7e4c</uuid>
+                    <name>Speedtest - Upload</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>internet.speed.upload</key>
+                    <delay>15m</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>Mbps</units>
+                    <description>Velocidade de upload via Speedtest CLI (Ookla). Script: speedtest_check.sh</description>
+                    <tags>
+                        <tag><tag>component</tag><value>speedtest</value></tag>
+                    </tags>
+                </item>
+            </items>
+
+            <discovery_rules>
+
+                <!-- REGRA 1: PING -->
+                <discovery_rule>
+                    <uuid>70e0a741c2b14974bc7082f51338f45e</uuid>
+                    <name>Descoberta de Targets de Ping</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>discover.ping["{$PING_TARGETS}"]</key>
+                    <delay>1h</delay>
+                    <lifetime>30d</lifetime>
+                    <description>Descobre targets de ping a partir da macro {$PING_TARGETS} (separados por virgula). Script: discover_ping.sh</description>
+
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>9e20e7b104ed447698215b0b601cd370</uuid>
+                            <name>Ping - Latencia {#TARGET}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>internet.ping.latency[{#TARGET}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <description>Latencia media ICMP para {#TARGET}. Script: ping_check.sh</description>
+                            <tags>
+                                <tag><tag>component</tag><value>ping</value></tag>
+                                <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>b6b6a3f34d67404aa27a01b42cf093d3</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/internet.ping.latency[{#TARGET}])&gt;{$LATENCY_HIGH}</expression>
+                                    <name>Latencia CRITICA - {#TARGET} acima de {$LATENCY_HIGH}ms</name>
+                                    <priority>HIGH</priority>
+                                    <description>Latencia ICMP para {#TARGET} acima de {$LATENCY_HIGH}ms.</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag><tag>component</tag><value>ping</value></tag>
+                                        <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>98d511167cf7418ea543273bdf2b2b86</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/internet.ping.latency[{#TARGET}])&gt;{$LATENCY_WARN} and last(/Template Internet Quality Linux LLD - Netstream/internet.ping.latency[{#TARGET}])&lt;={$LATENCY_HIGH}</expression>
+                                    <name>Alta latencia - {#TARGET} acima de {$LATENCY_WARN}ms</name>
+                                    <priority>WARNING</priority>
+                                    <description>Latencia ICMP para {#TARGET} acima de {$LATENCY_WARN}ms.</description>
+                                    <tags>
+                                        <tag><tag>component</tag><value>ping</value></tag>
+                                        <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+
+                        <item_prototype>
+                            <uuid>db64a36ddc584adc82241156bb48ae8b</uuid>
+                            <name>Ping - Perda de Pacotes {#TARGET}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>internet.ping.loss[{#TARGET}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <description>Percentual de perda de pacotes ICMP para {#TARGET}.</description>
+                            <tags>
+                                <tag><tag>component</tag><value>ping</value></tag>
+                                <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>f93d5460c929454aae8c9d8bfd338dde</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/internet.ping.loss[{#TARGET}])&gt;=100</expression>
+                                    <name>Internet INACESSIVEL - {#TARGET} 100% perda</name>
+                                    <priority>DISASTER</priority>
+                                    <description>Perda de pacotes 100% para {#TARGET}. Destino completamente indisponivel.</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag><tag>component</tag><value>ping</value></tag>
+                                        <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>4cf7660b920e4e76aa929d67df35b856</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/internet.ping.loss[{#TARGET}])&gt;{$LOSS_HIGH} and last(/Template Internet Quality Linux LLD - Netstream/internet.ping.loss[{#TARGET}])&lt;100</expression>
+                                    <name>Alta perda de pacotes - {#TARGET} acima de {$LOSS_HIGH}%</name>
+                                    <priority>HIGH</priority>
+                                    <description>Perda de pacotes acima de {$LOSS_HIGH}% para {#TARGET}.</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag><tag>component</tag><value>ping</value></tag>
+                                        <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>48b033f1616044899115b9c76abc7de4</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/internet.ping.loss[{#TARGET}])&gt;{$LOSS_WARN} and last(/Template Internet Quality Linux LLD - Netstream/internet.ping.loss[{#TARGET}])&lt;={$LOSS_HIGH}</expression>
+                                    <name>Perda de pacotes - {#TARGET} acima de {$LOSS_WARN}%</name>
+                                    <priority>WARNING</priority>
+                                    <description>Perda de pacotes acima de {$LOSS_WARN}% para {#TARGET}.</description>
+                                    <tags>
+                                        <tag><tag>component</tag><value>ping</value></tag>
+                                        <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+
+                        <item_prototype>
+                            <uuid>cca60b3a01d843a9846c2aefbc2fb97a</uuid>
+                            <name>Ping - Jitter {#TARGET}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>internet.ping.jitter[{#TARGET}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <description>Variacao de latencia (jitter) ICMP para {#TARGET}.</description>
+                            <tags>
+                                <tag><tag>component</tag><value>ping</value></tag>
+                                <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>97cb79f87cb54413a646e831b564c471</uuid>
+                            <name>Ping - Latencia e Jitter: {#TARGET}</name>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <color>1A7C11</color>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <calc_fnc>AVG</calc_fnc>
+                                    <item>
+                                        <host>Template Internet Quality Linux LLD - Netstream</host>
+                                        <key>internet.ping.latency[{#TARGET}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>F63100</color>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <calc_fnc>AVG</calc_fnc>
+                                    <item>
+                                        <host>Template Internet Quality Linux LLD - Netstream</host>
+                                        <key>internet.ping.jitter[{#TARGET}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <uuid>734bef8afc7342b7a4bbc9f270ca1ec6</uuid>
+                            <name>Ping - Perda de Pacotes: {#TARGET}</name>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <color>F63100</color>
+                                    <drawtype>FILLED_REGION</drawtype>
+                                    <calc_fnc>AVG</calc_fnc>
+                                    <item>
+                                        <host>Template Internet Quality Linux LLD - Netstream</host>
+                                        <key>internet.ping.loss[{#TARGET}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+
+                <!-- REGRA 2: HTTP -->
+                <discovery_rule>
+                    <uuid>2e1693cc34064a84a66c5ed253ea1d74</uuid>
+                    <name>Descoberta de Sites HTTP</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>discover.http["{$HTTP_TARGETS}"]</key>
+                    <delay>1h</delay>
+                    <lifetime>30d</lifetime>
+                    <description>Descobre sites a partir da macro {$HTTP_TARGETS} (URLs separadas por virgula). Script: discover_http.sh</description>
+
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>73eee01944504f10b92ba2a6947386a7</uuid>
+                            <name>HTTP - Tempo de Resposta {#HOST}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.http.time[{#URL}]</key>
+                            <delay>2m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <description>Tempo de resposta HTTP para {#URL} via curl. Script: site_http.sh</description>
+                            <tags>
+                                <tag><tag>component</tag><value>http</value></tag>
+                                <tag><tag>site</tag><value>{#HOST}</value></tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>8db7293f257848ba94a6e23368dbe516</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/site.http.time[{#URL}])&gt;{$HTTP_WARN_MS} and last(/Template Internet Quality Linux LLD - Netstream/site.http.status[{#URL}])&gt;0</expression>
+                                    <name>Site lento - {#HOST} acima de {$HTTP_WARN_MS}ms</name>
+                                    <priority>WARNING</priority>
+                                    <description>Tempo de resposta HTTP de {#URL} acima de {$HTTP_WARN_MS}ms.</description>
+                                    <tags>
+                                        <tag><tag>component</tag><value>http</value></tag>
+                                        <tag><tag>site</tag><value>{#HOST}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+
+                        <item_prototype>
+                            <uuid>dacba2897aa74b598af69c5d44bab33b</uuid>
+                            <name>HTTP - Status {#HOST}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.http.status[{#URL}]</key>
+                            <delay>2m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <description>Codigo de status HTTP de {#URL}. 0=inacessivel, 200=OK.</description>
+                            <valuemap>
+                                <name>HTTP Status Code</name>
+                            </valuemap>
+                            <tags>
+                                <tag><tag>component</tag><value>http</value></tag>
+                                <tag><tag>site</tag><value>{#HOST}</value></tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>06cbfd104ff14f129f36d523a0f03714</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/site.http.status[{#URL}])=0</expression>
+                                    <name>Site INACESSIVEL - {#HOST}</name>
+                                    <priority>DISASTER</priority>
+                                    <description>Sem resposta HTTP de {#URL}. Site fora do ar ou sem conectividade.</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag><tag>component</tag><value>http</value></tag>
+                                        <tag><tag>site</tag><value>{#HOST}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>f674ac1f58b54c05b623b6b14e84715a</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/site.http.status[{#URL}])&gt;=400 and last(/Template Internet Quality Linux LLD - Netstream/site.http.status[{#URL}])&lt;&gt;0</expression>
+                                    <name>Erro HTTP - {#HOST} status &gt;= 400</name>
+                                    <priority>HIGH</priority>
+                                    <description>{#URL} retornando erro HTTP (4xx/5xx).</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag><tag>component</tag><value>http</value></tag>
+                                        <tag><tag>site</tag><value>{#HOST}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+
+                        <item_prototype>
+                            <uuid>b377e622118c4907b7ad4a01f7a3a674</uuid>
+                            <name>SSL - Dias para Expiracao {#HOST}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.http.ssl_days[{#URL}]</key>
+                            <delay>1h</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <units>days</units>
+                            <description>Dias restantes ate expiracao do certificado SSL de {#URL} via openssl/curl.</description>
+                            <tags>
+                                <tag><tag>component</tag><value>ssl</value></tag>
+                                <tag><tag>site</tag><value>{#HOST}</value></tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>3f6d071050f047e0af9285ce564e95d3</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/site.http.ssl_days[{#URL}])&lt;{$SSL_HIGH_DAYS} and last(/Template Internet Quality Linux LLD - Netstream/site.http.ssl_days[{#URL}])&gt;=0</expression>
+                                    <name>SSL expirando em menos de {$SSL_HIGH_DAYS} dias - {#HOST}</name>
+                                    <priority>HIGH</priority>
+                                    <description>Certificado SSL de {#URL} expira em menos de {$SSL_HIGH_DAYS} dias. Renovar URGENTE.</description>
+                                    <tags>
+                                        <tag><tag>component</tag><value>ssl</value></tag>
+                                        <tag><tag>site</tag><value>{#HOST}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>48df3c368d3847c99bf70fff9983730c</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/site.http.ssl_days[{#URL}])&lt;{$SSL_WARN_DAYS} and last(/Template Internet Quality Linux LLD - Netstream/site.http.ssl_days[{#URL}])&gt;={$SSL_HIGH_DAYS}</expression>
+                                    <name>SSL expirando em menos de {$SSL_WARN_DAYS} dias - {#HOST}</name>
+                                    <priority>WARNING</priority>
+                                    <description>Certificado SSL de {#URL} expira em menos de {$SSL_WARN_DAYS} dias.</description>
+                                    <tags>
+                                        <tag><tag>component</tag><value>ssl</value></tag>
+                                        <tag><tag>site</tag><value>{#HOST}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>c24281994c6b422dbc85c828509ea73a</uuid>
+                            <name>HTTP - Tempo de Resposta: {#HOST}</name>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <color>6C59DC</color>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <calc_fnc>AVG</calc_fnc>
+                                    <item>
+                                        <host>Template Internet Quality Linux LLD - Netstream</host>
+                                        <key>site.http.time[{#URL}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+
+                <!-- REGRA 3: TRACEROUTE -->
+                <discovery_rule>
+                    <uuid>4229a9d58c8b4c54ac6fe80cec2d3940</uuid>
+                    <name>Descoberta de Targets de Traceroute</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>discover.traceroute["{$TRACEROUTE_TARGETS}"]</key>
+                    <delay>1h</delay>
+                    <lifetime>30d</lifetime>
+                    <description>Descobre targets de traceroute a partir da macro {$TRACEROUTE_TARGETS}. Script: discover_traceroute.sh</description>
+
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>5f6584c9e9f54df89afc1dccaaafea57</uuid>
+                            <name>Traceroute - Numero de Hops {#TARGET}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.traceroute.hops[{#TARGET}]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <units>hops</units>
+                            <description>Numero de saltos na rota ate {#TARGET} via traceroute. Script: traceroute_check.sh</description>
+                            <tags>
+                                <tag><tag>component</tag><value>traceroute</value></tag>
+                                <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                            </tags>
+                        </item_prototype>
+
+                        <item_prototype>
+                            <uuid>d79db1155a8445c196cda3c22fcf2d6c</uuid>
+                            <name>Traceroute - RTT Ultimo Hop {#TARGET}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.traceroute.last_rtt[{#TARGET}]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <description>RTT do ultimo hop na rota ate {#TARGET}.</description>
+                            <tags>
+                                <tag><tag>component</tag><value>traceroute</value></tag>
+                                <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                            </tags>
+                        </item_prototype>
+
+                        <item_prototype>
+                            <uuid>e447f4ee67be478f86677edbdc4d8c68</uuid>
+                            <name>Traceroute - RTT Maximo {#TARGET}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.traceroute.max_rtt[{#TARGET}]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <description>RTT maximo entre todos os hops ate {#TARGET}.</description>
+                            <tags>
+                                <tag><tag>component</tag><value>traceroute</value></tag>
+                                <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>e5de56c1fed94549957590ce0d53cf16</uuid>
+                            <name>Traceroute - RTT: {#TARGET}</name>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <color>2774A4</color>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <calc_fnc>AVG</calc_fnc>
+                                    <item>
+                                        <host>Template Internet Quality Linux LLD - Netstream</host>
+                                        <key>site.traceroute.last_rtt[{#TARGET}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>F63100</color>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <calc_fnc>AVG</calc_fnc>
+                                    <item>
+                                        <host>Template Internet Quality Linux LLD - Netstream</host>
+                                        <key>site.traceroute.max_rtt[{#TARGET}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+
+                <!-- REGRA 4: MTR -->
+                <discovery_rule>
+                    <uuid>d6302eab5e7d4b6b8ec5306eee5ef012</uuid>
+                    <name>Descoberta de Targets de MTR</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>discover.mtr["{$MTR_TARGETS}"]</key>
+                    <delay>1h</delay>
+                    <lifetime>30d</lifetime>
+                    <description>Descobre targets de MTR a partir da macro {$MTR_TARGETS}. ATENCAO: poucos targets - cada um demora 2-5 min. Script: discover_mtr.sh</description>
+
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>a76b464205954f838cbdbfa54b3374eb</uuid>
+                            <name>MTR - RTT Medio {#TARGET}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.mtr.avg_rtt[{#TARGET}]</key>
+                            <delay>15m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <description>RTT medio ao destino via mtr para {#TARGET}. Script: mtr_check.sh</description>
+                            <tags>
+                                <tag><tag>component</tag><value>mtr</value></tag>
+                                <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                            </tags>
+                        </item_prototype>
+
+                        <item_prototype>
+                            <uuid>003ffeac9cea4b42bb80b45adcffdd5f</uuid>
+                            <name>MTR - Perda de Pacotes {#TARGET}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.mtr.loss[{#TARGET}]</key>
+                            <delay>15m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <description>Perda de pacotes no destino via mtr para {#TARGET}.</description>
+                            <tags>
+                                <tag><tag>component</tag><value>mtr</value></tag>
+                                <tag><tag>target</tag><value>{#TARGET}</value></tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>8498d4b4b116445498506fd156683aee</uuid>
+                            <name>MTR - RTT e Perda: {#TARGET}</name>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <color>A54F10</color>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <calc_fnc>AVG</calc_fnc>
+                                    <item>
+                                        <host>Template Internet Quality Linux LLD - Netstream</host>
+                                        <key>site.mtr.avg_rtt[{#TARGET}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+
+                <!-- REGRA 5: DNS -->
+                <discovery_rule>
+                    <uuid>c756d50dcd854db4b71b3eb037776b08</uuid>
+                    <name>Descoberta de Combinacoes DNS</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>discover.dns["{$DNS_TARGETS}","{$DNS_SERVERS}"]</key>
+                    <delay>1h</delay>
+                    <lifetime>30d</lifetime>
+                    <description>Descobre combinacoes dominio x servidor DNS. Produto cartesiano: cada dominio testado em cada servidor. Script: discover_dns.sh</description>
+
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>c44f8f7547064cbb906aa0286b93998f</uuid>
+                            <name>DNS - Resolucao {#DNS_DOMAIN} via {#DNS_SERVER}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.dns.resolve_time[{#DNS_DOMAIN},{#DNS_SERVER}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <description>Tempo de resolucao DNS de {#DNS_DOMAIN} via {#DNS_SERVER} usando dig. Script: dns_check.sh</description>
+                            <tags>
+                                <tag><tag>component</tag><value>dns</value></tag>
+                                <tag><tag>dominio</tag><value>{#DNS_DOMAIN}</value></tag>
+                                <tag><tag>servidor_dns</tag><value>{#DNS_SERVER}</value></tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>bd1982b3798b4a648bf081dd22f4d954</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/site.dns.resolve_time[{#DNS_DOMAIN},{#DNS_SERVER}])&gt;{$DNS_WARN_MS} and last(/Template Internet Quality Linux LLD - Netstream/site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}])=1</expression>
+                                    <name>DNS lento - {#DNS_SERVER} para {#DNS_DOMAIN} acima de {$DNS_WARN_MS}ms</name>
+                                    <priority>WARNING</priority>
+                                    <description>Resolucao DNS de {#DNS_DOMAIN} via {#DNS_SERVER} acima de {$DNS_WARN_MS}ms.</description>
+                                    <tags>
+                                        <tag><tag>component</tag><value>dns</value></tag>
+                                        <tag><tag>dominio</tag><value>{#DNS_DOMAIN}</value></tag>
+                                        <tag><tag>servidor_dns</tag><value>{#DNS_SERVER}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+
+                        <item_prototype>
+                            <uuid>344e08ea31114f988a296dc39d066990</uuid>
+                            <name>DNS - Status {#DNS_DOMAIN} via {#DNS_SERVER}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <description>Status da resolucao DNS de {#DNS_DOMAIN} via {#DNS_SERVER}. 1=OK, 0=Falhou.</description>
+                            <valuemap>
+                                <name>DNS Status</name>
+                            </valuemap>
+                            <tags>
+                                <tag><tag>component</tag><value>dns</value></tag>
+                                <tag><tag>dominio</tag><value>{#DNS_DOMAIN}</value></tag>
+                                <tag><tag>servidor_dns</tag><value>{#DNS_SERVER}</value></tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>a3434064ec88416289a8a940a32ee116</uuid>
+                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}])=0</expression>
+                                    <name>DNS FALHOU - {#DNS_SERVER} nao resolveu {#DNS_DOMAIN}</name>
+                                    <priority>HIGH</priority>
+                                    <description>Falha na resolucao DNS de {#DNS_DOMAIN} via servidor {#DNS_SERVER}.</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag><tag>component</tag><value>dns</value></tag>
+                                        <tag><tag>dominio</tag><value>{#DNS_DOMAIN}</value></tag>
+                                        <tag><tag>servidor_dns</tag><value>{#DNS_SERVER}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>ad15fcbda17846598fafba22d58d3bb3</uuid>
+                            <name>DNS - Tempo de Resolucao: {#DNS_DOMAIN} via {#DNS_SERVER}</name>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <color>1A7C11</color>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <calc_fnc>AVG</calc_fnc>
+                                    <item>
+                                        <host>Template Internet Quality Linux LLD - Netstream</host>
+                                        <key>site.dns.resolve_time[{#DNS_DOMAIN},{#DNS_SERVER}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+
+            </discovery_rules>
+
+        </template>
+    </templates>
+
+    <triggers>
+        <trigger>
+            <uuid>aabde5cc94ca4fc6bb665180025bc670</uuid>
+            <expression>last(/Template Internet Quality Linux LLD - Netstream/agent.ping)&lt;&gt;1</expression>
+            <name>Agente Zabbix inativo</name>
+            <priority>HIGH</priority>
+            <description>O agente Zabbix nao esta respondendo. Verificar servico no Linux.</description>
+            <manual_close>YES</manual_close>
+            <tags>
+                <tag><tag>component</tag><value>agent</value></tag>
+            </tags>
+        </trigger>
+        <trigger>
+            <uuid>0842b7c22b8440d29e5f0ae42a073563</uuid>
+            <expression>last(/Template Internet Quality Linux LLD - Netstream/internet.speed.download)&lt;{$SPEED_MIN_DOWN} and last(/Template Internet Quality Linux LLD - Netstream/internet.speed.download)&gt;0</expression>
+            <name>Download abaixo de {$SPEED_MIN_DOWN} Mbps</name>
+            <priority>WARNING</priority>
+            <description>Velocidade de download abaixo do minimo esperado ({$SPEED_MIN_DOWN} Mbps).</description>
+            <tags>
+                <tag><tag>component</tag><value>speedtest</value></tag>
+            </tags>
+        </trigger>
+    </triggers>
+
+</zabbix_export>
