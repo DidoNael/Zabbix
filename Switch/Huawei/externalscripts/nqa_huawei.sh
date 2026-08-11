@@ -61,21 +61,10 @@ RTT_MAX=$(get_col 12)
 RTT_AVG=$(get_col 26)
 PROBES_SENT=$(get_col 21)
 PROBES_RECV=$(get_col 22)
-LOST=$(get_col 27)
 
-# Defaults seguros
-RTT_MIN=${RTT_MIN:-0}
-RTT_MAX=${RTT_MAX:-0}
-RTT_AVG=${RTT_AVG:-0}
-PROBES_SENT=${PROBES_SENT:-0}
-PROBES_RECV=${PROBES_RECV:-0}
-LOST=${LOST:-0}
+RTT_MIN=${RTT_MIN:-0}; RTT_MAX=${RTT_MAX:-0}; RTT_AVG=${RTT_AVG:-0}
+PROBES_SENT=${PROBES_SENT:-0}; PROBES_RECV=${PROBES_RECV:-0}
 
-# Calcular perda percentual
-if [ "$PROBES_SENT" -gt 0 ]; then
-    LOSS_PCT=$(echo "scale=1; ($PROBES_SENT - $PROBES_RECV) * 100 / $PROBES_SENT" | bc)
-else
-    LOSS_PCT=100
-fi
+LOSS_PCT=$(python3 -c "s=$PROBES_SENT; r=$PROBES_RECV; print(round((s-r)*100/s,1) if s>0 else 100)")
 
 echo "{\"rtt_min\":${RTT_MIN},\"rtt_max\":${RTT_MAX},\"rtt_avg\":${RTT_AVG},\"probes_sent\":${PROBES_SENT},\"probes_recv\":${PROBES_RECV},\"loss_pct\":${LOSS_PCT}}"
