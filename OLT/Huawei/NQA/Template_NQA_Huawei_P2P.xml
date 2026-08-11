@@ -184,6 +184,165 @@ Configurar por host:&#13;
                     <manual_close>YES</manual_close>
                 </trigger>
             </triggers>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Descoberta de instâncias NQA</name>
+                    <type>EXTERNAL</type>
+                    <key>nqa_huawei_discovery.sh[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>1h</delay>
+                    <status>DISABLED</status>
+                    <description>Descobre automaticamente todas as instâncias NQA configuradas no equipamento.</description>
+                    <item_prototypes>
+                        <!-- Master item prototype -->
+                        <item_prototype>
+                            <name>NQA [{#NQA_INSTANCE}]: Dados brutos</name>
+                            <type>EXTERNAL</type>
+                            <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            <delay>60</delay>
+                            <history>1d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application_prototype>
+                                    <name>NQA P2P</name>
+                                </application_prototype>
+                            </applications>
+                        </item_prototype>
+
+                        <!-- RTT Mínimo -->
+                        <item_prototype>
+                            <name>NQA [{#NQA_INSTANCE}]: RTT Mínimo</name>
+                            <type>DEPENDENT</type>
+                            <key>nqa.rtt.min[{#NQA_INSTANCE}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <master_item>
+                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.rtt_min</params>
+                                </step>
+                            </preprocessing>
+                            <applications>
+                                <application_prototype>
+                                    <name>NQA P2P</name>
+                                </application_prototype>
+                            </applications>
+                        </item_prototype>
+
+                        <!-- RTT Máximo -->
+                        <item_prototype>
+                            <name>NQA [{#NQA_INSTANCE}]: RTT Máximo</name>
+                            <type>DEPENDENT</type>
+                            <key>nqa.rtt.max[{#NQA_INSTANCE}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <master_item>
+                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.rtt_max</params>
+                                </step>
+                            </preprocessing>
+                            <applications>
+                                <application_prototype>
+                                    <name>NQA P2P</name>
+                                </application_prototype>
+                            </applications>
+                        </item_prototype>
+
+                        <!-- RTT Médio -->
+                        <item_prototype>
+                            <name>NQA [{#NQA_INSTANCE}]: RTT Médio</name>
+                            <type>DEPENDENT</type>
+                            <key>nqa.rtt.avg[{#NQA_INSTANCE}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <master_item>
+                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.rtt_avg</params>
+                                </step>
+                            </preprocessing>
+                            <applications>
+                                <application_prototype>
+                                    <name>NQA P2P</name>
+                                </application_prototype>
+                            </applications>
+                        </item_prototype>
+
+                        <!-- Perda de pacotes -->
+                        <item_prototype>
+                            <name>NQA [{#NQA_INSTANCE}]: Perda de pacotes</name>
+                            <type>DEPENDENT</type>
+                            <key>nqa.loss[{#NQA_INSTANCE}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <master_item>
+                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.loss_pct</params>
+                                </step>
+                            </preprocessing>
+                            <applications>
+                                <application_prototype>
+                                    <name>NQA P2P</name>
+                                </application_prototype>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template NQA Huawei P2P - Netstream:nqa.rtt.avg[{#NQA_INSTANCE}].avg(5m)}&gt;{$NQA_RTT_WARN}</expression>
+                            <name>NQA [{#NQA_INSTANCE}]: RTT elevado ({ITEM.VALUE}ms &gt; {$NQA_RTT_WARN}ms)</name>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template NQA Huawei P2P - Netstream:nqa.rtt.avg[{#NQA_INSTANCE}].avg(3m)}&gt;{$NQA_RTT_HIGH}</expression>
+                            <name>NQA [{#NQA_INSTANCE}]: RTT crítico ({ITEM.VALUE}ms &gt; {$NQA_RTT_HIGH}ms)</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template NQA Huawei P2P - Netstream:nqa.loss[{#NQA_INSTANCE}].last()}&gt;{$NQA_LOSS_WARN}</expression>
+                            <name>NQA [{#NQA_INSTANCE}]: Perda de pacotes ({ITEM.VALUE}% &gt; {$NQA_LOSS_WARN}%)</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template NQA Huawei P2P - Netstream:nqa.loss[{#NQA_INSTANCE}].last()}=100</expression>
+                            <name>NQA [{#NQA_INSTANCE}]: Link inacessível (100% perda)</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+
             <macros>
                 <macro>
                     <macro>{$NQA_OWNER}</macro>
