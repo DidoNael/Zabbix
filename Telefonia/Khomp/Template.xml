@@ -179,7 +179,7 @@ Falha de NAP e sempre total (30/30) — um unico trigger DISASTER cobre todos os
             <macros>
                 <macro>
                     <macro>{$SNMP_COMMUNITY}</macro>
-                    <value>public</value>
+                    <value>khomp</value>
                 </macro>
             </macros>
         </template>
