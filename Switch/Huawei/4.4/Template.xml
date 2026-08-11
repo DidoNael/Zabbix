@@ -3035,11 +3035,6 @@ or
                             <history>1d</history>
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>NQA P2P</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>NQA [{#NQA_INSTANCE}]: RTT Mínimo</name>
@@ -3059,11 +3054,6 @@ or
                                     <params>$.rtt_min</params>
                                 </step>
                             </preprocessing>
-                            <applications>
-                                <application>
-                                    <name>NQA P2P</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>NQA [{#NQA_INSTANCE}]: RTT Máximo</name>
@@ -3083,11 +3073,6 @@ or
                                     <params>$.rtt_max</params>
                                 </step>
                             </preprocessing>
-                            <applications>
-                                <application>
-                                    <name>NQA P2P</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>NQA [{#NQA_INSTANCE}]: RTT Médio</name>
@@ -3107,11 +3092,6 @@ or
                                     <params>$.rtt_avg</params>
                                 </step>
                             </preprocessing>
-                            <applications>
-                                <application>
-                                    <name>NQA P2P</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>NQA [{#NQA_INSTANCE}]: Perda de pacotes</name>
@@ -3131,11 +3111,6 @@ or
                                     <params>$.loss_pct</params>
                                 </step>
                             </preprocessing>
-                            <applications>
-                                <application>
-                                    <name>NQA P2P</name>
-                                </application>
-                            </applications>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
