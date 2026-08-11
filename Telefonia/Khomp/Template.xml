@@ -18,8 +18,12 @@
             <template>Khomp Gateway E1 - Netstream</template>
             <name>Khomp Gateway E1 - Netstream</name>
             <description>Template para monitoramento de Gateways E1 Khomp via SNMP.
-Monitora status dos links E1 e canais dos NAPs (Falha, Livre, Ocupado).
-Falha de NAP e sempre total (30/30) — um unico trigger DISASTER cobre todos os casos.</description>
+OID correto para canais em falha: k3lDeviceLinkChannelCountFail
+  = 1.3.6.1.4.1.32624.2.1.2.3.1.27.{$KHOMP_SERIAL}.{#SNMPINDEX}
+
+Macros obrigatorias:
+  {$SNMP_COMMUNITY}  — padrao: khomp
+  {$KHOMP_SERIAL}    — numero serial do dispositivo (ex: 169900)</description>
             <groups>
                 <group>
                     <name>E1</name>
@@ -40,20 +44,25 @@ Falha de NAP e sempre total (30/30) — um unico trigger DISASTER cobre todos os
                 </application>
             </applications>
             <discovery_rules>
+                <!-- ============================================================ -->
+                <!-- DISCOVERY LINK E1 — status + canais Falha/Livre/Ocupado      -->
+                <!-- OIDs da tabela k3lDeviceLinkEntry (32624.2.1.2.3.1)          -->
+                <!-- ============================================================ -->
                 <discovery_rule>
                     <name>Discovery Link E1</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#E1DESCLINK}, k3lDeviceLinkDescr.169900]</snmp_oid>
+                    <snmp_oid>discovery[{#E1DESCLINK}, 1.3.6.1.4.1.32624.2.1.2.3.1.3.{$KHOMP_SERIAL}]</snmp_oid>
                     <key>E1.discovery</key>
                     <delay>1h</delay>
                     <lifetime>7d</lifetime>
                     <item_prototypes>
+                        <!-- Status do link (up=1 / down=0) -->
                         <item_prototype>
                             <name>LINK E1 [{#E1DESCLINK}] - Status</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>KHOMP-MIB::k3lDeviceLinkOperStatus.169900.{#SNMPINDEX}</snmp_oid>
+                            <snmp_oid>1.3.6.1.4.1.32624.2.1.2.3.1.2.{$KHOMP_SERIAL}.{#SNMPINDEX}</snmp_oid>
                             <key>link.status[{#E1DESCLINK}]</key>
                             <delay>1m</delay>
                             <history>30d</history>
@@ -88,24 +97,14 @@ Falha de NAP e sempre total (30/30) — um unico trigger DISASTER cobre todos os
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
-                    </item_prototypes>
-                </discovery_rule>
 
-                <discovery_rule>
-                    <name>Discovery NAP</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#E1DESCNAP}, app.1.1.1.2.1.2]</snmp_oid>
-                    <key>E1.discoverynap</key>
-                    <delay>1h</delay>
-                    <lifetime>7d</lifetime>
-                    <item_prototypes>
+                        <!-- Canais em Falha — k3lDeviceLinkChannelCountFail (.27) -->
                         <item_prototype>
-                            <name>NAP [{#E1DESCNAP}] - Canais em Falha</name>
+                            <name>LINK E1 [{#E1DESCLINK}] - Canais em Falha</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.4.1.32624.3.1.1.1.2.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>nap.falha[{#E1DESCNAP}]</key>
+                            <snmp_oid>1.3.6.1.4.1.32624.2.1.2.3.1.27.{$KHOMP_SERIAL}.{#SNMPINDEX}</snmp_oid>
+                            <key>link.fail[{#E1DESCLINK}]</key>
                             <delay>1m</delay>
                             <history>30d</history>
                             <trends>90d</trends>
@@ -113,7 +112,7 @@ Falha de NAP e sempre total (30/30) — um unico trigger DISASTER cobre todos os
                             <port>161</port>
                             <applications>
                                 <application>
-                                    <name>NAP Canais</name>
+                                    <name>E1 Links</name>
                                 </application>
                             </applications>
                             <trigger_prototypes>
@@ -121,13 +120,13 @@ Falha de NAP e sempre total (30/30) — um unico trigger DISASTER cobre todos os
                                     <expression>{last()}&gt;0</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{last()}=0</recovery_expression>
-                                    <name>NAP [{#E1DESCNAP}] - Falha total de canais ({ITEM.VALUE} canais)</name>
+                                    <name>LINK E1 [{#E1DESCLINK}] - Falha total de canais ({ITEM.VALUE} canais)</name>
                                     <priority>DISASTER</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>NAP</tag>
-                                            <value>{#E1DESCNAP}</value>
+                                            <tag>E1</tag>
+                                            <value>{#E1DESCLINK}</value>
                                         </tag>
                                         <tag>
                                             <tag>Tipo</tag>
@@ -138,6 +137,59 @@ Falha de NAP e sempre total (30/30) — um unico trigger DISASTER cobre todos os
                             </trigger_prototypes>
                         </item_prototype>
 
+                        <!-- Canais Livres (Idle) — k3lDeviceLinkChannelCountIdle (.26) -->
+                        <item_prototype>
+                            <name>LINK E1 [{#E1DESCLINK}] - Canais Livres</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.32624.2.1.2.3.1.26.{$KHOMP_SERIAL}.{#SNMPINDEX}</snmp_oid>
+                            <key>link.idle[{#E1DESCLINK}]</key>
+                            <delay>1m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>canais</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>E1 Links</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+
+                        <!-- Canais Ocupados (Busy) — k3lDeviceLinkChannelCountBusy (.28) -->
+                        <item_prototype>
+                            <name>LINK E1 [{#E1DESCLINK}] - Canais Ocupados</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.32624.2.1.2.3.1.28.{$KHOMP_SERIAL}.{#SNMPINDEX}</snmp_oid>
+                            <key>link.busy[{#E1DESCLINK}]</key>
+                            <delay>1m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>canais</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>E1 Links</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+
+                <!-- ============================================================ -->
+                <!-- DISCOVERY NAP — nome e contagem de canais (tabela app)       -->
+                <!-- Livre e Ocupado corretos; Falha nao disponivel nesta tabela  -->
+                <!-- ============================================================ -->
+                <discovery_rule>
+                    <name>Discovery NAP</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#E1DESCNAP}, app.1.1.1.2.1.2]</snmp_oid>
+                    <key>E1.discoverynap</key>
+                    <delay>1h</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
                         <item_prototype>
                             <name>NAP [{#E1DESCNAP}] - Canais Livres</name>
                             <type>SNMPV2</type>
@@ -180,6 +232,11 @@ Falha de NAP e sempre total (30/30) — um unico trigger DISASTER cobre todos os
                 <macro>
                     <macro>{$SNMP_COMMUNITY}</macro>
                     <value>khomp</value>
+                </macro>
+                <macro>
+                    <macro>{$KHOMP_SERIAL}</macro>
+                    <value>169900</value>
+                    <description>Numero serial do dispositivo Khomp (ver snmpwalk k3lDeviceSerial)</description>
                 </macro>
             </macros>
         </template>
