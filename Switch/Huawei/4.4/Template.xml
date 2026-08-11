@@ -3036,9 +3036,9 @@ or
                             <trends>0</trends>
                             <value_type>TEXT</value_type>
                             <applications>
-                                <application_prototype>
+                                <application>
                                     <name>NQA P2P</name>
-                                </application_prototype>
+                                </application>
                             </applications>
                         </item_prototype>
                         <item_prototype>
@@ -3060,9 +3060,9 @@ or
                                 </step>
                             </preprocessing>
                             <applications>
-                                <application_prototype>
+                                <application>
                                     <name>NQA P2P</name>
-                                </application_prototype>
+                                </application>
                             </applications>
                         </item_prototype>
                         <item_prototype>
@@ -3084,9 +3084,9 @@ or
                                 </step>
                             </preprocessing>
                             <applications>
-                                <application_prototype>
+                                <application>
                                     <name>NQA P2P</name>
-                                </application_prototype>
+                                </application>
                             </applications>
                         </item_prototype>
                         <item_prototype>
@@ -3108,9 +3108,9 @@ or
                                 </step>
                             </preprocessing>
                             <applications>
-                                <application_prototype>
+                                <application>
                                     <name>NQA P2P</name>
-                                </application_prototype>
+                                </application>
                             </applications>
                         </item_prototype>
                         <item_prototype>
@@ -3132,9 +3132,9 @@ or
                                 </step>
                             </preprocessing>
                             <applications>
-                                <application_prototype>
+                                <application>
                                     <name>NQA P2P</name>
-                                </application_prototype>
+                                </application>
                             </applications>
                         </item_prototype>
                     </item_prototypes>
