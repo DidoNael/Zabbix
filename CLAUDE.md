@@ -1,5 +1,30 @@
 # Guia de Edição de Templates Zabbix
 
+## Versionamento obrigatório
+
+**Antes de qualquer alteração em template**, criar tag de versão:
+
+```bash
+# No diretório do repo local
+git tag vX.Y.Z
+git push origin vX.Y.Z
+```
+
+**Convenção de versão:** `MAJOR.MINOR.PATCH`
+- `PATCH`: correção de bug sem mudança funcional
+- `MINOR`: novo item, trigger ou discovery adicionado
+- `MAJOR`: reestruturação do template ou mudança incompatível
+
+**Workflow obrigatório:**
+1. `git tag vX.Y.Z` antes de editar
+2. Editar e commitar
+3. `git push && git push origin vX.Y.Z`
+
+> Regra: se o template já foi importado em produção, sempre taggear antes — permite rollback via `git checkout vX.Y.Z -- <arquivo>`.
+
+---
+
+
 ## Regras obrigatórias por versão
 
 ### Zabbix 4.4 (`Switch/Huawei/4.4/`)
