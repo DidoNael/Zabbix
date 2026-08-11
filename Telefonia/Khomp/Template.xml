@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2026-08-11T12:21:54Z</date>
+    <groups>
+        <group>
+            <name>E1</name>
+        </group>
+        <group>
+            <name>NETSTREAM</name>
+        </group>
+        <group>
+            <name>Telefonia</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Khomp Gateway E1 - Netstream</template>
+            <name>Khomp Gateway E1 - Netstream</name>
+            <description>Template para monitoramento de Gateways E1 Khomp via SNMP.
+Monitora status dos links E1 e canais dos NAPs (Falha, Livre, Ocupado).
+
+Macros:
+  {$SNMP_COMMUNITY}     — comunidade SNMP (padrao: public)
+  {$NAP_FALHA_ALERTA}   — canais em falha para disparo WARNING (padrao: 1)
+  {$NAP_FALHA_CRITICA}  — canais em falha para disparo HIGH (padrao: 10)</description>
+            <groups>
+                <group>
+                    <name>E1</name>
+                </group>
+                <group>
+                    <name>NETSTREAM</name>
+                </group>
+                <group>
+                    <name>Telefonia</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>E1 Links</name>
+                </application>
+                <application>
+                    <name>NAP Canais</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <!-- ============================================================ -->
+                <!-- DISCOVERY LINK E1                                            -->
+                <!-- ============================================================ -->
+                <discovery_rule>
+                    <name>Discovery Link E1</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#E1DESCLINK}, k3lDeviceLinkDescr.169900]</snmp_oid>
+                    <key>E1.discovery</key>
+                    <delay>1h</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>LINK E1 [{#E1DESCLINK}] - Status</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>KHOMP-MIB::k3lDeviceLinkOperStatus.169900.{#SNMPINDEX}</snmp_oid>
+                            <key>link.status[{#E1DESCLINK}]</key>
+                            <delay>1m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>E1 Links</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>UP / DOWN</name>
+                            </valuemap>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}=0</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()}=1</recovery_expression>
+                                    <name>LINK E1 [{#E1DESCLINK}] - Link inativo (DOWN)</name>
+                                    <priority>DISASTER</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>E1</tag>
+                                            <value>{#E1DESCLINK}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Tipo</tag>
+                                            <value>Link_Down</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+
+                <!-- ============================================================ -->
+                <!-- DISCOVERY NAP                                                 -->
+                <!-- ============================================================ -->
+                <discovery_rule>
+                    <name>Discovery NAP</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#E1DESCNAP}, app.1.1.1.2.1.2]</snmp_oid>
+                    <key>E1.discoverynap</key>
+                    <delay>1h</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <!-- Canais em falha -->
+                        <item_prototype>
+                            <name>NAP [{#E1DESCNAP}] - Canais em Falha</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.32624.3.1.1.1.2.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>nap.falha[{#E1DESCNAP}]</key>
+                            <delay>1m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>canais</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>NAP Canais</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <!-- Trigger 1: qualquer falha -->
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;={$NAP_FALHA_ALERTA} and {last()}&lt;{$NAP_FALHA_CRITICA}</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()}=0</recovery_expression>
+                                    <name>NAP [{#E1DESCNAP}] - Canais com falha ({ITEM.VALUE} canais)</name>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>NAP</tag>
+                                            <value>{#E1DESCNAP}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Tipo</tag>
+                                            <value>Falha_Parcial</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <!-- Trigger 2: falha critica -->
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;={$NAP_FALHA_CRITICA} and {last()}&lt;{last("nap.livre[{#E1DESCNAP}]")}+{last()}</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()}&lt;{$NAP_FALHA_CRITICA}</recovery_expression>
+                                    <name>NAP [{#E1DESCNAP}] - Muitos canais em falha ({ITEM.VALUE} canais)</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>NAP</tag>
+                                            <value>{#E1DESCNAP}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Tipo</tag>
+                                            <value>Falha_Alta</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+
+                        <!-- Canais livres -->
+                        <item_prototype>
+                            <name>NAP [{#E1DESCNAP}] - Canais Livres</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.32624.3.1.1.1.2.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>nap.livre[{#E1DESCNAP}]</key>
+                            <delay>1m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>canais</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>NAP Canais</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <!-- Trigger 3: falha total (nenhum canal livre) -->
+                                <trigger_prototype>
+                                    <expression>{last()}=0 and {last("nap.falha[{#E1DESCNAP}]")}&gt;0</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()}&gt;0</recovery_expression>
+                                    <name>NAP [{#E1DESCNAP}] - FALHA TOTAL: todos os canais em falha</name>
+                                    <priority>DISASTER</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>NAP</tag>
+                                            <value>{#E1DESCNAP}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Tipo</tag>
+                                            <value>Falha_Total</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+
+                        <!-- Canais ocupados -->
+                        <item_prototype>
+                            <name>NAP [{#E1DESCNAP}] - Canais Ocupados</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.32624.3.1.1.1.2.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>nap.ocupado[{#E1DESCNAP}]</key>
+                            <delay>1m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>canais</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>NAP Canais</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>public</value>
+                </macro>
+                <macro>
+                    <macro>{$NAP_FALHA_ALERTA}</macro>
+                    <value>1</value>
+                    <description>Minimo de canais em falha para disparo WARNING</description>
+                </macro>
+                <macro>
+                    <macro>{$NAP_FALHA_CRITICA}</macro>
+                    <value>10</value>
+                    <description>Canais em falha para disparo HIGH</description>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+    <value_maps>
+        <value_map>
+            <name>UP / DOWN</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>down</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>up</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>
