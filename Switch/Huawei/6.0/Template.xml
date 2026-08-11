@@ -2775,6 +2775,154 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </graph_prototype>
                     </graph_prototypes>
                 </discovery_rule>
+
+                <!-- Discovery NQA P2P — DISABLED por default, habilitar por host -->
+                <discovery_rule>
+                    <uuid>4c40fc9540c84fa0a850a686a71ce46f</uuid>
+                    <name>Discovery: NQA P2P</name>
+                    <type>EXTERNAL</type>
+                    <key>nqa_huawei_discovery.sh[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <delay>1h</delay>
+                    <status>DISABLED</status>
+                    <description>Descobre automaticamente todas as instâncias NQA ICMP configuradas no equipamento via HUAWEI-NQA-MIB. Requer nqa_huawei_discovery.sh e nqa_huawei.sh em /usr/lib/zabbix/externalscripts/.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>b7559f610cc94f9b897dc361e41f510b</uuid>
+                            <name>NQA [{#NQA_INSTANCE}]: Dados brutos</name>
+                            <type>EXTERNAL</type>
+                            <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            <delay>60</delay>
+                            <history>1d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <tags>
+                                <tag><tag>Application</tag><value>NQA P2P</value></tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>971d457cfcfb43b4afc615dcdce39818</uuid>
+                            <name>NQA [{#NQA_INSTANCE}]: RTT Mínimo</name>
+                            <type>DEPENDENT</type>
+                            <key>nqa.rtt.min[{#NQA_INSTANCE}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <master_item>
+                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters><parameter>$.rtt_min</parameter></parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag><tag>Application</tag><value>NQA P2P</value></tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>404afdf4a0324110aa825aa703a733d3</uuid>
+                            <name>NQA [{#NQA_INSTANCE}]: RTT Máximo</name>
+                            <type>DEPENDENT</type>
+                            <key>nqa.rtt.max[{#NQA_INSTANCE}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <master_item>
+                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters><parameter>$.rtt_max</parameter></parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag><tag>Application</tag><value>NQA P2P</value></tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f85161b6c7ec41b08c5f5e65fb66f71b</uuid>
+                            <name>NQA [{#NQA_INSTANCE}]: RTT Médio</name>
+                            <type>DEPENDENT</type>
+                            <key>nqa.rtt.avg[{#NQA_INSTANCE}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>ms</units>
+                            <master_item>
+                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters><parameter>$.rtt_avg</parameter></parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag><tag>Application</tag><value>NQA P2P</value></tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>9afd85131c534634af88870f9230ceb3</uuid>
+                            <name>NQA [{#NQA_INSTANCE}]: Perda de pacotes</name>
+                            <type>DEPENDENT</type>
+                            <key>nqa.loss[{#NQA_INSTANCE}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <master_item>
+                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters><parameter>$.loss_pct</parameter></parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag><tag>Application</tag><value>NQA P2P</value></tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <uuid>50e99444432d4d3683b6e090df531d36</uuid>
+                            <expression>avg(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.avg[{#NQA_INSTANCE}],5m)&gt;{$NQA_RTT_WARN}</expression>
+                            <name>Switch Huawei NQA [{#NQA_INSTANCE}]: RTT elevado ({ITEM.VALUE}ms &gt; {$NQA_RTT_WARN}ms)</name>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>c8454cc7700049d1965840a0957e8294</uuid>
+                            <expression>avg(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.avg[{#NQA_INSTANCE}],3m)&gt;{$NQA_RTT_HIGH}</expression>
+                            <name>Switch Huawei NQA [{#NQA_INSTANCE}]: RTT crítico ({ITEM.VALUE}ms &gt; {$NQA_RTT_HIGH}ms)</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>85aef4dd512042548a15ccf008dbd67d</uuid>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/nqa.loss[{#NQA_INSTANCE}])&gt;{$NQA_LOSS_WARN}</expression>
+                            <name>Switch Huawei NQA [{#NQA_INSTANCE}]: Perda de pacotes ({ITEM.VALUE}% &gt; {$NQA_LOSS_WARN}%)</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>2484442ec26041d58b6616130dacc7f3</uuid>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/nqa.loss[{#NQA_INSTANCE}])=100</expression>
+                            <name>Switch Huawei NQA [{#NQA_INSTANCE}]: Link inacessível (100% perda)</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
             </discovery_rules>
             <macros>
                 <macro>
@@ -2797,6 +2945,22 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                     <macro>{$PPPOE_MIN_USERS}</macro>
                     <value>10</value>
                     <description>Minimum active PPPoE users required on interface/domain before triggering mass disconnection alerts</description>
+                </macro>
+                <macro>
+                    <macro>{$NQA_OWNER}</macro>
+                    <value>admin</value>
+                </macro>
+                <macro>
+                    <macro>{$NQA_RTT_WARN}</macro>
+                    <value>50</value>
+                </macro>
+                <macro>
+                    <macro>{$NQA_RTT_HIGH}</macro>
+                    <value>100</value>
+                </macro>
+                <macro>
+                    <macro>{$NQA_LOSS_WARN}</macro>
+                    <value>5</value>
                 </macro>
             </macros>
             <valuemaps>
