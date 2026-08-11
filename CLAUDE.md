@@ -1,13 +1,5 @@
 # Guia de Edição de Templates Zabbix
 
-## Leitura obrigatória antes de editar
-
-Ler os arquivos em `.claude/memory/` antes de qualquer edição ou diagnóstico de import:
-
-- [`.claude/memory/feedback_zabbix_import_prototype_conflict.md`](.claude/memory/feedback_zabbix_import_prototype_conflict.md) — Erro "No permissions to referred object" no import 6.0: causa e solução
-
----
-
 ## Regras obrigatórias por versão
 
 ### Zabbix 4.4 (`Switch/Huawei/4.4/`)
