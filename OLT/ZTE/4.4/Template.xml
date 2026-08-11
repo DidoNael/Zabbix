@@ -1650,13 +1650,13 @@ return s;</params>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.uplink.in[{#SNMPINDEX}]</key>
+                            <key>netstream.uplink.in.bps[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
-                            <units>bps</units>
+                            <units>Bps</units>
+                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>Uplink / LAN OLT</name>
@@ -1666,10 +1666,6 @@ return s;</params>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
                                     <params></params>
-                                </step>
-                                <step>
-                                    <type>MULTIPLIER</type>
-                                    <params>8</params>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1678,13 +1674,13 @@ return s;</params>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.uplink.out[{#SNMPINDEX}]</key>
+                            <key>netstream.uplink.out.bps[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
-                            <units>bps</units>
+                            <units>Bps</units>
+                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>Uplink / LAN OLT</name>
@@ -1694,10 +1690,6 @@ return s;</params>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
                                     <params></params>
-                                </step>
-                                <step>
-                                    <type>MULTIPLIER</type>
-                                    <params>8</params>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1710,8 +1702,8 @@ return s;</params>
                             <delay>1m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
+                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>Uplink / LAN OLT</name>
@@ -1740,6 +1732,176 @@ return s;</params>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME} ({#IFALIAS}): Drops de Entrada</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.13.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.in.drops[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>drops/s</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>Uplink / LAN OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params></params>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.uplink.in.drops[{#SNMPINDEX}].avg(5m)}&gt;10</expression>
+                                    <name>Uplink {#IFNAME} ({#IFALIAS}): Alto volume de drops de entrada (&gt;10/s por 5min)</name>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Drops</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>interface</tag>
+                                            <value>{#IFNAME}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME} ({#IFALIAS}): Drops de Saida</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.19.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.out.drops[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>drops/s</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>Uplink / LAN OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params></params>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.uplink.out.drops[{#SNMPINDEX}].avg(5m)}&gt;10</expression>
+                                    <name>Uplink {#IFNAME} ({#IFALIAS}): Alto volume de drops de saida (&gt;10/s por 5min)</name>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Drops</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>interface</tag>
+                                            <value>{#IFNAME}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME} ({#IFALIAS}): Erros de Entrada</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.in.errors[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>err/s</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>Uplink / LAN OLT</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params></params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME} ({#IFALIAS}): Temperatura SFP</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3902.1082.30.40.2.4.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.temp[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>C</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>Uplink / LAN OLT</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME} ({#IFALIAS}): Sinal TX (dBm)</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3902.1082.30.40.2.4.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.txpower[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>Uplink / LAN OLT</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME} ({#IFALIAS}): Sinal RX (dBm)</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3902.1082.30.40.2.4.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.rxpower[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <port>161</port>
+                            <applications>
+                                <application>
+                                    <name>Uplink / LAN OLT</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
                     </item_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
@@ -1749,14 +1911,14 @@ return s;</params>
                                     <color>1A7C11</color>
                                     <item>
                                         <host>OLT ZTE - NETSTREAM</host>
-                                        <key>netstream.uplink.in[{#SNMPINDEX}]</key>
+                                        <key>netstream.uplink.in.bps[{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
                                     <color>2774A4</color>
                                     <item>
                                         <host>OLT ZTE - NETSTREAM</host>
-                                        <key>netstream.uplink.out[{#SNMPINDEX}]</key>
+                                        <key>netstream.uplink.out.bps[{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
