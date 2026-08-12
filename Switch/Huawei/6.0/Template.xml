@@ -2776,14 +2776,12 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                     </graph_prototypes>
                 </discovery_rule>
 
-                <!-- Discovery NQA P2P — DISABLED por default, habilitar por host -->
                 <discovery_rule>
                     <uuid>4c40fc9540c84fa0a850a686a71ce46f</uuid>
                     <name>Discovery: NQA P2P</name>
                     <type>EXTERNAL</type>
                     <key>nqa_huawei_discovery.sh[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                     <delay>1h</delay>
-                    <status>DISABLED</status>
                     <description>Descobre automaticamente todas as instâncias NQA ICMP configuradas no equipamento via HUAWEI-NQA-MIB. Requer nqa_huawei_discovery.sh e nqa_huawei.sh em /usr/lib/zabbix/externalscripts/.</description>
                     <item_prototypes>
                         <item_prototype>

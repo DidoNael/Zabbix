@@ -3018,13 +3018,11 @@ or
                     </graph_prototypes>
                 </discovery_rule>
 
-                <!-- Discovery NQA P2P — DISABLED por default, habilitar por host -->
                 <discovery_rule>
                     <name>Discovery: NQA P2P</name>
                     <type>EXTERNAL</type>
                     <key>nqa_huawei_discovery.sh[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                     <delay>1h</delay>
-                    <status>DISABLED</status>
                     <description>Descobre automaticamente todas as instâncias NQA ICMP configuradas no equipamento via HUAWEI-NQA-MIB. Requer nqa_huawei_discovery.sh e nqa_huawei.sh em /usr/lib/zabbix/externalscripts/.</description>
                     <item_prototypes>
                         <item_prototype>
