@@ -57,6 +57,6 @@ RTT_MAX=$(get_col 12 "$LAST_TEST"); RTT_MAX=${RTT_MAX:-0}
 RTT_AVG=$(get_col 26 "$LAST_TEST"); RTT_AVG=${RTT_AVG:-0}
 PROBES_RECV=$(get_col 22 "$LAST_TEST"); PROBES_RECV=${PROBES_RECV:-0}
 
-LOSS_PCT=$(python3 -c "s=$PROBES_SENT; r=$PROBES_RECV; print(round((s-r)*100/s,1) if s>0 else 100)")
+LOSS_PCT=$(python3 -c "s=$PROBES_SENT; r=$PROBES_RECV; print(max(0.0, round((s-r)*100/s,1)) if s>0 else 100)")
 
 echo "{\"rtt_min\":${RTT_MIN},\"rtt_max\":${RTT_MAX},\"rtt_avg\":${RTT_AVG},\"probes_sent\":${PROBES_SENT},\"probes_recv\":${PROBES_RECV},\"loss_pct\":${LOSS_PCT}}"
