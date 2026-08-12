@@ -2923,6 +2923,157 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
+                <discovery_rule>
+                    <uuid>4f762033cf224871b12a7a7810dac473</uuid>
+                    <name>Discovery | Network interfaces Virtual</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#IF},1.3.6.1.2.1.2.2.1.2, {#IFALIAS},1.3.6.1.2.1.31.1.1.1.18, {#IFADMIN},1.3.6.1.2.1.2.2.1.7]</snmp_oid>
+                    <key>netstream.ifDescr.virtual</key>
+                    <delay>1d</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>^(Vlanif|Eth-Trunk|LoopBack).*</value>
+                                <operator>MATCHES_REGEX</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFALIAS}</macro>
+                                <value>NOT_USE</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>B</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFALIAS}</macro>
+                                <value>[^[:space:]]+</value>
+                                <operator>MATCHES_REGEX</operator>
+                                <formulaid>C</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFADMIN}</macro>
+                                <value>^1$</value>
+                                <operator>MATCHES_REGEX</operator>
+                                <formulaid>D</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>7d</lifetime>
+                    <description>Monitora interfaces virtuais (Vlanif, Eth-Trunk, LoopBack) com alias preenchido e admin=up. Gera alarme quando o status operacional cai.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>0ffe4333337b4d9fa01e623a7e677bd8</uuid>
+                            <name>Virtual interface status {#IF}: ({#IFALIAS})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.ifOperStatus.virtual[{#IF}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <description>1=up, 2=down, 3=testing, 4=unknown, 5=dormant, 6=notPresent, 7=lowerLayerDown</description>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>InterfaceVirtual</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>c1eb438e6549482da4883f9e5e5abe3d</uuid>
+                                    <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.virtual[{#IF}])<>1</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.ifOperStatus.virtual[{#IF}])=1</recovery_expression>
+                                    <name>Status Interface Virtual {#IF}: ({#IFALIAS})</name>
+                                    <priority>HIGH</priority>
+                                    <description>Interface virtual {#IF} ({#IFALIAS}) está fora do ar (ifOperStatus != up).</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>InterfaceVirtual</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>VirtualInterfaceDown</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Interface</tag>
+                                            <value>{#IF}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alias</tag>
+                                            <value>{#IFALIAS}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>e40859ea3aee40beaaf2c916019487b9</uuid>
+                            <name>Incoming traffic on virtual interface {#IF}: ({#IFALIAS})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>IF-MIB::ifHCInOctets.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.ifHCInOctets.virtual[{#IF}.{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>InterfaceVirtual</value>
+                                </tag>
+                            </tags>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>cc4d32a700c644f097bf1391a24d74d1</uuid>
+                            <name>Outgoing traffic on virtual interface {#IF}: ({#IFALIAS})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>IF-MIB::ifHCOutOctets.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.ifHCOutOctets.virtual[{#IF}.{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>InterfaceVirtual</value>
+                                </tag>
+                            </tags>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
             </discovery_rules>
             <macros>
                 <macro>
