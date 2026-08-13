@@ -154,9 +154,22 @@ Scripts em `/usr/lib/zabbix/externalscripts/`. O Zabbix chama o arquivo diretame
 > No 4.4, `<>` com strings causa erro de importação — confirmado no template DNS Monitor.
 
 **Convenção de nomenclatura de scripts no repositório:**
-- Prefixo `netstream_` em todos os scripts externos (ex: `netstream_dns_check.sh`)
+- Sufixo `_netstream` em todos os scripts externos (ex: `nqa_huawei_netstream.sh`, `discovery_huawei_optical_netstream.sh`)
 - Macros com sufixo `_NETSTREAM` (ex: `{$DNS_SERVERS_NETSTREAM}`)
 - Nome do template com sufixo ` - Netstream` (ex: `Template DNS Monitor - Netstream`)
+
+**Header obrigatório em todo script novo ou renomeado:**
+```bash
+# =============================================================================
+# Empresa  : Netstream Telecomunicações
+# Site     : netstream.net.br
+# Contato  : (11) 95990-4100
+# Email    : suporte@netstream.net.br
+# Repo     : https://github.com/DidoNael/zabbix-templates
+# =============================================================================
+```
+
+> Regra: ao criar ou renomear qualquer script, incluir o header acima logo após o `#!/bin/bash`.
 
 ---
 
