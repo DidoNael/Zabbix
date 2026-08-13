@@ -3435,6 +3435,50 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                                 <tag><tag>Application</tag><value>NQA P2P</value></tag>
                             </tags>
                         </item_prototype>
+                        <item_prototype>
+                            <uuid>18d0b20845384738b11dd71538e95bd8</uuid>
+                            <name>NQA [{#NQA_INSTANCE}]: Probes enviados</name>
+                            <type>DEPENDENT</type>
+                            <key>nqa.sent[{#NQA_INSTANCE}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <master_item>
+                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters><parameter>$.probes_sent</parameter></parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag><tag>Application</tag><value>NQA P2P</value></tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>bf962ab901504fc3934900d60bbc8027</uuid>
+                            <name>NQA [{#NQA_INSTANCE}]: Probes recebidos</name>
+                            <type>DEPENDENT</type>
+                            <key>nqa.recv[{#NQA_INSTANCE}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>UNSIGNED</value_type>
+                            <master_item>
+                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters><parameter>$.probes_recv</parameter></parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag><tag>Application</tag><value>NQA P2P</value></tag>
+                            </tags>
+                        </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
@@ -3443,6 +3487,36 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <name>Switch Huawei NQA [{#NQA_INSTANCE}]: RTT elevado ({ITEM.VALUE}ms &gt; {$NQA_RTT_WARN}ms)</name>
                             <priority>WARNING</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>nqa_instancia</tag>
+                                    <value>{#NQA_INSTANCE}</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_min</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.min[{#NQA_INSTANCE}])}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_avg</tag>
+                                    <value>{ITEM.VALUE}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_max</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.max[{#NQA_INSTANCE}])}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_loss</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.loss[{#NQA_INSTANCE}])}%</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_sent</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.sent[{#NQA_INSTANCE}])}</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_recv</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.recv[{#NQA_INSTANCE}])}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>c8454cc7700049d1965840a0957e8294</uuid>
@@ -3450,6 +3524,36 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <name>Switch Huawei NQA [{#NQA_INSTANCE}]: RTT crítico ({ITEM.VALUE}ms &gt; {$NQA_RTT_HIGH}ms)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>nqa_instancia</tag>
+                                    <value>{#NQA_INSTANCE}</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_min</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.min[{#NQA_INSTANCE}])}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_avg</tag>
+                                    <value>{ITEM.VALUE}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_max</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.max[{#NQA_INSTANCE}])}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_loss</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.loss[{#NQA_INSTANCE}])}%</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_sent</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.sent[{#NQA_INSTANCE}])}</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_recv</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.recv[{#NQA_INSTANCE}])}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>85aef4dd512042548a15ccf008dbd67d</uuid>
@@ -3457,6 +3561,36 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <name>Switch Huawei NQA [{#NQA_INSTANCE}]: Perda de pacotes ({ITEM.VALUE}% &gt; {$NQA_LOSS_WARN}%)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>nqa_instancia</tag>
+                                    <value>{#NQA_INSTANCE}</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_loss</tag>
+                                    <value>{ITEM.VALUE}%</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_min</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.min[{#NQA_INSTANCE}])}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_avg</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.avg[{#NQA_INSTANCE}])}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_max</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.max[{#NQA_INSTANCE}])}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_sent</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.sent[{#NQA_INSTANCE}])}</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_recv</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.recv[{#NQA_INSTANCE}])}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>2484442ec26041d58b6616130dacc7f3</uuid>
@@ -3464,6 +3598,36 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <name>Switch Huawei NQA [{#NQA_INSTANCE}]: Link inacessível (100% perda)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>nqa_instancia</tag>
+                                    <value>{#NQA_INSTANCE}</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_loss</tag>
+                                    <value>{ITEM.VALUE}%</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_min</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.min[{#NQA_INSTANCE}])}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_avg</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.avg[{#NQA_INSTANCE}])}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_rtt_max</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.rtt.max[{#NQA_INSTANCE}])}ms</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_sent</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.sent[{#NQA_INSTANCE}])}</value>
+                                </tag>
+                                <tag>
+                                    <tag>nqa_recv</tag>
+                                    <value>{?last(/Template Switch Huawei 6700 Series - Netstream/nqa.recv[{#NQA_INSTANCE}])}</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
                 </discovery_rule>
