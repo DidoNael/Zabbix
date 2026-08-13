@@ -38,13 +38,13 @@
                 <discovery_rule>
                     <name>Descoberta de Servicos Web e Jogos (IX vs Transito)</name>
                     <type>EXTERNAL</type>
-                    <key>discovery_isp_services.sh["{}"]</key>
+                    <key>discovery_isp_services_netstream.sh["{}"]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
                             <name>[{#CATEGORY}] {#NAME}: Coleta Bruta Experiencia e Rota</name>
                             <type>EXTERNAL</type>
-                            <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                            <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             <delay>1m</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -75,7 +75,7 @@
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                                <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -98,7 +98,7 @@
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                                <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -121,7 +121,7 @@
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                                <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -144,7 +144,7 @@
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                                <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -167,7 +167,7 @@
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                                <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -190,7 +190,7 @@
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                                <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -214,7 +214,7 @@
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                                <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -238,7 +238,7 @@
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                                <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -262,7 +262,7 @@
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                                <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -286,7 +286,7 @@
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>monitor_isp_experience.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
+                                <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
                             </master_item>
                         </item_prototype>
                     </item_prototypes>

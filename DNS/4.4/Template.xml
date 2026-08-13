@@ -52,7 +52,7 @@
                         <item_prototype>
                             <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - RCODE</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;rcode&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
+                            <key>netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;rcode&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
                             <delay>1m</delay>
                             <value_type>CHAR</value_type>
                             <applications>
@@ -64,7 +64,7 @@
                         <item_prototype>
                             <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Resultado</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;result&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
+                            <key>netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;result&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
                             <delay>1m</delay>
                             <value_type>CHAR</value_type>
                             <applications>
@@ -76,7 +76,7 @@
                         <item_prototype>
                             <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Status</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;status&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
+                            <key>netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;status&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
                             <delay>1m</delay>
                             <value_type>UINT64</value_type>
                             <applications>
@@ -88,7 +88,7 @@
                         <item_prototype>
                             <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Tempo de Resposta</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;time&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
+                            <key>netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;time&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
                             <delay>1m</delay>
                             <value_type>UINT64</value_type>
                             <units>ms</units>
@@ -99,12 +99,12 @@
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;time&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;].last()}&gt;{$DNS_CRIT_TIME_NETSTREAM}</expression>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;time&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;].last()}&gt;{$DNS_CRIT_TIME_NETSTREAM}</expression>
                                     <name>DNS [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Tempo critico (&gt;{$DNS_CRIT_TIME_NETSTREAM}ms)</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;time&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;].last()}&gt;{$DNS_WARN_TIME_NETSTREAM}</expression>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;dig&quot;,&quot;time&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;].last()}&gt;{$DNS_WARN_TIME_NETSTREAM}</expression>
                                     <name>DNS [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Tempo elevado (&gt;{$DNS_WARN_TIME_NETSTREAM}ms)</name>
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
@@ -113,7 +113,7 @@
                         <item_prototype>
                             <name>DNS NSLOOKUP [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Status</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;nslookup&quot;,&quot;status&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
+                            <key>netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;nslookup&quot;,&quot;status&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
                             <delay>1m</delay>
                             <value_type>UINT64</value_type>
                             <applications>
@@ -123,7 +123,7 @@
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;nslookup&quot;,&quot;status&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;].last()}=0</expression>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;nslookup&quot;,&quot;status&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;].last()}=0</expression>
                                     <name>DNS [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Falha de resolucao</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>
@@ -132,7 +132,7 @@
                         <item_prototype>
                             <name>DNS NSLOOKUP [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Tempo de Resposta</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;nslookup&quot;,&quot;time&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
+                            <key>netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;nslookup&quot;,&quot;time&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;]</key>
                             <delay>1m</delay>
                             <value_type>UINT64</value_type>
                             <units>ms</units>

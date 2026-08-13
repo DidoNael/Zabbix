@@ -16,7 +16,7 @@
             <name>Template DNS Monitor - Netstream</name>
             <description>Monitora servidores DNS via DIG com LLD.
 Pre-requisitos no servidor Zabbix:
-  - netstream_dns_check.sh em /usr/lib/zabbix/externalscripts/
+  - netstream_dns_check_netstream.sh em /usr/lib/zabbix/externalscripts/
   - netstream_dns_discover.py em /usr/lib/zabbix/externalscripts/
   - Pacotes: bind-utils (dig), python3
 Compativel com: Zabbix 4.4</description>
@@ -75,7 +75,7 @@ Compativel com: Zabbix 4.4</description>
                         <item_prototype>
                             <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Tempo de Resposta</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"]</key>
+                            <key>netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>30d</trends>
@@ -90,7 +90,7 @@ Compativel com: Zabbix 4.4</description>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"].last()}>{$DNS_CRIT_TIME_NETSTREAM}</expression>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"].last()}>{$DNS_CRIT_TIME_NETSTREAM}</expression>
                                     <name>DNS DIG lento CRITICAL: {#DNS_SERVER} para {#DNS_DOMAIN} ({#DNS_TYPE}) &gt; {$DNS_CRIT_TIME_NETSTREAM}ms</name>
                                     <priority>HIGH</priority>
                                     <description>Tempo de resposta DIG acima do limiar CRITICAL ({$DNS_CRIT_TIME_NETSTREAM} ms).</description>
@@ -103,7 +103,7 @@ Compativel com: Zabbix 4.4</description>
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"].last()}>{$DNS_WARN_TIME_NETSTREAM} and {Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"].last()}&lt;={$DNS_CRIT_TIME_NETSTREAM}</expression>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"].last()}>{$DNS_WARN_TIME_NETSTREAM} and {Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"].last()}&lt;={$DNS_CRIT_TIME_NETSTREAM}</expression>
                                     <name>DNS DIG lento WARNING: {#DNS_SERVER} para {#DNS_DOMAIN} ({#DNS_TYPE}) &gt; {$DNS_WARN_TIME_NETSTREAM}ms</name>
                                     <priority>WARNING</priority>
                                     <description>Tempo de resposta DIG acima do limiar WARNING ({$DNS_WARN_TIME_NETSTREAM} ms).</description>
@@ -121,7 +121,7 @@ Compativel com: Zabbix 4.4</description>
                         <item_prototype>
                             <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Status</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","status","{$DNS_TIMEOUT_NETSTREAM}"]</key>
+                            <key>netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","status","{$DNS_TIMEOUT_NETSTREAM}"]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>30d</trends>
@@ -138,7 +138,7 @@ Compativel com: Zabbix 4.4</description>
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","status","{$DNS_TIMEOUT_NETSTREAM}"].last()}=0</expression>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","status","{$DNS_TIMEOUT_NETSTREAM}"].last()}=0</expression>
                                     <name>DNS DIG falhou: {#DNS_SERVER} nao resolveu {#DNS_DOMAIN} ({#DNS_TYPE})</name>
                                     <priority>AVERAGE</priority>
                                     <description>A consulta DIG nao retornou resposta valida.</description>
@@ -156,7 +156,7 @@ Compativel com: Zabbix 4.4</description>
                         <item_prototype>
                             <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - RCODE</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"]</key>
+                            <key>netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>0</trends>
@@ -170,7 +170,7 @@ Compativel com: Zabbix 4.4</description>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"].str(NOERROR)}=0</expression>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"].str(NOERROR)}=0</expression>
                                     <name>DNS DIG RCODE anormal: {#DNS_SERVER} retornou {ITEM.LASTVALUE} para {#DNS_DOMAIN} ({#DNS_TYPE})</name>
                                     <priority>WARNING</priority>
                                     <description>O servidor DNS retornou codigo de erro diferente de NOERROR.</description>
@@ -188,7 +188,7 @@ Compativel com: Zabbix 4.4</description>
                         <item_prototype>
                             <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Resultado</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","result","{$DNS_TIMEOUT_NETSTREAM}"]</key>
+                            <key>netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","result","{$DNS_TIMEOUT_NETSTREAM}"]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>0</trends>
@@ -205,7 +205,7 @@ Compativel com: Zabbix 4.4</description>
                         <item_prototype>
                             <name>DNS DIG [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Qtd. Respostas</name>
                             <type>EXTERNAL</type>
-                            <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"]</key>
+                            <key>netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"]</key>
                             <delay>60</delay>
                             <history>7d</history>
                             <trends>30d</trends>
@@ -219,7 +219,7 @@ Compativel com: Zabbix 4.4</description>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"].last()}=0 and {Template DNS Monitor - Netstream:netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"].str(NOERROR)}=1</expression>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"].last()}=0 and {Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"].str(NOERROR)}=1</expression>
                                     <name>DNS DIG: {#DNS_SERVER} retornou NOERROR sem respostas para {#DNS_DOMAIN} ({#DNS_TYPE})</name>
                                     <priority>WARNING</priority>
                                     <description>NOERROR com 0 respostas pode indicar redirecionamento indevido ou registro ausente.</description>
@@ -245,7 +245,7 @@ Compativel com: Zabbix 4.4</description>
                                     <color>1A7C11</color>
                                     <item>
                                         <host>Template DNS Monitor - Netstream</host>
-                                        <key>netstream_dns_check.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"]</key>
+                                        <key>netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
