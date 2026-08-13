@@ -165,7 +165,12 @@ Scripts em `/usr/lib/zabbix/externalscripts/`. O Zabbix chama o arquivo diretame
 # Site     : netstream.net.br
 # Contato  : (11) 95990-4100
 # Email    : suporte@netstream.net.br
-# Repo     : https://github.com/DidoNael/zabbix-templates
+#
+# AVISO DE PROPRIEDADE INTELECTUAL
+# Este script é propriedade exclusiva da Netstream Telecomunicações.
+# É proibida a cópia, distribuição, modificação ou qualquer uso sem
+# autorização prévia e por escrito da Netstream Telecomunicações.
+# Todos os direitos reservados.
 # =============================================================================
 ```
 
