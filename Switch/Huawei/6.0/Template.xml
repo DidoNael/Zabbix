@@ -3561,6 +3561,8 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <name>Switch Huawei NQA [{#NQA_INSTANCE}]: Perda de pacotes ({ITEM.VALUE}% &gt; {$NQA_LOSS_WARN}%)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>max(/Template Switch Huawei 6700 Series - Netstream/nqa.loss[{#NQA_INSTANCE}],1h)&lt;={$NQA_LOSS_WARN}</recovery_expression>
                             <tags>
                                 <tag>
                                     <tag>nqa_instancia</tag>
@@ -3598,6 +3600,8 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <name>Switch Huawei NQA [{#NQA_INSTANCE}]: Link inacessível (100% perda)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>max(/Template Switch Huawei 6700 Series - Netstream/nqa.loss[{#NQA_INSTANCE}],1h)&lt;100</recovery_expression>
                             <tags>
                                 <tag>
                                     <tag>nqa_instancia</tag>
