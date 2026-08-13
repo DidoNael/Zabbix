@@ -268,6 +268,12 @@
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerAdminStatus[{#IP}.{#ASN}]</key>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>c64d818eac7041979044ef4ccab30698</uuid>
@@ -276,6 +282,12 @@
                             <snmp_oid>1.3.6.1.2.1.15.3.1.16.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerFsmEstablishedTime.[{#IP}.{#ASN}]</key>
                             <units>uptime</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>7ef44fdb8c2e462fafa3d63f58e382ec</uuid>
@@ -284,6 +296,12 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.1.1.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerIPv4Routes[{#IP}.{#ASN}]</key>
                             <units>prefixes</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8b1e2cf5272f4b03986dd0422b944004</uuid>
@@ -293,6 +311,12 @@
                             <key>netstream.BgpPeerRemoteAs[{#IP}.{#ASN}]</key>
                             <trends>365d</trends>
                             <value_type>CHAR</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>538e07f65700435db11cde5773f0d923</uuid>
@@ -300,6 +324,12 @@
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.2.1.15.3.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerState.[{#IP}.{#ASN}]</key>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>ae84765b041f4e219f67efc201a2f947</uuid>
@@ -309,6 +339,12 @@
                             <delay>1h</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -363,6 +399,12 @@
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}]</key>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>2127bcb3a40047b484564e0360fc4ac7</uuid>
@@ -371,6 +413,12 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerFsmEstablishedTimeV6.[{#IP}.{#ASN}]</key>
                             <units>uptime</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>0a989d8f066643f3963728d2ae215473</uuid>
@@ -379,6 +427,12 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.0.2.1.2.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerIPv6Routes[{#IP}.{#ASN}]</key>
                             <units>prefixes</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8784397985b443b29e3f97492e174757</uuid>
@@ -388,6 +442,12 @@
                             <key>netstream.BgpPeerRemoteAsV6[{#IP}.{#ASN}]</key>
                             <trends>365d</trends>
                             <value_type>CHAR</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>5028892cba7442e39bd1c51af871b8c8</uuid>
@@ -395,6 +455,12 @@
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.1.2.1.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.BgpPeerStateV6.[{#IP}.{#ASN}]</key>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>19d52635eba8469480f25c015aaa9336</uuid>
@@ -404,6 +470,12 @@
                             <delay>1h</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BGP</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -459,6 +531,12 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.17.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.state[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BFD</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>9fa0f3c08b4643b59aa46c0d42336693</uuid>
@@ -467,6 +545,12 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.18.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.diag[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BFD</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>55013b77e2bb4ffeaa095a563e615f27</uuid>
@@ -475,6 +559,12 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.9.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.remote_discr[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BFD</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>21cb5644d33a4f9dae0550ab249424ae</uuid>
@@ -483,6 +573,12 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.application[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BFD</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>59a5f59853c546ea955db318090aeda3</uuid>
@@ -491,6 +587,12 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.38.2.3.1.22.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.bfd.addr_type[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>BFD</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -557,6 +659,12 @@
                             <history>90d</history>
                             <trends>365d</trends>
                             <units>C</units>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Temperature</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>31a645cc8be24d80bc6b8200d44c201e</uuid>
@@ -705,6 +813,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>bccafa99c9a542ca8e191b6c6b5e1e63</uuid>
@@ -728,6 +842,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <graph_prototypes>
@@ -769,6 +889,12 @@
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.8.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.mtu.[{#IFNB}.{#SNMPINDEX}]</key>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>4530a659b3f64fffa31be95c4c93c83a</uuid>
@@ -776,6 +902,12 @@
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.155.6.1.10.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.state[{#IFNB}.{#SNMPINDEX}]</key>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>1e23c691fac84ed4af9bf8174e600d39</uuid>
@@ -810,6 +942,12 @@
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.155.6.1.13.1.0.0.0.0.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.ospf.uptime.[{#IFNB}.{#SNMPINDEX}]</key>
                             <units>s</units>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>ecd895692a9e4326bb068717600d8c3b</uuid>
@@ -847,6 +985,12 @@
                             <key>netstream.ospf.uptime2[{#IFNB}.{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <units>s</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPF</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
@@ -867,6 +1011,12 @@
                             <key>netstream.hwAvgDuty1min.[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>CPU</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>24beb51a4444483ea3a65ed1226b3f99</uuid>
@@ -876,6 +1026,12 @@
                             <key>netstream.hwAvgDuty5min.[{#SNMPINDEX}]</key>
                             <delay>60</delay>
                             <units>%</units>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>CPU</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>9e9f9fca4373476db209560885af9728</uuid>
@@ -984,6 +1140,12 @@
                             <units>%</units>
                             <status>DISABLED</status>
                             <description>Uso de CPU para roteadores Huawei NetEngine (NE20/NE40). HUAWEI-ENTITY-EXTENT-MIB::hwEntityCpuUsage.</description>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>CPU</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>744cd88977e44d4b8597a38426423817</uuid>
@@ -1052,6 +1214,12 @@
                             <history>7d</history>
                             <trends>3d</trends>
                             <units>%</units>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Fan</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>0b8619ac76284bfe8481b7a2393ed320</uuid>
@@ -1090,6 +1258,12 @@
                             <delay>300</delay>
                             <history>7d</history>
                             <trends>3d</trends>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Fan</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>358db683b254460e98a89a2f4e5d5b67</uuid>
@@ -1137,6 +1311,12 @@
                             <key>netstream.hwEntityPwrPresente.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <trends>365d</trends>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Power</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>7c45eeb8b03a401397ff25322103a05e</uuid>
@@ -1146,6 +1326,12 @@
                             <key>netstream.hwEntityPwrState.discovery[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <trends>365d</trends>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Power</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>d15fed1468754ea49d737e37e554f6c1</uuid>
@@ -1183,6 +1369,12 @@
                             <delay>5m</delay>
                             <trends>365d</trends>
                             <units>watts</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Power</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>9311ca11abeb4f3f87325a0a84742c4a</uuid>
@@ -1192,6 +1384,12 @@
                             <key>netstream.hwEntityPwrMode.discovery[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
                             <trends>365d</trends>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Power</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>3b579fe989104cc2b8bc43e7072f5b1f</uuid>
@@ -1202,6 +1400,12 @@
                             <delay>5m</delay>
                             <trends>365d</trends>
                             <units>watts</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Power</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
@@ -1222,6 +1426,12 @@
                             <delay>1m</delay>
                             <trends>365d</trends>
                             <units>watts</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Power</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
@@ -1260,6 +1470,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>34ced4e2c90a4f418b0e978ab8fdd360</uuid>
@@ -1308,6 +1524,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>e1f49ef8ab574b569bd75da6e7f8e6fa</uuid>
@@ -1327,6 +1549,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>03683e9b93c14e54b08921e882e0a0a5</uuid>
@@ -1347,6 +1575,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>0d88532170c24cf4b4bb9ea062a3df1f</uuid>
@@ -1367,6 +1601,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>fb3d9255319347e98b9162baddb88aff</uuid>
@@ -1387,6 +1627,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6e9841b4c67641509d9f5dca03b633cf</uuid>
@@ -1399,6 +1645,12 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6ebfe986fff64693908e88606cbb9523</uuid>
@@ -1408,6 +1660,12 @@
                             <key>netstream.hwEntityOpticalTransferDistance.[{#ENTPHYSICALNAME}]</key>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>718b5da99c664dc2a560eed78bf0a3a8</uuid>
@@ -1428,6 +1686,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>b328265ee36f495694c759ce700fe0fd</uuid>
@@ -1448,6 +1712,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>71db6a4e194d4df4b183602befe6f5e1</uuid>
@@ -1468,6 +1738,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>9595cb06e60e4b7ba90a01d8c94ca081</uuid>
@@ -1488,6 +1764,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>95b5e25c4fa04c1886ebb9baf5bf6d4f</uuid>
@@ -1499,6 +1781,12 @@
                             <history>365d</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>a8e6c7e8b8da4185ae576db66649c495</uuid>
@@ -1510,6 +1798,12 @@
                             <history>1w</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>5245f83daddb45fe9c095ceeb8cbb86c</uuid>
@@ -1521,6 +1815,12 @@
                             <history>7d</history>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -1573,6 +1873,12 @@
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>30d</trends>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Memory</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8dc09a1e8cdd404eb34824ea5915aaaa</uuid>
@@ -1583,6 +1889,12 @@
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>30d</trends>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Memory</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>db56314a5bf04cdca155fd6dc60fd8f6</uuid>
@@ -1595,6 +1907,12 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>B</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Memory</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>cfaf8560f34943e3a9de172a97426304</uuid>
@@ -1607,6 +1925,12 @@
                             <value_type>FLOAT</value_type>
                             <units>B</units>
                             <params>last(//netstream.hwMemoryDevSize[{#SNMPINDEX}])-last(//netstream.hwMemoryDevFree[{#SNMPINDEX}])</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Memory</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>1f595e0bdf414e07817dd4cd51be2c47</uuid>
@@ -1619,6 +1943,12 @@
                             <trends>30d</trends>
                             <value_type>FLOAT</value_type>
                             <units>B</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Memory</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>bf85b95875a14ebaa23f4fb513f02716</uuid>
@@ -1631,6 +1961,12 @@
                             <value_type>FLOAT</value_type>
                             <units>%</units>
                             <params>last(//netstream.hwMemoryDevFree[{#SNMPINDEX}])/last(//netstream.hwMemoryDevSize[{#SNMPINDEX}])*100</params>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Memory</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>fbb2943aadef40a083967c433962ddba</uuid>
@@ -1690,6 +2026,12 @@
                             <value_type>FLOAT</value_type>
                             <units>%</units>
                             <params>(last(//netstream.hwMemoryDevSize[{#SNMPINDEX}])-last(//netstream.hwMemoryDevFree[{#SNMPINDEX}]))/last(//netstream.hwMemoryDevSize[{#SNMPINDEX}])*100</params>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Memory</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>1ecc80e87e9c46c88d607cfe8543f66c</uuid>
@@ -1858,6 +2200,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>c9a064b315c9453bb298e717f2827f8a</uuid>
@@ -1882,6 +2230,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>a75410cc309f4fb0bef51e75ab476e82</uuid>
@@ -1901,6 +2255,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>afc49e475cc14c6d8488e4aa88c95e75</uuid>
@@ -1911,6 +2271,12 @@
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>The current operational state of the interface.</description>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>5e7b8869a2ef4a2cb6c8032074563229</uuid>
@@ -1964,6 +2330,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>c6dce60fdd31403097202a02feaf9163</uuid>
@@ -1982,6 +2354,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6e0028fd94ca4ea2a2ea72d2962b0389</uuid>
@@ -1993,6 +2371,12 @@
                             <history>1w</history>
                             <trends>365d</trends>
                             <description>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</description>
+                                                        <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>db0403b9d62946f09d538f3bc08d173e</uuid>
@@ -2165,6 +2549,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>15c0d5bb3aa74e559f5249485fd84c03</uuid>
@@ -2191,6 +2581,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>e19b8c8af3114391be4a4b5cebee94d3</uuid>
@@ -2217,6 +2613,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>7eaeb6d4841143e1a4238f69bcf7c892</uuid>
@@ -2243,6 +2645,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>63e74d0149674ecd82e4a915fbb8d481</uuid>
@@ -2269,6 +2677,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6c9b26a7abc04975ae0f242e3f938050</uuid>
@@ -2295,6 +2709,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>b84344d3ac1c42829247d8b35c2bff20</uuid>
@@ -2321,6 +2741,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>dbabb4db61af4f4a81c045719e036aa9</uuid>
@@ -2347,6 +2773,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>fd7128f84b6c4df99137786c4595f694</uuid>
@@ -2356,6 +2788,12 @@
                             <key>netstream.hwEntityOpticalmultilanTransferDistance.[{#ENTPHYSICALNAME}]</key>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>51d908fa43ea49f2b6d10ea9507a07d2</uuid>
@@ -2374,6 +2812,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>54d2776bd07843d0bd44be680e3647a9</uuid>
@@ -2393,6 +2837,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>81bcd64bed484f5192ab91513e5870ac</uuid>
@@ -2413,6 +2863,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>099fdb302f654604b2e16a6eab790424</uuid>
@@ -2431,6 +2887,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>1986f5b7ed904d0ab2c6fe62b26a16a0</uuid>
@@ -2443,6 +2905,12 @@
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>2b2f65947f0845909dd4d8bcb9b01d0a</uuid>
@@ -2462,6 +2930,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>31a3306d968549c187716bc7945d4622</uuid>
@@ -2480,6 +2954,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>24a1255c4cd94008b0f8b8c2c9aec933</uuid>
@@ -2498,6 +2978,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>259e3d90d0ab4316847c32304a26a281</uuid>
@@ -2516,6 +3002,12 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>261ae9f9b43b48e0b2f36834cae7461c</uuid>
@@ -2527,6 +3019,12 @@
                             <history>365d</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>3437f9e1919a44a3a0f35fb9cce8826c</uuid>
@@ -2538,6 +3036,12 @@
                             <history>7d</history>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>25ffe16e405b44a1a1d322990e8e84ff</uuid>
@@ -2549,6 +3053,12 @@
                             <history>7d</history>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Optical</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -2609,6 +3119,12 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <history>30d</history>
                             <trends>365d</trends>
                             <units>users</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>PPPoE</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>52e72b1843954a7ea62636ab92cb0f37</uuid>
@@ -2620,6 +3136,12 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <trends>365d</trends>
                             <units>users</units>
                             <params>max(//netstream.pppoe.domain.users[{#SNMPINDEX}],1d)</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>PPPoE</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>09eb2d28dfa24279a9d0d40ff221ce3b</uuid>
@@ -2631,6 +3153,12 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <trends>365d</trends>
                             <units>users</units>
                             <params>min(//netstream.pppoe.domain.users[{#SNMPINDEX}],1d)</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>PPPoE</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -2700,6 +3228,12 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <history>30d</history>
                             <trends>365d</trends>
                             <units>users</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>PPPoE</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>20dd4140886a42529e98726a6ba43289</uuid>
@@ -2711,6 +3245,12 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <trends>365d</trends>
                             <units>users</units>
                             <params>max(//netstream.pppoe.interface.users[{#SNMPINDEX}],1d)</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>PPPoE</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>b8c6bfea243f4cc5a9e54f255f26ba70</uuid>
@@ -2722,6 +3262,12 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <trends>365d</trends>
                             <units>users</units>
                             <params>min(//netstream.pppoe.interface.users[{#SNMPINDEX}],1d)</params>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>PPPoE</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
