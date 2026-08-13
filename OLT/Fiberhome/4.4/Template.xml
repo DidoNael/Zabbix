@@ -14,6 +14,14 @@
         <template>
             <template>Template SNMP OLT FiberHome - NETSTREAM</template>
             <name>Template SNMP OLT FiberHome - NETSTREAM</name>
+            <description>Netstream Telecomunicações — netstream.net.br
+Contato: (11) 95990-4100 | suporte@netstream.net.br
+
+AVISO DE PROPRIEDADE INTELECTUAL
+Este template é propriedade exclusiva da Netstream Telecomunicações.
+É proibida a cópia, distribuição, modificação ou qualquer uso sem
+autorização prévia e por escrito da Netstream Telecomunicações.
+Todos os direitos reservados.</description>
             <groups>
                 <group>
                     <name>Templates</name>

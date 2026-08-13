@@ -155,8 +155,22 @@ Scripts em `/usr/lib/zabbix/externalscripts/`. O Zabbix chama o arquivo diretame
 
 **Convenção de nomenclatura de scripts no repositório:**
 - Sufixo `_netstream` em todos os scripts externos (ex: `nqa_huawei_netstream.sh`, `discovery_huawei_optical_netstream.sh`)
+- Sufixo `_netstream` nas **keys de itens e discovery rules** que referenciam scripts externos (ex: `nqa_huawei_netstream.sh[{HOST.IP},...]`, `discovery_isp_services_netstream.sh["{}"]`)
+- Prefixo `netstream.` nas **keys de itens internos** sempre que criar um item novo em template próprio (ex: `netstream.gpon.onu.online[{#SNMPINDEX}]`)
 - Macros com sufixo `_NETSTREAM` (ex: `{$DNS_SERVERS_NETSTREAM}`)
 - Nome do template com sufixo ` - Netstream` (ex: `Template DNS Monitor - Netstream`)
+
+**Description obrigatória em todo template novo ou editado:**
+```
+Netstream Telecomunicações — netstream.net.br
+Contato: (11) 95990-4100 | suporte@netstream.net.br
+
+AVISO DE PROPRIEDADE INTELECTUAL
+Este template é propriedade exclusiva da Netstream Telecomunicações.
+É proibida a cópia, distribuição, modificação ou qualquer uso sem
+autorização prévia e por escrito da Netstream Telecomunicações.
+Todos os direitos reservados.
+```
 
 **Header obrigatório em todo script novo ou renomeado:**
 ```bash

@@ -17,7 +17,14 @@
             <uuid>b8e2f1a3c4d5e6f7a8b9c0d1e2f3a4b5</uuid>
             <template>Template OSPF Generic - Netstream</template>
             <name>Template OSPF Generic - Netstream</name>
-            <description>Template genérico para monitoramento OSPF via SNMP (RFC 1850 - OSPF-MIB). Compatível com qualquer fabricante que suporte OSPF-MIB padrão (Huawei, Cisco, Mikrotik, Juniper, etc).</description>
+            <description>Netstream Telecomunicações — netstream.net.br
+Contato: (11) 95990-4100 | suporte@netstream.net.br
+
+AVISO DE PROPRIEDADE INTELECTUAL
+Este template é propriedade exclusiva da Netstream Telecomunicações.
+É proibida a cópia, distribuição, modificação ou qualquer uso sem
+autorização prévia e por escrito da Netstream Telecomunicações.
+Todos os direitos reservados.</description>
             <groups>
                 <group>
                     <name>Templates/Network devices</name>
