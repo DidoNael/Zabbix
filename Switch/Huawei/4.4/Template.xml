@@ -3193,39 +3193,6 @@ or
                                     <name>Interfaces</name>
                                 </application>
                             </applications>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <expression>{last(0)}&lt;&gt;1</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{last(0)}=1</recovery_expression>
-                                    <name>Status Interface Virtual {#IF}: ({#IFALIAS})</name>
-                                    <priority>HIGH</priority>
-                                    <description>Interface virtual {#IF} ({#IFALIAS}) está fora do ar (ifOperStatus != up).</description>
-                                    <manual_close>YES</manual_close>
-                                    <tags>
-                                        <tag>
-                                            <tag>Scope</tag>
-                                            <value>InterfaceVirtual</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alert</tag>
-                                            <value>VirtualInterfaceDown</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Severity</tag>
-                                            <value>High</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Interface</tag>
-                                            <value>{#IF}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Alias</tag>
-                                            <value>{#IFALIAS}</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>Incoming traffic on virtual interface {#IF}: ({#IFALIAS})</name>
