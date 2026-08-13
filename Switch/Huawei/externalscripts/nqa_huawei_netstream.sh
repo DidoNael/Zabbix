@@ -1,6 +1,18 @@
 #!/bin/bash
-# nqa_huawei.sh — Coleta resultados NQA ICMP da HUAWEI-NQA-MIB
-# Uso: nqa_huawei.sh <host> <community> <owner> <instance>
+# =============================================================================
+# Empresa  : Netstream Telecomunicações
+# Site     : netstream.net.br
+# Contato  : (11) 95990-4100
+# Email    : suporte@netstream.net.br
+#
+# AVISO DE PROPRIEDADE INTELECTUAL
+# Este script é propriedade exclusiva da Netstream Telecomunicações.
+# É proibida a cópia, distribuição, modificação ou qualquer uso sem
+# autorização prévia e por escrito da Netstream Telecomunicações.
+# Todos os direitos reservados.
+# =============================================================================
+# nqa_huawei_netstream.sh — Coleta resultados NQA ICMP da HUAWEI-NQA-MIB
+# Uso: nqa_huawei_netstream.sh <host> <community> <owner> <instance>
 # Retorno: JSON com rtt_min, rtt_max, rtt_avg, probes_sent, probes_recv, loss_pct
 
 HOST="$1"

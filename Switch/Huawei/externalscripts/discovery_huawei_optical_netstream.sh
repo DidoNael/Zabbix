@@ -1,9 +1,20 @@
 #!/bin/bash
-# ==============================================================================
-# Script: discovery_huawei_optical.sh
-# Local de instalação no Zabbix Server: /usr/lib/zabbix/externalscripts/discovery_huawei_optical.sh
-# Uso no Zabbix LLD: discovery_huawei_optical.sh["{HOST.CONN}", "{$SNMP_COMMUNITY}", "single"]
-#                    discovery_huawei_optical.sh["{HOST.CONN}", "{$SNMP_COMMUNITY}", "multi"]
+# =============================================================================
+# Empresa  : Netstream Telecomunicações
+# Site     : netstream.net.br
+# Contato  : (11) 95990-4100
+# Email    : suporte@netstream.net.br
+#
+# AVISO DE PROPRIEDADE INTELECTUAL
+# Este script é propriedade exclusiva da Netstream Telecomunicações.
+# É proibida a cópia, distribuição, modificação ou qualquer uso sem
+# autorização prévia e por escrito da Netstream Telecomunicações.
+# Todos os direitos reservados.
+# =============================================================================
+# discovery_huawei_optical_netstream.sh
+# Local de instalação no Zabbix Server: /usr/lib/zabbix/externalscripts/
+# Uso no Zabbix LLD: discovery_huawei_optical_netstream.sh["{HOST.CONN}", "{$SNMP_COMMUNITY}", "single"]
+#                    discovery_huawei_optical_netstream.sh["{HOST.CONN}", "{$SNMP_COMMUNITY}", "multi"]
 # Descrição:
 #   Correlaciona a tabela física de Módulos Ópticos (ENT-PHYSICAL-MIB, entPhysicalIndex)
 #   com a tabela de Descrição de Interfaces (IF-MIB ifAlias, ifIndex).
@@ -13,7 +24,6 @@
 #     {#ENTPHYSICALNAME} -> Nome da porta (ex: XGigabitEthernet0/0/3)
 #     {#IFALIAS}         -> Descrição da interface (ex: PE1 - Dutra)
 #     {#ENTALIAS}        -> Descrição da interface (ex: PE1 - Dutra)
-# ==============================================================================
 
 IP="$1"
 COMMUNITY="$2"
@@ -47,7 +57,6 @@ else
     OPTICAL_BASE="1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32"
 fi
 
-# Usamos -On (sem -Oq) para formato padronizado OID = TIPO: VALOR
 WALK_OPTICAL=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" "$OPTICAL_BASE" 2>/dev/null)
 if [ -z "$WALK_OPTICAL" ]; then
     echo '{"data":[]}'
@@ -73,27 +82,20 @@ function clean_oid(str) {
     sub(/^\./, "", str)
     return str
 }
-# 1. IFNAME (1.3.6.1.2.1.31.1.1.1.1.<ifIndex>)
 $1 ~ /\.?1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.1\.[0-9]+/ {
     oid = clean_oid($1)
     idx = oid; sub(/^1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.1\./, "", idx)
     val = clean_val($0)
-    if (val != "") {
-        nameToIfIndex[val] = idx
-    }
+    if (val != "") { nameToIfIndex[val] = idx }
     next
 }
-# 2. IFDESCR (1.3.6.1.2.1.2.2.1.2.<ifIndex>) - fallback de mapeamento de nome
 $1 ~ /\.?1\.3\.6\.1\.2\.1\.2\.2\.1\.2\.[0-9]+/ {
     oid = clean_oid($1)
     idx = oid; sub(/^1\.3\.6\.1\.2\.1\.2\.2\.1\.2\./, "", idx)
     val = clean_val($0)
-    if (val != "") {
-        nameToIfIndex[val] = idx
-    }
+    if (val != "") { nameToIfIndex[val] = idx }
     next
 }
-# 3. IFALIAS (1.3.6.1.2.1.31.1.1.1.18.<ifIndex>)
 $1 ~ /\.?1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.18\.[0-9]+/ {
     oid = clean_oid($1)
     idx = oid; sub(/^1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.18\./, "", idx)
@@ -101,7 +103,6 @@ $1 ~ /\.?1\.3\.6\.1\.2\.1\.31\.1\.1\.1\.18\.[0-9]+/ {
     ifIndexToAlias[idx] = val
     next
 }
-# 4. IFADMIN (1.3.6.1.2.1.2.2.1.7.<ifIndex>) -> 1=up, 2=down
 $1 ~ /\.?1\.3\.6\.1\.2\.1\.2\.2\.1\.7\.[0-9]+/ {
     oid = clean_oid($1)
     idx = oid; sub(/^1\.3\.6\.1\.2\.1\.2\.2\.1\.7\./, "", idx)
@@ -109,7 +110,6 @@ $1 ~ /\.?1\.3\.6\.1\.2\.1\.2\.2\.1\.7\.[0-9]+/ {
     ifIndexToAdmin[idx] = val
     next
 }
-# 5. ENTNAME (1.3.6.1.2.1.47.1.1.1.1.7.<entIndex>)
 $1 ~ /\.?1\.3\.6\.1\.2\.1\.47\.1\.1\.1\.1\.7\.[0-9]+/ {
     oid = clean_oid($1)
     idx = oid; sub(/^1\.3\.6\.1\.2\.1\.47\.1\.1\.1\.1\.7\./, "", idx)
@@ -117,13 +117,10 @@ $1 ~ /\.?1\.3\.6\.1\.2\.1\.47\.1\.1\.1\.1\.7\.[0-9]+/ {
     entIndexToName[idx] = val
     next
 }
-# 6. Portas Ópticas Ativas
 {
     oid = clean_oid($1)
     idx = oid; sub(/^1\.3\.6\.1\.4\.1\.2011\.5\.25\.31\.1\.1\.3\.1\.(5|32)\./, "", idx)
-    if (idx != "" && !seen[idx]++) {
-        activeOpticals[++count] = idx
-    }
+    if (idx != "" && !seen[idx]++) { activeOpticals[++count] = idx }
 }
 END {
     printf "{\"data\":["
@@ -132,7 +129,6 @@ END {
         entIdx = activeOpticals[i]
         portName = entIndexToName[entIdx]
         if (portName == "") continue
-        
         ifIdx = nameToIfIndex[portName]
         portAlias = ""
         adminState = "1"
@@ -140,19 +136,12 @@ END {
             portAlias = ifIndexToAlias[ifIdx]
             adminState = ifIndexToAdmin[ifIdx]
         }
-        
-        # Ignora portas administratively shutdown (2)
         if (adminState == "2") continue
-        
-        # Ignora portas sem descrição ou NOT_USE
         if (portAlias == "" || portAlias == "NOT_USE") continue
-        
         if (!first) printf ","
         first = 0
-        
         gsub(/"/, "\\\"", portName)
         gsub(/"/, "\\\"", portAlias)
-        
         printf "{\"{#SNMPINDEX}\":\"%s\", \"{#ENTPHYSICALNAME}\":\"%s\", \"{#IFALIAS}\":\"%s\", \"{#ENTALIAS}\":\"%s\"}", entIdx, portName, portAlias, portAlias
     }
     printf "]}\n"

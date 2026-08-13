@@ -335,7 +335,7 @@
                             <uuid>ae84765b041f4e219f67efc201a2f947</uuid>
                             <name>ASN Owner: {#IP} - {#ASN}</name>
                             <type>EXTERNAL</type>
-                            <key>get_asn_owner_v2.sh[{#ASN},{#IP}]</key>
+                            <key>get_asn_owner_netstream.sh[{#ASN},{#IP}]</key>
                             <delay>1h</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
@@ -350,7 +350,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>a37ca7ee0604490989f5a9883c2202ce</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN},{#IP}]))&gt;0</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerState.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatus[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_netstream.sh[{#ASN},{#IP}]))&gt;0</expression>
                             <name>BGP peer - IP {#IP}: ASN ({#ASN}) - DOWN - {ITEM.LASTVALUE3}</name>
                             <priority>HIGH</priority>
                             <description>Trigger for peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
@@ -466,7 +466,7 @@
                             <uuid>19d52635eba8469480f25c015aaa9336</uuid>
                             <name>ASN Owner V6: {#IP} - {#ASN}</name>
                             <type>EXTERNAL</type>
-                            <key>get_asn_owner_v2.sh[{#ASN},{#IP},v6]</key>
+                            <key>get_asn_owner_netstream.sh[{#ASN},{#IP},v6]</key>
                             <delay>1h</delay>
                             <trends>365d</trends>
                             <value_type>TEXT</value_type>
@@ -481,7 +481,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>450e3944f7d343c3a6beab8fad77fe1e</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_v2.sh[{#ASN},{#IP},v6]))&gt;0</expression>
+                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerStateV6.[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Huawei 6700 Series - Netstream/netstream.BgpPeerAdminStatusV6[{#IP}.{#ASN}])=2 and length(last(/Template Switch Huawei 6700 Series - Netstream/get_asn_owner_netstream.sh[{#ASN},{#IP},v6]))&gt;0</expression>
                             <name>BGP IPv6 peer - IP {#IP}: ASN ({#ASN}) - DOWN - {ITEM.LASTVALUE3}</name>
                             <priority>HIGH</priority>
                             <description>Trigger for IPv6 peer that has a remote AS not matching {$BGP_PEER_AS} macro.</description>
@@ -1439,7 +1439,7 @@
                     <uuid>055c17f171d942daab2bee50150ff475</uuid>
                     <name>Discovery | Network interfaces | Sinal optico single lan</name>
                     <type>EXTERNAL</type>
-                    <key>discovery_huawei_optical.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","single"]</key>
+                    <key>discovery_huawei_optical_netstream.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","single"]</key>
                     <delay>1d</delay>
                     <filter>
                         <conditions>
@@ -2506,7 +2506,7 @@
                     <uuid>c2048a3d79644fe795aa680c9db7de5a</uuid>
                     <name>Discovery | Network interfaces | Sinal Optico modules multi lane</name>
                     <type>EXTERNAL</type>
-                    <key>discovery_huawei_optical.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","multi"]</key>
+                    <key>discovery_huawei_optical_netstream.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","multi"]</key>
                     <delay>1d</delay>
                     <filter>
                         <conditions>
@@ -3326,7 +3326,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                     <uuid>4c40fc9540c84fa0a850a686a71ce46f</uuid>
                     <name>Discovery: NQA P2P</name>
                     <type>EXTERNAL</type>
-                    <key>nqa_huawei_discovery.sh[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <key>nqa_huawei_discovery_netstream.sh[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                     <delay>1h</delay>
                     <description>Descobre automaticamente todas as instâncias NQA ICMP configuradas no equipamento via HUAWEI-NQA-MIB. Requer nqa_huawei_discovery.sh e nqa_huawei.sh em /usr/lib/zabbix/externalscripts/.</description>
                     <item_prototypes>
@@ -3334,7 +3334,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <uuid>b7559f610cc94f9b897dc361e41f510b</uuid>
                             <name>NQA [{#NQA_INSTANCE}]: Dados brutos</name>
                             <type>EXTERNAL</type>
-                            <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                            <key>nqa_huawei_netstream.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
                             <delay>60</delay>
                             <history>1d</history>
                             <trends>0</trends>
@@ -3354,7 +3354,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <value_type>FLOAT</value_type>
                             <units>ms</units>
                             <master_item>
-                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                                <key>nqa_huawei_netstream.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
                             </master_item>
                             <preprocessing>
                                 <step>
@@ -3377,7 +3377,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <value_type>FLOAT</value_type>
                             <units>ms</units>
                             <master_item>
-                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                                <key>nqa_huawei_netstream.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
                             </master_item>
                             <preprocessing>
                                 <step>
@@ -3400,7 +3400,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <value_type>FLOAT</value_type>
                             <units>ms</units>
                             <master_item>
-                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                                <key>nqa_huawei_netstream.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
                             </master_item>
                             <preprocessing>
                                 <step>
@@ -3423,7 +3423,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <value_type>FLOAT</value_type>
                             <units>%</units>
                             <master_item>
-                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                                <key>nqa_huawei_netstream.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
                             </master_item>
                             <preprocessing>
                                 <step>
@@ -3445,7 +3445,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <trends>365d</trends>
                             <value_type>UNSIGNED</value_type>
                             <master_item>
-                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                                <key>nqa_huawei_netstream.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
                             </master_item>
                             <preprocessing>
                                 <step>
@@ -3467,7 +3467,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                             <trends>365d</trends>
                             <value_type>UNSIGNED</value_type>
                             <master_item>
-                                <key>nqa_huawei.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
+                                <key>nqa_huawei_netstream.sh[{HOST.IP},{$SNMP_COMMUNITY},{#NQA_OWNER},{#NQA_INSTANCE}]</key>
                             </master_item>
                             <preprocessing>
                                 <step>

@@ -1,6 +1,18 @@
 #!/bin/bash
-# nqa_huawei_discovery.sh — Descobre instâncias NQA na HUAWEI-NQA-MIB
-# Uso: nqa_huawei_discovery.sh <host> <community>
+# =============================================================================
+# Empresa  : Netstream Telecomunicações
+# Site     : netstream.net.br
+# Contato  : (11) 95990-4100
+# Email    : suporte@netstream.net.br
+#
+# AVISO DE PROPRIEDADE INTELECTUAL
+# Este script é propriedade exclusiva da Netstream Telecomunicações.
+# É proibida a cópia, distribuição, modificação ou qualquer uso sem
+# autorização prévia e por escrito da Netstream Telecomunicações.
+# Todos os direitos reservados.
+# =============================================================================
+# nqa_huawei_discovery_netstream.sh — Descobre instâncias NQA na HUAWEI-NQA-MIB
+# Uso: nqa_huawei_discovery_netstream.sh <host> <community>
 # Retorno: JSON para LLD Zabbix com {#NQA_OWNER} e {#NQA_INSTANCE}
 
 HOST="$1"

@@ -1,9 +1,21 @@
 #!/usr/bin/env bash
-# netstream_optical_aliases.sh — coleta aliases de todos os módulos ópticos em um único SNMP walk
+# =============================================================================
+# Empresa  : Netstream Telecomunicações
+# Site     : netstream.net.br
+# Contato  : (11) 95990-4100
+# Email    : suporte@netstream.net.br
+#
+# AVISO DE PROPRIEDADE INTELECTUAL
+# Este script é propriedade exclusiva da Netstream Telecomunicações.
+# É proibida a cópia, distribuição, modificação ou qualquer uso sem
+# autorização prévia e por escrito da Netstream Telecomunicações.
+# Todos os direitos reservados.
+# =============================================================================
+# netstream_optical_aliases_netstream.sh — coleta aliases de todos os módulos
+# ópticos em um único SNMP walk.
 # Retorna JSON: {"<snmpindex>": "<alias>", ...}
-# Uso: netstream_optical_aliases.sh <HOST[:PORT]> <COMMUNITY>
+# Uso: netstream_optical_aliases_netstream.sh <HOST[:PORT]> <COMMUNITY>
 # Instalar em: /usr/lib/zabbix/externalscripts/
-# Permissão:   chmod +x netstream_optical_aliases.sh
 
 HOST="$1"
 COMM="$2"
@@ -13,15 +25,12 @@ if [[ -z "$HOST" || -z "$COMM" ]]; then
     exit 1
 fi
 
-# Suporte a HOST:PORT
 if [[ "$HOST" == *:* ]]; then
     SNMP_HOST="${HOST%:*}:${HOST##*:}"
 else
     SNMP_HOST="$HOST"
 fi
 
-# Walk único da OID entPhysicalAlias (.47.1.1.1.1.14)
-# timeout interno 12s para não exceder o Timeout do Zabbix (15s)
 RAW=$(timeout 12 snmpwalk -v2c -c "$COMM" -Oqn "$SNMP_HOST" \
     .1.3.6.1.2.1.47.1.1.1.1.14 2>/dev/null)
 
@@ -30,8 +39,6 @@ if [[ -z "$RAW" ]]; then
     exit 0
 fi
 
-# Converter output para JSON: {index: alias}
-# Formato do snmpwalk -Oqn: .1.3.6.1.2.1.47.1.1.1.1.14.67469390 "LinkToRouter"
 PYCODE='
 import sys, json, re
 result = {}
