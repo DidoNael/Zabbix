@@ -2420,6 +2420,32 @@ Todos os direitos reservados.</description>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
+                        <item_prototype>
+                            <uuid>a1b2c3d4e5f64a7b8c9d0e1f2a3b4c5d</uuid>
+                            <name>Link uptime - {#IF}: ({#IFALIAS})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.9.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.ifLastChange[{#IF}]</key>
+                            <delay>5m</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <units>uptime</units>
+                            <description>Tempo desde a última mudança de estado da interface (ifLastChange). Calculado como sysUpTime - ifLastChange.</description>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>0.01</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Interfaces</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
