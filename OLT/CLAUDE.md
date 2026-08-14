@@ -237,9 +237,8 @@ Disponível via MIB proprietária por marca (descoberta de portas GPON, não IF-
 | TX Power dBm por PON | PRESENTE | DISABLED | AUSENTE |
 | RX Power dBm por PON | AUSENTE | DISABLED | AUSENTE |
 | Temperatura SFP por PON | PRESENTE | PRESENTE | AUSENTE |
-| Corrente (mA) por PON | AUSENTE | PRESENTE (exclusivo) | AUSENTE |
 
-- Fiberhome: habilitar TX/RX Power e Corrente via GEPON-OLT-COMMON-MIB
+- Fiberhome: habilitar TX/RX Power via GEPON-OLT-COMMON-MIB
 - Huawei: investigar equivalente na HUAWEI-GPON-MIB
 
 ---
@@ -312,7 +311,7 @@ Disponível via MIB proprietária por marca (descoberta de portas GPON, não IF-
 - [ ] Adicionar Fan
 - [ ] Habilitar ONU Dedicada (discovery DISABLED)
 - [ ] Adicionar causa de queda e LAN status/speed/duplex na ONU Dedicada
-- [ ] Habilitar TX/RX Power por PON (DISABLED via GEPON-OLT-COMMON-MIB)
+- [ ] Habilitar TX/RX Power por PON (DISABLED via GEPON-OLT-COMMON-MIB — não habilitar corrente mA)
 - [ ] Padronizar tags de triggers legados (PONDOWN/PONFH → scope/tipo/notificar)
 - [ ] Adicionar graph prototype de uplink
 
