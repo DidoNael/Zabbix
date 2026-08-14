@@ -1179,33 +1179,124 @@ return 0;</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;4 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.offline.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;=0</expression>
-                            <name>PON {#NETSTREAM.PON_NAME} - LOS em multiplas ONUs (possivel rompimento)</name>
-                            <status>DISABLED</status>
-                            <priority>AVERAGE</priority>
-                            <description>Mais de 4 ONUs com LOS na PON {#NETSTREAM.PON_NAME}.
-Possivel rompimento de fibra.
-
-LOS:         {ITEM.VALUE1}
-Online:      {ITEM.VALUE2}
-Offline:     {ITEM.VALUE3}
-Dying Gasp:  {ITEM.VALUE4}</description>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(600)}&gt;3</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
+                            <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
+                            <priority>DISASTER</priority>
                             <tags>
                                 <tag>
-                                    <tag>PON</tag>
-                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
                                 </tag>
                                 <tag>
-                                    <tag>Servico</tag>
+                                    <tag>servico</tag>
                                     <value>GPON</value>
                                 </tag>
                                 <tag>
-                                    <tag>Tipo</tag>
+                                    <tag>pon</tag>
+                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Queda_Total</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>nao</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].count(900)}&gt;4</expression>
+                            <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon</tag>
+                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>DyingGasp</value>
+                                </tag>
+                                <tag>
+                                    <tag>causa</tag>
+                                    <value>energia</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>nao</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].count(900)}&gt;4</expression>
+                            <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                            <description>3 ou mais ONUs passaram a ter LOS como motivo de queda nos ultimos 15 minutos. Possivel rompimento de fibra na PON {#NETSTREAM.PON_NAME}.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon</tag>
+                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
                                     <value>LOS</value>
                                 </tag>
                                 <tag>
-                                    <tag>Vendor</tag>
-                                    <value>FiberHome</value>
+                                    <tag>causa</tag>
+                                    <value>fibra</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>telegram</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].change()}&lt;-{$GPON_DROP_MIN} and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(600)}&gt;3</expression>
+                            <name>PON {#NETSTREAM.PON_NAME}: Queda parcial de ONUs</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon</tag>
+                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Queda_Parcial</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1956,7 +2047,138 @@ and &#13;
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
+                <discovery_rule>
+                    <name>NETSTREAM - Trafego por PON GPON FiberHome</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#SNMPVALUE},IF-MIB::ifDescr,{#IFNAME},IF-MIB::ifName]</snmp_oid>
+                    <key>netstream.gpon.pon.traffic.discovery</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFNAME}</macro>
+                                <value>(?i)^\S*pon[ _]?\d+/\d+/\d+</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>1d</lifetime>
+                    <description>Descobre portas PON GPON FiberHome para monitoramento de trafego TX/RX via IF-MIB</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>PON {#IFNAME} - Trafego Download (RX)</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.gpon.pon.traffic.in[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <description>Trafego de download (RX) da porta PON {#IFNAME} em bps.</description>
+                            <applications>
+                                <application>
+                                    <name>Trafego PON</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#IFNAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                                <step>
+                                    <type>IN_RANGE</type>
+                                    <params>0
+12500000000</params>
+                                    <error_handler>DISCARD_VALUE</error_handler>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>PON {#IFNAME} - Trafego Upload (TX)</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.gpon.pon.traffic.out[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <description>Trafego de upload (TX) da porta PON {#IFNAME} em bps.</description>
+                            <applications>
+                                <application>
+                                    <name>Trafego PON</name>
+                                </application>
+                            </applications>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>GPON - PON {#IFNAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                                <step>
+                                    <type>IN_RANGE</type>
+                                    <params>0
+12500000000</params>
+                                    <error_handler>DISCARD_VALUE</error_handler>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>PON {#IFNAME}: Trafego TX/RX</name>
+                            <yaxismin>0.0000</yaxismin>
+                            <graph_items>
+                                <graph_item>
+                                    <color>00AA00</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>netstream.gpon.pon.traffic.in[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>0000AA</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>netstream.gpon.pon.traffic.out[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
             </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$GPON_DROP_MIN}</macro>
+                    <value>5</value>
+                    <description>Queda minima de ONUs online para disparar alerta de queda parcial por PON</description>
+                </macro>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>public</value>
+                </macro>
+            </macros>
         </template>
     </templates>
     <graphs>
