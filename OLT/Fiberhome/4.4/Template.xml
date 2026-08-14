@@ -287,9 +287,44 @@ Todos os direitos reservados.</description>
                     <units>uptime</units>
                     <triggers>
                         <trigger>
-                            <expression>{last()}&lt;1m</expression>
-                            <name>OLT Reiniciada</name>
-                            <priority>INFO</priority>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:uptime.last()}&lt;600 or {Template SNMP OLT FiberHome - NETSTREAM:uptime.change()}&lt;0</expression>
+                            <name>OLT FiberHome: Equipamento Reiniciou (Uptime &lt; 10m)</name>
+                            <priority>WARNING</priority>
+                            <description>O equipamento reiniciou recentemente ou perdeu energia.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Reboot</value>
+                                </tag>
+                                <tag>
+                                    <tag>vendor</tag>
+                                    <value>Fiberhome</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                        <trigger>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:uptime.nodata(5m)}=1</expression>
+                            <name>OLT Inacess&iacute;vel (sem dados SNMP h&aacute; 5 minutos)</name>
+                            <priority>DISASTER</priority>
+                            <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 5 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Inacessivel</value>
+                                </tag>
+                                <tag>
+                                    <tag>vendor</tag>
+                                    <value>Fiberhome</value>
+                                </tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
@@ -302,7 +337,6 @@ Todos os direitos reservados.</description>
                     <snmp_oid>discovery[{#SNMPVALUE},.1.3.6.1.4.1.5875.800.3.9.2.1.1.2]</snmp_oid>
                     <key>card.info.discovery</key>
                     <delay>1d</delay>
-                    <status>DISABLED</status>
                     <lifetime>1w</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -346,11 +380,28 @@ Todos os direitos reservados.</description>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}&gt;80</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{last()}&lt;80</recovery_expression>
-                                    <name>Slot #SNMPINDEX CPU is HIGH</name>
-                                    <priority>HIGH</priority>
+                                    <expression>{min(10m)}&gt;90</expression>
+                                    <name>Card CPU Slot [&quot;{#SNMPINDEX}&quot;]: Uso elevado (&gt;90% por 10m)</name>
+                                    <priority>AVERAGE</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Performance</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>slot</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>Fiberhome</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -379,7 +430,6 @@ Todos os direitos reservados.</description>
                             <delay>10m</delay>
                             <history>15d</history>
                             <trends>90d</trends>
-                            <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
                             <applications>
@@ -395,11 +445,28 @@ Todos os direitos reservados.</description>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}&gt;80</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>{last()}&lt;80</recovery_expression>
-                                    <name>Slot #SNMPINDEX MEM is HIGH</name>
-                                    <priority>HIGH</priority>
+                                    <expression>{min(10m)}&gt;90</expression>
+                                    <name>Card MEM Slot [&quot;{#SNMPINDEX}&quot;]: Uso elevado (&gt;90% por 10m)</name>
+                                    <priority>AVERAGE</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Performance</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>slot</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>Fiberhome</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -455,9 +522,100 @@ Todos os direitos reservados.</description>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}=0</expression>
-                                    <name>Slot  #SNMPINDEX is Down</name>
-                                    <priority>DISASTER</priority>
+                                    <expression>{last()}=9</expression>
+                                    <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa com defeito (Faulty)</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>slot</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>Fiberhome</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <expression>{last()}=4</expression>
+                                    <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa Desconectada / Offline</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>slot</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>Fiberhome</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <expression>{last()}=11</expression>
+                                    <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa Sem Energia (Power Off)</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>slot</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>Fiberhome</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <expression>{last()}=2</expression>
+                                    <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa Fora de Servico (Not in Service)</name>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>slot</tag>
+                                            <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>Fiberhome</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1367,6 +1525,17 @@ return 0;</params>
                                     <expression>{avg(5m)}&gt;10</expression>
                                     <name>Uplink {#IFDESC} - Alto volume de drops de entrada (&gt;10/s por 5min)</name>
                                     <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Drops_Altos</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1440,6 +1609,17 @@ return 0;</params>
                                     <expression>{avg(5m)}&gt;10</expression>
                                     <name>Uplink {#IFDESC} - Alto volume de drops de saida (&gt;10/s por 5min)</name>
                                     <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Drops_Altos</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1480,6 +1660,24 @@ return 0;</params>
                                     <name>Uplinks OLT</name>
                                 </application>
                             </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2</expression>
+                                    <name>Uplink {#IFDESC}: Link DOWN</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Link_Down</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>Uplink {#IFDESC} - Temperatura</name>
@@ -1528,6 +1726,29 @@ return 0;</params>
                             </preprocessing>
                         </item_prototype>
                     </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Uplink {#IFDESC}: Trafego (Download / Upload)</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>FILLED_REGION</drawtype>
+                                    <color>2774A4</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>netstream.uplink.in.bps[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                                        <key>netstream.uplink.out.bps[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
                 </discovery_rule>
                 <discovery_rule>
                     <name>Discovery ONU DEDICADO</name>
@@ -1638,6 +1859,18 @@ return 0;</params>
                             <priority>INFO</priority>
                             <tags>
                                 <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>ONU_Dedicada</value>
+                                </tag>
+                                <tag>
                                     <tag>ONUDEDICADO</tag>
                                     <value>ONUDEDICADO</value>
                                 </tag>
@@ -1656,6 +1889,18 @@ and &#13;
                             <name>Cliente - {#ONTDESC} - Sinal RX Baixo</name>
                             <priority>INFO</priority>
                             <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>ONU_Dedicada</value>
+                                </tag>
                                 <tag>
                                     <tag>ONUDEDICADO</tag>
                                     <value>ONUDEDICADO</value>
@@ -1919,6 +2164,22 @@ and &#13;
                             <description>{#PONNAME}</description>
                             <manual_close>YES</manual_close>
                             <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Queda_Total</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>nao</value>
+                                </tag>
                                 <tag>
                                     <tag>PONDOWN</tag>
                                     <value>PONDOWN</value>
