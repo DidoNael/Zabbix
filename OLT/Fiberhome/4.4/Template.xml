@@ -1676,7 +1676,7 @@ return 0;</params>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].diff()}=1</expression>
+                                    <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].diff()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
                                     <name>Uplink {#IFDESC}: Link DOWN</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>

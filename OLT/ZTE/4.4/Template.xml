@@ -1720,7 +1720,7 @@ return s;</params>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{OLT ZTE - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2 and {OLT ZTE - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].diff()}=1</expression>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2 and {OLT ZTE - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].diff()}=1 and {OLT ZTE - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
                                     <name>Uplink {#IFNAME} ({#IFALIAS}): Link DOWN / Desconectado</name>
                                     <priority>HIGH</priority>
                                     <description>A porta LAN/Uplink fisica da OLT caiu e permanece indisponivel.</description>
