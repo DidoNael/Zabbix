@@ -46,3 +46,32 @@
 - Erro "No permissions to referred object" = item mudou de prototype para standalone (ou vice-versa)
 - Solução: deletar o item conflitante antes de importar
 - Ver: feedback_zabbix_import_prototype_conflict.md
+
+---
+
+## Padrão de nomenclatura de scripts externos OLT
+
+**Regra**: ponto como separador em todos os scripts — nunca underscore.
+
+**Shell scripts** (external check Zabbix — chamados pela chave do item):
+```
+netstream.gpon.pon.FUNCAO.OLT
+```
+Exemplos: `netstream.gpon.pon.discovery.zte`, `netstream.gpon.pon.status.fiberhome`, `netstream.gpon.pon.total.huawei`
+
+**Scripts Python** (chamados internamente pelos shell scripts):
+```
+pon.FUNCAO.OLT.py
+```
+Exemplos: `pon.discovery.zte.py`, `pon.status.fiberhome.py`, `pon.total.huawei.py`
+
+**Chaves dos itens Zabbix** (devem bater com o nome do shell script):
+```
+netstream.gpon.pon.FUNCAO.OLT[{HOST.IP},{$SNMP_COMMUNITY}]
+```
+
+**OLTs válidas**: `zte`, `fiberhome`, `huawei`
+
+**Fluxo**: Template → chave → shell script → Python script
+
+**Aplica a**: qualquer novo script adicionado em `OLT/externalscripts/`
