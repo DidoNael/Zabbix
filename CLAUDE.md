@@ -75,3 +75,50 @@ netstream.gpon.pon.FUNCAO.OLT[{HOST.IP},{$SNMP_COMMUNITY}]
 **Fluxo**: Template → chave → shell script → Python script
 
 **Aplica a**: qualquer novo script adicionado em `OLT/externalscripts/`
+
+---
+
+## Grupos de host obrigatórios nos templates
+
+**Regra**: todo template deve definir ao menos dois grupos de host:
+1. `NETSTREAM` — grupo padrão para todos os templates
+2. `NETSTREAM/MARCA` — subgrupo com o nome da marca em maiúsculo
+
+**Exemplos válidos**:
+- `NETSTREAM` + `NETSTREAM/DATACOM`
+- `NETSTREAM` + `NETSTREAM/HUAWEI`
+- `NETSTREAM` + `NETSTREAM/ZTE`
+- `NETSTREAM` + `NETSTREAM/CISCO`
+- `NETSTREAM` + `NETSTREAM/FIBERHOME`
+
+**No XML Zabbix 4.4**:
+```xml
+<groups>
+    <group>
+        <name>NETSTREAM</name>
+    </group>
+    <group>
+        <name>NETSTREAM/DATACOM</name>
+    </group>
+</groups>
+```
+
+**Aplica a**: todos os templates (OLT, Switch, Roteador, DNS-Monitor, etc.)
+
+---
+
+## Porta SNMP em item prototypes — nunca hardcode
+
+**Regra**: item prototypes SNMP nunca devem ter `<port>` definida no XML. Se definida, ao importar o template, os itens criados pelo LLD herdam essa porta e ignoram a porta configurada na interface do host.
+
+**Sintoma**: itens criados pelo LLD não coletam dados mesmo com SNMP funcionando — o `snmpget` manual responde, mas o Zabbix dá timeout. No DB: `SELECT port FROM items WHERE hostid=X` retorna `161` mesmo com a interface do host em outra porta.
+
+**Correção em produção** (quando itens já foram criados com porta errada):
+```bash
+DBPASS=$(grep "^DBPassword" /etc/zabbix/zabbix_server.conf | cut -d= -f2)
+mysql -uzabbix -p"$DBPASS" zabbix << SQL
+UPDATE items SET port="" WHERE hostid=HOSTID AND key_ LIKE "%PREFIXO%" AND key_ NOT LIKE "%{#%";
+SQL
+```
+
+**No XML**: nunca incluir `<port>` dentro de `<item_prototype>`. A porta deve estar somente na interface do host no Zabbix.
