@@ -14,7 +14,8 @@
 &#13;
 Monitoramento:&#13;
 - Uplinks (trafego, status, saturacao 90%)&#13;
-- Portas GPON (status apagada/ativa)&#13;
+- Portas GPON (status, trafego IN/OUT, saturacao 90% sustentada 10min)&#13;
+- ONUs por PON (online, offline, total, alta ocupacao &gt;=90%)&#13;
 - CPU e Memoria&#13;
 - Uptime&#13;
 &#13;
@@ -356,6 +357,24 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
+                                <trigger_prototype>
+                                    <expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}&gt;={$GPON_MAX_ONUS}*0.9 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.total[{#SNMPINDEX}].last()}&gt;0</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}&lt;{$GPON_MAX_ONUS}*0.85</recovery_expression>
+                                    <name>Porta GPON {#IFNAME}: Alta ocupacao de ONUs (&gt;=90%)</name>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Ocupacao_ONUs</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
@@ -380,8 +399,94 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                             <trends>90d</trends>
                             <description>Total de ONUs cadastradas na porta</description>
                         </item_prototype>
+                        <item_prototype>
+                            <name>Porta {#IFNAME}: Trafego de Entrada (Upload ONUs)</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.gpon.port.in.bps[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <description>Trafego de entrada na PON (upload dos clientes). Cap: 1.244 Gbps (GPON upstream).</description>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Porta {#IFNAME}: Trafego de Saida (Download ONUs)</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.gpon.port.out.bps[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <description>Trafego de saida na PON (download dos clientes). Cap: 2.488 Gbps (GPON downstream).</description>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>({OLT Datacom DmOS - NETSTREAM:netstream.gpon.port.out.bps[{#SNMPINDEX}].min(10m)}&gt;{$GPON_BW_DOWN}*0.9) or ({OLT Datacom DmOS - NETSTREAM:netstream.gpon.port.in.bps[{#SNMPINDEX}].min(10m)}&gt;{$GPON_BW_UP}*0.9)</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>({OLT Datacom DmOS - NETSTREAM:netstream.gpon.port.out.bps[{#SNMPINDEX}].max(5m)}&lt;{$GPON_BW_DOWN}*0.8) and ({OLT Datacom DmOS - NETSTREAM:netstream.gpon.port.in.bps[{#SNMPINDEX}].max(5m)}&lt;{$GPON_BW_UP}*0.8)</recovery_expression>
+                                    <name>Porta GPON {#IFNAME}: Saturacao de trafego (&gt;90% sustentado por 10min)</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Saturacao_GPON</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
                     </item_prototypes>
                     <graph_prototypes>
+                        <graph_prototype>
+                            <name>Porta {#IFNAME}: Trafego GPON</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                                        <key>netstream.gpon.port.in.bps[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>2774A4</color>
+                                    <item>
+                                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                                        <key>netstream.gpon.port.out.bps[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
                         <graph_prototype>
                             <name>Porta {#IFNAME}: ONUs</name>
                             <graph_items>
@@ -423,6 +528,21 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                 <macro>
                     <macro>{$GPON_DROP_MIN}</macro>
                     <value>3</value>
+                </macro>
+                <macro>
+                    <macro>{$GPON_MAX_ONUS}</macro>
+                    <value>64</value>
+                    <description>Maximo de ONUs por porta GPON (padrao 64; ajustar para 128 se necessario)</description>
+                </macro>
+                <macro>
+                    <macro>{$GPON_BW_DOWN}</macro>
+                    <value>2488000000</value>
+                    <description>Capacidade maxima downstream GPON em bps (2.488 Gbps - padrao ITU-T G.984)</description>
+                </macro>
+                <macro>
+                    <macro>{$GPON_BW_UP}</macro>
+                    <value>1244000000</value>
+                    <description>Capacidade maxima upstream GPON em bps (1.244 Gbps - padrao ITU-T G.984)</description>
                 </macro>
             </macros>
         </template>
