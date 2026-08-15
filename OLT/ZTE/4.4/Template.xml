@@ -956,7 +956,7 @@ function getProprietaryIndex(snmpIndex) {
         var rem = snmpIndex - 268435456;
         var slot = Math.floor(rem / 65536);
         var port = Math.floor((rem % 65536) / 256) + 1;
-        return 285278208 + ((slot + 1) * 256) + port;
+        return 285278208 + (slot * 256) + port;
     }
     return null;
 }
@@ -2309,6 +2309,10 @@ return s;</params>
                 </discovery_rule>
             </discovery_rules>
             <macros>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>public</value>
+                </macro>
                 <macro>
                     <macro>{$GPON_DROP_MIN}</macro>
                     <value>5</value>
