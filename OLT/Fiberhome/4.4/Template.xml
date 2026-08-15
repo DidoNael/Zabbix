@@ -1765,6 +1765,15 @@ return 0;</params>
                     <key>oltonudedicado</key>
                     <delay>1d</delay>
                     <port>161</port>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#ONTDESC}</macro>
+                                <value>dedicado-.*</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
                     <item_prototypes>
                         <item_prototype>
                             <name>Cliente - {#ONTDESC} - {#ONUSN} - Download</name>
