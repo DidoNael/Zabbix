@@ -122,7 +122,6 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                             <history>30d</history>
                             <trends>90d</trends>
                             <units>bps</units>
-                            <port>161</port>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
@@ -144,7 +143,6 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                             <history>30d</history>
                             <trends>90d</trends>
                             <units>bps</units>
-                            <port>161</port>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
@@ -165,7 +163,6 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                             <delay>1m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{OLT Datacom DmOS - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2 and {OLT Datacom DmOS - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].diff()}=1 and {OLT Datacom DmOS - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
@@ -197,7 +194,6 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                             <history>7d</history>
                             <trends>90d</trends>
                             <units>bps</units>
-                            <port>161</port>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -214,7 +210,6 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
@@ -231,7 +226,6 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
