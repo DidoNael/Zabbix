@@ -315,7 +315,102 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
+                        <item_prototype>
+                            <name>Porta {#IFNAME}: ONUs Online</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3709.3.6.18.2.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.gpon.onu.online[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <description>ONUs com sinal ativo na porta</description>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}=0 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.total[{#SNMPINDEX}].last()}&gt;0 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}&gt;0</recovery_expression>
+                                    <name>Porta GPON {#IFNAME}: Queda total de ONUs</name>
+                                    <priority>DISASTER</priority>
+                                    <manual_close>NO</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Queda_Total</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].change()}&lt;-{$GPON_DROP_MIN} and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}&gt;0 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].change()}&gt;=0</recovery_expression>
+                                    <name>Porta GPON {#IFNAME}: Queda parcial de ONUs</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Queda_Parcial</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Porta {#IFNAME}: ONUs Offline</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3709.3.6.18.2.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.gpon.onu.offline[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <description>ONUs sem sinal na porta</description>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Porta {#IFNAME}: Total de ONUs</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.3709.3.6.18.2.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.gpon.onu.total[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <description>Total de ONUs cadastradas na porta</description>
+                        </item_prototype>
                     </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Porta {#IFNAME}: ONUs</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                                        <key>netstream.gpon.onu.online[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>CC0000</color>
+                                    <item>
+                                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                                        <key>netstream.gpon.onu.offline[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
                 </discovery_rule>
             </discovery_rules>
             <macros>
@@ -330,6 +425,10 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                 <macro>
                     <macro>{$MEM_WARN}</macro>
                     <value>90</value>
+                </macro>
+                <macro>
+                    <macro>{$GPON_DROP_MIN}</macro>
+                    <value>3</value>
                 </macro>
             </macros>
         </template>
