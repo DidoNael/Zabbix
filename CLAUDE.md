@@ -1,198 +1,48 @@
-# Guia de Edição de Templates Zabbix
+# Regras do projeto zabbix-templates / OLT NETSTREAM
 
-## Versionamento obrigatório
+## Trigger de status de interface (uplink / link down)
 
-**Antes de qualquer alteração em template**, criar tag de versão:
+**Regra**: Trigger de link DOWN em uplinks OLT deve usar `max(#3)=2 and diff()=1` — nunca apenas `last()=2` ou `max(#3)=2` sozinho.
 
-```bash
-# No diretório do repo local
-git tag vX.Y.Z
-git push origin vX.Y.Z
+**Por quê**: `max(#3)=2` sozinho gera alerta imediato em interfaces que já estavam DOWN antes do monitoramento começar (falso positivo). O `diff()=1` garante que o status mudou — ou seja, só alerta quando a interface estava UP e ficou DOWN.
+
+**Aplica a**: todos os templates OLT (ZTE, Fiberhome, Huawei) e qualquer discovery que monitore status de interface. Valido para qualquer item de status `ifOperStatus`, `netstream.uplink.status`, etc.
+
+**Expressão correta** (trigger prototype de discovery):
+```
+{TEMPLATE:item.status.max(#3)}=2 and {TEMPLATE:item.status.diff()}=1 and {TEMPLATE:item.status.count(10m)}>1
 ```
 
-**Convenção de versão:** `MAJOR.MINOR.PATCH`
-- `PATCH`: correção de bug sem mudança funcional
-- `MINOR`: novo item, trigger ou discovery adicionado
-- `MAJOR`: reestruturação do template ou mudança incompatível
-
-**Workflow obrigatório:**
-1. `git tag vX.Y.Z` antes de editar
-2. Editar e commitar
-3. `git push && git push origin vX.Y.Z`
-
-> Regra: se o template já foi importado em produção, sempre taggear antes — permite rollback via `git checkout vX.Y.Z -- <arquivo>`.
+**Por que o `count(10m)>1`**: quando um item passa de "not supported" para coleta ativa (ex: após correção de SNMP), a primeira amostra é tratada como mudança — `diff()=1` dispara mesmo que a interface já estivesse DOWN. O `count(10m)>1` garante que o item tem pelo menos 2 amostras coletadas (≥3min com delay=3m) antes de alertar, eliminando falsos positivos na ativação.
 
 ---
 
+## Trigger de saturação de porta (90%)
 
-## Regras obrigatórias por versão
+- Guarda `ifHighSpeed` como item `netstream.uplink.ifspeed[{#SNMPINDEX}]` com preprocessing MULTIPLIER 125000 (Mbps → Bps)
+- Trigger: `last(ifspeed)>0 and min(in.bps, 5m)/last(ifspeed)>0.9 or min(out.bps, 5m)/last(ifspeed)>0.9`
+- Prioridade HIGH, manual_close=YES
 
-### Zabbix 4.4 (`Switch/Huawei/4.4/`)
-
-| Campo | Valor correto |
-|---|---|
-| `<type>` SNMP | `SNMPV2` |
-| `<value_type>` texto | `TEXT` (não `4`) |
-| `<manual_close>` | `YES` (não `1`) |
-| UUIDs | **Não usar** — 4.4 não suporta |
-| `<tags>` em itens | **Não usar** — usar `<applications>` |
-| `<valuemaps>` | `<value_maps>` com `<value_map>` (sem UUID) |
-
-### Zabbix 6.0 (`Switch/Huawei/6.0/`)
-
-| Campo | Valor correto |
-|---|---|
-| `<type>` SNMP | `SNMP_AGENT` |
-| `<value_type>` texto | `TEXT` |
-| `<manual_close>` | `YES` |
-| UUIDs | **Obrigatório em todos os elementos** |
-| `<tags>` em itens | Usar `<tags>`, não `<applications>` |
-| `<valuemaps>` | `<valuemaps>` com `<valuemap>` + `<uuid>` |
+**Limitação Zabbix 4.4**: templates com múltiplas discovery rules usando `{#SNMPINDEX}` não aceitam trigger prototype via XML import ("multiple discovery rules"). Nesses casos, criar via MySQL diretamente (inserir em `triggers`, `functions`, `trigger_tag`).
 
 ---
 
-## UUIDs — regras críticas (6.0)
+## Trigger de nodata
 
-Todo elemento novo no template 6.0 exige um `<uuid>` **UUIDv4 válido**.
-
-### O que precisa de UUID no 6.0
-- `<template>`
-- `<discovery_rule>`
-- `<item>` e `<item_prototype>`
-- `<trigger>` e `<trigger_prototype>`
-- `<graph>` e `<graph_prototype>`
-- `<valuemap>` (dentro de `<valuemaps>`)
-- `<host_prototype>`
-
-### Como gerar UUID válido
-
-```powershell
-# PowerShell — gera 1 UUID
-[System.Guid]::NewGuid().ToString("N")
-
-# Gerar vários de uma vez
-1..10 | ForEach-Object { [System.Guid]::NewGuid().ToString("N") }
-```
-
-### Como validar UUIDs existentes
-
-```powershell
-$content = Get-Content "Template.xml" -Raw
-$uuids = [regex]::Matches($content, '<uuid>([0-9a-f]{32})</uuid>')
-$invalid = $uuids | Where-Object { $_.Groups[1].Value[12] -ne '4' }
-if ($invalid) { $invalid | ForEach-Object { Write-Output "INVÁLIDO: $($_.Groups[1].Value)" } }
-else { Write-Output "OK — todos UUIDv4 válidos" }
-```
-
-> **Regra rápida:** o 13º caractere do UUID (sem hífens) deve ser sempre `4`.
-> `xxxxxxxx xxxx `**`4`**`xxx xxxx xxxxxxxxxxxx`
+- Sempre criar com `status=1` (DISABLED) por padrão — evita falso positivo após import
+- Ativar manualmente após confirmar que o item está coletando dados
 
 ---
 
-## Checklist antes de importar
+## Warmup obrigatório em triggers de discovery PON
 
-### Template 4.4 → Zabbix 4.4
-- [ ] Nenhum `<uuid>` presente
-- [ ] `<type>SNMPV2</type>` em todos os itens SNMP
-- [ ] `<value_type>TEXT</value_type>` (não número)
-- [ ] `<manual_close>YES</manual_close>`
-- [ ] Applications declaradas no nível do template em `<applications>`
-- [ ] Valuemaps em `<value_maps><value_map>` sem UUID
-
-### Template 6.0 → Zabbix 6.0+
-- [ ] UUID presente em **todos** os elementos listados acima
-- [ ] 13º char do UUID é `4` (validar com o script acima)
-- [ ] `<type>SNMP_AGENT</type>` em todos os itens SNMP
-- [ ] Tags em `<tags><tag>` (não `<applications>`)
-- [ ] Valuemaps em `<valuemaps><valuemap>` com UUID
+- Todo trigger que usa dados de discovery PON deve ter `count(180)>1` antes da condição principal
+- Evita alertas nas primeiras coletas após import ou restart do Zabbix
 
 ---
 
-## Erros comuns de importação e correções
+## Conflito prototype vs standalone no import
 
-| Erro | Causa | Correção |
-|---|---|---|
-| `UUIDv4 is expected` | UUID ausente ou inválido (13º char ≠ `4`) | Gerar UUID com PowerShell e substituir |
-| `unexpected constant '1'` para `manual_close` | Valor `1` no lugar de `YES` | Substituir `<manual_close>1</manual_close>` por `YES` |
-| `unexpected constant '4'` para `value_type` | Número no lugar de string | Substituir pelo nome: `TEXT`, `FLOAT`, `UNSIGNED`, etc. |
-| `unexpected constant "CHARACTER"` | `CHARACTER` não é válido no 4.4 | Usar `CHAR` (verificado em produção no template Huawei 4.4) |
-| `Application ... not available` | Application referenciada mas não declarada no template | Adicionar em `<applications>` na raiz do template |
-| `SNMPV2` inválido no 6.0 | Tipo errado | Usar `SNMP_AGENT` |
-| `Expressão de trigger inválida` com string após `<>` | No 4.4, `<>` não funciona com valores do tipo `CHAR`/`TEXT` | Usar `.str(valor)=0` para "diferente de" e `.str(valor)=1` para "igual a" |
-
----
-
-## Mapeamento de value_type (4.4 numérico → nome)
-
-| Número | String correta no XML |
-|---|---|
-| 0 | `FLOAT` |
-| 1 | `CHAR` ← **não** `CHARACTER` (causa erro de importação) |
-| 2 | `LOG` |
-| 3 | `UNSIGNED` |
-| 4 | `TEXT` |
-
----
-
-## Itens External Check (scripts externos)
-
-Scripts em `/usr/lib/zabbix/externalscripts/`. O Zabbix chama o arquivo diretamente pelo nome da chave.
-
-| Campo | 4.4 | 6.0 |
-|---|---|---|
-| `<type>` | `EXTERNAL` | `EXTERNAL` |
-| Parâmetros na chave | `script.sh["param1","param2"]` | idem |
-| Discovery rule | `EXTERNAL` igual | `EXTERNAL` igual |
-
-**Comparação de strings em triggers com itens CHAR/TEXT:**
-
-| Versão | "igual a" | "diferente de" |
-|---|---|---|
-| 4.4 | `.str(valor)=1` | `.str(valor)=0` |
-| 6.0 | `last(...)="valor"` | `last(...)<>"valor"` |
-
-> No 4.4, `<>` com strings causa erro de importação — confirmado no template DNS Monitor.
-
-**Convenção de nomenclatura de scripts no repositório:**
-- Sufixo `_netstream` em todos os scripts externos (ex: `nqa_huawei_netstream.sh`, `discovery_huawei_optical_netstream.sh`)
-- Sufixo `_netstream` nas **keys de itens e discovery rules** que referenciam scripts externos (ex: `nqa_huawei_netstream.sh[{HOST.IP},...]`, `discovery_isp_services_netstream.sh["{}"]`)
-- Prefixo `netstream.` nas **keys de itens internos** sempre que criar um item novo em template próprio (ex: `netstream.gpon.onu.online[{#SNMPINDEX}]`)
-- Macros com sufixo `_NETSTREAM` (ex: `{$DNS_SERVERS_NETSTREAM}`)
-- Nome do template com sufixo ` - Netstream` (ex: `Template DNS Monitor - Netstream`)
-
-**Description obrigatória em todo template novo ou editado:**
-```
-Netstream Telecomunicações — netstream.net.br
-Contato: (11) 95990-4100 | suporte@netstream.net.br
-
-AVISO DE PROPRIEDADE INTELECTUAL
-Este template é propriedade exclusiva da Netstream Telecomunicações.
-É proibida a cópia, distribuição, modificação ou qualquer uso sem
-autorização prévia e por escrito da Netstream Telecomunicações.
-Todos os direitos reservados.
-```
-
-**Header obrigatório em todo script novo ou renomeado:**
-```bash
-# =============================================================================
-# Empresa  : Netstream Telecomunicações
-# Site     : netstream.net.br
-# Contato  : (11) 95990-4100
-# Email    : suporte@netstream.net.br
-#
-# AVISO DE PROPRIEDADE INTELECTUAL
-# Este script é propriedade exclusiva da Netstream Telecomunicações.
-# É proibida a cópia, distribuição, modificação ou qualquer uso sem
-# autorização prévia e por escrito da Netstream Telecomunicações.
-# Todos os direitos reservados.
-# =============================================================================
-```
-
-> Regra: ao criar ou renomear qualquer script, incluir o header acima logo após o `#!/bin/bash`.
-
----
-
-## Sincronismo entre 4.4 e 6.0
-
-Ao adicionar um item novo, adicionar nos **dois templates** com as adaptações de formato acima.
-Nunca copiar XML de um para o outro sem ajustar os campos de versão.
+- Erro "No permissions to referred object" = item mudou de prototype para standalone (ou vice-versa)
+- Solução: deletar o item conflitante antes de importar
+- Ver: feedback_zabbix_import_prototype_conflict.md

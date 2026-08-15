@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <groups>
+        <group>
+            <uuid>90d68eeb84184e48940ef508ba74871e</uuid>
+            <name>Templates</name>
+        </group>
+        <group>
+            <uuid>2c3b9c373f904cdd83cb283ed958a017</uuid>
+            <name>NETSTREAM</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>770367811cc1487ba833ad4bf0283b4f</uuid>
+            <template>Template Switch Datacom DmOS - Netstream</template>
+            <name>Template Switch Datacom DmOS - Netstream</name>
+            <description>Netstream Telecomunicações — netstream.net.br
+Contato: (11) 95990-4100 | suporte@netstream.net.br
+
+AVISO DE PROPRIEDADE INTELECTUAL
+Este template é propriedade exclusiva da Netstream Telecomunicações.
+É proibida a cópia, distribuição, modificação ou qualquer uso sem
+autorização prévia e por escrito da Netstream Telecomunicações.
+Todos os direitos reservados.
+
+Template para switches Datacom rodando DmOS.
+Enterprise OID base: 1.3.6.1.4.1.3709</description>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+                <group>
+                    <name>NETSTREAM</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>db788e68babe4076bee538f29016281d</uuid>
+                    <name>Uptime do Sistema</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
+                    <key>netstream.sysUpTime.0</key>
+                    <delay>5m</delay>
+                    <history>1d</history>
+                    <trends>15d</trends>
+                    <units>uptime</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>0.01</params>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <uuid>e08f7428d51346509bb06f6dce2dd0aa</uuid>
+                            <expression>last(/Template Switch Datacom DmOS - Netstream/netstream.sysUpTime.0)&lt;600 or change(/Template Switch Datacom DmOS - Netstream/netstream.sysUpTime.0)&lt;0</expression>
+                            <name>Switch Datacom: Equipamento Reiniciou (Uptime &lt; 10m)</name>
+                            <priority>WARNING</priority>
+                            <description>O switch reiniciou recentemente ou perdeu energia.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>Availability</value>
+                                </tag>
+                                <tag>
+                                    <tag>Event</tag>
+                                    <value>Reboot</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                        <trigger>
+                            <uuid>9191e71555e74990bdaa5046bd0aa5fb</uuid>
+                            <expression>nodata(/Template Switch Datacom DmOS - Netstream/netstream.sysUpTime.0,15m)=1</expression>
+                            <name>Switch Datacom: Equipamento Inacessivel (Sem resposta SNMP ha 15m)</name>
+                            <status>DISABLED</status>
+                            <priority>DISASTER</priority>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>Availability</value>
+                                </tag>
+                                <tag>
+                                    <tag>Event</tag>
+                                    <value>Offline</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>731bc66101de45a8b3ce9c3713e29a42</uuid>
+                    <name>Versao do Sistema e Hardware</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.1.0</snmp_oid>
+                    <key>netstream.sysDescr.0</key>
+                    <delay>1h</delay>
+                    <history>14d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                </item>
+                <item>
+                    <uuid>4c6aa6f49904426397bf44bb842163ce</uuid>
+                    <name>CPU - Utilizacao 1min</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.4.1.2.1.2.1.1.49</snmp_oid>
+                    <key>netstream.dmos.cpu.1min</key>
+                    <delay>3m</delay>
+                    <units>%</units>
+                    <description>CPU 1 minuto — slot 49 (plano principal). Ajustar indice se necessario.</description>
+                    <triggers>
+                        <trigger>
+                            <uuid>36ad1985636c4263bbb9384e1b4a7a95</uuid>
+                            <expression>min(/Template Switch Datacom DmOS - Netstream/netstream.dmos.cpu.1min,5m)&gt;{$CPU_WARN}</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>min(/Template Switch Datacom DmOS - Netstream/netstream.dmos.cpu.1min,5m)&lt;{$CPU_WARN}</recovery_expression>
+                            <name>CPU acima de {$CPU_WARN}% por 5min em {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>CPU</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>6f7f2a580dc742babeeb554fb0f86fd0</uuid>
+                    <name>Memoria - Utilizacao</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.4.1.2.1.4.1.1.49</snmp_oid>
+                    <key>netstream.dmos.mem.util</key>
+                    <delay>3m</delay>
+                    <units>%</units>
+                    <description>Memoria — slot 49 (plano principal). Ajustar indice se necessario.</description>
+                    <triggers>
+                        <trigger>
+                            <uuid>4404e1e06d3547c38bd824f161a735d0</uuid>
+                            <expression>max(/Template Switch Datacom DmOS - Netstream/netstream.dmos.mem.util,10m)&gt;{$MEM_WARN}</expression>
+                            <name>Memoria acima de {$MEM_WARN}% em {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>Memory</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>cc4ece1f2ac9443897be9d8e7ebb74c0</uuid>
+                    <name>Discovery: Interfaces de Rede</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.2.1.2.2.1.8,{#IFADMINSTATUS},1.3.6.1.2.1.2.2.1.7,{#IFNAME},1.3.6.1.2.1.2.2.1.2,{#IFTYPE},1.3.6.1.2.1.2.2.1.3]</snmp_oid>
+                    <key>netstream.if.discovery</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFTYPE}</macro>
+                                <value>^6$</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFADMINSTATUS}</macro>
+                                <value>^1$</value>
+                                <formulaid>B</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>2h</lifetime>
+                    <description>Descobre interfaces ethernet administrativamente ativas (ifType=6)</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>97a52de7389f402c833c0c628e776ee2</uuid>
+                            <name>Interface {#IFNAME}: Trafego de Entrada (bps)</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.in.bps[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>c2d80d47e0334c08ab4cad088f7bfbb5</uuid>
+                            <name>Interface {#IFNAME}: Trafego de Saida (bps)</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.out.bps[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>bffa2e6e109c432faf8b4ae570e44623</uuid>
+                            <name>Interface {#IFNAME}: Status Operacional</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.status[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>bf420a4cbd214309b04a8af6f11f91ef</uuid>
+                                    <expression>max(/Template Switch Datacom DmOS - Netstream/netstream.if.status[{#SNMPINDEX}],#3)=2 and diff(/Template Switch Datacom DmOS - Netstream/netstream.if.status[{#SNMPINDEX}])=1 and count(/Template Switch Datacom DmOS - Netstream/netstream.if.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>last(/Template Switch Datacom DmOS - Netstream/netstream.if.status[{#SNMPINDEX}])=1</recovery_expression>
+                                    <name>Interface {#IFNAME}: Link DOWN em {HOST.NAME}</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Interface</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>LinkDown</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f2ba047587554f2181e64d4dc1830ca1</uuid>
+                            <name>Interface {#IFNAME}: Velocidade</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.15.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.speed[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>125000</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>1c61efb6546144daadf79cacc79bae08</uuid>
+                            <name>Interface {#IFNAME}: Erros de Entrada</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.in.errors[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>e433b2b18eb1450fa997c6727bc0718b</uuid>
+                            <name>Interface {#IFNAME}: Erros de Saida</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.out.errors[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>6ef4402229b04176bc5d95597b0e2dc5</uuid>
+                            <name>Interface {#IFNAME}: Trafego</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>Template Switch Datacom DmOS - Netstream</host>
+                                        <key>netstream.if.in.bps[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>2774A4</color>
+                                    <item>
+                                        <host>Template Switch Datacom DmOS - Netstream</host>
+                                        <key>netstream.if.out.bps[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>2d38b12fdbe74a78bbca3a51b32ddbaf</uuid>
+                    <name>Discovery: BGP IPv4 Peer</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#ASN},1.3.6.1.2.1.15.3.1.9,{#IP},1.3.6.1.2.1.15.3.1.7]</snmp_oid>
+                    <key>netstream.bgppeerv4</key>
+                    <delay>1d</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>0e588f3ddbf44893b53082d0ec59e8c8</uuid>
+                            <name>BGP Peer {#IP} (ASN {#ASN}): Estado</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.15.3.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bgp.peer.state[{#IP}.{#ASN}]</key>
+                            <delay>1m</delay>
+                            <history>14d</history>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>bc2e1301100443a8b68cdcdc2d40dd14</uuid>
+                            <name>BGP Peer {#IP} (ASN {#ASN}): Admin Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.15.3.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bgp.peer.adminstatus[{#IP}.{#ASN}]</key>
+                            <delay>5m</delay>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>434e8d0849ab4368b07a5cd801d2a3f6</uuid>
+                            <name>BGP Peer {#IP} (ASN {#ASN}): Uptime</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.15.3.1.16.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bgp.peer.uptime[{#IP}.{#ASN}]</key>
+                            <delay>3m</delay>
+                            <units>uptime</units>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <uuid>425d8607bc5a4c8fbc61c4618be59585</uuid>
+                            <expression>last(/Template Switch Datacom DmOS - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Datacom DmOS - Netstream/netstream.bgp.peer.adminstatus[{#IP}.{#ASN}])=2</expression>
+                            <name>BGP Peer {#IP} (ASN {#ASN}): DOWN em {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDown</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>2c8746afac9d43a4b7ab1c3ddc13691a</uuid>
+                    <name>Discovery: Temperatura</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#BOARD},1.3.6.1.2.1.47.1.1.1.1.2,{#TEMP},1.3.6.1.4.1.3709.3.6.4.1.2.1.5.1.1]</snmp_oid>
+                    <key>netstream.dmos.temp.discovery</key>
+                    <delay>1d</delay>
+                    <lifetime>7d</lifetime>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#TEMP}</macro>
+                                <value>^(-?[1-9][0-9]*)$</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>dfdc0f83559648baac83351614aa6457</uuid>
+                            <name>Temperatura slot {#BOARD}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.3709.3.6.4.1.2.1.5.1.1.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.dmos.temp[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>C</units>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>3d308ff89086472d9ea0edfdb05d2077</uuid>
+                                    <expression>min(/Template Switch Datacom DmOS - Netstream/netstream.dmos.temp[{#SNMPINDEX}],5m)&gt;{$TEMP_WARN}</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>min(/Template Switch Datacom DmOS - Netstream/netstream.dmos.temp[{#SNMPINDEX}],5m)&lt;{$TEMP_WARN}-3</recovery_expression>
+                                    <name>Temperatura elevada slot {#BOARD} em {HOST.NAME}: acima de {$TEMP_WARN}C</name>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Temperature</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>d07cd36a07c24a3691e002d32b328a29</uuid>
+                                    <expression>min(/Template Switch Datacom DmOS - Netstream/netstream.dmos.temp[{#SNMPINDEX}],5m)&gt;{$TEMP_CRIT}</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>min(/Template Switch Datacom DmOS - Netstream/netstream.dmos.temp[{#SNMPINDEX}],5m)&lt;{$TEMP_CRIT}-3</recovery_expression>
+                                    <name>Temperatura critica slot {#BOARD} em {HOST.NAME}: acima de {$TEMP_CRIT}C</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Temperature</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>public</value>
+                </macro>
+                <macro>
+                    <macro>{$CPU_WARN}</macro>
+                    <value>80</value>
+                </macro>
+                <macro>
+                    <macro>{$MEM_WARN}</macro>
+                    <value>85</value>
+                </macro>
+                <macro>
+                    <macro>{$TEMP_WARN}</macro>
+                    <value>60</value>
+                </macro>
+                <macro>
+                    <macro>{$TEMP_CRIT}</macro>
+                    <value>75</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <uuid>8a085af4824247fd8a80ce5b11a361f1</uuid>
+            <name>CPU e Memoria</name>
+            <graph_items>
+                <graph_item>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Template Switch Datacom DmOS - Netstream</host>
+                        <key>netstream.dmos.cpu.1min</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>2774A4</color>
+                    <item>
+                        <host>Template Switch Datacom DmOS - Netstream</host>
+                        <key>netstream.dmos.mem.util</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>

@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <groups>
+        <group>
+            <uuid>90d68eeb84184e48940ef508ba74871e</uuid>
+            <name>Templates</name>
+        </group>
+        <group>
+            <uuid>2c3b9c373f904cdd83cb283ed958a017</uuid>
+            <name>NETSTREAM</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>345bb8f4e62242b389c5a6804672cd46</uuid>
+            <template>Template Switch Cisco - Netstream</template>
+            <name>Template Switch Cisco - Netstream</name>
+            <description>Netstream Telecomunicações — netstream.net.br
+Contato: (11) 95990-4100 | suporte@netstream.net.br
+
+AVISO DE PROPRIEDADE INTELECTUAL
+Este template é propriedade exclusiva da Netstream Telecomunicações.
+É proibida a cópia, distribuição, modificação ou qualquer uso sem
+autorização prévia e por escrito da Netstream Telecomunicações.
+Todos os direitos reservados.
+
+Template para switches Cisco IOS/IOS-XE/NX-OS.
+Enterprise OID base: 1.3.6.1.4.1.9
+MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+                <group>
+                    <name>NETSTREAM</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>4187d6780bc440378e384ce55149a487</uuid>
+                    <name>Uptime do Sistema</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
+                    <key>netstream.sysUpTime.0</key>
+                    <delay>5m</delay>
+                    <history>1d</history>
+                    <trends>15d</trends>
+                    <units>uptime</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>0.01</params>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <uuid>eb5b7931ee0745fc8f7976314752b82c</uuid>
+                            <expression>last(/Template Switch Cisco - Netstream/netstream.sysUpTime.0)&lt;600 or change(/Template Switch Cisco - Netstream/netstream.sysUpTime.0)&lt;0</expression>
+                            <name>Switch Cisco: Equipamento Reiniciou (Uptime &lt; 10m)</name>
+                            <priority>WARNING</priority>
+                            <description>O switch reiniciou recentemente ou perdeu energia.</description>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>Availability</value>
+                                </tag>
+                                <tag>
+                                    <tag>Event</tag>
+                                    <value>Reboot</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                        <trigger>
+                            <uuid>61cfc01d7bc541ddb9008f3553a091fd</uuid>
+                            <expression>nodata(/Template Switch Cisco - Netstream/netstream.sysUpTime.0,15m)=1</expression>
+                            <name>Switch Cisco: Equipamento Inacessivel (Sem resposta SNMP ha 15m)</name>
+                            <status>DISABLED</status>
+                            <priority>DISASTER</priority>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>Availability</value>
+                                </tag>
+                                <tag>
+                                    <tag>Event</tag>
+                                    <value>Offline</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>9f1c32837a7d43ae85cad1ad31c0b15f</uuid>
+                    <name>Versao do Sistema e Hardware</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.1.0</snmp_oid>
+                    <key>netstream.sysDescr.0</key>
+                    <delay>1h</delay>
+                    <history>14d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>f001c2a609d34a6a86f9b962ae811687</uuid>
+                    <name>Discovery: CPU (CISCO-PROCESS-MIB)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#CPU},1.3.6.1.4.1.9.9.109.1.1.1.1.2]</snmp_oid>
+                    <key>netstream.cisco.cpu.discovery</key>
+                    <delay>1d</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>11a2cc8229aa47cd97c9f17d2a4cc1db</uuid>
+                            <name>CPU {#SNMPINDEX}: Uso em 1min</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.9.9.109.1.1.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.cisco.cpu.1min[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <units>%</units>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>2e6e2ad92f4a479e94b32c7292c33d8f</uuid>
+                                    <expression>min(/Template Switch Cisco - Netstream/netstream.cisco.cpu.1min[{#SNMPINDEX}],5m)&gt;{$CPU_WARN}</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>min(/Template Switch Cisco - Netstream/netstream.cisco.cpu.1min[{#SNMPINDEX}],5m)&lt;{$CPU_WARN}</recovery_expression>
+                                    <name>CPU acima de {$CPU_WARN}% por 5min em {HOST.NAME}</name>
+                                    <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>CPU</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>0a490ef92df644a5bf6648ee5a78bb81</uuid>
+                            <name>CPU {#SNMPINDEX}: Uso em 5min</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.9.9.109.1.1.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.cisco.cpu.5min[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <units>%</units>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>d19ce2c195074cdd8f7841767b8d8feb</uuid>
+                            <name>CPU {#SNMPINDEX}: Uso (1min vs 5min)</name>
+                            <ymin_type_1>FIXED</ymin_type_1>
+                            <ymax_type_1>FIXED</ymax_type_1>
+                            <yaxismin>0.0000</yaxismin>
+                            <yaxismax>100.0000</yaxismax>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>Template Switch Cisco - Netstream</host>
+                                        <key>netstream.cisco.cpu.1min[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>F63100</color>
+                                    <item>
+                                        <host>Template Switch Cisco - Netstream</host>
+                                        <key>netstream.cisco.cpu.5min[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>127638cc7b2148ce97bc392aa2182aaf</uuid>
+                    <name>Discovery: Memoria (CISCO-MEMORY-POOL-MIB)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#MEMNAME},1.3.6.1.4.1.9.9.48.1.1.1.2]</snmp_oid>
+                    <key>netstream.cisco.mem.discovery</key>
+                    <delay>1d</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>8d72cc530de74b638c9611a549811f65</uuid>
+                            <name>Memoria {#MEMNAME}: Usada (bytes)</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.9.9.48.1.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.cisco.mem.used[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <units>B</units>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>551d11ff706d4546ae3a342e19dc0855</uuid>
+                            <name>Memoria {#MEMNAME}: Livre (bytes)</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.9.9.48.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.cisco.mem.free[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <units>B</units>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>988e86f3fcfa4f09ba371571a1b0abb0</uuid>
+                                    <expression>last(/Template Switch Cisco - Netstream/netstream.cisco.mem.free[{#SNMPINDEX}])/(last(/Template Switch Cisco - Netstream/netstream.cisco.mem.free[{#SNMPINDEX}])+last(/Template Switch Cisco - Netstream/netstream.cisco.mem.used[{#SNMPINDEX}]))*100&lt;(100-{$MEM_WARN})</expression>
+                                    <name>Memoria {#MEMNAME}: Uso acima de {$MEM_WARN}% em {HOST.NAME}</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Memory</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>1e8ff7c6176942b6936e2c306a56a87c</uuid>
+                    <name>Discovery: Interfaces de Rede</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.2.1.2.2.1.8,{#IFADMINSTATUS},1.3.6.1.2.1.2.2.1.7,{#IFNAME},1.3.6.1.2.1.2.2.1.2,{#IFTYPE},1.3.6.1.2.1.2.2.1.3]</snmp_oid>
+                    <key>netstream.if.discovery</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFTYPE}</macro>
+                                <value>^6$</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFADMINSTATUS}</macro>
+                                <value>^1$</value>
+                                <formulaid>B</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>2h</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>0a6c7e4c781e45c4a21582aed9968cba</uuid>
+                            <name>Interface {#IFNAME}: Trafego de Entrada (bps)</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.in.bps[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ac2936448dce4f44938c7a44469d5694</uuid>
+                            <name>Interface {#IFNAME}: Trafego de Saida (bps)</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.out.bps[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ac6cad038674476390ea691e04d0b594</uuid>
+                            <name>Interface {#IFNAME}: Status Operacional</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.status[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>bea97ac88d8b4854a3a5f03963ed2dd0</uuid>
+                                    <expression>max(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}],#3)=2 and diff(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}])=1 and count(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>last(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}])=1</recovery_expression>
+                                    <name>Interface {#IFNAME}: Link DOWN em {HOST.NAME}</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Interface</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Alert</tag>
+                                            <value>LinkDown</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>426d5093653542dc84d78c363f8ff11a</uuid>
+                            <name>Interface {#IFNAME}: Velocidade</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.15.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.speed[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>125000</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>3cad84a02c524da2af76a1313f6f01e8</uuid>
+                            <name>Interface {#IFNAME}: Erros de Entrada</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.in.errors[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>3dc4199235784d0da841410a4ee5f633</uuid>
+                            <name>Interface {#IFNAME}: Erros de Saida</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.if.out.errors[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>5736937533a44628aac23d2afe39d19a</uuid>
+                            <name>Interface {#IFNAME}: Trafego</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>Template Switch Cisco - Netstream</host>
+                                        <key>netstream.if.in.bps[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>2774A4</color>
+                                    <item>
+                                        <host>Template Switch Cisco - Netstream</host>
+                                        <key>netstream.if.out.bps[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>93dfa139f4804959b3b1ad2a83a11bd3</uuid>
+                    <name>Discovery: BGP IPv4 Peer</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#ASN},1.3.6.1.2.1.15.3.1.9,{#IP},1.3.6.1.2.1.15.3.1.7]</snmp_oid>
+                    <key>netstream.bgppeerv4</key>
+                    <delay>1d</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>95c161446920409681615ff3a9cacc08</uuid>
+                            <name>BGP Peer {#IP} (ASN {#ASN}): Estado</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.15.3.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bgp.peer.state[{#IP}.{#ASN}]</key>
+                            <delay>1m</delay>
+                            <history>14d</history>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>9e0dc03622a44d0a861dedc021a89492</uuid>
+                            <name>BGP Peer {#IP} (ASN {#ASN}): Admin Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.15.3.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bgp.peer.adminstatus[{#IP}.{#ASN}]</key>
+                            <delay>5m</delay>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>523a3f5defda4f4d93fcfa41a12b1c56</uuid>
+                            <name>BGP Peer {#IP} (ASN {#ASN}): Uptime</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.2.1.15.3.1.16.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.bgp.peer.uptime[{#IP}.{#ASN}]</key>
+                            <delay>3m</delay>
+                            <units>uptime</units>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <uuid>48aea50a005649fd8d919d6a8094d412</uuid>
+                            <expression>last(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Cisco - Netstream/netstream.bgp.peer.adminstatus[{#IP}.{#ASN}])=2</expression>
+                            <name>BGP Peer {#IP} (ASN {#ASN}): DOWN em {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BGP</value>
+                                </tag>
+                                <tag>
+                                    <tag>Alert</tag>
+                                    <value>BgpPeerDown</value>
+                                </tag>
+                                <tag>
+                                    <tag>Peer</tag>
+                                    <value>{#IP}</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>fe24b8623b844ebf81f3a09122f09676</uuid>
+                    <name>Discovery: Temperatura (CISCO-ENVMON-MIB)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SENSOR},1.3.6.1.4.1.9.9.13.1.3.1.2]</snmp_oid>
+                    <key>netstream.cisco.temp.discovery</key>
+                    <delay>1d</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>eb508596365147dca221817d9ead063a</uuid>
+                            <name>Temperatura: {#SENSOR}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.9.9.13.1.3.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.cisco.temp[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>C</units>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>67a8ed834c4e41afa68761e0baa1b005</uuid>
+                                    <expression>min(/Template Switch Cisco - Netstream/netstream.cisco.temp[{#SNMPINDEX}],5m)&gt;{$TEMP_WARN}</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>min(/Template Switch Cisco - Netstream/netstream.cisco.temp[{#SNMPINDEX}],5m)&lt;{$TEMP_WARN}-3</recovery_expression>
+                                    <name>Temperatura elevada {#SENSOR} em {HOST.NAME}: acima de {$TEMP_WARN}C</name>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Temperature</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>610171f9424d4abab17da24efe79bfbe</uuid>
+                                    <expression>min(/Template Switch Cisco - Netstream/netstream.cisco.temp[{#SNMPINDEX}],5m)&gt;{$TEMP_CRIT}</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>min(/Template Switch Cisco - Netstream/netstream.cisco.temp[{#SNMPINDEX}],5m)&lt;{$TEMP_CRIT}-3</recovery_expression>
+                                    <name>Temperatura critica {#SENSOR} em {HOST.NAME}: acima de {$TEMP_CRIT}C</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Temperature</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>3cc19da2447c41e9a7e225b899a60dff</uuid>
+                    <name>Discovery: Fan (CISCO-ENVMON-MIB)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#FAN},1.3.6.1.4.1.9.9.13.1.4.1.2]</snmp_oid>
+                    <key>netstream.cisco.fan.discovery</key>
+                    <delay>1d</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>ae241bbeb95d483ab7bd662355d004e4</uuid>
+                            <name>Fan {#FAN}: Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.9.9.13.1.4.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.cisco.fan.status[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <description>1=normal, 2=warning, 3=critical, 4=shutdown, 5=notPresent, 6=notFunctioning</description>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>550d144afb824d58a2dc1d711c9ed1cd</uuid>
+                                    <expression>last(/Template Switch Cisco - Netstream/netstream.cisco.fan.status[{#SNMPINDEX}])&gt;1 and last(/Template Switch Cisco - Netstream/netstream.cisco.fan.status[{#SNMPINDEX}])&lt;5</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>last(/Template Switch Cisco - Netstream/netstream.cisco.fan.status[{#SNMPINDEX}])=1</recovery_expression>
+                                    <name>Fan {#FAN}: Status anormal em {HOST.NAME}</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Fan</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>36554210364e4adf961a3287c6c08fa9</uuid>
+                    <name>Discovery: PSU (CISCO-ENVMON-MIB)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#PSU},1.3.6.1.4.1.9.9.13.1.5.1.2]</snmp_oid>
+                    <key>netstream.cisco.psu.discovery</key>
+                    <delay>1d</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>3e5457beab554c26bfc9f2bdd141afba</uuid>
+                            <name>PSU {#PSU}: Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.9.9.13.1.5.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.cisco.psu.status[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <description>1=normal, 2=warning, 3=critical, 4=shutdown, 5=notPresent, 6=notFunctioning</description>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>3e842f4a4ff34080969862c2c5d69887</uuid>
+                                    <expression>last(/Template Switch Cisco - Netstream/netstream.cisco.psu.status[{#SNMPINDEX}])&gt;1 and last(/Template Switch Cisco - Netstream/netstream.cisco.psu.status[{#SNMPINDEX}])&lt;5</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>last(/Template Switch Cisco - Netstream/netstream.cisco.psu.status[{#SNMPINDEX}])=1</recovery_expression>
+                                    <name>PSU {#PSU}: Status anormal em {HOST.NAME}</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>Scope</tag>
+                                            <value>Power</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>public</value>
+                </macro>
+                <macro>
+                    <macro>{$CPU_WARN}</macro>
+                    <value>80</value>
+                </macro>
+                <macro>
+                    <macro>{$MEM_WARN}</macro>
+                    <value>85</value>
+                </macro>
+                <macro>
+                    <macro>{$TEMP_WARN}</macro>
+                    <value>60</value>
+                </macro>
+                <macro>
+                    <macro>{$TEMP_CRIT}</macro>
+                    <value>75</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+</zabbix_export>
