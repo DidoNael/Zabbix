@@ -308,7 +308,7 @@ Todos os direitos reservados.</description>
                         </trigger>
                         <trigger>
                             <expression>{Template SNMP OLT FiberHome - NETSTREAM:uptime.nodata(5m)}=1</expression>
-                            <name>OLT Inacess&iacute;vel (sem dados SNMP h&aacute; 5 minutos)</name>
+                            <name>OLT Inacess&#237;vel (sem dados SNMP h&#225; 5 minutos)</name>
                             <priority>DISASTER</priority>
                             <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 5 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
                             <tags>
