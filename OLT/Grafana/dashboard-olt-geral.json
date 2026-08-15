@@ -73,7 +73,7 @@
                       },
                       "spec": {
                         "application": {
-                          "filter": "Interfaces Ethernet"
+                          "filter": "Uplinks OLT"
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -1334,7 +1334,7 @@
                         "editorMode": "code",
                         "format": "table",
                         "rawQuery": true,
-                        "rawSql": "select\r\nit.name,\r\nMAX(CASE WHEN itg.tag LIKE '%ONUs Autorizadas%' THEN hu.value END) AS \"Autorizadas\",\r\nMAX(CASE WHEN itg.tag LIKE '%ONUs Onlines%' THEN hu.value END) AS \"Onlines\",\r\nMAX(CASE WHEN itg.tag LIKE '%ONUs OFF%' THEN hu.value END) AS \"Offlines\",\r\nMAX(CASE WHEN itg.tag LIKE '%ONUs LOS%' THEN hu.value END) AS \"LOS\",\r\nMAX(CASE WHEN itg.tag LIKE '%ONUs DyingGasp%' THEN hu.value END) AS \"DyingGasp\",\r\nDATE_FORMAT(CONVERT_TZ(FROM_UNIXTIME(MAX(hu.clock)), '+03:00', '+03:00'), '%d-%m-%Y %H:%i:%s') AS \"Ultima Verificacao\"\r\nfrom items it\r\nleft join (select itemid, max(clock) as max_clock from history_uint group by itemid order by clock) as max_hu on it.itemid = max_hu.itemid\r\nleft join history_uint hu on hu.itemid = max_hu.itemid and hu.clock = max_hu.max_clock\r\nleft join (select itemid, max(clock) as max_clock from history_text group by itemid order by clock) as max_hx on it.itemid = max_hx.itemid\r\nleft join history_text hx on hx.itemid = max_hx.itemid and hx.clock = max_hx.max_clock\r\ninner join hosts ht on ht.hostid = it.hostid\r\ninner join item_tag itg ON itg.itemid = it.itemid\r\nwhere it.flags in (0,4) and it.status = 0 and ht.status = 0 and ht.host in (\"$host\") and it.name like '%PON gpon%'\r\ngroup by it.name;",
+                        "rawSql": "select\r\nSUBSTRING_INDEX(it.name, ' - ', 1) as name,\r\nMAX(CASE WHEN it.name LIKE '% - ONUs Autorizadas' THEN hu.value END) AS \"Autorizadas\",\r\nMAX(CASE WHEN it.name LIKE '% - ONUs Online' THEN hu.value END) AS \"Onlines\",\r\nMAX(CASE WHEN it.name LIKE '% - ONUs Offline' THEN hu.value END) AS \"Offlines\",\r\nMAX(CASE WHEN it.name LIKE '% - LOS%' THEN hu.value END) AS \"LOS\",\r\nMAX(CASE WHEN it.name LIKE '% - DyingGasp%' THEN hu.value END) AS \"DyingGasp\",\r\nDATE_FORMAT(CONVERT_TZ(FROM_UNIXTIME(MAX(hu.clock)), '+03:00', '+03:00'), '%d-%m-%Y %H:%i:%s') AS \"Ultima Verificacao\"\r\nfrom items it\r\nleft join (select itemid, max(clock) as max_clock from history_uint group by itemid) as max_hu on it.itemid = max_hu.itemid\r\nleft join history_uint hu on hu.itemid = max_hu.itemid and hu.clock = max_hu.max_clock\r\ninner join hosts ht on ht.hostid = it.hostid\r\nwhere it.flags in (0,4) and it.status = 0 and ht.status = 0 and ht.host in (\"\System.Management.Automation.Internal.Host.InternalHost\")\r\nand it.name LIKE 'PON %'\r\nand (it.name LIKE '% - ONUs Autorizadas'\r\n  OR it.name LIKE '% - ONUs Online'\r\n  OR it.name LIKE '% - ONUs Offline'\r\n  OR it.name LIKE '% - LOS%'\r\n  OR it.name LIKE '% - DyingGasp%')\r\ngroup by SUBSTRING_INDEX(it.name, ' - ', 1)\r\norder by name;",
                         "sql": {
                           "columns": [
                             {
