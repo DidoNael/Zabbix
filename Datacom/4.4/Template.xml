@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>OLT Datacom DmOS - NETSTREAM</template>
+            <name>OLT Datacom DmOS - NETSTREAM</name>
+            <description>Template para OLT Datacom DM4618 / DmOS&#13;
+&#13;
+Monitoramento:&#13;
+- Uplinks (trafego, status, saturacao 90%)&#13;
+- Portas GPON (status apagada/ativa)&#13;
+- CPU e Memoria&#13;
+- Uptime&#13;
+&#13;
+Enterprise OID base: 1.3.6.1.4.1.3709&#13;
+ifType GPON = 250&#13;
+ifType Uplink = 6 (ethernet-csmacd)</description>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <name>Uptime</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
+                    <key>sysUpTime</key>
+                    <delay>5m</delay>
+                    <history>30d</history>
+                    <trends>90d</trends>
+                    <units>uptime</units>
+                    <description>Tempo desde o ultimo reboot da OLT</description>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>0.01</params>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>CPU - Utilizacao</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.4.1.2.1.2.1.1.49</snmp_oid>
+                    <key>dmos.cpu.util</key>
+                    <delay>3m</delay>
+                    <history>30d</history>
+                    <trends>90d</trends>
+                    <units>%</units>
+                    <description>Percentual de CPU utilizado (slot 49 = linha principal)</description>
+                    <triggers>
+                        <trigger>
+                            <expression>{max(10m)}&gt;85</expression>
+                            <name>CPU alta (&gt;85%) em {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Memoria - Utilizacao</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.4.1.2.1.4.1.1.49</snmp_oid>
+                    <key>dmos.mem.util</key>
+                    <delay>3m</delay>
+                    <history>30d</history>
+                    <trends>90d</trends>
+                    <units>%</units>
+                    <description>Percentual de memoria utilizado (slot 49)</description>
+                    <triggers>
+                        <trigger>
+                            <expression>{max(10m)}&gt;90</expression>
+                            <name>Memoria alta (&gt;90%) em {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>NETSTREAM - Descoberta de Uplinks</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.2.1.2.2.1.8,{#IFADMINSTATUS},1.3.6.1.2.1.2.2.1.7,{#IFNAME},1.3.6.1.2.1.2.2.1.2,{#IFTYPE},1.3.6.1.2.1.2.2.1.3,{#IFSPEED},1.3.6.1.2.1.31.1.1.1.15]</snmp_oid>
+                    <key>netstream.uplink.discovery</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFTYPE}</macro>
+                                <value>^6$</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFADMINSTATUS}</macro>
+                                <value>^1$</value>
+                                <formulaid>B</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>2h</lifetime>
+                    <description>Descobre interfaces uplink (ifType=6, ethernet) administrativamente ativas</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME}: Trafego de Entrada (IN)</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.in.bps[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <port>161</port>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME}: Trafego de Saida (OUT)</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.out.bps[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>30d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <port>161</port>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME}: Status Operacional</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.status[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <port>161</port>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT Datacom DmOS - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2 and {OLT Datacom DmOS - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].diff()}=1 and {OLT Datacom DmOS - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{OLT Datacom DmOS - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].last()}=1</recovery_expression>
+                                    <name>Uplink {#IFNAME}: Link DOWN</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Link_Down</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME}: Velocidade</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.31.1.1.1.15.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.ifspeed[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <units>bps</units>
+                            <port>161</port>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>125000</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME}: Erros de Entrada</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.in.errors[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <port>161</port>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uplink {#IFNAME}: Erros de Saida</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.uplink.out.errors[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <port>161</port>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Uplink {#IFNAME}: Trafego</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                                        <key>netstream.uplink.in.bps[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>2774A4</color>
+                                    <item>
+                                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                                        <key>netstream.uplink.out.bps[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>NETSTREAM - Descoberta de Portas GPON</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.2.1.2.2.1.8,{#IFNAME},1.3.6.1.2.1.2.2.1.2,{#IFTYPE},1.3.6.1.2.1.2.2.1.3]</snmp_oid>
+                    <key>netstream.gpon.port.discovery</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFTYPE}</macro>
+                                <value>^250$</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>2h</lifetime>
+                    <description>Descobre portas GPON (ifType=250)</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Porta {#IFNAME}: Status Operacional</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.gpon.port.status[{#SNMPINDEX}]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].max(#3)}=2 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].diff()}=1 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].last()}=1</recovery_expression>
+                                    <name>Porta GPON {#IFNAME}: Apagada (Inativa)</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>GPON_Down</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>public</value>
+                </macro>
+                <macro>
+                    <macro>{$CPU_WARN}</macro>
+                    <value>85</value>
+                </macro>
+                <macro>
+                    <macro>{$MEM_WARN}</macro>
+                    <value>90</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <name>CPU e Memoria</name>
+            <graph_items>
+                <graph_item>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                        <key>dmos.cpu.util</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>2774A4</color>
+                    <item>
+                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                        <key>dmos.mem.util</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>
