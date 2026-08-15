@@ -326,7 +326,7 @@ Todos os direitos reservados.</description>
                 <item>
                     <name>NETSTREAM - Status PONs GPON (master)</name>
                     <type>EXTERNAL</type>
-                    <key>netstream.gpon.pon.status[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <key>netstream.gpon.pon.status.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                     <delay>5m</delay>
                     <history>7d</history>
                     <trends>0</trends>
@@ -1983,7 +1983,7 @@ return s;</params>
                 <discovery_rule>
                     <name>NETSTREAM - Descoberta de PONs GPON (LOS/DG)</name>
                     <type>EXTERNAL</type>
-                    <key>netstream.gpon.pon.discovery[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <key>netstream.gpon.pon.discovery.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                     <delay>1h</delay>
                     <filter>
                         <conditions>
@@ -1998,7 +1998,7 @@ return s;</params>
                         <item_prototype>
                             <name>PON {#NETSTREAM.PON_NAME} - ONUs Autorizadas</name>
                             <type>DEPENDENT</type>
-                            <key>netstream.gpon.pon.auth[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.auth.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <applications>
@@ -2018,13 +2018,13 @@ return s;</params>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
                             <name>PON {#NETSTREAM.PON_NAME} - ONUs Online</name>
                             <type>DEPENDENT</type>
-                            <key>netstream.gpon.pon.online[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.online.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <applications>
@@ -2044,13 +2044,13 @@ return s;</params>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
                             <name>PON {#NETSTREAM.PON_NAME} - ONUs Offline</name>
                             <type>DEPENDENT</type>
-                            <key>netstream.gpon.pon.offline[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.offline.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <applications>
@@ -2070,13 +2070,13 @@ return s;</params>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
                             <name>PON {#NETSTREAM.PON_NAME} - DyingGasp (Energia)</name>
                             <type>DEPENDENT</type>
-                            <key>netstream.gpon.pon.dg[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.dg.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <applications>
@@ -2096,13 +2096,13 @@ return s;</params>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
                             <name>PON {#NETSTREAM.PON_NAME} - LOS (Fibra)</name>
                             <type>DEPENDENT</type>
-                            <key>netstream.gpon.pon.los[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.los.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <applications>
@@ -2122,13 +2122,13 @@ return s;</params>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
                             <name>PON {#NETSTREAM.PON_NAME} - LOSi</name>
                             <type>DEPENDENT</type>
-                            <key>netstream.gpon.pon.losi[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.losi.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <applications>
@@ -2148,13 +2148,13 @@ return s;</params>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
                             <name>PON {#NETSTREAM.PON_NAME} - LOF</name>
                             <type>DEPENDENT</type>
-                            <key>netstream.gpon.pon.lof[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.lof.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <applications>
@@ -2174,16 +2174,16 @@ return s;</params>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
                             <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Online (calc)</name>
                             <type>CALCULATED</type>
-                            <key>netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.online[{#NETSTREAM.PON_INDEX}]")</params>
+                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.online.zte[{#NETSTREAM.PON_INDEX}]")</params>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -2193,10 +2193,10 @@ return s;</params>
                         <item_prototype>
                             <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Offline (calc)</name>
                             <type>CALCULATED</type>
-                            <key>netstream.gpon.pon.calc.offline[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.calc.offline.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.offline[{#NETSTREAM.PON_INDEX}]")</params>
+                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.offline.zte[{#NETSTREAM.PON_INDEX}]")</params>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -2206,10 +2206,10 @@ return s;</params>
                         <item_prototype>
                             <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Dying Gasp (calc)</name>
                             <type>CALCULATED</type>
-                            <key>netstream.gpon.pon.calc.dg[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.dg[{#NETSTREAM.PON_INDEX}]")</params>
+                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.dg.zte[{#NETSTREAM.PON_INDEX}]")</params>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -2219,10 +2219,10 @@ return s;</params>
                         <item_prototype>
                             <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - LOS (calc)</name>
                             <type>CALCULATED</type>
-                            <key>netstream.gpon.pon.calc.los[{#NETSTREAM.PON_INDEX}]</key>
+                            <key>netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.los[{#NETSTREAM.PON_INDEX}]")</params>
+                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.los.zte[{#NETSTREAM.PON_INDEX}]")</params>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME}</name>
@@ -2232,9 +2232,9 @@ return s;</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}].last()}=0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}=0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
+                            <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
                             <priority>DISASTER</priority>
                             <tags>
@@ -2261,7 +2261,7 @@ return s;</params>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
@@ -2293,7 +2293,7 @@ return s;</params>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -2325,7 +2325,7 @@ return s;</params>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}].change()}&lt;-{$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}].last()}&gt;0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].change()}&lt;-{$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}&gt;0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda parcial de ONUs</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
