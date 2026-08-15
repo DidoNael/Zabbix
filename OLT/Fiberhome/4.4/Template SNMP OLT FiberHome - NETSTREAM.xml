@@ -1,35 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ï»¿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-07-24T01:09:10Z</date>
     <groups>
         <group>
-            <name>Templates</name>
+            <name>NETSTREAM</name>
         </group>
         <group>
-            <name>NETSTREAM</name>
+            <name>NETSTREAM/FIBERHOME</name>
+        </group>
+        <group>
+            <name>OLT</name>
         </group>
     </groups>
     <templates>
         <template>
             <template>Template SNMP OLT FiberHome - NETSTREAM</template>
             <name>Template SNMP OLT FiberHome - NETSTREAM</name>
-            <description>Netstream Telecomunicações — netstream.net.br
+            <description>Netstream Telecomunicaï¿½ï¿½es ï¿½ netstream.net.br
 Contato: (11) 95990-4100 | suporte@netstream.net.br
 
 AVISO DE PROPRIEDADE INTELECTUAL
-Este template é propriedade exclusiva da Netstream Telecomunicações.
-É proibida a cópia, distribuição, modificação ou qualquer uso sem
-autorização prévia e por escrito da Netstream Telecomunicações.
+Este template ï¿½ propriedade exclusiva da Netstream Telecomunicaï¿½ï¿½es.
+ï¿½ proibida a cï¿½pia, distribuiï¿½ï¿½o, modificaï¿½ï¿½o ou qualquer uso sem
+autorizaï¿½ï¿½o prï¿½via e por escrito da Netstream Telecomunicaï¿½ï¿½es.
 Todos os direitos reservados.</description>
             <groups>
-                <group>
-                    <name>Templates</name>
-                </group>
-                <group>
-                    <name>NETSTREAM</name>
-                </group>
-            </groups>
+        <group>
+            <name>NETSTREAM</name>
+        </group>
+        <group>
+            <name>NETSTREAM/FIBERHOME</name>
+        </group>
+        <group>
+            <name>OLT</name>
+        </group>
+    </groups>
             <applications>
                 <application>
                     <name>download</name>
@@ -83,6 +89,9 @@ Todos os direitos reservados.</description>
                     <name>Uplinks OLT</name>
                 </application>
                 <application>
+                    <name>Interfaces Ethernet</name>
+                </application>
+                <application>
                     <name>upload</name>
                 </application>
                 <application>
@@ -90,6 +99,12 @@ Todos os direitos reservados.</description>
                 </application>
                 <application>
                     <name>uptime</name>
+                </application>
+                <application>
+                    <name>Status</name>
+                </application>
+                <application>
+                    <name>Temperatura</name>
                 </application>
             </applications>
             <items>
@@ -291,6 +306,14 @@ Todos os direitos reservados.</description>
                     <history>7d</history>
                     <trends>0</trends>
                     <units>uptime</units>
+                    <applications>
+                        <application>
+                            <name>uptime</name>
+                        </application>
+                        <application>
+                            <name>Status</name>
+                        </application>
+                    </applications>
                     <triggers>
                         <trigger>
                             <expression>{Template SNMP OLT FiberHome - NETSTREAM:uptime.last()}&lt;600 or {Template SNMP OLT FiberHome - NETSTREAM:uptime.change()}&lt;0</expression>
@@ -1493,11 +1516,13 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <units>Bps</units>
                             <applications>
                                 <application>
                                     <name>Uplinks OLT</name>
+                                </application>
+                                <application>
+                                    <name>Interfaces Ethernet</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -1516,7 +1541,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <units>drops/s</units>
                             <applications>
                                 <application>
@@ -1557,7 +1581,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <units>err/s</units>
                             <applications>
                                 <application>
@@ -1580,11 +1603,13 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <units>Bps</units>
                             <applications>
                                 <application>
                                     <name>Uplinks OLT</name>
+                                </application>
+                                <application>
+                                    <name>Interfaces Ethernet</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -1603,7 +1628,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <units>drops/s</units>
                             <applications>
                                 <application>
@@ -1644,7 +1668,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>30d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1668,7 +1691,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>Uplinks OLT</name>
@@ -1702,7 +1724,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>30d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
                             <applications>
@@ -1726,7 +1747,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>30d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1750,7 +1770,6 @@ return 0;</params>
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>Bps</units>
                             <applications>
@@ -1819,7 +1838,6 @@ return 0;</params>
                     <snmp_oid>discovery[{#ONUSN}, 1.3.6.1.4.1.5875.800.3.10.1.1.10, {#ONTDESC}, 1.3.6.1.4.1.5875.800.3.10.1.1.7]</snmp_oid>
                     <key>oltonudedicado</key>
                     <delay>1d</delay>
-                    <port>161</port>
                     <filter>
                         <conditions>
                             <condition>
@@ -1838,7 +1856,6 @@ return 0;</params>
                             <key>onuPondown.[&quot;{#SNMPINDEX}&quot;]</key>
                             <history>7d</history>
                             <units>bps</units>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>download</name>
@@ -1884,7 +1901,6 @@ return 0;</params>
                             <key>onuPonup.[&quot;{#SNMPINDEX}&quot;]</key>
                             <history>7d</history>
                             <units>bps</units>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>upload</name>
@@ -1909,7 +1925,6 @@ return 0;</params>
                             <key>state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}]</key>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>onu-state</name>
@@ -2096,7 +2111,7 @@ and &#13;
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>0</trends>
-                            <units>ºC</units>
+                            <units>ï¿½C</units>
                             <applications>
                                 <application>
                                     <name>PON</name>
@@ -2269,7 +2284,6 @@ and &#13;
                     <key>onuPonInfoTable</key>
                     <delay>1d;h5</delay>
                     <status>DISABLED</status>
-                    <port>161</port>
                     <item_prototypes>
                         <item_prototype>
                             <name>ONU Name {#SNMPVALUE}</name>
@@ -2282,7 +2296,6 @@ and &#13;
                             <trends>0</trends>
                             <status>DISABLED</status>
                             <value_type>TEXT</value_type>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>ONU</name>
@@ -2300,8 +2313,7 @@ and &#13;
                             <trends>60d</trends>
                             <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
-                            <units>ºC</units>
-                            <port>161</port>
+                            <units>ï¿½C</units>
                             <applications>
                                 <application>
                                     <name>ONU</name>
@@ -2326,7 +2338,6 @@ and &#13;
                             <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>ONU</name>
@@ -2362,7 +2373,6 @@ and &#13;
                             <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>ONU</name>
@@ -2534,7 +2544,7 @@ and &#13;
             <mappings>
                 <mapping>
                     <value>0</value>
-                    <newvalue>Inativa ( Sem Comunicação com ONU)</newvalue>
+                    <newvalue>Inativa ( Sem Comunicaï¿½ï¿½o com ONU)</newvalue>
                 </mapping>
                 <mapping>
                     <value>1</value>
@@ -2550,7 +2560,7 @@ and &#13;
                 </mapping>
                 <mapping>
                     <value>4</value>
-                    <newvalue>LOS (ONU perdeu o link óptico)</newvalue>
+                    <newvalue>LOS (ONU perdeu o link ï¿½ptico)</newvalue>
                 </mapping>
             </mappings>
         </value_map>
@@ -2569,3 +2579,5 @@ and &#13;
         </value_map>
     </value_maps>
 </zabbix_export>
+
+
