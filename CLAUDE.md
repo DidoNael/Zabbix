@@ -19,7 +19,7 @@
 
 ## Trigger de saturação de porta (90%)
 
-- Guarda `ifHighSpeed` como item `netstream.uplink.ifspeed[{#SNMPINDEX}]` com preprocessing MULTIPLIER 125000 (Mbps → Bps)
+- Guarda `ifHighSpeed` como item `netstream.uplink.ifspeed[{#SNMPINDEX}]` com preprocessing MULTIPLIER 1000000 (Mbps → bps)
 - Trigger: `last(ifspeed)>0 and min(in.bps, 5m)/last(ifspeed)>0.9 or min(out.bps, 5m)/last(ifspeed)>0.9`
 - Prioridade HIGH, manual_close=YES
 

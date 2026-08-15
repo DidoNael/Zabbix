@@ -1,4 +1,4 @@
-ï»¿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-05-22T13:36:26Z</date>
@@ -14,13 +14,13 @@
         <template>
             <template>OLT ZTE - NETSTREAM</template>
             <name>OLT ZTE - NETSTREAM</name>
-            <description>Netstream TelecomunicaÃ§Ãµes â€” netstream.net.br
+            <description>Netstream Telecomunicações — netstream.net.br
 Contato: (11) 95990-4100 | suporte@netstream.net.br
 
 AVISO DE PROPRIEDADE INTELECTUAL
-Este template Ã© propriedade exclusiva da Netstream TelecomunicaÃ§Ãµes.
-Ã‰ proibida a cÃ³pia, distribuiÃ§Ã£o, modificaÃ§Ã£o ou qualquer uso sem
-autorizaÃ§Ã£o prÃ©via e por escrito da Netstream TelecomunicaÃ§Ãµes.
+Este template é propriedade exclusiva da Netstream Telecomunicações.
+É proibida a cópia, distribuição, modificação ou qualquer uso sem
+autorização prévia e por escrito da Netstream Telecomunicações.
 Todos os direitos reservados.</description>
             <groups>
                 <group>
@@ -720,7 +720,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>netstream.gpon.sfp.temp[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <value_type>FLOAT</value_type>
-                            <units>Â°C</units>
+                            <units>°C</units>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -814,7 +814,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Erros de SaÃ­da</name>
+                            <name>Porta {#PONNAME} ({#PONDESC}): Erros de Saída</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
@@ -1465,7 +1465,7 @@ return s;</params>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de MemÃ³ria</name>
+                            <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de Memória</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.11.{#SNMPINDEX}</snmp_oid>
@@ -1931,7 +1931,7 @@ return s;</params>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>125000</params>
+                                    <params>1000000</params>
                                 </step>
                             </preprocessing>
                             <trigger_prototypes>
@@ -2419,7 +2419,7 @@ return s;</params>
                 </mapping>
                 <mapping>
                     <value>3</value>
-                    <newvalue>hwOnline (Software nÃ£o carregado)</newvalue>
+                    <newvalue>hwOnline (Software não carregado)</newvalue>
                 </mapping>
                 <mapping>
                     <value>4</value>

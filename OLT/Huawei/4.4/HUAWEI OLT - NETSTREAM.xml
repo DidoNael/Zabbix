@@ -1,4 +1,4 @@
-ï»¿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-07-24T01:12:42Z</date>
@@ -14,13 +14,13 @@
         <template>
             <template>HUAWEI OLT - NETSTREAM</template>
             <name>HUAWEI OLT - NETSTREAM</name>
-            <description>Netstream TelecomunicaÃ§Ãµes â€” netstream.net.br
+            <description>Netstream Telecomunicações — netstream.net.br
 Contato: (11) 95990-4100 | suporte@netstream.net.br
 
 AVISO DE PROPRIEDADE INTELECTUAL
-Este template Ã© propriedade exclusiva da Netstream TelecomunicaÃ§Ãµes.
-Ã‰ proibida a cÃ³pia, distribuiÃ§Ã£o, modificaÃ§Ã£o ou qualquer uso sem
-autorizaÃ§Ã£o prÃ©via e por escrito da Netstream TelecomunicaÃ§Ãµes.
+Este template é propriedade exclusiva da Netstream Telecomunicações.
+É proibida a cópia, distribuição, modificação ou qualquer uso sem
+autorização prévia e por escrito da Netstream Telecomunicações.
 Todos os direitos reservados.</description>
             <groups>
                 <group>
@@ -335,7 +335,7 @@ Todos os direitos reservados.</description>
                             <delay>10m</delay>
                             <history>2w</history>
                             <trends>90d</trends>
-                            <units>ÂºC</units>
+                            <units>ºC</units>
                             <applications>
                                 <application>
                                     <name>OLT_HW</name>
@@ -1219,7 +1219,7 @@ return 0;</params>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>125000</params>
+                                    <params>1000000</params>
                                 </step>
                             </preprocessing>
                             <trigger_prototypes>
@@ -1665,7 +1665,7 @@ and&#13;
                 </mapping>
                 <mapping>
                     <value>15</value>
-                    <newvalue>Perda de sincronizaÃ§Ã£o de chave com ONUi (LOKI)</newvalue>
+                    <newvalue>Perda de sincronização de chave com ONUi (LOKI)</newvalue>
                 </mapping>
                 <mapping>
                     <value>18</value>
@@ -1673,7 +1673,7 @@ and&#13;
                 </mapping>
                 <mapping>
                     <value>30</value>
-                    <newvalue>ONU desligada pelo mÃ³dulo Ã³ptico</newvalue>
+                    <newvalue>ONU desligada pelo módulo óptico</newvalue>
                 </mapping>
                 <mapping>
                     <value>31</value>
@@ -1681,7 +1681,7 @@ and&#13;
                 </mapping>
                 <mapping>
                     <value>32</value>
-                    <newvalue>Reset da ONU pelo botÃ£o de reset da ONU</newvalue>
+                    <newvalue>Reset da ONU pelo botão de reset da ONU</newvalue>
                 </mapping>
                 <mapping>
                     <value>33</value>

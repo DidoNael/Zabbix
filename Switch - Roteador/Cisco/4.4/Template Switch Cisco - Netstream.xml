@@ -314,7 +314,7 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>125000</params>
+                                    <params>1000000</params>
                                 </step>
                             </preprocessing>
                         </item_prototype>

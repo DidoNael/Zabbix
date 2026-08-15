@@ -1,4 +1,4 @@
-ï»¿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-07-24T01:09:10Z</date>
@@ -14,13 +14,13 @@
         <template>
             <template>Template SNMP OLT FiberHome - NETSTREAM</template>
             <name>Template SNMP OLT FiberHome - NETSTREAM</name>
-            <description>Netstream TelecomunicaÃ§Ãµes â€” netstream.net.br
+            <description>Netstream Telecomunicações — netstream.net.br
 Contato: (11) 95990-4100 | suporte@netstream.net.br
 
 AVISO DE PROPRIEDADE INTELECTUAL
-Este template Ã© propriedade exclusiva da Netstream TelecomunicaÃ§Ãµes.
-Ã‰ proibida a cÃ³pia, distribuiÃ§Ã£o, modificaÃ§Ã£o ou qualquer uso sem
-autorizaÃ§Ã£o prÃ©via e por escrito da Netstream TelecomunicaÃ§Ãµes.
+Este template é propriedade exclusiva da Netstream Telecomunicações.
+É proibida a cópia, distribuição, modificação ou qualquer uso sem
+autorização prévia e por escrito da Netstream Telecomunicações.
 Todos os direitos reservados.</description>
             <groups>
                 <group>
@@ -1761,7 +1761,7 @@ return 0;</params>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>125000</params>
+                                    <params>1000000</params>
                                 </step>
                             </preprocessing>
                             <trigger_prototypes>
@@ -2096,7 +2096,7 @@ and &#13;
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>0</trends>
-                            <units>ÂºC</units>
+                            <units>ºC</units>
                             <applications>
                                 <application>
                                     <name>PON</name>
@@ -2300,7 +2300,7 @@ and &#13;
                             <trends>60d</trends>
                             <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
-                            <units>ÂºC</units>
+                            <units>ºC</units>
                             <port>161</port>
                             <applications>
                                 <application>
@@ -2534,7 +2534,7 @@ and &#13;
             <mappings>
                 <mapping>
                     <value>0</value>
-                    <newvalue>Inativa ( Sem ComunicaÃ§Ã£o com ONU)</newvalue>
+                    <newvalue>Inativa ( Sem Comunicação com ONU)</newvalue>
                 </mapping>
                 <mapping>
                     <value>1</value>
@@ -2550,7 +2550,7 @@ and &#13;
                 </mapping>
                 <mapping>
                     <value>4</value>
-                    <newvalue>LOS (ONU perdeu o link Ã³ptico)</newvalue>
+                    <newvalue>LOS (ONU perdeu o link óptico)</newvalue>
                 </mapping>
             </mappings>
         </value_map>
