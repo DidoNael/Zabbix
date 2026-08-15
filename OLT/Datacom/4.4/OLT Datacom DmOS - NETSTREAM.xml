@@ -29,6 +29,204 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
             </groups>
             <items>
                 <item>
+                    <name>Sistema - Descricao</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.2.1.1.1.0</snmp_oid>
+                    <key>dmos.sys.descr</key>
+                    <delay>1h</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Modelo e versao do firmware DmOS</description>
+                </item>
+                <item>
+                    <name>Temperatura - Ambiente</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.3.1.3.1.1.49.7.83.69.78.83.79.82.49</snmp_oid>
+                    <key>dmos.temp.environment</key>
+                    <delay>5m</delay>
+                    <history>30d</history>
+                    <trends>90d</trends>
+                    <units>C</units>
+                    <description>Temperatura ambiente do chassi (SENSOR1). Valor raw / 10.</description>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>0.1</params>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <expression>{max(10m)}&gt;{$TEMP_WARN}</expression>
+                            <name>Temperatura ambiente alta (&gt;{$TEMP_WARN}C) em {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Temperatura - CPU Core</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.3.1.3.1.1.49.7.83.69.78.83.79.82.50</snmp_oid>
+                    <key>dmos.temp.cpu</key>
+                    <delay>5m</delay>
+                    <history>30d</history>
+                    <trends>90d</trends>
+                    <units>C</units>
+                    <description>Temperatura do nucleo da CPU (SENSOR2). Valor raw / 10.</description>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>0.1</params>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Temperatura - Switch Fabric</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.3.1.3.1.1.49.7.83.69.78.83.79.82.51</snmp_oid>
+                    <key>dmos.temp.fabric</key>
+                    <delay>5m</delay>
+                    <history>30d</history>
+                    <trends>90d</trends>
+                    <units>C</units>
+                    <description>Temperatura do Switch Fabric Core (SENSOR3). Valor raw / 10.</description>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>0.1</params>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Fan 1: Status Operacional</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.4.1.5.1.4.70.65.78.49.1.49</snmp_oid>
+                    <key>dmos.fan.1.status</key>
+                    <delay>3m</delay>
+                    <history>7d</history>
+                    <trends>90d</trends>
+                    <description>Status do FAN1/elemento1. 2=rodando, outros=falha.</description>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&#60;&#62;2</expression>
+                            <name>Fan 1 com falha ou parado em {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Fan 2: Status Operacional</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.4.1.5.1.4.70.65.78.50.1.49</snmp_oid>
+                    <key>dmos.fan.2.status</key>
+                    <delay>3m</delay>
+                    <history>7d</history>
+                    <trends>90d</trends>
+                    <description>Status do FAN2/elemento1. 2=rodando, outros=falha.</description>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&#60;&#62;2</expression>
+                            <name>Fan 2 com falha ou parado em {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Fan 3: Status Operacional</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.4.1.5.1.4.70.65.78.51.1.49</snmp_oid>
+                    <key>dmos.fan.3.status</key>
+                    <delay>3m</delay>
+                    <history>7d</history>
+                    <trends>90d</trends>
+                    <description>Status do FAN3/elemento1. 2=rodando, outros=falha.</description>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&#60;&#62;2</expression>
+                            <name>Fan 3 com falha ou parado em {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Fan 1: RPM</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.4.1.4.1.4.70.65.78.49.1.49</snmp_oid>
+                    <key>dmos.fan.1.rpm</key>
+                    <delay>5m</delay>
+                    <history>30d</history>
+                    <trends>90d</trends>
+                    <units>RPM</units>
+                    <description>Velocidade do FAN1 (elemento 1).</description>
+                </item>
+                <item>
+                    <name>Fan 2: RPM</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.4.1.4.1.4.70.65.78.50.1.49</snmp_oid>
+                    <key>dmos.fan.2.rpm</key>
+                    <delay>5m</delay>
+                    <history>30d</history>
+                    <trends>90d</trends>
+                    <units>RPM</units>
+                    <description>Velocidade do FAN2 (elemento 1).</description>
+                </item>
+                <item>
+                    <name>Fan 3: RPM</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.4.1.4.1.4.70.65.78.51.1.49</snmp_oid>
+                    <key>dmos.fan.3.rpm</key>
+                    <delay>5m</delay>
+                    <history>30d</history>
+                    <trends>90d</trends>
+                    <units>RPM</units>
+                    <description>Velocidade do FAN3 (elemento 1).</description>
+                </item>
+                <item>
+                    <name>PSU 1: Status</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.5.1.2.6.49.47.80.83.85.49</snmp_oid>
+                    <key>dmos.psu.1.status</key>
+                    <delay>3m</delay>
+                    <history>7d</history>
+                    <trends>90d</trends>
+                    <description>Status da fonte de alimentacao PSU1. 0=presente/OK, 1=ausente/falha.</description>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&#60;&#62;0</expression>
+                            <name>PSU 1 ausente ou com falha em {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>PSU 2: Status</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>1.3.6.1.4.1.3709.3.6.6.1.5.1.2.6.49.47.80.83.85.50</snmp_oid>
+                    <key>dmos.psu.2.status</key>
+                    <delay>3m</delay>
+                    <history>7d</history>
+                    <trends>90d</trends>
+                    <description>Status da fonte de alimentacao PSU2. 0=presente/OK, 1=ausente/falha. Desativar se OLT usa apenas 1 PSU.</description>
+                    <status>1</status>
+                </item>
+                <item>
                     <name>Uptime</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
@@ -526,6 +724,11 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                     <value>90</value>
                 </macro>
                 <macro>
+                    <macro>{$TEMP_WARN}</macro>
+                    <value>70</value>
+                    <description>Temperatura maxima do ambiente antes de alertar (graus Celsius)</description>
+                </macro>
+                <macro>
                     <macro>{$GPON_DROP_MIN}</macro>
                     <value>3</value>
                 </macro>
@@ -548,6 +751,68 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
         </template>
     </templates>
     <graphs>
+        <graph>
+            <name>Temperatura</name>
+            <graph_items>
+                <graph_item>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>FF0000</color>
+                    <item>
+                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                        <key>dmos.temp.environment</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>FF6600</color>
+                    <item>
+                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                        <key>dmos.temp.cpu</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>CC00CC</color>
+                    <item>
+                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                        <key>dmos.temp.fabric</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Fan RPM</name>
+            <graph_items>
+                <graph_item>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                        <key>dmos.fan.1.rpm</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>2774A4</color>
+                    <item>
+                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                        <key>dmos.fan.2.rpm</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>F63100</color>
+                    <item>
+                        <host>OLT Datacom DmOS - NETSTREAM</host>
+                        <key>dmos.fan.3.rpm</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
         <graph>
             <name>CPU e Memoria</name>
             <graph_items>
