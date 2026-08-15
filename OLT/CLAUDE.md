@@ -171,7 +171,13 @@ Thresholds: CPU/Mem em **90%** (não 80%). Janela: **10 minutos** (não pontual)
 - Item de status (pode ser DISABLED por padrão)
 - Trigger Fan Fail: HIGH
 
-Fiberhome e Huawei não têm esses OIDs padronizados — investigar MIB antes de adicionar.
+OIDs pendentes de validação — rodar snmpwalk diretamente no equipamento:
+
+**Huawei (MA5800):**
+- hwPowerTable: `1.3.6.1.4.1.2011.6.3.3.5.1` — hwPowerStatus em `.6.{#SNMPINDEX}` (1=supply, 2=not supply, 3=sleep)
+- hwFanTable: `1.3.6.1.4.1.2011.6.3.3.4.1` — hwFanState em `.7.{#SNMPINDEX}` (1=normal, 2=abnormal)
+
+**Fiberhome:** investigar via `snmpwalk -v2c -c <community> <ip> 1.3.6.1.4.1.5875.800.3.9.5`
 
 ---
 
