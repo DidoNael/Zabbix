@@ -1,2 +1,2 @@
 #!/bin/bash
-exec python3 /usr/lib/zabbix/externalscripts/pon_total_zte.py "$1" "$2"
+exec python3 /usr/lib/zabbix/externalscripts/pon.total.zte.py "$1" "$2"

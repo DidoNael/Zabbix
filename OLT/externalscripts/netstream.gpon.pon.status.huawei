@@ -1,2 +1,2 @@
 #!/bin/bash
-exec python3 /usr/lib/zabbix/externalscripts/pon_status_huawei.py "$1" "$2"
+exec python3 /usr/lib/zabbix/externalscripts/pon.status.huawei.py "$1" "$2"

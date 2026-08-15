@@ -9,7 +9,7 @@ CACHE_TTL  = 300
 # Dispara coleta em background se cache ausente/velho
 if not os.path.exists(CACHE_FILE) or (time.time() - os.path.getmtime(CACHE_FILE)) > CACHE_TTL:
     subprocess.Popen(
-        ["python3", "/usr/lib/zabbix/externalscripts/pon_status_huawei.py", OLT_IP, COMMUNITY],
+        ["python3", "/usr/lib/zabbix/externalscripts/pon.status.huawei.py", OLT_IP, COMMUNITY],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
         start_new_session=True
     )

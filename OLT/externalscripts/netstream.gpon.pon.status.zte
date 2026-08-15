@@ -4,4 +4,4 @@ if [ -f /etc/zabbix/olt_ports.conf ]; then
     P=$(grep "^$1=" /etc/zabbix/olt_ports.conf | cut -d= -f2)
     [ -n "$P" ] && PORT="$P"
 fi
-exec python3 /usr/lib/zabbix/externalscripts/pon_status.py "$1" "$2" "$PORT"
+exec python3 /usr/lib/zabbix/externalscripts/pon.status.zte.py "$1" "$2" "$PORT"

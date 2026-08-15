@@ -1,2 +1,2 @@
 #!/bin/bash
-exec python3 /usr/lib/zabbix/externalscripts/pon_discovery_fiberhome.py "$1" "$2"
+exec python3 /usr/lib/zabbix/externalscripts/pon.discovery.fiberhome.py "$1" "$2"
