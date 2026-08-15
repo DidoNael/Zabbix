@@ -1493,6 +1493,7 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
+                            <port>161</port>
                             <units>Bps</units>
                             <applications>
                                 <application>
@@ -1515,6 +1516,7 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
+                            <port>161</port>
                             <units>drops/s</units>
                             <applications>
                                 <application>
@@ -1555,6 +1557,7 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
+                            <port>161</port>
                             <units>err/s</units>
                             <applications>
                                 <application>
@@ -1577,6 +1580,7 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
+                            <port>161</port>
                             <units>Bps</units>
                             <applications>
                                 <application>
@@ -1599,6 +1603,7 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
+                            <port>161</port>
                             <units>drops/s</units>
                             <applications>
                                 <application>
@@ -1639,6 +1644,7 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>30d</history>
                             <trends>90d</trends>
+                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1662,6 +1668,7 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
+                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>Uplinks OLT</name>
@@ -1695,6 +1702,7 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>30d</history>
                             <trends>90d</trends>
+                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
                             <applications>
@@ -1718,6 +1726,7 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>30d</history>
                             <trends>90d</trends>
+                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1741,6 +1750,7 @@ return 0;</params>
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
+                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>Bps</units>
                             <applications>
