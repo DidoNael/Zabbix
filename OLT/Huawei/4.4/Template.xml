@@ -73,6 +73,9 @@ Todos os direitos reservados.</description>
                 <application>
                     <name>uptime</name>
                 </application>
+                <application>
+                    <name>Trafego PON</name>
+                </application>
             </applications>
             <items>
                 <item>

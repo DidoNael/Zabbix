@@ -85,6 +85,12 @@ Todos os direitos reservados.</description>
                 <application>
                     <name>upload</name>
                 </application>
+                <application>
+                    <name>Trafego PON</name>
+                </application>
+                <application>
+                    <name>uptime</name>
+                </application>
             </applications>
             <items>
                 <item>
