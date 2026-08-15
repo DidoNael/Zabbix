@@ -223,8 +223,7 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                     <delay>3m</delay>
                     <history>7d</history>
                     <trends>90d</trends>
-                    <description>Status da fonte de alimentacao PSU2. 0=presente/OK, 1=ausente/falha. Desativar se OLT usa apenas 1 PSU.</description>
-                    <status>1</status>
+                    <description>Status da fonte de alimentacao PSU2. 0=presente/OK, 1=ausente/falha. Desativar manualmente se OLT usa apenas 1 PSU.</description>
                 </item>
                 <item>
                     <name>Uptime</name>
