@@ -5,7 +5,7 @@
     "name": "eef8p0x0hlxxcd",
     "namespace": "default",
     "uid": "d1326645-a4f7-4168-86cc-4108f6947039",
-    "resourceVersion": "1786883437393011",
+    "resourceVersion": "1786889029215990",
     "generation": 16,
     "creationTimestamp": "2025-08-13T00:18:22Z",
     "labels": {
@@ -1169,7 +1169,7 @@
                       },
                       "spec": {
                         "application": {
-                          "filter": "ONUs Dying Gasp"
+                          "filter": "ONUs Online"
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -1214,7 +1214,7 @@
                           "filter": "/.*/"
                         },
                         "itemTag": {
-                          "filter": "ONUs DyingGasp"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
