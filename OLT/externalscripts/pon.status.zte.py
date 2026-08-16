@@ -24,6 +24,8 @@ def collect_and_save():
     OID_AUTH   = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14"
     OID_ONLINE = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15"
     OID_REASON = "1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7"
+    OID_IFNAME  = "1.3.6.1.2.1.31.1.1.1.1"
+    OID_IFALIAS = "1.3.6.1.2.1.31.1.1.1.18"
     OPTS = ["-v2c", "-c", COMMUNITY, "-t", "25", "-r", "1", "-Cr10", SNMP_TARGET]
     import re
     tmpdir = tempfile.mkdtemp()
@@ -35,6 +37,10 @@ def collect_and_save():
                                        stdout=open(tmpdir+"/online","w"), stderr=subprocess.PIPE),
             "reason": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_REASON],
                                        stdout=open(tmpdir+"/reason","w"), stderr=subprocess.PIPE),
+            "ifname":  subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFNAME],
+                                       stdout=open(tmpdir+"/ifname","w"), stderr=subprocess.PIPE),
+            "ifalias": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFALIAS],
+                                       stdout=open(tmpdir+"/ifalias","w"), stderr=subprocess.PIPE),
         }
         for p in procs.values(): p.wait()
         def rl(f):
@@ -59,6 +65,16 @@ def collect_and_save():
             elif val == 4: reasons[pon]["lof"]  += 1
             elif val == 9: reasons[pon]["dg"]   += 1
             elif val == 1: reasons[pon]["unk"]  += 1
+        ifname_map = {}
+        for line in rl("ifname"):
+            m = re.search(r'ifName\.(\d+)\s+=\s+STRING:\s+(\S+)', line)
+            if m: ifname_map[m.group(1)] = m.group(2)
+        ifalias_map = {}
+        for line in rl("ifalias"):
+            m = re.search(r'ifAlias\.(\d+)\s+=\s+STRING:\s*(.*)', line)
+            if m and m.group(2).strip(): ifalias_map[m.group(1)] = m.group(2).strip()
+        name_to_alias = {v: ifalias_map.get(k, "") for k, v in ifname_map.items()}
+
         result = []
         for idx in sorted(auth_data.keys(), key=lambda x: int(x)):
             auth   = auth_data[idx]
@@ -69,7 +85,8 @@ def collect_and_save():
             if auth == 0: continue
             result.append({
                 "{#NETSTREAM.PON_INDEX}": idx, "{#NETSTREAM.PON_NAME}": name,
-                "idx": idx, "name": name,
+                "{#NETSTREAM.PON_DESC}": name_to_alias.get(name, ""),
+                "idx": idx, "name": name, "desc": name_to_alias.get(name, ""),
                 "auth": auth, "online": online, "offline": max(auth-online, 0),
                 "los": r["los"], "losi": r["losi"], "lof": r["lof"],
                 "dg": r["dg"], "unk": r["unk"]

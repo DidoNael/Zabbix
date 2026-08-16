@@ -24,7 +24,11 @@ except Exception:
     data = []
 
 lld = [
-    {"{#NETSTREAM.PON_INDEX}": str(p["idx"]), "{#NETSTREAM.PON_NAME}": str(p["name"])}
+    {
+        "{#NETSTREAM.PON_INDEX}": str(p["idx"]),
+        "{#NETSTREAM.PON_NAME}": str(p["name"]),
+        "{#NETSTREAM.PON_DESC}": str(p.get("desc", "")),
+    }
     for p in data if p.get("auth", 0) > 0
 ]
 print(json.dumps({"data": lld}))

@@ -77,7 +77,8 @@ def collect_and_save():
             result.append({
                 "{#NETSTREAM.PON_INDEX}": str(pon_idx),
                 "{#NETSTREAM.PON_NAME}":  name,
-                "idx":     str(pon_idx),
+                "{#NETSTREAM.PON_DESC}": "",
+                "idx":     str(pon_idx), "desc": "",
                 "name":    name,
                 "auth":    p["auth"],
                 "online":  p["online"],
