@@ -1,19 +1,19 @@
-﻿{
+{
   "apiVersion": "dashboard.grafana.app/v2",
   "kind": "Dashboard",
   "metadata": {
     "name": "eef8p0x0hlxxcd",
     "namespace": "default",
-    "uid": "S9pGWgpoHl7H7Pr4EyjUFZtSJLHsDNNGsXXHSblo8MMX",
-    "resourceVersion": "1784816470843009",
-    "generation": 29,
+    "uid": "d1326645-a4f7-4168-86cc-4108f6947039",
+    "resourceVersion": "1786882096844981",
+    "generation": 16,
     "creationTimestamp": "2025-08-13T00:18:22Z",
     "labels": {
-      "grafana.app/deprecatedInternalID": "120"
+      "grafana.app/deprecatedInternalID": "3617455258542080"
     },
     "annotations": {
       "grafana.app/createdBy": "user:u000000011",
-      "grafana.app/folder": "",
+      "grafana.app/folder": "5Rt2P10Iz",
       "grafana.app/saved-from-ui": "Grafana v13.1.0 (b309c9bb3b)",
       "grafana.app/updatedBy": "user:bfs6nv8zlpszkf",
       "grafana.app/updatedTimestamp": "2026-07-23T14:21:10Z"
@@ -405,7 +405,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "Uptime"
+                          "filter": "/Uptime/"
                         },
                         "itemTag": {
                           "filter": "Uptime"
