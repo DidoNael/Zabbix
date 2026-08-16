@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-"""
-pon_status.py - retorna JSON do cache se existir e for recente,
-e dispara coleta em background se o cache estiver desatualizado.
-"""
 import sys, os, json, time, subprocess, tempfile, shutil
 
 if len(sys.argv) < 3:
@@ -18,7 +14,7 @@ if not OLT_IP or not COMMUNITY:
 
 CACHE_FILE = "/tmp/pon_cache_%s.json" % OLT_IP.replace(".", "_")
 LOCK_FILE  = CACHE_FILE + ".lock"
-CACHE_TTL  = 300  # 5 minutos
+CACHE_TTL  = 300
 
 def collect_and_save():
     OID_AUTH   = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14"
@@ -38,9 +34,9 @@ def collect_and_save():
             "reason": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_REASON],
                                        stdout=open(tmpdir+"/reason","w"), stderr=subprocess.PIPE),
             "ifname":  subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFNAME],
-                                       stdout=open(tmpdir+"/ifname","w"), stderr=subprocess.PIPE),
+                                        stdout=open(tmpdir+"/ifname","w"), stderr=subprocess.PIPE),
             "ifalias": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFALIAS],
-                                       stdout=open(tmpdir+"/ifalias","w"), stderr=subprocess.PIPE),
+                                        stdout=open(tmpdir+"/ifalias","w"), stderr=subprocess.PIPE),
         }
         for p in procs.values(): p.wait()
         def rl(f):
@@ -105,25 +101,27 @@ def collect_and_save():
         try: os.unlink(LOCK_FILE)
         except: pass
 
-# Verificar se cache é recente
 cache_age = 9999
 if os.path.exists(CACHE_FILE):
     cache_age = time.time() - os.path.getmtime(CACHE_FILE)
 
-# Disparar coleta em background se cache expirado e não há coleta em andamento
 if cache_age > CACHE_TTL and not os.path.exists(LOCK_FILE):
     try:
         open(LOCK_FILE, "w").close()
         pid = os.fork()
-        if pid == 0:  # processo filho
+        if pid == 0:
             os.setsid()
+            # fechar stdout/stderr herdados do Zabbix para nao bloquear o processo pai
+            devnull = os.open('/dev/null', os.O_WRONLY)
+            os.dup2(devnull, 1)
+            os.dup2(devnull, 2)
+            os.close(devnull)
             collect_and_save()
             sys.exit(0)
     except Exception:
         try: os.unlink(LOCK_FILE)
         except: pass
 
-# Retornar cache existente ou array vazio
 if os.path.exists(CACHE_FILE):
     try:
         print(open(CACHE_FILE).read())
