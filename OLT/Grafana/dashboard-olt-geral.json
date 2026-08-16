@@ -1408,7 +1408,7 @@
                   "custom": {
                     "align": "auto",
                     "cellOptions": {
-                      "type": "auto"
+                      "type": "color-background"
                     },
                     "footer": {
                       "reducers": []
@@ -1486,13 +1486,7 @@
                           ]
                         }
                       }
-                    ,
-                      {
-                        "id": "custom.cellOptions",
-                        "value": {
-                          "type": "color-background"
-                        }
-                      }]
+                                      ]
                   },
                   {
                     "matcher": {
@@ -1516,13 +1510,7 @@
                           ]
                         }
                       }
-                    ,
-                      {
-                        "id": "custom.cellOptions",
-                        "value": {
-                          "type": "color-background"
-                        }
-                      }]
+                                      ]
                   },
                   {
                     "matcher": {
@@ -1546,13 +1534,7 @@
                           ]
                         }
                       }
-                    ,
-                      {
-                        "id": "custom.cellOptions",
-                        "value": {
-                          "type": "color-background"
-                        }
-                      }]
+                                      ]
                   },
                   {
                     "matcher": {
@@ -1584,13 +1566,7 @@
                           ]
                         }
                       }
-                    ,
-                      {
-                        "id": "custom.cellOptions",
-                        "value": {
-                          "type": "color-background"
-                        }
-                      }]
+                                      ]
                   },
                   {
                     "matcher": {
@@ -1622,13 +1598,7 @@
                           ]
                         }
                       }
-                    ,
-                      {
-                        "id": "custom.cellOptions",
-                        "value": {
-                          "type": "color-background"
-                        }
-                      }]
+                                      ]
                   },
                   {
                     "matcher": {
