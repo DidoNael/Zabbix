@@ -2203,7 +2203,7 @@ return s;</params>
                             <key>netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.online.zte[{#NETSTREAM.PON_INDEX}]")</params>
+                            <params>last("{HOST.HOST}:netstream.gpon.pon.online.zte[{#NETSTREAM.PON_INDEX}]")</params>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
@@ -2216,7 +2216,7 @@ return s;</params>
                             <key>netstream.gpon.pon.calc.offline.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.offline.zte[{#NETSTREAM.PON_INDEX}]")</params>
+                            <params>last("{HOST.HOST}:netstream.gpon.pon.offline.zte[{#NETSTREAM.PON_INDEX}]")</params>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
@@ -2229,7 +2229,7 @@ return s;</params>
                             <key>netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.dg.zte[{#NETSTREAM.PON_INDEX}]")</params>
+                            <params>last("{HOST.HOST}:netstream.gpon.pon.dg.zte[{#NETSTREAM.PON_INDEX}]")</params>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
@@ -2242,7 +2242,7 @@ return s;</params>
                             <key>netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last("OLT ZTE - NETSTREAM:netstream.gpon.pon.los.zte[{#NETSTREAM.PON_INDEX}]")</params>
+                            <params>last("{HOST.HOST}:netstream.gpon.pon.los.zte[{#NETSTREAM.PON_INDEX}]")</params>
                             <application_prototypes>
                                 <application_prototype>
                                     <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
@@ -2257,6 +2257,7 @@ return s;</params>
                             <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
                             <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
                                     <tag>scope</tag>
