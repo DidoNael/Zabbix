@@ -515,6 +515,7 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                     <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.2.1.2.2.1.8,{#IFNAME},1.3.6.1.2.1.2.2.1.2,{#IFTYPE},1.3.6.1.2.1.2.2.1.3]</snmp_oid>
                     <key>netstream.gpon.port.discovery</key>
                     <delay>1h</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <evaltype>AND</evaltype>
                         <conditions>

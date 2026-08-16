@@ -1504,6 +1504,7 @@ and&#13;
                     <snmp_oid>discovery[{#OLTPORT},ifName,{#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>netstream.gpon.pon.traffic.discovery</key>
                     <delay>1h</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>

@@ -2394,6 +2394,7 @@ and &#13;
                     <snmp_oid>discovery[{#SNMPVALUE},IF-MIB::ifDescr,{#IFNAME},IF-MIB::ifName]</snmp_oid>
                     <key>netstream.gpon.pon.traffic.discovery</key>
                     <delay>1h</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>
