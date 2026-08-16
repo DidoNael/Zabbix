@@ -269,6 +269,7 @@ Todos os direitos reservados.</description>
                     <snmp_oid>discovery[{#SNMPVALUE},.1.3.6.1.4.1.5875.800.3.9.2.1.1.2]</snmp_oid>
                     <key>card.info.discovery</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <lifetime>1w</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -576,6 +577,7 @@ the other type could see the card type table</description>
                     <snmp_oid>discovery[{#SNMPVALUE},IF-MIB::ifDescr]</snmp_oid>
                     <key>ifDescr_64</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>
@@ -1669,6 +1671,7 @@ return 0;</parameter>
                     <snmp_oid>discovery[{#SNMPVALUE},GEPON-OLT-COMMON-MIB::oltPonDesc, {#PONNAME},1.3.6.1.2.1.31.1.1.1.1]</snmp_oid>
                     <key>oltPonDesc</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>
@@ -2012,6 +2015,7 @@ return 0;</parameter>
                     <snmp_oid>discovery[{#SNMPVALUE},IF-MIB::ifDescr,{#IFNAME},IF-MIB::ifName]</snmp_oid>
                     <key>netstream.gpon.pon.traffic.discovery</key>
                     <delay>1h</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>

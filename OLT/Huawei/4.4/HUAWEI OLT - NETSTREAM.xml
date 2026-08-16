@@ -343,6 +343,7 @@ Todos os direitos reservados.</description>
                     <snmp_oid>discovery[{#OLTBOARD},1.3.6.1.4.1.2011.6.3.3.2.1.1]</snmp_oid>
                     <key>hwSlotIndex</key>
                     <delay>6h</delay>
+                    <status>DISABLED</status>
                     <item_prototypes>
                         <item_prototype>
                             <name>Board {#SNMPINDEX} temp</name>
@@ -1291,6 +1292,7 @@ return 0;</params>
                     <snmp_oid>discovery[{#OLTPORT},ifName, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>olt_pcb</key>
                     <delay>10m</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>
