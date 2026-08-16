@@ -1328,7 +1328,7 @@
                       "group": "mysql",
                       "version": "v0",
                       "datasource": {
-                        "name": "Z7RVMa_Nk"
+                        "name": "Y_t98X_Mk"
                       },
                       "spec": {
                         "editorMode": "code",
@@ -2019,7 +2019,7 @@
                       "group": "mysql",
                       "version": "v0",
                       "datasource": {
-                        "name": "Z7RVMa_Nk"
+                        "name": "Y_t98X_Mk"
                       },
                       "spec": {
                         "dataset": "zabbix",
@@ -3328,6 +3328,79 @@
             }
           }
         }
+      },
+      "panel-34": {
+        "kind": "Panel",
+        "spec": {
+          "id": 34,
+          "title": "Tráfego das Portas PON (GPON)",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {"filter": ""},
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [],
+                        "group": {"filter": "OLT"},
+                        "host": {"filter": "$host"},
+                        "item": {"filter": "/Porta .* Trafego/"},
+                        "itemTag": {"filter": ""},
+                        "macro": {"filter": ""},
+                        "options": {"count": true,"disableDataAlignment": true,"minSeverity": 3,"showDisabledItems": false,"skipEmptyValues": false,"useTrends": "default","useZabbixValueMapping": true},
+                        "proxy": {"filter": ""},
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {"skipEmptyValues": false},
+                        "tags": {"filter": ""},
+                        "textFilter": "",
+                        "trigger": {"filter": ""},
+                        "triggers": {"acknowledged": 2}
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "legend": {"calcs": ["lastNotNull"],"displayMode": "table","enableFacetedFilter": false,"overflow": "ellipsis","placement": "right","showLegend": true},
+                "tooltip": {"hideZeros": false,"mode": "single","sort": "none"}
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "bps",
+                  "color": {"mode": "palette-classic"},
+                  "custom": {"drawStyle": "line","fillOpacity": 20,"gradientMode": "none","lineWidth": 1,"showPoints": "auto","spanNulls": false,"stacking": {"group": "A","mode": "none"}}
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
       }
     },
     "layout": {
@@ -3547,6 +3620,19 @@
             "spec": {
               "x": 0,
               "y": 44,
+              "width": 24,
+              "height": 12,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-34"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 56,
               "width": 24,
               "height": 15,
               "element": {
