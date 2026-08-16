@@ -1,7 +1,7 @@
 # Zabbix Actions — OLT ZTE (LOS por Fibra)
 
 Criado em: 2026-08-16  
-Aplica-se a: **todos os hosts do grupo `OLT`** (não apenas ZTE)
+Aplica-se a: **todos os hosts do grupo `OLT-NETSTREAM`** (não apenas ZTE)
 
 ---
 
@@ -20,7 +20,7 @@ Aplica-se a: **todos os hosts do grupo `OLT`** (não apenas ZTE)
 
 | Tipo | Operador | Valor |
 |------|----------|-------|
-| Host group (0) | = | OLT (groupid=110) |
+| Host group (0) | = | OLT-NETSTREAM (groupid=112) |
 | Trigger name (3) | contém | `Queda PARCIAL por LOS` / `Queda TOTAL por LOS` |
 
 ---

@@ -1,4 +1,4 @@
-{
+﻿{
   "apiVersion": "dashboard.grafana.app/v2",
   "kind": "Dashboard",
   "metadata": {
@@ -106,7 +106,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -399,7 +399,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -556,7 +556,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -718,7 +718,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -880,7 +880,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -1042,7 +1042,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -1205,7 +1205,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -1861,7 +1861,7 @@
                         "evaltype": "0",
                         "functions": [],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -2443,7 +2443,7 @@
                         "evaltype": "0",
                         "functions": [],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -2613,7 +2613,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -2806,7 +2806,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -2999,7 +2999,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -3192,7 +3192,7 @@
                           }
                         ],
                         "group": {
-                          "filter": "OLT"
+                          "filter": "OLT-NETSTREAM"
                         },
                         "host": {
                           "filter": "$host"
@@ -3355,7 +3355,7 @@
                         "countTriggersBy": "",
                         "evaltype": "0",
                         "functions": [],
-                        "group": {"filter": "OLT"},
+                        "group": {"filter": "OLT-NETSTREAM"},
                         "host": {"filter": "$host"},
                         "item": {"filter": "/Porta .* Trafego/"},
                         "itemTag": {"filter": ""},
@@ -3691,7 +3691,7 @@
             },
             "spec": {
               "application": "",
-              "group": "OLT",
+              "group": "OLT-NETSTREAM",
               "host": "/.*/",
               "item": "",
               "itemTag": "",
