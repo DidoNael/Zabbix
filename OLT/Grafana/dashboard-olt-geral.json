@@ -5,7 +5,7 @@
     "name": "eef8p0x0hlxxcd",
     "namespace": "default",
     "uid": "d1326645-a4f7-4168-86cc-4108f6947039",
-    "resourceVersion": "1786883375555004",
+    "resourceVersion": "1786883437393011",
     "generation": 16,
     "creationTimestamp": "2025-08-13T00:18:22Z",
     "labels": {
@@ -366,7 +366,7 @@
                       },
                       "spec": {
                         "application": {
-                          "filter": "Status"
+                          "filter": "uptime"
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -2449,7 +2449,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/Temperatura/"
+                          "filter": "Temperatura das Placas"
                         },
                         "itemTag": {
                           "filter": "Temperatura"
