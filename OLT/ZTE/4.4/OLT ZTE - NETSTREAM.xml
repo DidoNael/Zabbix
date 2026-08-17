@@ -14,13 +14,13 @@
         <template>
             <template>OLT ZTE - NETSTREAM</template>
             <name>OLT ZTE - NETSTREAM</name>
-            <description>Netstream Telecomunicações — netstream.net.br
+            <description>Netstream Telecomunicaï¿½ï¿½es ï¿½ netstream.net.br
 Contato: (11) 95990-4100 | suporte@netstream.net.br
 
 AVISO DE PROPRIEDADE INTELECTUAL
-Este template é propriedade exclusiva da Netstream Telecomunicações.
-É proibida a cópia, distribuição, modificação ou qualquer uso sem
-autorização prévia e por escrito da Netstream Telecomunicações.
+Este template ï¿½ propriedade exclusiva da Netstream Telecomunicaï¿½ï¿½es.
+ï¿½ proibida a cï¿½pia, distribuiï¿½ï¿½o, modificaï¿½ï¿½o ou qualquer uso sem
+autorizaï¿½ï¿½o prï¿½via e por escrito da Netstream Telecomunicaï¿½ï¿½es.
 Todos os direitos reservados.</description>
             <groups>
                 <group>
@@ -720,7 +720,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             <key>netstream.gpon.sfp.temp[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <value_type>FLOAT</value_type>
-                            <units>°C</units>
+                            <units>ï¿½C</units>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
@@ -814,7 +814,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Erros de Saída</name>
+                            <name>Porta {#PONNAME} ({#PONDESC}): Erros de Saï¿½da</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
@@ -1465,7 +1465,7 @@ return s;</params>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de Memória</name>
+                            <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Uso de Memï¿½ria</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.3902.1015.2.1.1.3.1.11.{#SNMPINDEX}</snmp_oid>
@@ -2235,7 +2235,7 @@ return s;</params>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}=0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
                             <priority>DISASTER</priority>
                             <tags>
                                 <tag>
@@ -2262,7 +2262,7 @@ return s;</params>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -2294,7 +2294,7 @@ return s;</params>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -2326,7 +2326,7 @@ return s;</params>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].change()}&lt;-{$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}&gt;0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: Queda parcial de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda parcial de ONUs</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -2419,7 +2419,7 @@ return s;</params>
                 </mapping>
                 <mapping>
                     <value>3</value>
-                    <newvalue>hwOnline (Software não carregado)</newvalue>
+                    <newvalue>hwOnline (Software nï¿½o carregado)</newvalue>
                 </mapping>
                 <mapping>
                     <value>4</value>
