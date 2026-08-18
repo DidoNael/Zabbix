@@ -108,7 +108,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/^(?!.*(ifHighSpeed|Status Operacional))/"
+                          "filter": "/Tráfego/"
                         },
                         "itemTag": {
                           "filter": ""
@@ -183,7 +183,7 @@
               },
               "fieldConfig": {
                 "defaults": {
-                  "unit": "bps",
+                  "unit": "Bps",
                   "thresholds": {
                     "mode": "absolute",
                     "steps": [
