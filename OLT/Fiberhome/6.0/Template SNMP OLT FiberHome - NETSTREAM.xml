@@ -292,7 +292,6 @@ Todos os direitos reservados.</description>
                             <delay>10m</delay>
                             <history>15d</history>
                             <trends>90d</trends>
-                            <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
                             <preprocessing>
@@ -420,7 +419,6 @@ Todos os direitos reservados.</description>
                             <delay>10m</delay>
                             <history>15d</history>
                             <trends>90d</trends>
-                            <status>DISABLED</status>
                             <description>Column Description:&#13;
 1:normal(1)&#13;
 2:communication interrupt(0)</description>

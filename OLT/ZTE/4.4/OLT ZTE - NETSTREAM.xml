@@ -94,10 +94,9 @@ Todos os direitos reservados.</description>
                     <valuemap>
                         <name>OLT-ZTE-STATUS-FAN</name>
                     </valuemap>
-                    <status>DISABLED</status>
                     <triggers>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.sensor.fan.status.last()}=4</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.sensor.fan.status.last()}=4 and {OLT ZTE - NETSTREAM:netstream.sensor.fan.status.diff()}=1 and {OLT ZTE - NETSTREAM:netstream.sensor.fan.status.count(10m)}&gt;1</expression>
                             <name>OLT: Falha no Ventilador (Fan Fail)</name>
                             <priority>HIGH</priority>
                             <description>Status do ventilador indica falha de hardware na OLT.</description>
@@ -117,7 +116,7 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[1].last()}=2</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[1].last()}=2 and {OLT ZTE - NETSTREAM:netstream.sensor.psu.status[1].diff()}=1 and {OLT ZTE - NETSTREAM:netstream.sensor.psu.status[1].count(10m)}&gt;1</expression>
                             <name>OLT: Falha na Fonte de Energia 1 (PSU 1 Fail)</name>
                             <priority>HIGH</priority>
                             <description>Fonte de alimentacao 1 reporta falha.</description>
@@ -137,7 +136,7 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[1].last()}=3</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[1].last()}=3 and {OLT ZTE - NETSTREAM:netstream.sensor.psu.status[1].diff()}=1 and {OLT ZTE - NETSTREAM:netstream.sensor.psu.status[1].count(10m)}&gt;1</expression>
                             <name>OLT: Fonte de Energia 1 Desconectada / Offline</name>
                             <priority>WARNING</priority>
                             <description>Fonte 1 sem alimentacao AC/DC.</description>
@@ -157,7 +156,7 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[2].last()}=2</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[2].last()}=2 and {OLT ZTE - NETSTREAM:netstream.sensor.psu.status[2].diff()}=1 and {OLT ZTE - NETSTREAM:netstream.sensor.psu.status[2].count(10m)}&gt;1</expression>
                             <name>OLT: Falha na Fonte de Energia 2 (PSU 2 Fail)</name>
                             <priority>HIGH</priority>
                             <description>Fonte de alimentacao 2 reporta falha.</description>
@@ -177,7 +176,7 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[2].last()}=3</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.sensor.psu.status[2].last()}=3 and {OLT ZTE - NETSTREAM:netstream.sensor.psu.status[2].diff()}=1 and {OLT ZTE - NETSTREAM:netstream.sensor.psu.status[2].count(10m)}&gt;1</expression>
                             <name>OLT: Fonte de Energia 2 Desconectada / Offline</name>
                             <priority>WARNING</priority>
                             <description>Fonte 2 sem alimentacao AC/DC.</description>
@@ -219,7 +218,6 @@ Todos os direitos reservados.</description>
                     <valuemap>
                         <name>OLT-ZTE-STATUS-PSU</name>
                     </valuemap>
-                    <status>DISABLED</status>
                 </item>
                 <item>
                     <name>OLT: Status da Fonte de Energia 2</name>
@@ -231,7 +229,6 @@ Todos os direitos reservados.</description>
                     <valuemap>
                         <name>OLT-ZTE-STATUS-PSU</name>
                     </valuemap>
-                    <status>DISABLED</status>
                 </item>
                 <item>
                     <name>Uso de CPU (Geral)</name>

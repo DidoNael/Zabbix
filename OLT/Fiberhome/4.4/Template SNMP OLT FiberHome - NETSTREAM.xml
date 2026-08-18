@@ -371,7 +371,6 @@ Todos os direitos reservados.</description>
                             <delay>10m</delay>
                             <history>15d</history>
                             <trends>90d</trends>
-                            <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
                             <applications>
@@ -518,7 +517,6 @@ Todos os direitos reservados.</description>
                             <delay>10m</delay>
                             <history>15d</history>
                             <trends>90d</trends>
-                            <status>DISABLED</status>
                             <description>Column Description:&#13;
 1:normal(1)&#13;
 2:communication interrupt(0)</description>
@@ -529,7 +527,7 @@ Todos os direitos reservados.</description>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}=9</expression>
+                                    <expression>{last()}=9 and {diff()}=1 and {count(10m)}&gt;1</expression>
                                     <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa com defeito (Faulty)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -553,7 +551,7 @@ Todos os direitos reservados.</description>
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{last()}=4</expression>
+                                    <expression>{last()}=4 and {diff()}=1 and {count(10m)}&gt;1</expression>
                                     <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa Desconectada / Offline</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -577,7 +575,7 @@ Todos os direitos reservados.</description>
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{last()}=11</expression>
+                                    <expression>{last()}=11 and {diff()}=1 and {count(10m)}&gt;1</expression>
                                     <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa Sem Energia (Power Off)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -601,7 +599,7 @@ Todos os direitos reservados.</description>
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{last()}=2</expression>
+                                    <expression>{last()}=2 and {diff()}=1 and {count(10m)}&gt;1</expression>
                                     <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa Fora de Servico (Not in Service)</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
