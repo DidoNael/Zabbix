@@ -169,10 +169,11 @@ Todos os direitos reservados.</description>
                         </trigger>
                         <trigger>
                             <uuid>27489b9b889f426eb32636c2882a0cf4</uuid>
-                            <expression>nodata(/OLT ZTE - NETSTREAM/netstream.system.uptime,5m)=1</expression>
-                            <name>OLT ZTE: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 5m)</name>
+                            <expression>nodata(/OLT ZTE - NETSTREAM/netstream.system.uptime,1h)=1</expression>
+                            <name>OLT ZTE: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 1h)</name>
                             <priority>DISASTER</priority>
-                            <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 5 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
+                            <status>DISABLED</status>
+                            <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 60 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
                             <tags>
                                 <tag>
                                     <tag>Scope</tag>

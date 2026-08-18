@@ -14,13 +14,13 @@
         <template>
             <template>Template SNMP OLT FiberHome - NETSTREAM</template>
             <name>Template SNMP OLT FiberHome - NETSTREAM</name>
-            <description>Netstream Telecomunicações — netstream.net.br
+            <description>Netstream Telecomunicaï¿½ï¿½es ï¿½ netstream.net.br
 Contato: (11) 95990-4100 | suporte@netstream.net.br
 
 AVISO DE PROPRIEDADE INTELECTUAL
-Este template é propriedade exclusiva da Netstream Telecomunicações.
-É proibida a cópia, distribuição, modificação ou qualquer uso sem
-autorização prévia e por escrito da Netstream Telecomunicações.
+Este template ï¿½ propriedade exclusiva da Netstream Telecomunicaï¿½ï¿½es.
+ï¿½ proibida a cï¿½pia, distribuiï¿½ï¿½o, modificaï¿½ï¿½o ou qualquer uso sem
+autorizaï¿½ï¿½o prï¿½via e por escrito da Netstream Telecomunicaï¿½ï¿½es.
 Todos os direitos reservados.</description>
             <groups>
                 <group>
@@ -313,11 +313,11 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:uptime.nodata(5m)}=1</expression>
-                            <name>OLT Inacess&#237;vel (sem dados SNMP h&#225; 5 minutos)</name>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:uptime.nodata(1h)}=1</expression>
+                            <name>OLT Inacess&#237;vel (sem dados SNMP h&#225; 1 hora)</name>
                             <status>DISABLED</status>
                             <priority>DISASTER</priority>
-                            <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 5 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
+                            <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 60 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
                             <tags>
                                 <tag>
                                     <tag>scope</tag>
@@ -2096,7 +2096,7 @@ and &#13;
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>0</trends>
-                            <units>ºC</units>
+                            <units>ï¿½C</units>
                             <applications>
                                 <application>
                                     <name>PON</name>
@@ -2300,7 +2300,7 @@ and &#13;
                             <trends>60d</trends>
                             <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
-                            <units>ºC</units>
+                            <units>ï¿½C</units>
                             <port>161</port>
                             <applications>
                                 <application>
@@ -2534,7 +2534,7 @@ and &#13;
             <mappings>
                 <mapping>
                     <value>0</value>
-                    <newvalue>Inativa ( Sem Comunicação com ONU)</newvalue>
+                    <newvalue>Inativa ( Sem Comunicaï¿½ï¿½o com ONU)</newvalue>
                 </mapping>
                 <mapping>
                     <value>1</value>
@@ -2550,7 +2550,7 @@ and &#13;
                 </mapping>
                 <mapping>
                     <value>4</value>
-                    <newvalue>LOS (ONU perdeu o link óptico)</newvalue>
+                    <newvalue>LOS (ONU perdeu o link ï¿½ptico)</newvalue>
                 </mapping>
             </mappings>
         </value_map>

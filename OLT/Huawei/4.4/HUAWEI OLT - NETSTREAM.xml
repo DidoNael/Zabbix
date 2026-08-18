@@ -14,13 +14,13 @@
         <template>
             <template>HUAWEI OLT - NETSTREAM</template>
             <name>HUAWEI OLT - NETSTREAM</name>
-            <description>Netstream Telecomunicações — netstream.net.br
+            <description>Netstream Telecomunicaï¿½ï¿½es ï¿½ netstream.net.br
 Contato: (11) 95990-4100 | suporte@netstream.net.br
 
 AVISO DE PROPRIEDADE INTELECTUAL
-Este template é propriedade exclusiva da Netstream Telecomunicações.
-É proibida a cópia, distribuição, modificação ou qualquer uso sem
-autorização prévia e por escrito da Netstream Telecomunicações.
+Este template ï¿½ propriedade exclusiva da Netstream Telecomunicaï¿½ï¿½es.
+ï¿½ proibida a cï¿½pia, distribuiï¿½ï¿½o, modificaï¿½ï¿½o ou qualquer uso sem
+autorizaï¿½ï¿½o prï¿½via e por escrito da Netstream Telecomunicaï¿½ï¿½es.
 Todos os direitos reservados.</description>
             <groups>
                 <group>
@@ -295,8 +295,8 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{HUAWEI OLT - NETSTREAM:netstream.system.uptime.nodata(5m)}=1</expression>
-                            <name>HUAWEI OLT - NETSTREAM: OLT Inacess&#237;vel (sem dados SNMP h&#225; 5 minutos)</name>
+                            <expression>{HUAWEI OLT - NETSTREAM:netstream.system.uptime.nodata(1h)}=1</expression>
+                            <name>HUAWEI OLT - NETSTREAM: OLT Inacess&#237;vel (sem dados SNMP h&#225; 1 hora)</name>
                             <status>DISABLED</status>
                             <priority>DISASTER</priority>
                             <tags>
@@ -335,7 +335,7 @@ Todos os direitos reservados.</description>
                             <delay>10m</delay>
                             <history>2w</history>
                             <trends>90d</trends>
-                            <units>ºC</units>
+                            <units>ï¿½C</units>
                             <applications>
                                 <application>
                                     <name>OLT_HW</name>
@@ -1665,7 +1665,7 @@ and&#13;
                 </mapping>
                 <mapping>
                     <value>15</value>
-                    <newvalue>Perda de sincronização de chave com ONUi (LOKI)</newvalue>
+                    <newvalue>Perda de sincronizaï¿½ï¿½o de chave com ONUi (LOKI)</newvalue>
                 </mapping>
                 <mapping>
                     <value>18</value>
@@ -1673,7 +1673,7 @@ and&#13;
                 </mapping>
                 <mapping>
                     <value>30</value>
-                    <newvalue>ONU desligada pelo módulo óptico</newvalue>
+                    <newvalue>ONU desligada pelo mï¿½dulo ï¿½ptico</newvalue>
                 </mapping>
                 <mapping>
                     <value>31</value>
@@ -1681,7 +1681,7 @@ and&#13;
                 </mapping>
                 <mapping>
                     <value>32</value>
-                    <newvalue>Reset da ONU pelo botão de reset da ONU</newvalue>
+                    <newvalue>Reset da ONU pelo botï¿½o de reset da ONU</newvalue>
                 </mapping>
                 <mapping>
                     <value>33</value>
