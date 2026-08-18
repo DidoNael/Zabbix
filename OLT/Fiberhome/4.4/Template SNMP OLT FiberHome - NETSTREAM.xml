@@ -2233,14 +2233,8 @@ and &#13;
                                     <tag>notificar</tag>
                                     <value>nao</value>
                                 </tag>
-                                <tag>
-                                    <tag>PONDOWN</tag>
-                                    <value>PONDOWN</value>
-                                </tag>
-                                <tag>
-                                    <tag>PONFH</tag>
-                                    <value>PONFH</value>
-                                </tag>
+
+
                             </tags>
                         </trigger_prototype>
                     </trigger_prototypes>

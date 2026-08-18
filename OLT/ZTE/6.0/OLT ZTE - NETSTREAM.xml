@@ -963,19 +963,19 @@ return JSON.stringify(result);</parameter>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>PONDOWN</tag>
-                                            <value>PONDOWN</value>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>PONOLT</tag>
-                                            <value>{#PONNAME}</value>
+                                            <tag>tipo</tag>
+                                            <value>Conectividade</value>
                                         </tag>
                                         <tag>
-                                            <tag>PONZTE</tag>
-                                            <value>PONZTE</value>
+                                            <tag>vendor</tag>
+                                            <value>ZTE</value>
                                         </tag>
                                         <tag>
-                                            <tag>pon_name</tag>
+                                            <tag>pon</tag>
                                             <value>{#PONNAME}</value>
                                         </tag>
                                         <tag>
