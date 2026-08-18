@@ -1401,7 +1401,7 @@ return s;</parameter>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.in[{#SNMPINDEX}]</key>
-                            <delay>1m</delay>
+                            <delay>3m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
                             <status>ENABLED</status>
@@ -1428,7 +1428,7 @@ return s;</parameter>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.out[{#SNMPINDEX}]</key>
-                            <delay>1m</delay>
+                            <delay>3m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
                             <status>ENABLED</status>
