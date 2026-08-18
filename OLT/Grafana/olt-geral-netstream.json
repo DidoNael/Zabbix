@@ -111,7 +111,7 @@
                           "filter": "/.*/"
                         },
                         "itemTag": {
-                          "filter": "Network Interfaces Bits"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
