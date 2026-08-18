@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-07-09T01:15:27Z</date>
@@ -731,7 +731,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>59c9a4068fef44b3a33abd4d7671fadc</uuid>
-                            <expression>max(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],#3)=2</expression>
+                            <expression>max(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],#3)=2 and diff(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],10m)&gt;1</expression>
                             <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Apagada (Inativa)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -1685,7 +1685,7 @@ return s;</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>f9a93c13c35c45618122cc4c70dd9318</uuid>
-                            <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and diff(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],10m)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
@@ -1781,7 +1781,7 @@ return s;</parameter>
                             <dependencies>
                                 <dependency>
                                     <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and diff(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],10m)&gt;1</expression>
                                 </dependency>
                             </dependencies>
                         </trigger_prototype>

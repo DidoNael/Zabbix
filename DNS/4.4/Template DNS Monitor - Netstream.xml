@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
     <groups>
@@ -131,7 +131,7 @@ Todos os direitos reservados.</description>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;nslookup&quot;,&quot;status&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;].last()}=0</expression>
+                                    <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh[&quot;{#DNS_SERVER}&quot;,&quot;{#DNS_DOMAIN}&quot;,&quot;{#DNS_TYPE}&quot;,&quot;nslookup&quot;,&quot;status&quot;,&quot;{$DNS_TIMEOUT_NETSTREAM}&quot;].min(#3)}=0</expression>
                                     <name>DNS [{#DNS_SERVER}] {#DNS_DOMAIN} {#DNS_TYPE} - Falha de resolucao</name>
                                     <priority>HIGH</priority>
                                 </trigger_prototype>

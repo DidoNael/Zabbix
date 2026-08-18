@@ -1344,7 +1344,7 @@ return 0;</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].diff()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(10m)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
@@ -1922,7 +1922,7 @@ return 0;</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=0 or {Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=4</expression>
+                            <expression>({Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=0 or {Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=4) and {Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].diff()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].count(10m)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last(#3)}=1 and {Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].last()}&lt;0</recovery_expression>
                             <name>Cliente - {#ONTDESC}</name>
@@ -1953,7 +1953,7 @@ return 0;</params>
                         <trigger_prototype>
                             <expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=1 &#13;
 and &#13;
-{Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].last()}&lt;-28</expression>
+{Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].last()}&lt;-28 and {Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].count(10m)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].last()}&gt;-28</recovery_expression>
                             <name>Cliente - {#ONTDESC} - Sinal RX Baixo</name>
@@ -2225,7 +2225,7 @@ and &#13;
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>({Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].last(,1m)}=0)and({Template SNMP OLT FiberHome - NETSTREAM:oltPonAuthOnuNum[{#SNMPVALUE}].prev()}&gt;2)</expression>
+                            <expression>({Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].last(,1m)}=0)and({Template SNMP OLT FiberHome - NETSTREAM:oltPonAuthOnuNum[{#SNMPVALUE}].prev()}&gt;2) and {Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].diff()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].count(10m)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].last()}=1</recovery_expression>
                             <name>gpon_{#SNMPVALUE}:</name>

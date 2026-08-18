@@ -366,7 +366,7 @@ Enterprise OID base: 1.3.6.1.4.1.3709</description>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>425d8607bc5a4c8fbc61c4618be59585</uuid>
-                            <expression>last(/Template Switch Datacom DmOS - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Datacom DmOS - Netstream/netstream.bgp.peer.adminstatus[{#IP}.{#ASN}])=2</expression>
+                            <expression>last(/Template Switch Datacom DmOS - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Datacom DmOS - Netstream/netstream.bgp.peer.adminstatus[{#IP}.{#ASN}])=2 and diff(/Template Switch Datacom DmOS - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}])=1 and count(/Template Switch Datacom DmOS - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],10m)&gt;1</expression>
                             <name>BGP Peer {#IP} (ASN {#ASN}): DOWN em {HOST.NAME}</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>

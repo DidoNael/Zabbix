@@ -883,7 +883,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].max(#3)}=2</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].max(#3)}=2 and {OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].diff()}=1 and {OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
                             <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Apagada (Inativa)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -2230,7 +2230,7 @@ return s;</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}=0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}=0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].diff()}=1 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(10m)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
@@ -2324,7 +2324,7 @@ return s;</params>
                             <dependencies>
                                 <dependency>
                                     <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
-                                    <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}=0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}=0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].diff()}=1 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(10m)}&gt;1</expression>
                                 </dependency>
                             </dependencies>
                         </trigger_prototype>

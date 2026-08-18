@@ -414,7 +414,7 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Switch Cisco - Netstream:netstream.bgp.peer.state[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Cisco - Netstream:netstream.bgp.peer.adminstatus[{#IP}.{#ASN}].last()}=2</expression>
+                            <expression>{Template Switch Cisco - Netstream:netstream.bgp.peer.state[{#IP}.{#ASN}].last(#3)}&lt;&gt;6 and {Template Switch Cisco - Netstream:netstream.bgp.peer.adminstatus[{#IP}.{#ASN}].last()}=2 and {Template Switch Cisco - Netstream:netstream.bgp.peer.state[{#IP}.{#ASN}].diff()}=1 and {Template Switch Cisco - Netstream:netstream.bgp.peer.state[{#IP}.{#ASN}].count(10m)}&gt;1</expression>
                             <name>BGP Peer {#IP} (ASN {#ASN}): DOWN em {HOST.NAME}</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-07-27T00:00:00Z</date>
@@ -165,7 +165,7 @@ Todos os direitos reservados.</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>1c0a22ba4e264527ba99b85bae1b7151</uuid>
-                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","status","{$DNS_TIMEOUT_NETSTREAM}"])=0</expression>
+                                    <expression>min(/Template DNS Monitor - Netstream/netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","status","{$DNS_TIMEOUT_NETSTREAM}"],#3)=0</expression>
                                     <name>DNS DIG falhou: {#DNS_SERVER} nao resolveu {#DNS_DOMAIN} ({#DNS_TYPE})</name>
                                     <priority>AVERAGE</priority>
                                     <description>A consulta DIG nao retornou resposta valida.</description>
@@ -200,7 +200,7 @@ Todos os direitos reservados.</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>7e9e788072734e5f9222c71f84e4705b</uuid>
-                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"])&lt;&gt;"NOERROR"</expression>
+                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"])&lt;&gt;"NOERROR" and count(/Template DNS Monitor - Netstream/netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"],10m)&gt;1</expression>
                                     <name>DNS DIG RCODE anormal: {#DNS_SERVER} retornou {ITEM.LASTVALUE} para {#DNS_DOMAIN} ({#DNS_TYPE})</name>
                                     <priority>WARNING</priority>
                                     <description>O servidor DNS retornou codigo de erro diferente de NOERROR.</description>
@@ -254,7 +254,7 @@ Todos os direitos reservados.</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>9680cd1ccc834baaa9b1f3b105d0a7d7</uuid>
-                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"])=0 and last(/Template DNS Monitor - Netstream/netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"])="NOERROR"</expression>
+                                    <expression>last(/Template DNS Monitor - Netstream/netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"])=0 and last(/Template DNS Monitor - Netstream/netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"])="NOERROR" and count(/Template DNS Monitor - Netstream/netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"],10m)&gt;1</expression>
                                     <name>DNS DIG: {#DNS_SERVER} retornou NOERROR sem respostas para {#DNS_DOMAIN} ({#DNS_TYPE})</name>
                                     <priority>WARNING</priority>
                                     <description>NOERROR com 0 respostas pode indicar redirecionamento indevido ou registro ausente.</description>

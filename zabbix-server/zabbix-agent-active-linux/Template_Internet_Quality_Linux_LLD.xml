@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-08-05T18:00:00Z</date>
@@ -266,7 +266,7 @@ Padrao baseado em: Template Internet Quality Windows LLD - Netstream</descriptio
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>f93d5460c929454aae8c9d8bfd338dde</uuid>
-                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/internet.ping.loss[{#TARGET}])&gt;=100</expression>
+                                    <expression>min(/Template Internet Quality Linux LLD - Netstream/internet.ping.loss[{#TARGET}],#3)&gt;=100</expression>
                                     <name>Internet INACESSIVEL - {#TARGET} 100% perda</name>
                                     <priority>DISASTER</priority>
                                     <description>Perda de pacotes 100% para {#TARGET}. Destino completamente indisponivel.</description>
@@ -427,7 +427,7 @@ Padrao baseado em: Template Internet Quality Windows LLD - Netstream</descriptio
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>06cbfd104ff14f129f36d523a0f03714</uuid>
-                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/site.http.status[{#URL}])=0</expression>
+                                    <expression>min(/Template Internet Quality Linux LLD - Netstream/site.http.status[{#URL}],#3)=0</expression>
                                     <name>Site INACESSIVEL - {#HOST}</name>
                                     <priority>DISASTER</priority>
                                     <description>Sem resposta HTTP de {#URL}. Site fora do ar ou sem conectividade.</description>
@@ -737,7 +737,7 @@ Padrao baseado em: Template Internet Quality Windows LLD - Netstream</descriptio
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>a3434064ec88416289a8a940a32ee116</uuid>
-                                    <expression>last(/Template Internet Quality Linux LLD - Netstream/site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}])=0</expression>
+                                    <expression>min(/Template Internet Quality Linux LLD - Netstream/site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}],#3)=0</expression>
                                     <name>DNS FALHOU - {#DNS_SERVER} nao resolveu {#DNS_DOMAIN}</name>
                                     <priority>HIGH</priority>
                                     <description>Falha na resolucao DNS de {#DNS_DOMAIN} via servidor {#DNS_SERVER}.</description>

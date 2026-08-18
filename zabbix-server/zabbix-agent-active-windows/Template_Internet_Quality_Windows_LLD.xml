@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-08-05T18:00:00Z</date>
@@ -263,7 +263,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>d222a42506e04072b069d8627f5b7fb9</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/internet.ping.loss[{#TARGET}])&gt;=100</expression>
+                                    <expression>min(/Template Internet Quality Windows LLD - Netstream/internet.ping.loss[{#TARGET}],#3)&gt;=100</expression>
                                     <name>Internet INACESSIVEL - {#TARGET} 100% perda</name>
                                     <priority>DISASTER</priority>
                                     <description>Perda de pacotes 100% para {#TARGET}. Destino completamente indisponivel.</description>
@@ -424,7 +424,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>c121c02988794c6bb571f745e4b005b3</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/site.http.status[{#URL}])=0</expression>
+                                    <expression>min(/Template Internet Quality Windows LLD - Netstream/site.http.status[{#URL}],#3)=0</expression>
                                     <name>Site INACESSIVEL - {#HOST}</name>
                                     <priority>DISASTER</priority>
                                     <description>Sem resposta HTTP de {#URL}. Site fora do ar ou sem conectividade.</description>
@@ -750,7 +750,7 @@ Padrao baseado em: Template DNS Monitor - Netstream</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>41a0e99e6540407bb28773b522fe803c</uuid>
-                                    <expression>last(/Template Internet Quality Windows LLD - Netstream/site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}])=0</expression>
+                                    <expression>min(/Template Internet Quality Windows LLD - Netstream/site.dns.status[{#DNS_DOMAIN},{#DNS_SERVER}],#3)=0</expression>
                                     <name>DNS FALHOU - {#DNS_SERVER} nao resolveu {#DNS_DOMAIN}</name>
                                     <priority>HIGH</priority>
                                     <description>Falha na resolucao DNS de {#DNS_DOMAIN} via servidor {#DNS_SERVER}.</description>

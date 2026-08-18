@@ -519,7 +519,7 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                             <description>ONUs com sinal ativo na porta</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}=0 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.total[{#SNMPINDEX}].last()}&gt;0 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                                    <expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}=0 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.total[{#SNMPINDEX}].last()}&gt;0 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].diff()}=1 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].count(10m)}&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}&gt;0</recovery_expression>
                                     <name>Porta GPON {#IFNAME}: Queda total de ONUs</name>
@@ -555,7 +555,7 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}&gt;={$GPON_MAX_ONUS}*0.9 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.total[{#SNMPINDEX}].last()}&gt;0</expression>
+                                    <expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}&gt;={$GPON_MAX_ONUS}*0.9 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.total[{#SNMPINDEX}].last()}&gt;0 and {OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].count(10m)}&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{OLT Datacom DmOS - NETSTREAM:netstream.gpon.onu.online[{#SNMPINDEX}].last()}&lt;{$GPON_MAX_ONUS}*0.85</recovery_expression>
                                     <name>Porta GPON {#IFNAME}: Alta ocupacao de ONUs (&gt;=90%)</name>

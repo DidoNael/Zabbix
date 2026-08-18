@@ -433,7 +433,7 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>48aea50a005649fd8d919d6a8094d412</uuid>
-                            <expression>last(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Cisco - Netstream/netstream.bgp.peer.adminstatus[{#IP}.{#ASN}])=2</expression>
+                            <expression>last(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Cisco - Netstream/netstream.bgp.peer.adminstatus[{#IP}.{#ASN}])=2 and diff(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}])=1 and count(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],10m)&gt;1</expression>
                             <name>BGP Peer {#IP} (ASN {#ASN}): DOWN em {HOST.NAME}</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
