@@ -2467,7 +2467,7 @@
                           "filter": "Temperatura das Placas"
                         },
                         "itemTag": {
-                          "filter": "Temperatura"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
