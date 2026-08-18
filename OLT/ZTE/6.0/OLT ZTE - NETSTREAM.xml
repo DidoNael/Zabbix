@@ -151,16 +151,16 @@ Todos os direitos reservados.</description>
                             <description>O equipamento reiniciou recentemente ou perdeu energia.</description>
                             <tags>
                                 <tag>
-                                    <tag>Scope</tag>
-                                    <value>Availability</value>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
                                 </tag>
                                 <tag>
-                                    <tag>Event</tag>
-                                    <value>Reboot</value>
+                                    <tag>tipo</tag>
+                                    <value>Reinicializacao</value>
                                 </tag>
                                 <tag>
-                                    <tag>Application</tag>
-                                    <value>System</value>
+                                    <tag>vendor</tag>
+                                    <value>ZTE</value>
                                 </tag>
                             </tags>
                         </trigger>
@@ -173,16 +173,16 @@ Todos os direitos reservados.</description>
                             <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 60 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
                             <tags>
                                 <tag>
-                                    <tag>Scope</tag>
-                                    <value>Availability</value>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
                                 </tag>
                                 <tag>
-                                    <tag>Event</tag>
-                                    <value>Offline</value>
+                                    <tag>tipo</tag>
+                                    <value>Conectividade</value>
                                 </tag>
                                 <tag>
-                                    <tag>Application</tag>
-                                    <value>System</value>
+                                    <tag>vendor</tag>
+                                    <value>ZTE</value>
                                 </tag>
                             </tags>
                         </trigger>
@@ -604,24 +604,24 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>Scope</tag>
+                                            <tag>scope</tag>
                                             <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>Alias</tag>
-                                            <value>{#PONDESC}</value>
+                                            <tag>tipo</tag>
+                                            <value>Performance</value>
                                         </tag>
                                         <tag>
-                                            <tag>CRCRate</tag>
-                                            <value>{ITEM.LASTVALUE1}</value>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
                                         </tag>
                                         <tag>
-                                            <tag>PON</tag>
+                                            <tag>pon</tag>
                                             <value>{#PONNAME}</value>
                                         </tag>
                                         <tag>
-                                            <tag>Application</tag>
-                                            <value>GPON</value>
+                                            <tag>pon_desc</tag>
+                                            <value>{#PONDESC}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -763,24 +763,28 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
-                                    <tag>Scope</tag>
+                                    <tag>scope</tag>
                                     <value>OLT</value>
                                 </tag>
                                 <tag>
-                                    <tag>Alias</tag>
-                                    <value>{#PONDESC}</value>
+                                    <tag>tipo</tag>
+                                    <value>Capacidade</value>
                                 </tag>
                                 <tag>
-                                    <tag>ONUsOnline</tag>
-                                    <value>{ITEM.LASTVALUE1}</value>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
                                 </tag>
                                 <tag>
-                                    <tag>PON</tag>
+                                    <tag>pon</tag>
                                     <value>{#PONNAME}</value>
                                 </tag>
                                 <tag>
-                                    <tag>Application</tag>
-                                    <value>GPON</value>
+                                    <tag>pon_desc</tag>
+                                    <value>{#PONDESC}</value>
+                                </tag>
+                                <tag>
+                                    <tag>onus_online</tag>
+                                    <value>{ITEM.LASTVALUE1}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1028,20 +1032,20 @@ return JSON.stringify(result);</parameter>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>Scope</tag>
-                                            <value>Customer</value>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>Status</tag>
-                                            <value>Offline</value>
+                                            <tag>tipo</tag>
+                                            <value>Conectividade</value>
                                         </tag>
                                         <tag>
-                                            <tag>Customer</tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_id</tag>
                                             <value>{#ONTDESC}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>Application</tag>
-                                            <value>Dedicated Link</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -1078,20 +1082,24 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                     <description>Sinal optico da ONU dedicada extremamente baixo (&lt; -28 dBm). Risco iminente de queda do link.</description>
                                     <tags>
                                         <tag>
-                                            <tag>Scope</tag>
-                                            <value>Customer</value>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>Signal</tag>
-                                            <value>{ITEM.LASTVALUE1}</value>
+                                            <tag>tipo</tag>
+                                            <value>Optico</value>
                                         </tag>
                                         <tag>
-                                            <tag>Customer</tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_id</tag>
                                             <value>{#ONTDESC}</value>
                                         </tag>
                                         <tag>
-                                            <tag>Application</tag>
-                                            <value>Dedicated Link</value>
+                                            <tag>sinal_rx</tag>
+                                            <value>{ITEM.LASTVALUE1}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
