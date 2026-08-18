@@ -942,7 +942,7 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>3c3b1d3521924617984c5bd6b3fcb004</uuid>
-                                    <expression>max(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2</expression>
+                                    <expression>max(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2 and diff(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}])=1 and count(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Uplink {#IFDESC}: Link DOWN</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
