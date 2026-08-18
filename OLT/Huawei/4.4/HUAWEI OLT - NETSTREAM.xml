@@ -1304,6 +1304,16 @@ return 0;</params>
                                     <name>OLT_HW</name>
                                 </application>
                             </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
                             <request_method>POST</request_method>
                         </item_prototype>
                         <item_prototype>
@@ -1326,7 +1336,7 @@ return 0;</params>
                                 <trigger_prototype>
                                     <expression>{diff()}=1&#13;
 and&#13;
-{last()}=2</expression>
+{last()}=2 and {count(180)}&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>{diff()}=1&#13;
 and&#13;
@@ -1336,12 +1346,16 @@ and&#13;
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>PONDOWN</tag>
-                                            <value>PONDOWN</value>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>PONHW</tag>
-                                            <value>PONHW</value>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>Huawei</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>

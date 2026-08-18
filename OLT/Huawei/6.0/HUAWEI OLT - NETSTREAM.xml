@@ -1054,6 +1054,20 @@ return 0;</parameter>
                             <history>7d</history>
                             <trends>90d</trends>
                             <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
                         </item_prototype>
                         <item_prototype>
                             <uuid>ec4315e1245f44868a8c48f7270b8b6d</uuid>
@@ -1068,7 +1082,7 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>0d138347566b47c1be46aeaf9979b62c</uuid>
-                                    <expression>diff(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=2</expression>
+                                    <expression>diff(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=2 and count(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}],180)&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>diff(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1</recovery_expression>
                                     <name>{#OLTPORT}: {#IFALIAS}</name>
@@ -1076,12 +1090,16 @@ return 0;</parameter>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>PONDOWN</tag>
-                                            <value>PONDOWN</value>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
                                         </tag>
                                         <tag>
-                                            <tag>PONHW</tag>
-                                            <value>PONHW</value>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>Huawei</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
