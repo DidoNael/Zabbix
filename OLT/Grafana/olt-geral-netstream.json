@@ -65,7 +65,7 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "E2jcnadVz"
+                        "name": "000000002"
                       },
                       "spec": {
                         "application": {
@@ -358,7 +358,7 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "E2jcnadVz"
+                        "name": "000000002"
                       },
                       "spec": {
                         "application": {
@@ -1847,7 +1847,7 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "E2jcnadVz"
+                        "name": "000000002"
                       },
                       "spec": {
                         "application": {
@@ -2429,7 +2429,7 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "E2jcnadVz"
+                        "name": "000000002"
                       },
                       "spec": {
                         "application": {
