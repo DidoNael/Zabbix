@@ -108,7 +108,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/.*/"
+                          "filter": "/^(?!.*ifHighSpeed)/"
                         },
                         "itemTag": {
                           "filter": ""
