@@ -1463,9 +1463,10 @@ return s;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>5eeec1f352b545ec9769a687e81db9ac</uuid>
-                                    <expression>max(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2</expression>
+                                    <expression>max(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2 and diff(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Uplink {#IFNAME} ({#IFALIAS}): Link DOWN / Desconectado</name>
                                     <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
                                     <description>A porta LAN/Uplink fisica da OLT caiu e permanece indisponivel.</description>
                                 </trigger_prototype>
                             </trigger_prototypes>
