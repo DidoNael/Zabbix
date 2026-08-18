@@ -366,7 +366,7 @@ Todos os direitos reservados.</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>d0a7c6837c9743ab903a7dbf02cc1b4d</uuid>
-                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=4</expression>
+                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=4 and diff(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=1 and count(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX}: Placa com defeito (Faulty)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -391,7 +391,7 @@ Todos os direitos reservados.</description>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>6a48605f738d4361b1f44afed276e046</uuid>
-                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=5</expression>
+                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=5 and diff(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=1 and count(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX}: Placa Offline / Ausente</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
