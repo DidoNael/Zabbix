@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-07-24T13:50:44Z</date>
@@ -46,13 +46,12 @@ Todos os direitos reservados.</description>
                             <key>link.[{#E1DESCLINK}]</key>
                             <delay>10s</delay>
                             <history>7d</history>
-                            <port>161</port>
                             <valuemap>
                                 <name>UP / DOWN</name>
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}=0</expression>
+                                    <expression>{last()}=0 and {diff()}=1 and {count(10m)}&gt;1</expression>
                                     <name>LINK E1 - [{#E1DESCLINK}]</name>
                                     <priority>DISASTER</priority>
                                     <manual_close>YES</manual_close>
@@ -82,7 +81,6 @@ Todos os direitos reservados.</description>
                             <key>nap.livre[{#E1DESCNAP}]</key>
                             <delay>10s</delay>
                             <history>7d</history>
-                            <port>161</port>
                         </item_prototype>
                         <item_prototype>
                             <name>OCUPAÇÂO CANAL NAP [{#E1DESCNAP}]</name>
@@ -92,7 +90,6 @@ Todos os direitos reservados.</description>
                             <key>nap.ocupation[{#E1DESCNAP}]</key>
                             <delay>10s</delay>
                             <history>7d</history>
-                            <port>161</port>
                         </item_prototype>
                         <item_prototype>
                             <name>FALHA DE NAP [{#E1DESCNAP}] - Status</name>
@@ -102,7 +99,6 @@ Todos os direitos reservados.</description>
                             <key>nap.state[{#E1DESCNAP}]</key>
                             <delay>10s</delay>
                             <history>7d</history>
-                            <port>161</port>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{min(5)}=30</expression>
