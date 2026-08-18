@@ -108,7 +108,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/^(?!.*ifHighSpeed)/"
+                          "filter": "/^(?!.*(ifHighSpeed|Status Operacional))/"
                         },
                         "itemTag": {
                           "filter": ""
