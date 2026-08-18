@@ -108,7 +108,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/Tráfego/"
+                          "filter": "/Trafego/"
                         },
                         "itemTag": {
                           "filter": ""
