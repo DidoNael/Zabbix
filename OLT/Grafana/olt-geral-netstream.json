@@ -3664,7 +3664,7 @@
       "hideTimepicker": false,
       "fiscalYearStartMonth": 0
     },
-    "title": "Dashboard OLT ZTE C3x (Geral) - BEE",
+    "title": "Dashboard OLT Geral - NETSTREAM",
     "variables": [
       {
         "kind": "QueryVariable",
