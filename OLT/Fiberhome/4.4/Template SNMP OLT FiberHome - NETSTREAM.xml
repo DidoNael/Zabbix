@@ -1491,7 +1491,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <units>Bps</units>
                             <applications>
                                 <application>
@@ -1514,7 +1513,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <units>drops/s</units>
                             <applications>
                                 <application>
@@ -1555,7 +1553,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <units>err/s</units>
                             <applications>
                                 <application>
@@ -1578,7 +1575,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <units>Bps</units>
                             <applications>
                                 <application>
@@ -1601,7 +1597,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <units>drops/s</units>
                             <applications>
                                 <application>
@@ -1642,7 +1637,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>30d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1666,7 +1660,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>Uplinks OLT</name>
@@ -1700,7 +1693,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>30d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>C</units>
                             <applications>
@@ -1724,7 +1716,6 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>30d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
@@ -1748,7 +1739,6 @@ return 0;</params>
                             <delay>5m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <value_type>FLOAT</value_type>
                             <units>Bps</units>
                             <applications>
@@ -1817,7 +1807,6 @@ return 0;</params>
                     <snmp_oid>discovery[{#ONUSN}, 1.3.6.1.4.1.5875.800.3.10.1.1.10, {#ONTDESC}, 1.3.6.1.4.1.5875.800.3.10.1.1.7]</snmp_oid>
                     <key>oltonudedicado</key>
                     <delay>1d</delay>
-                    <port>161</port>
                     <filter>
                         <conditions>
                             <condition>
@@ -1836,7 +1825,6 @@ return 0;</params>
                             <key>onuPondown.[&quot;{#SNMPINDEX}&quot;]</key>
                             <history>7d</history>
                             <units>bps</units>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>download</name>
@@ -1882,7 +1870,6 @@ return 0;</params>
                             <key>onuPonup.[&quot;{#SNMPINDEX}&quot;]</key>
                             <history>7d</history>
                             <units>bps</units>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>upload</name>
@@ -1907,7 +1894,6 @@ return 0;</params>
                             <key>state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}]</key>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>onu-state</name>
@@ -2267,7 +2253,6 @@ and &#13;
                     <key>onuPonInfoTable</key>
                     <delay>1d;h5</delay>
                     <status>DISABLED</status>
-                    <port>161</port>
                     <item_prototypes>
                         <item_prototype>
                             <name>ONU Name {#SNMPVALUE}</name>
@@ -2280,7 +2265,6 @@ and &#13;
                             <trends>0</trends>
                             <status>DISABLED</status>
                             <value_type>TEXT</value_type>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>ONU</name>
@@ -2299,7 +2283,6 @@ and &#13;
                             <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>�C</units>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>ONU</name>
@@ -2324,7 +2307,6 @@ and &#13;
                             <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>ONU</name>
@@ -2360,7 +2342,6 @@ and &#13;
                             <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
-                            <port>161</port>
                             <applications>
                                 <application>
                                     <name>ONU</name>
