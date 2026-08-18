@@ -49,6 +49,18 @@ Template para monitoramento de servidores DNS via **DIG** e **NSLOOKUP** com LLD
 
 ---
 
+## Instalação do Servidor Zabbix
+
+Modelo **padronizado e replicável** para subir um servidor Zabbix do zero — **Zabbix 7.0 LTS +
+Nginx + PostgreSQL em Debian 13 (Trixie)** — com senhas fortes geradas por script e hardening de
+segurança. Use como base para todos os novos servidores.
+
+> **[zabbix-server/setup-zabbix-nginx-pgsql/](zabbix-server/setup-zabbix-nginx-pgsql/)** —
+> três caminhos: **automatizado** (`install.sh`), **manual** (passo a passo) ou **cloud-init** (VM).
+> Segredos nunca são versionados: as senhas são geradas por servidor via `gerar-senhas.sh`.
+
+---
+
 ## Como Utilizar o Template ZTE
 
 1. **Importação:**

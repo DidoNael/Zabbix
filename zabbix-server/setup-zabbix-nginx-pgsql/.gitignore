@@ -1,0 +1,12 @@
+# Segredos e artefatos locais — NUNCA versionar
+.env
+*.local
+*.key
+*.pem
+*.crt
+*.psk
+
+# Dumps / backups locais
+backup/*.sql
+backup/*.dump
+backup/*.gz

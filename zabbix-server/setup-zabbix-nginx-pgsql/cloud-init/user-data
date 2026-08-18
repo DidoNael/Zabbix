@@ -1,0 +1,52 @@
+#cloud-config
+# ============================================================================
+# user-data — Provisionamento desatendido do Zabbix 7.0 (Nginx + PostgreSQL)
+# Alvo: imagem cloud oficial do Debian 13 (genericcloud) com cloud-init
+#       (Proxmox, OpenStack, AWS, VMware, NoCloud/seed ISO, etc.)
+# ----------------------------------------------------------------------------
+# AJUSTE: hostname, fqdn, timezone e (se quiser) o ZABBIX_SERVER_NAME em runcmd.
+#
+# No 1º boot este arquivo:
+#   1. clona o repositório público em /opt/zabbix-setup
+#   2. roda gerar-senhas.sh (senhas ÚNICAS por VM) e install.sh
+#
+# As senhas ficam em:
+#   /opt/zabbix-setup/zabbix-server/setup-zabbix-nginx-pgsql/.env   (chmod 600)
+# Recupere-as e guarde no cofre; depois troque a senha do Admin no frontend.
+# ============================================================================
+
+hostname: zabbix
+fqdn: zabbix.exemplo.com.br
+timezone: America/Sao_Paulo
+manage_etc_hosts: true
+
+package_update: true
+package_upgrade: true
+packages:
+  - git
+  - ca-certificates
+  - openssl
+
+# (Opcional) crie um usuário administrativo com sua chave SSH:
+# users:
+#   - name: admin
+#     groups: [sudo]
+#     shell: /bin/bash
+#     sudo: ['ALL=(ALL) NOPASSWD:ALL']
+#     ssh_authorized_keys:
+#       - ssh-ed25519 AAAA... voce@host
+
+runcmd:
+  - [ git, clone, --depth, '1', 'https://github.com/DidoNael/Zabbix.git', /opt/zabbix-setup ]
+  - |
+    set -e
+    cd /opt/zabbix-setup/zabbix-server/setup-zabbix-nginx-pgsql
+    export ZABBIX_SERVER_NAME="$(hostname -f)"
+    export ZABBIX_TIMEZONE="America/Sao_Paulo"
+    chmod +x ./*.sh ./seguranca/*.sh ./backup/*.sh
+    ./gerar-senhas.sh
+    ./install.sh
+  # Firewall: habilite MANUALMENTE após confirmar o acesso SSH, para não se trancar:
+  #   sudo MGMT_NET="10.0.0.0/8" /opt/zabbix-setup/zabbix-server/setup-zabbix-nginx-pgsql/seguranca/firewall.sh
+
+final_message: "Zabbix provisionado em $UPTIME s. Acesse http://<IP>/ (Admin/zabbix — troque a senha). Senhas em /opt/zabbix-setup/.../.env"

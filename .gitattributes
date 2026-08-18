@@ -3,3 +3,7 @@
 *.py text eol=lf
 *.conf text eol=lf
 *.xml text eol=lf
+*.example text eol=lf
+# cloud-init (YAML sem extensão) também deve ser LF
+user-data text eol=lf
+meta-data text eol=lf

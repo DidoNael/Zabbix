@@ -15,6 +15,25 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.8.0] — 2026-08-17
+
+### Adicionado
+
+- **Instalação padrão do servidor Zabbix (`zabbix-server/setup-zabbix-nginx-pgsql/`).**
+  Modelo replicável para subir um Zabbix 7.0 LTS em Debian 13 (Trixie) com Nginx + PHP-FPM
+  e PostgreSQL local. Conteúdo:
+  - Guia passo a passo (`README.md`) com três caminhos: **automatizado**, **manual** e **cloud-init**.
+  - `install.sh` idempotente e não-interativo (repositório oficial, import de schema, config web
+    do frontend sem assistente).
+  - `gerar-senhas.sh` — senhas fortes e **únicas por servidor** via `openssl`; segredos nunca
+    versionados (`.env` protegido por `.gitignore`, pois o repositório é público).
+  - Hardening (`seguranca/`): firewall `nftables`, HTTPS/TLS, PSK server↔agent, `pg_hba` scram-sha-256.
+  - `cloud-init/` para provisionamento de VM (Proxmox/nuvem/NoCloud) no primeiro boot.
+  - Tuning do PostgreSQL, script de backup com retenção e checklist de validação.
+  - Validado em container `debian:13`: pacotes `+debian13`, import de schema e `nginx -t` OK.
+
+---
+
 ## [v2.7.0] — 2026-07-29
 
 ### Corrigido
