@@ -108,7 +108,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/Trafego/"
+                          "filter": "/Trafego|Erros|Drops/"
                         },
                         "itemTag": {
                           "filter": ""
@@ -249,7 +249,26 @@
                           "mode": "fixed"
                         }
                       }
+                    ,
+                  {
+                    "matcher": {
+                      "id": "byRegexp",
+                      "options": "/Erros|Drops/"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.lineStyle",
+                        "value": {
+                          "dash": [10, 10],
+                          "fill": "dash"
+                        }
+                      },
+                      {
+                        "id": "custom.fillOpacity",
+                        "value": 0
+                      }
                     ]
+                  }]
                   },
                   {
                     "matcher": {
