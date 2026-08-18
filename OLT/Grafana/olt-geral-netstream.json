@@ -2019,7 +2019,7 @@
         "kind": "Panel",
         "spec": {
           "id": 28,
-          "title": "Análise de Interfaces (Uplinks) - BEE",
+          "title": "Análise de Interfaces (Uplinks) - Netstream",
           "description": "",
           "links": [],
           "data": {
@@ -2576,7 +2576,7 @@
         "kind": "Panel",
         "spec": {
           "id": 30,
-          "title": "Historico de ONUs Onlines - BEE",
+          "title": "Historico de ONUs Onlines - Netstream",
           "description": "",
           "links": [],
           "data": {
@@ -2769,7 +2769,7 @@
         "kind": "Panel",
         "spec": {
           "id": 31,
-          "title": "Historico de ONUs Los - BEE",
+          "title": "Historico de ONUs Los - Netstream",
           "description": "",
           "links": [],
           "data": {
@@ -2962,7 +2962,7 @@
         "kind": "Panel",
         "spec": {
           "id": 32,
-          "title": "Historico de ONUs Energia - BEE",
+          "title": "Historico de ONUs Energia - Netstream",
           "description": "",
           "links": [],
           "data": {
@@ -3155,7 +3155,7 @@
         "kind": "Panel",
         "spec": {
           "id": 33,
-          "title": "Historico de ONUs Offlines - BEE",
+          "title": "Historico de ONUs Offlines - Netstream",
           "description": "",
           "links": [],
           "data": {
