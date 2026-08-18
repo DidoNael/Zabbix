@@ -1322,7 +1322,7 @@ return s;</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>b96b923fe66e416e858b4564e2efb2e3</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=11</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=11 and diff(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Sem energia eletrica Power)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1339,7 +1339,7 @@ return s;</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>04dfa5afce624d0e84f0d1589a2164b7</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=4</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=4 and diff(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Desconectada / Offline</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1356,7 +1356,7 @@ return s;</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>353faee01d114bfe9f398a1c53112c3d</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=2</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=2 and diff(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Fora de Servico (Not in Service)</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
