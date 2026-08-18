@@ -1,4 +1,4 @@
-﻿{
+{
   "apiVersion": "dashboard.grafana.app/v2",
   "kind": "Dashboard",
   "metadata": {
@@ -3707,4 +3707,3 @@
     ]
   }
 }
-
