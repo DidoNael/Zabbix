@@ -1,0 +1,3713 @@
+﻿{
+  "apiVersion": "dashboard.grafana.app/v2",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "eef8p0x0hlxxcd",
+    "namespace": "default",
+    "uid": "d1326645-a4f7-4168-86cc-4108f6947039",
+    "resourceVersion": "1786889676218998",
+    "generation": 16,
+    "creationTimestamp": "2025-08-13T00:18:22Z",
+    "labels": {
+      "grafana.app/deprecatedInternalID": "3617455258542080"
+    },
+    "annotations": {
+      "grafana.app/createdBy": "user:u000000011",
+      "grafana.app/folder": "5Rt2P10Iz",
+      "grafana.app/saved-from-ui": "Grafana v13.1.0 (b309c9bb3b)",
+      "grafana.app/updatedBy": "user:bfs6nv8zlpszkf",
+      "grafana.app/updatedTimestamp": "2026-07-23T14:21:10Z"
+    }
+  },
+  "spec": {
+    "annotations": [
+      {
+        "kind": "AnnotationQuery",
+        "spec": {
+          "query": {
+            "kind": "DataQuery",
+            "group": "grafana",
+            "version": "v0",
+            "datasource": {
+              "name": "grafana"
+            },
+            "spec": {
+              "limit": 100,
+              "matchAny": false,
+              "tags": [],
+              "type": "dashboard"
+            }
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "builtIn": true
+        }
+      }
+    ],
+    "cursorSync": "Off",
+    "description": "Desenvolvido por: Bee Solutions\nAutor: Fernando Almondes\nData: 08/03/2025 - 14:43\nVersão: v4 (Geral)",
+    "editable": true,
+    "elements": {
+      "panel-14": {
+        "kind": "Panel",
+        "spec": {
+          "id": 14,
+          "title": "Tráfego das Interfaces de Uplink",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "E2jcnadVz"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "Uplink / LAN OLT"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "$$hashKey": "object:1818",
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [
+                                "/(.*)/",
+                                "$1"
+                              ],
+                              "name": "replaceAlias",
+                              "params": [
+                                {
+                                  "name": "regexp",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "newAlias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "/$host: I/",
+                              "I"
+                            ],
+                            "text": "replaceAlias(/$host: I/, I)"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/.*/"
+                        },
+                        "itemTag": {
+                          "filter": "Network Interfaces Bits"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": true,
+                          "minSeverity": 3,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": true
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        },
+                        "triggers": {
+                          "acknowledged": 2
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {"minInterval": "5m"}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "right",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "bps",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 58,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "smooth",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Interface xgei_1/3/2: Bits received"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "#69a6bf",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Interface  xgei-1/1/1: Bits received"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "#28817f",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Interface  xgei-1/1/1: Bits sent"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "semi-dark-orange",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Interface xgei_1/4/2: Bits received"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "#2b3d67",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-16": {
+        "kind": "Panel",
+        "spec": {
+          "id": 16,
+          "title": "",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "text",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "code": {
+                  "language": "plaintext",
+                  "showLineNumbers": false,
+                  "showMiniMap": false
+                },
+                "content": "<center>\r\n<a target=\"new_blank\" href=\"https://beesolutions.com.br\"><img style=\" width=\"100\" height=\"80\" \" src=\"https://beesolutions.com.br/static/home/images/bee/so-logo.png\">\r\n<p>\r\n<h5>BEE SOLUTIONS</h5>\r\n</a>\r\n</center>",
+                "mode": "markdown"
+              },
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-18": {
+        "kind": "Panel",
+        "spec": {
+          "id": 18,
+          "title": "",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "E2jcnadVz"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "uptime"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "$$hashKey": "object:1021",
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [
+                                "/(.*)/",
+                                "$1"
+                              ],
+                              "name": "replaceAlias",
+                              "params": [
+                                {
+                                  "name": "regexp",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "newAlias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "/$host: U/",
+                              "U"
+                            ],
+                            "text": "replaceAlias(/$host: U/, U)"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/Uptime/"
+                        },
+                        "itemTag": {
+                          "filter": "Uptime"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": true,
+                          "minSeverity": 3,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": true
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        },
+                        "triggers": {
+                          "acknowledged": 2
+                        }
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "text": {},
+                "textMode": "value_and_name",
+                "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "dtdhms",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "#222537"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-19": {
+        "kind": "Panel",
+        "spec": {
+          "id": 19,
+          "title": "",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "ONUs Autorizadas"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "$$hashKey": "object:1077",
+                            "def": {
+                              "category": "Aggregate",
+                              "defaultParams": [],
+                              "name": "sumSeries",
+                              "params": []
+                            },
+                            "params": [],
+                            "text": "sumSeries()"
+                          },
+                          {
+                            "$$hashKey": "object:1078",
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "Total Autorizadas"
+                            ],
+                            "text": "setAlias(Total Autorizadas)"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/.*/"
+                        },
+                        "itemTag": {
+                          "filter": "ONUs Autorizadas"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": true,
+                          "minSeverity": 3,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": true
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        },
+                        "triggers": {
+                          "acknowledged": 2
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "text": {},
+                "textMode": "value_and_name",
+                "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed",
+                    "fixedColor": "#28817f"
+                  },
+                  "noValue": "0"
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-20": {
+        "kind": "Panel",
+        "spec": {
+          "id": 20,
+          "title": "",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "ONUs Online"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "$$hashKey": "object:1106",
+                            "def": {
+                              "category": "Aggregate",
+                              "defaultParams": [],
+                              "name": "sumSeries",
+                              "params": []
+                            },
+                            "params": [],
+                            "text": "sumSeries()"
+                          },
+                          {
+                            "$$hashKey": "object:1107",
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "Total Onlines"
+                            ],
+                            "text": "setAlias(Total Onlines)"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/.*/"
+                        },
+                        "itemTag": {
+                          "filter": "ONUs Onlines"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": true,
+                          "minSeverity": 3,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": true
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        },
+                        "triggers": {
+                          "acknowledged": 2
+                        }
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "text": {},
+                "textMode": "auto",
+                "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed",
+                    "fixedColor": "dark-green"
+                  },
+                  "noValue": "0"
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-21": {
+        "kind": "Panel",
+        "spec": {
+          "id": 21,
+          "title": "",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "ONUs Offline"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "$$hashKey": "object:1957",
+                            "def": {
+                              "category": "Aggregate",
+                              "defaultParams": [],
+                              "name": "sumSeries",
+                              "params": []
+                            },
+                            "params": [],
+                            "text": "sumSeries()"
+                          },
+                          {
+                            "$$hashKey": "object:1958",
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "Total Offlines"
+                            ],
+                            "text": "setAlias(Total Offlines)"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/.*/"
+                        },
+                        "itemTag": {
+                          "filter": "ONUs OFF"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": true,
+                          "minSeverity": 3,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": true
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        },
+                        "triggers": {
+                          "acknowledged": 2
+                        }
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "text": {},
+                "textMode": "value_and_name",
+                "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "decimals": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed",
+                    "fixedColor": "#394648"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-22": {
+        "kind": "Panel",
+        "spec": {
+          "id": 22,
+          "title": "",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "ONUs LOS"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "$$hashKey": "object:1048",
+                            "def": {
+                              "category": "Aggregate",
+                              "defaultParams": [],
+                              "name": "sumSeries",
+                              "params": []
+                            },
+                            "params": [],
+                            "text": "sumSeries()"
+                          },
+                          {
+                            "$$hashKey": "object:1049",
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "Total LOS"
+                            ],
+                            "text": "setAlias(Total LOS)"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/.*/"
+                        },
+                        "itemTag": {
+                          "filter": "ONUs LOS"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": true,
+                          "minSeverity": 3,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": true
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        },
+                        "triggers": {
+                          "acknowledged": 2
+                        }
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "text": {},
+                "textMode": "value_and_name",
+                "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "decimals": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed",
+                    "fixedColor": "dark-red"
+                  },
+                  "noValue": "0"
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-23": {
+        "kind": "Panel",
+        "spec": {
+          "id": 23,
+          "title": "",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "ONUs Online"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "$$hashKey": "object:1164",
+                            "def": {
+                              "category": "Aggregate",
+                              "defaultParams": [],
+                              "name": "sumSeries",
+                              "params": []
+                            },
+                            "params": [],
+                            "text": "sumSeries()"
+                          },
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "ONUs Online"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/.*/"
+                        },
+                        "itemTag": {
+                          "filter": ""
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": true,
+                          "minSeverity": 3,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": true
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        },
+                        "triggers": {
+                          "acknowledged": 2
+                        }
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "text": {},
+                "textMode": "value_and_name",
+                "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "decimals": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed",
+                    "fixedColor": "dark-orange"
+                  },
+                  "noValue": "0"
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-25": {
+        "kind": "Panel",
+        "spec": {
+          "id": 25,
+          "title": "Visão Geral por PON",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "mysql",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "Y_t98X_Mk"
+                      },
+                      "spec": {
+                        "editorMode": "code",
+                        "format": "table",
+                        "rawQuery": true,
+                        "rawSql": "select\r\nSUBSTRING_INDEX(it.name, ' - ', 1) as name,\r\nMAX(CASE WHEN it.name LIKE '% - ONUs Autorizadas' THEN hu.value END) AS Autorizadas,\r\nMAX(CASE WHEN it.name LIKE '% - ONUs Online' THEN hu.value END) AS Onlines,\r\nMAX(CASE WHEN it.name LIKE '% - ONUs Offline' THEN hu.value END) AS Offlines,\r\nMAX(CASE WHEN it.name LIKE '% - LOS (Fibra)' THEN hu.value END) AS LOS,\r\nMAX(CASE WHEN it.name LIKE '% - LOSi' THEN hu.value END) AS LOSi,\r\nMAX(CASE WHEN it.name LIKE '% - LOF' THEN hu.value END) AS LOF,\r\nMAX(CASE WHEN it.name LIKE '% - DyingGasp%' THEN hu.value END) AS DyingGasp,\r\nDATE_FORMAT(CONVERT_TZ(FROM_UNIXTIME(MAX(hu.clock)), '+03:00', '+03:00'), '%d-%m-%Y %H:%i:%s') AS ultima_verificacao\r\nfrom items it\r\nleft join (select itemid, max(clock) as max_clock from history_uint group by itemid) as max_hu on it.itemid = max_hu.itemid\r\nleft join history_uint hu on hu.itemid = max_hu.itemid and hu.clock = max_hu.max_clock\r\ninner join hosts ht on ht.hostid = it.hostid\r\nwhere it.flags in (0,4) and it.status = 0 and ht.status = 0 and ht.host in ('$host')\r\nand it.name LIKE 'PON %'\r\nand (it.name LIKE '% - ONUs Autorizadas'\r\n  OR it.name LIKE '% - ONUs Online'\r\n  OR it.name LIKE '% - ONUs Offline'\r\n  OR it.name LIKE '% - LOS (Fibra)'\r\n  OR it.name LIKE '% - LOSi'\r\n  OR it.name LIKE '% - LOF'\r\n  OR it.name LIKE '% - DyingGasp%')\r\ngroup by SUBSTRING_INDEX(it.name, ' - ', 1)\r\norder by name;",
+                        "sql": {
+                          "columns": [
+                            {
+                              "parameters": [],
+                              "type": "function"
+                            }
+                          ],
+                          "groupBy": [
+                            {
+                              "property": {
+                                "type": "string"
+                              },
+                              "type": "groupBy"
+                            }
+                          ],
+                          "limit": 50
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "excludeByName": {},
+                      "includeByName": {},
+                      "indexByName": {},
+                      "renameByName": {
+                        "Sinal": "Tx Power",
+                        "ultima_verificacao": "Ult.Coleta",
+                        "name": "PON"
+                      }
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "table",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "cellHeight": "sm",
+                "enablePagination": true,
+                "showHeader": true,
+                "sortBy": []
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "dark-green"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "custom": {
+                    "align": "auto",
+                    "cellOptions": {
+                      "type": "color-background"
+                    },
+                    "footer": {
+                      "reducers": []
+                    },
+                    "inspect": false
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Status"
+                    },
+                    "properties": [
+                      {
+                        "id": "mappings",
+                        "value": [
+                          {
+                            "options": {
+                              "1": {
+                                "color": "dark-green",
+                                "index": 0,
+                                "text": "UP"
+                              },
+                              "2": {
+                                "color": "dark-red",
+                                "index": 1,
+                                "text": "DOWN"
+                              }
+                            },
+                            "type": "value"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "PON"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "#001d2c",
+                          "mode": "fixed"
+                        }
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 231
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Autorizadas"
+                    },
+                    "properties": [
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "dark-red",
+                              "value": 0
+                            },
+                            {
+                              "color": "dark-green",
+                              "value": 1
+                            }
+                          ]
+                        }
+                      }
+                                      ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Onlines"
+                    },
+                    "properties": [
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "dark-red",
+                              "value": 0
+                            },
+                            {
+                              "color": "dark-green",
+                              "value": 1
+                            }
+                          ]
+                        }
+                      }
+                                      ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Offlines"
+                    },
+                    "properties": [
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "dark-green",
+                              "value": 0
+                            },
+                            {
+                              "color": "dark-red",
+                              "value": 1
+                            }
+                          ]
+                        }
+                      }
+                                      ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "LOS"
+                    },
+                    "properties": [
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "dark-green",
+                              "value": 0
+                            },
+                            {
+                              "color": "dark-yellow",
+                              "value": 10
+                            },
+                            {
+                              "color": "dark-orange",
+                              "value": 20
+                            },
+                            {
+                              "color": "dark-red",
+                              "value": 30
+                            }
+                          ]
+                        }
+                      }
+                                      ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "DyingGasp"
+                    },
+                    "properties": [
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "dark-green",
+                              "value": 0
+                            },
+                            {
+                              "color": "dark-yellow",
+                              "value": 50
+                            },
+                            {
+                              "color": "dark-orange",
+                              "value": 80
+                            },
+                            {
+                              "color": "dark-red",
+                              "value": 90
+                            }
+                          ]
+                        }
+                      }
+                                      ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Tx Power"
+                    },
+                    "properties": [
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "dark-green",
+                              "value": 0
+                            },
+                            {
+                              "color": "dark-orange",
+                              "value": 7
+                            },
+                            {
+                              "color": "dark-red",
+                              "value": 21
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Ultima Verificacao"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.align",
+                        "value": "center"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-26": {
+        "kind": "Panel",
+        "spec": {
+          "id": 26,
+          "title": "Visão Geral de Cards",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "mysql",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "Y_t98X_Mk"
+                      },
+                      "spec": {
+                        "dataset": "zabbix",
+                        "editorMode": "code",
+                        "format": "table",
+                        "rawQuery": true,
+                        "rawSql": "SELECT\r\n    SUBSTRING_INDEX(i.name, ':', 1)                                               AS placa,\r\n    MAX(CASE WHEN i.name LIKE '%Uso de CPU%'      THEN hu.value END)              AS cpu,\r\n    MAX(CASE WHEN i.name LIKE '%Uso de Mem%'      THEN hu.value END)              AS memoria,\r\n    MAX(CASE WHEN i.name LIKE '%Status Operac%'   THEN hu.value END)              AS status,\r\n    DATE_FORMAT(FROM_UNIXTIME(MAX(hu.clock)), '%d-%m-%Y %H:%i:%s')                AS ultima_verificacao\r\nFROM items i\r\nJOIN hosts h ON h.hostid = i.hostid\r\nJOIN history_uint hu ON hu.itemid = i.itemid\r\nWHERE i.flags  = 4\r\n  AND i.status = 0\r\n  AND h.status = 0\r\n  AND h.host   = '$host'\r\n  AND i.key_   LIKE 'netstream.zte.card.%'\r\n  AND hu.clock = (\r\n        SELECT MAX(clock) FROM history_uint\r\n        WHERE itemid = i.itemid AND clock > UNIX_TIMESTAMP() - 3600\r\n  )\r\nGROUP BY placa\r\nORDER BY placa;",
+                        "sql": {
+                          "columns": [
+                            {
+                              "parameters": [],
+                              "type": "function"
+                            }
+                          ],
+                          "groupBy": [
+                            {
+                              "property": {
+                                "type": "string"
+                              },
+                              "type": "groupBy"
+                            }
+                          ],
+                          "limit": 50
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "excludeByName": {},
+                      "includeByName": {},
+                      "indexByName": {},
+                      "renameByName": {
+                        "card": "Modelo",
+                        "cpu": "CPU",
+                        "item": "Card",
+                        "memoria": "Memoria"
+                      }
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "table",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "cellHeight": "sm",
+                "showHeader": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "#141f32"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "custom": {
+                    "align": "auto",
+                    "cellOptions": {
+                      "type": "color-background"
+                    },
+                    "footer": {
+                      "reducers": []
+                    },
+                    "inspect": false
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "CPU"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "percent"
+                      },
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "dark-green",
+                              "value": 0
+                            },
+                            {
+                              "color": "dark-orange",
+                              "value": 40
+                            },
+                            {
+                              "color": "dark-red",
+                              "value": 80
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "max",
+                        "value": 100
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Memoria"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "percent"
+                      },
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "dark-green",
+                              "value": 0
+                            },
+                            {
+                              "color": "dark-orange",
+                              "value": 40
+                            },
+                            {
+                              "color": "dark-red",
+                              "value": 80
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "max",
+                        "value": 100
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-27": {
+        "kind": "Panel",
+        "spec": {
+          "id": 27,
+          "title": "Painel de Incidentes - OLT",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "E2jcnadVz"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": ""
+                        },
+                        "itemTag": {
+                          "filter": ""
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "acknowledged": 2,
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "hostProxy": false,
+                          "hostsInMaintenance": false,
+                          "limit": 1001,
+                          "minSeverity": 0,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "sortProblems": "default",
+                          "useTimeRange": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "5",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "showProblems": "problems",
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "alexanderzobnin-zabbix-triggers-panel",
+            "version": "6.4.1",
+            "spec": {
+              "options": {
+                "ackEventColor": "rgb(56, 219, 156)",
+                "ackField": false,
+                "ageField": true,
+                "allowDangerousHTML": false,
+                "customLastChangeFormat": false,
+                "customTagColumns": "",
+                "descriptionAtNewLine": false,
+                "descriptionField": true,
+                "fontSize": "100%",
+                "highlightBackground": false,
+                "highlightNewEvents": false,
+                "highlightNewerThan": "1h",
+                "hostField": true,
+                "hostGroups": false,
+                "hostProxy": false,
+                "hostTechNameField": false,
+                "lastChangeFormat": "",
+                "layout": "table",
+                "markAckEvents": false,
+                "okEventColor": "rgb(56, 189, 113)",
+                "opdataField": false,
+                "pageSize": 10,
+                "problemTimeline": true,
+                "severityField": true,
+                "showDatasourceName": false,
+                "showTags": true,
+                "sortProblems": "lastchange",
+                "statusField": true,
+                "statusIcon": true,
+                "triggerSeverity": [
+                  {
+                    "color": "rgb(108, 108, 108)",
+                    "priority": 0,
+                    "severity": "Not classified",
+                    "show": true
+                  },
+                  {
+                    "color": "rgb(120, 158, 183)",
+                    "priority": 1,
+                    "severity": "Information",
+                    "show": true
+                  },
+                  {
+                    "color": "rgb(175, 180, 36)",
+                    "priority": 2,
+                    "severity": "Warning",
+                    "show": true
+                  },
+                  {
+                    "color": "rgb(255, 137, 30)",
+                    "priority": 3,
+                    "severity": "Average",
+                    "show": true
+                  },
+                  {
+                    "color": "rgb(255, 101, 72)",
+                    "priority": 4,
+                    "severity": "High",
+                    "show": true
+                  },
+                  {
+                    "color": "rgb(215, 0, 0)",
+                    "priority": 5,
+                    "severity": "Disaster",
+                    "show": true
+                  }
+                ]
+              },
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-28": {
+        "kind": "Panel",
+        "spec": {
+          "id": 28,
+          "title": "Análise de Interfaces (Uplinks) - BEE",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "mysql",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "Y_t98X_Mk"
+                      },
+                      "spec": {
+                        "dataset": "zabbix",
+                        "editorMode": "code",
+                        "format": "table",
+                        "rawQuery": true,
+                        "rawSql": "SELECT\r\n  sub.host,\r\n  sub.interface,\r\n  sub.bitsin,\r\n  sub.bitsout,\r\n  sub.status,\r\n  sub.speed,\r\n  sub.usoin,\r\n  sub.usoout,\r\n  sub.rxpower,\r\n  sub.txpower,\r\n  sub.distancia,\r\n  sub.limiterx,\r\n  CASE\r\n    WHEN sub.rxpower IS NULL THEN NULL\r\n    WHEN sub.is_xgei = 1 AND (sub.rxpower < -9.00 OR sub.rxpower > 0.00) THEN 'anormal'\r\n    WHEN sub.is_xgei = 0 AND (sub.rxpower < -11.00 OR sub.rxpower > -1.00) THEN 'anormal'\r\n  END AS staturx,\r\n  sub.ultverificacao\r\nFROM (\r\n  SELECT\r\n    ht.name AS host,\r\n    SUBSTRING_INDEX(it.name, ': ', 1) AS interface,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Entrada%' THEN h.value END) AS bitsin,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Saida%'   THEN h.value END) AS bitsout,\r\n    MAX(CASE WHEN it.name LIKE '%Status Operacional%'  THEN h.value END) AS status,\r\n    MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END) AS speed,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Entrada%' THEN h.value END)\r\n      / NULLIF(MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END), 0) * 100 AS usoin,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Saida%' THEN h.value END)\r\n      / NULLIF(MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END), 0) * 100 AS usoout,\r\n    MAX(CASE WHEN it.name LIKE '%Sinal RX%' THEN h.value END) AS rxpower,\r\n    MAX(CASE WHEN it.name LIKE '%Sinal TX%' THEN h.value END) AS txpower,\r\n    NULL AS distancia,\r\n    MAX(CASE WHEN it.name LIKE '%xgei%'  THEN '0.00 a -9.00'\r\n             WHEN it.name LIKE '% gei_%' THEN '-1.00 a -11.00'\r\n        END) AS limiterx,\r\n    MAX(CASE WHEN it.name LIKE '%xgei%' THEN 1 ELSE 0 END) AS is_xgei,\r\n    MAX(DATE_FORMAT(CONVERT_TZ(FROM_UNIXTIME(h.clock), '+00:00', '+00:00'), '%d-%m-%Y %H:%i:%s')) AS ultverificacao\r\n  FROM items it\r\n  INNER JOIN hosts ht ON ht.hostid = it.hostid AND ht.name IN ('$host') AND ht.status = 0\r\n  LEFT JOIN (\r\n    SELECT itemid, MAX(clock) AS max_clock\r\n    FROM history\r\n    WHERE clock > UNIX_TIMESTAMP() - 7200\r\n    GROUP BY itemid\r\n  ) AS max_h ON it.itemid = max_h.itemid\r\n  LEFT JOIN history h ON h.itemid = max_h.itemid AND h.clock = max_h.max_clock\r\n  INNER JOIN items_applications ia2 ON ia2.itemid = it.itemid\r\n  INNER JOIN applications ap ON ap.applicationid = ia2.applicationid AND ap.name = 'Uplink / LAN OLT'\r\n  WHERE it.flags IN (0, 4)\r\n    AND it.status = 0\r\n    AND (\r\n      it.name LIKE '%Trafego%'\r\n      OR it.name LIKE '%Status Operacional%'\r\n      OR it.name LIKE '%Velocidade da Porta%'\r\n      OR it.name LIKE '%Erros%'\r\n      OR it.name LIKE '%Drops%'\r\n      OR it.name LIKE '%Sinal RX%'\r\n      OR it.name LIKE '%Sinal TX%'\r\n    )\r\n  GROUP BY interface, host\r\n) sub\r\nORDER BY sub.interface;",
+                        "sql": {
+                          "columns": [
+                            {
+                              "parameters": [],
+                              "type": "function"
+                            }
+                          ],
+                          "groupBy": [
+                            {
+                              "property": {
+                                "type": "string"
+                              },
+                              "type": "groupBy"
+                            }
+                          ],
+                          "limit": 50
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "excludeByName": {
+                        "host": true
+                      },
+                      "includeByName": {},
+                      "indexByName": {},
+                      "renameByName": {
+                        "Interface": "",
+                        "bitsin": "Bits In",
+                        "bitsout": "Bits Out",
+                        "consumoin": "Consumo In",
+                        "consumoout": "Consumo Out",
+                        "descartesin": "Descartes In",
+                        "descartesout": "Descartes Out",
+                        "distancia": "Distancia (KM)",
+                        "errosin": "Erros In",
+                        "errosout": "Erros Out",
+                        "host": "Host",
+                        "interface": "Interface",
+                        "limiterx": "Limites Rx (dBm)",
+                        "rxpower": "Rx Power (dBm)",
+                        "rxpoweravg": "Rx Power Avg (dBm)",
+                        "speed": "Speed",
+                        "staturx": "Status Sinal",
+                        "status": "Status",
+                        "txpower": "Tx Power (dBm)",
+                        "txpoweravg": "Tx Power Avg (dBm)",
+                        "ultverificacao": "Ult. Verificação",
+                        "ultverificao": "Ult.Verificacao",
+                        "usoin": "Uso In (%)",
+                        "usoout": "Uso Out (%)"
+                      }
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "table",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "cellHeight": "sm",
+                "enablePagination": false,
+                "showHeader": true,
+                "sortBy": [
+                  {
+                    "desc": true,
+                    "displayName": "Bits Out"
+                  }
+                ]
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "#173c48"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "noValue": "-",
+                  "custom": {
+                    "align": "center",
+                    "cellOptions": {
+                      "type": "auto"
+                    },
+                    "filterable": true,
+                    "footer": {
+                      "reducers": []
+                    },
+                    "inspect": false
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Bits In"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "bps"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 114
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Bits Out"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "bps"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 119
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Status"
+                    },
+                    "properties": [
+                      {
+                        "id": "mappings",
+                        "value": [
+                          {
+                            "options": {
+                              "1": {
+                                "color": "dark-green",
+                                "index": 0,
+                                "text": "Up"
+                              },
+                              "2": {
+                                "color": "dark-red",
+                                "index": 1,
+                                "text": "Down"
+                              },
+                              "4": {
+                                "color": "#808080",
+                                "index": 2,
+                                "text": "Desconhecido"
+                              },
+                              "6": {
+                                "color": "#808080",
+                                "index": 3,
+                                "text": "Não presente"
+                              }
+                            },
+                            "type": "value"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 96
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Speed"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "decbits"
+                      },
+                      {
+                        "id": "custom.width",
+                        "value": 101
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Consumo Out"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "decmbytes"
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Uso In (%)"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "percent"
+                      },
+                      {
+                        "id": "max",
+                        "value": 100
+                      },
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "dark-green",
+                              "value": 0
+                            },
+                            {
+                              "color": "dark-orange",
+                              "value": 50
+                            },
+                            {
+                              "color": "dark-red",
+                              "value": 80
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Uso Out (%)"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "percent"
+                      },
+                      {
+                        "id": "max",
+                        "value": 100
+                      },
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "dark-green",
+                              "value": 0
+                            },
+                            {
+                              "color": "dark-orange",
+                              "value": 50
+                            },
+                            {
+                              "color": "dark-red",
+                              "value": 90
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Rx Power (dBm)"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": " dBm "
+                      },
+                      {
+                        "id": "mappings",
+                        "value": [
+                          {
+                            "options": {
+                              "-40": {
+                                "color": "dark-red",
+                                "index": 0
+                              }
+                            },
+                            "type": "value"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Tx Power (dBm)"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "dBm "
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Interface"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.width"
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Distancia (KM)"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "lengthkm"
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Status Sinal"
+                    },
+                    "properties": [
+                      {
+                        "id": "mappings",
+                        "value": [
+                          {
+                            "options": {
+                              "anormal": {
+                                "color": "dark-orange",
+                                "index": 0,
+                                "text": "Anormal ⚠️"
+                              }
+                            },
+                            "type": "value"
+                          },
+                          {
+                            "options": {
+                              "match": "null",
+                              "result": {
+                                "color": "dark-green",
+                                "index": 1,
+                                "text": "Normal ✅"
+                              }
+                            },
+                            "type": "special"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-29": {
+        "kind": "Panel",
+        "spec": {
+          "id": 29,
+          "title": "Temperatura",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "E2jcnadVz"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "Temperatura das Placas"
+                        },
+                        "itemTag": {
+                          "filter": "Temperatura"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "gauge",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "barShape": "flat",
+                "barWidthFactor": 0.5,
+                "effects": {
+                  "barGlow": false,
+                  "centerGlow": false,
+                  "gradient": false
+                },
+                "endpointMarker": "point",
+                "minVizHeight": 75,
+                "minVizWidth": 75,
+                "orientation": "auto",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "segmentCount": 1,
+                "segmentSpacing": 0.3,
+                "shape": "gauge",
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "sizing": "auto",
+                "sparkline": false,
+                "textMode": "auto"
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "celsius",
+                  "min": 0,
+                  "max": 80,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "dark-green"
+                      },
+                      {
+                        "value": 40,
+                        "color": "dark-orange"
+                      },
+                      {
+                        "value": 60,
+                        "color": "dark-red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-30": {
+        "kind": "Panel",
+        "spec": {
+          "id": 30,
+          "title": "Historico de ONUs Onlines - BEE",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "ONUs Online"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [
+                                "/(.*)/",
+                                "$1"
+                              ],
+                              "name": "replaceAlias",
+                              "params": [
+                                {
+                                  "name": "regexp",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "newAlias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "/$host: /",
+                              " "
+                            ],
+                            "text": "replaceAlias(/(.*)/, $1)"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/.*/"
+                        },
+                        "itemTag": {
+                          "filter": "ONUs Onlines"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true,
+                  "sortBy": "Last *",
+                  "sortDesc": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisGridShow": false,
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "never",
+                    "showValues": false,
+                    "spanNulls": true,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-31": {
+        "kind": "Panel",
+        "spec": {
+          "id": 31,
+          "title": "Historico de ONUs Los - BEE",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "ONUs LOS"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [
+                                "/(.*)/",
+                                "$1"
+                              ],
+                              "name": "replaceAlias",
+                              "params": [
+                                {
+                                  "name": "regexp",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "newAlias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "/$host: /",
+                              " "
+                            ],
+                            "text": "replaceAlias(/(.*)/, $1)"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/.*/"
+                        },
+                        "itemTag": {
+                          "filter": "ONUs LOS"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true,
+                  "sortBy": "Last *",
+                  "sortDesc": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisGridShow": false,
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": true,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-32": {
+        "kind": "Panel",
+        "spec": {
+          "id": 32,
+          "title": "Historico de ONUs Energia - BEE",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "ONUs Dying Gasp"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [
+                                "/(.*)/",
+                                "$1"
+                              ],
+                              "name": "replaceAlias",
+                              "params": [
+                                {
+                                  "name": "regexp",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "newAlias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "/$host: /",
+                              " "
+                            ],
+                            "text": "replaceAlias(/(.*)/, $1)"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/.*/"
+                        },
+                        "itemTag": {
+                          "filter": "ONUs DyingGasp"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true,
+                  "sortBy": "Last *",
+                  "sortDesc": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisGridShow": false,
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": true,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-33": {
+        "kind": "Panel",
+        "spec": {
+          "id": 33,
+          "title": "Historico de ONUs Offlines - BEE",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": "ONUs Offline"
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [
+                                "/(.*)/",
+                                "$1"
+                              ],
+                              "name": "replaceAlias",
+                              "params": [
+                                {
+                                  "name": "regexp",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "newAlias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "/$host: /",
+                              " "
+                            ],
+                            "text": "replaceAlias(/(.*)/, $1)"
+                          }
+                        ],
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/.*/"
+                        },
+                        "itemTag": {
+                          "filter": "ONUs OFF"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true,
+                  "sortBy": "Last *",
+                  "sortDesc": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisGridShow": false,
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": true,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-34": {
+        "kind": "Panel",
+        "spec": {
+          "id": 34,
+          "title": "Tráfego das Portas PON (GPON)",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "000000002"
+                      },
+                      "spec": {
+                        "application": {"filter": ""},
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [],
+                        "group": {"filter": "OLT-NETSTREAM"},
+                        "host": {"filter": "$host"},
+                        "item": {"filter": "/Porta .* Trafego/"},
+                        "itemTag": {"filter": ""},
+                        "macro": {"filter": ""},
+                        "options": {"count": false,"disableDataAlignment": true,"minSeverity": 3,"showDisabledItems": false,"skipEmptyValues": false,"useTrends": "default","useZabbixValueMapping": true},
+                        "proxy": {"filter": ""},
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {"skipEmptyValues": false},
+                        "tags": {"filter": ""},
+                        "textFilter": "",
+                        "trigger": {"filter": ""},
+                        "triggers": {"acknowledged": 2}
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {"minInterval": "5m"}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.1.0",
+            "spec": {
+              "options": {
+                "legend": {"calcs": ["lastNotNull"],"displayMode": "table","enableFacetedFilter": false,"overflow": "ellipsis","placement": "right","showLegend": true},
+                "tooltip": {"hideZeros": false,"mode": "single","sort": "none"}
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "bps",
+                  "color": {"mode": "palette-classic"},
+                  "custom": {"drawStyle": "line","fillOpacity": 20,"gradientMode": "none","lineInterpolation": "smooth","lineWidth": 1,"showPoints": "auto","spanNulls": false,"stacking": {"group": "A","mode": "none"}}
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "layout": {
+      "kind": "GridLayout",
+      "spec": {
+        "items": [
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 0,
+              "width": 3,
+              "height": 4,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-16"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 3,
+              "y": 0,
+              "width": 3,
+              "height": 4,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-19"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 6,
+              "y": 0,
+              "width": 3,
+              "height": 4,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-20"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 9,
+              "y": 0,
+              "width": 3,
+              "height": 4,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-22"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 12,
+              "y": 0,
+              "width": 3,
+              "height": 4,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-23"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 15,
+              "y": 0,
+              "width": 3,
+              "height": 4,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-21"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 18,
+              "y": 0,
+              "width": 3,
+              "height": 4,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-29"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 21,
+              "y": 0,
+              "width": 3,
+              "height": 4,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-18"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 4,
+              "width": 24,
+              "height": 6,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-26"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 10,
+              "width": 24,
+              "height": 10,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-25"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 20,
+              "width": 6,
+              "height": 8,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-30"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 6,
+              "y": 20,
+              "width": 6,
+              "height": 8,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-31"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 12,
+              "y": 20,
+              "width": 6,
+              "height": 8,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-32"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 18,
+              "y": 20,
+              "width": 6,
+              "height": 8,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-33"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 28,
+              "width": 24,
+              "height": 4,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-28"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 32,
+              "width": 24,
+              "height": 12,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-14"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 44,
+              "width": 24,
+              "height": 12,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-34"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 56,
+              "width": 24,
+              "height": 15,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-27"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "links": [],
+    "liveNow": false,
+    "preload": false,
+    "tags": ["bee", "olt", "gpon"],
+    "timeSettings": {
+      "timezone": "browser",
+      "from": "now-12h",
+      "to": "now",
+      "autoRefresh": "1m",
+      "autoRefreshIntervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "hideTimepicker": false,
+      "fiscalYearStartMonth": 0
+    },
+    "title": "Dashboard OLT ZTE C3x (Geral) - BEE",
+    "variables": [
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "host",
+          "current": {
+            "text": "TR 12 - OLT - ZTE - DUTRA - C350",
+            "value": "TR 12 - OLT - ZTE - DUTRA - C350"
+          },
+          "label": "OLT",
+          "hide": "dontHide",
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": false,
+          "query": {
+            "kind": "DataQuery",
+            "group": "alexanderzobnin-zabbix-datasource",
+            "version": "v0",
+            "datasource": {
+              "name": "000000002"
+            },
+            "spec": {
+              "application": "",
+              "group": "OLT-NETSTREAM",
+              "host": "/.*/",
+              "item": "",
+              "itemTag": "",
+              "queryType": "host"
+            }
+          },
+          "regex": "",
+          "regexApplyTo": "value",
+          "sort": "disabled",
+          "definition": "Zabbix - host",
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "allowCustomValue": true
+        }
+      }
+    ]
+  }
+}
