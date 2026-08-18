@@ -1143,7 +1143,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>c130941faaf041e1b59a32aa421f767b</uuid>
-                                    <expression>min(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}],#3)=2 and last(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])=2 and diff(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}],10m)&gt;1 and last(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=1</expression>
                                     <name>Cliente Dedicado {#ONTDESC}: Cabo LAN Desconectado / Porta Ethernet DOWN</name>
                                     <priority>WARNING</priority>
                                     <description>A ONU dedicada esta online na fibra, porem o cabo de rede RJ45 (LAN 1) que liga ao cliente esta desconectado ou DOWN.</description>
