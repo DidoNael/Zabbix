@@ -122,3 +122,30 @@ SQL
 ```
 
 **No XML**: nunca incluir `<port>` dentro de `<item_prototype>`. A porta deve estar somente na interface do host no Zabbix.
+
+---
+
+## OBRIGATÓRIO: sincronizar 4.4 e 6.0 a cada mudança
+
+**Regra**: qualquer alteração em um template ZTE (ou Fiberhome/Huawei) **deve ser aplicada nas duas versões** — `4.4/` e `6.0/` — no mesmo commit. Nunca commitar uma versão sem equalizar a outra.
+
+**Por quê**: já perdemos tempo corrigindo falsos positivos em produção porque o fix existia no 4.4 mas não no 6.0 (ou vice-versa). Ambas as versões são usadas em produção — clientes novos sobem 6.0, legados rodam 4.4.
+
+**O que muda entre versões** (só sintaxe, lógica idêntica):
+
+| Elemento | Zabbix 4.4 | Zabbix 6.0 |
+|---|---|---|
+| Expressão de trigger | `{HOST:item.func(param)}` | `func(/HOST/item,param)` |
+| `delta(900)` | `{HOST:item.delta(900)}` | `(max(/HOST/item,900)-min(/HOST/item,900))` |
+| `diff()` | `{HOST:item.diff()}` | `diff(/HOST/item)` |
+| `change()` | `{HOST:item.change()}` | `change(/HOST/item)` |
+| `count(10m)` | `{HOST:item.count(10m)}` | `count(/HOST/item,10m)` |
+| `nodata(5m)` | `{HOST:item.nodata(5m)}` | `nodata(/HOST/item,5m)` |
+| `<recovery_mode>` (XML) | `RECOVERY_EXPRESSION` | `RECOVERY_EXPRESSION` (igual) |
+| `<dependencies>` (XML) | `<name>` + `<expression>` no formato 4.4 | `<name>` + `<expression>` no formato 6.0 |
+
+**Checklist ao editar qualquer trigger prototype**:
+- [ ] Nome do trigger igual nas duas versões (incluindo macros como `{#NETSTREAM.PON_DESC}`)
+- [ ] Lógica idêntica (expressão, recovery, manual_close, priority, tags)
+- [ ] Dependências replicadas nas duas versões
+- [ ] Ambos os arquivos no mesmo commit e push

@@ -1687,7 +1687,7 @@ return s;</parameter>
                             <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
                             <priority>DISASTER</priority>
                             <tags>
                                 <tag>
@@ -1715,7 +1715,7 @@ return s;</parameter>
                         <trigger_prototype>
                             <uuid>141e6b7454134ed9a4b8fc6089ec7a91</uuid>
                             <expression>(max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],900)-min(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],900))&gt;=3 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1748,7 +1748,7 @@ return s;</parameter>
                         <trigger_prototype>
                             <uuid>c3761a38d39f4eb1b97b8b3ad153fc2a</uuid>
                             <expression>(max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],900)-min(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],900))&gt;=3 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1777,11 +1777,19 @@ return s;</parameter>
                                     <value>telegram</value>
                                 </tag>
                             </tags>
+                            <dependencies>
+                                <dependency>
+                                    <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
+                                </dependency>
+                            </dependencies>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>2c2c45b1d01348b3a6db6b9377622b51</uuid>
                             <expression>change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&lt;-{$GPON_DROP_MIN} and last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: Queda parcial de ONUs</name>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda parcial de ONUs</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
