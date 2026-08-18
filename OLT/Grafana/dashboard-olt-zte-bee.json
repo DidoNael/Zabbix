@@ -1,1 +1,3304 @@
-{"annotations":{"list":[{"builtIn":1,"datasource":{"type":"grafana","uid":"grafana"},"enable":true,"hide":true,"iconColor":"rgba(0, 211, 255, 1)","name":"Annotations \u0026 Alerts","target":{"limit":100,"matchAny":false,"tags":[],"type":"dashboard"},"type":"dashboard"}]},"description":"Desenvolvido por: Autor: Fernando Almondes\nData: 08/03/2025 - 14:43\nVersão: v4 (Geral)","editable":true,"fiscalYearStartMonth":0,"graphTooltip":0,"id":3932912771166208,"liveNow":false,"panels":[{"gridPos":{"h":4,"w":3,"x":0,"y":0},"id":16,"options":{"code":{"language":"plaintext","showLineNumbers":false,"showMiniMap":false},"content":"\u003ccenter\u003e \u003ca target=\"new_blank\" href=\"https://beesolutions.com.br\"\u003e\u003cimg style=\" width=\"100\" height=\"80\" \" src=\"https://beesolutions.com.br/static/home/images/bee/so-logo.png\"\u003e \u003cp\u003e \u003ch5\u003e\u003c/h5\u003e \u003c/a\u003e \u003c/center\u003e","mode":"markdown"},"pluginVersion":"13.1.0","targets":[],"title":"","type":"text"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"fixedColor":"#28817f","mode":"fixed"},"noValue":"0","thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]}}},"gridPos":{"h":4,"w":3,"x":3,"y":0},"id":19,"options":{"colorMode":"background","graphMode":"none","justifyMode":"auto","orientation":"auto","percentChangeColorMode":"standard","reduceOptions":{"calcs":["lastNotNull"],"fields":"","values":false},"showPercentChange":false,"text":{},"textMode":"value_and_name","wideLayout":true},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"ONUs Autorizadas"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"$$hashKey":"object:1077","def":{"category":"Aggregate","defaultParams":[],"name":"sumSeries","params":[]},"params":[],"text":"sumSeries()"},{"$$hashKey":"object:1078","def":{"category":"Alias","defaultParams":[],"name":"setAlias","params":[{"name":"alias","type":"string"}]},"params":["Total Autorizadas"],"text":"setAlias(Total Autorizadas)"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/.*/"},"itemTag":{"filter":"ONUs Autorizadas"},"macro":{"filter":""},"options":{"count":true,"disableDataAlignment":true,"minSeverity":3,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":true},"proxy":{"filter":""},"queryType":"0","refId":"A","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""},"triggers":{"acknowledged":2}}],"title":"","type":"stat"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"fixedColor":"dark-green","mode":"fixed"},"noValue":"0","thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]}}},"gridPos":{"h":4,"w":3,"x":6,"y":0},"id":20,"options":{"colorMode":"background","graphMode":"none","justifyMode":"auto","orientation":"auto","percentChangeColorMode":"standard","reduceOptions":{"calcs":["lastNotNull"],"fields":"","values":false},"showPercentChange":false,"text":{},"textMode":"auto","wideLayout":true},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"ONUs Online"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"$$hashKey":"object:1106","def":{"category":"Aggregate","defaultParams":[],"name":"sumSeries","params":[]},"params":[],"text":"sumSeries()"},{"$$hashKey":"object:1107","def":{"category":"Alias","defaultParams":[],"name":"setAlias","params":[{"name":"alias","type":"string"}]},"params":["Total Onlines"],"text":"setAlias(Total Onlines)"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/.*/"},"itemTag":{"filter":"ONUs Onlines"},"macro":{"filter":""},"options":{"count":true,"disableDataAlignment":true,"minSeverity":3,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":true},"proxy":{"filter":""},"queryType":"0","refId":"C","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""},"triggers":{"acknowledged":2}}],"title":"","type":"stat"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"fixedColor":"dark-red","mode":"fixed"},"decimals":0,"noValue":"0","thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]}}},"gridPos":{"h":4,"w":3,"x":9,"y":0},"id":22,"options":{"colorMode":"background","graphMode":"none","justifyMode":"auto","orientation":"auto","percentChangeColorMode":"standard","reduceOptions":{"calcs":["lastNotNull"],"fields":"","values":false},"showPercentChange":false,"text":{},"textMode":"value_and_name","wideLayout":true},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"ONUs LOS"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"$$hashKey":"object:1048","def":{"category":"Aggregate","defaultParams":[],"name":"sumSeries","params":[]},"params":[],"text":"sumSeries()"},{"$$hashKey":"object:1049","def":{"category":"Alias","defaultParams":[],"name":"setAlias","params":[{"name":"alias","type":"string"}]},"params":["Total LOS"],"text":"setAlias(Total LOS)"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/.*/"},"itemTag":{"filter":"ONUs LOS"},"macro":{"filter":""},"options":{"count":true,"disableDataAlignment":true,"minSeverity":3,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":true},"proxy":{"filter":""},"queryType":"0","refId":"C","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""},"triggers":{"acknowledged":2}}],"title":"","type":"stat"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"fixedColor":"dark-orange","mode":"fixed"},"decimals":0,"noValue":"0","thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]}}},"gridPos":{"h":4,"w":3,"x":12,"y":0},"id":23,"options":{"colorMode":"background","graphMode":"none","justifyMode":"auto","orientation":"auto","percentChangeColorMode":"standard","reduceOptions":{"calcs":["lastNotNull"],"fields":"","values":false},"showPercentChange":false,"text":{},"textMode":"value_and_name","wideLayout":true},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"ONUs Dying Gasp"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"$$hashKey":"object:1164","def":{"category":"Aggregate","defaultParams":[],"name":"sumSeries","params":[]},"params":[],"text":"sumSeries()"},{"added":true,"def":{"category":"Alias","defaultParams":[],"name":"setAlias","params":[{"name":"alias","type":"string"}]},"params":["ONUs Dying Gasp"],"text":"setAlias()"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/.*/"},"itemTag":{"filter":""},"macro":{"filter":""},"options":{"count":true,"disableDataAlignment":true,"minSeverity":3,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":true},"proxy":{"filter":""},"queryType":"0","refId":"C","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""},"triggers":{"acknowledged":2}}],"title":"","type":"stat"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"fixedColor":"#394648","mode":"fixed"},"decimals":0,"thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]}}},"gridPos":{"h":4,"w":3,"x":15,"y":0},"id":21,"options":{"colorMode":"background","graphMode":"none","justifyMode":"auto","orientation":"auto","percentChangeColorMode":"standard","reduceOptions":{"calcs":["lastNotNull"],"fields":"","values":false},"showPercentChange":false,"text":{},"textMode":"value_and_name","wideLayout":true},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"ONUs Offline"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"$$hashKey":"object:1957","def":{"category":"Aggregate","defaultParams":[],"name":"sumSeries","params":[]},"params":[],"text":"sumSeries()"},{"$$hashKey":"object:1958","def":{"category":"Alias","defaultParams":[],"name":"setAlias","params":[{"name":"alias","type":"string"}]},"params":["Total Offlines"],"text":"setAlias(Total Offlines)"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/.*/"},"itemTag":{"filter":"ONUs OFF"},"macro":{"filter":""},"options":{"count":true,"disableDataAlignment":true,"minSeverity":3,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":true},"proxy":{"filter":""},"queryType":"0","refId":"C","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""},"triggers":{"acknowledged":2}}],"title":"","type":"stat"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"mode":"thresholds"},"max":80,"min":0,"thresholds":{"mode":"absolute","steps":[{"color":"dark-green","value":0},{"color":"dark-orange","value":40},{"color":"dark-red","value":60}]},"unit":"celsius"}},"gridPos":{"h":4,"w":3,"x":18,"y":0},"id":29,"options":{"barShape":"flat","barWidthFactor":0.5,"effects":{"barGlow":false,"centerGlow":false,"gradient":false},"endpointMarker":"point","minVizHeight":75,"minVizWidth":75,"orientation":"auto","reduceOptions":{"calcs":["lastNotNull"],"fields":"","values":false},"segmentCount":1,"segmentSpacing":0.3,"shape":"gauge","showThresholdLabels":false,"showThresholdMarkers":true,"sizing":"auto","sparkline":false,"textMode":"auto"},"pluginVersion":"13.1.0","targets":[{"application":{"filter":""},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"Temperatura das Placas"},"itemTag":{"filter":"Temperatura"},"macro":{"filter":""},"options":{"count":false,"disableDataAlignment":false,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":false},"proxy":{"filter":""},"queryType":"0","refId":"A","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""}}],"title":"Temperatura","type":"gauge"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"mode":"thresholds"},"thresholds":{"mode":"absolute","steps":[{"color":"#222537","value":0}]},"unit":"dtdhms"}},"gridPos":{"h":4,"w":3,"x":21,"y":0},"id":18,"options":{"colorMode":"background","graphMode":"none","justifyMode":"auto","orientation":"auto","percentChangeColorMode":"standard","reduceOptions":{"calcs":["lastNotNull"],"fields":"","values":false},"showPercentChange":false,"text":{},"textMode":"value_and_name","wideLayout":true},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"uptime"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"$$hashKey":"object:1021","def":{"category":"Alias","defaultParams":["/(.*)/","$1"],"name":"replaceAlias","params":[{"name":"regexp","type":"string"},{"name":"newAlias","type":"string"}]},"params":["/$host: U/","U"],"text":"replaceAlias(/$host: U/, U)"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/Uptime/"},"itemTag":{"filter":"Uptime"},"macro":{"filter":""},"options":{"count":true,"disableDataAlignment":true,"minSeverity":3,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":true},"proxy":{"filter":""},"queryType":"0","refId":"B","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""},"triggers":{"acknowledged":2}}],"title":"","type":"stat"},{"datasource":{"type":"mysql","uid":"Y_t98X_Mk"},"fieldConfig":{"defaults":{"color":{"mode":"thresholds"},"custom":{"align":"auto","cellOptions":{"type":"color-background"},"footer":{"reducers":[]},"inspect":false},"thresholds":{"mode":"absolute","steps":[{"color":"#141f32","value":0}]}},"overrides":[{"matcher":{"id":"byName","options":"CPU"},"properties":[{"id":"unit","value":"percent"},{"id":"custom.cellOptions","value":{"mode":"gradient","type":"gauge"}},{"id":"thresholds","value":{"mode":"absolute","steps":[{"color":"dark-green","value":0},{"color":"dark-orange","value":40},{"color":"dark-red","value":80}]}},{"id":"max","value":100}]},{"matcher":{"id":"byName","options":"Memoria"},"properties":[{"id":"unit","value":"percent"},{"id":"custom.cellOptions","value":{"mode":"gradient","type":"gauge"}},{"id":"thresholds","value":{"mode":"absolute","steps":[{"color":"dark-green","value":0},{"color":"dark-orange","value":40},{"color":"dark-red","value":80}]}},{"id":"max","value":100}]}]},"gridPos":{"h":6,"w":24,"x":0,"y":4},"id":26,"options":{"cellHeight":"sm","showHeader":true},"pluginVersion":"13.1.0","targets":[{"dataset":"zabbix","datasource":{"type":"mysql","uid":"Y_t98X_Mk"},"editorMode":"code","format":"table","rawQuery":true,"rawSql":"SELECT SUBSTRING_INDEX(i.name, ':', 1) AS placa, MAX(CASE WHEN i.name LIKE '%Uso de CPU%' THEN hu.value END) AS cpu, MAX(CASE WHEN i.name LIKE '%Uso de Mem%' THEN hu.value END) AS memoria, MAX(CASE WHEN i.name LIKE '%Status Operac%' THEN hu.value END) AS status, DATE_FORMAT(FROM_UNIXTIME(MAX(hu.clock)), '%d-%m-%Y %H:%i:%s') AS ultima_verificacao FROM items i JOIN hosts h ON h.hostid = i.hostid JOIN history_uint hu ON hu.itemid = i.itemid WHERE i.flags = 4 AND i.status = 0 AND h.status = 0 AND h.host = '$host' AND i.key_ LIKE 'netstream.zte.card.%' AND hu.clock = ( SELECT MAX(clock) FROM history_uint WHERE itemid = i.itemid AND clock \u003e UNIX_TIMESTAMP() - 3600 ) GROUP BY placa ORDER BY placa;","refId":"A","sql":{"columns":[{"parameters":[],"type":"function"}],"groupBy":[{"property":{"type":"string"},"type":"groupBy"}],"limit":50}}],"title":"Visão Geral de Cards","transformations":[{"id":"organize","options":{"excludeByName":{},"includeByName":{},"indexByName":{},"renameByName":{"card":"Modelo","cpu":"CPU","item":"Card","memoria":"Memoria"}}}],"type":"table"},{"datasource":{"type":"mysql","uid":"Y_t98X_Mk"},"fieldConfig":{"defaults":{"color":{"mode":"thresholds"},"custom":{"align":"auto","cellOptions":{"type":"color-background"},"footer":{"reducers":[]},"inspect":false},"thresholds":{"mode":"absolute","steps":[{"color":"dark-green","value":0}]}},"overrides":[{"matcher":{"id":"byName","options":"Status"},"properties":[{"id":"mappings","value":[{"options":{"1":{"color":"dark-green","index":0,"text":"UP"},"2":{"color":"dark-red","index":1,"text":"DOWN"}},"type":"value"}]}]},{"matcher":{"id":"byName","options":"PON"},"properties":[{"id":"color","value":{"fixedColor":"#001d2c","mode":"fixed"}},{"id":"custom.width","value":231}]},{"matcher":{"id":"byName","options":"Autorizadas"},"properties":[{"id":"custom.cellOptions","value":{"mode":"gradient","type":"gauge"}},{"id":"thresholds","value":{"mode":"absolute","steps":[{"color":"dark-red","value":0},{"color":"dark-green","value":1}]}},{"id":"max","value":128}]},{"matcher":{"id":"byName","options":"Onlines"},"properties":[{"id":"custom.cellOptions","value":{"mode":"gradient","type":"gauge"}},{"id":"thresholds","value":{"mode":"absolute","steps":[{"color":"dark-red","value":0},{"color":"dark-green","value":1}]}},{"id":"max","value":128}]},{"matcher":{"id":"byName","options":"Offlines"},"properties":[{"id":"custom.cellOptions","value":{"mode":"gradient","type":"gauge"}},{"id":"thresholds","value":{"mode":"absolute","steps":[{"color":"dark-green","value":0},{"color":"dark-red","value":1}]}},{"id":"max","value":128}]},{"matcher":{"id":"byName","options":"LOS"},"properties":[{"id":"custom.cellOptions","value":{"mode":"gradient","type":"gauge"}},{"id":"thresholds","value":{"mode":"absolute","steps":[{"color":"dark-green","value":0},{"color":"dark-yellow","value":10},{"color":"dark-orange","value":20},{"color":"dark-red","value":30}]}},{"id":"max","value":128}]},{"matcher":{"id":"byName","options":"DyingGasp"},"properties":[{"id":"custom.cellOptions","value":{"mode":"gradient","type":"gauge"}},{"id":"thresholds","value":{"mode":"absolute","steps":[{"color":"dark-green","value":0},{"color":"dark-yellow","value":50},{"color":"dark-orange","value":80},{"color":"dark-red","value":90}]}},{"id":"max","value":128}]},{"matcher":{"id":"byName","options":"Tx Power"},"properties":[{"id":"thresholds","value":{"mode":"absolute","steps":[{"color":"dark-green","value":0},{"color":"dark-orange","value":7},{"color":"dark-red","value":21}]}}]},{"matcher":{"id":"byName","options":"Ultima Verificacao"},"properties":[{"id":"custom.align","value":"center"}]}]},"gridPos":{"h":10,"w":24,"x":0,"y":10},"id":25,"options":{"cellHeight":"sm","enablePagination":true,"showHeader":true,"sortBy":[{"desc":true,"displayName":"LOS"}]},"pluginVersion":"13.1.0","targets":[{"datasource":{"type":"mysql","uid":"Y_t98X_Mk"},"editorMode":"code","format":"table","rawQuery":true,"rawSql":"select SUBSTRING_INDEX(it.name, ' - ', 1) as name, MAX(CASE WHEN it.name LIKE '% - ONUs Autorizadas' THEN hu.value END) AS Autorizadas, MAX(CASE WHEN it.name LIKE '% - ONUs Online' THEN hu.value END) AS Onlines, MAX(CASE WHEN it.name LIKE '% - ONUs Offline' THEN hu.value END) AS Offlines, MAX(CASE WHEN it.name LIKE '% - LOS%' THEN hu.value END) AS LOS, MAX(CASE WHEN it.name LIKE '% - DyingGasp%' THEN hu.value END) AS DyingGasp, DATE_FORMAT(CONVERT_TZ(FROM_UNIXTIME(MAX(hu.clock)), '+03:00', '+03:00'), '%d-%m-%Y %H:%i:%s') AS ultima_verificacao from items it left join (select itemid, max(clock) as max_clock from history_uint group by itemid) as max_hu on it.itemid = max_hu.itemid left join history_uint hu on hu.itemid = max_hu.itemid and hu.clock = max_hu.max_clock inner join hosts ht on ht.hostid = it.hostid where it.flags in (0,4) and it.status = 0 and ht.status = 0 and ht.host in ('$host') and it.name LIKE 'PON %' and (it.name LIKE '% - ONUs Autorizadas' OR it.name LIKE '% - ONUs Online' OR it.name LIKE '% - ONUs Offline' OR it.name LIKE '% - LOS%' OR it.name LIKE '% - DyingGasp%') group by SUBSTRING_INDEX(it.name, ' - ', 1) order by name;","refId":"A","sql":{"columns":[{"parameters":[],"type":"function"}],"groupBy":[{"property":{"type":"string"},"type":"groupBy"}],"limit":50}}],"title":"Visão Geral por PON","transformations":[{"id":"organize","options":{"excludeByName":{},"includeByName":{},"indexByName":{},"renameByName":{"Sinal":"Tx Power","name":"PON","ultima_verificacao":"Ult.Coleta"}}}],"type":"table"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":{"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text","axisGridShow":false,"axisLabel":"","axisPlacement":"auto","barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":0,"gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,"lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"never","showValues":false,"spanNulls":true,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]}}},"gridPos":{"h":8,"w":6,"x":0,"y":20},"id":30,"options":{"annotations":{"clustering":-1,"multiLane":false},"legend":{"calcs":["lastNotNull"],"displayMode":"table","enableFacetedFilter":false,"overflow":"ellipsis","placement":"bottom","showLegend":true,"sortBy":"Last *","sortDesc":true},"tooltip":{"hideZeros":false,"mode":"single","sort":"none"}},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"ONUs Online"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"added":true,"def":{"category":"Alias","defaultParams":["/(.*)/","$1"],"name":"replaceAlias","params":[{"name":"regexp","type":"string"},{"name":"newAlias","type":"string"}]},"params":["/$host: /",""],"text":"replaceAlias(/(.*)/, $1)"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/.*/"},"itemTag":{"filter":"ONUs Onlines"},"macro":{"filter":""},"options":{"count":false,"disableDataAlignment":false,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":false},"proxy":{"filter":""},"queryType":"0","refId":"A","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""}}],"title":"Historico de ONUs Onlines","type":"timeseries"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":{"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text","axisGridShow":false,"axisLabel":"","axisPlacement":"auto","barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":0,"gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,"lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"auto","showValues":false,"spanNulls":true,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]}}},"gridPos":{"h":8,"w":6,"x":6,"y":20},"id":31,"options":{"annotations":{"clustering":-1,"multiLane":false},"legend":{"calcs":["lastNotNull"],"displayMode":"table","enableFacetedFilter":false,"overflow":"ellipsis","placement":"bottom","showLegend":true,"sortBy":"Last *","sortDesc":true},"tooltip":{"hideZeros":false,"mode":"single","sort":"none"}},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"ONUs LOS"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"added":true,"def":{"category":"Alias","defaultParams":["/(.*)/","$1"],"name":"replaceAlias","params":[{"name":"regexp","type":"string"},{"name":"newAlias","type":"string"}]},"params":["/$host: /",""],"text":"replaceAlias(/(.*)/, $1)"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/.*/"},"itemTag":{"filter":"ONUs LOS"},"macro":{"filter":""},"options":{"count":false,"disableDataAlignment":false,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":false},"proxy":{"filter":""},"queryType":"0","refId":"A","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""}}],"title":"Historico de ONUs Los","type":"timeseries"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":{"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text","axisGridShow":false,"axisLabel":"","axisPlacement":"auto","barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":0,"gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,"lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"auto","showValues":false,"spanNulls":true,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]}}},"gridPos":{"h":8,"w":6,"x":12,"y":20},"id":32,"options":{"annotations":{"clustering":-1,"multiLane":false},"legend":{"calcs":["lastNotNull"],"displayMode":"table","enableFacetedFilter":false,"overflow":"ellipsis","placement":"bottom","showLegend":true,"sortBy":"Last *","sortDesc":true},"tooltip":{"hideZeros":false,"mode":"single","sort":"none"}},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"ONUs Dying Gasp"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"added":true,"def":{"category":"Alias","defaultParams":["/(.*)/","$1"],"name":"replaceAlias","params":[{"name":"regexp","type":"string"},{"name":"newAlias","type":"string"}]},"params":["/$host: /",""],"text":"replaceAlias(/(.*)/, $1)"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/.*/"},"itemTag":{"filter":"ONUs DyingGasp"},"macro":{"filter":""},"options":{"count":false,"disableDataAlignment":false,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":false},"proxy":{"filter":""},"queryType":"0","refId":"A","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""}}],"title":"Historico de ONUs Energia","type":"timeseries"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":{"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text","axisGridShow":false,"axisLabel":"","axisPlacement":"auto","barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":0,"gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,"lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"auto","showValues":false,"spanNulls":true,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]}}},"gridPos":{"h":8,"w":6,"x":18,"y":20},"id":33,"options":{"annotations":{"clustering":-1,"multiLane":false},"legend":{"calcs":["lastNotNull"],"displayMode":"table","enableFacetedFilter":false,"overflow":"ellipsis","placement":"bottom","showLegend":true,"sortBy":"Last *","sortDesc":true},"tooltip":{"hideZeros":false,"mode":"single","sort":"none"}},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"ONUs Offline"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"added":true,"def":{"category":"Alias","defaultParams":["/(.*)/","$1"],"name":"replaceAlias","params":[{"name":"regexp","type":"string"},{"name":"newAlias","type":"string"}]},"params":["/$host: /",""],"text":"replaceAlias(/(.*)/, $1)"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/.*/"},"itemTag":{"filter":"ONUs OFF"},"macro":{"filter":""},"options":{"count":false,"disableDataAlignment":false,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":false},"proxy":{"filter":""},"queryType":"0","refId":"A","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""}}],"title":"Historico de ONUs Offlines","type":"timeseries"},{"datasource":{"type":"mysql","uid":"Y_t98X_Mk"},"fieldConfig":{"defaults":{"color":{"mode":"thresholds"},"custom":{"align":"center","cellOptions":{"type":"auto"},"filterable":true,"footer":{"reducers":[]},"inspect":false},"noValue":"-","thresholds":{"mode":"absolute","steps":[{"color":"#173c48","value":0}]}},"overrides":[{"matcher":{"id":"byName","options":"Bits In"},"properties":[{"id":"unit","value":"bps"},{"id":"custom.width","value":114}]},{"matcher":{"id":"byName","options":"Bits Out"},"properties":[{"id":"unit","value":"bps"},{"id":"custom.width","value":119}]},{"matcher":{"id":"byName","options":"Status"},"properties":[{"id":"mappings","value":[{"options":{"1":{"color":"dark-green","index":0,"text":"Up"},"2":{"color":"dark-red","index":1,"text":"Down"},"4":{"color":"#808080","index":2,"text":"Desconhecido"},"6":{"color":"#808080","index":3,"text":"Não presente"}},"type":"value"}]},{"id":"custom.width","value":96}]},{"matcher":{"id":"byName","options":"Speed"},"properties":[{"id":"unit","value":"decbits"},{"id":"custom.width","value":101}]},{"matcher":{"id":"byName","options":"Consumo Out"},"properties":[{"id":"unit","value":"decmbytes"}]},{"matcher":{"id":"byName","options":"Uso In (%)"},"properties":[{"id":"unit","value":"percent"},{"id":"max","value":100},{"id":"thresholds","value":{"mode":"absolute","steps":[{"color":"dark-green","value":0},{"color":"dark-orange","value":50},{"color":"dark-red","value":80}]}}]},{"matcher":{"id":"byName","options":"Uso Out (%)"},"properties":[{"id":"unit","value":"percent"},{"id":"max","value":100},{"id":"thresholds","value":{"mode":"absolute","steps":[{"color":"dark-green","value":0},{"color":"dark-orange","value":50},{"color":"dark-red","value":90}]}}]},{"matcher":{"id":"byName","options":"Rx Power (dBm)"},"properties":[{"id":"unit","value":"dBm"},{"id":"mappings","value":[{"options":{"-40":{"color":"dark-red","index":0}},"type":"value"}]}]},{"matcher":{"id":"byName","options":"Tx Power (dBm)"},"properties":[{"id":"unit","value":"dBm"}]},{"matcher":{"id":"byName","options":"Interface"},"properties":[{"id":"custom.width","value":null}]},{"matcher":{"id":"byName","options":"Distancia (KM)"},"properties":[{"id":"unit","value":"lengthkm"}]},{"matcher":{"id":"byName","options":"Status Sinal"},"properties":[{"id":"mappings","value":[{"options":{"anormal":{"color":"dark-orange","index":0,"text":"Anormal ⚠️"}},"type":"value"},{"options":{"match":"null","result":{"color":"dark-green","index":1,"text":"Normal ✅"}},"type":"special"}]}]}]},"gridPos":{"h":4,"w":24,"x":0,"y":28},"id":28,"options":{"cellHeight":"sm","enablePagination":false,"showHeader":true,"sortBy":[{"desc":true,"displayName":"Bits Out"}]},"pluginVersion":"13.1.0","targets":[{"dataset":"zabbix","datasource":{"type":"mysql","uid":"Y_t98X_Mk"},"editorMode":"code","format":"table","rawQuery":true,"rawSql":"SELECT sub.host, sub.interface, sub.bitsin, sub.bitsout, sub.status, sub.speed, sub.usoin, sub.usoout, sub.rxpower, sub.txpower, sub.distancia, sub.limiterx, CASE WHEN sub.rxpower IS NULL THEN NULL WHEN sub.is_xgei = 1 AND (sub.rxpower \u003c -9.00 OR sub.rxpower \u003e 0.00) THEN 'anormal' WHEN sub.is_xgei = 0 AND (sub.rxpower \u003c -11.00 OR sub.rxpower \u003e -1.00) THEN 'anormal' END AS staturx, sub.ultverificacao FROM ( SELECT ht.name AS host, SUBSTRING_INDEX(it.name, ': ', 1) AS interface, MAX(CASE WHEN it.name LIKE '%Trafego de Entrada%' THEN h.value END) AS bitsin, MAX(CASE WHEN it.name LIKE '%Trafego de Saida%' THEN h.value END) AS bitsout, MAX(CASE WHEN it.name LIKE '%Status Operacional%' THEN h.value END) AS status, MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END) AS speed, MAX(CASE WHEN it.name LIKE '%Trafego de Entrada%' THEN h.value END) / NULLIF(MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END), 0) * 100 AS usoin, MAX(CASE WHEN it.name LIKE '%Trafego de Saida%' THEN h.value END) / NULLIF(MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END), 0) * 100 AS usoout, MAX(CASE WHEN it.name LIKE '%Sinal RX%' THEN h.value END) AS rxpower, MAX(CASE WHEN it.name LIKE '%Sinal TX%' THEN h.value END) AS txpower, NULL AS distancia, MAX(CASE WHEN it.name LIKE '%xgei%' THEN '0.00 a -9.00' WHEN it.name LIKE '% gei_%' THEN '-1.00 a -11.00' END) AS limiterx, MAX(CASE WHEN it.name LIKE '%xgei%' THEN 1 ELSE 0 END) AS is_xgei, MAX(DATE_FORMAT(CONVERT_TZ(FROM_UNIXTIME(h.clock), '+00:00', '+00:00'), '%d-%m-%Y %H:%i:%s')) AS ultverificacao FROM items it INNER JOIN hosts ht ON ht.hostid = it.hostid AND ht.name IN ('$host') AND ht.status = 0 LEFT JOIN ( SELECT itemid, MAX(clock) AS max_clock FROM history WHERE clock \u003e UNIX_TIMESTAMP() - 7200 GROUP BY itemid ) AS max_h ON it.itemid = max_h.itemid LEFT JOIN history h ON h.itemid = max_h.itemid AND h.clock = max_h.max_clock INNER JOIN items_applications ia2 ON ia2.itemid = it.itemid INNER JOIN applications ap ON ap.applicationid = ia2.applicationid AND ap.name = 'Uplink / LAN OLT' WHERE it.flags IN (0, 4) AND it.status = 0 AND ( it.name LIKE '%Trafego%' OR it.name LIKE '%Status Operacional%' OR it.name LIKE '%Velocidade da Porta%' OR it.name LIKE '%Erros%' OR it.name LIKE '%Drops%' OR it.name LIKE '%Sinal RX%' OR it.name LIKE '%Sinal TX%' ) GROUP BY interface, host ) sub ORDER BY sub.interface;","refId":"A","sql":{"columns":[{"parameters":[],"type":"function"}],"groupBy":[{"property":{"type":"string"},"type":"groupBy"}],"limit":50}}],"title":"Análise de Interfaces (Uplinks)","transformations":[{"id":"organize","options":{"excludeByName":{"host":true},"includeByName":{},"indexByName":{},"renameByName":{"Interface":"","bitsin":"Bits In","bitsout":"Bits Out","consumoin":"Consumo In","consumoout":"Consumo Out","descartesin":"Descartes In","descartesout":"Descartes Out","distancia":"Distancia (KM)","errosin":"Erros In","errosout":"Erros Out","host":"Host","interface":"Interface","limiterx":"Limites Rx (dBm)","rxpower":"Rx Power (dBm)","rxpoweravg":"Rx Power Avg (dBm)","speed":"Speed","staturx":"Status Sinal","status":"Status","txpower":"Tx Power (dBm)","txpoweravg":"Tx Power Avg (dBm)","ultverificacao":"Ult. Verificação","ultverificao":"Ult.Verificacao","usoin":"Uso In (%)","usoout":"Uso Out (%)"}}}],"type":"table"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":{"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text","axisLabel":"","axisPlacement":"auto","barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":58,"gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,"lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"auto","showValues":false,"spanNulls":false,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]},"unit":"bps"},"overrides":[{"matcher":{"id":"byName","options":"Interface xgei_1/3/2: Bits received"},"properties":[{"id":"color","value":{"fixedColor":"#69a6bf","mode":"fixed"}}]},{"matcher":{"id":"byName","options":"Interface xgei-1/1/1: Bits received"},"properties":[{"id":"color","value":{"fixedColor":"#28817f","mode":"fixed"}}]},{"matcher":{"id":"byName","options":"Interface xgei-1/1/1: Bits sent"},"properties":[{"id":"color","value":{"fixedColor":"semi-dark-orange","mode":"fixed"}}]},{"matcher":{"id":"byName","options":"Interface xgei_1/4/2: Bits received"},"properties":[{"id":"color","value":{"fixedColor":"#2b3d67","mode":"fixed"}}]}]},"gridPos":{"h":12,"w":24,"x":0,"y":32},"id":14,"options":{"annotations":{"clustering":-1,"multiLane":false},"legend":{"calcs":["lastNotNull"],"displayMode":"table","enableFacetedFilter":false,"overflow":"ellipsis","placement":"right","showLegend":true},"tooltip":{"hideZeros":false,"mode":"single","sort":"none"}},"pluginVersion":"13.1.0","targets":[{"application":{"filter":"Uplink / LAN OLT"},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[{"$$hashKey":"object:1818","def":{"category":"Alias","defaultParams":["/(.*)/","$1"],"name":"replaceAlias","params":[{"name":"regexp","type":"string"},{"name":"newAlias","type":"string"}]},"params":["/$host: I/","I"],"text":"replaceAlias(/$host: I/, I)"}],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/.*/"},"itemTag":{"filter":"Network Interfaces Bits"},"macro":{"filter":""},"options":{"count":true,"disableDataAlignment":true,"minSeverity":3,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":true},"proxy":{"filter":""},"queryType":"0","refId":"A","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""},"triggers":{"acknowledged":2}}],"title":"Tráfego das Interfaces de Uplink","type":"timeseries"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":{"axisBorderShow":false,"axisCenteredZero":false,"axisColorMode":"text","axisLabel":"","axisPlacement":"auto","barAlignment":0,"barWidthFactor":0.6,"drawStyle":"line","fillOpacity":20,"gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"insertNulls":false,"lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"auto","showValues":false,"spanNulls":false,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"thresholds":{"mode":"absolute","steps":[{"color":"green","value":0},{"color":"red","value":80}]},"unit":"bps"}},"gridPos":{"h":12,"w":24,"x":0,"y":44},"id":34,"options":{"annotations":{"clustering":-1,"multiLane":false},"legend":{"calcs":["lastNotNull"],"displayMode":"table","enableFacetedFilter":false,"overflow":"ellipsis","placement":"right","showLegend":true},"tooltip":{"hideZeros":false,"mode":"single","sort":"none"}},"pluginVersion":"13.1.0","targets":[{"application":{"filter":""},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":"/Porta .* Trafego/"},"itemTag":{"filter":""},"macro":{"filter":""},"options":{"count":true,"disableDataAlignment":true,"minSeverity":3,"showDisabledItems":false,"skipEmptyValues":false,"useTrends":"default","useZabbixValueMapping":true},"proxy":{"filter":""},"queryType":"0","refId":"A","resultFormat":"time_series","schema":12,"table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""},"triggers":{"acknowledged":2}}],"title":"Tráfego das Portas PON (GPON)","type":"timeseries"},{"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"gridPos":{"h":15,"w":24,"x":0,"y":56},"id":27,"options":{"ackEventColor":"rgb(56, 219, 156)","ackField":false,"ageField":true,"allowDangerousHTML":false,"customLastChangeFormat":false,"customTagColumns":"","descriptionAtNewLine":false,"descriptionField":true,"fontSize":"100%","highlightBackground":false,"highlightNewEvents":false,"highlightNewerThan":"1h","hostField":true,"hostGroups":false,"hostProxy":false,"hostTechNameField":false,"lastChangeFormat":"","layout":"table","markAckEvents":false,"okEventColor":"rgb(56, 189, 113)","opdataField":false,"pageSize":10,"problemTimeline":true,"resizedColumns":[{"id":"expander","value":929}],"severityField":true,"showDatasourceName":false,"showSearchFilter":false,"showTags":true,"sortProblems":"lastchange","statusField":true,"statusIcon":true,"triggerSeverity":[{"color":"rgb(108, 108, 108)","priority":0,"severity":"Not classified","show":true},{"color":"rgb(120, 158, 183)","priority":1,"severity":"Information","show":true},{"color":"rgb(175, 180, 36)","priority":2,"severity":"Warning","show":true},{"color":"rgb(255, 137, 30)","priority":3,"severity":"Average","show":true},{"color":"rgb(255, 101, 72)","priority":4,"severity":"High","show":true},{"color":"rgb(215, 0, 0)","priority":5,"severity":"Disaster","show":true}]},"pluginVersion":"6.6.0","targets":[{"application":{"filter":""},"countTriggersBy":"","datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"evaltype":"0","functions":[],"group":{"filter":"OLT-NETSTREAM"},"host":{"filter":"$host"},"item":{"filter":""},"itemTag":{"filter":""},"macro":{"filter":""},"options":{"acknowledged":2,"count":false,"disableDataAlignment":false,"hostProxy":false,"hostsInMaintenance":false,"limit":1001,"minSeverity":0,"showDisabledItems":false,"skipEmptyValues":false,"sortProblems":"default","useTimeRange":false,"useTrends":"default","useZabbixValueMapping":false},"proxy":{"filter":""},"queryType":"5","refId":"A","resultFormat":"time_series","schema":12,"showProblems":"problems","table":{"skipEmptyValues":false},"tags":{"filter":""},"textFilter":"","trigger":{"filter":""}}],"title":"Painel de Incidentes - OLT","type":"alexanderzobnin-zabbix-triggers-panel"}],"preload":false,"refresh":"1m","schemaVersion":42,"tags":["olt","gpon"],"templating":{"list":[{"allowCustomValue":true,"current":{"text":"TR 12 - OLT - ZTE - DUTRA - C350","value":"TR 12 - OLT - ZTE - DUTRA - C350"},"datasource":{"type":"alexanderzobnin-zabbix-datasource","uid":"000000002"},"definition":"Zabbix - host","hide":0,"includeAll":false,"label":"OLT","multi":false,"name":"host","options":[],"query":{"application":"","group":"OLT-NETSTREAM","host":"/.*/","item":"","itemTag":"","queryType":"host"},"refresh":1,"regex":"","regexApplyTo":"value","skipUrlSync":false,"sort":0,"type":"query"}]},"time":{"from":"now-12h","to":"now"},"timepicker":{"refresh_intervals":["5s","10s","30s","1m","5m","15m","30m","1h","2h","1d"]},"timezone":"browser","title":"Dashboard OLT ZTE C3x (Geral)","uid":"olt-geral-netstream","version":3}
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Desenvolvido por: Autor: Fernando Almondes\nData: 08/03/2025 - 14:43\nVersão: v4 (Geral)",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 3932912771166208,
+  "liveNow": false,
+  "panels": [
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 16,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<center> <a target=\"new_blank\" href=\"https://beesolutions.com.br\"><img style=\" width=\"100\" height=\"80\" \" src=\"https://beesolutions.com.br/static/home/images/bee/so-logo.png\"> <p> <h5></h5> </a> </center>",
+        "mode": "markdown"
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [],
+      "title": "",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#28817f",
+            "mode": "fixed"
+          },
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 0
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "ONUs Autorizadas"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "$$hashKey": "object:1077",
+              "def": {
+                "category": "Aggregate",
+                "defaultParams": [],
+                "name": "sumSeries",
+                "params": []
+              },
+              "params": [],
+              "text": "sumSeries()"
+            },
+            {
+              "$$hashKey": "object:1078",
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Total Autorizadas"
+              ],
+              "text": "setAlias(Total Autorizadas)"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": "ONUs Autorizadas"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": true,
+            "disableDataAlignment": true,
+            "minSeverity": 3,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": true
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-green",
+            "mode": "fixed"
+          },
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 0
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "ONUs Online"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "$$hashKey": "object:1106",
+              "def": {
+                "category": "Aggregate",
+                "defaultParams": [],
+                "name": "sumSeries",
+                "params": []
+              },
+              "params": [],
+              "text": "sumSeries()"
+            },
+            {
+              "$$hashKey": "object:1107",
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Total Onlines"
+              ],
+              "text": "setAlias(Total Onlines)"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": "ONUs Onlines"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": true,
+            "disableDataAlignment": true,
+            "minSeverity": 3,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": true
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-red",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 9,
+        "y": 0
+      },
+      "id": 22,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "ONUs LOS"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "$$hashKey": "object:1048",
+              "def": {
+                "category": "Aggregate",
+                "defaultParams": [],
+                "name": "sumSeries",
+                "params": []
+              },
+              "params": [],
+              "text": "sumSeries()"
+            },
+            {
+              "$$hashKey": "object:1049",
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Total LOS"
+              ],
+              "text": "setAlias(Total LOS)"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": "ONUs LOS"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": true,
+            "disableDataAlignment": true,
+            "minSeverity": 3,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": true
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-orange",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 12,
+        "y": 0
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "ONUs Dying Gasp"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "$$hashKey": "object:1164",
+              "def": {
+                "category": "Aggregate",
+                "defaultParams": [],
+                "name": "sumSeries",
+                "params": []
+              },
+              "params": [],
+              "text": "sumSeries()"
+            },
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "ONUs Dying Gasp"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": true,
+            "disableDataAlignment": true,
+            "minSeverity": 3,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": true
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#394648",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 15,
+        "y": 0
+      },
+      "id": 21,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "ONUs Offline"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "$$hashKey": "object:1957",
+              "def": {
+                "category": "Aggregate",
+                "defaultParams": [],
+                "name": "sumSeries",
+                "params": []
+              },
+              "params": [],
+              "text": "sumSeries()"
+            },
+            {
+              "$$hashKey": "object:1958",
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Total Offlines"
+              ],
+              "text": "setAlias(Total Offlines)"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": "ONUs OFF"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": true,
+            "disableDataAlignment": true,
+            "minSeverity": 3,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": true
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "max": 80,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-orange",
+                "value": 40
+              },
+              {
+                "color": "dark-red",
+                "value": 60
+              }
+            ]
+          },
+          "unit": "celsius"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 18,
+        "y": 0
+      },
+      "id": 29,
+      "options": {
+        "barShape": "flat",
+        "barWidthFactor": 0.5,
+        "effects": {
+          "barGlow": false,
+          "centerGlow": false,
+          "gradient": false
+        },
+        "endpointMarker": "point",
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "segmentCount": 1,
+        "segmentSpacing": 0.3,
+        "shape": "gauge",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "sparkline": false,
+        "textMode": "auto"
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "Temperatura das Placas"
+          },
+          "itemTag": {
+            "filter": "Temperatura"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "Temperatura",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#222537",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "dtdhms"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 21,
+        "y": 0
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "uptime"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "$$hashKey": "object:1021",
+              "def": {
+                "category": "Alias",
+                "defaultParams": [
+                  "/(.*)/",
+                  "$1"
+                ],
+                "name": "replaceAlias",
+                "params": [
+                  {
+                    "name": "regexp",
+                    "type": "string"
+                  },
+                  {
+                    "name": "newAlias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "/$host: U/",
+                "U"
+              ],
+              "text": "replaceAlias(/$host: U/, U)"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/Uptime/"
+          },
+          "itemTag": {
+            "filter": "Uptime"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": true,
+            "disableDataAlignment": true,
+            "minSeverity": 3,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": true
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "Y_t98X_Mk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-background"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#141f32",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-green",
+                      "value": 0
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 40
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "max",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Memoria"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-green",
+                      "value": 0
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 40
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "max",
+                "value": 100
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 26,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "dataset": "zabbix",
+          "datasource": {
+            "type": "mysql",
+            "uid": "Y_t98X_Mk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT SUBSTRING_INDEX(i.name, ':', 1) AS placa, MAX(CASE WHEN i.name LIKE '%Uso de CPU%' THEN hu.value END) AS cpu, MAX(CASE WHEN i.name LIKE '%Uso de Mem%' THEN hu.value END) AS memoria, MAX(CASE WHEN i.name LIKE '%Status Operac%' THEN hu.value END) AS status, DATE_FORMAT(FROM_UNIXTIME(MAX(hu.clock)), '%d-%m-%Y %H:%i:%s') AS ultima_verificacao FROM items i JOIN hosts h ON h.hostid = i.hostid JOIN history_uint hu ON hu.itemid = i.itemid WHERE i.flags = 4 AND i.status = 0 AND h.status = 0 AND h.host = '$host' AND i.key_ LIKE 'netstream.zte.card.%' AND hu.clock = ( SELECT MAX(clock) FROM history_uint WHERE itemid = i.itemid AND clock > UNIX_TIMESTAMP() - 3600 ) GROUP BY placa ORDER BY placa;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Visão Geral de Cards",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "card": "Modelo",
+              "cpu": "CPU",
+              "item": "Card",
+              "memoria": "Memoria"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "Y_t98X_Mk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-background"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false,
+            "wrapHeaderText": false
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "1": {
+                        "color": "dark-green",
+                        "index": 0,
+                        "text": "UP"
+                      },
+                      "2": {
+                        "color": "dark-red",
+                        "index": 1,
+                        "text": "DOWN"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PON"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#001d2c",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 231
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Autorizadas"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-red",
+                      "value": 0
+                    },
+                    {
+                      "color": "dark-green",
+                      "value": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "max",
+                "value": 128
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Onlines"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-red",
+                      "value": 0
+                    },
+                    {
+                      "color": "dark-green",
+                      "value": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "max",
+                "value": 128
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Offlines"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-green",
+                      "value": 0
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "max",
+                "value": 128
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LOS"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-green",
+                      "value": 0
+                    },
+                    {
+                      "color": "dark-yellow",
+                      "value": 10
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 20
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 30
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "max",
+                "value": 128
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DyingGasp"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-green",
+                      "value": 0
+                    },
+                    {
+                      "color": "dark-yellow",
+                      "value": 50
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 80
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 90
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "max",
+                "value": 128
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tx Power"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-green",
+                      "value": 0
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 7
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 21
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ultima Verificacao"
+            },
+            "properties": [
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 25,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Onlines"
+          }
+        ]
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "Y_t98X_Mk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select SUBSTRING_INDEX(it.name, ' - ', 1) as name, MAX(CASE WHEN it.name LIKE '% - ONUs Autorizadas' THEN hu.value END) AS Autorizadas, MAX(CASE WHEN it.name LIKE '% - ONUs Online' THEN hu.value END) AS Onlines, MAX(CASE WHEN it.name LIKE '% - ONUs Offline' THEN hu.value END) AS Offlines, MAX(CASE WHEN it.name LIKE '% - LOS%' THEN hu.value END) AS LOS, MAX(CASE WHEN it.name LIKE '% - DyingGasp%' THEN hu.value END) AS DyingGasp, DATE_FORMAT(CONVERT_TZ(FROM_UNIXTIME(MAX(hu.clock)), '+03:00', '+03:00'), '%d-%m-%Y %H:%i:%s') AS ultima_verificacao from items it left join (select itemid, max(clock) as max_clock from history_uint group by itemid) as max_hu on it.itemid = max_hu.itemid left join history_uint hu on hu.itemid = max_hu.itemid and hu.clock = max_hu.max_clock inner join hosts ht on ht.hostid = it.hostid where it.flags in (0,4) and it.status = 0 and ht.status = 0 and ht.host in ('$host') and it.name LIKE 'PON %' and (it.name LIKE '% - ONUs Autorizadas' OR it.name LIKE '% - ONUs Online' OR it.name LIKE '% - ONUs Offline' OR it.name LIKE '% - LOS%' OR it.name LIKE '% - DyingGasp%') group by SUBSTRING_INDEX(it.name, ' - ', 1) order by name;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Visão Geral por PON",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Sinal": "Tx Power",
+              "name": "PON",
+              "ultima_verificacao": "Ult.Coleta"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": false,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 20
+      },
+      "id": 30,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "ONUs Online"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [
+                  "/(.*)/",
+                  "$1"
+                ],
+                "name": "replaceAlias",
+                "params": [
+                  {
+                    "name": "regexp",
+                    "type": "string"
+                  },
+                  {
+                    "name": "newAlias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "/$host: /",
+                ""
+              ],
+              "text": "replaceAlias(/(.*)/, $1)"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": "ONUs Onlines"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "Historico de ONUs Onlines",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": false,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 20
+      },
+      "id": 31,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "ONUs LOS"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [
+                  "/(.*)/",
+                  "$1"
+                ],
+                "name": "replaceAlias",
+                "params": [
+                  {
+                    "name": "regexp",
+                    "type": "string"
+                  },
+                  {
+                    "name": "newAlias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "/$host: /",
+                ""
+              ],
+              "text": "replaceAlias(/(.*)/, $1)"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": "ONUs LOS"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "Historico de ONUs Los",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": false,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 20
+      },
+      "id": 32,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "ONUs Dying Gasp"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [
+                  "/(.*)/",
+                  "$1"
+                ],
+                "name": "replaceAlias",
+                "params": [
+                  {
+                    "name": "regexp",
+                    "type": "string"
+                  },
+                  {
+                    "name": "newAlias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "/$host: /",
+                ""
+              ],
+              "text": "replaceAlias(/(.*)/, $1)"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": "ONUs DyingGasp"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "Historico de ONUs Energia",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": false,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 20
+      },
+      "id": 33,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "ONUs Offline"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [
+                  "/(.*)/",
+                  "$1"
+                ],
+                "name": "replaceAlias",
+                "params": [
+                  {
+                    "name": "regexp",
+                    "type": "string"
+                  },
+                  {
+                    "name": "newAlias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "/$host: /",
+                ""
+              ],
+              "text": "replaceAlias(/(.*)/, $1)"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": "ONUs OFF"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "Historico de ONUs Offlines",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "Y_t98X_Mk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "noValue": "-",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#173c48",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Bits In"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bps"
+              },
+              {
+                "id": "custom.width",
+                "value": 114
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Bits Out"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bps"
+              },
+              {
+                "id": "custom.width",
+                "value": 119
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "1": {
+                        "color": "dark-green",
+                        "index": 0,
+                        "text": "Up"
+                      },
+                      "2": {
+                        "color": "dark-red",
+                        "index": 1,
+                        "text": "Down"
+                      },
+                      "4": {
+                        "color": "#808080",
+                        "index": 2,
+                        "text": "Desconhecido"
+                      },
+                      "6": {
+                        "color": "#808080",
+                        "index": 3,
+                        "text": "Não presente"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 96
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Speed"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "decbits"
+              },
+              {
+                "id": "custom.width",
+                "value": 101
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Consumo Out"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "decmbytes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Uso In (%)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-green",
+                      "value": 0
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 50
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 80
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Uso Out (%)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-green",
+                      "value": 0
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 50
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Rx Power (dBm)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dBm"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "-40": {
+                        "color": "dark-red",
+                        "index": 0
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tx Power (dBm)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dBm"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Interface"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": null
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Distancia (KM)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "lengthkm"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status Sinal"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "anormal": {
+                        "color": "dark-orange",
+                        "index": 0,
+                        "text": "Anormal ⚠️"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "dark-green",
+                        "index": 1,
+                        "text": "Normal ✅"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 28,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": false,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Bits Out"
+          }
+        ]
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "dataset": "zabbix",
+          "datasource": {
+            "type": "mysql",
+            "uid": "Y_t98X_Mk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT sub.host, sub.interface, sub.bitsin, sub.bitsout, sub.status, sub.speed, sub.usoin, sub.usoout, sub.rxpower, sub.txpower, sub.distancia, sub.limiterx, CASE WHEN sub.rxpower IS NULL THEN NULL WHEN sub.is_xgei = 1 AND (sub.rxpower < -9.00 OR sub.rxpower > 0.00) THEN 'anormal' WHEN sub.is_xgei = 0 AND (sub.rxpower < -11.00 OR sub.rxpower > -1.00) THEN 'anormal' END AS staturx, sub.ultverificacao FROM ( SELECT ht.name AS host, SUBSTRING_INDEX(it.name, ': ', 1) AS interface, MAX(CASE WHEN it.name LIKE '%Trafego de Entrada%' THEN h.value END) AS bitsin, MAX(CASE WHEN it.name LIKE '%Trafego de Saida%' THEN h.value END) AS bitsout, MAX(CASE WHEN it.name LIKE '%Status Operacional%' THEN h.value END) AS status, MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END) AS speed, MAX(CASE WHEN it.name LIKE '%Trafego de Entrada%' THEN h.value END) / NULLIF(MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END), 0) * 100 AS usoin, MAX(CASE WHEN it.name LIKE '%Trafego de Saida%' THEN h.value END) / NULLIF(MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END), 0) * 100 AS usoout, MAX(CASE WHEN it.name LIKE '%Sinal RX%' THEN h.value END) AS rxpower, MAX(CASE WHEN it.name LIKE '%Sinal TX%' THEN h.value END) AS txpower, NULL AS distancia, MAX(CASE WHEN it.name LIKE '%xgei%' THEN '0.00 a -9.00' WHEN it.name LIKE '% gei_%' THEN '-1.00 a -11.00' END) AS limiterx, MAX(CASE WHEN it.name LIKE '%xgei%' THEN 1 ELSE 0 END) AS is_xgei, MAX(DATE_FORMAT(CONVERT_TZ(FROM_UNIXTIME(h.clock), '+00:00', '+00:00'), '%d-%m-%Y %H:%i:%s')) AS ultverificacao FROM items it INNER JOIN hosts ht ON ht.hostid = it.hostid AND ht.name IN ('$host') AND ht.status = 0 LEFT JOIN ( SELECT itemid, MAX(clock) AS max_clock FROM history WHERE clock > UNIX_TIMESTAMP() - 7200 GROUP BY itemid ) AS max_h ON it.itemid = max_h.itemid LEFT JOIN history h ON h.itemid = max_h.itemid AND h.clock = max_h.max_clock INNER JOIN items_applications ia2 ON ia2.itemid = it.itemid INNER JOIN applications ap ON ap.applicationid = ia2.applicationid AND ap.name = 'Uplink / LAN OLT' WHERE it.flags IN (0, 4) AND it.status = 0 AND ( it.name LIKE '%Trafego%' OR it.name LIKE '%Status Operacional%' OR it.name LIKE '%Velocidade da Porta%' OR it.name LIKE '%Erros%' OR it.name LIKE '%Drops%' OR it.name LIKE '%Sinal RX%' OR it.name LIKE '%Sinal TX%' ) GROUP BY interface, host ) sub ORDER BY sub.interface;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Análise de Interfaces (Uplinks)",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "host": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Interface": "",
+              "bitsin": "Bits In",
+              "bitsout": "Bits Out",
+              "consumoin": "Consumo In",
+              "consumoout": "Consumo Out",
+              "descartesin": "Descartes In",
+              "descartesout": "Descartes Out",
+              "distancia": "Distancia (KM)",
+              "errosin": "Erros In",
+              "errosout": "Erros Out",
+              "host": "Host",
+              "interface": "Interface",
+              "limiterx": "Limites Rx (dBm)",
+              "rxpower": "Rx Power (dBm)",
+              "rxpoweravg": "Rx Power Avg (dBm)",
+              "speed": "Speed",
+              "staturx": "Status Sinal",
+              "status": "Status",
+              "txpower": "Tx Power (dBm)",
+              "txpoweravg": "Tx Power Avg (dBm)",
+              "ultverificacao": "Ult. Verificação",
+              "ultverificao": "Ult.Verificacao",
+              "usoin": "Uso In (%)",
+              "usoout": "Uso Out (%)"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bps"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Interface xgei_1/3/2: Bits received"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#69a6bf",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Interface xgei-1/1/1: Bits received"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#28817f",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Interface xgei-1/1/1: Bits sent"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Interface xgei_1/4/2: Bits received"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#2b3d67",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 14,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": "Uplink / LAN OLT"
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "$$hashKey": "object:1818",
+              "def": {
+                "category": "Alias",
+                "defaultParams": [
+                  "/(.*)/",
+                  "$1"
+                ],
+                "name": "replaceAlias",
+                "params": [
+                  {
+                    "name": "regexp",
+                    "type": "string"
+                  },
+                  {
+                    "name": "newAlias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "/$host: I/",
+                "I"
+              ],
+              "text": "replaceAlias(/$host: I/, I)"
+            }
+          ],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/Trafego/"
+          },
+          "itemTag": {
+            "filter": "Network Interfaces Bits"
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "minInterval": "5m",
+            "minSeverity": 3,
+            "showDisabledItems": false,
+            "skipEmptyValues": true,
+            "useTrends": "default",
+            "useZabbixValueMapping": true
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        }
+      ],
+      "title": "Tráfego das Interfaces de Uplink",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bps"
+        }
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 44
+      },
+      "id": 34,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": "/(Porta|PON) .* Trafego/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "minInterval": "5m",
+            "minSeverity": 3,
+            "showDisabledItems": false,
+            "skipEmptyValues": true,
+            "useTrends": "default",
+            "useZabbixValueMapping": true
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        }
+      ],
+      "title": "Tráfego das Portas PON (GPON)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "000000002"
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 56
+      },
+      "id": 27,
+      "options": {
+        "ackEventColor": "rgb(56, 219, 156)",
+        "ackField": false,
+        "ageField": true,
+        "allowDangerousHTML": false,
+        "customLastChangeFormat": false,
+        "customTagColumns": "",
+        "descriptionAtNewLine": false,
+        "descriptionField": true,
+        "fontSize": "100%",
+        "highlightBackground": false,
+        "highlightNewEvents": false,
+        "highlightNewerThan": "1h",
+        "hostField": true,
+        "hostGroups": false,
+        "hostProxy": false,
+        "hostTechNameField": false,
+        "lastChangeFormat": "",
+        "layout": "table",
+        "markAckEvents": false,
+        "okEventColor": "rgb(56, 189, 113)",
+        "opdataField": false,
+        "pageSize": 10,
+        "problemTimeline": true,
+        "resizedColumns": [
+          {
+            "id": "expander",
+            "value": 929
+          }
+        ],
+        "severityField": true,
+        "showDatasourceName": false,
+        "showSearchFilter": false,
+        "showTags": true,
+        "sortProblems": "lastchange",
+        "statusField": true,
+        "statusIcon": true,
+        "triggerSeverity": [
+          {
+            "color": "rgb(108, 108, 108)",
+            "priority": 0,
+            "severity": "Not classified",
+            "show": true
+          },
+          {
+            "color": "rgb(120, 158, 183)",
+            "priority": 1,
+            "severity": "Information",
+            "show": true
+          },
+          {
+            "color": "rgb(175, 180, 36)",
+            "priority": 2,
+            "severity": "Warning",
+            "show": true
+          },
+          {
+            "color": "rgb(255, 137, 30)",
+            "priority": 3,
+            "severity": "Average",
+            "show": true
+          },
+          {
+            "color": "rgb(255, 101, 72)",
+            "priority": 4,
+            "severity": "High",
+            "show": true
+          },
+          {
+            "color": "rgb(215, 0, 0)",
+            "priority": 5,
+            "severity": "Disaster",
+            "show": true
+          }
+        ]
+      },
+      "pluginVersion": "6.6.0",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "000000002"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "OLT-NETSTREAM"
+          },
+          "host": {
+            "filter": "$host"
+          },
+          "item": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "acknowledged": 2,
+            "count": false,
+            "disableDataAlignment": false,
+            "hostProxy": false,
+            "hostsInMaintenance": false,
+            "limit": 1001,
+            "minSeverity": 0,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "sortProblems": "default",
+            "useTimeRange": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "5",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "showProblems": "problems",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "Painel de Incidentes - OLT",
+      "type": "alexanderzobnin-zabbix-triggers-panel"
+    }
+  ],
+  "preload": false,
+  "refresh": "1m",
+  "schemaVersion": 42,
+  "tags": [
+    "olt",
+    "gpon"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allowCustomValue": true,
+        "current": {
+          "text": "TR 12 - OLT - ZTE - DUTRA - C350",
+          "value": "TR 12 - OLT - ZTE - DUTRA - C350"
+        },
+        "datasource": {
+          "type": "alexanderzobnin-zabbix-datasource",
+          "uid": "000000002"
+        },
+        "definition": "Zabbix - host",
+        "hide": 0,
+        "includeAll": false,
+        "label": "OLT",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": {
+          "application": "",
+          "group": "OLT-NETSTREAM",
+          "host": "/.*/",
+          "item": "",
+          "itemTag": "",
+          "queryType": "host"
+        },
+        "refresh": 1,
+        "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Dashboard OLT ZTE C3x (Geral)",
+  "uid": "olt-geral-netstream",
+  "version": 12
+}
