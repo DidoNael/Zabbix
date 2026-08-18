@@ -1305,7 +1305,7 @@ return s;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>35b31439015d4a36a59a33eb74c3a24e</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=9</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=9 and diff(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa com defeito (Faulty)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
