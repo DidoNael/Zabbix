@@ -1690,7 +1690,7 @@ return s;</parameter>
                             <params>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.los.zte[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2</uuid>
+                            <uuid>6499dac39c2e48f3ab60c45dd1f17e99</uuid>
                             <name>PON {#NETSTREAM.PON_NAME} - Status Operacional (ifOperStatus)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
@@ -1700,7 +1700,7 @@ return s;</parameter>
                             <trends>90d</trends>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3</uuid>
+                            <uuid>aa61721774c442148ebef7c6c8a2cc12</uuid>
                             <name>PON {#NETSTREAM.PON_NAME} - Erros CRC Entrada (Taxa/s)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
