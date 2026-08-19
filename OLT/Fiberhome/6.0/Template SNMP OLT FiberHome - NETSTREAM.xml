@@ -1141,7 +1141,7 @@ return 0;</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>2788473fa41f43b3a7bb29ebd8109a7d</uuid>
-                            <expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}])=0 and diff(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}])=1 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}],10m)&gt;1</expression>
+                            <expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}])=0 and diff(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}])=1 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
