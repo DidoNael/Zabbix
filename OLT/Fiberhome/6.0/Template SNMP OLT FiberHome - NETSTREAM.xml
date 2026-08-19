@@ -1112,7 +1112,7 @@ return 0;</parameter>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6</uuid>
+                            <uuid>237e8530de0b48d3968c0b660a69410d</uuid>
                             <name>PON {#NETSTREAM.PON_NAME} - Status Operacional (ifOperStatus)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#NETSTREAM.PON_INDEX}</snmp_oid>
@@ -1122,7 +1122,7 @@ return 0;</parameter>
                             <trends>90d</trends>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1</uuid>
+                            <uuid>e488f932ca9a404ea3e0d35b569105b0</uuid>
                             <name>PON {#NETSTREAM.PON_NAME} - Erros CRC Entrada (Taxa/s)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#NETSTREAM.PON_INDEX}</snmp_oid>
