@@ -1428,7 +1428,7 @@ and&#13;
                                     <recovery_expression>{diff()}&#13;
 and&#13;
 {last()}&lt;-28</recovery_expression>
-                                    <name>ONT {#SNMPVALUE} RX Power alert(&gt;30)</name>
+                                    <name>ONU {#ONUDESC}: RX Power critico (&lt;-30 dBm)</name>
                                     <priority>INFO</priority>
                                 </trigger_prototype>
                             </trigger_prototypes>

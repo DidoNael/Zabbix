@@ -1177,7 +1177,7 @@ return 0;</parameter>
                                     <expression>change(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}])&lt;-30</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>change(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}])&lt;-28</recovery_expression>
-                                    <name>ONT {#SNMPVALUE} RX Power alert(&gt;30)</name>
+                                    <name>ONU {#ONUDESC}: RX Power critico (&lt;-30 dBm)</name>
                                     <priority>INFO</priority>
                                 </trigger_prototype>
                             </trigger_prototypes>
