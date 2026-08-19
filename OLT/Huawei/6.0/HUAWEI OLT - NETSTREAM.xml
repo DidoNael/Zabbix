@@ -1335,10 +1335,8 @@ return 0;</parameter>
                     <description>Queda minima de ONUs online para disparar alerta de queda parcial por PON</description>
                 </macro>
             </macros>
-        </template>
-    </templates>
-    <value_maps>
-        <value_map>
+            <valuemaps>
+        <valuemap>
             <uuid>ab4d3d99d1a04da49b3ea9850eef911d</uuid>
             <name>OLT Huawei - ONU - Causa da ultima queda</name>
             <mappings>
@@ -1419,8 +1417,8 @@ return 0;</parameter>
                     <newvalue>Reset da ONU por software da ONU</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-        <value_map>
+        </valuemap>
+        <valuemap>
             <uuid>490bac1bc5d949039a443317a81c5059</uuid>
             <name>OLT Huawei - Status ONU</name>
             <mappings>
@@ -1433,6 +1431,9 @@ return 0;</parameter>
                     <newvalue>ONU Inativa</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-    </value_maps>
+        </valuemap>
+    </valuemaps>
+    </template>
+    </templates>
+    
 </zabbix_export>
