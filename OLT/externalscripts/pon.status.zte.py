@@ -21,25 +21,35 @@ LOCK_FILE  = CACHE_FILE + ".lock"
 CACHE_TTL  = 300  # 5 minutos
 
 def collect_and_save():
-    OID_AUTH   = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14"
-    OID_ONLINE = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15"
-    OID_REASON = "1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7"
+    OID_AUTH    = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14"
+    OID_ONLINE  = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15"
+    OID_REASON  = "1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7"
+    OID_IFDESCR = "1.3.6.1.2.1.2.2.1.2"
     OPTS = ["-v2c", "-c", COMMUNITY, "-t", "25", "-r", "1", "-Cr10", SNMP_TARGET]
     import re
     tmpdir = tempfile.mkdtemp()
     try:
         procs = {
-            "auth":   subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_AUTH],
-                                       stdout=open(tmpdir+"/auth","w"), stderr=subprocess.PIPE),
-            "online": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_ONLINE],
-                                       stdout=open(tmpdir+"/online","w"), stderr=subprocess.PIPE),
-            "reason": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_REASON],
-                                       stdout=open(tmpdir+"/reason","w"), stderr=subprocess.PIPE),
+            "auth":    subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_AUTH],
+                                        stdout=open(tmpdir+"/auth","w"), stderr=subprocess.PIPE),
+            "online":  subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_ONLINE],
+                                        stdout=open(tmpdir+"/online","w"), stderr=subprocess.PIPE),
+            "reason":  subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_REASON],
+                                        stdout=open(tmpdir+"/reason","w"), stderr=subprocess.PIPE),
+            "ifdescr": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFDESCR],
+                                        stdout=open(tmpdir+"/ifdescr","w"), stderr=subprocess.PIPE),
         }
         for p in procs.values(): p.wait()
         def rl(f):
             try: return open(tmpdir+"/"+f).read().strip().splitlines()
             except: return []
+        # Mapear slot/card/port -> IF-MIB SNMPINDEX via ifDescr (ex: "GPON0/1/0", "gpon-olt_0/1/0")
+        ifmib_map = {}
+        for line in rl("ifdescr"):
+            m = re.search(r'ifDescr\.(\d+).*?[Gg][Pp][Oo][Nn][^0-9]*(\d+)/(\d+)/(\d+)', line)
+            if m:
+                key = "%d/%d/%d" % (int(m.group(2)), int(m.group(3)), int(m.group(4)))
+                ifmib_map[key] = m.group(1)
         auth_data, online_data = {}, {}
         for line in rl("auth"):
             m = re.search(r'\.(\d+)\s+=\s+\S+:\s+(\d+)', line)
@@ -64,12 +74,17 @@ def collect_and_save():
             auth   = auth_data[idx]
             online = online_data.get(idx, 0)
             i = int(idx)
-            name = "gpon_%d/%d/%d" % ((i>>16)&0xFF, (i>>8)&0xFF, i&0xFF)
+            slot = (i>>16)&0xFF
+            card = (i>>8)&0xFF
+            port = i&0xFF
+            name = "gpon_%d/%d/%d" % (slot, card, port)
+            key  = "%d/%d/%d" % (slot, card, port)
+            snmp_idx = ifmib_map.get(key, idx)
             r = reasons.get(idx, {"los":0,"losi":0,"lof":0,"dg":0,"unk":0})
             if auth == 0: continue
             result.append({
                 "{#NETSTREAM.PON_INDEX}": idx, "{#NETSTREAM.PON_NAME}": name,
-                "idx": idx, "name": name,
+                "idx": idx, "name": name, "snmp_idx": snmp_idx,
                 "auth": auth, "online": online, "offline": max(auth-online, 0),
                 "los": r["los"], "losi": r["losi"], "lof": r["lof"],
                 "dg": r["dg"], "unk": r["unk"]
