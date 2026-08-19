@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-08-14T00:00:00Z</date>
@@ -240,7 +240,7 @@ Todos os direitos reservados.</description>
                         <trigger>
                             <uuid>7383372efe2641328fe13bbfc5ad0c6d</uuid>
                             <expression>nodata(/Template SNMP OLT FiberHome - NETSTREAM/uptime,1h)=1</expression>
-                            <name>OLT Inacess&iacute;vel (sem dados SNMP h&aacute; 1 hora)</name>
+                            <name>OLT Inacessível (sem dados SNMP há 1 hora)</name>
                             <priority>DISASTER</priority>
                             <status>DISABLED</status>
                             <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 60 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
@@ -2143,28 +2143,8 @@ return 0;</parameter>
                     <value>public</value>
                 </macro>
             </macros>
-        </template>
-    </templates>
-    <graphs>
-        <graph>
-            <uuid>b84d02a9e38c4b72a639cc29d15304ad</uuid>
-            <name>Clientes Total OLT</name>
-            <show_work_period>NO</show_work_period>
-            <show_triggers>NO</show_triggers>
-            <graph_items>
-                <graph_item>
-                    <drawtype>BOLD_LINE</drawtype>
-                    <color>00FF00</color>
-                    <item>
-                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
-                        <key>onuCount</key>
-                    </item>
-                </graph_item>
-            </graph_items>
-        </graph>
-    </graphs>
-    <value_maps>
-        <value_map>
+            <valuemaps>
+                <valuemap>
             <uuid>f694628195224ed484bb2ca6e6742e5a</uuid>
             <name>OLT-FIBERHOME-STATUS-ONT</name>
             <mappings>
@@ -2189,8 +2169,8 @@ return 0;</parameter>
                     <newvalue>LOS (ONU perdeu o link óptico)</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-        <value_map>
+                </valuemap>
+                <valuemap>
             <uuid>4ee21cc308994c85a3261830325016a6</uuid>
             <name>Status de PON</name>
             <mappings>
@@ -2203,6 +2183,26 @@ return 0;</parameter>
                     <newvalue>up</newvalue>
                 </mapping>
             </mappings>
-        </value_map>
-    </value_maps>
+                </valuemap>
+                </valuemaps>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <uuid>b84d02a9e38c4b72a639cc29d15304ad</uuid>
+            <name>Clientes Total OLT</name>
+            <show_work_period>NO</show_work_period>
+            <show_triggers>NO</show_triggers>
+            <graph_items>
+                <graph_item>
+                    <drawtype>BOLD_LINE</drawtype>
+                    <color>00FF00</color>
+                    <item>
+                        <host>Template SNMP OLT FiberHome - NETSTREAM</host>
+                        <key>onuCount</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
 </zabbix_export>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-07-09T01:15:27Z</date>
@@ -47,35 +47,35 @@ Todos os direitos reservados.</description>
                     <triggers>
                         <trigger>
                             <uuid>7cf90582fc5a4d1bab539245f1b2e277</uuid>
-                            <expression>last(/OLT ZTE - NETSTREAM/netstream.sensor.fan.status)=4 and diff(/OLT ZTE - NETSTREAM/netstream.sensor.fan.status)=1 and count(/OLT ZTE - NETSTREAM/netstream.sensor.fan.status,10m)&gt;1</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/netstream.sensor.fan.status)=4 and change(/OLT ZTE - NETSTREAM/netstream.sensor.fan.status)<>0 and count(/OLT ZTE - NETSTREAM/netstream.sensor.fan.status,10m)&gt;1</expression>
                             <name>OLT: Falha no Ventilador (Fan Fail)</name>
                             <priority>HIGH</priority>
                             <description>Status do ventilador indica falha de hardware na OLT.</description>
                         </trigger>
                         <trigger>
                             <uuid>e06ef908acce4e4b90d6c36d0b0ebbda</uuid>
-                            <expression>last(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1])=2 and diff(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1])=1 and count(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1],10m)&gt;1</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1])=2 and change(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1])<>0 and count(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1],10m)&gt;1</expression>
                             <name>OLT: Falha na Fonte de Energia 1 (PSU 1 Fail)</name>
                             <priority>HIGH</priority>
                             <description>Fonte de alimentacao 1 reporta falha.</description>
                         </trigger>
                         <trigger>
                             <uuid>cc0b79df6eb44d228a0568a9d707ea23</uuid>
-                            <expression>last(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1])=3 and diff(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1])=1 and count(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1],10m)&gt;1</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1])=3 and change(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1])<>0 and count(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[1],10m)&gt;1</expression>
                             <name>OLT: Fonte de Energia 1 Desconectada / Offline</name>
                             <priority>WARNING</priority>
                             <description>Fonte 1 sem alimentacao AC/DC.</description>
                         </trigger>
                         <trigger>
                             <uuid>9e9230a5b91747b4b3862fd66dce069f</uuid>
-                            <expression>last(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2])=2 and diff(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2])=1 and count(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2],10m)&gt;1</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2])=2 and change(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2])<>0 and count(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2],10m)&gt;1</expression>
                             <name>OLT: Falha na Fonte de Energia 2 (PSU 2 Fail)</name>
                             <priority>HIGH</priority>
                             <description>Fonte de alimentacao 2 reporta falha.</description>
                         </trigger>
                         <trigger>
                             <uuid>a7e214fd4c284a26a1c138523af00adb</uuid>
-                            <expression>last(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2])=3 and diff(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2])=1 and count(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2],10m)&gt;1</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2])=3 and change(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2])<>0 and count(/OLT ZTE - NETSTREAM/netstream.sensor.psu.status[2],10m)&gt;1</expression>
                             <name>OLT: Fonte de Energia 2 Desconectada / Offline</name>
                             <priority>WARNING</priority>
                             <description>Fonte 2 sem alimentacao AC/DC.</description>
@@ -729,7 +729,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>59c9a4068fef44b3a33abd4d7671fadc</uuid>
-                            <expression>max(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],#3)=2 and diff(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                            <expression>max(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],#3)=2 and change(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}])<>0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],10m)&gt;1</expression>
                             <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Apagada (Inativa)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -1154,7 +1154,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>c130941faaf041e1b59a32aa421f767b</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])=2 and diff(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}],10m)&gt;1 and last(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])=2 and change(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])<>0 and count(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}],10m)&gt;1 and last(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=1</expression>
                                     <name>Cliente Dedicado {#ONTDESC}: Cabo LAN Desconectado / Porta Ethernet DOWN</name>
                                     <priority>WARNING</priority>
                                     <description>A ONU dedicada esta online na fibra, porem o cabo de rede RJ45 (LAN 1) que liga ao cliente esta desconectado ou DOWN.</description>
@@ -1316,7 +1316,7 @@ return s;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>35b31439015d4a36a59a33eb74c3a24e</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=9 and diff(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=9 and change(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])<>0 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa com defeito (Faulty)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1333,7 +1333,7 @@ return s;</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>b96b923fe66e416e858b4564e2efb2e3</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=11 and diff(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=11 and change(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])<>0 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Sem energia eletrica Power)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1350,7 +1350,7 @@ return s;</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>04dfa5afce624d0e84f0d1589a2164b7</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=4 and diff(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=4 and change(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])<>0 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Desconectada / Offline</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1367,7 +1367,7 @@ return s;</parameter>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>353faee01d114bfe9f398a1c53112c3d</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=2 and diff(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])=2 and change(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}])<>0 and count(/OLT ZTE - NETSTREAM/netstream.zte.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX} ({#CARDTYPE}): Placa Fora de Servico (Not in Service)</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
@@ -1472,7 +1472,7 @@ return s;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>5eeec1f352b545ec9769a687e81db9ac</uuid>
-                                    <expression>max(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2 and diff(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <expression>max(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2 and change(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}])<>0 and count(/OLT ZTE - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Uplink {#IFNAME} ({#IFALIAS}): Link DOWN / Desconectado</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1719,7 +1719,7 @@ return s;</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>f9a93c13c35c45618122cc4c70dd9318</uuid>
-                            <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and diff(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
+                            <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])<>0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
@@ -1815,7 +1815,7 @@ return s;</parameter>
                             <dependencies>
                                 <dependency>
                                     <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and diff(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=1 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
+                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])<>0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
                                 </dependency>
                             </dependencies>
                         </trigger_prototype>
