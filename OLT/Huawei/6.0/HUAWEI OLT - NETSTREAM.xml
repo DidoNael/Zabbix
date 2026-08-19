@@ -819,8 +819,8 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>75cac67fbfaa453e9b99202438693a08</uuid>
-                                    <expression>avg(/HUAWEI OLT - NETSTREAM/netstream.uplink.in.drops[{#SNMPINDEX}],5m)&gt;10</expression>
-                                    <name>Uplink {#IFDESC} - Alto volume de drops de entrada (&gt;10/s por 5min)</name>
+                                    <expression>min(/HUAWEI OLT - NETSTREAM/netstream.uplink.in.drops[{#SNMPINDEX}],1h)&gt;10</expression>
+                                    <name>Uplink {#IFDESC} - Alto volume de drops de entrada (&gt;10/s por 1h)</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>
@@ -894,8 +894,8 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>7cb08b782fd145a385b8909ad68e935c</uuid>
-                                    <expression>avg(/HUAWEI OLT - NETSTREAM/netstream.uplink.out.drops[{#SNMPINDEX}],5m)&gt;10</expression>
-                                    <name>Uplink {#IFDESC} - Alto volume de drops de saida (&gt;10/s por 5min)</name>
+                                    <expression>min(/HUAWEI OLT - NETSTREAM/netstream.uplink.out.drops[{#SNMPINDEX}],1h)&gt;10</expression>
+                                    <name>Uplink {#IFDESC} - Alto volume de drops de saida (&gt;10/s por 1h)</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>

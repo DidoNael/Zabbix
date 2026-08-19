@@ -989,8 +989,8 @@ return 0;</params>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{avg(5m)}&gt;10</expression>
-                                    <name>Uplink {#IFDESC} - Alto volume de drops de entrada (&gt;10/s por 5min)</name>
+                                    <expression>{min(1h)}&gt;10</expression>
+                                    <name>Uplink {#IFDESC} - Alto volume de drops de entrada (&gt;10/s por 1h)</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>
@@ -1072,8 +1072,8 @@ return 0;</params>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{avg(5m)}&gt;10</expression>
-                                    <name>Uplink {#IFDESC} - Alto volume de drops de saida (&gt;10/s por 5min)</name>
+                                    <expression>{min(1h)}&gt;10</expression>
+                                    <name>Uplink {#IFDESC} - Alto volume de drops de saida (&gt;10/s por 1h)</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>
