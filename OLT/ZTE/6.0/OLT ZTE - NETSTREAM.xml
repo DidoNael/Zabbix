@@ -488,6 +488,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                     <snmp_oid>discovery[{#PONNAME},1.3.6.1.2.1.31.1.1.1.1, {#PONDESC},1.3.6.1.2.1.2.2.1.2, {#PONADMIN},1.3.6.1.2.1.2.2.1.7, {#PONOPER},1.3.6.1.2.1.2.2.1.8, {#ONUAUTH},1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14]</snmp_oid>
                     <key>netstream.gpon.port.discovery</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <evaltype>AND</evaltype>
                         <conditions>
@@ -916,6 +917,7 @@ return JSON.stringify(result);</parameter>
                     <snmp_oid>discovery[{#PONNAME},1.3.6.1.2.1.31.1.1.1.1, {#PONDESC},1.3.6.1.2.1.2.2.1.2, {#PONADMIN},1.3.6.1.2.1.2.2.1.7, {#PONOPER},1.3.6.1.2.1.2.2.1.8, {#ONUAUTH},1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14]</snmp_oid>
                     <key>netstream.interfaces.discovery</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <evaltype>AND</evaltype>
                         <conditions>
@@ -999,6 +1001,7 @@ return JSON.stringify(result);</parameter>
                     <snmp_oid>discovery[{#ONTDESC},1.3.6.1.4.1.3902.1012.3.28.1.1.2]</snmp_oid>
                     <key>netstream.oltonudedicado</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>

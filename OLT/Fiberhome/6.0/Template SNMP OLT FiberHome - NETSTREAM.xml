@@ -575,6 +575,7 @@ the other type could see the card type table</description>
                     <snmp_oid>discovery[{#SNMPVALUE},IF-MIB::ifDescr]</snmp_oid>
                     <key>ifDescr_64</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>
@@ -1512,6 +1513,7 @@ return 0;</parameter>
                     <snmp_oid>discovery[{#ONUSN}, 1.3.6.1.4.1.5875.800.3.10.1.1.10, {#ONTDESC}, 1.3.6.1.4.1.5875.800.3.10.1.1.7]</snmp_oid>
                     <key>oltonudedicado</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>775752ab937f46df805abf2ff818c9fc</uuid>
@@ -1664,6 +1666,7 @@ return 0;</parameter>
                     <snmp_oid>discovery[{#SNMPVALUE},GEPON-OLT-COMMON-MIB::oltPonDesc, {#PONNAME},1.3.6.1.2.1.31.1.1.1.1]</snmp_oid>
                     <key>oltPonDesc</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>

@@ -1267,6 +1267,7 @@ return 0;</params>
                     <snmp_oid>discovery[{#OLTPORT},ifName, {#IFALIAS},IF-MIB::ifAlias]</snmp_oid>
                     <key>olt_pcb</key>
                     <delay>10m</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>
