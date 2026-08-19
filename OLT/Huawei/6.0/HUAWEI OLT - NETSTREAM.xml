@@ -1204,7 +1204,7 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>b65ac896f8ca4b8bb7b945d614d58aa7</uuid>
-                                    <expression>min(/HUAWEI OLT - NETSTREAM/onu.status.state.onu.lan[{#SNMPINDEX}],#3)=2</expression>
+                                    <expression>min(/HUAWEI OLT - NETSTREAM/onu.status.state.onu.lan[{#SNMPINDEX}],#3)=2 and change(/HUAWEI OLT - NETSTREAM/onu.status.state.onu.lan[{#SNMPINDEX}])&lt;&gt;0 and count(/HUAWEI OLT - NETSTREAM/onu.status.state.onu.lan[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Status ONU - {#ONUDESC}</name>
                                     <priority>INFO</priority>
                                     <tags>

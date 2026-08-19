@@ -1470,7 +1470,7 @@ and&#13;
                             </valuemap>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{min(#3)}=2</expression>
+                                    <expression>{min(#3)}=2 and {diff()}=1 and {count(10m)}>1</expression>
                                     <name>Status ONU - {#ONUDESC}</name>
                                     <priority>INFO</priority>
                                     <tags>
