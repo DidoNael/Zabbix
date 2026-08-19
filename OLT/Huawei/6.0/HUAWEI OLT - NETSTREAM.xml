@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-08-14T00:00:00Z</date>
@@ -366,7 +366,7 @@ Todos os direitos reservados.</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>d0a7c6837c9743ab903a7dbf02cc1b4d</uuid>
-                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=4 and diff(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=1 and count(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=4 and change(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])&lt;&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX}: Placa com defeito (Faulty)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -391,7 +391,7 @@ Todos os direitos reservados.</description>
                                 </trigger_prototype>
                                 <trigger_prototype>
                                     <uuid>6a48605f738d4361b1f44afed276e046</uuid>
-                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=5 and diff(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=1 and count(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])=5 and change(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}])&lt;&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.huawei.card.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Placa {#SNMPINDEX}: Placa Offline / Ausente</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -636,7 +636,7 @@ return 0;</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>482e702bb48746b0aa079bda5d21aec7</uuid>
-                            <expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])=0 and diff(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])=1 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],10m)&gt;1</expression>
+                            <expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])=0 and change(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])&lt;&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],10m)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
@@ -942,7 +942,7 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>3c3b1d3521924617984c5bd6b3fcb004</uuid>
-                                    <expression>max(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2 and diff(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}])=1 and count(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <expression>max(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2 and change(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}])&lt;&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <name>Uplink {#IFDESC}: Link DOWN</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1082,9 +1082,9 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>0d138347566b47c1be46aeaf9979b62c</uuid>
-                                    <expression>diff(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=2 and count(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}],180)&gt;1</expression>
+                                    <expression>change(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=2 and count(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}],180)&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>diff(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1</recovery_expression>
+                                    <recovery_expression>change(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1</recovery_expression>
                                     <name>{#OLTPORT}: {#IFALIAS}</name>
                                     <priority>DISASTER</priority>
                                     <manual_close>YES</manual_close>
@@ -1163,9 +1163,9 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>706a62e275e14119b455b7ecbd3786e0</uuid>
-                                    <expression>diff(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}]) and last(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}])&lt;-30</expression>
+                                    <expression>change(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}])&lt;-30</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>diff(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}]) and last(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}])&lt;-28</recovery_expression>
+                                    <recovery_expression>change(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/OntRxPower[{#SNMPINDEX}])&lt;-28</recovery_expression>
                                     <name>ONT {#SNMPVALUE} RX Power alert(&gt;30)</name>
                                     <priority>INFO</priority>
                                 </trigger_prototype>
