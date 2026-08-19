@@ -87,9 +87,11 @@ Todos os direitos reservados.</description>
                             <applications>
                                 <application><name>DNS Monitor - DIG</name></application>
                                 <application><name>DNS Monitor - Tempo</name></application>
-                                <application><name>DNS Monitor - {#DNS_DOMAIN}</name></application>
-                                <application><name>DNS Monitor - {#DNS_SERVER}</name></application>
                             </applications>
+                            <application_prototypes>
+                                <application_prototype><name>DNS Monitor - {#DNS_DOMAIN}</name></application_prototype>
+                                <application_prototype><name>DNS Monitor - {#DNS_SERVER}</name></application_prototype>
+                            </application_prototypes>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","time","{$DNS_TIMEOUT_NETSTREAM}"].last()}>{$DNS_CRIT_TIME_NETSTREAM}</expression>
@@ -132,9 +134,11 @@ Todos os direitos reservados.</description>
                             <applications>
                                 <application><name>DNS Monitor - DIG</name></application>
                                 <application><name>DNS Monitor - Status</name></application>
-                                <application><name>DNS Monitor - {#DNS_DOMAIN}</name></application>
-                                <application><name>DNS Monitor - {#DNS_SERVER}</name></application>
                             </applications>
+                            <application_prototypes>
+                                <application_prototype><name>DNS Monitor - {#DNS_DOMAIN}</name></application_prototype>
+                                <application_prototype><name>DNS Monitor - {#DNS_SERVER}</name></application_prototype>
+                            </application_prototypes>
                             <valuemap>
                                 <name>DNS Query Status</name>
                             </valuemap>
@@ -167,9 +171,11 @@ Todos os direitos reservados.</description>
                             <applications>
                                 <application><name>DNS Monitor - DIG</name></application>
                                 <application><name>DNS Monitor - RCODE</name></application>
-                                <application><name>DNS Monitor - {#DNS_DOMAIN}</name></application>
-                                <application><name>DNS Monitor - {#DNS_SERVER}</name></application>
                             </applications>
+                            <application_prototypes>
+                                <application_prototype><name>DNS Monitor - {#DNS_DOMAIN}</name></application_prototype>
+                                <application_prototype><name>DNS Monitor - {#DNS_SERVER}</name></application_prototype>
+                            </application_prototypes>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"].str(NOERROR)}=0 and {Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"].count(10m)}&gt;1</expression>
@@ -199,9 +205,11 @@ Todos os direitos reservados.</description>
                             <applications>
                                 <application><name>DNS Monitor - DIG</name></application>
                                 <application><name>DNS Monitor - Resultado</name></application>
-                                <application><name>DNS Monitor - {#DNS_DOMAIN}</name></application>
-                                <application><name>DNS Monitor - {#DNS_SERVER}</name></application>
                             </applications>
+                            <application_prototypes>
+                                <application_prototype><name>DNS Monitor - {#DNS_DOMAIN}</name></application_prototype>
+                                <application_prototype><name>DNS Monitor - {#DNS_SERVER}</name></application_prototype>
+                            </application_prototypes>
                         </item_prototype>
 
                         <item_prototype>
@@ -216,9 +224,11 @@ Todos os direitos reservados.</description>
                             <applications>
                                 <application><name>DNS Monitor - DIG</name></application>
                                 <application><name>DNS Monitor - Respostas</name></application>
-                                <application><name>DNS Monitor - {#DNS_DOMAIN}</name></application>
-                                <application><name>DNS Monitor - {#DNS_SERVER}</name></application>
                             </applications>
+                            <application_prototypes>
+                                <application_prototype><name>DNS Monitor - {#DNS_DOMAIN}</name></application_prototype>
+                                <application_prototype><name>DNS Monitor - {#DNS_SERVER}</name></application_prototype>
+                            </application_prototypes>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"].last()}=0 and {Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","rcode","{$DNS_TIMEOUT_NETSTREAM}"].str(NOERROR)}=1 and {Template DNS Monitor - Netstream:netstream_dns_check_netstream.sh["{#DNS_SERVER}","{#DNS_DOMAIN}","{#DNS_TYPE}","dig","answers","{$DNS_TIMEOUT_NETSTREAM}"].count(10m)}&gt;1</expression>
