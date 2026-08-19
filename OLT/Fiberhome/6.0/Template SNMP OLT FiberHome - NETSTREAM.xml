@@ -1890,7 +1890,7 @@ return 0;</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>9fc0f36da2ba4c9a8974d14609de4c00</uuid>
-                            <expression>(last(/Template SNMP OLT FiberHome - NETSTREAM/oltPonOnlineStatus[{#SNMPVALUE}],1m)=0)and(last(/Template SNMP OLT FiberHome - NETSTREAM/oltPonAuthOnuNum[{#SNMPVALUE}],#2)&gt;2) and change(/Template SNMP OLT FiberHome - NETSTREAM/oltPonOnlineStatus[{#SNMPVALUE}])&lt;&gt;0 and count(/Template SNMP OLT FiberHome - NETSTREAM/oltPonOnlineStatus[{#SNMPVALUE}],10m)&gt;1</expression>
+                            <expression>(last(/Template SNMP OLT FiberHome - NETSTREAM/oltPonOnlineStatus[{#SNMPVALUE}])=0)and(last(/Template SNMP OLT FiberHome - NETSTREAM/oltPonAuthOnuNum[{#SNMPVALUE}],#2)&gt;2) and change(/Template SNMP OLT FiberHome - NETSTREAM/oltPonOnlineStatus[{#SNMPVALUE}])&lt;&gt;0 and count(/Template SNMP OLT FiberHome - NETSTREAM/oltPonOnlineStatus[{#SNMPVALUE}],10m)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/oltPonOnlineStatus[{#SNMPVALUE}])=1</recovery_expression>
                             <name>gpon_{#SNMPVALUE}:</name>
