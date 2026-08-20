@@ -1248,6 +1248,7 @@ Todos os direitos reservados.</description>
                     <type>EXTERNAL</type>
                     <key>discovery_huawei_optical_netstream.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","single"]</key>
                     <delay>1d</delay>
+                    <timeout>30s</timeout>
                     <filter>
                         <conditions>
                             <condition>
@@ -2282,6 +2283,7 @@ Todos os direitos reservados.</description>
                     <type>EXTERNAL</type>
                     <key>discovery_huawei_optical_netstream.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","multi"]</key>
                     <delay>1d</delay>
+                    <timeout>30s</timeout>
                     <filter>
                         <conditions>
                             <condition>
