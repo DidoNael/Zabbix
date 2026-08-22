@@ -5,7 +5,7 @@ mikrotik_ip="$1"
 site="$2"
 
 # Executa o comando ping no MikroTik e captura a saída
-output=$(ssh zabbix@"$mikrotik_ip" "ping $site count=5; quit")
+output=$(ssh zabbix@"$mikrotik_ip" "ping $site count=3; quit")
 
 # Extrai todas as linhas que contêm os valores desejados
 summary_lines=$(echo "$output" | grep -E 'sent=.*received=.*packet-loss=.*|min-rtt=.*|avg-rtt=.*|max-rtt=.*')

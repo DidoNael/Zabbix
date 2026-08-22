@@ -5,7 +5,7 @@ mikrotik_ip=$1
 site=$2
 
 # Executa o comando traceroute no MikroTik e captura a saída
-output=$(ssh zabbix@"$mikrotik_ip" "/tool traceroute address=$site count=3 size=128; quit")
+output=$(ssh zabbix@"$mikrotik_ip" "/tool traceroute address=$site count=2 size=128; quit")
 
 # Processa a saída para formatar em JSON, capturando apenas o último resultado de cada salto e removendo "ms"
 echo "$output" | awk '
