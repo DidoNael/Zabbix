@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-05-22T13:36:26Z</date>
@@ -2398,10 +2398,6 @@ return s;</params>
                 </discovery_rule>
             </discovery_rules>
             <macros>
-                <macro>
-                    <macro>{$SNMP_COMMUNITY}</macro>
-                    <value>public</value>
-                </macro>
                 <macro>
                     <macro>{$GPON_DROP_MIN}</macro>
                     <value>5</value>

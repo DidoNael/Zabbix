@@ -567,10 +567,6 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
             </discovery_rules>
             <macros>
                 <macro>
-                    <macro>{$SNMP_COMMUNITY}</macro>
-                    <value>public</value>
-                </macro>
-                <macro>
                     <macro>{$CPU_WARN}</macro>
                     <value>80</value>
                 </macro>

@@ -711,10 +711,6 @@ ifType Uplink = 6 (ethernet-csmacd)</description>
             </discovery_rules>
             <macros>
                 <macro>
-                    <macro>{$SNMP_COMMUNITY}</macro>
-                    <value>public</value>
-                </macro>
-                <macro>
                     <macro>{$CPU_WARN}</macro>
                     <value>85</value>
                 </macro>

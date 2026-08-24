@@ -435,10 +435,6 @@ Enterprise OID base: 1.3.6.1.4.1.3709</description>
             </discovery_rules>
             <macros>
                 <macro>
-                    <macro>{$SNMP_COMMUNITY}</macro>
-                    <value>public</value>
-                </macro>
-                <macro>
                     <macro>{$CPU_WARN}</macro>
                     <value>80</value>
                 </macro>
