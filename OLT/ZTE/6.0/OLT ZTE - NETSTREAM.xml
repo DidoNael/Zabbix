@@ -1021,6 +1021,16 @@ return JSON.stringify(result);</parameter>
                             <delay>5m</delay>
                             <trends>90d</trends>
                             <status>DISABLED</status>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>onu-state</value>
+                                </tag>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>onu-state-dedicado</value>
+                                </tag>
+                            </tags>
                             <valuemap>
                                 <name>OLT-ZTE-STATUS-ONT</name>
                             </valuemap>
@@ -1066,6 +1076,12 @@ return JSON.stringify(result);</parameter>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados</value>
+                                </tag>
+                            </tags>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1126,6 +1142,12 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <trends>365d</trends>
                             <status>ENABLED</status>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8193182f238e4428a3906c47d99eb9c5</uuid>
@@ -1139,6 +1161,12 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>m</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                         <item_prototype>
                             <uuid>04f7844a8c744734970dd58ab5e356fe</uuid>
@@ -1151,6 +1179,12 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <trends>365d</trends>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados - LAN</value>
+                                </tag>
+                            </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>c130941faaf041e1b59a32aa421f767b</uuid>
@@ -1173,6 +1207,12 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>Mbps</units>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados - LAN</value>
+                                </tag>
+                            </tags>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
@@ -1206,6 +1246,12 @@ return s;</parameter>
                             <trends>365d</trends>
                             <status>ENABLED</status>
                             <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Clientes Dedicados - LAN</value>
+                                </tag>
+                            </tags>
                         </item_prototype>
                     </item_prototypes>
                     <graph_prototypes>
