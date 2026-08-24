@@ -255,9 +255,9 @@ Disponível via MIB proprietária por marca (descoberta de portas GPON, não IF-
 |---|---|---|
 | `{$SNMP_COMMUNITY}` | `public` | Todos (ZTE não declara — adicionar) |
 | `{$GPON_DROP_MIN}` | `5` | Todos |
-| `{$ONU_DEDICADO_FILTER}` | `^dedicado-` | Todos |
+| `{$ONU_DEDICADO_FILTER.NETSTREAM}` | `^dedicado-` | Todos |
 
-### Sobre `{$ONU_DEDICADO_FILTER}`
+### Sobre `{$ONU_DEDICADO_FILTER.NETSTREAM}`
 
 **Regra**: configurar como **macro global** no Zabbix (`Administration → General → Macros`), nunca confiar apenas no valor do template.
 
@@ -267,7 +267,7 @@ Disponível via MIB proprietária por marca (descoberta de portas GPON, não IF-
 
 **Valor recomendado para macro global**:
 ```
-{$ONU_DEDICADO_FILTER} = ^(dedicado-|\d)
+{$ONU_DEDICADO_FILTER.NETSTREAM} = ^(dedicado-|\d)
 ```
 
 Captura: descrição começa com `dedicado-` **ou** com número (ID de cliente). Ajuste o regex conforme o padrão de nomes da operadora.

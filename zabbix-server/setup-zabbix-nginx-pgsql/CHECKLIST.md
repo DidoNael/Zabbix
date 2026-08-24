@@ -35,7 +35,7 @@ Marque cada item após instalar. Comandos rodam no próprio servidor.
 Configurar em **Administration → General → Macros** antes de importar os templates OLT.
 Macros globais sobrevivem a reimports de template — nunca são resetadas.
 
-- [ ] `{$ONU_DEDICADO_FILTER}` = `^(dedicado-|\d)`
+- [ ] `{$ONU_DEDICADO_FILTER.NETSTREAM}` = `^(dedicado-|\d)`
   - Filtra ONUs dedicadas na discovery. Sem essa macro, o template usa o fallback `^dedicado-`
     (seguro, mas não captura clientes com ID numérico na descrição da ONU).
   - **Não configurar** = residenciais com descrição começando por número entram na discovery.

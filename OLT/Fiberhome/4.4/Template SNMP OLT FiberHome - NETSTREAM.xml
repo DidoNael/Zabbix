@@ -1859,7 +1859,7 @@ return 0;</params>
                         <conditions>
                             <condition>
                                 <macro>{#ONTDESC}</macro>
-                                <value>{$ONU_DEDICADO_FILTER}</value>
+                                <value>{$ONU_DEDICADO_FILTER.NETSTREAM}</value>
                                 <formulaid>A</formulaid>
                             </condition>
                         </conditions>
@@ -2531,7 +2531,7 @@ and &#13;
                     <value>public</value>
                 </macro>
                 <macro>
-                    <macro>{$ONU_DEDICADO_FILTER}</macro>
+                    <macro>{$ONU_DEDICADO_FILTER.NETSTREAM}</macro>
                     <value>^dedicado-</value>
                     <description>Regex para filtrar ONUs dedicadas na discovery. Padrao seguro: so descricoes com prefixo dedicado-. Para incluir filtro por numero (ex: ID de cliente), sobrescreva com ^(dedicado-|\d) via macro global ou por host.</description>
                 </macro>

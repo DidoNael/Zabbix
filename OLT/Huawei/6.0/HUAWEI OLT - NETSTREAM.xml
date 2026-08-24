@@ -1185,7 +1185,7 @@ return 0;</parameter>
                         <conditions>
                             <condition>
                                 <macro>{#ONUDESC}</macro>
-                                <value>{$ONU_DEDICADO_FILTER}</value>
+                                <value>{$ONU_DEDICADO_FILTER.NETSTREAM}</value>
                                 <formulaid>A</formulaid>
                             </condition>
                         </conditions>
@@ -1384,7 +1384,7 @@ return 0;</parameter>
                     <description>Queda minima de ONUs online para disparar alerta de queda parcial por PON</description>
                 </macro>
                 <macro>
-                    <macro>{$ONU_DEDICADO_FILTER}</macro>
+                    <macro>{$ONU_DEDICADO_FILTER.NETSTREAM}</macro>
                     <value>^dedicado-</value>
                     <description>Regex para filtrar ONUs dedicadas na discovery. Padrao seguro: so descricoes com prefixo dedicado-. Para incluir filtro por numero (ex: ID de cliente), sobrescreva com ^(dedicado-|\d) via macro global ou por host.</description>
                 </macro>
