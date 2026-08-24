@@ -1006,7 +1006,7 @@ return JSON.stringify(result);</parameter>
                         <conditions>
                             <condition>
                                 <macro>{#ONTDESC}</macro>
-                                <value>dedicado-.*</value>
+                                <value>{$ONU_DEDICADO_FILTER}</value>
                                 <formulaid>A</formulaid>
                             </condition>
                         </conditions>
@@ -1861,6 +1861,11 @@ return s;</parameter>
                 <macro>
                     <macro>{$GPON_DROP_MIN}</macro>
                     <value>5</value>
+                </macro>
+                <macro>
+                    <macro>{$ONU_DEDICADO_FILTER}</macro>
+                    <value>^(dedicado-|\d)</value>
+                    <description>Regex para filtrar ONUs dedicadas na discovery. Padrao: descricao comeca com dedicado- ou numero.</description>
                 </macro>
             </macros>
                     <valuemaps>

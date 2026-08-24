@@ -1185,7 +1185,7 @@ return 0;</parameter>
                         <conditions>
                             <condition>
                                 <macro>{#ONUDESC}</macro>
-                                <value>dedicado-.*</value>
+                                <value>{$ONU_DEDICADO_FILTER}</value>
                                 <formulaid>A</formulaid>
                             </condition>
                         </conditions>
@@ -1382,6 +1382,11 @@ return 0;</parameter>
                     <macro>{$GPON_DROP_MIN}</macro>
                     <value>5</value>
                     <description>Queda minima de ONUs online para disparar alerta de queda parcial por PON</description>
+                </macro>
+                <macro>
+                    <macro>{$ONU_DEDICADO_FILTER}</macro>
+                    <value>^(dedicado-|\d)</value>
+                    <description>Regex para filtrar ONUs dedicadas na discovery. Padrao: descricao comeca com dedicado- ou numero.</description>
                 </macro>
             </macros>
             <valuemaps>
