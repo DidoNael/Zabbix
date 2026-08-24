@@ -2532,8 +2532,8 @@ and &#13;
                 </macro>
                 <macro>
                     <macro>{$ONU_DEDICADO_FILTER}</macro>
-                    <value>^(dedicado-|\d)</value>
-                    <description>Regex para filtrar ONUs dedicadas na discovery. Padrao: descricao comeca com dedicado- ou numero.</description>
+                    <value>^dedicado-</value>
+                    <description>Regex para filtrar ONUs dedicadas na discovery. Padrao seguro: so descricoes com prefixo dedicado-. Para incluir filtro por numero (ex: ID de cliente), sobrescreva com ^(dedicado-|\d) via macro global ou por host.</description>
                 </macro>
             </macros>
         </template>
