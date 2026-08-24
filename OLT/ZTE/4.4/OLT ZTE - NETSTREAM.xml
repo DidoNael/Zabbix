@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-05-22T13:36:26Z</date>
@@ -2408,7 +2408,7 @@ return s;</params>
                 </macro>
                 <macro>
                     <macro>{$ONU_DEDICADO_FILTER.NETSTREAM}</macro>
-                    <value>^dedicado-</value>
+                    <value>^([0-9]+-.*[a-z]|dedicado)</value>
                     <description>Regex para filtrar ONUs dedicadas na discovery. Padrao seguro: so descricoes com prefixo dedicado-. Para incluir filtro por numero (ex: ID de cliente), sobrescreva com ^(dedicado-|\d) via macro global ou por host.</description>
                 </macro>
             </macros>
