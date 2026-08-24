@@ -32,6 +32,9 @@ Todos os direitos reservados.</description>
             </groups>
             <applications>
                 <application>
+                    <name>Clientes Dedicados</name>
+                </application>
+                <application>
                     <name>OLT_HW</name>
                 </application>
                 <application>
@@ -1467,7 +1470,7 @@ and&#13;
                             <units>dBm</units>
                             <applications>
                                 <application>
-                                    <name>ONU</name>
+                                    <name>Clientes Dedicados</name>
                                 </application>
                             </applications>
                             <preprocessing>

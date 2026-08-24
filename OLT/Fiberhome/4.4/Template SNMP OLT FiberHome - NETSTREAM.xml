@@ -32,7 +32,7 @@ Todos os direitos reservados.</description>
             </groups>
             <applications>
                 <application>
-                    <name>download</name>
+                    <name>Clientes Dedicados</name>
                 </application>
                 <application>
                     <name>Interfaces</name>
@@ -45,6 +45,9 @@ Todos os direitos reservados.</description>
                 </application>
                 <application>
                     <name>onu-state</name>
+                </application>
+                <application>
+                    <name>onu-state-dedicado</name>
                 </application>
                 <application>
                     <name>ONUs Autorizadas</name>
@@ -68,9 +71,6 @@ Todos os direitos reservados.</description>
                     <name>ONUs Online</name>
                 </application>
                 <application>
-                    <name>Optical-rx</name>
-                </application>
-                <application>
                     <name>PON</name>
                 </application>
                 <application>
@@ -81,9 +81,6 @@ Todos os direitos reservados.</description>
                 </application>
                 <application>
                     <name>Uplinks OLT</name>
-                </application>
-                <application>
-                    <name>upload</name>
                 </application>
                 <application>
                     <name>Trafego PON</name>
@@ -1875,7 +1872,7 @@ return 0;</params>
                             <units>bps</units>
                             <applications>
                                 <application>
-                                    <name>download</name>
+                                    <name>Clientes Dedicados</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -1900,7 +1897,7 @@ return 0;</params>
                             <units>dBm</units>
                             <applications>
                                 <application>
-                                    <name>Optical-rx</name>
+                                    <name>Clientes Dedicados</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -1920,7 +1917,7 @@ return 0;</params>
                             <units>bps</units>
                             <applications>
                                 <application>
-                                    <name>upload</name>
+                                    <name>Clientes Dedicados</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -1945,6 +1942,9 @@ return 0;</params>
                             <applications>
                                 <application>
                                     <name>onu-state</name>
+                                </application>
+                                <application>
+                                    <name>onu-state-dedicado</name>
                                 </application>
                             </applications>
                             <valuemap>

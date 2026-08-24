@@ -47,10 +47,10 @@ Todos os direitos reservados.</description>
                     <name>onu</name>
                 </application>
                 <application>
-                    <name>onu-dedicado</name>
+                    <name>onu-state</name>
                 </application>
                 <application>
-                    <name>onu-state</name>
+                    <name>onu-state-dedicado</name>
                 </application>
                 <application>
                     <name>Uplink / LAN OLT</name>
@@ -1181,7 +1181,7 @@ return JSON.stringify(result);</params>
                             <status>DISABLED</status>
                             <applications>
                                 <application>
-                                    <name>onu-dedicado</name>
+                                    <name>onu-state-dedicado</name>
                                 </application>
                                 <application>
                                     <name>onu-state</name>
