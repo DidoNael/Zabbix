@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-07-13T18:44:03Z</date>
@@ -14,7 +14,7 @@
     </groups>
     <templates>
         <template>
-            <uuid>a11a11b22b33c44d55e66f77a88b99c0</uuid>
+            <uuid>a5bd4e5d857240acb93e7dd69aeb47cf</uuid>
             <template>Template ISP Experience - Netstream</template>
             <name>Template ISP Experience - Netstream</name>
             <description>Netstream Telecomunicações — netstream.net.br
@@ -35,14 +35,14 @@ Todos os direitos reservados.</description>
             </groups>
             <discovery_rules>
                 <discovery_rule>
-                    <uuid>b22b22c33c44d55e66f77a88b99c111</uuid>
+                    <uuid>a2ca8ae233934a4eb57d4e7c694a31eb</uuid>
                     <name>Descoberta de Servicos Web e Jogos (IX vs Transito)</name>
                     <type>EXTERNAL</type>
                     <key>discovery_isp_services_netstream.sh["{}"]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>c33c33d44d55e66f77a88b99c222</uuid>
+                            <uuid>c7a0f5399e3d45fd9ddfb2dd3393daca</uuid>
                             <name>[{#CATEGORY}] {#NAME}: Coleta Bruta Experiencia e Rota</name>
                             <type>EXTERNAL</type>
                             <key>monitor_isp_experience_netstream.sh["{#ID}","{#TARGET}","{#PORT}","{#EXPECTED_ROUTE}"]</key>
@@ -52,7 +52,7 @@ Todos os direitos reservados.</description>
                             <value_type>TEXT</value_type>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d44d44e55e66f77a88b99c332</uuid>
+                            <uuid>89983b11b082497a9224a8a15411ddb6</uuid>
                             <name>[{#CATEGORY}] {#NAME}: Status Online (0=Offline, 1=Online)</name>
                             <type>DEPENDENT</type>
                             <key>netstream.isp.status["{#ID}"]</key>
@@ -63,7 +63,7 @@ Todos os direitos reservados.</description>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.status</params>
+                                    <parameters>`n                        <parameter>$.status</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -71,7 +71,7 @@ Todos os direitos reservados.</description>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d44d44e55e66f77a88b99c333</uuid>
+                            <uuid>0c4d45fe092149a3a70bda3a9c82c4a6</uuid>
                             <name>[{#CATEGORY}] {#NAME}: Rota Atual (IX ou Transito)</name>
                             <type>DEPENDENT</type>
                             <key>netstream.isp.current_route["{#ID}"]</key>
@@ -82,7 +82,7 @@ Todos os direitos reservados.</description>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.current_route</params>
+                                    <parameters>`n                        <parameter>$.current_route</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -90,7 +90,7 @@ Todos os direitos reservados.</description>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d44d44e55e66f77a88b99c334</uuid>
+                            <uuid>a9bea002d6b64cc0bd498e00f1db82cf</uuid>
                             <name>[{#CATEGORY}] {#NAME}: Status da Rota / Desvio</name>
                             <type>DEPENDENT</type>
                             <key>netstream.isp.route_status["{#ID}"]</key>
@@ -101,7 +101,7 @@ Todos os direitos reservados.</description>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.route_status</params>
+                                    <parameters>`n                        <parameter>$.route_status</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -109,7 +109,7 @@ Todos os direitos reservados.</description>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d44d44e55e66f77a88b99c335</uuid>
+                            <uuid>022f0519b607469f92a3bd19fa3a4851</uuid>
                             <name>[{#CATEGORY}] {#NAME}: Indicador de Desvio de Rota</name>
                             <type>DEPENDENT</type>
                             <key>netstream.isp.route_changed["{#ID}"]</key>
@@ -120,7 +120,7 @@ Todos os direitos reservados.</description>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.route_changed</params>
+                                    <parameters>`n                        <parameter>$.route_changed</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -128,7 +128,7 @@ Todos os direitos reservados.</description>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d44d44e55e66f77a88b99c336</uuid>
+                            <uuid>521a690f398d426ab3b2685b75841a6d</uuid>
                             <name>[{#CATEGORY}] {#NAME}: Resumo do Salto e IP</name>
                             <type>DEPENDENT</type>
                             <key>netstream.isp.route_summary["{#ID}"]</key>
@@ -139,7 +139,7 @@ Todos os direitos reservados.</description>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.route_summary</params>
+                                    <parameters>`n                        <parameter>$.route_summary</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -147,7 +147,7 @@ Todos os direitos reservados.</description>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d44d44e55e66f77a88b99c341</uuid>
+                            <uuid>b3db8d4158a446068ecb649a3ddbed01</uuid>
                             <name>[{#CATEGORY}] {#NAME}: MTR Trace Completo</name>
                             <type>DEPENDENT</type>
                             <key>netstream.isp.mtr_trace["{#ID}"]</key>
@@ -158,7 +158,7 @@ Todos os direitos reservados.</description>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.mtr_trace</params>
+                                    <parameters>`n                        <parameter>$.mtr_trace</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -166,7 +166,7 @@ Todos os direitos reservados.</description>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d44d44e55e66f77a88b99c337</uuid>
+                            <uuid>279a3bae0e284aee9b793f47e62e40ba</uuid>
                             <name>[{#CATEGORY}] {#NAME}: Latencia TCP Handshake</name>
                             <type>DEPENDENT</type>
                             <key>netstream.isp.tcp_handshake["{#ID}"]</key>
@@ -178,7 +178,7 @@ Todos os direitos reservados.</description>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.tcp_handshake_ms</params>
+                                    <parameters>`n                        <parameter>$.tcp_handshake_ms</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -186,7 +186,7 @@ Todos os direitos reservados.</description>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d44d44e55e66f77a88b99c338</uuid>
+                            <uuid>b2c9b15b61c441c7b1975eaa86c61868</uuid>
                             <name>[{#CATEGORY}] {#NAME}: Tempo de Resposta HTTP</name>
                             <type>DEPENDENT</type>
                             <key>netstream.isp.http_time["{#ID}"]</key>
@@ -198,7 +198,7 @@ Todos os direitos reservados.</description>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.http_time_ms</params>
+                                    <parameters>`n                        <parameter>$.http_time_ms</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -206,7 +206,7 @@ Todos os direitos reservados.</description>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d44d44e55e66f77a88b99c339</uuid>
+                            <uuid>6daded5c1b654e21bcea4071a2d2a8f8</uuid>
                             <name>[{#CATEGORY}] {#NAME}: Latencia ICMP Ping</name>
                             <type>DEPENDENT</type>
                             <key>netstream.isp.icmp_ping["{#ID}"]</key>
@@ -218,7 +218,7 @@ Todos os direitos reservados.</description>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.icmp_ping_ms</params>
+                                    <parameters>`n                        <parameter>$.icmp_ping_ms</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -226,7 +226,7 @@ Todos os direitos reservados.</description>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d44d44e55e66f77a88b99c340</uuid>
+                            <uuid>38dbea9dec2b4c158b6dc70ba00e0197</uuid>
                             <name>[{#CATEGORY}] {#NAME}: Perda Efetiva ICMP (Normalizada)</name>
                             <type>DEPENDENT</type>
                             <key>netstream.isp.icmp_loss["{#ID}"]</key>
@@ -238,7 +238,7 @@ Todos os direitos reservados.</description>
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.icmp_loss_pct</params>
+                                    <parameters>`n                        <parameter>$.icmp_loss_pct</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -248,13 +248,13 @@ Todos os direitos reservados.</description>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <uuid>e55e55f66f77a88b99c00d441</uuid>
+                            <uuid>fd1512407c404b8aa9fa026eab7f95f1</uuid>
                             <expression>min(/Template ISP Experience - Netstream/netstream.isp.route_changed["{#ID}"],15m)=1</expression>
                             <name>[{#CATEGORY}] {#NAME}: Trafego desviado da rota esperada ({#EXPECTED_ROUTE}) ha 15m</name>
                             <priority>WARNING</priority>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <uuid>e55e55f66f77a88b99c00d442</uuid>
+                            <uuid>89522b58f66b49b7b7fdd55e8b2783eb</uuid>
                             <expression>max(/Template ISP Experience - Netstream/netstream.isp.status["{#ID}"],3m)=0</expression>
                             <name>[{#CATEGORY}] {#NAME}: Servico totalmente Inacessivel (HTTP, TCP e Ping indisponiveis ha 3m)</name>
                             <priority>DISASTER</priority>

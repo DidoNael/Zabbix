@@ -50,7 +50,7 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                     <preprocessing>
                         <step>
                             <type>MULTIPLIER</type>
-                            <params>0.01</params>
+                            <parameters>`n                        <parameter>0.01</parameter>`n                    </parameters>
                         </step>
                     </preprocessing>
                     <triggers>
@@ -258,11 +258,11 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters/>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>`n                        <parameter>8</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -279,11 +279,11 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters/>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>8</params>
+                                    <parameters>`n                        <parameter>8</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -299,7 +299,7 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>bea97ac88d8b4854a3a5f03963ed2dd0</uuid>
-                                    <expression>max(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}],#3)=2 and diff(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}])=1 and count(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <expression>max(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}],#3)=2 and change(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}])&lt;&gt;0 and count(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>last(/Template Switch Cisco - Netstream/netstream.if.status[{#SNMPINDEX}])=1</recovery_expression>
                                     <name>Interface {#IFNAME}: Link DOWN em {HOST.NAME}</name>
@@ -331,7 +331,7 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>1000000</params>
+                                    <parameters>`n                        <parameter>1000000</parameter>`n                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -347,7 +347,7 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters/>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -363,7 +363,7 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters/>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -433,7 +433,7 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>48aea50a005649fd8d919d6a8094d412</uuid>
-                            <expression>last(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Cisco - Netstream/netstream.bgp.peer.adminstatus[{#IP}.{#ASN}])=2 and diff(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}])=1 and count(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],10m)&gt;1</expression>
+                            <expression>last(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],#3)&lt;&gt;6 and last(/Template Switch Cisco - Netstream/netstream.bgp.peer.adminstatus[{#IP}.{#ASN}])=2 and change(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}])&lt;&gt;0 and count(/Template Switch Cisco - Netstream/netstream.bgp.peer.state[{#IP}.{#ASN}],10m)&gt;1</expression>
                             <name>BGP Peer {#IP} (ASN {#ASN}): DOWN em {HOST.NAME}</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
