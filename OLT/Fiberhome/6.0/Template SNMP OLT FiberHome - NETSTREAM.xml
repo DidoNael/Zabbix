@@ -1540,6 +1540,15 @@ return 0;</parameter>
                     <key>oltonudedicado</key>
                     <delay>1d</delay>
                     <status>DISABLED</status>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#ONTDESC}</macro>
+                                <value>{$ONU_DEDICADO_FILTER.NETSTREAM}</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>775752ab937f46df805abf2ff818c9fc</uuid>
