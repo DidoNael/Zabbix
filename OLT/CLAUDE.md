@@ -255,6 +255,22 @@ Disponível via MIB proprietária por marca (descoberta de portas GPON, não IF-
 |---|---|---|
 | `{$SNMP_COMMUNITY}` | `public` | Todos (ZTE não declara — adicionar) |
 | `{$GPON_DROP_MIN}` | `5` | Todos |
+| `{$ONU_DEDICADO_FILTER}` | `^dedicado-` | Todos |
+
+### Sobre `{$ONU_DEDICADO_FILTER}`
+
+**Regra**: configurar como **macro global** no Zabbix (`Administration → General → Macros`), nunca confiar apenas no valor do template.
+
+**Por quê**: macros de template são resetadas a cada reimport. A macro global sobrevive a qualquer reimport e é o lugar correto para configuração persistente.
+
+**Comportamento sem macro global**: template usa fallback `^dedicado-` — só captura ONUs com prefixo `dedicado-`. Residenciais com número na descrição **não entram**, mas clientes dedicados com ID numérico na descrição também não são descobertos.
+
+**Valor recomendado para macro global**:
+```
+{$ONU_DEDICADO_FILTER} = ^(dedicado-|\d)
+```
+
+Captura: descrição começa com `dedicado-` **ou** com número (ID de cliente). Ajuste o regex conforme o padrão de nomes da operadora.
 
 ---
 

@@ -30,6 +30,20 @@ Marque cada item após instalar. Comandos rodam no próprio servidor.
 - [ ] PostgreSQL só em `localhost` (`ss -lntp | grep 5432` → apenas 127.0.0.1)
 - [ ] `.env` com permissão `600` e fora do Git (`git status` limpo)
 
+## Macros globais obrigatórias
+
+Configurar em **Administration → General → Macros** antes de importar os templates OLT.
+Macros globais sobrevivem a reimports de template — nunca são resetadas.
+
+- [ ] `{$ONU_DEDICADO_FILTER}` = `^(dedicado-|\d)`
+  - Filtra ONUs dedicadas na discovery. Sem essa macro, o template usa o fallback `^dedicado-`
+    (seguro, mas não captura clientes com ID numérico na descrição da ONU).
+  - **Não configurar** = residenciais com descrição começando por número entram na discovery.
+  - Ajuste o regex conforme o padrão de nomes da operadora. Exemplos:
+    - Só prefixo dedicado: `^dedicado-`
+    - Prefixo dedicado ou ID numérico: `^(dedicado-|\d)`
+    - Prefixo dedicado ou CID específico: `^(dedicado-|CID\d)`
+
 ## Backup
 - [ ] `sudo ./backup/backup-zabbix-db.sh` gera o `.dump` sem erro
 - [ ] Entrada no cron criada (backup diário)
