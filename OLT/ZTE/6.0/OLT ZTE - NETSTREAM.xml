@@ -996,25 +996,15 @@ return JSON.stringify(result);</parameter>
                 </discovery_rule>
                 <discovery_rule>
                     <uuid>c98897d239574ec98261a6faebb0510c</uuid>
-                    <name>Discovery ONU DEDICADO</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>discovery[{#ONTDESC},1.3.6.1.4.1.3902.1012.3.28.1.1.2]</snmp_oid>
-                    <key>netstream.oltonudedicado</key>
+                    <name>NETSTREAM - Discovery ONU Dedicada ZTE</name>
+                    <type>EXTERNAL</type>
+                    <key>netstream.gpon.onu.dedicado.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                     <delay>1d</delay>
                     <status>DISABLED</status>
-                    <filter>
-                        <conditions>
-                            <condition>
-                                <macro>{#ONTDESC}</macro>
-                                <value>{$ONU_DEDICADO_FILTER.NETSTREAM}</value>
-                                <formulaid>A</formulaid>
-                            </condition>
-                        </conditions>
-                    </filter>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>3f38cac782744af39ed57c18facecf42</uuid>
-                            <name>Cliente - {#ONTDESC}</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Status</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.3902.1012.3.28.2.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.onu.status.[{#SNMPINDEX}]</key>
@@ -1040,7 +1030,7 @@ return JSON.stringify(result);</parameter>
                                     <expression>min(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=3</recovery_expression>
-                                    <name>Cliente Dedicado Offline / Desconectado: {#ONTDESC}</name>
+                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Offline / Desconectada</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
@@ -1058,7 +1048,7 @@ return JSON.stringify(result);</parameter>
                                         </tag>
                                         <tag>
                                             <tag>onu_id</tag>
-                                            <value>{#ONTDESC}</value>
+                                            <value>{#NETSTREAM.ONU_DESC}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -1066,9 +1056,9 @@ return JSON.stringify(result);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>95d591938bc04f3685e48c14020bd3b1</uuid>
-                            <name>Sinal Optico RX (dBm) - Cliente Dedicado: {#ONTDESC}</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico RX (dBm)</name>
                             <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.9.1.4.{#SNMPINDEX}</snmp_oid>
+                            <snmp_oid>1.3.6.1.4.1.3902.1012.3.50.11.2.1.10.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.dedicado.rxpower[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <history>7d</history>
@@ -1087,8 +1077,8 @@ return JSON.stringify(result);</parameter>
                                     <type>JAVASCRIPT</type>
                                     <parameters>
                                         <parameter>var power = parseFloat(value);
-if (power === 0 || isNaN(power) || power &gt; 100000) return -40;
-return ((power * 0.002) - 30).toFixed(2);</parameter>
+if (power === 0 || isNaN(power)) return -40;
+return (-power / 10).toFixed(1);</parameter>
                                     </parameters>
                                 </step>
                             </preprocessing>
@@ -1096,7 +1086,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                 <trigger_prototype>
                                     <uuid>ccb82f91053643f4a46ea8ed23c79431</uuid>
                                     <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-28 and last(/OLT ZTE - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-40</expression>
-                                    <name>Cliente Dedicado {#ONTDESC}: Sinal Optico Critico ({ITEM.LASTVALUE1})</name>
+                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Critico ({ITEM.LASTVALUE1})</name>
                                     <priority>HIGH</priority>
                                     <description>Sinal optico da ONU dedicada extremamente baixo (&lt; -28 dBm). Risco iminente de queda do link.</description>
                                     <tags>
@@ -1114,7 +1104,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                         </tag>
                                         <tag>
                                             <tag>onu_id</tag>
-                                            <value>{#ONTDESC}</value>
+                                            <value>{#NETSTREAM.ONU_DESC}</value>
                                         </tag>
                                         <tag>
                                             <tag>sinal_rx</tag>
@@ -1125,7 +1115,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                 <trigger_prototype>
                                     <uuid>65bd3326331f4889a3bd219018dbdd72</uuid>
                                     <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-25 and last(/OLT ZTE - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-28</expression>
-                                    <name>Cliente Dedicado {#ONTDESC}: Sinal Optico Degradado ({ITEM.LASTVALUE1})</name>
+                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Degradado ({ITEM.LASTVALUE1})</name>
                                     <priority>WARNING</priority>
                                     <description>Sinal optico do cliente dedicado abaixo de -25 dBm.</description>
                                 </trigger_prototype>
@@ -1133,33 +1123,36 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8d3d0598197e4887985385a74e3f53d3</uuid>
-                            <name>Motivo da Ultima Queda - Cliente Dedicado: {#ONTDESC}</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Motivo da Ultima Queda</name>
                             <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7.{#SNMPINDEX}</snmp_oid>
+                            <snmp_oid>1.3.6.1.4.1.3902.1012.3.28.2.1.7.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.dedicado.offline_reason[{#SNMPINDEX}]</key>
                             <delay>10m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
                             <status>ENABLED</status>
-                            <value_type>TEXT</value_type>
+                            <value_type>UNSIGNED</value_type>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
                                     <value>Clientes Dedicados</value>
                                 </tag>
                             </tags>
+                            <valuemap>
+                                <name>OLT-ZTE-OFFLINE-REASON</name>
+                            </valuemap>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8193182f238e4428a3906c47d99eb9c5</uuid>
-                            <name>Distancia da ONU (m) - Cliente Dedicado: {#ONTDESC}</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Distancia (m)</name>
                             <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.6.{#SNMPINDEX}</snmp_oid>
+                            <snmp_oid>1.3.6.1.4.1.3902.1012.3.28.1.1.21.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.dedicado.distance[{#SNMPINDEX}]</key>
                             <delay>1h</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>ENABLED</status>
-                            <value_type>FLOAT</value_type>
+                            <status>DISABLED</status>
+                            <value_type>UNSIGNED</value_type>
                             <units>m</units>
                             <tags>
                                 <tag>
@@ -1170,7 +1163,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>04f7844a8c744734970dd58ab5e356fe</uuid>
-                            <name>LAN 1 - Status da Porta - Cliente Dedicado: {#ONTDESC}</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Status</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.11.2.1.3.{#SNMPINDEX}.1</snmp_oid>
                             <key>netstream.dedicado.lan.status[{#SNMPINDEX}]</key>
@@ -1189,7 +1182,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                 <trigger_prototype>
                                     <uuid>c130941faaf041e1b59a32aa421f767b</uuid>
                                     <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])=2 and change(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])&lt;&gt;0 and count(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}],10m)&gt;1 and last(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=1</expression>
-                                    <name>Cliente Dedicado {#ONTDESC}: Cabo LAN Desconectado / Porta Ethernet DOWN</name>
+                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Cabo LAN Desconectado / Porta Ethernet DOWN</name>
                                     <priority>WARNING</priority>
                                     <description>A ONU dedicada esta online na fibra, porem o cabo de rede RJ45 (LAN 1) que liga ao cliente esta desconectado ou DOWN.</description>
                                 </trigger_prototype>
@@ -1197,7 +1190,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>af0d74feb26e498c8fd2f024aad31462</uuid>
-                            <name>LAN 1 - Velocidade Negociada - Cliente Dedicado: {#ONTDESC}</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Velocidade Negociada</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.11.2.1.4.{#SNMPINDEX}.1</snmp_oid>
                             <key>netstream.dedicado.lan.speed[{#SNMPINDEX}]</key>
@@ -1229,7 +1222,7 @@ return s;</parameter>
                                 <trigger_prototype>
                                     <uuid>cc750faf40784e07826254812b7759ff</uuid>
                                     <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.speed[{#SNMPINDEX}])=100 and last(/OLT ZTE - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])=1</expression>
-                                    <name>Cliente Dedicado {#ONTDESC}: Porta LAN Negociando a apenas 100 Mbps (Degradacao Cabo RJ45)</name>
+                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN Negociando a 100 Mbps (Degradacao Cabo RJ45)</name>
                                     <priority>WARNING</priority>
                                     <description>O cabo de rede do cliente dedicado negociou a 100 Mbps em vez de Gigabit (1000 Mbps). Verificar crimpagem, oxidacao de conector RJ45 ou porta do firewall.</description>
                                 </trigger_prototype>
@@ -1237,7 +1230,7 @@ return s;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>38cac5431ed34ac79c94d253df2c802d</uuid>
-                            <name>LAN 1 - Modo Duplex - Cliente Dedicado: {#ONTDESC}</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Modo Duplex</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.11.2.1.5.{#SNMPINDEX}.1</snmp_oid>
                             <key>netstream.dedicado.lan.duplex[{#SNMPINDEX}]</key>
@@ -1257,7 +1250,7 @@ return s;</parameter>
                     <graph_prototypes>
                         <graph_prototype>
                             <uuid>35b03265a4d64624983eaa5571b2024e</uuid>
-                            <name>Cliente Dedicado: {#ONTDESC} - Sinal Optico RX (dBm)</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico RX (dBm)</name>
                             <ymin_type_1>FIXED</ymin_type_1>
                             <ymax_type_1>FIXED</ymax_type_1>
                             <yaxismin>-35.0000</yaxismin>
@@ -2094,6 +2087,10 @@ return s;</parameter>
                 <mapping>
                     <value>3</value>
                     <newvalue>losi (Loss of Signal of ONUs)</newvalue>
+                </mapping>
+                <mapping>
+                    <value>4</value>
+                    <newvalue>lof (Loss of Frame)</newvalue>
                 </mapping>
                 <mapping>
                     <value>9</value>
