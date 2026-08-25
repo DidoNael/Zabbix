@@ -1851,12 +1851,6 @@ return s;</parameter>
                                     <value>telegram</value>
                                 </tag>
                             </tags>
-                            <dependencies>
-                                <dependency>
-                                    <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&lt;&gt;0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
-                                </dependency>
-                            </dependencies>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>2c2c45b1d01348b3a6db6b9377622b51</uuid>
