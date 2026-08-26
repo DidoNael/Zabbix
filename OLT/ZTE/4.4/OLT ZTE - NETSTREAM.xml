@@ -1314,7 +1314,7 @@ return (-power / 10).toFixed(1);</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>ENABLED</status>
+                            <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <applications>
                                 <application>
@@ -1339,7 +1339,7 @@ return (-power / 10).toFixed(1);</params>
                             <delay>10m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>ENABLED</status>
+                            <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>Mbps</units>
                             <applications>
@@ -1375,7 +1375,7 @@ return s;</params>
                             <delay>30m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>ENABLED</status>
+                            <status>DISABLED</status>
                             <value_type>TEXT</value_type>
                             <applications>
                                 <application>
