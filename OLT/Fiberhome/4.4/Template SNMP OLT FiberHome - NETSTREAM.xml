@@ -1945,7 +1945,7 @@ return 0;</params>
                             <delay>10m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>UNSIGNED</value_type>
                             <applications>
                                 <application>
@@ -1962,7 +1962,7 @@ return 0;</params>
                             <delay>1h</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>UNSIGNED</value_type>
                             <units>m</units>
                             <applications>
@@ -1980,7 +1980,7 @@ return 0;</params>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <applications>
                                 <application>
@@ -2003,7 +2003,7 @@ return 0;</params>
                             <delay>10m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>Mbps</units>
                             <applications>
@@ -2021,7 +2021,7 @@ return 0;</params>
                             <delay>30m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>TEXT</value_type>
                             <applications>
                                 <application>

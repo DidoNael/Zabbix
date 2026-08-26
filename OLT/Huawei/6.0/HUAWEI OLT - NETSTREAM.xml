@@ -1470,7 +1470,7 @@ return 0;</parameter>
                             <delay>10m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>Mbps</units>
                             <tags>
@@ -1524,7 +1524,7 @@ return 0;</parameter>
                             <delay>30m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>TEXT</value_type>
                             <tags>
                                 <tag>
@@ -1549,7 +1549,7 @@ return 0;</parameter>
                             <delay>1h</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>UNSIGNED</value_type>
                             <units>m</units>
                             <tags>

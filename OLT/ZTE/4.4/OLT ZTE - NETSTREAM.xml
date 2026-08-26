@@ -1080,7 +1080,7 @@ return JSON.stringify(result);</params>
                     <type>EXTERNAL</type>
                     <key>netstream.gpon.onu.dedicado.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                     <delay>1d</delay>
-                    <status>DISABLED</status>
+                    <status>ENABLED</status>
                     <item_prototypes>
                         <item_prototype>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Status atual</name>
@@ -1223,7 +1223,7 @@ return (-power / 10).toFixed(1);</params>
                             <delay>1h</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>UNSIGNED</value_type>
                             <units>m</units>
                             <applications>

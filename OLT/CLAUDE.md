@@ -241,7 +241,7 @@ Disponível via MIB proprietária por marca (descoberta de portas GPON, não IF-
 | Feature | ZTE | Fiberhome | Huawei |
 |---|---|---|---|
 | TX Power dBm por PON | PRESENTE | DISABLED | AUSENTE |
-| RX Power dBm por PON | AUSENTE | DISABLED | AUSENTE |
+| RX Power dBm por PON | PRESENTE | DISABLED | AUSENTE |
 | Temperatura SFP por PON | PRESENTE | PRESENTE | AUSENTE |
 
 - Fiberhome: habilitar TX/RX Power via GEPON-OLT-COMMON-MIB
@@ -323,16 +323,16 @@ Captura: descrição começa com `dedicado-` **ou** com número (ID de cliente).
 
 ### Fiberhome — pendente
 
-- [ ] Criar template 6.0
-- [ ] Habilitar discovery de hardware (DISABLED → ENABLED)
-- [ ] Corrigir threshold CPU/Mem: 80% → 90%, adicionar janela min(10m)
+- [x] Template 6.0 — já existe
+- [x] Threshold CPU/Mem: já em 90% / min(10m) em ambas versões
+- [x] Trigger reboot: já `<600s WARNING` em ambas versões
+- [x] Trigger nodata: corrigido de 1h → 5m em 4.4 e 6.0 — FEITO
+- [x] Habilitar ONU Dedicada (discovery `oltonudedicado`): habilitado em 4.4 e 6.0 — FEITO (item de status usa GEPON-OLT-COMMON-MIB; RX Power e tráfego funcionam com OID numérico)
+- [ ] Adicionar causa de queda na ONU Dedicada (OID desconhecido; investigar na GEPON-OLT-COMMON-MIB)
+- [ ] Habilitar discovery de hardware (item_prototypes DISABLED dentro de card.info.discovery — investigar quais podem ser habilitados sem GEPON-OLT-COMMON-MIB)
 - [ ] Adicionar triggers de status de placa (Faulty, Offline, Power, Not in Service)
-- [ ] Adicionar trigger `nodata(5m)=1` DISASTER
-- [ ] Corrigir trigger reboot: `<1m INFO` → `<600s WARNING`
-- [ ] Adicionar PSU1 e PSU2
-- [ ] Adicionar Fan
-- [ ] Habilitar ONU Dedicada (discovery DISABLED)
-- [ ] Adicionar causa de queda na ONU Dedicada
+- [ ] Adicionar PSU1 e PSU2 (OID: investigar via snmpwalk 5875.800.3.9.5)
+- [ ] Adicionar Fan (OID: investigar via snmpwalk 5875.800.3.9.5)
 - [ ] LAN status/speed/duplex: investigacao SNMP nao encontrou tabela per-porta no AN5516. ONU index (ex: 369624576) nao aparece como parte de index multi-nivel em nenhuma subtree de 5875.800.3.*. Provavelmente requer MIB GEPON-OLT-COMMON-MIB instalada no servidor Zabbix — tentar via nome de MIB GEPON-OLT-COMMON-MIB::onuUniLinkState.{#SNMPINDEX} se MIB disponivel.
 - [ ] Habilitar TX/RX Power por PON (DISABLED via GEPON-OLT-COMMON-MIB — não habilitar corrente mA)
 - [ ] Padronizar tags de triggers legados (PONDOWN/PONFH → scope/tipo/notificar)
@@ -340,27 +340,29 @@ Captura: descrição começa com `dedicado-` **ou** com número (ID de cliente).
 
 ### Huawei — pendente
 
-- [ ] Criar template 6.0
-- [ ] Adicionar item uptime + trigger reboot
-- [ ] Adicionar trigger `nodata(5m)=1` DISASTER
-- [ ] Adicionar Memória % por slot (só tem CPU e temperatura)
-- [ ] Adicionar status da placa com value map detalhado
-- [ ] Adicionar triggers CPU>90%/10min, Mem>90%/10min, status Faulty/Offline/Power
-- [ ] Adicionar PSU1 e PSU2
-- [ ] Adicionar Fan
-- [ ] Habilitar ONU Dedicada (DISABLED) — adicionar causa queda, distância
+- [x] Templates 4.4 e 6.0 — ambos existem
+- [x] Uptime + trigger reboot — já presentes em 4.4 e 6.0
+- [x] Trigger nodata: corrigido de 1h → 5m em 4.4 e 6.0 — FEITO
+- [x] LAN status/speed/duplex — items DISABLED adicionados em 4.4 e 6.0 com triggers completos
+- [x] Memória % por slot — já presente (`netstream.huawei.card.mem[{#SNMPINDEX}]`, trigger >90%/10m)
+- [x] CPU por slot — já presente (`OltCpuUtilBoard[{#SNMPINDEX}]`, trigger >90%/10m)
+- [x] Status da placa — já presente (`netstream.huawei.card.status[{#SNMPINDEX}]`, triggers para val=4 e val=5)
+- [x] PSU discovery + trigger (not supply) — adicionado em 4.4 e 6.0 via hwPowerIndex/hwPowerStatus
+- [x] Fan discovery + trigger (abnormal) — adicionado em 4.4 e 6.0 via hwFanIndex/hwFanState
+- [x] ifHCInOctets na discovery olt_pcb — já tem CHANGE_PER_SECOND + x8
+- [x] Erros de entrada nos uplinks — já presente (`netstream.uplink.in.errors`)
+- [x] Trigger Link DOWN nos uplinks — já presente (max(#3)=2 and diff()=1 and count(10m)>1)
+- [x] Graph prototype de uplink — já presente
+- [x] Habilitar ONU Dedicada (discovery `onudisc`): habilitado em 4.4 e 6.0 — FEITO
+- [ ] Adicionar causa queda e distância à ONU Dedicada (OIDs não verificados ainda)
 - [ ] Validar portIdx correto para LAN status/speed/duplex: OID base `1.3.6.1.4.1.2011.6.128.1.1.2.62.1.3.{#SNMPINDEX}.{portIdx}` — col3>=5=UP, col3=3=DOWN; col4=7=1G,col4=6=100M,col4=4=DOWN. portIdx=1 é default mas varia por ONU (ex: ONU 4194312448.4 usa portIdx=4). Habilitar itens DISABLED após confirmar portIdx.
-- [ ] Corrigir item `ifHCInOctets` na discovery `olt_pcb`: adicionar CHANGE_PER_SECOND + x8
 - [ ] Investigar OIDs de SFP por PON (ausente)
-- [ ] Adicionar erros de entrada nos uplinks (ausente)
-- [ ] Adicionar trigger Link DOWN nos uplinks (ausente)
 - [ ] Padronizar tags de triggers legados (PONDOWN/PONHW → scope/tipo/notificar)
-- [ ] Adicionar graph prototype de uplink
 
 ### ZTE — pendente
 
-- [ ] Declarar macro `{$SNMP_COMMUNITY}` no bloco de macros do template (usada mas não declarada)
-- [ ] Investigar e corrigir `PROPRIETARYINDEX = (slot+1)*256` → `slot*256` (lê dados da PON errada)
-- [ ] Habilitar PSU1 e PSU2 por padrão (atualmente DISABLED)
-- [ ] Habilitar Fan por padrão (atualmente DISABLED)
-- [ ] Adicionar RX Power dBm por PON (TX e Temperatura existem; RX ausente)
+- [x] Declarar macro `{$SNMP_COMMUNITY}` no bloco de macros do template — FEITO
+- [x] Trigger nodata: corrigido de 1h → 5m em 4.4 e 6.0 — FEITO
+- [x] PSU1, PSU2 e Fan — já estavam ENABLED, nenhuma ação necessária
+- [x] Adicionar RX Power dBm por PON (OID `.30.40.2.4.1.2.{#PROPRIETARYINDEX}`, MULTIPLIER 0.001) — FEITO
+- [ ] Investigar e corrigir `PROPRIETARYINDEX = (slot+1)*256` → `slot*256` (lê dados da PON errada) — requer acesso à OLT ZTE para verificar
