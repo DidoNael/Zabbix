@@ -1,0 +1,7 @@
+#!/bin/bash
+PORT=161
+if [ -f /etc/zabbix/olt_ports.conf ]; then
+    P=$(grep "^$1=" /etc/zabbix/olt_ports.conf | cut -d= -f2)
+    [ -n "$P" ] && PORT="$P"
+fi
+exec python3 /usr/lib/zabbix/externalscripts/onu.dedicado.fiberhome.py "$1" "$2" "$PORT"

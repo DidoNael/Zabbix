@@ -166,8 +166,8 @@ Todos os direitos reservados.</description>
                         </trigger>
                         <trigger>
                             <uuid>27489b9b889f426eb32636c2882a0cf4</uuid>
-                            <expression>nodata(/OLT ZTE - NETSTREAM/netstream.system.uptime,1h)=1</expression>
-                            <name>OLT ZTE: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 1h)</name>
+                            <expression>nodata(/OLT ZTE - NETSTREAM/netstream.system.uptime,5m)=1</expression>
+                            <name>OLT ZTE: Equipamento Inacessivel / Desligado (Sem resposta SNMP)</name>
                             <priority>DISASTER</priority>
                             <status>DISABLED</status>
                             <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 60 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
@@ -580,6 +580,24 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
+                            <uuid>a3f7c921d48e4b65b01234567890abcd</uuid>
+                            <name>Porta {#PONNAME} ({#PONDESC}): Potencia de Entrada do SFP (RX Power)</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.3902.1082.30.40.2.4.1.2.{#PROPRIETARYINDEX}</snmp_oid>
+                            <key>netstream.gpon.sfp.rxpower[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>0.001</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
                             <uuid>cc773368125643a8b32b13e4ac75ccbe</uuid>
                             <name>Porta {#PONNAME} ({#PONDESC}): Erros CRC / Entrada (Taxa)</name>
                             <type>SNMP_AGENT</type>
@@ -911,90 +929,6 @@ return JSON.stringify(result);</parameter>
                     </preprocessing>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>b34d6a23f0bb4b9bb8c332026f9a44b4</uuid>
-                    <name>Discovery pon state | pon name | pondesc</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>discovery[{#PONNAME},1.3.6.1.2.1.31.1.1.1.1, {#PONDESC},1.3.6.1.2.1.2.2.1.2, {#PONADMIN},1.3.6.1.2.1.2.2.1.7, {#PONOPER},1.3.6.1.2.1.2.2.1.8, {#ONUAUTH},1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14]</snmp_oid>
-                    <key>netstream.interfaces.discovery</key>
-                    <delay>1d</delay>
-                    <status>DISABLED</status>
-                    <filter>
-                        <evaltype>AND</evaltype>
-                        <conditions>
-                            <condition>
-                                <macro>{#PONDESC}</macro>
-                                <value>LAB-NAEL</value>
-                                <formulaid>A</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#PONNAME}</macro>
-                                <value>^(xgei_|gei_).*</value>
-                                <formulaid>B</formulaid>
-                            </condition>
-                        </conditions>
-                    </filter>
-                    <item_prototypes>
-                        <item_prototype>
-                            <uuid>2fc31460a8ae4cba986e6f236d10d0d4</uuid>
-                            <name>ONU Autorizadas: {#PONNAME} : {#PONDESC}</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.onuauth.[{#SNMPINDEX}]</key>
-                            <delay>1d</delay>
-                            <trends>0</trends>
-                            <status>DISABLED</status>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>9e39bb09d32a48d7bd2624049fae2865</uuid>
-                            <name>Operational Status: {#PONNAME} : {#PONDESC}</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.statuspon.[{#SNMPINDEX}]</key>
-                            <delay>1m</delay>
-                            <trends>90d</trends>
-                            <status>DISABLED</status>
-                            <valuemap>
-                                <name>OLT</name>
-                            </valuemap>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>ac965e45782747f4bfc18a3f7e10d944</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.statuspon.[{#SNMPINDEX}])=2 and min(/OLT ZTE - NETSTREAM/netstream.statuspon.[{#SNMPINDEX}],#3)=2</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.statuspon.[{#SNMPINDEX}])=1</recovery_expression>
-                                    <name>{#PONNAME} : {#PONDESC}</name>
-                                    <status>DISABLED</status>
-                                    <priority>HIGH</priority>
-                                    <description>{#PONNAME}</description>
-                                    <manual_close>YES</manual_close>
-                                    <tags>
-                                        <tag>
-                                            <tag>scope</tag>
-                                            <value>OLT</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>tipo</tag>
-                                            <value>Conectividade</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>vendor</tag>
-                                            <value>ZTE</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>pon</tag>
-                                            <value>{#PONNAME}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>pon_desc</tag>
-                                            <value>{#PONDESC}</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                            </trigger_prototypes>
-                        </item_prototype>
-                    </item_prototypes>
-                </discovery_rule>
-                <discovery_rule>
                     <uuid>c98897d239574ec98261a6faebb0510c</uuid>
                     <name>NETSTREAM - Discovery ONU Dedicada ZTE</name>
                     <type>EXTERNAL</type>
@@ -1041,7 +975,7 @@ return JSON.stringify(result);</parameter>
                                         </tag>
                                         <tag>
                                             <tag>tipo</tag>
-                                            <value>Conectividade</value>
+                                            <value>ONU_Dedicada</value>
                                         </tag>
                                         <tag>
                                             <tag>servico</tag>
@@ -1051,7 +985,11 @@ return JSON.stringify(result);</parameter>
                                             <tag>onu_id</tag>
                                             <value>{#NETSTREAM.ONU_DESC}</value>
                                         </tag>
-                                    </tags>
+                                                                            <tag>
+                                            <tag>ONUDEDICADO</tag>
+                                            <value>ONUDEDICADO</value>
+                                        </tag>
+</tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1757,7 +1695,7 @@ return String(s);</parameter>
                             <key>netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.online.zte[{#NETSTREAM.PON_INDEX}])</params>
+                            <params>last(//netstream.gpon.pon.online.zte[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>5f22daf6d77142ec92ffebff58b53816</uuid>
@@ -1766,7 +1704,7 @@ return String(s);</parameter>
                             <key>netstream.gpon.pon.calc.offline.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.offline.zte[{#NETSTREAM.PON_INDEX}])</params>
+                            <params>last(//netstream.gpon.pon.offline.zte[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>f78c161489f34388ba7867757ef2b2e2</uuid>
@@ -1775,7 +1713,7 @@ return String(s);</parameter>
                             <key>netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.dg.zte[{#NETSTREAM.PON_INDEX}])</params>
+                            <params>last(//netstream.gpon.pon.dg.zte[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>4c7d188b437d464282f517f8d41e4a96</uuid>
@@ -1784,7 +1722,7 @@ return String(s);</parameter>
                             <key>netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.los.zte[{#NETSTREAM.PON_INDEX}])</params>
+                            <params>last(//netstream.gpon.pon.los.zte[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6499dac39c2e48f3ab60c45dd1f17e99</uuid>
@@ -1953,6 +1891,11 @@ return String(s);</parameter>
                     <macro>{$ONU_DEDICADO_FILTER.NETSTREAM}</macro>
                     <value>^([0-9]+-.*[a-z]|dedicado)</value>
                     <description>Regex para filtrar ONUs dedicadas na discovery. Padrao seguro: so descricoes com prefixo dedicado-. Para incluir filtro por numero (ex: ID de cliente), sobrescreva com ^(dedicado-|\d) via macro global ou por host.</description>
+                </macro>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>public</value>
+                    <description>Comunidade SNMP. Sobrescreva por host ou globalmente.</description>
                 </macro>
             </macros>
                     <valuemaps>

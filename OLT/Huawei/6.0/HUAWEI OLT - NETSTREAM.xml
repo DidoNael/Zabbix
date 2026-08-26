@@ -238,8 +238,8 @@ Todos os direitos reservados.</description>
                         </trigger>
                         <trigger>
                             <uuid>605673aa60f24d0ab2373cb7e3b1472b</uuid>
-                            <expression>nodata(/HUAWEI OLT - NETSTREAM/netstream.system.uptime,1h)=1</expression>
-                            <name>HUAWEI OLT - NETSTREAM: OLT Inacessível (sem dados SNMP há 1 hora)</name>
+                            <expression>nodata(/HUAWEI OLT - NETSTREAM/netstream.system.uptime,5m)=1</expression>
+                            <name>HUAWEI OLT - NETSTREAM: OLT Inacessível (sem dados SNMP)</name>
                             <priority>DISASTER</priority>
                             <status>DISABLED</status>
                             <tags>
@@ -418,6 +418,92 @@ Todos os direitos reservados.</description>
                                         <tag>
                                             <tag>slot</tag>
                                             <value>{#SNMPINDEX}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>Huawei</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>b1c2d3e4f5a64b7c8d9e0f1a2b3c4d5e</uuid>
+                    <name>OLT PSU</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPINDEX},1.3.6.1.4.1.2011.6.3.3.5.1.1]</snmp_oid>
+                    <key>hwPowerIndex</key>
+                    <delay>1h</delay>
+                    <lifetime>1w</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>c2d3e4f5a6b74c8d9e0f1a2b3c4d5e6f</uuid>
+                            <name>PSU {#SNMPINDEX}: Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.6.3.3.5.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.huawei.psu.status[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>d3e4f5a6b7c84d9e0f1a2b3c4d5e6f7a</uuid>
+                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.huawei.psu.status[{#SNMPINDEX}])=2 and change(/HUAWEI OLT - NETSTREAM/netstream.huawei.psu.status[{#SNMPINDEX}])&lt;&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.huawei.psu.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <name>PSU {#SNMPINDEX}: Falha de Energia (not supply)</name>
+                                    <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>vendor</tag>
+                                            <value>Huawei</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>e4f5a6b7c8d94e0f1a2b3c4d5e6f7a8b</uuid>
+                    <name>OLT Fan</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPINDEX},1.3.6.1.4.1.2011.6.3.3.4.1.1]</snmp_oid>
+                    <key>hwFanIndex</key>
+                    <delay>1h</delay>
+                    <lifetime>1w</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>f5a6b7c8d9e04f1a2b3c4d5e6f7a8b9c</uuid>
+                            <name>Fan {#SNMPINDEX}: Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.6.3.3.4.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.huawei.fan.status[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>90d</trends>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>a6b7c8d9e0f15a2b3c4d5e6f7a8b9c0d</uuid>
+                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.huawei.fan.status[{#SNMPINDEX}])=2 and change(/HUAWEI OLT - NETSTREAM/netstream.huawei.fan.status[{#SNMPINDEX}])&lt;&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.huawei.fan.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <name>Fan {#SNMPINDEX}: Falha (abnormal)</name>
+                                    <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Hardware</value>
                                         </tag>
                                         <tag>
                                             <tag>vendor</tag>
@@ -1175,25 +1261,13 @@ return 0;</parameter>
                 </discovery_rule>
                 <discovery_rule>
                     <uuid>4d4625ee3f83466591be078170bf7241</uuid>
-                    <name>ONU Dedicado</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>discovery[{#ONUDESC},1.3.6.1.4.1.2011.6.128.1.1.2.43.1.9]</snmp_oid>
-                    <key>onudisc</key>
-                    <status>DISABLED</status>
-                    <filter>
-                        <evaltype>AND</evaltype>
-                        <conditions>
-                            <condition>
-                                <macro>{#ONUDESC}</macro>
-                                <value>{$ONU_DEDICADO_FILTER.NETSTREAM}</value>
-                                <formulaid>A</formulaid>
-                            </condition>
-                        </conditions>
-                    </filter>
-                    <item_prototypes>
+                    <name>NETSTREAM - Discovery ONU Dedicada Huawei</name>
+                    <type>EXTERNAL</type>
+                    <key>netstream.gpon.onu.dedicado.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+<item_prototypes>
                         <item_prototype>
                             <uuid>2a0e753ec85b4b6cb0f3ab580831848b</uuid>
-                            <name>ONU Dedicada {#ONUDESC}: Potencia RX (dBm)</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Potencia RX (dBm)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.51.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.dedicado.rxpower[{#SNMPINDEX}]</key>
@@ -1216,29 +1290,55 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>706a62e275e14119b455b7ecbd3786e0</uuid>
-                                    <expression>change(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;-30</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>change(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;-28</recovery_expression>
-                                    <name>ONU Dedicada {#ONUDESC}: RX Power critico (&lt;-30 dBm)</name>
-                                    <priority>INFO</priority>
+                                                                <trigger_prototype>
+                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{{#SNMPINDEX}}])&lt;=-28 and last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{{#SNMPINDEX}}])&gt;-40</expression>
+                                    <name>ONU Dedicada {{#NETSTREAM.ONU_DESC}}: Sinal Optico Critico ({{ITEM.LASTVALUE1}})</name>
+                                    <priority>HIGH</priority>
+                                    <description>Sinal optico da ONU dedicada extremamente baixo (&lt; -28 dBm). Risco iminente de queda do link.</description>
                                     <tags>
                                         <tag>
                                             <tag>scope</tag>
                                             <value>OLT</value>
                                         </tag>
                                         <tag>
+                                            <tag>tipo</tag>
+                                            <value>Optico</value>
+                                        </tag>
+                                        <tag>
                                             <tag>servico</tag>
                                             <value>GPON</value>
                                         </tag>
                                         <tag>
-                                            <tag>tipo</tag>
-                                            <value>ONU_Dedicada</value>
+                                            <tag>onu_id</tag>
+                                            <value>{{#NETSTREAM.ONU_DESC}}</value>
                                         </tag>
                                         <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
+                                            <tag>sinal_rx</tag>
+                                            <value>{{ITEM.LASTVALUE1}}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{{#SNMPINDEX}}])&lt;=-25 and last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{{#SNMPINDEX}}])&gt;-28</expression>
+                                    <name>ONU Dedicada {{#NETSTREAM.ONU_DESC}}: Sinal Optico Degradado ({{ITEM.LASTVALUE1}})</name>
+                                    <priority>WARNING</priority>
+                                    <description>Sinal optico do cliente dedicado abaixo de -25 dBm.</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Optico</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_id</tag>
+                                            <value>{{#NETSTREAM.ONU_DESC}}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -1246,7 +1346,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6a394680594945538322f29febd5e689</uuid>
-                            <name>ONU Dedicada {#ONUDESC}: Causa da ultima queda</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Causa da ultima queda</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.46.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.dedicado.lastcause[{#SNMPINDEX}]</key>
@@ -1262,7 +1362,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>fe73c49f4efd4974afeb4753253ffa1e</uuid>
-                            <name>ONU Dedicada {#ONUDESC}: Status atual</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Status atual</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.46.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.onu.status.[{#SNMPINDEX}]</key>
@@ -1276,11 +1376,13 @@ return 0;</parameter>
                                 <name>OLT Huawei - Status ONU</name>
                             </valuemap>
                             <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>b65ac896f8ca4b8bb7b945d614d58aa7</uuid>
-                                    <expression>min(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=2 and change(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])&lt;&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],10m)&gt;1</expression>
-                                    <name>ONU Dedicada {#ONUDESC}: Status atual</name>
-                                    <priority>INFO</priority>
+                                                                <trigger_prototype>
+                                    <expression>min(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{{#SNMPINDEX}}],#3)=2 and count(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{{#SNMPINDEX}}],10m)&gt;1</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>last(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{{#SNMPINDEX}}])=1</recovery_expression>
+                                    <name>ONU Dedicada {{#NETSTREAM.ONU_DESC}}: Offline / Desconectada</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
                                             <tag>scope</tag>
@@ -1295,8 +1397,12 @@ return 0;</parameter>
                                             <value>ONU_Dedicada</value>
                                         </tag>
                                         <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
+                                            <tag>ONUDEDICADO</tag>
+                                            <value>ONUDEDICADO</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_id</tag>
+                                            <value>{{#NETSTREAM.ONU_DESC}}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -1304,14 +1410,14 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>a1b2c3d4e5f64a7b8c9d0e1f2a3b4c5d</uuid>
-                            <name>ONU Dedicada {#ONUDESC}: LAN 1 Status</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Status</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.62.1.3.{#SNMPINDEX}.1</snmp_oid>
                             <key>netstream.dedicado.lan.status[{#SNMPINDEX}]</key>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <tags>
                                 <tag>
@@ -1331,7 +1437,7 @@ return 0;</parameter>
                                 <trigger_prototype>
                                     <uuid>b2c3d4e5f6a74b8c9d0e1f2a3b4c5d6e</uuid>
                                     <expression>last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])=2 and change(/HUAWEI OLT - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])&lt;&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}],10m)&gt;1 and last(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=1</expression>
-                                    <name>ONU Dedicada {#ONUDESC}: Cabo LAN Desconectado / Porta Ethernet DOWN</name>
+                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Cabo LAN Desconectado / Porta Ethernet DOWN</name>
                                     <priority>WARNING</priority>
                                     <description>A ONU dedicada esta online na fibra, porem o cabo de rede RJ45 (LAN 1) que liga ao cliente esta desconectado ou DOWN. OID portIdx=1 por padrao — verificar portIdx correto se nao coletar.</description>
                                     <tags>
@@ -1357,7 +1463,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>c3d4e5f6a7b84c9d0e1f2a3b4c5d6e7f</uuid>
-                            <name>ONU Dedicada {#ONUDESC}: LAN 1 Velocidade Negociada</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Velocidade Negociada</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.62.1.4.{#SNMPINDEX}.1</snmp_oid>
                             <key>netstream.dedicado.lan.speed[{#SNMPINDEX}]</key>
@@ -1385,7 +1491,7 @@ return 0;</parameter>
                                 <trigger_prototype>
                                     <uuid>d4e5f6a7b8c94d0e1f2a3b4c5d6e7f8a</uuid>
                                     <expression>last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.lan.speed[{#SNMPINDEX}])=100 and last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.lan.status[{#SNMPINDEX}])=1</expression>
-                                    <name>ONU Dedicada {#ONUDESC}: LAN Negociando a 100 Mbps (Degradacao Cabo RJ45)</name>
+                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN Negociando a 100 Mbps (Degradacao Cabo RJ45)</name>
                                     <priority>WARNING</priority>
                                     <description>O cabo de rede do cliente dedicado negociou a 100 Mbps em vez de Gigabit (1000 Mbps). Verificar crimpagem, oxidacao de conector RJ45 ou porta do firewall.</description>
                                     <tags>
@@ -1411,7 +1517,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>e5f6a7b8c9d04e1f2a3b4c5d6e7f8a9b</uuid>
-                            <name>ONU Dedicada {#ONUDESC}: LAN 1 Modo Duplex</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Modo Duplex</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.62.1.4.{#SNMPINDEX}.1</snmp_oid>
                             <key>netstream.dedicado.lan.duplex[{#SNMPINDEX}]</key>
@@ -1435,7 +1541,25 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                         </item_prototype>
-                    </item_prototypes>
+                                            <item_prototype>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Distancia (m)</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.46.1.29.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.dedicado.distance[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>DISABLED</status>
+                            <value_type>UNSIGNED</value_type>
+                            <units>m</units>
+                            <tags>
+                                <tag>
+                                    <tag>application</tag>
+                                    <value>Clientes Dedicados</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+</item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
                     <uuid>e59f911960e447fc959f7fd3585dbb0d</uuid>
