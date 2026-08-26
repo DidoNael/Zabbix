@@ -1563,6 +1563,131 @@ and&#13;
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
+                        <item_prototype>
+                            <name>ONU Dedicada {#ONUDESC}: LAN 1 Status</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.62.1.3.{#SNMPINDEX}.1</snmp_oid>
+                            <key>netstream.dedicado.lan.status[{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>Clientes Dedicados - LAN</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>return parseInt(value) >= 5 ? 1 : 2;</params>
+                                </step>
+                            </preprocessing>
+                            <request_method>POST</request_method>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{HUAWEI OLT - NETSTREAM:netstream.dedicado.lan.status[{#SNMPINDEX}].last()}=2 and {HUAWEI OLT - NETSTREAM:netstream.dedicado.lan.status[{#SNMPINDEX}].diff()}=1 and {HUAWEI OLT - NETSTREAM:netstream.dedicado.lan.status[{#SNMPINDEX}].count(10m)}&gt;1 and {HUAWEI OLT - NETSTREAM:netstream.onu.status.[{#SNMPINDEX}].last()}=1</expression>
+                                    <name>ONU Dedicada {#ONUDESC}: Cabo LAN Desconectado / Porta Ethernet DOWN</name>
+                                    <priority>WARNING</priority>
+                                    <description>A ONU dedicada esta online na fibra, porem o cabo de rede RJ45 (LAN 1) que liga ao cliente esta desconectado ou DOWN. OID portIdx=1 por padrao — verificar portIdx correto se nao coletar.</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>ONU_Dedicada</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>notificar</tag>
+                                            <value>nao</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>ONU Dedicada {#ONUDESC}: LAN 1 Velocidade Negociada</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.62.1.4.{#SNMPINDEX}.1</snmp_oid>
+                            <key>netstream.dedicado.lan.speed[{#SNMPINDEX}]</key>
+                            <delay>10m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>DISABLED</status>
+                            <value_type>FLOAT</value_type>
+                            <units>Mbps</units>
+                            <applications>
+                                <application>
+                                    <name>Clientes Dedicados - LAN</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var v = parseInt(value); if (v === 4) return 0; if (v === 6) return 100; if (v === 7) return 1000; return 0;</params>
+                                </step>
+                            </preprocessing>
+                            <request_method>POST</request_method>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{HUAWEI OLT - NETSTREAM:netstream.dedicado.lan.speed[{#SNMPINDEX}].last()}=100 and {HUAWEI OLT - NETSTREAM:netstream.dedicado.lan.status[{#SNMPINDEX}].last()}=1</expression>
+                                    <name>ONU Dedicada {#ONUDESC}: LAN Negociando a 100 Mbps (Degradacao Cabo RJ45)</name>
+                                    <priority>WARNING</priority>
+                                    <description>O cabo de rede do cliente dedicado negociou a 100 Mbps em vez de Gigabit (1000 Mbps). Verificar crimpagem, oxidacao de conector RJ45 ou porta do firewall.</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>ONU_Dedicada</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>notificar</tag>
+                                            <value>nao</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>ONU Dedicada {#ONUDESC}: LAN 1 Modo Duplex</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.62.1.4.{#SNMPINDEX}.1</snmp_oid>
+                            <key>netstream.dedicado.lan.duplex[{#SNMPINDEX}]</key>
+                            <delay>30m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>DISABLED</status>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>Clientes Dedicados - LAN</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var v = parseInt(value); if (v === 4) return "N/A"; if (v === 6) return "full"; if (v === 7) return "full"; return "N/A";</params>
+                                </step>
+                            </preprocessing>
+                            <request_method>POST</request_method>
+                        </item_prototype>
                     </item_prototypes>
                     <request_method>POST</request_method>
                 </discovery_rule>

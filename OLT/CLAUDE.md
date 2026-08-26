@@ -210,9 +210,9 @@ OIDs pendentes de validação — rodar snmpwalk diretamente no equipamento:
 | RX Power dBm | PRESENTE | DISABLED | DISABLED |
 | Causa última queda | PRESENTE | AUSENTE | DISABLED |
 | Distância (m) | PRESENTE | AUSENTE | AUSENTE |
-| Status porta LAN | PRESENTE | AUSENTE | AUSENTE |
-| Velocidade LAN | PRESENTE | AUSENTE | AUSENTE |
-| Duplex LAN | PRESENTE | AUSENTE | AUSENTE |
+| Status porta LAN | PRESENTE | AUSENTE | DISABLED |
+| Velocidade LAN | PRESENTE | AUSENTE | DISABLED |
+| Duplex LAN | PRESENTE | AUSENTE | DISABLED |
 
 Prioridade de implementação: habilitar DISABLED antes de buscar OIDs ausentes.
 
@@ -347,7 +347,8 @@ Captura: descrição começa com `dedicado-` **ou** com número (ID de cliente).
 - [ ] Adicionar triggers CPU>90%/10min, Mem>90%/10min, status Faulty/Offline/Power
 - [ ] Adicionar PSU1 e PSU2
 - [ ] Adicionar Fan
-- [ ] Habilitar ONU Dedicada (DISABLED) — adicionar causa queda, distância, LAN
+- [ ] Habilitar ONU Dedicada (DISABLED) — adicionar causa queda, distância
+- [ ] Validar portIdx correto para LAN status/speed/duplex: OID base `1.3.6.1.4.1.2011.6.128.1.1.2.62.1.3.{#SNMPINDEX}.{portIdx}` — col3>=5=UP, col3=3=DOWN; col4=7=1G,col4=6=100M,col4=4=DOWN. portIdx=1 é default mas varia por ONU (ex: ONU 4194312448.4 usa portIdx=4). Habilitar itens DISABLED após confirmar portIdx.
 - [ ] Corrigir item `ifHCInOctets` na discovery `olt_pcb`: adicionar CHANGE_PER_SECOND + x8
 - [ ] Investigar OIDs de SFP por PON (ausente)
 - [ ] Adicionar erros de entrada nos uplinks (ausente)
