@@ -936,7 +936,17 @@ return JSON.stringify(result);</parameter>
                     <delay>1d</delay>
                     <timeout>120s</timeout>
                     <status>ENABLED</status>
-                    <item_prototypes>
+                                    <filter>
+                    <evaltype>AND</evaltype>
+                    <conditions>
+                        <condition>
+                            <macro>{#NETSTREAM.ONU_DESC}</macro>
+                            <value>{$ONU_DEDICADO_FILTER.NETSTREAM}</value>
+                            <formulaid>A</formulaid>
+                        </condition>
+                    </conditions>
+                </filter>
+<item_prototypes>
                         <item_prototype>
                             <uuid>3f38cac782744af39ed57c18facecf42</uuid>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Status atual</name>
@@ -1886,16 +1896,6 @@ return String(s);</parameter>
                 <macro>
                     <macro>{$GPON_DROP_MIN}</macro>
                     <value>5</value>
-                </macro>
-                <macro>
-                    <macro>{$ONU_DEDICADO_FILTER.NETSTREAM}</macro>
-                    <value>^([0-9]+-.*[a-z]|dedicado)</value>
-                    <description>Regex para filtrar ONUs dedicadas na discovery. Padrao seguro: so descricoes com prefixo dedicado-. Para incluir filtro por numero (ex: ID de cliente), sobrescreva com ^(dedicado-|\d) via macro global ou por host.</description>
-                </macro>
-                <macro>
-                    <macro>{$SNMP_COMMUNITY}</macro>
-                    <value>public</value>
-                    <description>Comunidade SNMP. Sobrescreva por host ou globalmente.</description>
                 </macro>
             </macros>
                     <valuemaps>

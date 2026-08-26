@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-onu.dedicado.zte.py - Descobre ONUs dedicadas em OLTs ZTE via SNMP walk.
+onu.dedicado.zte.py - Descobre todas as ONUs em OLTs ZTE via SNMP walk.
 
-Filtra por regex: descricao começa com digito OU "dedicado-" E tem 4+ letras minusculas
-seguidas (nome de cliente real). Retorna LLD JSON com metadados da ONU.
+Retorna LLD JSON com metadados de todas as ONUs. O filtro por descricao
+e aplicado pelo Zabbix via {$ONU_DEDICADO_FILTER.NETSTREAM} no DR.
 
-Uso: onu.dedicado.zte.py <IP> <COMMUNITY> [PORT] [REGEX_FILTER]
+Uso: onu.dedicado.zte.py <IP> <COMMUNITY> [PORT]
 """
 import sys
 import re
@@ -19,20 +19,13 @@ if len(sys.argv) < 3:
 OLT_IP    = sys.argv[1]
 COMMUNITY = sys.argv[2]
 PORT      = sys.argv[3] if len(sys.argv) > 3 else "161"
-# Filtro pode vir como 4o argumento; fallback para o padrao seguro
-FILTER_RE = sys.argv[4] if len(sys.argv) > 4 else r"^(dedicado-|[0-9])(?=.*[a-z]{4,})"
 
 SNMP_TARGET = "%s:%s" % (OLT_IP, PORT) if PORT != "161" else OLT_IP
 OPTS = ["-v2c", "-c", COMMUNITY, "-t", "20", "-r", "1", SNMP_TARGET]
 
-OID_ONTDESC = "1.3.6.1.4.1.3902.1012.3.28.1.1.2"  # descricao da ONU (filtro principal)
+OID_ONTDESC = "1.3.6.1.4.1.3902.1012.3.28.1.1.2"  # descricao da ONU
 OID_MODEL   = "1.3.6.1.4.1.3902.1012.3.28.1.1.1"  # modelo/tipo
 OID_SN_HEX  = "1.3.6.1.4.1.3902.1012.3.28.1.1.5"  # SN em hex (4 bytes ASCII + 4 bytes serial)
-
-try:
-    filter_compiled = re.compile(FILTER_RE, re.IGNORECASE)
-except re.error:
-    filter_compiled = re.compile(r"^dedicado-", re.IGNORECASE)
 
 
 def snmpwalk(oid):
@@ -96,30 +89,22 @@ for idx, raw in snmpwalk(OID_ONTDESC):
     desc = parse_string(raw)
     desc_map[idx] = desc
 
-# Filtrar dedicados
-dedicated_indices = [
-    (idx, desc) for idx, desc in desc_map.items()
-    if filter_compiled.match(desc)
-]
-
-if not dedicated_indices:
+if not desc_map:
     print(json.dumps({"data": []}))
     sys.exit(0)
 
-# Coletar modelo e SN para os dedicados
+# Coletar modelo e SN para todas as ONUs
 model_map = {}
 for idx, raw in snmpwalk(OID_MODEL):
-    if idx in dict(dedicated_indices):
-        model_map[idx] = parse_string(raw)
+    model_map[idx] = parse_string(raw)
 
 sn_map = {}
 for idx, raw in snmpwalk(OID_SN_HEX):
-    if idx in dict(dedicated_indices):
-        sn_map[idx] = parse_hexstr_to_sn(raw)
+    sn_map[idx] = parse_hexstr_to_sn(raw)
 
-# Montar LLD
+# Montar LLD (filtro aplicado pelo Zabbix via {$ONU_DEDICADO_FILTER.NETSTREAM})
 lld = []
-for idx, desc in sorted(dedicated_indices, key=lambda x: x[0]):
+for idx, desc in sorted(desc_map.items(), key=lambda x: x[0]):
     lld.append({
         "{#NETSTREAM.ONU_DESC}":  desc,
         "{#NETSTREAM.ONU_INDEX}": idx,

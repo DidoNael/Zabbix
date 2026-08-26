@@ -1264,6 +1264,16 @@ return 0;</parameter>
                     <name>NETSTREAM - Discovery ONU Dedicada Huawei</name>
                     <type>EXTERNAL</type>
                     <key>netstream.gpon.onu.dedicado.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                <filter>
+                    <evaltype>AND</evaltype>
+                    <conditions>
+                        <condition>
+                            <macro>{#NETSTREAM.ONU_DESC}</macro>
+                            <value>{$ONU_DEDICADO_FILTER.NETSTREAM}</value>
+                            <formulaid>A</formulaid>
+                        </condition>
+                    </conditions>
+                </filter>
 <item_prototypes>
                         <item_prototype>
                             <uuid>1f2cae05cccf4307a30968f3adf8da69</uuid>
@@ -1684,11 +1694,6 @@ return 0;</parameter>
                     <macro>{$GPON_DROP_MIN}</macro>
                     <value>5</value>
                     <description>Queda minima de ONUs online para disparar alerta de queda parcial por PON</description>
-                </macro>
-                <macro>
-                    <macro>{$ONU_DEDICADO_FILTER.NETSTREAM}</macro>
-                    <value>^([0-9]+-.*[a-z]|dedicado)</value>
-                    <description>Regex para filtrar ONUs dedicadas na discovery. Padrao seguro: so descricoes com prefixo dedicado-. Para incluir filtro por numero (ex: ID de cliente), sobrescreva com ^(dedicado-|\d) via macro global ou por host.</description>
                 </macro>
             </macros>
             <valuemaps>

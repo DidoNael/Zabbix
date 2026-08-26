@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-onu.dedicado.huawei.py - Descobre ONUs dedicadas em OLTs Huawei via SNMP walk.
+onu.dedicado.huawei.py - Descobre todas as ONUs em OLTs Huawei via SNMP walk.
 
-Filtra por regex sobre a descricao da ONU (hwGponDeviceOntDescripton).
-Retorna LLD JSON com: desc, index (para uso nos OIDs proprietarios Huawei).
+Retorna LLD JSON com metadados de todas as ONUs. O filtro por descricao
+e aplicado pelo Zabbix via {$ONU_DEDICADO_FILTER.NETSTREAM} no DR.
 
-Uso: onu.dedicado.huawei.py <IP> <COMMUNITY> [PORT] [REGEX_FILTER]
+Uso: onu.dedicado.huawei.py <IP> <COMMUNITY> [PORT]
 """
 import sys
 import re
@@ -19,7 +19,6 @@ if len(sys.argv) < 3:
 OLT_IP    = sys.argv[1]
 COMMUNITY = sys.argv[2]
 PORT      = sys.argv[3] if len(sys.argv) > 3 else "161"
-FILTER_RE = sys.argv[4] if len(sys.argv) > 4 else r"^(dedicado-|[0-9])(?=.*[a-z]{4,})"
 
 SNMP_TARGET = "%s:%s" % (OLT_IP, PORT) if PORT != "161" else OLT_IP
 OPTS = ["-v2c", "-c", COMMUNITY, "-t", "20", "-r", "1", SNMP_TARGET]
@@ -27,11 +26,6 @@ OPTS = ["-v2c", "-c", COMMUNITY, "-t", "20", "-r", "1", SNMP_TARGET]
 # Huawei GPON ONU OIDs (HUAWEI-XPON-MIB)
 OID_DESC  = "1.3.6.1.4.1.2011.6.128.1.1.2.43.1.9"   # hwGponDeviceOntDescripton
 OID_SN    = "1.3.6.1.4.1.2011.6.128.1.1.2.43.1.3"   # hwGponDeviceOntSn
-
-try:
-    filter_compiled = re.compile(FILTER_RE, re.IGNORECASE)
-except re.error:
-    filter_compiled = re.compile(r"^dedicado-", re.IGNORECASE)
 
 
 def snmpwalk(oid):
@@ -86,19 +80,16 @@ desc_map = {}
 for idx, raw in snmpwalk(OID_DESC):
     desc_map[idx] = parse_string(raw)
 
-# Filtrar dedicados
-dedicated = [(idx, desc) for idx, desc in desc_map.items()
-             if filter_compiled.match(desc)]
-
-if not dedicated:
+if not desc_map:
     print(json.dumps({"data": []}))
     sys.exit(0)
 
 # Coletar SNs
 sn_raw = {idx: raw for idx, raw in snmpwalk(OID_SN)}
 
+# Montar LLD (filtro aplicado pelo Zabbix via {$ONU_DEDICADO_FILTER.NETSTREAM})
 lld = []
-for idx, desc in sorted(dedicated, key=lambda x: x[0]):
+for idx, desc in sorted(desc_map.items(), key=lambda x: x[0]):
     sn = parse_sn(sn_raw.get(idx, "")) if idx in sn_raw else ""
     lld.append({
         "{#NETSTREAM.ONU_DESC}":  desc,
