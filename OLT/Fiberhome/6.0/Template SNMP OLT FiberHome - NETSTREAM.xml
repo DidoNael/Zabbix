@@ -912,7 +912,7 @@ the other type could see the card type table</description>
                             <key>netstream.gpon.pon.alerta.los.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>(last(//netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}])&gt;0 and change(//netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}])&lt;-5)</params>
+                                                        <params>(last(//netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}])&gt;0 and change(//netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}])&lt;-5)</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6a420da297e343e4a271ca819b45ad2e</uuid>
@@ -944,7 +944,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(//netstream.gpon.pon.dg.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
+                                                        <params>last(//netstream.gpon.pon.dg.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>5bb9bdc8c3604a23a294f21ec1aeafd3</uuid>
@@ -953,7 +953,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(//netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
+                                                        <params>last(//netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>fd7445ea0a184d4b91a171b9b9420cdf</uuid>
@@ -962,7 +962,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.offline.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(//netstream.gpon.pon.offline.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
+                                                        <params>last(//netstream.gpon.pon.offline.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>c58d18d735c444e395554dddaf90cf86</uuid>
@@ -971,7 +971,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(//netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
+                                                        <params>last(//netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>bd485801de3f45fc863570162fde81f8</uuid>
@@ -1616,6 +1616,7 @@ return 0;</parameter>
                             </valuemap>
                         </item_prototype>
                                             <item_prototype>
+                            <uuid>98ecf2d9bd11469da07f9035f849f9cc</uuid>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Motivo da Ultima Queda</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>GEPON-OLT-COMMON-MIB::onuDeregReason.{#SNMPINDEX}</snmp_oid>
@@ -1633,6 +1634,7 @@ return 0;</parameter>
                             </tags>
                         </item_prototype>
                         <item_prototype>
+                            <uuid>9c4fb4493cc740db940e4a918c7d9cc0</uuid>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Distancia (m)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>GEPON-OLT-COMMON-MIB::onuDistance.{#SNMPINDEX}</snmp_oid>
@@ -1651,6 +1653,7 @@ return 0;</parameter>
                             </tags>
                         </item_prototype>
                         <item_prototype>
+                            <uuid>9035fc000ca648d79a946ed7beee8474</uuid>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Status</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>GEPON-OLT-COMMON-MIB::onuUniLinkState.{#SNMPINDEX}.1</snmp_oid>
@@ -1669,11 +1672,14 @@ return 0;</parameter>
                             <preprocessing>
                                 <step>
                                     <type>JAVASCRIPT</type>
-                                    <params>return parseInt(value) === 1 ? 1 : 2;</params>
+                                    <parameters>
+                                                            <parameter>return parseInt(value) === 1 ? 1 : 2;</parameter>
+                                                        </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
+                            <uuid>e5846da1f3934fc789acc520d00302c3</uuid>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Velocidade Negociada</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>GEPON-OLT-COMMON-MIB::onuUniSpeed.{#SNMPINDEX}.1</snmp_oid>
@@ -1692,6 +1698,7 @@ return 0;</parameter>
                             </tags>
                         </item_prototype>
                         <item_prototype>
+                            <uuid>55f99ccbd18343fd86e8bc370b1bedbd</uuid>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Modo Duplex</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>GEPON-OLT-COMMON-MIB::onuUniDuplexMode.{#SNMPINDEX}.1</snmp_oid>
@@ -1711,10 +1718,11 @@ return 0;</parameter>
 </item_prototypes>
                                         <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>(min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.onu.status.[{{#SNMPINDEX}}],#3)=0 or min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.onu.status.[{{#SNMPINDEX}}],#3)=4) and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.onu.status.[{{#SNMPINDEX}}],10m)&gt;1</expression>
+                            <uuid>8709a4024e7c4cb084c4260b24455866</uuid>
+                            <expression>(min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=0 or min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=4) and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],10m)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.onu.status.[{{#SNMPINDEX}}])=1</recovery_expression>
-                            <name>ONU Dedicada {{#NETSTREAM.ONU_DESC}}: Offline / Desconectada</name>
+                            <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=1</recovery_expression>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Offline / Desconectada</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1736,13 +1744,14 @@ return 0;</parameter>
                                 </tag>
                                 <tag>
                                     <tag>onu_id</tag>
-                                    <value>{{#NETSTREAM.ONU_DESC}}</value>
+                                    <value>{#NETSTREAM.ONU_DESC}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.rxpower[{{#SNMPINDEX}}])&lt;=-28 and last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.rxpower[{{#SNMPINDEX}}])&gt;-40</expression>
-                            <name>ONU Dedicada {{#NETSTREAM.ONU_DESC}}: Sinal Optico Critico ({{ITEM.LASTVALUE1}})</name>
+                            <uuid>37c5e3e779a9425a97cecdcba3331915</uuid>
+                            <expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-28 and last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-40</expression>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Critico ({{ITEM.LASTVALUE1})</name>
                             <priority>HIGH</priority>
                             <description>Sinal optico da ONU dedicada extremamente baixo (&lt; -28 dBm). Risco iminente de queda do link.</description>
                             <tags>
@@ -1760,17 +1769,18 @@ return 0;</parameter>
                                 </tag>
                                 <tag>
                                     <tag>onu_id</tag>
-                                    <value>{{#NETSTREAM.ONU_DESC}}</value>
+                                    <value>{#NETSTREAM.ONU_DESC}</value>
                                 </tag>
                                 <tag>
                                     <tag>sinal_rx</tag>
-                                    <value>{{ITEM.LASTVALUE1}}</value>
+                                    <value>{{ITEM.LASTVALUE1}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.rxpower[{{#SNMPINDEX}}])&lt;=-25 and last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.rxpower[{{#SNMPINDEX}}])&gt;-28</expression>
-                            <name>ONU Dedicada {{#NETSTREAM.ONU_DESC}}: Sinal Optico Degradado ({{ITEM.LASTVALUE1}})</name>
+                            <uuid>aa9712f6edaa474cb9092c2f556429ca</uuid>
+                            <expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-25 and last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-28</expression>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Degradado ({{ITEM.LASTVALUE1})</name>
                             <priority>WARNING</priority>
                             <description>Sinal optico do cliente dedicado abaixo de -25 dBm.</description>
                             <tags>
@@ -1788,7 +1798,7 @@ return 0;</parameter>
                                 </tag>
                                 <tag>
                                     <tag>onu_id</tag>
-                                    <value>{{#NETSTREAM.ONU_DESC}}</value>
+                                    <value>{#NETSTREAM.ONU_DESC}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
