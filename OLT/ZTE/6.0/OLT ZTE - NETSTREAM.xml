@@ -970,37 +970,6 @@ return JSON.stringify(result);</parameter>
                                 <name>OLT-ZTE-STATUS-ONT</name>
                             </valuemap>
                             <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>7b970cb6a6c94e3497d1b8e2434a886b</uuid>
-                                    <expression>min(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=1</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=3</recovery_expression>
-                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Offline / Desconectada</name>
-                                    <priority>HIGH</priority>
-                                    <manual_close>YES</manual_close>
-                                    <tags>
-                                        <tag>
-                                            <tag>scope</tag>
-                                            <value>OLT</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>tipo</tag>
-                                            <value>ONU_Dedicada</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>servico</tag>
-                                            <value>GPON</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>onu_id</tag>
-                                            <value>{#NETSTREAM.ONU_DESC}</value>
-                                        </tag>
-                                                                            <tag>
-                                            <tag>ONUDEDICADO</tag>
-                                            <value>ONUDEDICADO</value>
-                                        </tag>
-</tags>
-                                </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>

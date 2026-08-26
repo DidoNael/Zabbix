@@ -1363,37 +1363,6 @@ return 0;</parameter>
                                 <name>OLT Huawei - Status ONU</name>
                             </valuemap>
                             <trigger_prototypes>
-                                                                <trigger_prototype>
-                                    <uuid>325c5af584914ebf937357fdd91dd745</uuid>
-                                    <expression>min(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=2 and count(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],10m)&gt;1</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=1</recovery_expression>
-                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Offline / Desconectada</name>
-                                    <priority>HIGH</priority>
-                                    <manual_close>YES</manual_close>
-                                    <tags>
-                                        <tag>
-                                            <tag>scope</tag>
-                                            <value>OLT</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>servico</tag>
-                                            <value>GPON</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>tipo</tag>
-                                            <value>ONU_Dedicada</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>ONUDEDICADO</tag>
-                                            <value>ONUDEDICADO</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>onu_id</tag>
-                                            <value>{#NETSTREAM.ONU_DESC}</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
