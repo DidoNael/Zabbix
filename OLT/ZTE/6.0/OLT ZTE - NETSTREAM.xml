@@ -1061,13 +1061,6 @@ return (-power / 10).toFixed(1);</parameter>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
-                                <trigger_prototype>
-                                    <uuid>65bd3326331f4889a3bd219018dbdd72</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-25 and last(/OLT ZTE - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-28</expression>
-                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Degradado ({ITEM.LASTVALUE1})</name>
-                                    <priority>WARNING</priority>
-                                    <description>Sinal optico do cliente dedicado abaixo de -25 dBm.</description>
-                                </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>

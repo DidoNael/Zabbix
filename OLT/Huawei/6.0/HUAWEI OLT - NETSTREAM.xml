@@ -1329,31 +1329,6 @@ return 0;</parameter>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
-                                <trigger_prototype>
-                                    <uuid>53f9e6cecfcd4e9ba452acfdf292e08b</uuid>
-                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-25 and last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-28</expression>
-                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Degradado ({{ITEM.LASTVALUE1})</name>
-                                    <priority>WARNING</priority>
-                                    <description>Sinal optico do cliente dedicado abaixo de -25 dBm.</description>
-                                    <tags>
-                                        <tag>
-                                            <tag>scope</tag>
-                                            <value>OLT</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>tipo</tag>
-                                            <value>Optico</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>servico</tag>
-                                            <value>GPON</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>onu_id</tag>
-                                            <value>{#NETSTREAM.ONU_DESC}</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>

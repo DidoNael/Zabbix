@@ -2044,7 +2044,7 @@ return 0;</params>
 </item_prototypes>
                                         <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].min(#3)}&lt;&gt;1 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                            <expression>({Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].min(#3)}=0 or {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].min(#3)}=3) and {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].last()}=1</recovery_expression>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Offline / Desconectada</name>
@@ -2098,30 +2098,6 @@ return 0;</params>
                                 <tag>
                                     <tag>sinal_rx</tag>
                                     <value>{ITEM.LASTVALUE1}</value>
-                                </tag>
-                            </tags>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&lt;=-25 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&gt;-28</expression>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Degradado ({ITEM.LASTVALUE1})</name>
-                            <priority>WARNING</priority>
-                            <description>Sinal optico do cliente dedicado abaixo de -25 dBm.</description>
-                            <tags>
-                                <tag>
-                                    <tag>scope</tag>
-                                    <value>OLT</value>
-                                </tag>
-                                <tag>
-                                    <tag>tipo</tag>
-                                    <value>Optico</value>
-                                </tag>
-                                <tag>
-                                    <tag>servico</tag>
-                                    <value>GPON</value>
-                                </tag>
-                                <tag>
-                                    <tag>onu_id</tag>
-                                    <value>{#NETSTREAM.ONU_DESC}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
