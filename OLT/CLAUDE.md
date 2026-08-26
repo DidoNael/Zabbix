@@ -332,7 +332,8 @@ Captura: descrição começa com `dedicado-` **ou** com número (ID de cliente).
 - [ ] Adicionar PSU1 e PSU2
 - [ ] Adicionar Fan
 - [ ] Habilitar ONU Dedicada (discovery DISABLED)
-- [ ] Adicionar causa de queda e LAN status/speed/duplex na ONU Dedicada
+- [ ] Adicionar causa de queda na ONU Dedicada
+- [ ] LAN status/speed/duplex: investigacao SNMP nao encontrou tabela per-porta no AN5516. ONU index (ex: 369624576) nao aparece como parte de index multi-nivel em nenhuma subtree de 5875.800.3.*. Provavelmente requer MIB GEPON-OLT-COMMON-MIB instalada no servidor Zabbix — tentar via nome de MIB GEPON-OLT-COMMON-MIB::onuUniLinkState.{#SNMPINDEX} se MIB disponivel.
 - [ ] Habilitar TX/RX Power por PON (DISABLED via GEPON-OLT-COMMON-MIB — não habilitar corrente mA)
 - [ ] Padronizar tags de triggers legados (PONDOWN/PONFH → scope/tipo/notificar)
 - [ ] Adicionar graph prototype de uplink
