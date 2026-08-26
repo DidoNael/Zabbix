@@ -125,6 +125,46 @@ SQL
 
 ---
 
+## OBRIGATÓRIO: equalizar itens entre todas as marcas de OLT
+
+**Regra**: todos os templates de OLT (ZTE, Fiberhome, Huawei, Datacom) devem ser mantidos equalizados com os mesmos tipos de item, chaves (`key`) e nomenclatura de nome para itens equivalentes. O template ZTE é a referência canônica.
+
+**Padrão obrigatório de chaves para ONU Dedicada**:
+```
+netstream.dedicado.lan.status[{#SNMPINDEX}]
+netstream.dedicado.lan.speed[{#SNMPINDEX}]
+netstream.dedicado.lan.duplex[{#SNMPINDEX}]
+netstream.dedicado.rxpower[{#SNMPINDEX}]
+netstream.dedicado.distance[{#SNMPINDEX}]
+netstream.onu.status.[{#SNMPINDEX}]
+```
+
+**Padrão obrigatório de nomes de item**:
+```
+ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Status
+ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Velocidade Negociada
+ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Modo Duplex
+ONU Dedicada {#NETSTREAM.ONU_DESC}: Potencia RX (dBm)
+ONU Dedicada {#NETSTREAM.ONU_DESC}: Distancia (m)
+ONU Dedicada {#NETSTREAM.ONU_DESC}: Status atual
+```
+
+**Tags obrigatórias nos itens de ONU Dedicada**:
+- Item prototype: `Application = Clientes Dedicados - LAN` (LAN), `Application = Clientes Dedicados` (demais)
+- Trigger prototype:
+  ```
+  scope    = OLT
+  servico  = GPON
+  tipo     = ONU_Dedicada
+  notificar = nao
+  ```
+
+**Por quê**: dashboards e filtros de alerta no Zabbix e Grafana dependem de chaves e nomes consistentes. Se uma marca usa `onu.status.state.onu.lan` e outra usa `netstream.dedicado.lan.status`, não é possível criar um dashboard unificado nem um filtro de alerta por tag.
+
+**O que fazer quando a MIB de uma marca não suporta um item**: adicionar o item como `status=DISABLED` com o OID correto para aquela marca (ou `0` se desconhecido), manter a chave e o nome padronizados, e registrar no backlog de `OLT/CLAUDE.md` como pendente de OID.
+
+---
+
 ## OBRIGATÓRIO: sincronizar 4.4 e 6.0 a cada mudança
 
 **Regra**: qualquer alteração em um template ZTE (ou Fiberhome/Huawei) **deve ser aplicada nas duas versões** — `4.4/` e `6.0/` — no mesmo commit. Nunca commitar uma versão sem equalizar a outra.

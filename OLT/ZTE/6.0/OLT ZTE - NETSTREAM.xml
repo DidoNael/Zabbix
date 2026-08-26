@@ -1005,13 +1005,13 @@ return JSON.stringify(result);</parameter>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>3f38cac782744af39ed57c18facecf42</uuid>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Status</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Status atual</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.3902.1012.3.28.2.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.onu.status.[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
                             <trends>90d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1166,13 +1166,21 @@ return (-power / 10).toFixed(1);</parameter>
                             <uuid>04f7844a8c744734970dd58ab5e356fe</uuid>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Status</name>
                             <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.11.2.1.3.{#SNMPINDEX}.1</snmp_oid>
+                            <snmp_oid>1.3.6.1.4.1.3902.1012.3.28.2.1.3.{#SNMPINDEX}.1</snmp_oid>
                             <key>netstream.dedicado.lan.status[{#SNMPINDEX}]</key>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <parameters>
+                                        <parameter>return parseInt(value) === 0 ? 2 : 1;</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -1186,6 +1194,24 @@ return (-power / 10).toFixed(1);</parameter>
                                     <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Cabo LAN Desconectado / Porta Ethernet DOWN</name>
                                     <priority>WARNING</priority>
                                     <description>A ONU dedicada esta online na fibra, porem o cabo de rede RJ45 (LAN 1) que liga ao cliente esta desconectado ou DOWN.</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>ONU_Dedicada</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>notificar</tag>
+                                            <value>nao</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1193,12 +1219,12 @@ return (-power / 10).toFixed(1);</parameter>
                             <uuid>af0d74feb26e498c8fd2f024aad31462</uuid>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Velocidade Negociada</name>
                             <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.11.2.1.4.{#SNMPINDEX}.1</snmp_oid>
+                            <snmp_oid>1.3.6.1.4.1.3902.1012.3.28.2.1.3.{#SNMPINDEX}.1</snmp_oid>
                             <key>netstream.dedicado.lan.speed[{#SNMPINDEX}]</key>
                             <delay>10m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>Mbps</units>
                             <tags>
@@ -1212,10 +1238,11 @@ return (-power / 10).toFixed(1);</parameter>
                                     <type>JAVASCRIPT</type>
                                     <parameters>
                                         <parameter>var s = parseInt(value);
-if (s === 2 || s === 10) return 10;
-if (s === 3 || s === 100) return 100;
-if (s === 4 || s === 1000) return 1000;
-return s;</parameter>
+if (s === 0) return 0;
+if (s === 1 || s === 2) return 10;
+if (s === 3 || s === 4) return 100;
+if (s === 5 || s === 6) return 1000;
+return 0;</parameter>
                                     </parameters>
                                 </step>
                             </preprocessing>
@@ -1226,6 +1253,24 @@ return s;</parameter>
                                     <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN Negociando a 100 Mbps (Degradacao Cabo RJ45)</name>
                                     <priority>WARNING</priority>
                                     <description>O cabo de rede do cliente dedicado negociou a 100 Mbps em vez de Gigabit (1000 Mbps). Verificar crimpagem, oxidacao de conector RJ45 ou porta do firewall.</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>ONU_Dedicada</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>notificar</tag>
+                                            <value>nao</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -1233,13 +1278,25 @@ return s;</parameter>
                             <uuid>38cac5431ed34ac79c94d253df2c802d</uuid>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Modo Duplex</name>
                             <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.3.11.2.1.5.{#SNMPINDEX}.1</snmp_oid>
+                            <snmp_oid>1.3.6.1.4.1.3902.1012.3.28.2.1.3.{#SNMPINDEX}.1</snmp_oid>
                             <key>netstream.dedicado.lan.duplex[{#SNMPINDEX}]</key>
                             <delay>30m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <value_type>TEXT</value_type>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <parameters>
+                                        <parameter>var s = parseInt(value);
+if (s === 0) return "N/A";
+if (s === 1 || s === 3 || s === 5) return "half";
+if (s === 2 || s === 4 || s === 6) return "full";
+return String(s);</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
