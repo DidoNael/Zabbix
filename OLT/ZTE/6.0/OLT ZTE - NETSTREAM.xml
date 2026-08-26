@@ -1000,6 +1000,7 @@ return JSON.stringify(result);</parameter>
                     <type>EXTERNAL</type>
                     <key>netstream.gpon.onu.dedicado.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                     <delay>1d</delay>
+                    <timeout>120s</timeout>
                     <status>DISABLED</status>
                     <item_prototypes>
                         <item_prototype>
