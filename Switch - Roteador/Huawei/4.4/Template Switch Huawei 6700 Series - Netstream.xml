@@ -1633,7 +1633,7 @@ Todos os direitos reservados.</description>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}].last(#3)} &lt; {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}].last()} and {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}].last(#3)} &gt;= -39</expression>
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}].min(1h)} &lt; {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}].last()} and {Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}].min(1h)} &gt;= -39</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
@@ -2194,7 +2194,7 @@ Todos os direitos reservados.</description>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>({Template Switch Huawei 6700 Series - Netstream:netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}].last()}/{Template Switch Huawei 6700 Series - Netstream:netstream.ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9 or ({Template Switch Huawei 6700 Series - Netstream:netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}].last()}/{Template Switch Huawei 6700 Series - Netstream:netstream.ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9</expression>
+                            <expression>({Template Switch Huawei 6700 Series - Netstream:netstream.ifHCInOctets[{#IF}.{#SNMPINDEX}].min(15m)}/{Template Switch Huawei 6700 Series - Netstream:netstream.ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9 or ({Template Switch Huawei 6700 Series - Netstream:netstream.ifHCOutOctets[{#IF}.{#SNMPINDEX}].min(15m)}/{Template Switch Huawei 6700 Series - Netstream:netstream.ifspeed.[{#IF}.{#SNMPINDEX}].last()})&gt;0.9</expression>
                             <name>Consumo maior que 90% da porta - {#IF}: ({#IFALIAS})</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -2784,13 +2784,13 @@ Todos os direitos reservados.</description>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
+                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}].min(1h)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
 or
-{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
+{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}].min(1h)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
 or
-{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
+{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}].min(1h)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}
 or 
-{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}].last(,5m)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}</expression>
+{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}].min(1h)}&lt;0.97*{Template Switch Huawei 6700 Series - Netstream:netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}].last()}</expression>
                             <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
