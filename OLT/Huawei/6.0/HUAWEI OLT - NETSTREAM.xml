@@ -238,10 +238,9 @@ Todos os direitos reservados.</description>
                         </trigger>
                         <trigger>
                             <uuid>605673aa60f24d0ab2373cb7e3b1472b</uuid>
-                            <expression>nodata(/HUAWEI OLT - NETSTREAM/netstream.system.uptime,5m)=1</expression>
-                            <name>HUAWEI OLT - NETSTREAM: OLT Inacessível (sem dados SNMP)</name>
+                            <expression>nodata(/HUAWEI OLT - NETSTREAM/netstream.system.uptime,1h)=1</expression>
+                            <name>HUAWEI OLT: Inacessível (sem resposta SNMP por 1h)</name>
                             <priority>DISASTER</priority>
-                            <status>DISABLED</status>
                             <tags>
                                 <tag>
                                     <tag>scope</tag>

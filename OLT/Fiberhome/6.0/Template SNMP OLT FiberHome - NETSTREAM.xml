@@ -239,10 +239,9 @@ Todos os direitos reservados.</description>
                         </trigger>
                         <trigger>
                             <uuid>7383372efe2641328fe13bbfc5ad0c6d</uuid>
-                            <expression>nodata(/Template SNMP OLT FiberHome - NETSTREAM/uptime,5m)=1</expression>
-                            <name>OLT Inacessível (sem dados SNMP)</name>
+                            <expression>nodata(/Template SNMP OLT FiberHome - NETSTREAM/uptime,1h)=1</expression>
+                            <name>OLT Inacessível (sem resposta SNMP por 1h)</name>
                             <priority>DISASTER</priority>
-                            <status>DISABLED</status>
                             <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 60 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
                             <tags>
                                 <tag>
