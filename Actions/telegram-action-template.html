@@ -452,65 +452,55 @@
         <span class="severity-badge badge-info">Fibra Óptica</span>
         <span class="scenario-title">LOS — Loss of Signal</span>
       </div>
-
       <div class="scenario-grid">
-        <!-- PREVIEW -->
         <div class="card">
-          <div class="card-header">Preview Telegram</div>
+          <div class="card-header">Preview Telegram — PROBLEMA</div>
           <div class="card-body">
             <div class="tg-preview">
               <div class="tg-chat-header">
                 <div class="tg-avatar">📡</div>
-                <div>
-                  <div class="tg-chat-name">SEM LIMITE | PONs OLTs</div>
-                  <div class="tg-chat-sub">14 members</div>
-                </div>
+                <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
               </div>
               <div class="tg-message">
                 <div class="tg-bubble sep-high">
-                  <div class="emoji-header">⚠️ ALERTA LOS — FIBRA ÓPTICA</div>
-                  <div><b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
-                  <div><b>POP:</b> Jd P. Dutra - Guarulhos</div>
-                  <div><b>PON:</b> pon_14/4</div>
+                  <div class="emoji-header">⚠️ LOS FIBRA — PON ÓPTICA</div>
+                  <div>📡 <b>PON:</b> pon_14/4</div>
+                  <div>🏢 <b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
+                  <div>📍 <b>POP:</b> Jd P. Dutra - Guarulhos</div>
                   <br>
-                  <div>📊 <b>Status da PON:</b></div>
-                  <div>• Online antes: <code>12</code></div>
-                  <div>• Em LOS (fibra): <code>3</code></div>
+                  <div>🔴 <b>Em LOS (fibra):</b> 3</div>
+                  <div>📶 <b>Online antes:</b> 12</div>
+                  <div>📋 <b>Autorizadas:</b> 48</div>
                   <br>
-                  <div>🕐 <code>14:48:22  2026-08-27</code></div>
-                  <div>🆔 <code>ID: 1100384</code></div>
+                  <div>🕐 <b>Início:</b> 2026.08.27 às 14:48:22</div>
+                  <div>🆔 <code>1100384</code></div>
                 </div>
-                <div class="tg-time">15:06</div>
+                <div class="tg-time">14:48</div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- TEMPLATE -->
         <div class="card">
-          <div class="card-header">
-            Template Zabbix — PROBLEM
-            <button class="copy-btn" onclick="copyTemplate('tpl-los-p')">Copiar</button>
-          </div>
+          <div class="card-header">Template Zabbix — PROBLEM</div>
           <div class="card-body">
             <div class="tpl-section">
               <div class="tpl-label">Assunto</div>
-              <div class="tpl-box" id="tpl-los-subj"><span class="e">⚠️</span> LOS FIBRA | <span class="m">{EVENT.TAGS.pon}</span></div>
+              <div class="tpl-box"><span class="e">⚠️</span> LOS FIBRA | <span class="m">{EVENT.TAGS.pon}</span> — <span class="m">{HOST.NAME}</span></div>
             </div>
             <div class="tpl-section">
               <div class="tpl-label">Mensagem</div>
-              <div class="tpl-box" id="tpl-los-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">⚠️</span> ALERTA LOS — FIBRA ÓPTICA<span class="t">&lt;/b&gt;</span>
+              <div class="tpl-box" id="tpl-los-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">⚠️</span> LOS FIBRA — PON ÓPTICA<span class="t">&lt;/b&gt;</span>
 
-<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
-<span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
-<span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">📡</span> <span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">🏢</span> <span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="e">📍</span> <span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
 
-<span class="e">📊</span> <span class="t">&lt;b&gt;</span>Status da PON:<span class="t">&lt;/b&gt;</span>
-• Online antes: <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE2}</span><span class="t">&lt;/code&gt;</span>
-• Em LOS (fibra): <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE1}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">🔴</span> <span class="t">&lt;b&gt;</span>Em LOS (fibra):<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE1}</span>
+<span class="e">📶</span> <span class="t">&lt;b&gt;</span>Online antes:<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE3}</span>
+<span class="e">📋</span> <span class="t">&lt;b&gt;</span>Autorizadas:<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE4}</span>
 
-<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
-<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-los-p')" style="position:absolute">Copiar</button></div>
+<span class="e">🕐</span> <span class="t">&lt;b&gt;</span>Início:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.DATE}</span> às <span class="m">{EVENT.TIME}</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-los-p')" style="position:absolute">Copiar</button></div>
             </div>
             <div class="tag-row">
               <span class="tag-pill">scope=<span>OLT</span></span>
@@ -519,10 +509,52 @@
               <span class="tag-pill">tipo=<span>LOS</span></span>
               <span class="tag-pill">notificar=<span>telegram</span></span>
             </div>
-            <div class="note">
-              <strong>Nota:</strong> <code>{ITEM.LASTVALUE1}</code> = valor do item LOS (delta recente).
-              <code>{ITEM.LASTVALUE2}</code> = online antes (item de online na mesma PON).
-              Se a trigger usar apenas 1 item, use <code>{ITEM.LASTVALUE}</code>.
+          </div>
+        </div>
+      </div>
+      <div class="scenario-grid" style="margin-top:16px">
+        <div class="card">
+          <div class="card-header">Preview Telegram — RESOLVIDO</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">📡</div>
+                <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-recovery">
+                  <div class="emoji-header">✅ RECUPERADO — LOS FIBRA</div>
+                  <div>📡 <b>PON:</b> pon_14/4</div>
+                  <div>🏢 <b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
+                  <div>📍 <b>POP:</b> Jd P. Dutra - Guarulhos</div>
+                  <br>
+                  <div>⏱ <b>Duração:</b> 12m 33s</div>
+                  <div>🕐 <b>Recuperado:</b> 2026.08.27 às 15:00:55</div>
+                  <div>🆔 <code>1100384</code></div>
+                </div>
+                <div class="tg-time">15:00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Template Zabbix — RECOVERY</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box">✅ LOS RESOLVIDO | <span class="m">{EVENT.TAGS.pon}</span> — <span class="m">{HOST.NAME}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-los-r" style="position:relative"><span class="t">&lt;b&gt;</span>✅ RECUPERADO — LOS FIBRA<span class="t">&lt;/b&gt;</span>
+
+<span class="e">📡</span> <span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">🏢</span> <span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="e">📍</span> <span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
+
+⏱ <span class="t">&lt;b&gt;</span>Duração:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.DURATION}</span>
+<span class="e">🕐</span> <span class="t">&lt;b&gt;</span>Recuperado:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.RECOVERY.DATE}</span> às <span class="m">{EVENT.RECOVERY.TIME}</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-los-r')" style="position:absolute">Copiar</button></div>
             </div>
           </div>
         </div>
@@ -535,11 +567,11 @@
     <div class="scenario" id="s-dg">
       <div class="scenario-header">
         <span class="severity-badge badge-disaster">DISASTER</span>
-        <span class="scenario-title">DyingGasp — Queda com aviso</span>
+        <span class="scenario-title">DyingGasp — Queda com aviso de energia</span>
       </div>
       <div class="scenario-grid">
         <div class="card">
-          <div class="card-header">Preview Telegram</div>
+          <div class="card-header">Preview Telegram — PROBLEMA</div>
           <div class="card-body">
             <div class="tg-preview">
               <div class="tg-chat-header">
@@ -549,46 +581,49 @@
               <div class="tg-message">
                 <div class="tg-bubble sep-disaster">
                   <div class="emoji-header">🚨 DYINGGASP — QUEDA COM AVISO</div>
-                  <div><b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
-                  <div><b>POP:</b> Jd P. Dutra - Guarulhos</div>
-                  <div><b>PON:</b> pon_2/1</div>
+                  <div>📡 <b>PON:</b> pon_2/1</div>
+                  <div>🏢 <b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
+                  <div>📍 <b>POP:</b> Jd P. Dutra - Guarulhos</div>
                   <br>
-                  <div>• DyingGasp detectados (15min): <code>5</code></div>
+                  <div>⚡ <b>DyingGasp detectados:</b> 5</div>
+                  <div>📶 <b>Online antes:</b> 32</div>
+                  <div>📋 <b>Autorizadas:</b> 48</div>
                   <br>
-                  <div>🕐 <code>10:22:11  2026-08-27</code></div>
-                  <div>🆔 <code>ID: 1100201</code></div>
+                  <div>🕐 <b>Início:</b> 2026.08.27 às 10:22:11</div>
+                  <div>🆔 <code>1100201</code></div>
                 </div>
                 <div class="tg-time">10:22</div>
               </div>
             </div>
           </div>
         </div>
-
         <div class="card">
           <div class="card-header">Template Zabbix — PROBLEM</div>
           <div class="card-body">
             <div class="tpl-section">
               <div class="tpl-label">Assunto</div>
-              <div class="tpl-box"><span class="e">🚨</span> DYINGGASP | <span class="m">{EVENT.TAGS.pon}</span></div>
+              <div class="tpl-box"><span class="e">🚨</span> DYINGGASP | <span class="m">{EVENT.TAGS.pon}</span> — <span class="m">{HOST.NAME}</span></div>
             </div>
             <div class="tpl-section">
               <div class="tpl-label">Mensagem</div>
               <div class="tpl-box" id="tpl-dg-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">🚨</span> DYINGGASP — QUEDA COM AVISO<span class="t">&lt;/b&gt;</span>
 
-<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
-<span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
-<span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">📡</span> <span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">🏢</span> <span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="e">📍</span> <span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
 
-• DyingGasp detectados (15min): <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE}</span><span class="t">&lt;/code&gt;</span>
+⚡ <span class="t">&lt;b&gt;</span>DyingGasp detectados:<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE1}</span>
+<span class="e">📶</span> <span class="t">&lt;b&gt;</span>Online antes:<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE3}</span>
+<span class="e">📋</span> <span class="t">&lt;b&gt;</span>Autorizadas:<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE4}</span>
 
-<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
-<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-dg-p')" style="position:absolute">Copiar</button></div>
+<span class="e">🕐</span> <span class="t">&lt;b&gt;</span>Início:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.DATE}</span> às <span class="m">{EVENT.TIME}</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-dg-p')" style="position:absolute">Copiar</button></div>
             </div>
             <div class="tag-row">
               <span class="tag-pill">tipo=<span>DyingGasp</span></span>
               <span class="tag-pill">notificar=<span>nao</span></span>
             </div>
-            <div class="note"><strong>Nota:</strong> DyingGasp tem <code>notificar=nao</code> por padrão. Ativar notificação Telegram somente se desejado.</div>
+            <div class="note"><strong>Nota:</strong> DyingGasp tem <code>notificar=nao</code> por padrão — ativar uma action separada se quiser notificação Telegram.</div>
           </div>
         </div>
       </div>
@@ -604,7 +639,7 @@
       </div>
       <div class="scenario-grid">
         <div class="card">
-          <div class="card-header">Preview Telegram</div>
+          <div class="card-header">Preview Telegram — PROBLEMA</div>
           <div class="card-body">
             <div class="tg-preview">
               <div class="tg-chat-header">
@@ -614,46 +649,94 @@
               <div class="tg-message">
                 <div class="tg-bubble sep-disaster">
                   <div class="emoji-header">🚨 QUEDA TOTAL — PON OFFLINE</div>
-                  <div><b>OLT:</b> TR 2 - OLT - ZTE - Centro</div>
-                  <div><b>POP:</b> Centro - São Paulo</div>
-                  <div><b>PON:</b> pon_1/3</div>
+                  <div>📡 <b>PON:</b> pon_1/3</div>
+                  <div>🏢 <b>OLT:</b> TR 2 - OLT - ZTE - Centro</div>
+                  <div>📍 <b>POP:</b> Centro - São Paulo</div>
                   <br>
-                  <div>• ONUs online antes: <code>47</code></div>
-                  <div>• ONUs online agora: <code>0</code></div>
+                  <div>🔴 <b>ONUs online:</b> 0 (PON INATIVA)</div>
+                  <div>🔴 <b>LOS detectados:</b> 47</div>
+                  <div>📋 <b>Autorizadas:</b> 47</div>
                   <br>
-                  <div>🕐 <code>08:15:30  2026-08-27</code></div>
-                  <div>🆔 <code>ID: 1100150</code></div>
+                  <div>🕐 <b>Início:</b> 2026.08.27 às 08:15:30</div>
+                  <div>🆔 <code>1100150</code></div>
                 </div>
                 <div class="tg-time">08:15</div>
               </div>
             </div>
           </div>
         </div>
-
         <div class="card">
           <div class="card-header">Template Zabbix — PROBLEM</div>
           <div class="card-body">
             <div class="tpl-section">
               <div class="tpl-label">Assunto</div>
-              <div class="tpl-box"><span class="e">🚨</span> QUEDA TOTAL | <span class="m">{EVENT.TAGS.pon}</span></div>
+              <div class="tpl-box"><span class="e">🚨</span> QUEDA TOTAL | <span class="m">{EVENT.TAGS.pon}</span> — <span class="m">{HOST.NAME}</span></div>
             </div>
             <div class="tpl-section">
               <div class="tpl-label">Mensagem</div>
               <div class="tpl-box" id="tpl-qt-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">🚨</span> QUEDA TOTAL — PON OFFLINE<span class="t">&lt;/b&gt;</span>
 
-<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
-<span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
-<span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">📡</span> <span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">🏢</span> <span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="e">📍</span> <span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
 
-• ONUs online antes: <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE2}</span><span class="t">&lt;/code&gt;</span>
-• ONUs online agora: <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE1}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">🔴</span> <span class="t">&lt;b&gt;</span>ONUs online:<span class="t">&lt;/b&gt;</span> 0 (PON INATIVA)
+<span class="e">🔴</span> <span class="t">&lt;b&gt;</span>LOS detectados:<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE2}</span>
+<span class="e">📋</span> <span class="t">&lt;b&gt;</span>Autorizadas:<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE3}</span>
 
-<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
-<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-qt-p')" style="position:absolute">Copiar</button></div>
+<span class="e">🕐</span> <span class="t">&lt;b&gt;</span>Início:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.DATE}</span> às <span class="m">{EVENT.TIME}</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-qt-p')" style="position:absolute">Copiar</button></div>
             </div>
             <div class="tag-row">
               <span class="tag-pill">tipo=<span>Queda_Total</span></span>
-              <span class="tag-pill">notificar=<span>nao</span></span>
+              <span class="tag-pill">notificar=<span>telegram</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scenario-grid" style="margin-top:16px">
+        <div class="card">
+          <div class="card-header">Preview Telegram — RESOLVIDO</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">📡</div>
+                <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-recovery">
+                  <div class="emoji-header">✅ RECUPERADO — QUEDA TOTAL</div>
+                  <div>📡 <b>PON:</b> pon_1/3</div>
+                  <div>🏢 <b>OLT:</b> TR 2 - OLT - ZTE - Centro</div>
+                  <div>📍 <b>POP:</b> Centro - São Paulo</div>
+                  <br>
+                  <div>⏱ <b>Duração:</b> 8m 44s</div>
+                  <div>🕐 <b>Recuperado:</b> 2026.08.27 às 08:24:14</div>
+                  <div>🆔 <code>1100150</code></div>
+                </div>
+                <div class="tg-time">08:24</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Template Zabbix — RECOVERY</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box">✅ QUEDA TOTAL RESOLVIDA | <span class="m">{EVENT.TAGS.pon}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-qt-r" style="position:relative"><span class="t">&lt;b&gt;</span>✅ RECUPERADO — QUEDA TOTAL<span class="t">&lt;/b&gt;</span>
+
+<span class="e">📡</span> <span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">🏢</span> <span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="e">📍</span> <span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
+
+⏱ <span class="t">&lt;b&gt;</span>Duração:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.DURATION}</span>
+<span class="e">🕐</span> <span class="t">&lt;b&gt;</span>Recuperado:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.RECOVERY.DATE}</span> às <span class="m">{EVENT.RECOVERY.TIME}</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-qt-r')" style="position:absolute">Copiar</button></div>
             </div>
           </div>
         </div>
@@ -665,12 +748,12 @@
     ══════════════════════════════════════════════════ -->
     <div class="scenario" id="s-queda-parcial">
       <div class="scenario-header">
-        <span class="severity-badge badge-average">HIGH</span>
+        <span class="severity-badge badge-high">HIGH</span>
         <span class="scenario-title">Queda Parcial de PON</span>
       </div>
       <div class="scenario-grid">
         <div class="card">
-          <div class="card-header">Preview Telegram</div>
+          <div class="card-header">Preview Telegram — PROBLEMA</div>
           <div class="card-body">
             <div class="tg-preview">
               <div class="tg-chat-header">
@@ -678,43 +761,96 @@
                 <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
               </div>
               <div class="tg-message">
-                <div class="tg-bubble sep-average">
-                  <div class="emoji-header">📉 QUEDA PARCIAL — ONUs OFFLINE</div>
-                  <div><b>OLT:</b> TR 1 - OLT - Huawei</div>
-                  <div><b>PON:</b> pon_3/2</div>
+                <div class="tg-bubble sep-high">
+                  <div class="emoji-header">📉 QUEDA PARCIAL — PON ÓPTICA</div>
+                  <div>📡 <b>PON:</b> pon_3/2</div>
+                  <div>🏢 <b>OLT:</b> TR 1 - OLT - Huawei - Guarulhos</div>
+                  <div>📍 <b>POP:</b> Jd. Presidente Dutra</div>
                   <br>
-                  <div>• Queda: <code>-8</code> ONUs offline</div>
-                  <div>• Online agora: <code>39</code></div>
+                  <div>🟡 <b>ONUs online:</b> 39</div>
+                  <div>🔴 <b>LOS detectados:</b> 8</div>
+                  <div>📋 <b>Autorizadas:</b> 47</div>
                   <br>
-                  <div>🕐 <code>16:05:44  2026-08-27</code></div>
-                  <div>🆔 <code>ID: 1100500</code></div>
+                  <div>🕐 <b>Início:</b> 2026.08.27 às 16:05:44</div>
+                  <div>🆔 <code>1100500</code></div>
                 </div>
                 <div class="tg-time">16:05</div>
               </div>
             </div>
           </div>
         </div>
-
         <div class="card">
           <div class="card-header">Template Zabbix — PROBLEM</div>
           <div class="card-body">
             <div class="tpl-section">
               <div class="tpl-label">Assunto</div>
-              <div class="tpl-box"><span class="e">📉</span> QUEDA PARCIAL | <span class="m">{EVENT.TAGS.pon}</span></div>
+              <div class="tpl-box"><span class="e">📉</span> QUEDA PARCIAL | <span class="m">{EVENT.TAGS.pon}</span> — <span class="m">{HOST.NAME}</span></div>
             </div>
             <div class="tpl-section">
               <div class="tpl-label">Mensagem</div>
-              <div class="tpl-box" id="tpl-qp-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">📉</span> QUEDA PARCIAL — ONUs OFFLINE<span class="t">&lt;/b&gt;</span>
+              <div class="tpl-box" id="tpl-qp-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">📉</span> QUEDA PARCIAL — PON ÓPTICA<span class="t">&lt;/b&gt;</span>
 
-<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
-<span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
-<span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">📡</span> <span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">🏢</span> <span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="e">📍</span> <span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
 
-• Queda: <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE}</span><span class="t">&lt;/code&gt;</span> ONUs offline
-• Online agora: <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE2}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">🟡</span> <span class="t">&lt;b&gt;</span>ONUs online:<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE1}</span>
+<span class="e">🔴</span> <span class="t">&lt;b&gt;</span>LOS detectados:<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE2}</span>
+<span class="e">📋</span> <span class="t">&lt;b&gt;</span>Autorizadas:<span class="t">&lt;/b&gt;</span> <span class="m">{ITEM.VALUE3}</span>
 
-<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
-<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-qp-p')" style="position:absolute">Copiar</button></div>
+<span class="e">🕐</span> <span class="t">&lt;b&gt;</span>Início:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.DATE}</span> às <span class="m">{EVENT.TIME}</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-qp-p')" style="position:absolute">Copiar</button></div>
+            </div>
+            <div class="tag-row">
+              <span class="tag-pill">tipo=<span>Queda_Parcial</span></span>
+              <span class="tag-pill">notificar=<span>telegram</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scenario-grid" style="margin-top:16px">
+        <div class="card">
+          <div class="card-header">Preview Telegram — RESOLVIDO</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">📡</div>
+                <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-recovery">
+                  <div class="emoji-header">✅ RECUPERADO — QUEDA PARCIAL</div>
+                  <div>📡 <b>PON:</b> pon_3/2</div>
+                  <div>🏢 <b>OLT:</b> TR 1 - OLT - Huawei - Guarulhos</div>
+                  <div>📍 <b>POP:</b> Jd. Presidente Dutra</div>
+                  <br>
+                  <div>⏱ <b>Duração:</b> 3m 18s</div>
+                  <div>🕐 <b>Recuperado:</b> 2026.08.27 às 16:09:02</div>
+                  <div>🆔 <code>1100500</code></div>
+                </div>
+                <div class="tg-time">16:09</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Template Zabbix — RECOVERY</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box">✅ QUEDA PARCIAL RESOLVIDA | <span class="m">{EVENT.TAGS.pon}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-qp-r" style="position:relative"><span class="t">&lt;b&gt;</span>✅ RECUPERADO — QUEDA PARCIAL<span class="t">&lt;/b&gt;</span>
+
+<span class="e">📡</span> <span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="e">🏢</span> <span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="e">📍</span> <span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
+
+⏱ <span class="t">&lt;b&gt;</span>Duração:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.DURATION}</span>
+<span class="e">🕐</span> <span class="t">&lt;b&gt;</span>Recuperado:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.RECOVERY.DATE}</span> às <span class="m">{EVENT.RECOVERY.TIME}</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-qp-r')" style="position:absolute">Copiar</button></div>
             </div>
           </div>
         </div>
