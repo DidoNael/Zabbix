@@ -125,7 +125,7 @@ Todos os direitos reservados.</description>
                 </item>
                 <item>
                     <uuid>a98914def0794310a83d4c56ae81e578</uuid>
-                    <name>Uptime OLT</name>
+                    <name>Uptime do Sistema</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
                     <key>netstream.system.uptime</key>
@@ -502,7 +502,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>8e1a8575b2254332b2a5cd86189a90b3</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): ONUs Autorizadas</name>
+                            <name>PON {#PONNAME} - ONUs Autorizadas</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#PROPRIETARYINDEX}</snmp_oid>
                             <key>netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]</key>
@@ -510,7 +510,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>bcb1fc39bb784c5785ee95e9719878db</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): ONUs Offline</name>
+                            <name>PON {#PONNAME} - ONUs Offline</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.onu.offline[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -519,7 +519,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>95b5ad9693cb4b79a13a3af4a4c84f1d</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): ONUs Online</name>
+                            <name>PON {#PONNAME} - ONUs Online</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15.{#PROPRIETARYINDEX}</snmp_oid>
                             <key>netstream.gpon.onu.online[{#SNMPINDEX}]</key>
@@ -528,7 +528,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>1af8dcc71a9d49eb9490d2881e19bb87</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): ONUs Online Antes</name>
+                            <name>PON {#PONNAME} - ONUs Online Antes</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.onu.online_antes[{#SNMPINDEX}]</key>
                             <delay>5m</delay>
@@ -537,7 +537,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8ff71fd0dc1d4d37a618a60fc78540cb</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Status Operacional</name>
+                            <name>PON {#PONNAME} - Status Operacional</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.gpon.port.status[{#SNMPINDEX}]</key>
@@ -545,7 +545,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>73ee7aaca38f427d84984b3cd7fffd85</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Temperatura do SFP</name>
+                            <name>PON {#PONNAME} - Temperatura do SFP</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.30.40.2.4.1.8.{#PROPRIETARYINDEX}</snmp_oid>
                             <key>netstream.gpon.sfp.temp[{#SNMPINDEX}]</key>
@@ -563,7 +563,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>80a19d96c6dd4533a1271e03513ead4b</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Potencia de Saida do SFP (TX Power)</name>
+                            <name>PON {#PONNAME} - Potencia de Saida do SFP (TX Power)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.30.40.2.4.1.3.{#PROPRIETARYINDEX}</snmp_oid>
                             <key>netstream.gpon.sfp.txpower[{#SNMPINDEX}]</key>
@@ -581,7 +581,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>a3f7c921d48e4b65b01234567890abcd</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Potencia de Entrada do SFP (RX Power)</name>
+                            <name>PON {#PONNAME} - Potencia de Entrada do SFP (RX Power)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.30.40.2.4.1.2.{#PROPRIETARYINDEX}</snmp_oid>
                             <key>netstream.gpon.sfp.rxpower[{#SNMPINDEX}]</key>
@@ -599,7 +599,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>cc773368125643a8b32b13e4ac75ccbe</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Erros CRC / Entrada (Taxa)</name>
+                            <name>PON {#PONNAME} - Erros CRC / Entrada (Taxa)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.net.if.in.errors[{#SNMPINDEX}]</key>
@@ -618,7 +618,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                     <expression>min(/OLT ZTE - NETSTREAM/netstream.net.if.in.errors[{#SNMPINDEX}],#3)&gt;5</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>avg(/OLT ZTE - NETSTREAM/netstream.net.if.in.errors[{#SNMPINDEX}],1)=0</recovery_expression>
-                                    <name>Porta {#PONNAME} ({#PONDESC}): Alta Taxa de Erros CRC ({ITEM.LASTVALUE1}/s)</name>
+                                    <name>PON {#PONNAME} - Alta Taxa de Erros CRC ({ITEM.LASTVALUE1}/s)</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
@@ -648,7 +648,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>b77d3a14df884169a0998aa337ba8656</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Trafego de Entrada (Download)</name>
+                            <name>PON {#PONNAME} - Trafego de Entrada (Download)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.net.if.in[{#SNMPINDEX}]</key>
@@ -677,7 +677,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>7d98c8357aff4ac29075872babe26ecd</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Erros de Saída</name>
+                            <name>PON {#PONNAME} - Erros de Saída</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.net.if.out.errors[{#SNMPINDEX}]</key>
@@ -694,7 +694,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                 <trigger_prototype>
                                     <uuid>c0cd98d84c004f8c8823a099c518cb4a</uuid>
                                     <expression>last(/OLT ZTE - NETSTREAM/netstream.net.if.out.errors[{#SNMPINDEX}])>10</expression>
-                                    <name>Porta {#PONNAME} ({#PONDESC}): Taxa de erros de saida elevada</name>
+                                    <name>PON {#PONNAME} - Taxa de erros de saida elevada</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
@@ -716,7 +716,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8c9c20a529b643058758ba0727e800f1</uuid>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Trafego de Saida (Upload)</name>
+                            <name>PON {#PONNAME} - Trafego de Saida (Upload)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.net.if.out[{#SNMPINDEX}]</key>
@@ -748,7 +748,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         <trigger_prototype>
                             <uuid>59c9a4068fef44b3a33abd4d7671fadc</uuid>
                             <expression>max(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],#3)=2 and change(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}])&lt;&gt;0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],10m)&gt;1</expression>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Apagada (Inativa)</name>
+                            <name>PON {#PONNAME} - Porta GPON Apagada (Inativa)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -777,7 +777,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         <trigger_prototype>
                             <uuid>61db861a0e554d9abb4cbac305b05da3</uuid>
                             <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}])&gt;127 and last(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}])=1</expression>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Cheia (&gt;127 ONUs autorizadas)</name>
+                            <name>PON {#PONNAME} - Porta GPON Cheia (&gt;127 ONUs autorizadas)</name>
                             <priority>WARNING</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -998,6 +998,10 @@ return JSON.stringify(result);</parameter>
                                         <tag>
                                             <tag>onu_id</tag>
                                             <value>{#NETSTREAM.ONU_DESC}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>pon</tag>
+                                            <value>{#NETSTREAM.PON_DESC}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>

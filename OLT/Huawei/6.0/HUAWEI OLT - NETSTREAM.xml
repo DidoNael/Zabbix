@@ -198,7 +198,7 @@ Todos os direitos reservados.</description>
                 </item>
                 <item>
                     <uuid>4ac6dc63d4b74c9f8b00567110d72757</uuid>
-                    <name>Uptime OLT</name>
+                    <name>Uptime do Sistema</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
                     <key>netstream.system.uptime</key>

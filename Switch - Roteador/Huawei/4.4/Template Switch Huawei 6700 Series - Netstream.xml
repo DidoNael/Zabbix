@@ -124,34 +124,6 @@ Todos os direitos reservados.</description>
             </applications>
             <items>
                 <item>
-                    <name>CPU - Medio - 1m</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.0.0.0</snmp_oid>
-                    <key>netstream.hwAvgDuty1min[{#SNMPINDEX}]</key><status>DISABLED</status>
-                    <delay>3m</delay>
-                    <units>%</units>
-                    <applications>
-                        <application>
-                            <name>CPU</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
-                    <name>CPU - Medio - 5m</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.0.0.0</snmp_oid>
-                    <key>netstream.hwAvgDuty5min[{#SNMPINDEX}]</key><status>DISABLED</status>
-                    <delay>3m</delay>
-                    <units>%</units>
-                    <applications>
-                        <application>
-                            <name>CPU</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
                     <name>Tabela Mac</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
@@ -163,44 +135,6 @@ Todos os direitos reservados.</description>
                             <name>mac-table</name>
                         </application>
                     </applications>
-                </item>
-                <item>
-                    <name>Uso de RAM</name>
-                    <type>SNMPV2</type>
-                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.7.67108873</snmp_oid>
-                    <key>netstream.memousage</key>
-                    <delay>3m</delay>
-                    <units>%</units>
-                    <applications>
-                        <application>
-                            <name>memory</name>
-                        </application>
-                    </applications>
-                    <triggers>
-                        <trigger>
-                            <expression>{Template Switch Huawei 6700 Series - Netstream:netstream.memousage.last()}&gt;80</expression>
-                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{Template Switch Huawei 6700 Series - Netstream:netstream.memousage.last()}&lt;80</recovery_expression>
-                            <name>Uso alto de memoria RAM</name>
-                            <priority>DISASTER</priority>
-                            <manual_close>YES</manual_close>
-                            <tags>
-                                <tag>
-                                    <tag>Scope</tag>
-                                    <value>Memory</value>
-                                </tag>
-                                <tag>
-                                    <tag>Alert</tag>
-                                    <value>RAMUsageHigh</value>
-                                </tag>
-                                <tag>
-                                    <tag>Severity</tag>
-                                    <value>High</value>
-                                </tag>
-                            </tags>
-                        </trigger>
-                    </triggers>
                 </item>
                 <item>
                     <name>Versao do Sistema e Hardware</name>
@@ -3300,33 +3234,6 @@ or
             </macros>
         </template>
     </templates>
-    <triggers>
-        <trigger>
-            <expression>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &gt; 80) or
-({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty5min[{#SNMPINDEX}].last()} &gt; 80)</expression>
-            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-            <recovery_expression>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &lt; 80) or
-({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty5min[{#SNMPINDEX}].last()} &lt; 80)</recovery_expression>
-            <name>CPU Alta</name>
-            <priority>HIGH</priority>
-            <description>({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty1min[{#SNMPINDEX}].last()} &gt; 80) or
-({Template Switch Huawei 6700 Series - Netstream:netstream.hwAvgDuty5min[{#SNMPINDEX}].last()} &gt; 80)</description>
-            <tags>
-                <tag>
-                    <tag>Scope</tag>
-                    <value>CPU</value>
-                </tag>
-                <tag>
-                    <tag>Alert</tag>
-                    <value>CpuUsageHigh60Alt</value>
-                </tag>
-                <tag>
-                    <tag>Severity</tag>
-                    <value>Warning</value>
-                </tag>
-            </tags>
-        </trigger>
-    </triggers>
     <value_maps>
         <value_map>
             <name>HUAWEI - OSPF</name>

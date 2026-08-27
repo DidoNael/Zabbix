@@ -35,82 +35,12 @@ Todos os direitos reservados.</description>
             </groups>
             <items>
                 <item>
-                    <uuid>84aa59bf53824d84808eccd36ce2057e</uuid>
-                    <name>CPU - Medio - 1m</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.3.0.0.0</snmp_oid>
-                    <key>netstream.hwAvgDuty1min[{#SNMPINDEX}]</key>
-                    <units>%</units>
-                </item>
-                <item>
-                    <uuid>116a5ea5b7a74f1285dbc5c33ad1fcd6</uuid>
-                    <name>CPU - Medio - 5m</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.6.3.4.1.4.0.0.0</snmp_oid>
-                    <key>netstream.hwAvgDuty5min[{#SNMPINDEX}]</key>
-                    <units>%</units>
-                </item>
-                <item>
                     <uuid>4aab10dcc6ab4058a8fef08dc86b7c68</uuid>
                     <name>Tabela Mac</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.2011.5.25.42.2.1.14.0</snmp_oid>
                     <key>netstream.mactable</key>
                     <status>DISABLED</status>
-                </item>
-                <item>
-                    <uuid>e6841d2170464ee6bafe0e197be7f97f</uuid>
-                    <name>Uso de RAM</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.1.1.7.67108873</snmp_oid>
-                    <key>netstream.memousage</key>
-                    <units>%</units>
-                    <triggers>
-                        <trigger>
-                            <uuid>5a36137e9cf744439a11ac103c3c2dc5</uuid>
-                            <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.memousage)&gt;80</expression>
-                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.memousage)&lt;80</recovery_expression>
-                            <name>Uso alto de memoria RAM</name>
-                            <priority>DISASTER</priority>
-                            <manual_close>YES</manual_close>
-                            <tags>
-                                <tag>
-                                    <tag>Scope</tag>
-                                    <value>Memory</value>
-                                </tag>
-                                <tag>
-                                    <tag>Alert</tag>
-                                    <value>RAMUsageHigh</value>
-                                </tag>
-                                <tag>
-                                    <tag>Severity</tag>
-                                    <value>High</value>
-                                </tag>
-                            </tags>
-                        </trigger>
-                        <trigger>
-                            <uuid>4c65f080111a4a25a8130d8683ab192b</uuid>
-                            <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.aaa.auth.fail)&gt;50</expression>
-                            <name>RADIUS / AAA: Surto de Falhas de Autenticacao PPPoE (&gt;50 falhas por coleta)</name>
-                            <priority>HIGH</priority>
-                            <description>Alerta quando o numero de rejeicoes de autenticacao PPPoE/AAA cresce subitamente em uma coleta (indicativo de falha no servidor RADIUS ou IXC/SGP).</description>
-                            <tags>
-                                <tag>
-                                    <tag>Scope</tag>
-                                    <value>BNG</value>
-                                </tag>
-                                <tag>
-                                    <tag>FailuresNow</tag>
-                                    <value>{ITEM.LASTVALUE1}</value>
-                                </tag>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>RADIUS/AAA</value>
-                                </tag>
-                            </tags>
-                        </trigger>
-                    </triggers>
                 </item>
                 <item>
                     <uuid>f6bb394dcafc4fa88eb8030a957bffc5</uuid>
@@ -258,6 +188,29 @@ Todos os direitos reservados.</description>
                     <trends>365d</trends>
                     <status>DISABLED</status>
                     <description>Contador SNMP de autenticacao AAA/RADIUS no concentrador Huawei. Desativado por padrao.</description>
+                    <triggers>
+                        <trigger>
+                            <uuid>4c65f080111a4a25a8130d8683ab192b</uuid>
+                            <expression>change(/Template Switch Huawei 6700 Series - Netstream/netstream.aaa.auth.fail)&gt;50</expression>
+                            <name>RADIUS \ AAA: Surto de Falhas de Autenticacao PPPoE (&gt;50 falhas por coleta)</name>
+                            <priority>HIGH</priority>
+                            <description>Alerta quando o numero de rejeicoes de autenticacao PPPoE/AAA cresce subitamente em uma coleta (indicativo de falha no servidor RADIUS ou IXC/SGP).</description>
+                            <tags>
+                                <tag>
+                                    <tag>Scope</tag>
+                                    <value>BNG</value>
+                                </tag>
+                                <tag>
+                                    <tag>FailuresNow</tag>
+                                    <value>{ITEM.LASTVALUE1}</value>
+                                </tag>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>RADIUS/AAA</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
                 </item>
             </items>
             <discovery_rules>
@@ -4078,32 +4031,4 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
             </valuemaps>
         </template>
     </templates>
-    <triggers>
-        <trigger>
-            <uuid>c012bd8942fe4b7c8578262e101d3c16</uuid>
-            <expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty1min[{#SNMPINDEX}]) &gt; 80) or
-(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}]) &gt; 80)</expression>
-            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-            <recovery_expression>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty1min[{#SNMPINDEX}]) &lt; 80) or
-(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}]) &lt; 80)</recovery_expression>
-            <name>CPU Alta</name>
-            <priority>HIGH</priority>
-            <description>(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty1min[{#SNMPINDEX}]) &gt; 80) or
-(last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwAvgDuty5min[{#SNMPINDEX}]) &gt; 80)</description>
-            <tags>
-                <tag>
-                    <tag>Scope</tag>
-                    <value>CPU</value>
-                </tag>
-                <tag>
-                    <tag>Alert</tag>
-                    <value>CpuUsageHigh60Alt</value>
-                </tag>
-                <tag>
-                    <tag>Severity</tag>
-                    <value>Warning</value>
-                </tag>
-            </tags>
-        </trigger>
-    </triggers>
 </zabbix_export>

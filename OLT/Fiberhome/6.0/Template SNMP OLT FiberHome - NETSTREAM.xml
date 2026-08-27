@@ -208,7 +208,7 @@ Todos os direitos reservados.</description>
                 </item>
                 <item>
                     <uuid>a27a50d5ab9346999692902043b2f9c2</uuid>
-                    <name>Uptime</name>
+                    <name>Uptime do Sistema</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
                     <key>uptime</key>

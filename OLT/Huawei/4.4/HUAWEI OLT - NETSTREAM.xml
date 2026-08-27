@@ -256,7 +256,7 @@ Todos os direitos reservados.</description>
                     <description>JSON com totais de ONUs agrupados por estado em toda a OLT</description>
                 </item>
                 <item>
-                    <name>Uptime OLT</name>
+                    <name>Uptime do Sistema</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
