@@ -2342,6 +2342,8 @@ return String(s);</params>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].last()}&lt;=({OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].min(7d)}+2)</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>

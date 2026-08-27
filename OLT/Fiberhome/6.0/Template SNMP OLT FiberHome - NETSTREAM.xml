@@ -1204,6 +1204,8 @@ return 0;</parameter>
                         <trigger_prototype>
                             <uuid>f7525eec3706492e95f83936a136263e</uuid>
                             <expression>(max(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}],900s)-min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}],900s))&gt;=3 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}])&lt;=min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}],7d)+2</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
