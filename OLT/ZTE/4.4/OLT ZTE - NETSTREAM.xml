@@ -1115,6 +1115,36 @@ return JSON.stringify(result);</params>
                                 <name>OLT-ZTE-STATUS-ONT</name>
                             </valuemap>
                             <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>({OLT ZTE - NETSTREAM:netstream.onu.status.[{#SNMPINDEX}].min(#3)}=1 or {OLT ZTE - NETSTREAM:netstream.onu.status.[{#SNMPINDEX}].min(#3)}=2) and {OLT ZTE - NETSTREAM:netstream.onu.status.[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{OLT ZTE - NETSTREAM:netstream.onu.status.[{#SNMPINDEX}].last()}=3</recovery_expression>
+                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LOS / Perda de Sinal Optico</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>ONU_Dedicada</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>notificar</tag>
+                                            <value>nao</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_id</tag>
+                                            <value>{#NETSTREAM.ONU_DESC}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
