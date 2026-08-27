@@ -1147,6 +1147,10 @@ return JSON.stringify(result);</params>
                                             <tag>pon</tag>
                                             <value>{#NETSTREAM.PON_DESC}</value>
                                         </tag>
+                                        <tag>
+                                            <tag>onu_no_pon</tag>
+                                            <value>{#NETSTREAM.ONU_IN_PON}</value>
+                                        </tag>
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
@@ -1198,6 +1202,14 @@ return (-power / 10).toFixed(1);</params>
                                         <tag>
                                             <tag>onu_id</tag>
                                             <value>{#NETSTREAM.ONU_DESC}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>pon</tag>
+                                            <value>{#NETSTREAM.PON_DESC}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_no_pon</tag>
+                                            <value>{#NETSTREAM.ONU_IN_PON}</value>
                                         </tag>
                                         <tag>
                                             <tag>sinal_rx</tag>
@@ -1287,6 +1299,18 @@ return (-power / 10).toFixed(1);</params>
                                             <tag>notificar</tag>
                                             <value>nao</value>
                                         </tag>
+                                        <tag>
+                                            <tag>onu_id</tag>
+                                            <value>{#NETSTREAM.ONU_DESC}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>pon</tag>
+                                            <value>{#NETSTREAM.PON_DESC}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_no_pon</tag>
+                                            <value>{#NETSTREAM.ONU_IN_PON}</value>
+                                        </tag>
                                     </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
@@ -1341,6 +1365,18 @@ return 0;</params>
                                         <tag>
                                             <tag>notificar</tag>
                                             <value>nao</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_id</tag>
+                                            <value>{#NETSTREAM.ONU_DESC}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>pon</tag>
+                                            <value>{#NETSTREAM.PON_DESC}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>onu_no_pon</tag>
+                                            <value>{#NETSTREAM.ONU_IN_PON}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
