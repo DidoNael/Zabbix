@@ -424,6 +424,9 @@
     </div>
 
     <div class="sidebar-section" style="margin-top:12px">Recuperação</div>
+    <div class="nav-item" onclick="show('onu-ded', this)">
+        <span>👤</span> ONU Dedicada
+    </div>
     <div class="nav-item" onclick="show('recovery', this)">
       <span class="nav-dot dot-recovery"></span> Recuperado (OK)
     </div>
@@ -835,6 +838,133 @@ Verificar uplink e energia.
 <span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
 <span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-link-p')" style="position:absolute">Copiar</button></div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         ONU DEDICADA
+    ══════════════════════════════════════════════════ -->
+    <div class="scenario" id="s-onu-ded">
+      <div class="scenario-header">
+        <span class="severity-badge badge-average">AVERAGE</span>
+        <span class="scenario-title">ONU Dedicada — Offline / Retorno</span>
+      </div>
+      <div class="scenario-grid">
+        <div class="card">
+          <div class="card-header">Preview Telegram — PROBLEMA</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">🏢</div>
+                <div><div class="tg-chat-name">Empresas Inativas</div><div class="tg-chat-sub">zabbixbot</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-disaster">
+                  <div class="emoji-header">🔴 PROBLEMA — ONU Dedicada</div>
+                  <div>👤 <b>Cliente:</b> CID12345-EMPRESA-XYZ</div>
+                  <div>📡 <b>PON:</b> pon_14/3  •  ONU nº 42</div>
+                  <div>🏢 <b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
+                  <br>
+                  <div>📊 <b>Estado:</b> <code>Offline / Desconectada</code></div>
+                  <br>
+                  <div>🕐 <b>Início:</b> 2026.08.27 às 10:15:32</div>
+                  <div>🆔 <code>1100543</code></div>
+                </div>
+                <div class="tg-time">10:15</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Template Zabbix — PROBLEM</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box"><span class="e">🔴</span> ONU OFFLINE | <span class="m">{HOST.NAME}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-onu-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">🔴</span> PROBLEMA — ONU Dedicada<span class="t">&lt;/b&gt;</span>
+
+<span class="e">👤</span> <span class="t">&lt;b&gt;</span>Cliente:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.onu_id}</span>
+<span class="e">📡</span> <span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>  •  ONU nº <span class="m">{EVENT.TAGS.onu_no_pon}</span>
+<span class="e">🏢</span> <span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+
+<span class="e">📊</span> <span class="t">&lt;b&gt;</span>Estado:<span class="t">&lt;/b&gt;</span> <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE}</span><span class="t">&lt;/code&gt;</span>
+
+<span class="e">🕐</span> <span class="t">&lt;b&gt;</span>Início:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.DATE}</span> às <span class="m">{EVENT.TIME}</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-onu-p')" style="position:absolute">Copiar</button></div>
+            </div>
+            <div class="tag-row">
+              <span class="tag-pill">scope=<span>OLT</span></span>
+              <span class="tag-pill">servico=<span>GPON</span></span>
+              <span class="tag-pill">tipo=<span>ONU_Dedicada</span></span>
+              <span class="tag-pill">notificar=<span>telegram</span></span>
+              <span class="tag-pill">onu_id=<span>{#NETSTREAM.ONU_DESC}</span></span>
+              <span class="tag-pill">pon=<span>{#NETSTREAM.PON_NAME}</span></span>
+              <span class="tag-pill">onu_no_pon=<span>{#NETSTREAM.ONU_INDEX}</span></span>
+            </div>
+            <div class="note"><strong>Value map obrigatório no item:</strong> <code>0 → Offline / Desconectada</code> · <code>1 → Online / Conectada</code></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECOVERY row -->
+      <div class="scenario-grid" style="margin-top:16px">
+        <div class="card">
+          <div class="card-header">Preview Telegram — RESOLVIDO</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">🏢</div>
+                <div><div class="tg-chat-name">Empresas Inativas</div><div class="tg-chat-sub">zabbixbot</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-recovery">
+                  <div class="emoji-header">✅ RESOLVIDO — ONU Dedicada</div>
+                  <div>👤 <b>Cliente:</b> CID12345-EMPRESA-XYZ</div>
+                  <div>📡 <b>PON:</b> pon_14/3  •  ONU nº 42</div>
+                  <div>🏢 <b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
+                  <br>
+                  <div>📊 <b>Estado:</b> <code>Online / Conectada</code></div>
+                  <div>📶 <b>RX:</b> <code>-21.50 dBm</code></div>
+                  <br>
+                  <div>⏱ <b>Duração:</b> 5m 12s</div>
+                  <div>🕐 <b>Recuperado:</b> 2026.08.27 às 10:20:44</div>
+                  <div>🆔 <code>1100543</code></div>
+                </div>
+                <div class="tg-time">10:20</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Template Zabbix — RECOVERY</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box">✅ RESOLVIDO | <span class="m">{HOST.NAME}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-onu-r" style="position:relative"><span class="t">&lt;b&gt;</span>✅ RESOLVIDO — ONU Dedicada<span class="t">&lt;/b&gt;</span>
+
+<span class="e">👤</span> <span class="t">&lt;b&gt;</span>Cliente:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.onu_id}</span>
+<span class="e">📡</span> <span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>  •  ONU nº <span class="m">{EVENT.TAGS.onu_no_pon}</span>
+<span class="e">🏢</span> <span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+
+<span class="e">📊</span> <span class="t">&lt;b&gt;</span>Estado:<span class="t">&lt;/b&gt;</span> <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">📶</span> <span class="t">&lt;b&gt;</span>RX:<span class="t">&lt;/b&gt;</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TAGS.rxpower}</span> dBm<span class="t">&lt;/code&gt;</span>
+
+⏱ <span class="t">&lt;b&gt;</span>Duração:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.DURATION}</span>
+<span class="e">🕐</span> <span class="t">&lt;b&gt;</span>Recuperado:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.RECOVERY.DATE}</span> às <span class="m">{EVENT.RECOVERY.TIME}</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-onu-r')" style="position:absolute">Copiar</button></div>
+            </div>
+            <div class="note"><strong>Nota:</strong> <code>{EVENT.TAGS.rxpower}</code> requer tag <code>rxpower</code> no trigger prototype populada via <code>{ITEM.LASTVALUE}</code> do item <code>netstream.dedicado.rxpower[{#SNMPINDEX}]</code>.</div>
           </div>
         </div>
       </div>
