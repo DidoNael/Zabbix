@@ -972,7 +972,7 @@ return JSON.stringify(result);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>7b970cb6a6c94e3497d1b8e2434a886b</uuid>
-                                    <expression>(min(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=1 or min(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=2) and count(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <expression>(min(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=1 or min(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],#3)=2) and change(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])&lt;&gt;0 and count(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}],10m)&gt;1</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=3</recovery_expression>
                                     <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LOS / Perda de Sinal Optico</name>

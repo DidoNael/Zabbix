@@ -1729,7 +1729,7 @@ return 0;</parameter>
                                         <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>8709a4024e7c4cb084c4260b24455866</uuid>
-                            <expression>min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.status[{#SNMPINDEX}],#3)=0 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                            <expression>min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.status[{#SNMPINDEX}],#3)=0 and change(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.status[{#SNMPINDEX}])&lt;&gt;0 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.status[{#SNMPINDEX}],10m)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.status[{#SNMPINDEX}])=1</recovery_expression>
                             <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Offline / Desconectada</name>
