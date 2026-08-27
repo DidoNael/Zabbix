@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zabbix Action — Telegram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #17212B;
+    --panel:      #232E3C;
+    --bubble-in:  #2B5278;
+    --bubble-sys: #242F3D;
+    --border:     #2A3A4A;
+    --text:       #D1D5DB;
+    --text-dim:   #6B7E90;
+    --text-bright:#FFFFFF;
+    --accent:     #4FA3E3;
+    --disaster:   #FF453A;
+    --high:       #FF9F0A;
+    --average:    #FFD60A;
+    --warning:    #30B0C7;
+    --recovery:   #30D158;
+    --macro:      #8BE9FD;
+    --macro-bg:   #1A2A35;
+    --scrollbar:  #2A3A4A;
+    --tag-bg:     #1E2D3D;
+    --copy-ok:    #30D158;
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-icon {
+    width: 36px; height: 36px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .header-title { font-size: 16px; font-weight: 700; color: var(--text-bright); }
+  .header-sub   { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+  .header-badge {
+    margin-left: auto;
+    background: var(--bubble-sys);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 11px; font-family: 'Fira Code', monospace;
+    padding: 4px 10px; border-radius: 4px;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 0;
+    flex: 1;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 16px 0;
+    overflow-y: auto;
+    height: calc(100vh - 70px);
+    position: sticky;
+    top: 70px;
+  }
+  .sidebar-section {
+    padding: 0 16px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+    font-size: 13px;
+  }
+  .nav-item:hover { background: rgba(79,163,227,0.08); }
+  .nav-item.active {
+    background: rgba(79,163,227,0.12);
+    border-left-color: var(--accent);
+    color: var(--text-bright);
+  }
+  .nav-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-disaster { background: var(--disaster); }
+  .dot-high     { background: var(--high); }
+  .dot-average  { background: var(--average); }
+  .dot-recovery { background: var(--recovery); }
+  .dot-info     { background: var(--accent); }
+
+  /* ── CONTENT ── */
+  .content {
+    padding: 24px;
+    overflow-y: auto;
+    height: calc(100vh - 70px);
+  }
+
+  /* ── SCENARIO PANEL ── */
+  .scenario { display: none; }
+  .scenario.active { display: block; }
+
+  .scenario-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .severity-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .badge-disaster { background: rgba(255,69,58,0.2);  color: var(--disaster); }
+  .badge-high     { background: rgba(255,159,10,0.2); color: var(--high); }
+  .badge-average  { background: rgba(255,214,10,0.2); color: var(--average); }
+  .badge-recovery { background: rgba(48,209,88,0.2); color: var(--recovery); }
+  .badge-info     { background: rgba(79,163,227,0.2); color: var(--accent); }
+
+  .scenario-title {
+    font-size: 18px; font-weight: 700; color: var(--text-bright);
+  }
+
+  /* ── TWO-COLUMN INSIDE SCENARIO ── */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 1100px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { height: auto; position: static; }
+    .sidebar-nav { display: flex; overflow-x: auto; padding: 0 16px 8px; gap: 4px; }
+    .nav-item { white-space: nowrap; border-left: none; border-bottom: 3px solid transparent; }
+    .nav-item.active { border-bottom-color: var(--accent); border-left-color: transparent; }
+    .content { height: auto; overflow-y: visible; }
+    .scenario-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 10px 14px;
+    background: var(--bubble-sys);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-body { padding: 16px; }
+
+  /* ── TELEGRAM PREVIEW ── */
+  .tg-preview {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 16px;
+    position: relative;
+  }
+  .tg-chat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .tg-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, #4FA3E3, #2B5278);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .tg-chat-name { font-size: 13px; font-weight: 600; color: var(--text-bright); }
+  .tg-chat-sub  { font-size: 11px; color: var(--text-dim); }
+
+  .tg-message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .tg-bubble {
+    background: var(--bubble-in);
+    border-radius: 4px 12px 12px 12px;
+    padding: 10px 14px;
+    max-width: 90%;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-bright);
+    position: relative;
+  }
+  .tg-bubble b  { font-weight: 700; }
+  .tg-bubble i  { font-style: italic; color: var(--text-dim); }
+  .tg-bubble code {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    background: rgba(0,0,0,0.25);
+    padding: 1px 5px; border-radius: 3px;
+  }
+  .tg-time {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    padding-left: 2px;
+  }
+
+  .sep-disaster { border-left: 3px solid var(--disaster);  padding-left: 10px; }
+  .sep-high     { border-left: 3px solid var(--high);     padding-left: 10px; }
+  .sep-recovery { border-left: 3px solid var(--recovery); padding-left: 10px; }
+  .sep-average  { border-left: 3px solid var(--average);  padding-left: 10px; }
+
+  .emoji-header {
+    font-size: 14px; font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  /* ── TEMPLATE CODE ── */
+  .tpl-section { margin-bottom: 16px; }
+  .tpl-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .tpl-box {
+    background: var(--macro-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--text);
+    position: relative;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .tpl-box .m { color: var(--macro); }    /* macro */
+  .tpl-box .t { color: #FFB86C; }         /* html tag */
+  .tpl-box .e { color: #FF79C6; }         /* emoji */
+  .tpl-box .s { color: var(--text-dim); } /* static text */
+
+  .copy-btn {
+    position: absolute; top: 8px; right: 8px;
+    background: var(--bubble-sys);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 10px; font-family: 'Inter', sans-serif;
+    padding: 3px 8px; border-radius: 4px;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .copy-btn:hover { color: var(--text-bright); border-color: var(--accent); }
+  .copy-btn.copied { color: var(--copy-ok); border-color: var(--copy-ok); }
+
+  /* ── MACRO TABLE ── */
+  .macro-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 16px;
+    font-size: 12px;
+  }
+  .macro-name {
+    font-family: 'Fira Code', monospace;
+    color: var(--macro);
+    white-space: nowrap;
+  }
+  .macro-desc { color: var(--text-dim); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none; border-top: 1px solid var(--border);
+    margin: 24px 0;
+  }
+
+  /* ── TAGS PILL ── */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .tag-pill {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    padding: 2px 8px;
+    color: var(--text-dim);
+  }
+  .tag-pill span { color: var(--accent); }
+
+  /* ── NOTE ── */
+  .note {
+    background: rgba(79,163,227,0.08);
+    border: 1px solid rgba(79,163,227,0.25);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    margin-top: 12px;
+  }
+  .note strong { color: var(--accent); }
+
+  /* ── ZABBIX CONFIG TABLE ── */
+  .config-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .config-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background: var(--bubble-sys);
+    color: var(--text-dim);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .config-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .config-table tr:last-child td { border-bottom: none; }
+  .config-table td:first-child { color: var(--text-dim); white-space: nowrap; }
+  .config-table code {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    background: var(--macro-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--macro);
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-icon">📨</div>
+  <div>
+    <div class="header-title">Zabbix Action — Telegram</div>
+    <div class="header-sub">Templates padronizados de mensagem por tipo de evento</div>
+  </div>
+  <div class="header-badge">Zabbix 7.0 · HTML Parse Mode</div>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">Eventos de PON</div>
+    <div class="nav-item active" onclick="show('los', this)">
+      <span class="nav-dot dot-high"></span> LOS — Fibra Óptica
+    </div>
+    <div class="nav-item" onclick="show('dg', this)">
+      <span class="nav-dot dot-disaster"></span> DyingGasp
+    </div>
+    <div class="nav-item" onclick="show('queda-total', this)">
+      <span class="nav-dot dot-disaster"></span> Queda Total de PON
+    </div>
+    <div class="nav-item" onclick="show('queda-parcial', this)">
+      <span class="nav-dot dot-average"></span> Queda Parcial de PON
+    </div>
+
+    <div class="sidebar-section" style="margin-top:12px">Eventos de OLT</div>
+    <div class="nav-item" onclick="show('olt-inacess', this)">
+      <span class="nav-dot dot-disaster"></span> OLT Inacessível
+    </div>
+    <div class="nav-item" onclick="show('olt-link', this)">
+      <span class="nav-dot dot-high"></span> Uplink DOWN
+    </div>
+
+    <div class="sidebar-section" style="margin-top:12px">Recuperação</div>
+    <div class="nav-item" onclick="show('recovery', this)">
+      <span class="nav-dot dot-recovery"></span> Recuperado (OK)
+    </div>
+
+    <div class="sidebar-section" style="margin-top:12px">Referência</div>
+    <div class="nav-item" onclick="show('macros', this)">
+      <span class="nav-dot dot-info"></span> Macros disponíveis
+    </div>
+    <div class="nav-item" onclick="show('config', this)">
+      <span class="nav-dot dot-info"></span> Configuração Zabbix
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- ══════════════════════════════════════════════════
+         LOS
+    ══════════════════════════════════════════════════ -->
+    <div class="scenario active" id="s-los">
+      <div class="scenario-header">
+        <span class="severity-badge badge-high">HIGH</span>
+        <span class="severity-badge badge-info">Fibra Óptica</span>
+        <span class="scenario-title">LOS — Loss of Signal</span>
+      </div>
+
+      <div class="scenario-grid">
+        <!-- PREVIEW -->
+        <div class="card">
+          <div class="card-header">Preview Telegram</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">📡</div>
+                <div>
+                  <div class="tg-chat-name">SEM LIMITE | PONs OLTs</div>
+                  <div class="tg-chat-sub">14 members</div>
+                </div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-high">
+                  <div class="emoji-header">⚠️ ALERTA LOS — FIBRA ÓPTICA</div>
+                  <div><b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
+                  <div><b>POP:</b> Jd P. Dutra - Guarulhos</div>
+                  <div><b>PON:</b> pon_14/4</div>
+                  <br>
+                  <div>📊 <b>Status da PON:</b></div>
+                  <div>• Online antes: <code>12</code></div>
+                  <div>• Em LOS (fibra): <code>3</code></div>
+                  <br>
+                  <div>🕐 <code>14:48:22  2026-08-27</code></div>
+                  <div>🆔 <code>ID: 1100384</code></div>
+                </div>
+                <div class="tg-time">15:06</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TEMPLATE -->
+        <div class="card">
+          <div class="card-header">
+            Template Zabbix — PROBLEM
+            <button class="copy-btn" onclick="copyTemplate('tpl-los-p')">Copiar</button>
+          </div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box" id="tpl-los-subj"><span class="e">⚠️</span> LOS FIBRA | <span class="m">{EVENT.TAGS.pon}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-los-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">⚠️</span> ALERTA LOS — FIBRA ÓPTICA<span class="t">&lt;/b&gt;</span>
+
+<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
+<span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+
+<span class="e">📊</span> <span class="t">&lt;b&gt;</span>Status da PON:<span class="t">&lt;/b&gt;</span>
+• Online antes: <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE2}</span><span class="t">&lt;/code&gt;</span>
+• Em LOS (fibra): <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE1}</span><span class="t">&lt;/code&gt;</span>
+
+<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-los-p')" style="position:absolute">Copiar</button></div>
+            </div>
+            <div class="tag-row">
+              <span class="tag-pill">scope=<span>OLT</span></span>
+              <span class="tag-pill">servico=<span>GPON</span></span>
+              <span class="tag-pill">pon=<span>{#NETSTREAM.PON_NAME}</span></span>
+              <span class="tag-pill">tipo=<span>LOS</span></span>
+              <span class="tag-pill">notificar=<span>telegram</span></span>
+            </div>
+            <div class="note">
+              <strong>Nota:</strong> <code>{ITEM.LASTVALUE1}</code> = valor do item LOS (delta recente).
+              <code>{ITEM.LASTVALUE2}</code> = online antes (item de online na mesma PON).
+              Se a trigger usar apenas 1 item, use <code>{ITEM.LASTVALUE}</code>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         DYINGGASP
+    ══════════════════════════════════════════════════ -->
+    <div class="scenario" id="s-dg">
+      <div class="scenario-header">
+        <span class="severity-badge badge-disaster">DISASTER</span>
+        <span class="scenario-title">DyingGasp — Queda com aviso</span>
+      </div>
+      <div class="scenario-grid">
+        <div class="card">
+          <div class="card-header">Preview Telegram</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">📡</div>
+                <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-disaster">
+                  <div class="emoji-header">🚨 DYINGGASP — QUEDA COM AVISO</div>
+                  <div><b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
+                  <div><b>POP:</b> Jd P. Dutra - Guarulhos</div>
+                  <div><b>PON:</b> pon_2/1</div>
+                  <br>
+                  <div>• DyingGasp detectados (15min): <code>5</code></div>
+                  <br>
+                  <div>🕐 <code>10:22:11  2026-08-27</code></div>
+                  <div>🆔 <code>ID: 1100201</code></div>
+                </div>
+                <div class="tg-time">10:22</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Template Zabbix — PROBLEM</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box"><span class="e">🚨</span> DYINGGASP | <span class="m">{EVENT.TAGS.pon}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-dg-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">🚨</span> DYINGGASP — QUEDA COM AVISO<span class="t">&lt;/b&gt;</span>
+
+<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
+<span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+
+• DyingGasp detectados (15min): <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE}</span><span class="t">&lt;/code&gt;</span>
+
+<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-dg-p')" style="position:absolute">Copiar</button></div>
+            </div>
+            <div class="tag-row">
+              <span class="tag-pill">tipo=<span>DyingGasp</span></span>
+              <span class="tag-pill">notificar=<span>nao</span></span>
+            </div>
+            <div class="note"><strong>Nota:</strong> DyingGasp tem <code>notificar=nao</code> por padrão. Ativar notificação Telegram somente se desejado.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         QUEDA TOTAL
+    ══════════════════════════════════════════════════ -->
+    <div class="scenario" id="s-queda-total">
+      <div class="scenario-header">
+        <span class="severity-badge badge-disaster">DISASTER</span>
+        <span class="scenario-title">Queda Total de PON</span>
+      </div>
+      <div class="scenario-grid">
+        <div class="card">
+          <div class="card-header">Preview Telegram</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">📡</div>
+                <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-disaster">
+                  <div class="emoji-header">🚨 QUEDA TOTAL — PON OFFLINE</div>
+                  <div><b>OLT:</b> TR 2 - OLT - ZTE - Centro</div>
+                  <div><b>POP:</b> Centro - São Paulo</div>
+                  <div><b>PON:</b> pon_1/3</div>
+                  <br>
+                  <div>• ONUs online antes: <code>47</code></div>
+                  <div>• ONUs online agora: <code>0</code></div>
+                  <br>
+                  <div>🕐 <code>08:15:30  2026-08-27</code></div>
+                  <div>🆔 <code>ID: 1100150</code></div>
+                </div>
+                <div class="tg-time">08:15</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Template Zabbix — PROBLEM</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box"><span class="e">🚨</span> QUEDA TOTAL | <span class="m">{EVENT.TAGS.pon}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-qt-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">🚨</span> QUEDA TOTAL — PON OFFLINE<span class="t">&lt;/b&gt;</span>
+
+<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
+<span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+
+• ONUs online antes: <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE2}</span><span class="t">&lt;/code&gt;</span>
+• ONUs online agora: <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE1}</span><span class="t">&lt;/code&gt;</span>
+
+<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-qt-p')" style="position:absolute">Copiar</button></div>
+            </div>
+            <div class="tag-row">
+              <span class="tag-pill">tipo=<span>Queda_Total</span></span>
+              <span class="tag-pill">notificar=<span>nao</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         QUEDA PARCIAL
+    ══════════════════════════════════════════════════ -->
+    <div class="scenario" id="s-queda-parcial">
+      <div class="scenario-header">
+        <span class="severity-badge badge-average">HIGH</span>
+        <span class="scenario-title">Queda Parcial de PON</span>
+      </div>
+      <div class="scenario-grid">
+        <div class="card">
+          <div class="card-header">Preview Telegram</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">📡</div>
+                <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-average">
+                  <div class="emoji-header">📉 QUEDA PARCIAL — ONUs OFFLINE</div>
+                  <div><b>OLT:</b> TR 1 - OLT - Huawei</div>
+                  <div><b>PON:</b> pon_3/2</div>
+                  <br>
+                  <div>• Queda: <code>-8</code> ONUs offline</div>
+                  <div>• Online agora: <code>39</code></div>
+                  <br>
+                  <div>🕐 <code>16:05:44  2026-08-27</code></div>
+                  <div>🆔 <code>ID: 1100500</code></div>
+                </div>
+                <div class="tg-time">16:05</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Template Zabbix — PROBLEM</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box"><span class="e">📉</span> QUEDA PARCIAL | <span class="m">{EVENT.TAGS.pon}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-qp-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">📉</span> QUEDA PARCIAL — ONUs OFFLINE<span class="t">&lt;/b&gt;</span>
+
+<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
+<span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+
+• Queda: <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE}</span><span class="t">&lt;/code&gt;</span> ONUs offline
+• Online agora: <span class="t">&lt;code&gt;</span><span class="m">{ITEM.LASTVALUE2}</span><span class="t">&lt;/code&gt;</span>
+
+<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-qp-p')" style="position:absolute">Copiar</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         OLT INACESSÍVEL
+    ══════════════════════════════════════════════════ -->
+    <div class="scenario" id="s-olt-inacess">
+      <div class="scenario-header">
+        <span class="severity-badge badge-disaster">DISASTER</span>
+        <span class="scenario-title">OLT Inacessível (sem SNMP por 1h)</span>
+      </div>
+      <div class="scenario-grid">
+        <div class="card">
+          <div class="card-header">Preview Telegram</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">📡</div>
+                <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-disaster">
+                  <div class="emoji-header">🔴 OLT INACESSÍVEL — SEM SNMP</div>
+                  <div><b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
+                  <div><b>POP:</b> Jd P. Dutra - Guarulhos</div>
+                  <div><b>IP:</b> <code>192.168.10.4</code></div>
+                  <br>
+                  <div>Sem resposta SNMP há <b>1h</b>.</div>
+                  <div>Verificar uplink e energia.</div>
+                  <br>
+                  <div>🕐 <code>09:00:00  2026-08-27</code></div>
+                  <div>🆔 <code>ID: 1100300</code></div>
+                </div>
+                <div class="tg-time">09:00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Template Zabbix — PROBLEM</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box"><span class="e">🔴</span> OLT INACESSÍVEL | <span class="m">{HOST.NAME}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-olt-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">🔴</span> OLT INACESSÍVEL — SEM SNMP<span class="t">&lt;/b&gt;</span>
+
+<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
+<span class="t">&lt;b&gt;</span>IP:<span class="t">&lt;/b&gt;</span> <span class="t">&lt;code&gt;</span><span class="m">{HOST.CONN}</span><span class="t">&lt;/code&gt;</span>
+
+Sem resposta SNMP há <span class="t">&lt;b&gt;</span>1h<span class="t">&lt;/b&gt;</span>.
+Verificar uplink e energia.
+
+<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-olt-p')" style="position:absolute">Copiar</button></div>
+            </div>
+            <div class="tag-row">
+              <span class="tag-pill">scope=<span>OLT</span></span>
+              <span class="tag-pill">tipo=<span>Conectividade</span></span>
+            </div>
+            <div class="note"><strong>Dica:</strong> use <code>{HOST.DESCRIPTION}</code> para o POP — preencha o campo "Description" do host no Zabbix com o endereço/local.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         UPLINK DOWN
+    ══════════════════════════════════════════════════ -->
+    <div class="scenario" id="s-olt-link">
+      <div class="scenario-header">
+        <span class="severity-badge badge-high">HIGH</span>
+        <span class="scenario-title">Uplink DOWN</span>
+      </div>
+      <div class="scenario-grid">
+        <div class="card">
+          <div class="card-header">Preview Telegram</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">📡</div>
+                <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-high">
+                  <div class="emoji-header">🔌 UPLINK DOWN</div>
+                  <div><b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
+                  <div><b>Interface:</b> <code>GigabitEthernet0/1</code></div>
+                  <br>
+                  <div>🕐 <code>11:30:00  2026-08-27</code></div>
+                  <div>🆔 <code>ID: 1100410</code></div>
+                </div>
+                <div class="tg-time">11:30</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Template Zabbix — PROBLEM</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box"><span class="e">🔌</span> UPLINK DOWN | <span class="m">{HOST.NAME}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-link-p" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">🔌</span> UPLINK DOWN<span class="t">&lt;/b&gt;</span>
+
+<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="t">&lt;b&gt;</span>POP:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.DESCRIPTION}</span>
+<span class="t">&lt;b&gt;</span>Interface:<span class="t">&lt;/b&gt;</span> <span class="t">&lt;code&gt;</span><span class="m">{ITEM.NAME}</span><span class="t">&lt;/code&gt;</span>
+
+<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.TIME}  {EVENT.DATE}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-link-p')" style="position:absolute">Copiar</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         RECOVERY
+    ══════════════════════════════════════════════════ -->
+    <div class="scenario" id="s-recovery">
+      <div class="scenario-header">
+        <span class="severity-badge badge-recovery">RECOVERY</span>
+        <span class="scenario-title">Recuperado (OK)</span>
+      </div>
+
+      <div class="scenario-grid">
+        <div class="card">
+          <div class="card-header">Preview — PON recuperada</div>
+          <div class="card-body">
+            <div class="tg-preview">
+              <div class="tg-chat-header">
+                <div class="tg-avatar">📡</div>
+                <div><div class="tg-chat-name">SEM LIMITE | PONs OLTs</div><div class="tg-chat-sub">14 members</div></div>
+              </div>
+              <div class="tg-message">
+                <div class="tg-bubble sep-recovery">
+                  <div class="emoji-header" style="color:#30D158">✅ RECUPERADO — LOS</div>
+                  <div><b>OLT:</b> TR 4 - OLT - Fiberhome - Dutra 2</div>
+                  <div><b>PON:</b> pon_14/4</div>
+                  <div><b>Duração:</b> <code>12m 44s</code></div>
+                  <br>
+                  <div>🕐 <code>15:01:06  2026-08-27</code></div>
+                  <div>🆔 <code>ID: 1100384</code></div>
+                </div>
+                <div class="tg-time">15:01</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Template Zabbix — RECOVERY (todos os tipos)</div>
+          <div class="card-body">
+            <div class="tpl-section">
+              <div class="tpl-label">Assunto</div>
+              <div class="tpl-box"><span class="e">✅</span> RECUPERADO | <span class="m">{TRIGGER.NAME}</span></div>
+            </div>
+            <div class="tpl-section">
+              <div class="tpl-label">Mensagem</div>
+              <div class="tpl-box" id="tpl-ok" style="position:relative"><span class="t">&lt;b&gt;</span><span class="e">✅</span> RECUPERADO — <span class="m">{EVENT.TAGS.tipo}</span><span class="t">&lt;/b&gt;</span>
+
+<span class="t">&lt;b&gt;</span>OLT:<span class="t">&lt;/b&gt;</span> <span class="m">{HOST.NAME}</span>
+<span class="t">&lt;b&gt;</span>PON:<span class="t">&lt;/b&gt;</span> <span class="m">{EVENT.TAGS.pon}</span>
+<span class="t">&lt;b&gt;</span>Duração:<span class="t">&lt;/b&gt;</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.AGE}</span><span class="t">&lt;/code&gt;</span>
+
+<span class="e">🕐</span> <span class="t">&lt;code&gt;</span><span class="m">{EVENT.RECOVERY.TIME}  {EVENT.RECOVERY.DATE}</span><span class="t">&lt;/code&gt;</span>
+<span class="e">🆔</span> <span class="t">&lt;code&gt;</span>ID: <span class="m">{EVENT.ID}</span><span class="t">&lt;/code&gt;</span><button class="copy-btn" onclick="copyEl('tpl-ok')" style="position:absolute">Copiar</button></div>
+            </div>
+            <div class="note">
+              <strong>Nota:</strong> Configure este template na aba <code>Recovery operations</code> da action.
+              O <code>{EVENT.TAGS.pon}</code> fica vazio para triggers de OLT (sem tag pon) —
+              use <code>{EVENT.TAGS.pon}{HOST.NAME}</code> para cobrir ambos.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         MACROS
+    ══════════════════════════════════════════════════ -->
+    <div class="scenario" id="s-macros">
+      <div class="scenario-header">
+        <span class="scenario-title">Macros disponíveis no Zabbix 7.0</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div class="card">
+          <div class="card-header">Host / Trigger / Event</div>
+          <div class="card-body">
+            <div class="macro-grid">
+              <span class="macro-name">{HOST.NAME}</span><span class="macro-desc">Nome do host (OLT)</span>
+              <span class="macro-name">{HOST.CONN}</span><span class="macro-desc">IP ou DNS do host</span>
+              <span class="macro-name">{HOST.IP}</span><span class="macro-desc">IP do host</span>
+              <span class="macro-name">{HOST.DESCRIPTION}</span><span class="macro-desc">Descrição (use para POP/local)</span>
+              <span class="macro-name">{TRIGGER.NAME}</span><span class="macro-desc">Nome do trigger disparado</span>
+              <span class="macro-name">{TRIGGER.SEVERITY}</span><span class="macro-desc">Severidade (DISASTER, HIGH…)</span>
+              <span class="macro-name">{TRIGGER.STATUS}</span><span class="macro-desc">PROBLEM ou OK</span>
+              <span class="macro-name">{EVENT.ID}</span><span class="macro-desc">ID numérico do evento</span>
+              <span class="macro-name">{EVENT.DATE}</span><span class="macro-desc">Data do evento (YYYY.MM.DD)</span>
+              <span class="macro-name">{EVENT.TIME}</span><span class="macro-desc">Hora do evento (HH:MM:SS)</span>
+              <span class="macro-name">{EVENT.AGE}</span><span class="macro-desc">Duração do problema (ex: 5m 12s)</span>
+              <span class="macro-name">{EVENT.RECOVERY.DATE}</span><span class="macro-desc">Data da recuperação</span>
+              <span class="macro-name">{EVENT.RECOVERY.TIME}</span><span class="macro-desc">Hora da recuperação</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Tags do evento (Zabbix 6.0+)</div>
+          <div class="card-body">
+            <div class="macro-grid">
+              <span class="macro-name">{EVENT.TAGS.pon}</span><span class="macro-desc">Nome da PON (ex: pon_14/4)</span>
+              <span class="macro-name">{EVENT.TAGS.tipo}</span><span class="macro-desc">LOS, DyingGasp, Queda_Total…</span>
+              <span class="macro-name">{EVENT.TAGS.scope}</span><span class="macro-desc">OLT, Switch…</span>
+              <span class="macro-name">{EVENT.TAGS.servico}</span><span class="macro-desc">GPON, etc.</span>
+              <span class="macro-name">{EVENT.TAGS.notificar}</span><span class="macro-desc">telegram ou nao</span>
+            </div>
+            <hr class="divider" style="margin:14px 0">
+            <div class="macro-grid">
+              <span class="macro-name">{ITEM.LASTVALUE}</span><span class="macro-desc">Último valor do item principal</span>
+              <span class="macro-name">{ITEM.LASTVALUE1}</span><span class="macro-desc">Valor do 1º item na expressão</span>
+              <span class="macro-name">{ITEM.LASTVALUE2}</span><span class="macro-desc">Valor do 2º item na expressão</span>
+              <span class="macro-name">{ITEM.NAME}</span><span class="macro-desc">Nome do item (interface, etc.)</span>
+            </div>
+            <div class="note" style="margin-top:14px">
+              <strong>*UNKNOWN*</strong> aparece quando a macro não resolve.
+              Causas comuns: tag não existe no trigger, item sem coleta, macro digitada errada.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         CONFIG
+    ══════════════════════════════════════════════════ -->
+    <div class="scenario" id="s-config">
+      <div class="scenario-header">
+        <span class="scenario-title">Configuração da Action no Zabbix</span>
+      </div>
+      <div style="display:grid;gap:20px">
+        <div class="card">
+          <div class="card-header">Action — Configurações gerais</div>
+          <div class="card-body">
+            <table class="config-table">
+              <tr><th>Campo</th><th>Valor</th></tr>
+              <tr><td>Nome</td><td>Alertas PON OLT — Telegram</td></tr>
+              <tr><td>Conditions</td><td>Tag <code>notificar</code> = <code>telegram</code></td></tr>
+              <tr><td>Send to users/groups</td><td>Grupo responsável</td></tr>
+              <tr><td>Media type</td><td>Telegram (bot configurado)</td></tr>
+              <tr><td>Parse mode (no bot)</td><td><code>HTML</code></td></tr>
+              <tr><td>Default subject</td><td>Conforme template por tipo (ver acima)</td></tr>
+              <tr><td>Default message</td><td>Conforme template por tipo (ver acima)</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Filtro de condição recomendado</div>
+          <div class="card-body">
+            <div class="tpl-box">Condition type: <span class="m">Event tag value</span>
+Tag name:       <span class="m">notificar</span>
+Operator:       <span class="m">equals</span>
+Value:          <span class="m">telegram</span></div>
+            <div class="note" style="margin-top:12px">
+              Com esse filtro, somente triggers com <code>notificar=telegram</code> disparam mensagem.
+              Triggers com <code>notificar=nao</code> ficam apenas no Zabbix (DyingGasp, Queda Parcial, etc.).<br><br>
+              <strong>Para ativar notificação em DyingGasp:</strong> altere a tag <code>notificar=telegram</code> no trigger prototype do template.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Campos do host recomendados</div>
+          <div class="card-body">
+            <table class="config-table">
+              <tr><th>Campo Zabbix</th><th>O que preencher</th><th>Macro</th></tr>
+              <tr><td>Host name</td><td>Nome da OLT (ex: TR 4 - OLT - Fiberhome - Dutra 2)</td><td><code>{HOST.NAME}</code></td></tr>
+              <tr><td>Visible name</td><td>Igual ao host name</td><td>—</td></tr>
+              <tr><td>Description</td><td>POP / localização (ex: Jd P. Dutra - Guarulhos)</td><td><code>{HOST.DESCRIPTION}</code></td></tr>
+              <tr><td>Interfaces → IP</td><td>IP de gerência da OLT</td><td><code>{HOST.CONN}</code></td></tr>
+            </table>
+            <div class="note" style="margin-top:12px">
+              Evite usar <code>{INVENTORY.LOCATION}</code> (requer preenchimento manual do inventário).
+              <code>{HOST.DESCRIPTION}</code> é mais simples e já resolve no contexto da action.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.scenario').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  el.classList.add('active');
+}
+
+function getRawText(el) {
+  return el.innerText.replace(/Copiar$/, '').trim();
+}
+
+function copyEl(id) {
+  const el = document.getElementById(id);
+  const btn = el.querySelector('.copy-btn');
+  const text = getRawText(el);
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 1800);
+  });
+}
+
+function copyTemplate(id) {
+  copyEl(id);
+}
+</script>
+</body>
+</html>
