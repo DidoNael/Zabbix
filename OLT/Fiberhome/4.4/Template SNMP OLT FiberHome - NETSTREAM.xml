@@ -2044,10 +2044,10 @@ return 0;</params>
 </item_prototypes>
                                         <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].min(#3)}=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].diff()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].min(#3)}=4 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].diff()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].last()}=1</recovery_expression>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Offline / Desconectada</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LOS (Perda de Sinal Optico)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
