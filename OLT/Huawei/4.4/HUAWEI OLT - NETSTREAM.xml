@@ -959,6 +959,34 @@ return 0;</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
+                            <expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}].max(#3)}=2 and {HUAWEI OLT - NETSTREAM:netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}].diff()}=1 and {HUAWEI OLT - NETSTREAM:netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}].count(10m)}&gt;1</expression>
+                            <name>PON {#NETSTREAM.PON_NAME}: Porta GPON Inativa (feeder LOS / cabo cortado)</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon</tag>
+                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Queda_Total</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>nao</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
                             <expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].last()}=0 and {HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].diff()}=1 and {HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
@@ -1024,6 +1052,7 @@ return 0;</params>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}].last()}&lt;=({HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}].min(7d)}+2)</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
+                            <status>DISABLED</status>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <description>3 ou mais ONUs passaram a ter LOS como motivo de queda nos ultimos 15 minutos. Possivel rompimento de fibra na PON {#NETSTREAM.PON_NAME}.</description>

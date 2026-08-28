@@ -1139,6 +1139,34 @@ return 0;</parameter>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
+                            <expression>max(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}],#3)=2 and diff(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}])=1 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}],10m)&gt;1</expression>
+                            <name>PON {#NETSTREAM.PON_NAME}: Porta GPON Inativa (feeder LOS / cabo cortado)</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon</tag>
+                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Queda_Total</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>nao</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
                             <uuid>2788473fa41f43b3a7bb29ebd8109a7d</uuid>
                             <expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}])=0 and change(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}])&lt;&gt;0 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
@@ -1207,6 +1235,7 @@ return 0;</parameter>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}])&lt;=min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}],7d)+2</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
+                            <status>DISABLED</status>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <description>3 ou mais ONUs passaram a ter LOS como motivo de queda nos ultimos 15 minutos. Possivel rompimento de fibra na PON {#NETSTREAM.PON_NAME}.</description>

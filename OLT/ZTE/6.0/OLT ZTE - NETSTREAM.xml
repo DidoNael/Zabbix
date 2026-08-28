@@ -747,8 +747,8 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                         <trigger_prototype>
                             <uuid>59c9a4068fef44b3a33abd4d7671fadc</uuid>
                             <expression>max(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],#3)=2 and change(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}])&lt;&gt;0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.port.status[{#SNMPINDEX}],10m)&gt;1</expression>
-                            <name>PON {#PONNAME} - Porta GPON Apagada (Inativa)</name>
-                            <priority>HIGH</priority>
+                            <name>PON {#PONNAME}: Porta GPON Inativa (feeder LOS / cabo cortado)</name>
+                            <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                             <tags>
                                 <tag>
@@ -757,7 +757,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
-                                    <value>Conectividade</value>
+                                    <value>Queda_Total</value>
                                 </tag>
                                 <tag>
                                     <tag>servico</tag>
@@ -770,6 +770,10 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                 <tag>
                                     <tag>pon_desc</tag>
                                     <value>{#PONDESC}</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1863,6 +1867,7 @@ return String(s);</parameter>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}])&lt;=min(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],7d)+2</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): LOS detectado (Fibra)</name>
+                            <status>DISABLED</status>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
