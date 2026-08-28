@@ -1140,6 +1140,8 @@ return 0;</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}],#1)=2 and last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}],#2)=1 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}],10m)&gt;1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}])=1</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Porta GPON Inativa (feeder LOS / cabo cortado)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>

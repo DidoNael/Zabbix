@@ -897,6 +897,8 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].last(#1)}=2 and {OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].last(#2)}=1 and {OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].last()}=1</recovery_expression>
                             <name>PON {#PONNAME}: Porta GPON Inativa (feeder LOS / cabo cortado)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
