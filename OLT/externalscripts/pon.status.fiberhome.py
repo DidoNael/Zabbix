@@ -15,16 +15,18 @@ LOCK_FILE  = CACHE_FILE + ".lock"
 CACHE_TTL  = 300
 
 def collect_and_save():
-    # ONU state table: .11 = state (1=online, 2=dyingGasp, 3=LOS/offline, 0=unknown)
-    OID_STATE = "1.3.6.1.4.1.5875.800.3.10.1.1.11"
-    # PON names via ifDescr (filter "PON ")
-    OID_IFDESCR = "1.3.6.1.2.1.2.2.1.2"
+    # Tabela indexada por (PON_ifIndex, ONU_pos): preserva LOS durante queda total
+    # 1=online, 2=dyingGasp, 3=LOS, 0=unknown
+    # Nota: tabela .10.1.1.11 (por ONU ifIndex) vira 0 pra todos quando PON cai;
+    # .10.3.1.11 (por PON ifIndex) mantém 3=LOS para ONUs que reportaram LOS antes de perder link.
+    OID_PON_TABLE = "1.3.6.1.4.1.5875.800.3.10.3.1.11"
+    OID_IFDESCR   = "1.3.6.1.2.1.2.2.1.2"
     OPTS = ["-v2c", "-c", COMMUNITY, "-t", "25", "-r", "1", "-Cn0", "-Cr100", OLT_IP]
     tmpdir = tempfile.mkdtemp()
     try:
         procs = {
-            "state":  subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_STATE],
-                                       stdout=open(tmpdir+"/state","w"), stderr=subprocess.PIPE),
+            "state":   subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_PON_TABLE],
+                                        stdout=open(tmpdir+"/state","w"), stderr=subprocess.PIPE),
             "ifdescr": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFDESCR],
                                         stdout=open(tmpdir+"/ifdescr","w"), stderr=subprocess.PIPE),
         }
@@ -34,33 +36,31 @@ def collect_and_save():
             try: return open(tmpdir+"/"+f).read().strip().splitlines()
             except: return []
 
-        # Mapear ifIndex -> nome PON (ex: "PON 11/1")
+        # ifIndex -> nome PON (ex: "PON 11/1" -> "pon_11/1")
         pon_names = {}
         for line in rl("ifdescr"):
             m = re.search(r'\.2\.1\.2\.(\d+)\s+=\s+STRING:\s+"(PON\s+\S+)"', line)
             if m:
                 pon_names[int(m.group(1))] = m.group(2).replace(" ", "_").lower()
 
-        # Derivar nome PON a partir do ifIndex do ONU:
-        # slot = idx // 33554432, pon_num = (idx % 33554432) // 524288
-        # PON ifIndex = (idx // 524288) * 524288
         from collections import defaultdict
         pons = defaultdict(lambda: {"online":0,"dg":0,"los":0,"unk":0,"auth":0,"name":""})
 
         for line in rl("state"):
-            m = re.search(r'\.11\.(\d+)\s+=\s+INTEGER:\s+(\d+)', line)
+            # OID: .10.3.1.11.{PON_ifIndex}.{pos} = INTEGER: {state}
+            m = re.search(r'\.10\.3\.1\.11\.(\d+)\.\d+\s+=\s+INTEGER:\s+(\d+)', line)
             if not m: continue
-            idx = int(m.group(1))
-            state = int(m.group(2))
-            pon_idx = (idx // 524288) * 524288
-            # Nome do PON
+            pon_idx = int(m.group(1))
+            state   = int(m.group(2))
+
             if not pons[pon_idx]["name"]:
                 name = pon_names.get(pon_idx)
                 if not name:
-                    slot = idx // 33554432
-                    pon_num = (idx % 33554432) // 524288
-                    name = "pon_%d/%d" % (slot, pon_num)
+                    slot    = pon_idx // 33554432
+                    pon_num = (pon_idx % 33554432) // 524288
+                    name    = "pon_%d/%d" % (slot, pon_num)
                 pons[pon_idx]["name"] = name
+
             pons[pon_idx]["auth"] += 1
             if   state == 1: pons[pon_idx]["online"] += 1
             elif state == 2: pons[pon_idx]["dg"]     += 1
@@ -77,7 +77,8 @@ def collect_and_save():
             result.append({
                 "{#NETSTREAM.PON_INDEX}": str(pon_idx),
                 "{#NETSTREAM.PON_NAME}":  name,
-                "idx":     str(pon_idx),
+                "{#NETSTREAM.PON_DESC}": "",
+                "idx":     str(pon_idx), "desc": "",
                 "name":    name,
                 "auth":    p["auth"],
                 "online":  p["online"],
