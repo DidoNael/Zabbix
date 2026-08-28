@@ -757,7 +757,7 @@ return 0;</parameter>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>max(/HUAWEI OLT - NETSTREAM/netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}],#3)=2 and diff(/HUAWEI OLT - NETSTREAM/netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}])=1 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}],10m)&gt;1</expression>
+                            <expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}],#1)=2 and last(/HUAWEI OLT - NETSTREAM/netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}],#2)=1 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}],10m)&gt;1</expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Porta GPON Inativa (feeder LOS / cabo cortado)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
