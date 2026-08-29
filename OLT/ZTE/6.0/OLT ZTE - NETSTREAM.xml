@@ -775,7 +775,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>nao</value>
+                                    <value>telegram</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
