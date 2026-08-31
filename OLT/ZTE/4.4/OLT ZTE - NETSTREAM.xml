@@ -2310,7 +2310,7 @@ return String(s);</params>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>nao</value>
+                                    <value>telegram</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -2342,7 +2342,7 @@ return String(s);</params>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>nao</value>
+                                    <value>telegram</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -2413,7 +2413,7 @@ return String(s);</params>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>nao</value>
+                                    <value>telegram</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>

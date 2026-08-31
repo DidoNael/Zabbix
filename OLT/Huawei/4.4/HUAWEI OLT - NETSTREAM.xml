@@ -1013,7 +1013,7 @@ return 0;</params>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>nao</value>
+                                    <value>telegram</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1045,7 +1045,7 @@ return 0;</params>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>nao</value>
+                                    <value>telegram</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1109,7 +1109,7 @@ return 0;</params>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>nao</value>
+                                    <value>telegram</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
