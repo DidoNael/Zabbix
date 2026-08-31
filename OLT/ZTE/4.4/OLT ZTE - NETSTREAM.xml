@@ -896,40 +896,6 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].last(#1)}=2 and {OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].last(#2)}=1 and {OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
-                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].last()}=1</recovery_expression>
-                            <name>PON {#PONNAME}: Porta GPON Inativa</name>
-                            <priority>DISASTER</priority>
-                            <manual_close>YES</manual_close>
-                            <tags>
-                                <tag>
-                                    <tag>scope</tag>
-                                    <value>OLT</value>
-                                </tag>
-                                <tag>
-                                    <tag>tipo</tag>
-                                    <value>Queda_Total</value>
-                                </tag>
-                                <tag>
-                                    <tag>servico</tag>
-                                    <value>GPON</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon</tag>
-                                    <value>{#PONNAME}</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon_desc</tag>
-                                    <value>{#PONDESC}</value>
-                                </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>telegram</value>
-                                </tag>
-                            </tags>
-                        </trigger_prototype>
-                        <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;127 and {OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].last()}=1</expression>
                             <name>PON {#PONNAME} - Porta GPON Cheia (&gt;127 ONUs autorizadas)</name>
                             <priority>WARNING</priority>
@@ -2386,6 +2352,36 @@ return String(s);</params>
                                     <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}=0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].diff()}=1 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                                 </dependency>
                             </dependencies>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.port.ifoperstatus.zte[{#SNMPINDEX}].last(#1)}=2 and {OLT ZTE - NETSTREAM:netstream.gpon.port.ifoperstatus.zte[{#SNMPINDEX}].last(#2)}=1 and {OLT ZTE - NETSTREAM:netstream.gpon.port.ifoperstatus.zte[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.port.ifoperstatus.zte[{#SNMPINDEX}].last()}=1</recovery_expression>
+                            <name>PON {#NETSTREAM.PON_NAME}: Porta GPON Inativa</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Queda_Total</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon</tag>
+                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>telegram</value>
+                                </tag>
+                            </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].change()}&lt;-{$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}&gt;0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
