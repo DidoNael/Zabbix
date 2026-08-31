@@ -1826,7 +1826,7 @@ return String(s);</parameter>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>telegram</value>
+                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1859,7 +1859,7 @@ return String(s);</parameter>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>telegram</value>
+                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1926,7 +1926,7 @@ return String(s);</parameter>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>telegram</value>
+                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>

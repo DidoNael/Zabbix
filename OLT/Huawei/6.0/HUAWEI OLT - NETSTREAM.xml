@@ -812,7 +812,7 @@ return 0;</parameter>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>telegram</value>
+                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -845,7 +845,7 @@ return 0;</parameter>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>telegram</value>
+                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -911,7 +911,7 @@ return 0;</parameter>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>telegram</value>
+                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
