@@ -1006,7 +1006,7 @@ return JSON.stringify(result);</parameter>
                                         </tag>
                                         <tag>
                                             <tag>pon</tag>
-                                            <value>{#NETSTREAM.PON_DESC}</value>
+                                            <value>{#NETSTREAM.PON_NAME}</value>
                                         </tag>
                                         <tag>
                                             <tag>onu_no_pon</tag>
@@ -1070,7 +1070,7 @@ return (-power / 10).toFixed(1);</parameter>
                                         </tag>
                                         <tag>
                                             <tag>pon</tag>
-                                            <value>{#NETSTREAM.PON_DESC}</value>
+                                            <value>{#NETSTREAM.PON_NAME}</value>
                                         </tag>
                                         <tag>
                                             <tag>onu_no_pon</tag>
@@ -1179,7 +1179,7 @@ return (-power / 10).toFixed(1);</parameter>
                                         </tag>
                                         <tag>
                                             <tag>pon</tag>
-                                            <value>{#NETSTREAM.PON_DESC}</value>
+                                            <value>{#NETSTREAM.PON_NAME}</value>
                                         </tag>
                                         <tag>
                                             <tag>onu_no_pon</tag>
@@ -1250,7 +1250,7 @@ return 0;</parameter>
                                         </tag>
                                         <tag>
                                             <tag>pon</tag>
-                                            <value>{#NETSTREAM.PON_DESC}</value>
+                                            <value>{#NETSTREAM.PON_NAME}</value>
                                         </tag>
                                         <tag>
                                             <tag>onu_no_pon</tag>
@@ -1805,7 +1805,7 @@ return String(s);</parameter>
                             <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])=0 and change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&lt;&gt;0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
                             <priority>DISASTER</priority>
                             <tags>
                                 <tag>
@@ -1833,7 +1833,7 @@ return String(s);</parameter>
                         <trigger_prototype>
                             <uuid>141e6b7454134ed9a4b8fc6089ec7a91</uuid>
                             <expression>(max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],900)-min(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],900))&gt;=3 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): DyingGasp detectado (Energia)</name>
+                            <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1868,7 +1868,7 @@ return String(s);</parameter>
                             <expression>(max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],900)-min(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],900))&gt;=3 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}])&lt;=min(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],7d)+2</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): LOS detectado (Fibra)</name>
+                            <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
                             <status>DISABLED</status>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
@@ -1904,7 +1904,7 @@ return String(s);</parameter>
                             <expression>change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&lt;-{$GPON_DROP_MIN} and last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda parcial de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_NAME}: Queda parcial de ONUs</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
