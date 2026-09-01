@@ -1897,6 +1897,24 @@ Todos os direitos reservados.</description>
                                 <operator>MATCHES_REGEX</operator>
                                 <formulaid>M</formulaid>
                             </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^vlan\d+.*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>N</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^loopback\d*</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>O</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IF}</macro>
+                                <value>(?i)^null\d+</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>P</formulaid>
+                            </condition>
                         </conditions>
                     </filter>
                     <lifetime>7d</lifetime>
