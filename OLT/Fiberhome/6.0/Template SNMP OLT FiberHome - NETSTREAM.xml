@@ -1781,8 +1781,8 @@ return 0;</parameter>
                                     <value>ONU_Dedicada</value>
                                 </tag>
                                 <tag>
-                                    <tag>ONUDEDICADO</tag>
-                                    <value>ONUDEDICADO</value>
+                                    <tag>notificar</tag>
+                                    <value>telegram</value>
                                 </tag>
                                 <tag>
                                     <tag>onu_id</tag>
@@ -1793,7 +1793,7 @@ return 0;</parameter>
                         <trigger_prototype>
                             <uuid>37c5e3e779a9425a97cecdcba3331915</uuid>
                             <expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-28 and last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-40</expression>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Critico ({{ITEM.LASTVALUE1})</name>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Critico ({ITEM.LASTVALUE1})</name>
                             <priority>HIGH</priority>
                             <description>Sinal optico da ONU dedicada extremamente baixo (&lt; -28 dBm). Risco iminente de queda do link.</description>
                             <tags>
@@ -1803,11 +1803,15 @@ return 0;</parameter>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
-                                    <value>Optico</value>
+                                    <value>ONU_Dedicada</value>
                                 </tag>
                                 <tag>
                                     <tag>servico</tag>
                                     <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>telegram</value>
                                 </tag>
                                 <tag>
                                     <tag>onu_id</tag>
@@ -1815,7 +1819,7 @@ return 0;</parameter>
                                 </tag>
                                 <tag>
                                     <tag>sinal_rx</tag>
-                                    <value>{{ITEM.LASTVALUE1}</value>
+                                    <value>{ITEM.LASTVALUE1}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>

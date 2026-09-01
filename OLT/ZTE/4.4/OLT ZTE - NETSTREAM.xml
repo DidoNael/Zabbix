@@ -1108,7 +1108,7 @@ return JSON.stringify(result);</params>
                                         </tag>
                                         <tag>
                                             <tag>notificar</tag>
-                                            <value>nao</value>
+                                            <value>telegram</value>
                                         </tag>
                                         <tag>
                                             <tag>onu_id</tag>
@@ -1164,11 +1164,15 @@ return (-power / 10).toFixed(1);</params>
                                         </tag>
                                         <tag>
                                             <tag>tipo</tag>
-                                            <value>Optico</value>
+                                            <value>ONU_Dedicada</value>
                                         </tag>
                                         <tag>
                                             <tag>servico</tag>
                                             <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>notificar</tag>
+                                            <value>telegram</value>
                                         </tag>
                                         <tag>
                                             <tag>onu_id</tag>

@@ -2096,8 +2096,8 @@ return 0;</params>
                                     <value>ONU_Dedicada</value>
                                 </tag>
                                 <tag>
-                                    <tag>ONUDEDICADO</tag>
-                                    <value>ONUDEDICADO</value>
+                                    <tag>notificar</tag>
+                                    <value>telegram</value>
                                 </tag>
                                 <tag>
                                     <tag>onu_id</tag>
@@ -2117,11 +2117,15 @@ return 0;</params>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
-                                    <value>Optico</value>
+                                    <value>ONU_Dedicada</value>
                                 </tag>
                                 <tag>
                                     <tag>servico</tag>
                                     <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>telegram</value>
                                 </tag>
                                 <tag>
                                     <tag>onu_id</tag>
