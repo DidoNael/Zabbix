@@ -1590,7 +1590,7 @@ return String(s);</parameter>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>647819fa6fc84fb3af5e2244152ac552</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - ONUs Autorizadas</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - ONUs Autorizadas</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.auth.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1609,7 +1609,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>be28dbc5ce1449088c959319874dbee5</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - ONUs Online</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - ONUs Online</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.online.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1628,7 +1628,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>39a85f7f38f847e489219b548aee225b</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - ONUs Offline</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - ONUs Offline</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.offline.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1647,7 +1647,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>a49b60ec59474fb8a091407ef25eb405</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - DyingGasp (Energia)</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - DyingGasp (Energia)</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.dg.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1666,7 +1666,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>2904cf86cc294846b6dff96e4a5364d2</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - LOS (Fibra)</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - LOS (Fibra)</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.los.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1685,7 +1685,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8a52630110fe4b5b9fb1a14e849feaf0</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - LOSi</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - LOSi</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.losi.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1704,7 +1704,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>31b9fe56c33a4ca1b4059c301b06c05a</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - LOF</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - LOF</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.lof.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1723,7 +1723,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>a0038031a6e24de99ef552e36fe6536a</uuid>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Online (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Online (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -1732,7 +1732,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>5f22daf6d77142ec92ffebff58b53816</uuid>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Offline (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Offline (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.offline.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -1741,7 +1741,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>f78c161489f34388ba7867757ef2b2e2</uuid>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Dying Gasp (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Dying Gasp (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -1750,7 +1750,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>4c7d188b437d464282f517f8d41e4a96</uuid>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - LOS (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - LOS (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -1759,7 +1759,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6499dac39c2e48f3ab60c45dd1f17e99</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - Status Operacional (ifOperStatus)</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - Status Operacional (ifOperStatus)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.gpon.port.ifoperstatus.zte[{#SNMPINDEX}]</key>
@@ -1769,7 +1769,7 @@ return String(s);</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>aa61721774c442148ebef7c6c8a2cc12</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - Erros CRC Entrada (Taxa/s)</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - Erros CRC Entrada (Taxa/s)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.gpon.port.ifinerrors.zte[{#SNMPINDEX}]</key>

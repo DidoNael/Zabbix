@@ -524,7 +524,7 @@ Todos os direitos reservados.</description>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>ff22d81d1dfa4939be9819ad3dd56e7c</uuid>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Alerta LOS+Queda</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Alerta LOS+Queda</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.alerta.los.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -533,7 +533,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6ee676f6d7bb4c8ba0e8a07992f462da</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - ONUs Autorizadas</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - ONUs Autorizadas</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.auth.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -556,7 +556,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>49918cfc6c5f4eb79cc2ecb603a669cb</uuid>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Dying Gasp (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Dying Gasp (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -565,7 +565,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8e84fbcdf64d4865a1653fd49b4864da</uuid>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - LOS (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - LOS (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -574,7 +574,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>dcdec54261a24fc0b87ac39b4118c5f2</uuid>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Offline (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Offline (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.offline.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -583,7 +583,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>7f7e570baa7042169c515e945a84cf42</uuid>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} - Online (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Online (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -592,7 +592,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>de33672a474c4813b67853d403cc6716</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - DyingGasp (Energia)</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - DyingGasp (Energia)</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.dg.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -615,7 +615,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>bc16ec25c36e4dedab6b29b390b160ed</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - LOF</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - LOF</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.lof.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -638,7 +638,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8fce2854fd2740159e89dad2dfbf2764</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - LOS (Fibra)</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - LOS (Fibra)</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.los.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -661,7 +661,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>7437962cce3e453faa46e032827b8d76</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - LOSi</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - LOSi</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.losi.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -684,7 +684,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>3e3c6553105b4a56a7202e9bf58131f8</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - ONUs Offline</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - ONUs Offline</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.offline.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -707,7 +707,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>4a46a3631ed64b839055f705c796fd56</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - ONUs Online</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - ONUs Online</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.online.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -730,7 +730,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>ff962ca2242b406db34e366227d2889f</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - Status Operacional (ifOperStatus)</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - Status Operacional (ifOperStatus)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#NETSTREAM.PON_INDEX}</snmp_oid>
                             <key>netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}]</key>
@@ -740,7 +740,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>1a1517d985ea4df1885f8cf1f5f5865c</uuid>
-                            <name>PON {#NETSTREAM.PON_NAME} - Erros CRC Entrada (Taxa/s)</name>
+                            <name>PON {#NETSTREAM.PON_LABEL} - Erros CRC Entrada (Taxa/s)</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#NETSTREAM.PON_INDEX}</snmp_oid>
                             <key>netstream.gpon.port.ifinerrors.huawei[{#NETSTREAM.PON_INDEX}]</key>
