@@ -1139,6 +1139,7 @@ return 0;</parameter>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
+                            <uuid>0e9b20a074054ef4a6c4ff5bdbb8abac</uuid>
                             <expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}],#1)=2 and last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}],#2)=1 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}],10m)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}])=1</recovery_expression>
