@@ -962,7 +962,7 @@ return 0;</params>
                             <expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}].last(#1)}=2 and {HUAWEI OLT - NETSTREAM:netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}].last(#2)}=1 and {HUAWEI OLT - NETSTREAM:netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}].count(10m)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.port.ifoperstatus.huawei[{#NETSTREAM.PON_INDEX}].last()}=1</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: Porta GPON Inativa</name>
+                            <name>PON {#NETSTREAM.PON_LABEL}: Porta GPON Inativa</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -977,6 +977,10 @@ return 0;</params>
                                 <tag>
                                     <tag>pon</tag>
                                     <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon_desc</tag>
+                                    <value>{#NETSTREAM.PON_DESC}</value>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
@@ -992,7 +996,7 @@ return 0;</params>
                             <expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].last()}=0 and {HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].diff()}=1 and {HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_LABEL}: Queda total de ONUs</name>
                             <priority>DISASTER</priority>
                             <tags>
                                 <tag>
@@ -1008,6 +1012,10 @@ return 0;</params>
                                     <value>{#NETSTREAM.PON_NAME}</value>
                                 </tag>
                                 <tag>
+                                    <tag>pon_desc</tag>
+                                    <value>{#NETSTREAM.PON_DESC}</value>
+                                </tag>
+                                <tag>
                                     <tag>tipo</tag>
                                     <value>Queda_Total</value>
                                 </tag>
@@ -1019,7 +1027,7 @@ return 0;</params>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
+                            <name>PON {#NETSTREAM.PON_LABEL}: DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1034,6 +1042,10 @@ return 0;</params>
                                 <tag>
                                     <tag>pon</tag>
                                     <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon_desc</tag>
+                                    <value>{#NETSTREAM.PON_DESC}</value>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
@@ -1053,11 +1065,11 @@ return 0;</params>
                             <expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}].last()}&lt;=({HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}].min(7d)}+2)</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
+                            <name>PON {#NETSTREAM.PON_LABEL}: LOS detectado (Fibra)</name>
                             <status>DISABLED</status>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
-                            <description>3 ou mais ONUs passaram a ter LOS como motivo de queda nos ultimos 15 minutos. Possivel rompimento de fibra na PON {#NETSTREAM.PON_NAME}.</description>
+                            <description>3 ou mais ONUs passaram a ter LOS como motivo de queda nos ultimos 15 minutos. Possivel rompimento de fibra na PON {#NETSTREAM.PON_LABEL}.</description>
                             <tags>
                                 <tag>
                                     <tag>scope</tag>
@@ -1070,6 +1082,10 @@ return 0;</params>
                                 <tag>
                                     <tag>pon</tag>
                                     <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon_desc</tag>
+                                    <value>{#NETSTREAM.PON_DESC}</value>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
@@ -1087,7 +1103,7 @@ return 0;</params>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].change()}&lt;-{$GPON_DROP_MIN} and {HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].last()}&gt;0 and {HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: Queda parcial de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_LABEL}: Queda parcial de ONUs</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1102,6 +1118,10 @@ return 0;</params>
                                 <tag>
                                     <tag>pon</tag>
                                     <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon_desc</tag>
+                                    <value>{#NETSTREAM.PON_DESC}</value>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
