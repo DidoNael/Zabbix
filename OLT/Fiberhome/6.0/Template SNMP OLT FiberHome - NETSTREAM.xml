@@ -1248,7 +1248,7 @@ return 0;</parameter>
                             <uuid>f7525eec3706492e95f83936a136263e</uuid>
                             <expression>(max(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}],900s)-min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}],900s))&gt;=3 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}])&lt;=min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}],7d)+2</recovery_expression>
+                            <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}])&lt;=max(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}],24h)*0.5</recovery_expression>
                             <name>PON {#NETSTREAM.PON_LABEL}: LOS detectado (Fibra)</name>
                             <status>DISABLED</status>
                             <priority>HIGH</priority>
