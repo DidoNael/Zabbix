@@ -239,7 +239,7 @@ Todos os direitos reservados.</description>
                     <name>NETSTREAM - Status PONs GPON Huawei (master)</name>
                     <type>EXTERNAL</type>
                     <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
-                    <delay>5m</delay>
+                    <delay>2m</delay>
                     <history>7d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
@@ -1026,7 +1026,7 @@ return 0;</params>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=8 and {HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <name>PON {#NETSTREAM.PON_LABEL}: DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>

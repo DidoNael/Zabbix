@@ -179,7 +179,7 @@ Todos os direitos reservados.</description>
                     <name>NETSTREAM - Status PONs GPON FiberHome (master)</name>
                     <type>EXTERNAL</type>
                     <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
-                    <delay>5m</delay>
+                    <delay>2m</delay>
                     <history>7d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
@@ -1209,7 +1209,7 @@ return 0;</parameter>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>5eca26c3114a4ac19eece7b04c1d937d</uuid>
-                            <expression>(max(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],900s)-min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],900s))&gt;=3 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
+                            <expression>(max(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],900s)-min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],900s))&gt;=8 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
                             <name>PON {#NETSTREAM.PON_LABEL}: DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
