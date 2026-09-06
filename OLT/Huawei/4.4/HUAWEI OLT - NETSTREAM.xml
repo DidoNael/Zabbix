@@ -1066,7 +1066,7 @@ return 0;</params>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}].last()}&lt;={HUAWEI OLT - NETSTREAM:netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}].max(24h)}*0.5</recovery_expression>
                             <name>PON {#NETSTREAM.PON_LABEL}: LOS detectado (Fibra)</name>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <description>3 ou mais ONUs passaram a ter LOS como motivo de queda nos ultimos 15 minutos. Possivel rompimento de fibra na PON {#NETSTREAM.PON_LABEL}.</description>
@@ -1097,7 +1097,7 @@ return 0;</params>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>telegram</value>
+                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>

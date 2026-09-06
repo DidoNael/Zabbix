@@ -2345,7 +2345,7 @@ return String(s);</params>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].last()}&lt;={OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].max(24h)}*0.5</recovery_expression>
                             <name>PON {#NETSTREAM.PON_LABEL}: LOS detectado (Fibra)</name>
-                            <status>DISABLED</status>
+                            <status>ENABLED</status>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -2375,7 +2375,7 @@ return String(s);</params>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>telegram</value>
+                                    <value>nao</value>
                                 </tag>
                             </tags>
                             <dependencies>
