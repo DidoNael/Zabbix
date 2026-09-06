@@ -22,23 +22,26 @@ def auth_idx_to_ifmib(i):
     return 0x10000000 | (card << 16) | (port << 8)
 
 def collect_and_save():
-    OID_AUTH    = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14"
-    OID_ONLINE  = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15"
-    OID_REASON  = "1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7"
-    OID_IFDESCR = "1.3.6.1.2.1.2.2.1.2"
+    OID_AUTH      = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14"
+    OID_ONLINE    = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15"
+    OID_ONU_STATE = "1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.2"  # 1=online 2=offline por ONU
+    OID_REASON    = "1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7"
+    OID_IFDESCR   = "1.3.6.1.2.1.2.2.1.2"
     OPTS = ["-v2c", "-c", COMMUNITY, "-t", "25", "-r", "1", "-Cr10", SNMP_TARGET]
 
     tmpdir = tempfile.mkdtemp()
     try:
         procs = {
-            "auth":    subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_AUTH],
-                                        stdout=open(tmpdir+"/auth","w"), stderr=subprocess.PIPE),
-            "online":  subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_ONLINE],
-                                        stdout=open(tmpdir+"/online","w"), stderr=subprocess.PIPE),
-            "reason":  subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_REASON],
-                                        stdout=open(tmpdir+"/reason","w"), stderr=subprocess.PIPE),
-            "ifdescr": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFDESCR],
-                                        stdout=open(tmpdir+"/ifdescr","w"), stderr=subprocess.PIPE),
+            "auth":      subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_AUTH],
+                                          stdout=open(tmpdir+"/auth","w"), stderr=subprocess.PIPE),
+            "online":    subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_ONLINE],
+                                          stdout=open(tmpdir+"/online","w"), stderr=subprocess.PIPE),
+            "onu_state": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_ONU_STATE],
+                                          stdout=open(tmpdir+"/onu_state","w"), stderr=subprocess.PIPE),
+            "reason":    subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_REASON],
+                                          stdout=open(tmpdir+"/reason","w"), stderr=subprocess.PIPE),
+            "ifdescr":   subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFDESCR],
+                                          stdout=open(tmpdir+"/ifdescr","w"), stderr=subprocess.PIPE),
         }
         for p in procs.values(): p.wait()
 
@@ -63,11 +66,23 @@ def collect_and_save():
             m = re.search(r'\.(\d+)\s+=\s+\S+:\s+(\d+)', line)
             if m: online_data[m.group(1)] = int(m.group(2))
 
+        # offline_onus[pon] = set de índices de ONU atualmente offline (estado=2)
+        offline_onus = {}
+        for line in rl("onu_state"):
+            m = re.search(r'\.2\.(\d+)\.(\d+)\s+=\s+\S+:\s+(\d+)', line)
+            if not m: continue
+            pon = m.group(1); onu = m.group(2); state = int(m.group(3))
+            if state == 2:  # 2=offline
+                offline_onus.setdefault(pon, set()).add(onu)
+
+        # Conta razões apenas para ONUs realmente offline agora
         reasons = {}
         for line in rl("reason"):
             m = re.search(r'\.7\.(\d+)\.(\d+)\s+=\s+\S+:\s+(\d+)', line)
             if not m: continue
-            pon = m.group(1); val = int(m.group(3))
+            pon = m.group(1); onu = m.group(2); val = int(m.group(3))
+            if onu not in offline_onus.get(pon, set()):
+                continue  # ONU online — ignorar razão histórica
             if pon not in reasons:
                 reasons[pon] = {"los":0,"losi":0,"lof":0,"dg":0,"unk":0}
             if   val == 2: reasons[pon]["los"]  += 1
