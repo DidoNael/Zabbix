@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""
-pon_status.py - retorna JSON do cache se existir e for recente,
-e dispara coleta em background se o cache estiver desatualizado.
-"""
-import sys, os, json, time, subprocess, tempfile, shutil
+import sys, os, json, time, subprocess, tempfile, shutil, re
 
 if len(sys.argv) < 3:
     print("[]"); sys.exit(0)
@@ -18,7 +14,12 @@ if not OLT_IP or not COMMUNITY:
 
 CACHE_FILE = "/tmp/pon_cache_%s.json" % OLT_IP.replace(".", "_")
 LOCK_FILE  = CACHE_FILE + ".lock"
-CACHE_TTL  = 300  # 5 minutos
+CACHE_TTL  = 60
+
+def auth_idx_to_ifmib(i):
+    card = (i >> 8) & 0xFF
+    port = i & 0xFF
+    return 0x10000000 | (card << 16) | (port << 8)
 
 def collect_and_save():
     OID_AUTH    = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14"
@@ -26,7 +27,7 @@ def collect_and_save():
     OID_REASON  = "1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7"
     OID_IFDESCR = "1.3.6.1.2.1.2.2.1.2"
     OPTS = ["-v2c", "-c", COMMUNITY, "-t", "25", "-r", "1", "-Cr10", SNMP_TARGET]
-    import re
+
     tmpdir = tempfile.mkdtemp()
     try:
         procs = {
@@ -40,16 +41,20 @@ def collect_and_save():
                                         stdout=open(tmpdir+"/ifdescr","w"), stderr=subprocess.PIPE),
         }
         for p in procs.values(): p.wait()
+
         def rl(f):
             try: return open(tmpdir+"/"+f).read().strip().splitlines()
             except: return []
-        # Mapear slot/card/port -> IF-MIB SNMPINDEX via ifDescr (ex: "GPON0/1/0", "gpon-olt_0/1/0")
-        ifmib_map = {}
+
+        # Mapa IF-MIB index -> description (ifDescr == ifAlias nas ZTEs C320/C350)
+        desc_map = {}
         for line in rl("ifdescr"):
-            m = re.search(r'ifDescr\.(\d+).*?[Gg][Pp][Oo][Nn][^0-9]*(\d+)/(\d+)/(\d+)', line)
+            m = re.search(r'ifDescr\.(\d+)\s*=\s*STRING:\s*(.+)', line)
             if m:
-                key = "%d/%d/%d" % (int(m.group(2)), int(m.group(3)), int(m.group(4)))
-                ifmib_map[key] = m.group(1)
+                val = m.group(2).strip().strip('"')
+                if val:
+                    desc_map[int(m.group(1))] = val
+
         auth_data, online_data = {}, {}
         for line in rl("auth"):
             m = re.search(r'\.(\d+)\s+=\s+\S+:\s+(\d+)', line)
@@ -57,6 +62,7 @@ def collect_and_save():
         for line in rl("online"):
             m = re.search(r'\.(\d+)\s+=\s+\S+:\s+(\d+)', line)
             if m: online_data[m.group(1)] = int(m.group(2))
+
         reasons = {}
         for line in rl("reason"):
             m = re.search(r'\.7\.(\d+)\.(\d+)\s+=\s+\S+:\s+(\d+)', line)
@@ -69,26 +75,27 @@ def collect_and_save():
             elif val == 4: reasons[pon]["lof"]  += 1
             elif val == 9: reasons[pon]["dg"]   += 1
             elif val == 1: reasons[pon]["unk"]  += 1
+
         result = []
         for idx in sorted(auth_data.keys(), key=lambda x: int(x)):
             auth   = auth_data[idx]
             online = online_data.get(idx, 0)
-            i = int(idx)
-            slot = (i>>16)&0xFF
-            card = (i>>8)&0xFF
-            port = i&0xFF
-            name = "gpon_%d/%d/%d" % (slot, card, port)
-            key  = "%d/%d/%d" % (slot, card, port)
-            snmp_idx = ifmib_map.get(key, idx)
-            r = reasons.get(idx, {"los":0,"losi":0,"lof":0,"dg":0,"unk":0})
             if auth == 0: continue
+            i = int(idx)
+            slot = (i >> 16) & 0xFF
+            card = (i >> 8) & 0xFF
+            port = i & 0xFF
+            name     = "gpon_%d/%d/%d" % (slot, card, port)
+            snmp_idx = auth_idx_to_ifmib(i)
+            desc     = desc_map.get(snmp_idx, "")
+            r = reasons.get(idx, {"los":0,"losi":0,"lof":0,"dg":0,"unk":0})
             result.append({
-                "{#NETSTREAM.PON_INDEX}": idx, "{#NETSTREAM.PON_NAME}": name,
                 "idx": idx, "name": name, "snmp_idx": snmp_idx,
                 "auth": auth, "online": online, "offline": max(auth-online, 0),
                 "los": r["los"], "losi": r["losi"], "lof": r["lof"],
-                "dg": r["dg"], "unk": r["unk"]
+                "dg": r["dg"], "unk": r["unk"], "desc": desc,
             })
+
         if result:
             with open(CACHE_FILE + ".tmp", "w") as f:
                 json.dump(result, f)
@@ -103,17 +110,16 @@ def collect_and_save():
         try: os.unlink(LOCK_FILE)
         except: pass
 
-# Verificar se cache é recente
 cache_age = 9999
 if os.path.exists(CACHE_FILE):
     cache_age = time.time() - os.path.getmtime(CACHE_FILE)
 
-# Disparar coleta em background se cache expirado e não há coleta em andamento
-if cache_age > CACHE_TTL and not os.path.exists(LOCK_FILE):
+lock_age = time.time() - os.path.getmtime(LOCK_FILE) if os.path.exists(LOCK_FILE) else 9999
+if cache_age > CACHE_TTL and (not os.path.exists(LOCK_FILE) or lock_age > 180):
     try:
         open(LOCK_FILE, "w").close()
         pid = os.fork()
-        if pid == 0:  # processo filho
+        if pid == 0:
             os.setsid()
             collect_and_save()
             sys.exit(0)
@@ -121,7 +127,6 @@ if cache_age > CACHE_TTL and not os.path.exists(LOCK_FILE):
         try: os.unlink(LOCK_FILE)
         except: pass
 
-# Retornar cache existente ou array vazio
 if os.path.exists(CACHE_FILE):
     try:
         print(open(CACHE_FILE).read())
