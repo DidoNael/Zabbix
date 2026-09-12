@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-07-24T01:09:10Z</date>
@@ -248,7 +248,7 @@ Todos os direitos reservados.</description>
                     <name>NETSTREAM - Status PONs GPON FiberHome (master)</name>
                     <type>EXTERNAL</type>
                     <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
-                    <delay>2m</delay>
+                    <delay>1m</delay>
                     <history>7d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>

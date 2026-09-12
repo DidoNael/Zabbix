@@ -189,3 +189,43 @@ ONU Dedicada {#NETSTREAM.ONU_DESC}: Status atual
 - [ ] Lógica idêntica (expressão, recovery, manual_close, priority, tags)
 - [ ] Dependências replicadas nas duas versões
 - [ ] Ambos os arquivos no mesmo commit e push
+
+---
+
+## 14. Changelog e Versionamento
+
+**Regra**: toda mudança no projeto (novo item, trigger, script, correção) deve:
+
+1. **Atualizar `CHANGELOG.md`** na raiz do repositório com entrada no formato:
+   ```
+   ## [vX.Y.Z] - YYYY-MM-DD
+   ### Added / Changed / Fixed
+   - Descrição objetiva da mudança, template afetado e motivo
+   ```
+2. **Criar uma nova tag git** após o commit, seguindo semver:
+   - `vX.Y.Z` — `X` = breaking change, `Y` = nova funcionalidade, `Z` = correção/ajuste
+   - Comando: `git tag -a vX.Y.Z -m "Resumo da mudança"` + `git push origin vX.Y.Z`
+3. **Publicar no GitHub** — o `CHANGELOG.md` commitado já documenta o histórico; usar a tag como release point.
+
+**Por quê**: permite rastrear o que mudou, quando e por qual motivo, tanto no repositório quanto no histórico de releases do GitHub. Facilita rollback e auditoria de incidentes.
+
+**Checklist de versionamento** (obrigatório a cada mudança):
+- [ ] `CHANGELOG.md` atualizado com versão, data e descrição
+- [ ] Commit criado com mensagem clara referenciando o template/script alterado
+- [ ] Tag `vX.Y.Z` criada e pushed para o GitHub
+
+---
+
+## 15. Testes com Sub-agente
+
+**Regra**: ao implementar qualquer nova funcionalidade (novo item, script externo, discovery rule, trigger), acionar um sub-agente para executar os testes antes de considerar a tarefa concluída.
+
+**O que o sub-agente deve testar**:
+- Script externo: executar manualmente no servidor Zabbix com parâmetros reais e validar saída JSON
+- Item SNMP/SSH: verificar se o item coleta dados (`item not supported` = falha)
+- Trigger: confirmar que dispara e recupera corretamente com dados simulados ou reais
+- LLD: confirmar que a discovery cria os protótipos esperados
+
+**Como acionar**: usar o Agent tool com `subagent_type="claude"` passando: servidor SSH, chave, host de teste, item key e critério de sucesso esperado.
+
+**Por quê**: evita que funcionalidades cheguem a produção sem validação — o histórico do projeto tem casos de scripts deployados que silenciosamente retornavam vazio ou triggers que nunca disparavam por erro de expressão.

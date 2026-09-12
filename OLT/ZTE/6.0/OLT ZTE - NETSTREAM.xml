@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-07-09T01:15:27Z</date>
@@ -208,7 +208,7 @@ Todos os direitos reservados.</description>
                     <name>NETSTREAM - Status PONs GPON (master)</name>
                     <type>EXTERNAL</type>
                     <key>netstream.gpon.pon.status.zte[{HOST.IP},{$SNMP_COMMUNITY}]</key>
-                    <delay>2m</delay>
+                    <delay>1m</delay>
                     <history>7d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
