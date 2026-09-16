@@ -121,7 +121,11 @@
                           "filter": ""
                         },
                         "options": {
+<<<<<<< HEAD
                           "count": false,
+=======
+                          "count": true,
+>>>>>>> feature/dashboard-olt-unificado
                           "disableDataAlignment": true,
                           "minSeverity": 3,
                           "showDisabledItems": false,
@@ -156,7 +160,11 @@
                 }
               ],
               "transformations": [],
+<<<<<<< HEAD
               "queryOptions": {"minInterval": "5m"}
+=======
+              "queryOptions": {}
+>>>>>>> feature/dashboard-olt-unificado
             }
           },
           "vizConfig": {
@@ -221,7 +229,11 @@
                       "viz": false
                     },
                     "insertNulls": false,
+<<<<<<< HEAD
                     "lineInterpolation": "smooth",
+=======
+                    "lineInterpolation": "linear",
+>>>>>>> feature/dashboard-olt-unificado
                     "lineWidth": 1,
                     "pointSize": 5,
                     "scaleDistribution": {
@@ -414,7 +426,11 @@
                           "filter": ""
                         },
                         "options": {
+<<<<<<< HEAD
                           "count": false,
+=======
+                          "count": true,
+>>>>>>> feature/dashboard-olt-unificado
                           "disableDataAlignment": true,
                           "minSeverity": 3,
                           "showDisabledItems": false,
@@ -571,7 +587,11 @@
                           "filter": ""
                         },
                         "options": {
+<<<<<<< HEAD
                           "count": false,
+=======
+                          "count": true,
+>>>>>>> feature/dashboard-olt-unificado
                           "disableDataAlignment": true,
                           "minSeverity": 3,
                           "showDisabledItems": false,
@@ -733,7 +753,11 @@
                           "filter": ""
                         },
                         "options": {
+<<<<<<< HEAD
                           "count": false,
+=======
+                          "count": true,
+>>>>>>> feature/dashboard-olt-unificado
                           "disableDataAlignment": true,
                           "minSeverity": 3,
                           "showDisabledItems": false,
@@ -895,7 +919,11 @@
                           "filter": ""
                         },
                         "options": {
+<<<<<<< HEAD
                           "count": false,
+=======
+                          "count": true,
+>>>>>>> feature/dashboard-olt-unificado
                           "disableDataAlignment": true,
                           "minSeverity": 3,
                           "showDisabledItems": false,
@@ -1057,7 +1085,11 @@
                           "filter": ""
                         },
                         "options": {
+<<<<<<< HEAD
                           "count": false,
+=======
+                          "count": true,
+>>>>>>> feature/dashboard-olt-unificado
                           "disableDataAlignment": true,
                           "minSeverity": 3,
                           "showDisabledItems": false,
@@ -1220,7 +1252,11 @@
                           "filter": ""
                         },
                         "options": {
+<<<<<<< HEAD
                           "count": false,
+=======
+                          "count": true,
+>>>>>>> feature/dashboard-olt-unificado
                           "disableDataAlignment": true,
                           "minSeverity": 3,
                           "showDisabledItems": false,
@@ -3360,7 +3396,11 @@
                         "item": {"filter": "/Porta .* Trafego/"},
                         "itemTag": {"filter": ""},
                         "macro": {"filter": ""},
+<<<<<<< HEAD
                         "options": {"count": false,"disableDataAlignment": true,"minSeverity": 3,"showDisabledItems": false,"skipEmptyValues": false,"useTrends": "default","useZabbixValueMapping": true},
+=======
+                        "options": {"count": true,"disableDataAlignment": true,"minSeverity": 3,"showDisabledItems": false,"skipEmptyValues": false,"useTrends": "default","useZabbixValueMapping": true},
+>>>>>>> feature/dashboard-olt-unificado
                         "proxy": {"filter": ""},
                         "queryType": "0",
                         "resultFormat": "time_series",
@@ -3378,7 +3418,11 @@
                 }
               ],
               "transformations": [],
+<<<<<<< HEAD
               "queryOptions": {"minInterval": "5m"}
+=======
+              "queryOptions": {}
+>>>>>>> feature/dashboard-olt-unificado
             }
           },
           "vizConfig": {
@@ -3394,7 +3438,11 @@
                 "defaults": {
                   "unit": "bps",
                   "color": {"mode": "palette-classic"},
+<<<<<<< HEAD
                   "custom": {"drawStyle": "line","fillOpacity": 20,"gradientMode": "none","lineInterpolation": "smooth","lineWidth": 1,"showPoints": "auto","spanNulls": false,"stacking": {"group": "A","mode": "none"}}
+=======
+                  "custom": {"drawStyle": "line","fillOpacity": 20,"gradientMode": "none","lineWidth": 1,"showPoints": "auto","spanNulls": false,"stacking": {"group": "A","mode": "none"}}
+>>>>>>> feature/dashboard-olt-unificado
                 },
                 "overrides": []
               }

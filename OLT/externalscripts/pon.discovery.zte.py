@@ -26,8 +26,8 @@ except Exception:
 lld = [
     {
         "{#NETSTREAM.PON_INDEX}": str(p["idx"]),
-        "{#NETSTREAM.PON_NAME}":  str(p["name"]),
-        "{#SNMPINDEX}":           str(p.get("snmp_idx", p["idx"])),
+        "{#NETSTREAM.PON_NAME}": str(p["name"]),
+        "{#NETSTREAM.PON_DESC}": str(p.get("desc", "")),
     }
     for p in data if p.get("auth", 0) > 0
 ]

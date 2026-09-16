@@ -1,13 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-07-24T01:09:10Z</date>
     <groups>
         <group>
-            <name>Templates</name>
+            <name>NETSTREAM</name>
         </group>
         <group>
-            <name>NETSTREAM</name>
+            <name>NETSTREAM/FIBERHOME</name>
+        </group>
+        <group>
+            <name>OLT</name>
         </group>
     </groups>
     <templates>
@@ -23,16 +26,19 @@ Este template � propriedade exclusiva da Netstream Telecomunica��es.
 autoriza��o pr�via e por escrito da Netstream Telecomunica��es.
 Todos os direitos reservados.</description>
             <groups>
-                <group>
-                    <name>Templates</name>
-                </group>
-                <group>
-                    <name>NETSTREAM</name>
-                </group>
-            </groups>
+        <group>
+            <name>NETSTREAM</name>
+        </group>
+        <group>
+            <name>NETSTREAM/FIBERHOME</name>
+        </group>
+        <group>
+            <name>OLT</name>
+        </group>
+    </groups>
             <applications>
                 <application>
-                    <name>Clientes Dedicados</name>
+                    <name>download</name>
                 </application>
                 <application>
                     <name>Interfaces</name>
@@ -45,9 +51,6 @@ Todos os direitos reservados.</description>
                 </application>
                 <application>
                     <name>onu-state</name>
-                </application>
-                <application>
-                    <name>onu-state-dedicado</name>
                 </application>
                 <application>
                     <name>ONUs Autorizadas</name>
@@ -71,6 +74,9 @@ Todos os direitos reservados.</description>
                     <name>ONUs Online</name>
                 </application>
                 <application>
+                    <name>Optical-rx</name>
+                </application>
+                <application>
                     <name>PON</name>
                 </application>
                 <application>
@@ -83,10 +89,22 @@ Todos os direitos reservados.</description>
                     <name>Uplinks OLT</name>
                 </application>
                 <application>
+                    <name>Interfaces Ethernet</name>
+                </application>
+                <application>
+                    <name>upload</name>
+                </application>
+                <application>
                     <name>Trafego PON</name>
                 </application>
                 <application>
                     <name>uptime</name>
+                </application>
+                <application>
+                    <name>Status</name>
+                </application>
+                <application>
+                    <name>Temperatura</name>
                 </application>
             </applications>
             <items>
@@ -248,7 +266,7 @@ Todos os direitos reservados.</description>
                     <name>NETSTREAM - Status PONs GPON FiberHome (master)</name>
                     <type>EXTERNAL</type>
                     <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
-                    <delay>1m</delay>
+                    <delay>5m</delay>
                     <history>7d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
@@ -280,7 +298,7 @@ Todos os direitos reservados.</description>
                     </applications>
                 </item>
                 <item>
-                    <name>Uptime do Sistema</name>
+                    <name>Uptime</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
@@ -288,6 +306,14 @@ Todos os direitos reservados.</description>
                     <history>7d</history>
                     <trends>0</trends>
                     <units>uptime</units>
+                    <applications>
+                        <application>
+                            <name>uptime</name>
+                        </application>
+                        <application>
+                            <name>Status</name>
+                        </application>
+                    </applications>
                     <triggers>
                         <trigger>
                             <expression>{Template SNMP OLT FiberHome - NETSTREAM:uptime.last()}&lt;600 or {Template SNMP OLT FiberHome - NETSTREAM:uptime.change()}&lt;0</expression>
@@ -310,10 +336,11 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:uptime.nodata(1h)}=1</expression>
-                            <name>OLT Inacessível (sem resposta SNMP por 1h)</name>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:uptime.nodata(5m)}=1</expression>
+                            <name>OLT Inacess&#237;vel (sem dados SNMP h&#225; 5 minutos)</name>
+                            <status>DISABLED</status>
                             <priority>DISASTER</priority>
-                            <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 60 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
+                            <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 5 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
                             <tags>
                                 <tag>
                                     <tag>scope</tag>
@@ -340,6 +367,7 @@ Todos os direitos reservados.</description>
                     <snmp_oid>discovery[{#SNMPVALUE},.1.3.6.1.4.1.5875.800.3.9.2.1.1.2]</snmp_oid>
                     <key>card.info.discovery</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <lifetime>1w</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -367,6 +395,7 @@ Todos os direitos reservados.</description>
                             <delay>10m</delay>
                             <history>15d</history>
                             <trends>90d</trends>
+                            <status>DISABLED</status>
                             <value_type>FLOAT</value_type>
                             <units>%</units>
                             <applications>
@@ -513,6 +542,7 @@ Todos os direitos reservados.</description>
                             <delay>10m</delay>
                             <history>15d</history>
                             <trends>90d</trends>
+                            <status>DISABLED</status>
                             <description>Column Description:&#13;
 1:normal(1)&#13;
 2:communication interrupt(0)</description>
@@ -523,7 +553,7 @@ Todos os direitos reservados.</description>
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}=9 and {diff()}=1 and {count(10m)}&gt;1</expression>
+                                    <expression>{last()}=9</expression>
                                     <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa com defeito (Faulty)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -547,7 +577,7 @@ Todos os direitos reservados.</description>
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{last()}=4 and {diff()}=1 and {count(10m)}&gt;1</expression>
+                                    <expression>{last()}=4</expression>
                                     <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa Desconectada / Offline</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -571,7 +601,7 @@ Todos os direitos reservados.</description>
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{last()}=11 and {diff()}=1 and {count(10m)}&gt;1</expression>
+                                    <expression>{last()}=11</expression>
                                     <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa Sem Energia (Power Off)</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -595,7 +625,7 @@ Todos os direitos reservados.</description>
                                     </tags>
                                 </trigger_prototype>
                                 <trigger_prototype>
-                                    <expression>{last()}=2 and {diff()}=1 and {count(10m)}&gt;1</expression>
+                                    <expression>{last()}=2</expression>
                                     <name>Card Status Slot [&quot;{#SNMPINDEX}&quot;]: Placa Fora de Servico (Not in Service)</name>
                                     <priority>WARNING</priority>
                                     <manual_close>YES</manual_close>
@@ -1037,7 +1067,7 @@ the other type could see the card type table</description>
                     <description>LLD PONs GPON FiberHome</description>
                     <item_prototypes>
                         <item_prototype>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Alerta LOS+Queda</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - Alerta LOS+Queda</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.alerta.los.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -1050,12 +1080,12 @@ the other type could see the card type table</description>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>PON {#NETSTREAM.PON_LABEL} - ONUs Autorizadas</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - ONUs Autorizadas</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.auth.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1067,7 +1097,7 @@ the other type could see the card type table</description>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                             <preprocessing>
@@ -1085,7 +1115,7 @@ return 0;</params>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Dying Gasp (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - Dying Gasp (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -1098,12 +1128,12 @@ return 0;</params>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - LOS (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - LOS (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -1116,12 +1146,12 @@ return 0;</params>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Offline (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - Offline (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.offline.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -1134,12 +1164,12 @@ return 0;</params>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>NETSTREAM - PON {#NETSTREAM.PON_LABEL} - Online (calc)</name>
+                            <name>NETSTREAM - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - Online (calc)</name>
                             <type>CALCULATED</type>
                             <key>netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
@@ -1152,12 +1182,12 @@ return 0;</params>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>PON {#NETSTREAM.PON_LABEL} - DyingGasp (Energia)</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - DyingGasp (Energia)</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.dg.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1169,7 +1199,7 @@ return 0;</params>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                             <preprocessing>
@@ -1187,7 +1217,7 @@ return 0;</params>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>PON {#NETSTREAM.PON_LABEL} - LOF</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - LOF</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.lof.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1199,7 +1229,7 @@ return 0;</params>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                             <preprocessing>
@@ -1217,7 +1247,7 @@ return 0;</params>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>PON {#NETSTREAM.PON_LABEL} - LOS (Fibra)</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - LOS (Fibra)</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1229,7 +1259,7 @@ return 0;</params>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                             <preprocessing>
@@ -1247,7 +1277,7 @@ return 0;</params>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>PON {#NETSTREAM.PON_LABEL} - LOSi</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - LOSi</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.losi.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1259,7 +1289,7 @@ return 0;</params>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                             <preprocessing>
@@ -1277,7 +1307,7 @@ return 0;</params>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>PON {#NETSTREAM.PON_LABEL} - ONUs Offline</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - ONUs Offline</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.offline.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1289,7 +1319,7 @@ return 0;</params>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                             <preprocessing>
@@ -1307,7 +1337,7 @@ return 0;</params>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>PON {#NETSTREAM.PON_LABEL} - ONUs Online</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}) - ONUs Online</name>
                             <type>DEPENDENT</type>
                             <key>netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <delay>0</delay>
@@ -1319,7 +1349,7 @@ return 0;</params>
                             </applications>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
+                                    <name>GPON - PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC})</name>
                                 </application_prototype>
                             </application_prototypes>
                             <preprocessing>
@@ -1336,93 +1366,13 @@ return 0;</params>
                                 <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
                             </master_item>
                         </item_prototype>
-                        <item_prototype>
-                            <name>PON {#NETSTREAM.PON_LABEL} - Status Operacional (ifOperStatus)</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#NETSTREAM.PON_INDEX}</snmp_oid>
-                            <key>netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
-                            <delay>1m</delay>
-                            <history>7d</history>
-                            <trends>90d</trends>
-                            <applications>
-                                <application>
-                                    <name>onu-state</name>
-                                </application>
-                            </applications>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
-                                </application_prototype>
-                            </application_prototypes>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PON {#NETSTREAM.PON_LABEL} - Erros CRC Entrada (Taxa/s)</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#NETSTREAM.PON_INDEX}</snmp_oid>
-                            <key>netstream.gpon.port.ifinerrors.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
-                            <delay>5m</delay>
-                            <history>7d</history>
-                            <trends>90d</trends>
-                            <applications>
-                                <application>
-                                    <name>onu-state</name>
-                                </application>
-                            </applications>
-                            <application_prototypes>
-                                <application_prototype>
-                                    <name>GPON - PON {#NETSTREAM.PON_LABEL}</name>
-                                </application_prototype>
-                            </application_prototypes>
-                            <preprocessing>
-                                <step>
-                                    <type>CHANGE_PER_SECOND</type>
-                                    <params />
-                                </step>
-                            </preprocessing>
-                        </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}].last(#1)}=2 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}].last(#2)}=1 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}].count(10m)}&gt;1</expression>
-                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.port.ifoperstatus.fiberhome[{#NETSTREAM.PON_INDEX}].last()}=1</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_LABEL}: Porta GPON Inativa</name>
-                            <priority>DISASTER</priority>
-                            <manual_close>YES</manual_close>
-                            <tags>
-                                <tag>
-                                    <tag>scope</tag>
-                                    <value>OLT</value>
-                                </tag>
-                                <tag>
-                                    <tag>servico</tag>
-                                    <value>GPON</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon</tag>
-                                    <value>{#NETSTREAM.PON_NAME}</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon_desc</tag>
-                                    <value>{#NETSTREAM.PON_DESC}</value>
-                                </tag>
-                                <tag>
-                                    <tag>tipo</tag>
-                                    <value>Queda_Total</value>
-                                </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>telegram</value>
-                                </tag>
-                            </tags>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].diff()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_LABEL}: Queda total de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
                             <priority>DISASTER</priority>
                             <tags>
                                 <tag>
@@ -1436,10 +1386,6 @@ return 0;</params>
                                 <tag>
                                     <tag>pon</tag>
                                     <value>{#NETSTREAM.PON_NAME}</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon_desc</tag>
-                                    <value>{#NETSTREAM.PON_DESC}</value>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
@@ -1452,8 +1398,8 @@ return 0;</params>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=8 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_LABEL}: DyingGasp detectado (Energia)</name>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1468,10 +1414,6 @@ return 0;</params>
                                 <tag>
                                     <tag>pon</tag>
                                     <value>{#NETSTREAM.PON_NAME}</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon_desc</tag>
-                                    <value>{#NETSTREAM.PON_DESC}</value>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
@@ -1489,13 +1431,10 @@ return 0;</params>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
-                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&lt;={Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].max(24h)}*0.5</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_LABEL}: LOS detectado (Fibra)</name>
-                            <status>ENABLED</status>
+                            <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
-                            <description>3 ou mais ONUs passaram a ter LOS como motivo de queda nos ultimos 15 minutos. Possivel rompimento de fibra na PON {#NETSTREAM.PON_LABEL}.</description>
+                            <description>3 ou mais ONUs passaram a ter LOS como motivo de queda nos ultimos 15 minutos. Possivel rompimento de fibra na PON {#NETSTREAM.PON_NAME}.</description>
                             <tags>
                                 <tag>
                                     <tag>scope</tag>
@@ -1508,10 +1447,6 @@ return 0;</params>
                                 <tag>
                                     <tag>pon</tag>
                                     <value>{#NETSTREAM.PON_NAME}</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon_desc</tag>
-                                    <value>{#NETSTREAM.PON_DESC}</value>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
@@ -1523,13 +1458,13 @@ return 0;</params>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>nao</value>
+                                    <value>telegram</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].change()}&lt;-{$GPON_DROP_MIN} and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_LABEL}: Queda parcial de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_NAME}: Queda parcial de ONUs</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1544,10 +1479,6 @@ return 0;</params>
                                 <tag>
                                     <tag>pon</tag>
                                     <value>{#NETSTREAM.PON_NAME}</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon_desc</tag>
-                                    <value>{#NETSTREAM.PON_DESC}</value>
                                 </tag>
                                 <tag>
                                     <tag>tipo</tag>
@@ -1591,6 +1522,9 @@ return 0;</params>
                             <applications>
                                 <application>
                                     <name>Uplinks OLT</name>
+                                </application>
+                                <application>
+                                    <name>Interfaces Ethernet</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -1675,6 +1609,9 @@ return 0;</params>
                             <applications>
                                 <application>
                                     <name>Uplinks OLT</name>
+                                </application>
+                                <application>
+                                    <name>Interfaces Ethernet</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -1897,34 +1834,33 @@ return 0;</params>
                     </graph_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>NETSTREAM - Discovery ONU Dedicada Fiberhome</name>
-                    <type>EXTERNAL</type>
-                    <key>netstream.gpon.onu.dedicado.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <name>Discovery ONU DEDICADO</name>
+                    <type>SNMPV2</type>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                    <snmp_oid>discovery[{#ONUSN}, 1.3.6.1.4.1.5875.800.3.10.1.1.10, {#ONTDESC}, 1.3.6.1.4.1.5875.800.3.10.1.1.7]</snmp_oid>
+                    <key>oltonudedicado</key>
                     <delay>1d</delay>
-                <filter>
-                    <evaltype>AND</evaltype>
-                    <formula/>
-                    <conditions>
-                        <condition>
-                            <macro>{#NETSTREAM.ONU_DESC}</macro>
-                            <value>{$ONU_DEDICADO_FILTER.NETSTREAM}</value>
-                            <formulaid>A</formulaid>
-                            <operator>8</operator>
-                        </condition>
-                    </conditions>
-                </filter>
-<item_prototypes>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#ONTDESC}</macro>
+                                <value>dedicado-.*</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <item_prototypes>
                         <item_prototype>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Trafego Download</name>
+                            <name>Cliente - {#ONTDESC} - {#ONUSN} - Download</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.dedicado.traffic.down[{#SNMPINDEX}]</key>
+                            <key>onuPondown.[&quot;{#SNMPINDEX}&quot;]</key>
                             <history>7d</history>
                             <units>bps</units>
                             <applications>
                                 <application>
-                                    <name>Clientes Dedicados</name>
+                                    <name>download</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -1939,17 +1875,17 @@ return 0;</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Potencia RX (dBm)</name>
+                            <name>Cliente - {#ONTDESC} - {#ONUSN} - RX Power</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>.1.3.6.1.4.1.5875.800.3.9.3.3.1.6.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.dedicado.rxpower[{#SNMPINDEX}]</key>
+                            <key>onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;]</key>
                             <history>7d</history>
                             <value_type>FLOAT</value_type>
                             <units>dBm</units>
                             <applications>
                                 <application>
-                                    <name>Clientes Dedicados</name>
+                                    <name>Optical-rx</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -1960,16 +1896,16 @@ return 0;</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Trafego Upload</name>
+                            <name>Cliente - {#ONTDESC} - {#ONUSN} - Upload</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.dedicado.traffic.up[{#SNMPINDEX}]</key>
+                            <key>onuPonup.[&quot;{#SNMPINDEX}&quot;]</key>
                             <history>7d</history>
                             <units>bps</units>
                             <applications>
                                 <application>
-                                    <name>Clientes Dedicados</name>
+                                    <name>upload</name>
                                 </application>
                             </applications>
                             <preprocessing>
@@ -1984,124 +1920,30 @@ return 0;</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Status atual</name>
+                            <name>Cliente - {#ONTDESC} - {#ONUSN}</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.4.1.5875.800.3.10.1.1.11.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.dedicado.status[{#SNMPINDEX}]</key>
+                            <snmp_oid>GEPON-OLT-COMMON-MIB::onuStatus.{#SNMPINDEX}</snmp_oid>
+                            <key>state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}]</key>
                             <history>7d</history>
                             <trends>90d</trends>
                             <applications>
                                 <application>
-                                    <name>Clientes Dedicados</name>
+                                    <name>onu-state</name>
                                 </application>
                             </applications>
                             <valuemap>
                                 <name>OLT-FIBERHOME-STATUS-ONT</name>
                             </valuemap>
                         </item_prototype>
-                                            <item_prototype>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Motivo da Ultima Queda</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.4.1.5875.800.3.10.1.1.38.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.dedicado.offline_reason[{#SNMPINDEX}]</key>
-                            <delay>10m</delay>
-                            <history>7d</history>
-                            <trends>365d</trends>
-                            <status>ENABLED</status>
-                            <value_type>UNSIGNED</value_type>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Distancia (m)</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.4.1.5875.800.3.10.1.1.5.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.dedicado.distance[{#SNMPINDEX}]</key>
-                            <delay>1h</delay>
-                            <history>7d</history>
-                            <trends>365d</trends>
-                            <status>ENABLED</status>
-                            <value_type>UNSIGNED</value_type>
-                            <units>m</units>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Status</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.4.1.5875.800.3.10.1.1.25.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.dedicado.lan.status[{#SNMPINDEX}]</key>
-                            <delay>3m</delay>
-                            <history>7d</history>
-                            <trends>365d</trends>
-                            <status>ENABLED</status>
-                            <value_type>FLOAT</value_type>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados - LAN</name>
-                                </application>
-                            </applications>
-                            <preprocessing>
-                                <step>
-                                    <type>JAVASCRIPT</type>
-                                    <params>return parseInt(value) === 1 ? 1 : 2;</params>
-                                </step>
-                            </preprocessing>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Velocidade Negociada</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.4.1.5875.800.3.10.1.1.26.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.dedicado.lan.speed[{#SNMPINDEX}]</key>
-                            <delay>10m</delay>
-                            <history>7d</history>
-                            <trends>365d</trends>
-                            <status>ENABLED</status>
-                            <value_type>FLOAT</value_type>
-                            <units>Mbps</units>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados - LAN</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LAN 1 Modo Duplex</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.4.1.5875.800.3.10.1.1.27.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.dedicado.lan.duplex[{#SNMPINDEX}]</key>
-                            <delay>30m</delay>
-                            <history>7d</history>
-                            <trends>365d</trends>
-                            <status>ENABLED</status>
-                            <value_type>TEXT</value_type>
-                            <applications>
-                                <application>
-                                    <name>Clientes Dedicados - LAN</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-</item_prototypes>
-                                        <trigger_prototypes>
+                    </item_prototypes>
+                    <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].min(#3)}=4 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].diff()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=0 or {Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=4</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.status[{#SNMPINDEX}].last()}=1</recovery_expression>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: LOS (Perda de Sinal Optico)</name>
-                            <priority>HIGH</priority>
-                            <manual_close>YES</manual_close>
+                            <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last(#3)}=1 and {Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].last()}&lt;0</recovery_expression>
+                            <name>Cliente - {#ONTDESC}</name>
+                            <priority>INFO</priority>
                             <tags>
                                 <tag>
                                     <tag>scope</tag>
@@ -2116,44 +1958,47 @@ return 0;</params>
                                     <value>ONU_Dedicada</value>
                                 </tag>
                                 <tag>
-                                    <tag>notificar</tag>
-                                    <value>telegram</value>
+                                    <tag>ONUDEDICADO</tag>
+                                    <value>ONUDEDICADO</value>
                                 </tag>
                                 <tag>
-                                    <tag>onu_id</tag>
-                                    <value>{#NETSTREAM.ONU_DESC}</value>
+                                    <tag>ONUSTATUS</tag>
+                                    <value>{ITEM.LASTVALUE}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&lt;=-28 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.dedicado.rxpower[{#SNMPINDEX}].last()}&gt;-40</expression>
-                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Critico ({ITEM.LASTVALUE1})</name>
-                            <priority>HIGH</priority>
-                            <description>Sinal optico da ONU dedicada extremamente baixo (&lt; -28 dBm). Risco iminente de queda do link.</description>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=1 &#13;
+and &#13;
+{Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].last()}&lt;-28</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:state.onu.[{#SNMPINDEX}.{#ONUSN}.{#ONTDESC}].last()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:onuPonRXOpticalPowerdedicado.[&quot;{#SNMPINDEX}&quot;].last()}&gt;-28</recovery_expression>
+                            <name>Cliente - {#ONTDESC} - Sinal RX Baixo</name>
+                            <priority>INFO</priority>
                             <tags>
                                 <tag>
                                     <tag>scope</tag>
                                     <value>OLT</value>
                                 </tag>
                                 <tag>
-                                    <tag>tipo</tag>
-                                    <value>ONU_Dedicada</value>
-                                </tag>
-                                <tag>
                                     <tag>servico</tag>
                                     <value>GPON</value>
                                 </tag>
                                 <tag>
-                                    <tag>notificar</tag>
-                                    <value>telegram</value>
+                                    <tag>tipo</tag>
+                                    <value>ONU_Dedicada</value>
                                 </tag>
                                 <tag>
-                                    <tag>onu_id</tag>
-                                    <value>{#NETSTREAM.ONU_DESC}</value>
+                                    <tag>ONUDEDICADO</tag>
+                                    <value>ONUDEDICADO</value>
                                 </tag>
                                 <tag>
-                                    <tag>sinal_rx</tag>
-                                    <value>{ITEM.LASTVALUE1}</value>
+                                    <tag>ONURX</tag>
+                                    <value>{ITEM.LASTVALUE2}</value>
+                                </tag>
+                                <tag>
+                                    <tag>ONUSTATUS</tag>
+                                    <value>{ITEM.LASTVALUE}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -2398,7 +2243,7 @@ return 0;</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>({Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].last(,1m)}=0)and({Template SNMP OLT FiberHome - NETSTREAM:oltPonAuthOnuNum[{#SNMPVALUE}].prev()}&gt;2) and {Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].diff()}=1 and {Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].count(10m)}&gt;1</expression>
+                            <expression>({Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].last(,1m)}=0)and({Template SNMP OLT FiberHome - NETSTREAM:oltPonAuthOnuNum[{#SNMPVALUE}].prev()}&gt;2)</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:oltPonOnlineStatus[{#SNMPVALUE}].last()}=1</recovery_expression>
                             <name>gpon_{#SNMPVALUE}:</name>
@@ -2422,8 +2267,14 @@ return 0;</params>
                                     <tag>notificar</tag>
                                     <value>nao</value>
                                 </tag>
-
-
+                                <tag>
+                                    <tag>PONDOWN</tag>
+                                    <value>PONDOWN</value>
+                                </tag>
+                                <tag>
+                                    <tag>PONFH</tag>
+                                    <value>PONFH</value>
+                                </tag>
                             </tags>
                         </trigger_prototype>
                     </trigger_prototypes>
@@ -2546,6 +2397,7 @@ return 0;</params>
                     <snmp_oid>discovery[{#SNMPVALUE},IF-MIB::ifDescr,{#IFNAME},IF-MIB::ifName]</snmp_oid>
                     <key>netstream.gpon.pon.traffic.discovery</key>
                     <delay>1h</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>
@@ -2666,6 +2518,10 @@ return 0;</params>
                     <value>5</value>
                     <description>Queda minima de ONUs online para disparar alerta de queda parcial por PON</description>
                 </macro>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>public</value>
+                </macro>
             </macros>
         </template>
     </templates>
@@ -2727,3 +2583,5 @@ return 0;</params>
         </value_map>
     </value_maps>
 </zabbix_export>
+
+

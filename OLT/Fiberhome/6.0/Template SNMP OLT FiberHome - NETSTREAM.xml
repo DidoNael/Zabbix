@@ -269,6 +269,7 @@ Todos os direitos reservados.</description>
                     <snmp_oid>discovery[{#SNMPVALUE},.1.3.6.1.4.1.5875.800.3.9.2.1.1.2]</snmp_oid>
                     <key>card.info.discovery</key>
                     <delay>1d</delay>
+                    <status>DISABLED</status>
                     <lifetime>1w</lifetime>
                     <item_prototypes>
                         <item_prototype>
@@ -2186,6 +2187,7 @@ return 0;</parameter>
                     <snmp_oid>discovery[{#SNMPVALUE},IF-MIB::ifDescr,{#IFNAME},IF-MIB::ifName]</snmp_oid>
                     <key>netstream.gpon.pon.traffic.discovery</key>
                     <delay>1h</delay>
+                    <status>DISABLED</status>
                     <filter>
                         <conditions>
                             <condition>
