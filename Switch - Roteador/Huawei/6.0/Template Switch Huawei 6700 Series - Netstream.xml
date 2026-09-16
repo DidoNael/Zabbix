@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zabbix_export><version>7.0</version><template_groups><template_group><uuid>2d93b0766b5e4aef8d399801b8f11793</uuid><name>NETSTREAM</name></template_group><template_group><uuid>fce43a3b1d6743efa891de651c826d68</uuid><name>Templates</name></template_group></template_groups><templates><template><uuid>3f38cd2d1f9b48a7a3250a1f14d82f3d</uuid><template>Template Switch Huawei 6700 Series - Netstream</template><name>Template Switch Huawei 6700 Series - Netstream</name><description>Netstream Telecomunicações — netstream.net.br
+<zabbix_export><version>6.0</version><groups><group><uuid>2d93b0766b5e4aef8d399801b8f11793</uuid><name>NETSTREAM</name></group><group><uuid>fce43a3b1d6743efa891de651c826d68</uuid><name>Templates</name></group></groups><templates><template><uuid>3f38cd2d1f9b48a7a3250a1f14d82f3d</uuid><template>Template Switch Huawei 6700 Series - Netstream</template><name>Template Switch Huawei 6700 Series - Netstream</name><description>Netstream Telecomunicações — netstream.net.br
 Contato: (11) 95990-4100 | suporte@netstream.net.br
 
 AVISO DE PROPRIEDADE INTELECTUAL
