@@ -12,7 +12,7 @@ if not OLT_IP or not COMMUNITY:
 
 CACHE_FILE = "/tmp/pon_cache_fh_%s.json" % OLT_IP.replace(".", "_")
 LOCK_FILE  = CACHE_FILE + ".lock"
-CACHE_TTL  = 300
+CACHE_TTL  = 60
 
 def collect_and_save():
     # ONU state table: .11 = state (1=online, 2=dyingGasp, 3=LOS/offline, 0=unknown)
@@ -90,7 +90,26 @@ def collect_and_save():
                 "unk":     p["unk"],
             })
 
+        # Buscar ifAlias para os índices SNMP dos PONs (snmpget pontual)
         if result:
+            alias_oids = ["1.3.6.1.2.1.31.1.1.1.18." + str(p["idx"]) for p in result]
+            get_proc = subprocess.run(
+                ["snmpget", "-v2c", "-c", COMMUNITY, "-t", "20", "-r", "1",
+                 "-OQe", OLT_IP] + alias_oids,
+                capture_output=True, text=True
+            )
+            alias_map = {}
+            for line in get_proc.stdout.splitlines():
+                m = re.search(r'ifAlias\.(\d+)\s*=\s*(.+)', line)
+                if m:
+                    val = m.group(2).strip().strip('"').strip("'")
+                    if (val and val != '""' and val != "''"
+                            and not val.lower().startswith("no such")
+                            and not val.lower().startswith("no response")):
+                        alias_map[m.group(1)] = val
+            for p in result:
+                p["desc"] = alias_map.get(str(p["idx"]), "")
+
             with open(CACHE_FILE + ".tmp", "w") as f:
                 json.dump(result, f)
             try:
@@ -109,7 +128,8 @@ cache_age = 9999
 if os.path.exists(CACHE_FILE):
     cache_age = time.time() - os.path.getmtime(CACHE_FILE)
 
-if cache_age > CACHE_TTL and not os.path.exists(LOCK_FILE):
+lock_age = time.time() - os.path.getmtime(LOCK_FILE) if os.path.exists(LOCK_FILE) else 9999
+if cache_age > CACHE_TTL and (not os.path.exists(LOCK_FILE) or lock_age > 180):
     try:
         open(LOCK_FILE, "w").close()
         pid = os.fork()

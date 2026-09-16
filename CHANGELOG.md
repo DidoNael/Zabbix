@@ -15,6 +15,61 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.9.0] — 2026-09-12
+
+### Adicionado
+
+- **MikroTik CCR-1036 — Monitoramento de sessões simultâneas (conntrack).**
+  - Item SNMP `mikrotik.conntrack.total` via OID `1.3.6.1.4.1.14988.1.1.9.1.0`, delay 1 min.
+  - Triggers WARNING (`> {$CONNTRACK_WARN}`, padrão 300 k) e HIGH (`> {$CONNTRACK_HIGH}`, padrão 500 k).
+  - Gráfico "Firewall - Sessões Simultâneas".
+
+- **MikroTik CCR-1036 — Monitoramento por range/cliente (SSH).**
+  - 3 itens SSH `mikrotik.conntrack.filter[1/2/3]` desabilitados por padrão.
+  - Configuração por host via macros `{$CONNTRACK_FILTER.1/2/3}`, `{$MIKROTIK_SSH_USER}` e `{$MIKROTIK_SSH_PASS}`.
+  - Executa `/ip firewall connection print count-only where src-address~"PREFIX"` via SSH.
+
+- **MikroTik CCR-1036 — LLD top-N IPs por conexões (script externo).**
+  - Script `Mikrotik/externalscripts/conntrack.top.mikrotik.py` — SSH ao RouterOS, conta conexões por IP de origem, retorna JSON.
+  - Shell wrapper `netstream.mikrotik.conntrack.top` seguindo convenção de nomenclatura do projeto.
+  - Master item EXTERNAL + discovery DEPENDENT com preprocessamento JavaScript → item prototype por IP descoberto.
+  - Trigger prototype WARNING por cliente com `> {$CONNTRACK_CLIENT_HIGH}` (padrão 5 k).
+  - Macros: `{$CONNTRACK_TOP_N}` (padrão 10), `{$CONNTRACK_CLIENT_HIGH}`.
+
+### Alterado
+
+- **Todos os templates OLT (ZTE, Fiberhome, Huawei) — delay do master item de status reduzido de 2 m para 1 m.**
+  - Afeta `netstream.gpon.pon.status.zte/fiberhome/huawei[...]` em todos os XMLs 4.4 e 6.0.
+  - Aplicado também via SQL em produção (21 itens atualizados).
+  - Motivação: latência de detecção de LOS/DG era de até 2 min; agora ≤ 1 min.
+
+- **Action Zabbix #10 ("Telegram - Reportar Problema no Telegram geral") — filtro por tag `notificar`.**
+  - Adicionada condição TAG VALUE `notificar = telegram` (conditionid 81).
+  - A action agora só envia ao Telegram triggers que tenham explicitamente `notificar=telegram`.
+  - Corrige envio indevido de alertas LOS ao Telegram após reabilitação dos triggers com `notificar=nao`.
+
+- **Action Zabbix #10 — exclusão de hosts DEV do Telegram.**
+  - Criado grupo `NETSTREAM/DEV` (groupid 116).
+  - Hosts DEV adicionados: ZTE C320 (10928), ZTE C350 (10929), Fiberhome Fortaleza (10937), Fiberhome Dutra 1 (10938).
+  - Condição `host group NOT IN NETSTREAM/DEV` (conditionid 82) adicionada à action.
+
+### Corrigido
+
+- **`pon.status.zte.py` — contagem de LOS inflada por ONUs online.**
+  - Causa: OID `.8.1.7` mantém última razão de queda para todas as ONUs autorizadas, incluindo online.
+  - Fix: adicionado walk do OID `.8.1.2` (status por ONU) para filtrar razões somente a ONUs offline.
+  - Validado: gpon_1/2/14 caiu de los=24 → los=0; zero PONs com `los > offline`.
+
+- **Triggers LOS — reabilitados com `notificar=nao`.**
+  - 553 triggers reabilitados após correção do script e da action.
+  - Visíveis no Zabbix mas sem notificação Telegram.
+
+### Processo
+
+- **CLAUDE.md raiz** — adicionadas regras 14 (Changelog e Versionamento) e 15 (Testes com Sub-agente).
+
+---
+
 ## [v2.8.0] — 2026-08-17
 
 ### Adicionado

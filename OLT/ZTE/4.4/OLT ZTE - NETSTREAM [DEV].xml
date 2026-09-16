@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-05-22T13:36:26Z</date>
@@ -13,7 +13,7 @@
     <templates>
         <template>
             <template>OLT ZTE - NETSTREAM</template>
-            <name>OLT ZTE - NETSTREAM</name>
+            <name>OLT ZTE - NETSTREAM [DEV]</name>
             <description>Netstream Telecomunica��es � netstream.net.br
 Contato: (11) 95990-4100 | suporte@netstream.net.br
 
@@ -2343,9 +2343,9 @@ return String(s);</params>
                         <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].last()}&lt;={OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].max(24h)}*0.5</recovery_expression>
+                            <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].last()}&lt;=({OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].min(7d)}+2)</recovery_expression>
                             <name>PON {#NETSTREAM.PON_LABEL}: LOS detectado (Fibra)</name>
-                            <status>ENABLED</status>
+                            <status>DISABLED</status>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -2375,7 +2375,7 @@ return String(s);</params>
                                 </tag>
                                 <tag>
                                     <tag>notificar</tag>
-                                    <value>nao</value>
+                                    <value>telegram</value>
                                 </tag>
                             </tags>
                             <dependencies>
