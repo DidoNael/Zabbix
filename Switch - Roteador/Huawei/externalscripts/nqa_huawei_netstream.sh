@@ -40,7 +40,7 @@ INSTANCE_IDX=$(str_to_snmp_idx "$INSTANCE")
 FULL_IDX="${OWNER_IDX}.${INSTANCE_IDX}"
 OID_BASE="1.3.6.1.4.1.2011.5.25.111.4.1.1"
 
-RAW=$(snmpwalk -v2c -c "$COMMUNITY" -Oqn "$HOST" "$OID_BASE" 2>/dev/null | grep "\.$FULL_IDX\.")
+RAW=$(snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 1 -Oqn "$HOST" "$OID_BASE" 2>/dev/null | grep "\.$FULL_IDX\.")
 
 if [ -z "$RAW" ]; then
     echo '{"error":"no NQA data found for this instance"}'
