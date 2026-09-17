@@ -23,7 +23,6 @@
 #     {#SNMPINDEX}       -> Índice físico (entPhysicalIndex, ex: 67469390)
 #     {#ENTPHYSICALNAME} -> Nome da porta (ex: XGigabitEthernet0/0/3)
 #     {#IFALIAS}         -> Descrição da interface (ex: PE1 - Dutra)
-#     {#ENTALIAS}        -> Descrição da interface (ex: PE1 - Dutra)
 
 IP="$1"
 COMMUNITY="$2"
@@ -153,7 +152,7 @@ END {
         first = 0
         gsub(/"/, "\\\"", portName)
         gsub(/"/, "\\\"", portAlias)
-        printf "{\"{#SNMPINDEX}\":\"%s\", \"{#ENTPHYSICALNAME}\":\"%s\", \"{#IFALIAS}\":\"%s\", \"{#ENTALIAS}\":\"%s\"}", entIdx, portName, portAlias, portAlias
+        printf "{\"{#SNMPINDEX}\":\"%s\", \"{#ENTPHYSICALNAME}\":\"%s\", \"{#IFALIAS}\":\"%s\"}", entIdx, portName, portAlias
     }
     printf "]}\n"
 }

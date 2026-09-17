@@ -230,7 +230,7 @@ Todos os direitos reservados.</description>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>25ffe16e405b44a1a1d322990e8e84ff</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Description / Alias</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Description / Alias</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.47.1.1.1.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalAliasML[{#ENTPHYSICALNAME}]</key>
@@ -247,7 +247,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>4e3349e2957d4d51bb253cd185218e44</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane0</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower Lane0</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
@@ -278,7 +278,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>15c0d5bb3aa74e559f5249485fd84c03</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane1</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower Lane1</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
@@ -309,7 +309,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>e19b8c8af3114391be4a4b5cebee94d3</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane2</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower Lane2</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
@@ -340,7 +340,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>7eaeb6d4841143e1a4238f69bcf7c892</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Lane3</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower Lane3</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
@@ -371,7 +371,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>63e74d0149674ecd82e4a915fbb8d481</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane0</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower Lane0</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane0[{#ENTPHYSICALNAME}]</key>
@@ -402,7 +402,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6c9b26a7abc04975ae0f242e3f938050</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane1</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower Lane1</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane1[{#ENTPHYSICALNAME}]</key>
@@ -433,7 +433,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>b84344d3ac1c42829247d8b35c2bff20</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane2</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower Lane2</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane2[{#ENTPHYSICALNAME}]</key>
@@ -464,7 +464,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>dbabb4db61af4f4a81c045719e036aa9</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Lane3</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower Lane3</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPowerMLLane3[{#ENTPHYSICALNAME}]</key>
@@ -495,7 +495,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>fd7128f84b6c4df99137786c4595f694</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Optical Transfer Distance</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Optical Transfer Distance</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalmultilanTransferDistance.[{#ENTPHYSICALNAME}]</key>
@@ -510,7 +510,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>51d908fa43ea49f2b6d10ea9507a07d2</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxHighThresholdML[{#ENTPHYSICALNAME}]</key>
@@ -534,7 +534,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>54d2776bd07843d0bd44be680e3647a9</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Warning Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower High Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
@@ -559,7 +559,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>81bcd64bed484f5192ab91513e5870ac</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}]</key>
@@ -585,7 +585,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>099fdb302f654604b2e16a6eab790424</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Warning Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower Low Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
@@ -608,7 +608,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>1986f5b7ed904d0ab2c6fe62b26a16a0</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Temperature</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Temperature</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTemperatureML[{#ENTPHYSICALNAME}]</key>
@@ -625,7 +625,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>2b2f65947f0845909dd4d8bcb9b01d0a</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighThresholdML[{#ENTPHYSICALNAME}]</key>
@@ -649,7 +649,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>31a3306d968549c187716bc7945d4622</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Warning Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower High Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighWarnThresholdML[{#ENTPHYSICALNAME}]</key>
@@ -672,7 +672,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>24a1255c4cd94008b0f8b8c2c9aec933</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowThresholdML[{#ENTPHYSICALNAME}]</key>
@@ -695,7 +695,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>259e3d90d0ab4316847c32304a26a281</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Warning Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower Low Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowWarnThresholdML[{#ENTPHYSICALNAME}]</key>
@@ -718,7 +718,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>261ae9f9b43b48e0b2f36834cae7461c</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Vendor Name</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Vendor Name</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderNameML[{#ENTPHYSICALNAME}]</key>
@@ -735,7 +735,7 @@ Todos os direitos reservados.</description>
                         </item_prototype>
                         <item_prototype>
                             <uuid>3437f9e1919a44a3a0f35fb9cce8826c</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Type</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Type</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderPnML[{#ENTPHYSICALNAME}]</key>
@@ -761,7 +761,7 @@ or
 min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane2[{#ENTPHYSICALNAME}],1h)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])
 or
 min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPowerMLLane3[{#ENTPHYSICALNAME}],1h)&lt;0.97*last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThresholdML[{#ENTPHYSICALNAME}])</expression>
-                            <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
+                            <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#IFALIAS})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -771,7 +771,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                                 </tag>
                                 <tag>
                                     <tag>Description</tag>
-                                    <value>{#ENTALIAS}</value>
+                                    <value>{#IFALIAS}</value>
                                 </tag>
                                 <tag>
                                     <tag>Port</tag>
@@ -808,7 +808,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                     <item_prototypes>
                         <item_prototype>
                             <uuid>5245f83daddb45fe9c095ceeb8cbb86c</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Description / Alias</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Description / Alias</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.47.1.1.1.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalAlias[{#ENTPHYSICALNAME}]</key>
@@ -825,7 +825,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>175b4ed411dc42cdabc2d86cf8e68b33</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}]</key>
@@ -851,7 +851,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                                 <trigger_prototype>
                                     <uuid>34ced4e2c90a4f418b0e978ab8fdd360</uuid>
                                     <expression>count(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],#4)&lt;0.8</expression>
-                                    <name>Sinal optico alterado - {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
+                                    <name>Sinal optico alterado - {#ENTPHYSICALNAME} ({#IFALIAS})</name>
                                     <priority>HIGH</priority>
                                     <tags>
                                         <tag>
@@ -860,7 +860,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                                         </tag>
                                         <tag>
                                             <tag>Description</tag>
-                                            <value>{#ENTALIAS}</value>
+                                            <value>{#IFALIAS}</value>
                                         </tag>
                                         <tag>
                                             <tag>Port</tag>
@@ -880,7 +880,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>5b5b340ab721402183ab1c7388558924</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalLaneTxPower.[{#ENTPHYSICALNAME}]</key>
@@ -904,7 +904,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>e1f49ef8ab574b569bd75da6e7f8e6fa</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxHighThreshold.[{#SNMPINDEX}]</key>
@@ -929,7 +929,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>03683e9b93c14e54b08921e882e0a0a5</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower High Warning</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower High Warning</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxHighWarnThreshold.[{#SNMPINDEX}]</key>
@@ -954,7 +954,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>0d88532170c24cf4b4bb9ea062a3df1f</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]</key>
@@ -979,7 +979,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>fb3d9255319347e98b9162baddb88aff</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): RxPower Low Warning Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower Low Warning Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalRxLowWarnThreshold.[{#SNMPINDEX}]</key>
@@ -1004,7 +1004,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>6e9841b4c67641509d9f5dca03b633cf</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Temperature</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Temperature</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTemperature.[{#SNMPINDEX}]</key>
@@ -1021,7 +1021,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>6ebfe986fff64693908e88606cbb9523</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Optical Transfer Distance</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Optical Transfer Distance</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.45.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTransferDistance.[{#ENTPHYSICALNAME}]</key>
@@ -1036,7 +1036,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>718b5da99c664dc2a560eed78bf0a3a8</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower High Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighThreshold.[{#SNMPINDEX}]</key>
@@ -1061,7 +1061,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>b328265ee36f495694c759ce700fe0fd</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower High Warning</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower High Warning</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxHighWarnThreshold.[{#SNMPINDEX}]</key>
@@ -1086,7 +1086,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>71db6a4e194d4df4b183602befe6f5e1</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Threshold</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower Low Threshold</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowThreshold.[{#SNMPINDEX}]</key>
@@ -1111,7 +1111,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>9595cb06e60e4b7ba90a01d8c94ca081</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): TxPower Low Warning</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): TxPower Low Warning</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalTxLowWarnThreshold.[{#SNMPINDEX}]</key>
@@ -1136,7 +1136,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>95b5e25c4fa04c1886ebb9baf5bf6d4f</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Vendor</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Vendor</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>.1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderName[{#ENTPHYSICALNAME}]</key>
@@ -1153,7 +1153,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         </item_prototype>
                         <item_prototype>
                             <uuid>a8e6c7e8b8da4185ae576db66649c495</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#ENTALIAS}): Type</name>
+                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Type</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.hwEntityOpticalVenderPn.[{#SNMPINDEX}]</key>
@@ -1173,7 +1173,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                         <trigger_prototype>
                             <uuid>1d11f8587d734816bf4e885ffd3b94d2</uuid>
                             <expression>min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],1h) &lt; last(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalRxLowThreshold.[{#SNMPINDEX}]) and min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLaneRxPower[{#ENTPHYSICALNAME}],1h) &gt;= -39</expression>
-                            <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#ENTALIAS})</name>
+                            <name>Sinal optico no limite: {#ENTPHYSICALNAME} ({#IFALIAS})</name>
                             <priority>AVERAGE</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1183,7 +1183,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                                 </tag>
                                 <tag>
                                     <tag>Description</tag>
-                                    <value>{#ENTALIAS}</value>
+                                    <value>{#IFALIAS}</value>
                                 </tag>
                                 <tag>
                                     <tag>Port</tag>
