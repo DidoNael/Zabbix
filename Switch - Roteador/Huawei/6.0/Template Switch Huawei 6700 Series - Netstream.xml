@@ -33,23 +33,7 @@ Todos os direitos reservados.</description>
                 </group>
             </groups>
             <items>
-                <item>
-                    <uuid>a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4</uuid>
-                    <name>SNMP Agent Availability</name>
-                    <type>INTERNAL</type>
-                    <key>zabbix[host,snmp,available]</key>
-                    <delay>1m</delay>
-                    <history>7d</history>
-                    <trends>30d</trends>
-                    <value_type>UNSIGNED</value_type>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>System</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
+<item>
                     <uuid>181fb10b2e664178802571a21602247c</uuid>
                     <name>RADIUS / AAA: Autenticacoes Rejeitadas (Falha)</name>
                     <type>SNMP_AGENT</type>
@@ -178,7 +162,7 @@ Todos os direitos reservados.</description>
                     <triggers>
                         <trigger>
                             <uuid>e38f51658cee44298facdf09b93ef812</uuid>
-                            <expression>max(/Template Switch Huawei 6700 Series - Netstream/zabbix[host,snmp,available],1h)=0</expression>
+                            <expression>nodata(/Template Switch Huawei 6700 Series - Netstream/netstream.sysUpTime.0,1h)=1</expression>
                             <name>Switch Huawei: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 1h)</name>
                             <priority>DISASTER</priority>
                             <description>Nenhuma resposta SNMP foi recebida do switch nos ultimos 5 minutos. Equipamento pode estar desligado ou desconectado.</description>
