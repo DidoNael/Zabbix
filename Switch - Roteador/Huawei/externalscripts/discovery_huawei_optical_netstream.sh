@@ -67,11 +67,11 @@ fi
 # Executa os 5 walks em paralelo para caber dentro do Timeout do Zabbix
 TMPWALK=$(mktemp -d)
 trap "rm -rf '$TMPWALK'" EXIT
-snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 0 -On "$TARGET" 1.3.6.1.2.1.47.1.1.1.1.7 > "$TMPWALK/entname" 2>/dev/null &
-snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 0 -On "$TARGET" 1.3.6.1.2.1.31.1.1.1.1   > "$TMPWALK/ifname"  2>/dev/null &
-snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 0 -On "$TARGET" 1.3.6.1.2.1.2.2.1.2      > "$TMPWALK/ifdescr" 2>/dev/null &
-snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 0 -On "$TARGET" 1.3.6.1.2.1.31.1.1.1.18  > "$TMPWALK/ifalias" 2>/dev/null &
-snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 0 -On "$TARGET" 1.3.6.1.2.1.2.2.1.7      > "$TMPWALK/ifadmin" 2>/dev/null &
+snmpbulkwalk -v2c -c "$COMMUNITY" -t 3 -r 0 -On "$TARGET" 1.3.6.1.2.1.47.1.1.1.1.7 > "$TMPWALK/entname" 2>/dev/null &
+snmpbulkwalk -v2c -c "$COMMUNITY" -t 3 -r 0 -On "$TARGET" 1.3.6.1.2.1.31.1.1.1.1   > "$TMPWALK/ifname"  2>/dev/null &
+snmpbulkwalk -v2c -c "$COMMUNITY" -t 3 -r 0 -On "$TARGET" 1.3.6.1.2.1.2.2.1.2      > "$TMPWALK/ifdescr" 2>/dev/null &
+snmpbulkwalk -v2c -c "$COMMUNITY" -t 3 -r 0 -On "$TARGET" 1.3.6.1.2.1.31.1.1.1.18  > "$TMPWALK/ifalias" 2>/dev/null &
+snmpbulkwalk -v2c -c "$COMMUNITY" -t 3 -r 0 -On "$TARGET" 1.3.6.1.2.1.2.2.1.7      > "$TMPWALK/ifadmin" 2>/dev/null &
 wait
 WALK_ENTNAME=$(cat "$TMPWALK/entname")
 WALK_IFNAME=$(cat "$TMPWALK/ifname")
