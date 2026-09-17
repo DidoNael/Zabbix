@@ -42,9 +42,6 @@ Todos os direitos reservados.</description>
                     <history>7d</history>
                     <trends>30d</trends>
                     <value_type>UNSIGNED</value_type>
-                    <valuemap>
-                        <name>zabbix.host.available</name>
-                    </valuemap>
                     <tags>
                         <tag>
                             <tag>Application</tag>
