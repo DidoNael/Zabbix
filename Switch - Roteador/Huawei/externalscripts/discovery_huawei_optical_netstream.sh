@@ -57,17 +57,26 @@ else
     OPTICAL_BASE="1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32"
 fi
 
-WALK_OPTICAL=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" "$OPTICAL_BASE" 2>/dev/null)
+WALK_OPTICAL=$(snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 1 -On "$IP" "$OPTICAL_BASE" 2>/dev/null)
 if [ -z "$WALK_OPTICAL" ]; then
     echo '{"data":[]}'
     exit 0
 fi
 
-WALK_ENTNAME=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" 1.3.6.1.2.1.47.1.1.1.1.7 2>/dev/null)
-WALK_IFNAME=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" 1.3.6.1.2.1.31.1.1.1.1 2>/dev/null)
-WALK_IFDESCR=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" 1.3.6.1.2.1.2.2.1.2 2>/dev/null)
-WALK_IFALIAS=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" 1.3.6.1.2.1.31.1.1.1.18 2>/dev/null)
-WALK_IFADMIN=$(snmpwalk -v2c -c "$COMMUNITY" -On "$IP" 1.3.6.1.2.1.2.2.1.7 2>/dev/null)
+# Executa os 5 walks em paralelo para caber dentro do Timeout do Zabbix
+TMPWALK=$(mktemp -d)
+trap "rm -rf '$TMPWALK'" EXIT
+snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 1 -On "$IP" 1.3.6.1.2.1.47.1.1.1.1.7 > "$TMPWALK/entname" 2>/dev/null &
+snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 1 -On "$IP" 1.3.6.1.2.1.31.1.1.1.1   > "$TMPWALK/ifname"  2>/dev/null &
+snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 1 -On "$IP" 1.3.6.1.2.1.2.2.1.2      > "$TMPWALK/ifdescr" 2>/dev/null &
+snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 1 -On "$IP" 1.3.6.1.2.1.31.1.1.1.18  > "$TMPWALK/ifalias" 2>/dev/null &
+snmpwalk -v2c -c "$COMMUNITY" -t 3 -r 1 -On "$IP" 1.3.6.1.2.1.2.2.1.7      > "$TMPWALK/ifadmin" 2>/dev/null &
+wait
+WALK_ENTNAME=$(cat "$TMPWALK/entname")
+WALK_IFNAME=$(cat "$TMPWALK/ifname")
+WALK_IFDESCR=$(cat "$TMPWALK/ifdescr")
+WALK_IFALIAS=$(cat "$TMPWALK/ifalias")
+WALK_IFADMIN=$(cat "$TMPWALK/ifadmin")
 
 RESULT=$(awk '
 function clean_val(str) {
