@@ -1188,7 +1188,7 @@ Todos os direitos reservados.</description>
                 <discovery_rule>
                     <name>Discovery | Network interfaces | Sinal optico single lan</name>
                     <type>EXTERNAL</type>
-                    <key>discovery_huawei_optical_netstream.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","single"]</key>
+                    <key>discovery_huawei_optical_netstream.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","single","{$SNMP_PORT}"]</key>
                     <delay>1d</delay>
                     <timeout>30s</timeout>
                     <filter>
@@ -2241,7 +2241,7 @@ Todos os direitos reservados.</description>
                 <discovery_rule>
                     <name>Discovery | Network interfaces | Sinal Optico modules multi lane</name>
                     <type>EXTERNAL</type>
-                    <key>discovery_huawei_optical_netstream.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","multi"]</key>
+                    <key>discovery_huawei_optical_netstream.sh["{HOST.CONN}","{$SNMP_COMMUNITY}","multi","{$SNMP_PORT}"]</key>
                     <delay>1d</delay>
                     <timeout>30s</timeout>
                     <filter>
@@ -3223,6 +3223,11 @@ or
                 <macro>
                     <macro>{$ATTENUATIONFACTOR}</macro>
                     <value>-2</value>
+                </macro>
+                <macro>
+                    <macro>{$SNMP_PORT}</macro>
+                    <value>161</value>
+                    <description>Porta SNMP do equipamento. Alterar por host quando usar porta nao padrao.</description>
                 </macro>
                 <macro>
                     <macro>{$TEMP_CRIT}</macro>

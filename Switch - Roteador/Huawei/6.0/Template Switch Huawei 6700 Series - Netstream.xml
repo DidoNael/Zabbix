@@ -210,7 +210,7 @@ Todos os direitos reservados.</description>
                     <uuid>c2048a3d79644fe795aa680c9db7de5a</uuid>
                     <name>Discovery | Network interfaces | Sinal Optico modules multi lane</name>
                     <type>EXTERNAL</type>
-                    <key>discovery_huawei_optical_netstream.sh[&quot;{HOST.CONN}&quot;,&quot;{$SNMP_COMMUNITY}&quot;,&quot;multi&quot;]</key>
+                    <key>discovery_huawei_optical_netstream.sh[&quot;{HOST.CONN}&quot;,&quot;{$SNMP_COMMUNITY}&quot;,&quot;multi&quot;,&quot;{$SNMP_PORT}&quot;]</key>
                     <delay>1d</delay>
                     <filter>
                         <conditions>
@@ -793,7 +793,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                     <uuid>055c17f171d942daab2bee50150ff475</uuid>
                     <name>Discovery | Network interfaces | Sinal optico single lan</name>
                     <type>EXTERNAL</type>
-                    <key>discovery_huawei_optical_netstream.sh[&quot;{HOST.CONN}&quot;,&quot;{$SNMP_COMMUNITY}&quot;,&quot;single&quot;]</key>
+                    <key>discovery_huawei_optical_netstream.sh[&quot;{HOST.CONN}&quot;,&quot;{$SNMP_COMMUNITY}&quot;,&quot;single&quot;,&quot;{$SNMP_PORT}&quot;]</key>
                     <delay>1d</delay>
                     <filter>
                         <conditions>
@@ -3609,6 +3609,11 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                 <macro>
                     <macro>{$ATTENUATIONFACTOR}</macro>
                     <value>-2</value>
+                </macro>
+                <macro>
+                    <macro>{$SNMP_PORT}</macro>
+                    <value>161</value>
+                    <description>Porta SNMP do equipamento. Alterar por host quando usar porta nao padrao.</description>
                 </macro>
                 <macro>
                     <macro>{$NQA_LOSS_WARN}</macro>
