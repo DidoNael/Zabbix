@@ -238,7 +238,7 @@ Todos os direitos reservados.</description>
                         </trigger>
                         <trigger>
                             <uuid>605673aa60f24d0ab2373cb7e3b1472b</uuid>
-                            <expression>nodata(/HUAWEI OLT - NETSTREAM/netstream.system.uptime,5m)=1</expression>
+                            <expression>max(/HUAWEI OLT - NETSTREAM/zabbix[host,snmp,available],1h)=0</expression>
                             <name>HUAWEI OLT - NETSTREAM: OLT Inacessível (sem dados SNMP há 5 minutos)</name>
                             <priority>DISASTER</priority>
                             <tags>

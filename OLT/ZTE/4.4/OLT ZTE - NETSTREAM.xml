@@ -99,6 +99,14 @@ Todos os direitos reservados.</description>
                 </application>
             </applications>
             <items>
+            <item>
+                <name>SNMP Agent Availability</name>
+                <type>INTERNAL</type>
+                <key>zabbix[host,snmp,available]</key>
+                <delay>1m</delay>
+                <history>7d</history>
+                <trends>30d</trends>
+            </item>
                 <item>
                     <name>OLT: Status dos Ventiladores</name>
                     <type>SNMPV2</type>
@@ -303,8 +311,8 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.system.uptime.nodata(5m)}=1</expression>
-                            <name>OLT ZTE: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 5m)</name>
+                            <expression>{OLT ZTE - NETSTREAM:zabbix[host,snmp,available].max(1h)}=0</expression>
+                            <name>OLT ZTE: Equipamento Inacessivel / Desligado (Sem resposta SNMP ha 1h)</name>
                             <status>DISABLED</status>
                             <priority>DISASTER</priority>
                             <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 5 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>

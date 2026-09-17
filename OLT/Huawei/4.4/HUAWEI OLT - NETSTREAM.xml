@@ -93,6 +93,14 @@ Todos os direitos reservados.</description>
                 </application>
             </applications>
             <items>
+            <item>
+                <name>SNMP Agent Availability</name>
+                <type>INTERNAL</type>
+                <key>zabbix[host,snmp,available]</key>
+                <delay>1m</delay>
+                <history>7d</history>
+                <trends>30d</trends>
+            </item>
                 <item>
                     <name>NETSTREAM - Total ONUs Autorizadas na OLT</name>
                     <type>DEPENDENT</type>
@@ -313,7 +321,7 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{HUAWEI OLT - NETSTREAM:netstream.system.uptime.nodata(5m)}=1</expression>
+                            <expression>{HUAWEI OLT - NETSTREAM:zabbix[host,snmp,available].max(1h)}=0</expression>
                             <name>HUAWEI OLT - NETSTREAM: OLT Inacess&#237;vel (sem dados SNMP h&#225; 5 minutos)</name>
                             <status>DISABLED</status>
                             <priority>DISASTER</priority>

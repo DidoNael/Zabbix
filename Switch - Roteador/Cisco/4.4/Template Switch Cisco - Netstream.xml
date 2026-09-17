@@ -26,6 +26,14 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                 </group>
             </groups>
             <items>
+            <item>
+                <name>SNMP Agent Availability</name>
+                <type>INTERNAL</type>
+                <key>zabbix[host,snmp,available]</key>
+                <delay>1m</delay>
+                <history>7d</history>
+                <trends>30d</trends>
+            </item>
                 <item>
                     <name>Uptime do Sistema</name>
                     <type>SNMPV2</type>
@@ -60,8 +68,8 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{Template Switch Cisco - Netstream:netstream.sysUpTime.0.nodata(15m)}=1</expression>
-                            <name>Switch Cisco: Equipamento Inacessivel (Sem resposta SNMP ha 15m)</name>
+                            <expression>{Template Switch Cisco - Netstream:zabbix[host,snmp,available].max(1h)}=0</expression>
+                            <name>Switch Cisco: Equipamento Inacessivel (Sem resposta SNMP ha 1h)</name>
                             <status>DISABLED</status>
                             <priority>DISASTER</priority>
                             <tags>

@@ -73,8 +73,8 @@ MIBs: CISCO-PROCESS-MIB, CISCO-MEMORY-POOL-MIB, CISCO-ENVMON-MIB</description>
                         </trigger>
                         <trigger>
                             <uuid>61cfc01d7bc541ddb9008f3553a091fd</uuid>
-                            <expression>nodata(/Template Switch Cisco - Netstream/netstream.sysUpTime.0,15m)=1</expression>
-                            <name>Switch Cisco: Equipamento Inacessivel (Sem resposta SNMP ha 15m)</name>
+                            <expression>max(/Template Switch Cisco - Netstream/zabbix[host,snmp,available],1h)=0</expression>
+                            <name>Switch Cisco: Equipamento Inacessivel (Sem resposta SNMP ha 1h)</name>
                             <status>DISABLED</status>
                             <priority>DISASTER</priority>
                             <tags>
