@@ -1548,30 +1548,6 @@ Todos os direitos reservados.</description>
                                 </application>
                             </applications>
                         </item_prototype>
-                        <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Description / Alias</name>
-                            <type>DEPENDENT</type>
-                            <key>netstream.hwEntityOpticalAlias[{#ENTPHYSICALNAME}]</key>
-                            <delay>0</delay>
-                            <history>7d</history>
-                            <trends>0</trends>
-                            <value_type>CHAR</value_type>
-                            <master_item>
-                                <key>netstream.optical.aliases[{HOST.CONN},{$SNMP_COMMUNITY}]</key>
-                            </master_item>
-                            <applications>
-                                <application>
-                                    <name>Switch Huawei 6700 Series - Netstream</name>
-                                </application>
-                            </applications>
-                            <preprocessing>
-                                <step>
-                                    <type>JSONPATH</type>
-                                    <params>$['{#SNMPINDEX}']</params>
-                                    <error_handler>DISCARD_VALUE</error_handler>
-                                </step>
-                            </preprocessing>
-                        </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
@@ -2716,30 +2692,6 @@ Todos os direitos reservados.</description>
                                     <name>type-tranceiver</name>
                                 </application>
                             </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Description / Alias</name>
-                            <type>DEPENDENT</type>
-                            <key>netstream.hwEntityOpticalAliasML[{#ENTPHYSICALNAME}]</key>
-                            <delay>0</delay>
-                            <history>7d</history>
-                            <trends>0</trends>
-                            <value_type>CHAR</value_type>
-                            <master_item>
-                                <key>netstream.optical.aliases[{HOST.CONN},{$SNMP_COMMUNITY}]</key>
-                            </master_item>
-                            <applications>
-                                <application>
-                                    <name>Switch Huawei 6700 Series - Netstream</name>
-                                </application>
-                            </applications>
-                            <preprocessing>
-                                <step>
-                                    <type>JSONPATH</type>
-                                    <params>$['{#SNMPINDEX}']</params>
-                                    <error_handler>DISCARD_VALUE</error_handler>
-                                </step>
-                            </preprocessing>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>

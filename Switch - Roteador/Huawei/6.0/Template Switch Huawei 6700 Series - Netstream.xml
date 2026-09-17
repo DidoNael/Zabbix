@@ -229,23 +229,6 @@ Todos os direitos reservados.</description>
                     <lifetime>30d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>25ffe16e405b44a1a1d322990e8e84ff</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Description / Alias</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.2.1.47.1.1.1.1.14.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.hwEntityOpticalAliasML[{#ENTPHYSICALNAME}]</key>
-                            <delay>1d</delay>
-                            <history>7d</history>
-                            <value_type>CHAR</value_type>
-                            <trends>0</trends>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Optical</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
                             <uuid>4e3349e2957d4d51bb253cd185218e44</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower Lane0</name>
                             <type>SNMP_AGENT</type>
@@ -806,23 +789,6 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                     </filter>
                     <lifetime>30d</lifetime>
                     <item_prototypes>
-                        <item_prototype>
-                            <uuid>5245f83daddb45fe9c095ceeb8cbb86c</uuid>
-                            <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): Description / Alias</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.2.1.47.1.1.1.1.14.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.hwEntityOpticalAlias[{#ENTPHYSICALNAME}]</key>
-                            <delay>1d</delay>
-                            <history>7d</history>
-                            <value_type>CHAR</value_type>
-                            <trends>0</trends>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Optical</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
                         <item_prototype>
                             <uuid>175b4ed411dc42cdabc2d86cf8e68b33</uuid>
                             <name>Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): RxPower</name>
