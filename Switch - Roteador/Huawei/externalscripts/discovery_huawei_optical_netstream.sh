@@ -79,7 +79,7 @@ WALK_IFDESCR=$(cat "$TMPWALK/ifdescr")
 WALK_IFALIAS=$(cat "$TMPWALK/ifalias")
 WALK_IFADMIN=$(cat "$TMPWALK/ifadmin")
 
-RESULT=$(awk '
+RESULT=$(awk -v mode="$MODE" '
 function clean_val(str) {
     sub(/^[^=]*=[ \t]*/, "", str)
     sub(/^(STRING|INTEGER|Hex-STRING|Gauge32|Counter32|Counter64):[ \t]*/, "", str)
@@ -139,6 +139,8 @@ END {
         entIdx = activeOpticals[i]
         portName = entIndexToName[entIdx]
         if (portName == "") continue
+        if (mode == "single" && portName ~ /^(100GE|40GE|25GE)/) continue
+        if (mode == "multi"  && portName ~ /^(XGigabitEthernet|GigabitEthernet)/) continue
         ifIdx = nameToIfIndex[portName]
         portAlias = ""
         adminState = "1"
