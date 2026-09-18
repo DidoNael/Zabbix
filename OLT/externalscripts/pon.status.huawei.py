@@ -6,6 +6,8 @@ if len(sys.argv) < 3:
 
 OLT_IP    = sys.argv[1]
 COMMUNITY = sys.argv[2]
+SNMP_PORT = sys.argv[3] if len(sys.argv) > 3 else "161"
+SNMP_TARGET = "%s:%s" % (OLT_IP, SNMP_PORT) if SNMP_PORT != "161" else OLT_IP
 
 if not OLT_IP or not COMMUNITY:
     print("[]"); sys.exit(0)
@@ -19,7 +21,7 @@ def collect_and_save():
     OID_AUTH    = "1.3.6.1.4.1.2011.6.128.1.1.2.43.1.2"
     OID_IFDESCR = "1.3.6.1.2.1.2.2.1.2"
     OID_IFNAME  = "1.3.6.1.2.1.31.1.1.1.1"
-    OPTS = ["-v2c", "-c", COMMUNITY, "-t", "25", "-r", "1", "-Cn0", "-Cr100", OLT_IP]
+    OPTS = ["-v2c", "-c", COMMUNITY, "-t", "25", "-r", "1", "-Cn0", "-Cr100", SNMP_TARGET]
     tmpdir = tempfile.mkdtemp()
     try:
         procs = {
@@ -108,7 +110,7 @@ def collect_and_save():
             alias_oids = ["1.3.6.1.2.1.31.1.1.1.18." + str(p["idx"]) for p in result]
             get_proc = subprocess.run(
                 ["snmpget", "-v2c", "-c", COMMUNITY, "-t", "20", "-r", "1",
-                 "-OQe", OLT_IP] + alias_oids,
+                 "-OQe", SNMP_TARGET] + alias_oids,
                 capture_output=True, text=True
             )
             alias_map = {}

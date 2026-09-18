@@ -15,6 +15,21 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.9.2] — 2026-09-18
+
+### Corrigido
+
+- **`OLT/externalscripts/pon.status.huawei.py`**, **`pon.status.fiberhome.py`**: adicionado suporte a porta SNMP não-padrão via `sys.argv[3]` (`SNMP_PORT`, default `161`). SNMP target passa a ser `IP:PORTA` quando diferente de 161, compatível com `snmpbulkwalk`/`snmpget`.
+- **`OLT/externalscripts/pon.discovery.huawei.py`**, **`pon.discovery.fiberhome.py`**: porta propagada ao chamar o script de status em background.
+- **`OLT/externalscripts/pon.total.huawei.py`**, **`pon.total.fiberhome.py`**, **`pon.total.zte.py`**: adicionado suporte a porta e corrigido nome do script de status chamado (era `pon_status_*.py` com underscore — nome antigo).
+- **Templates Huawei OLT (4.4 e 6.0)**, **Fiberhome OLT (4.4 e 6.0)**, **ZTE OLT (4.4)**: adicionada macro `{$SNMP_PORT}` (default `161`) e atualizada chave dos itens externos para `[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]`. **ATENÇÃO**: mudança de chave — em ambientes com template já importado, os itens com a chave antiga permanecem até reimport do template no host.
+
+### Identificado
+
+- OLT NOVA ERA - MA5680T (179.48.239.97): usa porta SNMP **1611** — configurar `{$SNMP_PORT}=1611` neste host após reimport do template.
+
+---
+
 ## [v2.9.1] — 2026-09-18
 
 ### Corrigido

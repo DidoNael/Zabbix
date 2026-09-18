@@ -51,7 +51,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -71,7 +71,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -91,7 +91,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -111,7 +111,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -131,7 +131,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -151,7 +151,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -171,14 +171,14 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
                     <uuid>ff1ef9a38767468f965c361b662b6eea</uuid>
                     <name>NETSTREAM - Status PONs GPON Huawei (master)</name>
                     <type>EXTERNAL</type>
-                    <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     <delay>5m</delay>
                     <history>7d</history>
                     <trends>0</trends>
@@ -189,7 +189,7 @@ Todos os direitos reservados.</description>
                     <uuid>d2238336367f479e93956d606636fae6</uuid>
                     <name>NETSTREAM - Total de ONUs por Estado (OLT Huawei)</name>
                     <type>EXTERNAL</type>
-                    <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <key>netstream.gpon.pon.total.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     <delay>300s</delay>
                     <history>7d</history>
                     <trends>0</trends>
@@ -422,7 +422,7 @@ Todos os direitos reservados.</description>
                     <uuid>7cf2101a107a4e1da253faec16a8ce22</uuid>
                     <name>NETSTREAM - Descoberta de PONs GPON Huawei</name>
                     <type>EXTERNAL</type>
-                    <key>netstream.gpon.pon.discovery.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <key>netstream.gpon.pon.discovery.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     <delay>1h</delay>
                     <description>LLD PONs GPON Huawei</description>
                     <item_prototypes>
@@ -455,7 +455,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -514,7 +514,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -537,7 +537,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -560,7 +560,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -583,7 +583,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -606,7 +606,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -629,7 +629,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                     </item_prototypes>
@@ -1312,6 +1312,11 @@ return 0;</parameter>
                 <macro>
                     <macro>{$SNMP_COMMUNITY}</macro>
                     <value>public</value>
+                </macro>
+                <macro>
+                    <macro>{$SNMP_PORT}</macro>
+                    <value>161</value>
+                    <description>Porta SNMP do equipamento. Sobrescrever no host se diferente de 161.</description>
                 </macro>
                 <macro>
                     <macro>{$GPON_DROP_MIN}</macro>

@@ -51,7 +51,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -71,7 +71,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -91,7 +91,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -111,7 +111,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -131,7 +131,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -151,7 +151,7 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
@@ -171,14 +171,14 @@ Todos os direitos reservados.</description>
                         </step>
                     </preprocessing>
                     <master_item>
-                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                        <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     </master_item>
                 </item>
                 <item>
                     <uuid>60318776fff14332813cca654528153f</uuid>
                     <name>NETSTREAM - Status PONs GPON FiberHome (master)</name>
                     <type>EXTERNAL</type>
-                    <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     <delay>1m</delay>
                     <history>7d</history>
                     <trends>0</trends>
@@ -189,7 +189,7 @@ Todos os direitos reservados.</description>
                     <uuid>d10e90050cf944379ee069f186199dd0</uuid>
                     <name>NETSTREAM - Total de ONUs por Estado (OLT FiberHome)</name>
                     <type>EXTERNAL</type>
-                    <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <key>netstream.gpon.pon.total.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     <delay>300s</delay>
                     <history>7d</history>
                     <trends>0</trends>
@@ -901,7 +901,7 @@ the other type could see the card type table</description>
                     <uuid>cd43a7f842f644ad8f88c8e2bbacb5ae</uuid>
                     <name>NETSTREAM - Descoberta de PONs GPON FiberHome</name>
                     <type>EXTERNAL</type>
-                    <key>netstream.gpon.pon.discovery.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <key>netstream.gpon.pon.discovery.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     <delay>1h</delay>
                     <description>LLD PONs GPON FiberHome</description>
                     <item_prototypes>
@@ -934,7 +934,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -993,7 +993,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -1016,7 +1016,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -1039,7 +1039,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -1062,7 +1062,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -1085,7 +1085,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -1108,7 +1108,7 @@ return 0;</parameter>
                                 </step>
                             </preprocessing>
                             <master_item>
-                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                                <key>netstream.gpon.pon.status.fiberhome[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
@@ -2300,6 +2300,11 @@ return 0;</parameter>
                     <macro>{$GPON_DROP_MIN}</macro>
                     <value>5</value>
                     <description>Queda minima de ONUs online para disparar alerta de queda parcial por PON</description>
+                </macro>
+                <macro>
+                    <macro>{$SNMP_PORT}</macro>
+                    <value>161</value>
+                    <description>Porta SNMP do equipamento. Sobrescrever no host se diferente de 161.</description>
                 </macro>
             </macros>
             <valuemaps>

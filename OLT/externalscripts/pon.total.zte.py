@@ -2,9 +2,10 @@
 import sys, os, json, time, subprocess
 OLT_IP    = sys.argv[1]
 COMMUNITY = sys.argv[2]
+SNMP_PORT = sys.argv[3] if len(sys.argv) > 3 else "161"
 CACHE     = "/tmp/pon_cache_%s.json" % OLT_IP.replace(".", "_")
 if not os.path.exists(CACHE) or (time.time() - os.path.getmtime(CACHE)) > 300:
-    subprocess.Popen(["python3","/usr/lib/zabbix/externalscripts/pon_status.py",OLT_IP,COMMUNITY],
+    subprocess.Popen(["python3","/usr/lib/zabbix/externalscripts/pon.status.zte.py",OLT_IP,COMMUNITY,SNMP_PORT],
                      stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
 try:
     data = json.load(open(CACHE))
