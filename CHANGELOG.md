@@ -15,6 +15,14 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.9.1] — 2026-09-18
+
+### Corrigido
+
+- **`OLT/externalscripts/pon.status.huawei.py`**: regex de `ifDescr` para PONs Huawei só casava com modelos que incluem o número de porta no campo (`GPON_UNI 0/1/2`). Modelos como MA5608T retornam apenas `GPON_UNI` sem porta — o script retornava `[]` e a LLD nunca criava itens. Fix: adicionada coleta paralela de `ifName` (OID `1.3.6.1.2.1.31.1.1.1.1`); quando `ifDescr` não contém a porta, o nome é extraído do `ifName` (`GPON 0/0/0` → `gpon_0/0/0`). Fallback: decodificar slot/porta do ifIndex.
+
+---
+
 ## [v2.9.0] — 2026-09-12
 
 ### Adicionado

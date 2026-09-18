@@ -18,6 +18,7 @@ def collect_and_save():
     OID_ONLINE  = "1.3.6.1.4.1.2011.6.128.1.1.2.21.1.16"
     OID_AUTH    = "1.3.6.1.4.1.2011.6.128.1.1.2.43.1.2"
     OID_IFDESCR = "1.3.6.1.2.1.2.2.1.2"
+    OID_IFNAME  = "1.3.6.1.2.1.31.1.1.1.1"
     OPTS = ["-v2c", "-c", COMMUNITY, "-t", "25", "-r", "1", "-Cn0", "-Cr100", OLT_IP]
     tmpdir = tempfile.mkdtemp()
     try:
@@ -28,6 +29,8 @@ def collect_and_save():
                                         stdout=open(tmpdir+"/auth","w"), stderr=subprocess.PIPE),
             "ifdescr": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFDESCR],
                                         stdout=open(tmpdir+"/ifdescr","w"), stderr=subprocess.PIPE),
+            "ifname":  subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFNAME],
+                                        stdout=open(tmpdir+"/ifname","w"), stderr=subprocess.PIPE),
         }
         for p in procs.values(): p.wait()
 
@@ -35,11 +38,33 @@ def collect_and_save():
             try: return open(tmpdir+"/"+f).read().strip().splitlines()
             except: return []
 
+        # ifName map: index → "GPON 0/1/2" style
+        ifname_map = {}
+        for line in rl("ifname"):
+            m = re.search(r"ifName\.(\d+)\s+=\s+STRING:\s+(.+)", line)
+            if m:
+                ifname_map[m.group(1)] = m.group(2).strip()
+
         pon_names = {}
         for line in rl("ifdescr"):
-            m = re.search(r"ifDescr\.(\d+).*GPON_UNI\s+([\d/]+)", line)
+            # Alguns modelos retornam "GPON_UNI 0/1/2", outros só "GPON_UNI" sem porta
+            m = re.search(r"ifDescr\.(\d+).*GPON_UNI(?:\s+([\d/]+))?", line)
             if m:
-                pon_names[m.group(1)] = "gpon_" + m.group(2)
+                if m.group(2):
+                    pon_names[m.group(1)] = "gpon_" + m.group(2)
+                else:
+                    # Sem porta no ifDescr: usar ifName (ex: "GPON 0/0/0")
+                    idx = m.group(1)
+                    ifname = ifname_map.get(idx, "")
+                    port_m = re.search(r"([\d]+/[\d]+/[\d]+)$", ifname)
+                    if port_m:
+                        pon_names[idx] = "gpon_" + port_m.group(1)
+                    else:
+                        # Fallback: decodificar do ifIndex
+                        i = int(idx)
+                        slot = (i >> 16) & 0xFF
+                        port = (i >> 8) & 0xFF
+                        pon_names[idx] = "gpon_0/%d/%d" % (slot, port)
 
         online_data = {}
         for line in rl("online"):
