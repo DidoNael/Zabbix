@@ -137,6 +137,12 @@ if cache_age > CACHE_TTL and (not os.path.exists(LOCK_FILE) or lock_age > 180):
         pid = os.fork()
         if pid == 0:
             os.setsid()
+            # Fechar FDs herdados para liberar o pipe do Zabbix imediatamente
+            devnull = os.open('/dev/null', os.O_RDWR)
+            for fd in (0, 1, 2):
+                try: os.dup2(devnull, fd)
+                except: pass
+            if devnull > 2: os.close(devnull)
             collect_and_save()
             sys.exit(0)
     except Exception:

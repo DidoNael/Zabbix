@@ -2358,10 +2358,6 @@ return s;</params>
             </discovery_rules>
             <macros>
                 <macro>
-                    <macro>{$SNMP_COMMUNITY}</macro>
-                    <value>public</value>
-                </macro>
-                <macro>
                     <macro>{$SNMP_PORT}</macro>
                     <value>161</value>
                     <description>Porta SNMP do equipamento. Sobrescrever no host se diferente de 161.</description>
