@@ -15,6 +15,14 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.10.2] — 2026-09-21
+
+### Adicionado
+
+- **`NETSTREAM - Discovery ONU Dedicada Huawei`** adicionada aos templates Huawei 4.4 e 6.0. Espelha a discovery `netstream.gpon.onu.dedicado.huawei[{HOST.IP},{$SNMP_COMMUNITY}]` existente no servidor de produção. Itens incluídos: rxpower, lastcause, onu.status, lan.status, lan.speed, lan.duplex, distance, traffic.down (DISABLED), traffic.up (DISABLED). Filtro: `{#NETSTREAM.ONU_DESC}` MATCHES `{$ONU_DEDICADO_FILTER.NETSTREAM}`.
+
+---
+
 ## [v2.10.1] — 2026-09-21
 
 ### Removido
