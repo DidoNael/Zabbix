@@ -368,6 +368,33 @@ Onde `uptime_key` é a key do item de uptime do template. Keys por template dest
 
 ---
 
+## 15. Função `diff()` Removida no Zabbix 7.0
+
+### Mensagem de Erro:
+```text
+Invalid parameter "/X/expression": unknown function "diff".
+```
+
+### Causa:
+A função `diff()` foi removida no Zabbix 7.0. Ela retornava `1` se o último valor
+era diferente do anterior, `0` caso contrário.
+
+### Como Prevenir / Solucionar:
+Substituir `diff(/TEMPLATE/key)=1` por `change(/TEMPLATE/key)<>0`:
+
+```xml
+<!-- Antes (inválido no 7.0) -->
+<expression>diff(/TEMPLATE/item)=1 and last(/TEMPLATE/item)=2</expression>
+
+<!-- Depois -->
+<expression>change(/TEMPLATE/item)<>0 and last(/TEMPLATE/item)=2</expression>
+```
+
+O mesmo vale para `recovery_expression`. Aplica-se a triggers de link DOWN, mudança
+de status, e qualquer outro trigger que detecte transição de valor.
+
+---
+
 ## Checklist de Validação Antes do Commit
 
 ### Zabbix 4.4
@@ -388,6 +415,7 @@ Onde `uptime_key` é a key do item de uptime do template. Keys por template dest
 13. [ ] `<params>` de itens `CALCULATED` usam sintaxe 6.0: `last(//key)` e não `last("key")`.
 14. [ ] `<valuemaps>`/`<valuemap>` usam nomes sem underscore (não `value_maps`/`value_map`) e estão dentro de `<template>`.
 15. [ ] Nenhum trigger usa `zabbix[host,snmp,available]` — substituir por `nodata(/TEMPLATE/uptime_key,5m)=1`.
+16. [ ] Nenhum trigger usa `diff()` — substituir por `change(/TEMPLATE/key)<>0` (removido no Zabbix 7.0).
 
 ### Ambas as versões
 13. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
