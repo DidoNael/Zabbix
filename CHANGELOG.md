@@ -15,6 +15,25 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.10.6] — 2026-09-21
+
+### Corrigido
+
+- **Discovery de uplinks Huawei 4.4/6.0**: OID ampliado para incluir `{#IFNAME}` (`ifName`, OID `.31.1.1.1.1`) e `{#IFALIAS}` (`ifAlias`); nomes de items, triggers e graphs alterados de `{#IFDESC}` para `{#IFNAME}` — resolve alertas com nome duplicado "ETHERNET" para todas as interfaces.
+- **Trigger Link DOWN Huawei 6.0**: expressão corrigida — adicionado `diff()=1` e `count(10m)>1`, alinhado com HW 4.4 e regra obrigatória do CLAUDE.md (só alerta quando interface muda de UP para DOWN).
+- **Trigger nodata OLT Inacessível**: alterado de 5m para 1h em todos os templates (ZTE 4.4/6.0, Huawei 4.4/6.0, Fiberhome 4.4/6.0); templates 4.4 migrados de método interno `zabbix[host,snmp,available]` para expressão `nodata(1h)=1` correta; triggers habilitados.
+
+---
+
+## [v2.10.5] — 2026-09-21
+
+### Corrigido
+
+- **Importação versão 2.10.3 e 2.10.4 no Zabbix** (via API)
+- **SQL fix Fiberhome**: itens `netstream.dedicado.status[...]` renomeados para `netstream.onu.status.[...]` em hosts de produção que mantinham a chave antiga após reimport do template.
+
+---
+
 ## [v2.10.4] — 2026-09-21
 
 ### Corrigido

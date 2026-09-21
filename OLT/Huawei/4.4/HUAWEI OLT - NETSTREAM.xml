@@ -321,9 +321,8 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{HUAWEI OLT - NETSTREAM:zabbix[host,snmp,available].max(1h)}=0</expression>
-                            <name>HUAWEI OLT - NETSTREAM: OLT Inacess&#237;vel (sem dados SNMP h&#225; 5 minutos)</name>
-                            <status>DISABLED</status>
+                            <expression>{HUAWEI OLT - NETSTREAM:netstream.system.uptime.nodata(1h)}=1</expression>
+                            <name>HUAWEI OLT - NETSTREAM: HUAWEI OLT - NETSTREAM: OLT Inacess&#237;vel (sem resposta SNMP h&#225; 1h)</name>
                             <priority>DISASTER</priority>
                             <tags>
                                 <tag>
@@ -958,7 +957,7 @@ return 0;</params>
                     <name>NETSTREAM - Descoberta de Uplinks</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#IFDESC},1.3.6.1.2.1.2.2.1.2]</snmp_oid>
+                    <snmp_oid>discovery[{#IFNAME},1.3.6.1.2.1.2.2.1.2,{#IFNAME},1.3.6.1.2.1.31.1.1.1.1,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18]</snmp_oid>
                     <key>netstream.uplink.discovery</key>
                     <delay>1h</delay>
                     <filter>
@@ -972,7 +971,7 @@ return 0;</params>
                     </filter>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Uplink {#IFDESC} - Trafego Entrada</name>
+                            <name>Uplink {#IFNAME} - Trafego Entrada</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
@@ -1001,7 +1000,7 @@ return 0;</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Uplink {#IFDESC} - Drops Entrada</name>
+                            <name>Uplink {#IFNAME} - Drops Entrada</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.13.{#SNMPINDEX}</snmp_oid>
@@ -1024,7 +1023,7 @@ return 0;</params>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{avg(5m)}&gt;10</expression>
-                                    <name>Uplink {#IFDESC} - Alto volume de drops de entrada (&gt;10/s por 5min)</name>
+                                    <name>Uplink {#IFNAME} - Alto volume de drops de entrada (&gt;10/s por 5min)</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>
@@ -1040,7 +1039,7 @@ return 0;</params>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>Uplink {#IFDESC} - Erros Entrada</name>
+                            <name>Uplink {#IFNAME} - Erros Entrada</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
@@ -1062,7 +1061,7 @@ return 0;</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Uplink {#IFDESC} - Trafego Saida</name>
+                            <name>Uplink {#IFNAME} - Trafego Saida</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
@@ -1091,7 +1090,7 @@ return 0;</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Uplink {#IFDESC} - Drops Saida</name>
+                            <name>Uplink {#IFNAME} - Drops Saida</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.19.{#SNMPINDEX}</snmp_oid>
@@ -1114,7 +1113,7 @@ return 0;</params>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{avg(5m)}&gt;10</expression>
-                                    <name>Uplink {#IFDESC} - Alto volume de drops de saida (&gt;10/s por 5min)</name>
+                                    <name>Uplink {#IFNAME} - Alto volume de drops de saida (&gt;10/s por 5min)</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>
@@ -1130,7 +1129,7 @@ return 0;</params>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>Uplink {#IFDESC} - Sinal RX</name>
+                            <name>Uplink {#IFNAME} - Sinal RX</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.149.2.5.1.3.{#SNMPINDEX}</snmp_oid>
@@ -1153,7 +1152,7 @@ return 0;</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Uplink {#IFDESC} - Status</name>
+                            <name>Uplink {#IFNAME} - Status</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
@@ -1169,7 +1168,7 @@ return 0;</params>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{HUAWEI OLT - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].max(#3)}=2 and {HUAWEI OLT - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].diff()}=1 and {HUAWEI OLT - NETSTREAM:netstream.uplink.status[{#SNMPINDEX}].count(10m)}&gt;1</expression>
-                                    <name>Uplink {#IFDESC}: Link DOWN</name>
+                                    <name>Uplink {#IFNAME}: Link DOWN</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
@@ -1186,7 +1185,7 @@ return 0;</params>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>Uplink {#IFDESC} - Temperatura</name>
+                            <name>Uplink {#IFNAME} - Temperatura</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.149.2.5.1.2.{#SNMPINDEX}</snmp_oid>
@@ -1209,7 +1208,7 @@ return 0;</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Uplink {#IFDESC} - Sinal TX</name>
+                            <name>Uplink {#IFNAME} - Sinal TX</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.149.2.5.1.4.{#SNMPINDEX}</snmp_oid>
@@ -1232,7 +1231,7 @@ return 0;</params>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>Uplink {#IFDESC}: Velocidade da Porta (ifHighSpeed)</name>
+                            <name>Uplink {#IFNAME}: Velocidade da Porta (ifHighSpeed)</name>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.15.{#SNMPINDEX}</snmp_oid>
@@ -1256,7 +1255,7 @@ return 0;</params>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{HUAWEI OLT - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()}&gt;0 and (({HUAWEI OLT - NETSTREAM:netstream.uplink.in[{#SNMPINDEX}].min(5m)}/{HUAWEI OLT - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()})&gt;0.9 or ({HUAWEI OLT - NETSTREAM:netstream.uplink.out[{#SNMPINDEX}].min(5m)}/{HUAWEI OLT - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()})&gt;0.9)</expression>
-                                    <name>Uplink {#IFDESC}: Consumo acima de 90% da porta por 5min</name>
+                                    <name>Uplink {#IFNAME}: Consumo acima de 90% da porta por 5min</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
@@ -1270,7 +1269,7 @@ return 0;</params>
                                         </tag>
                                         <tag>
                                             <tag>interface</tag>
-                                            <value>{#IFDESC}</value>
+                                            <value>{#IFNAME}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -1279,7 +1278,7 @@ return 0;</params>
                     </item_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
-                            <name>Uplink {#IFDESC}: Trafego (Download / Upload)</name>
+                            <name>Uplink {#IFNAME}: Trafego (Download / Upload)</name>
                             <yaxismin>0.0000</yaxismin>
                             <graph_items>
                                 <graph_item>

@@ -238,7 +238,7 @@ Todos os direitos reservados.</description>
                         </trigger>
                         <trigger>
                             <uuid>605673aa60f24d0ab2373cb7e3b1472b</uuid>
-                            <expression>nodata(/HUAWEI OLT - NETSTREAM/netstream.system.uptime,5m)=1</expression>
+                            <expression>nodata(/HUAWEI OLT - NETSTREAM/netstream.system.uptime,1h)=1</expression>
                             <name>HUAWEI OLT - NETSTREAM: OLT Inacessível (sem dados SNMP há 5 minutos)</name>
                             <priority>DISASTER</priority>
                             <tags>
@@ -766,7 +766,7 @@ return 0;</parameter>
                     <uuid>5dfd1c4aa86b4e7989fd601dbc8044c7</uuid>
                     <name>NETSTREAM - Descoberta de Uplinks</name>
                     <type>SNMP_AGENT</type>
-                    <snmp_oid>discovery[{#IFDESC},1.3.6.1.2.1.2.2.1.2]</snmp_oid>
+                    <snmp_oid>discovery[{#IFNAME},1.3.6.1.2.1.2.2.1.2,{#IFNAME},1.3.6.1.2.1.31.1.1.1.1,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18]</snmp_oid>
                     <key>netstream.uplink.discovery</key>
                     <delay>1h</delay>
                     <filter>
@@ -781,7 +781,7 @@ return 0;</parameter>
                     <item_prototypes>
                         <item_prototype>
                             <uuid>7a2a298ad6f3441f90b073c7af3bfde8</uuid>
-                            <name>Uplink {#IFDESC} - Trafego Entrada</name>
+                            <name>Uplink {#IFNAME} - Trafego Entrada</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.in[{#SNMPINDEX}]</key>
@@ -806,7 +806,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>5d527b79a6834d81abfae54e0bec78b0</uuid>
-                            <name>Uplink {#IFDESC} - Drops Entrada</name>
+                            <name>Uplink {#IFNAME} - Drops Entrada</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.13.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.in.drops[{#SNMPINDEX}]</key>
@@ -826,7 +826,7 @@ return 0;</parameter>
                                 <trigger_prototype>
                                     <uuid>75cac67fbfaa453e9b99202438693a08</uuid>
                                     <expression>avg(/HUAWEI OLT - NETSTREAM/netstream.uplink.in.drops[{#SNMPINDEX}],5m)&gt;10</expression>
-                                    <name>Uplink {#IFDESC} - Alto volume de drops de entrada (&gt;10/s por 5min)</name>
+                                    <name>Uplink {#IFNAME} - Alto volume de drops de entrada (&gt;10/s por 5min)</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>
@@ -843,7 +843,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>9afd65e75ef348a4b575f346f1108dd5</uuid>
-                            <name>Uplink {#IFDESC} - Erros Entrada</name>
+                            <name>Uplink {#IFNAME} - Erros Entrada</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.in.errors[{#SNMPINDEX}]</key>
@@ -862,7 +862,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>971787be7f9442c3b23da379c7334977</uuid>
-                            <name>Uplink {#IFDESC} - Trafego Saida</name>
+                            <name>Uplink {#IFNAME} - Trafego Saida</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.out[{#SNMPINDEX}]</key>
@@ -887,7 +887,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>b17c66ccc8614f539c2fb1654cbca6e8</uuid>
-                            <name>Uplink {#IFDESC} - Drops Saida</name>
+                            <name>Uplink {#IFNAME} - Drops Saida</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.19.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.out.drops[{#SNMPINDEX}]</key>
@@ -907,7 +907,7 @@ return 0;</parameter>
                                 <trigger_prototype>
                                     <uuid>7cb08b782fd145a385b8909ad68e935c</uuid>
                                     <expression>avg(/HUAWEI OLT - NETSTREAM/netstream.uplink.out.drops[{#SNMPINDEX}],5m)&gt;10</expression>
-                                    <name>Uplink {#IFDESC} - Alto volume de drops de saida (&gt;10/s por 5min)</name>
+                                    <name>Uplink {#IFNAME} - Alto volume de drops de saida (&gt;10/s por 5min)</name>
                                     <priority>WARNING</priority>
                                     <tags>
                                         <tag>
@@ -924,7 +924,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>0a65a13ffe6646c4b26e632524173672</uuid>
-                            <name>Uplink {#IFDESC} - Sinal RX</name>
+                            <name>Uplink {#IFNAME} - Sinal RX</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.149.2.5.1.3.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.rxpower[{#SNMPINDEX}]</key>
@@ -944,7 +944,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>afa6c6aba39140bc8369ea5fd4f4f8ff</uuid>
-                            <name>Uplink {#IFDESC} - Status</name>
+                            <name>Uplink {#IFNAME} - Status</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.status[{#SNMPINDEX}]</key>
@@ -954,8 +954,8 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>3c3b1d3521924617984c5bd6b3fcb004</uuid>
-                                    <expression>max(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2</expression>
-                                    <name>Uplink {#IFDESC}: Link DOWN</name>
+                                    <expression>max(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],#3)=2 and diff(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}])=1 and count(/HUAWEI OLT - NETSTREAM/netstream.uplink.status[{#SNMPINDEX}],10m)&gt;1</expression>
+                                    <name>Uplink {#IFNAME}: Link DOWN</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
@@ -973,7 +973,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>122a875110814bfaa1d3b5fb842af3ff</uuid>
-                            <name>Uplink {#IFDESC} - Temperatura</name>
+                            <name>Uplink {#IFNAME} - Temperatura</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.149.2.5.1.2.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.temp[{#SNMPINDEX}]</key>
@@ -993,7 +993,7 @@ return 0;</parameter>
                         </item_prototype>
                         <item_prototype>
                             <uuid>68075409e92145fa85d3b5db06b3d9e7</uuid>
-                            <name>Uplink {#IFDESC} - Sinal TX</name>
+                            <name>Uplink {#IFNAME} - Sinal TX</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.6.149.2.5.1.4.{#SNMPINDEX}</snmp_oid>
                             <key>netstream.uplink.txpower[{#SNMPINDEX}]</key>
@@ -1015,7 +1015,7 @@ return 0;</parameter>
                     <graph_prototypes>
                         <graph_prototype>
                             <uuid>0dac6859c9dd4299a71aa5b6280fed7e</uuid>
-                            <name>Uplink {#IFDESC}: Trafego (Download / Upload)</name>
+                            <name>Uplink {#IFNAME}: Trafego (Download / Upload)</name>
                             <yaxismin>0.0000</yaxismin>
                             <graph_items>
                                 <graph_item>

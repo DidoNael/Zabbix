@@ -336,9 +336,8 @@ Todos os direitos reservados.</description>
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:zabbix[host,snmp,available].max(1h)}=0</expression>
-                            <name>OLT Inacess&#237;vel (sem dados SNMP h&#225; 5 minutos)</name>
-                            <status>DISABLED</status>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:uptime.nodata(1h)}=1</expression>
+                            <name>OLT Inacess&#237;vel (sem resposta SNMP h&#225; 1h)</name>
                             <priority>DISASTER</priority>
                             <description>Nenhuma resposta SNMP foi recebida da OLT nos ultimos 5 minutos. Equipamento pode estar desligado ou com fibra de uplink rompida.</description>
                             <tags>
