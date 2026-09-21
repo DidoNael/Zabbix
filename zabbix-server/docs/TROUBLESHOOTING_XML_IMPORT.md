@@ -333,6 +333,41 @@ Ocorre com frequência ao migrar templates do formato 4.4 para 6.0.
 
 ---
 
+## 14. `zabbix[host,snmp,available]` Removido no Zabbix 7.0
+
+### Mensagem de Erro:
+```text
+Incorrect item key "zabbix[host,snmp,available]" provided for trigger expression on "NOME_TEMPLATE".
+```
+
+### Causa:
+O item interno `zabbix[host,snmp,available]` foi removido no Zabbix 7.0. Templates criados
+para versões anteriores que usavam esse item em triggers de inacessibilidade falham ao
+importar no 7.0.
+
+### Como Prevenir / Solucionar:
+Substituir pelo `nodata()` aplicado ao item de uptime do template:
+
+```xml
+<!-- Antes (inválido no 7.0) -->
+<expression>max(/TEMPLATE/zabbix[host,snmp,available],1h)=0</expression>
+
+<!-- Depois -->
+<expression>nodata(/TEMPLATE/uptime_key,5m)=1</expression>
+```
+
+Onde `uptime_key` é a key do item de uptime do template. Keys por template deste projeto:
+
+| Template | Key de uptime |
+|---|---|
+| OLT ZTE | `netstream.system.uptime` |
+| OLT Fiberhome | `uptime` |
+| OLT Huawei | `netstream.system.uptime` |
+| Switch Cisco | `netstream.sysUpTime.0` |
+| Switch Datacom | `netstream.sysUpTime.0` |
+
+---
+
 ## Checklist de Validação Antes do Commit
 
 ### Zabbix 4.4
@@ -351,7 +386,8 @@ Ocorre com frequência ao migrar templates do formato 4.4 para 6.0.
 11. [ ] UUIDs de valuemaps, host groups e templates linkados são compatíveis com o servidor.
 12. [ ] Índices `{ITEM.LASTVALUEN}` nos triggers correspondem à contagem real de itens na expressão.
 13. [ ] `<params>` de itens `CALCULATED` usam sintaxe 6.0: `last(//key)` e não `last("key")`.
-14. [ ] `<value_maps>` está dentro do bloco `<template>`, não como filho de `<zabbix_export>`.
+14. [ ] `<valuemaps>`/`<valuemap>` usam nomes sem underscore (não `value_maps`/`value_map`) e estão dentro de `<template>`.
+15. [ ] Nenhum trigger usa `zabbix[host,snmp,available]` — substituir por `nodata(/TEMPLATE/uptime_key,5m)=1`.
 
 ### Ambas as versões
 13. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
