@@ -1,5 +1,22 @@
 # Regras do projeto zabbix-templates / OLT NETSTREAM
 
+## OBRIGATÓRIO: Consultar guia de erros antes de editar qualquer XML
+
+**Regra**: antes de realizar qualquer edição em template XML (item, trigger, discovery, preprocessing, graph, valuemap), consultar obrigatoriamente:
+
+```
+zabbix-server/docs/TROUBLESHOOTING_XML_IMPORT.md
+```
+
+**Por quê**: o arquivo documenta 13+ erros já encontrados em imports (status numérico, uuid ausente, snmp_community faltando, value_maps fora do template, etc.). Consultar antes evita repetir os mesmos erros e retrabalho de commit/push/reimport.
+
+**Checklist mínimo antes de commitar qualquer XML**:
+- [ ] Versão 4.4: itens ativos sem `<status>`, tipo `SNMPV2`, `<snmp_community>` presente
+- [ ] Versão 6.0: `<status>DISABLED</status>` (não numérico), `<uuid>` em toda entidade, `<value_maps>` dentro de `<template>`
+- [ ] Ambas: `<params>` presente em todo `<step>` de preprocessing, aplicações declaradas no bloco `<applications>`
+
+---
+
 ## Fluxo obrigatório para novas funcionalidades
 
 **Regra**: qualquer adição de funcionalidade nova (item, trigger, script, discovery) deve ser feita **apenas no repositório GitHub** (edição local + commit + push). Nunca aplicar diretamente no servidor de produção (sem SQL direto, sem import manual em produção, sem editar scripts em produção).
