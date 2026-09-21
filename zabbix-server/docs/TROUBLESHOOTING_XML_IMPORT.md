@@ -288,6 +288,44 @@ calculados em templates 6.0. O mesmo vale para outras funções de série tempor
 
 ---
 
+## 13. Tag `<value_maps>` Fora do Bloco `<template>` (Zabbix 6.0)
+
+### Mensagem de Erro:
+```text
+Tag inválida "/zabbix_export": tag inesperada "value_maps".
+```
+
+### Causa:
+No Zabbix 6.0, `<value_maps>` deve estar **dentro** do bloco `<template>`, antes do
+`</template>` de fechamento. O Zabbix 4.4 aceitava `<value_maps>` como filho direto de
+`<zabbix_export>`, mas o 6.0 não aceita.
+
+### Estrutura errada:
+```xml
+        </template>
+    </templates>
+    <value_maps>          ← fora do template
+        ...
+    </value_maps>
+</zabbix_export>
+```
+
+### Estrutura correta:
+```xml
+            <value_maps>  ← dentro do <template>, antes de </template>
+                ...
+            </value_maps>
+        </template>
+    </templates>
+</zabbix_export>
+```
+
+### Como Prevenir / Solucionar:
+Mova o bloco `<value_maps>...</value_maps>` para dentro do `<template>`, como último filho
+antes de `</template>`. Ocorre com frequência ao migrar templates do formato 4.4 para 6.0.
+
+---
+
 ## Checklist de Validação Antes do Commit
 
 ### Zabbix 4.4
@@ -306,6 +344,7 @@ calculados em templates 6.0. O mesmo vale para outras funções de série tempor
 11. [ ] UUIDs de valuemaps, host groups e templates linkados são compatíveis com o servidor.
 12. [ ] Índices `{ITEM.LASTVALUEN}` nos triggers correspondem à contagem real de itens na expressão.
 13. [ ] `<params>` de itens `CALCULATED` usam sintaxe 6.0: `last(//key)` e não `last("key")`.
+14. [ ] `<value_maps>` está dentro do bloco `<template>`, não como filho de `<zabbix_export>`.
 
 ### Ambas as versões
 13. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
