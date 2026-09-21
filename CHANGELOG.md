@@ -15,6 +15,14 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.10.1] — 2026-09-21
+
+### Removido
+
+- **`onudisc`** (discovery rule legacy de ONU Dedicada Huawei) removida dos templates Huawei 4.4 e 6.0. Substituída pela `netstream.gpon.onu.dedicado.huawei` (discovery padronizada). A coexistência das duas causava criação de itens duplicados nos hosts.
+
+---
+
 ## [v2.10.0] — 2026-09-21
 
 ### Adicionado
