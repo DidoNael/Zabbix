@@ -8,12 +8,14 @@
 zabbix-server/docs/TROUBLESHOOTING_XML_IMPORT.md
 ```
 
-**Por quê**: o arquivo documenta 13+ erros já encontrados em imports (status numérico, uuid ausente, snmp_community faltando, value_maps fora do template, etc.). Consultar antes evita repetir os mesmos erros e retrabalho de commit/push/reimport.
+**Por quê**: o arquivo documenta 13+ erros já encontrados em imports (status numérico, uuid ausente, snmp_community faltando, valuemaps fora do template, etc.). Consultar antes evita repetir os mesmos erros e retrabalho de commit/push/reimport.
 
 **Checklist mínimo antes de commitar qualquer XML**:
 - [ ] Versão 4.4: itens ativos sem `<status>`, tipo `SNMPV2`, `<snmp_community>` presente
-- [ ] Versão 6.0: `<status>DISABLED</status>` (não numérico), `<uuid>` em toda entidade, `<value_maps>` dentro de `<template>`
+- [ ] Versão 6.0: `<status>DISABLED</status>` (não numérico), `<uuid>` em toda entidade, `<valuemaps>` dentro de `<template>`
 - [ ] Ambas: `<params>` presente em todo `<step>` de preprocessing, aplicações declaradas no bloco `<applications>`
+
+**Regra**: ao encontrar qualquer erro novo durante import de template, registrar imediatamente no `TROUBLESHOOTING_XML_IMPORT.md` antes de commitar a correção — incluindo mensagem exata do erro, causa e solução. O arquivo deve ser atualizado no mesmo commit que corrige o problema.
 
 ---
 
