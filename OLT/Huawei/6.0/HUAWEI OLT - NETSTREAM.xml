@@ -1069,9 +1069,9 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>0d138347566b47c1be46aeaf9979b62c</uuid>
-                                    <expression>change(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])<>0 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=2</expression>
+                                    <expression>change(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=2</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>change(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])<>0 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1</recovery_expression>
+                                    <recovery_expression>change(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1</recovery_expression>
                                     <name>{#OLTPORT}: {#IFALIAS}</name>
                                     <priority>DISASTER</priority>
                                     <manual_close>YES</manual_close>
