@@ -1437,7 +1437,6 @@ return s;</params>
                             <delay>1m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
                             <value_type>UNSIGNED</value_type>
                             <units>bps</units>
                             <applications>
@@ -1465,7 +1464,6 @@ return s;</params>
                             <delay>1m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
                             <value_type>UNSIGNED</value_type>
                             <units>bps</units>
                             <applications>

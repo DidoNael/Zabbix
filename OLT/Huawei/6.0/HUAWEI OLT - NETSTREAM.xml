@@ -1236,7 +1236,7 @@ return 0;</parameter>
                     <uuid>d383a2a0ed3b4dcb81bd3584542e91b5</uuid>
                     <name>NETSTREAM - Discovery ONU Dedicada Huawei</name>
                     <type>EXTERNAL</type>
-                    <key>netstream.gpon.onu.dedicado.huawei[{HOST.IP},{$SNMP_COMMUNITY}]</key>
+                    <key>netstream.gpon.onu.dedicado.huawei[{HOST.IP},{$SNMP_COMMUNITY},{$SNMP_PORT}]</key>
                     <delay>1d</delay>
                     <filter>
                         <evaltype>AND</evaltype>
@@ -1455,7 +1455,6 @@ return 0;</parameter>
                             <delay>1m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
                             <value_type>UNSIGNED</value_type>
                             <units>bps</units>
                             <preprocessing>
@@ -1482,7 +1481,6 @@ return 0;</parameter>
                             <delay>1m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
-                            <status>DISABLED</status>
                             <value_type>UNSIGNED</value_type>
                             <units>bps</units>
                             <preprocessing>
