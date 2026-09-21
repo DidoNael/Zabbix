@@ -15,6 +15,17 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.10.0] — 2026-09-21
+
+### Adicionado
+
+- **Itens `netstream.dedicado.traffic.down[{#SNMPINDEX}]` e `netstream.dedicado.traffic.up[{#SNMPINDEX}]`** adicionados à discovery de ONU Dedicada em todos os templates OLT (ZTE 4.4/6.0, Huawei 4.4/6.0, Fiberhome 4.4). Fiberhome 6.0 já possuía esses itens.
+  - **ZTE e Huawei**: adicionados como `DISABLED` — índice composto (`portIndex.onuId` / `ponPortIfIndex.onuId`) não mapeia IF-MIB. Habilitar somente após confirmar OID vendor-específico por modelo.
+  - **Fiberhome**: adicionados como `ENABLED` — índice único (`ifIndex`) mapeia diretamente IF-MIB (`ifHCOutOctets` / `ifHCInOctets`). Preprocessing: CHANGE_PER_SECOND + MULTIPLIER 8 (bytes→bps).
+- **Regra de processo**: novas funcionalidades devem ser commitadas no GitHub para que o usuário aplique em produção no momento adequado. Nunca aplicar diretamente no servidor via SQL ou import manual sem OK explícito do usuário.
+
+---
+
 ## [v2.9.2] — 2026-09-18
 
 ### Corrigido

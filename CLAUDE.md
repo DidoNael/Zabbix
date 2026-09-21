@@ -1,5 +1,18 @@
 # Regras do projeto zabbix-templates / OLT NETSTREAM
 
+## Fluxo obrigatório para novas funcionalidades
+
+**Regra**: qualquer adição de funcionalidade nova (item, trigger, script, discovery) deve ser feita **apenas no repositório GitHub** (edição local + commit + push). Nunca aplicar diretamente no servidor de produção (sem SQL direto, sem import manual em produção, sem editar scripts em produção).
+
+**Por quê**: o usuário decide quando aplicar em produção conforme a necessidade operacional. Aplicações diretas no servidor criam divergência entre repositório e produção e podem gerar problemas no ambiente ao vivo.
+
+**Fluxo correto**:
+1. Editar XMLs e scripts localmente no repositório
+2. Commit + push para o GitHub
+3. Usuário importa/aplica no momento que julgar adequado
+
+**Exceção**: correções emergenciais de incidente ativo (com OK explícito do usuário para mexer em produção na hora).
+
 ## Trigger de status de interface (uplink / link down)
 
 **Regra**: Trigger de link DOWN em uplinks OLT deve usar `max(#3)=2 and diff()=1` — nunca apenas `last()=2` ou `max(#3)=2` sozinho.
