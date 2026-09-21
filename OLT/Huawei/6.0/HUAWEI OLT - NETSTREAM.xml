@@ -766,14 +766,14 @@ return 0;</parameter>
                     <uuid>5dfd1c4aa86b4e7989fd601dbc8044c7</uuid>
                     <name>NETSTREAM - Descoberta de Uplinks</name>
                     <type>SNMP_AGENT</type>
-                    <snmp_oid>discovery[{#IFNAME},1.3.6.1.2.1.2.2.1.2,{#IFNAME},1.3.6.1.2.1.31.1.1.1.1,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18]</snmp_oid>
+                    <snmp_oid>discovery[{#IFNAME},1.3.6.1.2.1.31.1.1.1.1,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18]</snmp_oid>
                     <key>netstream.uplink.discovery</key>
                     <delay>1h</delay>
                     <filter>
                         <conditions>
                             <condition>
-                                <macro>{#IFDESC}</macro>
-                                <value>ETHERNET</value>
+                                <macro>{#IFNAME}</macro>
+                                <value>^(GigabitEthernet|XGigabitEthernet|10GE|TenGigabitEthernet|eth_)</value>
                                 <formulaid>A</formulaid>
                             </condition>
                         </conditions>
