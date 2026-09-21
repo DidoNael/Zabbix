@@ -15,6 +15,20 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.10.3] — 2026-09-21
+
+### Adicionado
+
+- **`netstream.dedicado.sn[{#SNMPINDEX}]`** — item prototype "Serial Number" adicionado à discovery de ONU Dedicada em todos os templates OLT (ZTE 4.4/6.0, Huawei 4.4/6.0, Fiberhome 4.4/6.0).
+  - OID ZTE: `1.3.6.1.4.1.3902.1012.3.28.1.1.5.{#SNMPINDEX}` (Hex-STRING)
+  - OID Huawei: `1.3.6.1.4.1.2011.6.128.1.1.2.43.1.3.{#SNMPINDEX}` (Hex-STRING)
+  - OID Fiberhome: `1.3.6.1.4.1.5875.800.3.10.1.1.10.{#SNMPINDEX}`
+  - Preprocessing: JavaScript converte Hex-STRING para texto legível — 4 bytes ASCII (vendor) + bytes restantes em hex maiúsculo (ex: `HWTCD1D13DA8`)
+  - value_type TEXT, delay 1h, history 30d, sem trends
+  - Application: `Clientes Dedicados`
+
+---
+
 ## [v2.10.2] — 2026-09-21
 
 ### Adicionado

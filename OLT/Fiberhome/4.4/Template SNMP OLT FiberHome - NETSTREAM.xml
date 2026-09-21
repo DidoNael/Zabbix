@@ -1992,6 +1992,29 @@ return 0;</params>
                                 </step>
                             </preprocessing>
                         </item_prototype>
+                        <item_prototype>
+                            <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Serial Number</name>
+                            <type>SNMPV2</type>
+                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
+                            <snmp_oid>1.3.6.1.4.1.5875.800.3.10.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>netstream.dedicado.sn[{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <status>ENABLED</status>
+                            <applications>
+                                <application>
+                                    <name>Clientes Dedicados</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>var r="";for(var i=0;i&lt;value.length;i++){var c=value.charCodeAt(i);if(i&lt;4&amp;&amp;c&gt;=32&amp;&amp;c&lt;127){r+=value[i];}else{r+=("0"+c.toString(16).toUpperCase()).slice(-2);}}return r;</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
