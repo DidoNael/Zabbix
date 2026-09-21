@@ -321,8 +321,15 @@ No Zabbix 6.0, `<value_maps>` deve estar **dentro** do bloco `<template>`, antes
 ```
 
 ### Como Prevenir / Solucionar:
-Mova o bloco `<value_maps>...</value_maps>` para dentro do `<template>`, como último filho
-antes de `</template>`. Ocorre com frequência ao migrar templates do formato 4.4 para 6.0.
+Mova o bloco para dentro do `<template>`, como último filho antes de `</template>`, **e use
+o nome de tag correto para a versão**:
+
+| Versão | Tag do container | Tag de cada item |
+|--------|-----------------|-----------------|
+| 4.4 | `<value_maps>` | `<value_map>` |
+| 6.0 | `<valuemaps>` | `<valuemap>` |
+
+Ocorre com frequência ao migrar templates do formato 4.4 para 6.0.
 
 ---
 
