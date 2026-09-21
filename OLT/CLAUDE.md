@@ -213,6 +213,16 @@ OIDs pendentes de validação — rodar snmpwalk diretamente no equipamento:
 | Status porta LAN | PRESENTE | AUSENTE | DISABLED |
 | Velocidade LAN | PRESENTE | AUSENTE | DISABLED |
 | Duplex LAN | PRESENTE | AUSENTE | DISABLED |
+| **Tráfego Down bps** | **PRESENTE** | AUSENTE | **PRESENTE** |
+| **Tráfego Up bps** | **PRESENTE** | AUSENTE | **PRESENTE** |
+
+**OIDs de tráfego por ONU Huawei (MA5800X7 V100R018 confirmado via snmpwalk):**
+- Download (OLT→ONU): `1.3.6.1.4.1.2011.6.128.1.1.4.23.1.3.{#SNMPINDEX}`
+- Upload (ONU→OLT): `1.3.6.1.4.1.2011.6.128.1.1.4.23.1.4.{#SNMPINDEX}`
+- Índice: `ponPortIfIndex.onuId` (mesmo formato do `{#SNMPINDEX}` da discovery)
+- Tipo: Counter64 (bytes acumulados) → preprocessing: CHANGE_PER_SECOND + MULTIPLIER 8
+- Tabela `.4.21` NÃO é por ONU — é por PON port (agregado) — **não usar**
+- Tabela `.2.51` retorna INT_MAX neste firmware — **não usar**
 
 Prioridade de implementação: habilitar DISABLED antes de buscar OIDs ausentes.
 
@@ -354,6 +364,7 @@ Captura: descrição começa com `dedicado-` **ou** com número (ID de cliente).
 - [x] Trigger Link DOWN nos uplinks — já presente (max(#3)=2 and diff()=1 and count(10m)>1)
 - [x] Graph prototype de uplink — já presente
 - [x] Habilitar ONU Dedicada (discovery `onudisc`): habilitado em 4.4 e 6.0 — FEITO
+- [x] Tráfego Down/Up por ONU: OID `.4.23.1.3` (down) e `.4.23.1.4` (up) confirmados em MA5800X7 V100R018 — FEITO
 - [ ] Adicionar causa queda e distância à ONU Dedicada (OIDs não verificados ainda)
 - [ ] Validar portIdx correto para LAN status/speed/duplex: OID base `1.3.6.1.4.1.2011.6.128.1.1.2.62.1.3.{#SNMPINDEX}.{portIdx}` — col3>=5=UP, col3=3=DOWN; col4=7=1G,col4=6=100M,col4=4=DOWN. portIdx=1 é default mas varia por ONU (ex: ONU 4194312448.4 usa portIdx=4). Habilitar itens DISABLED após confirmar portIdx.
 - [ ] Investigar OIDs de SFP por PON (ausente)
