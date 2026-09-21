@@ -1190,7 +1190,7 @@ return JSON.stringify(result);</params>
                 <discovery_rule>
                     <name>Discovery ONU DEDICADO</name>
                     <type>SNMPV2</type>
-                    <snmp_community>S3ML1M1T3</snmp_community>
+                    <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#ONTDESC},1.3.6.1.4.1.3902.1012.3.28.1.1.2]</snmp_oid>
                     <key>netstream.oltonudedicado</key>
                     <delay>1d</delay>
@@ -1239,7 +1239,7 @@ return JSON.stringify(result);</params>
                                         </tag>
                                         <tag>
                                             <tag>tipo</tag>
-                                            <value>Conectividade</value>
+                                            <value>ONU_Dedicada</value>
                                         </tag>
                                         <tag>
                                             <tag>servico</tag>
@@ -1767,12 +1767,12 @@ return s;</params>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.uplink.in.bps[{#SNMPINDEX}]</key>
+                            <key>netstream.uplink.in[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
-                            <units>Bps</units>
+                            <units>bps</units>
                             <applications>
                                 <application>
                                     <name>Uplink / LAN OLT</name>
@@ -1786,6 +1786,10 @@ return s;</params>
                                     <type>CHANGE_PER_SECOND</type>
                                     <params></params>
                                 </step>
+                                    <step>
+                                        <type>MULTIPLIER</type>
+                                        <params>8</params>
+                                    </step>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
@@ -1793,12 +1797,12 @@ return s;</params>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.uplink.out.bps[{#SNMPINDEX}]</key>
+                            <key>netstream.uplink.out[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
                             <history>7d</history>
                             <trends>365d</trends>
                             <value_type>FLOAT</value_type>
-                            <units>Bps</units>
+                            <units>bps</units>
                             <applications>
                                 <application>
                                     <name>Uplink / LAN OLT</name>
@@ -1812,6 +1816,10 @@ return s;</params>
                                     <type>CHANGE_PER_SECOND</type>
                                     <params></params>
                                 </step>
+                                    <step>
+                                        <type>MULTIPLIER</type>
+                                        <params>8</params>
+                                    </step>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
@@ -2040,7 +2048,7 @@ return s;</params>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{OLT ZTE - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()}&gt;0 and (({OLT ZTE - NETSTREAM:netstream.uplink.in.bps[{#SNMPINDEX}].min(5m)}/{OLT ZTE - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()})&gt;0.9 or ({OLT ZTE - NETSTREAM:netstream.uplink.out.bps[{#SNMPINDEX}].min(5m)}/{OLT ZTE - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()})&gt;0.9)</expression>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()}&gt;0 and (({OLT ZTE - NETSTREAM:netstream.uplink.in[{#SNMPINDEX}].min(5m)}/{OLT ZTE - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()})&gt;0.9 or ({OLT ZTE - NETSTREAM:netstream.uplink.out[{#SNMPINDEX}].min(5m)}/{OLT ZTE - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()})&gt;0.9)</expression>
                                     <name>Uplink {#IFNAME} ({#IFALIAS}): Consumo acima de 90% da porta por 5min</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -2070,14 +2078,14 @@ return s;</params>
                                     <color>1A7C11</color>
                                     <item>
                                         <host>OLT ZTE - NETSTREAM</host>
-                                        <key>netstream.uplink.in.bps[{#SNMPINDEX}]</key>
+                                        <key>netstream.uplink.in[{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
                                     <color>2774A4</color>
                                     <item>
                                         <host>OLT ZTE - NETSTREAM</host>
-                                        <key>netstream.uplink.out.bps[{#SNMPINDEX}]</key>
+                                        <key>netstream.uplink.out[{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>

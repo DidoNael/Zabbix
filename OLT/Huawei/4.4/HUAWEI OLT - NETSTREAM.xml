@@ -976,11 +976,11 @@ return 0;</params>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.uplink.in.bps[{#SNMPINDEX}]</key>
+                            <key>netstream.uplink.in[{#SNMPINDEX}]</key>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <units>Bps</units>
+                            <units>bps</units>
                             <applications>
                                 <application>
                                     <name>Uplinks OLT</name>
@@ -994,6 +994,10 @@ return 0;</params>
                                     <type>CHANGE_PER_SECOND</type>
                                     <params/>
                                 </step>
+                                    <step>
+                                        <type>MULTIPLIER</type>
+                                        <params>8</params>
+                                    </step>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
@@ -1062,11 +1066,11 @@ return 0;</params>
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.uplink.out.bps[{#SNMPINDEX}]</key>
+                            <key>netstream.uplink.out[{#SNMPINDEX}]</key>
                             <delay>3m</delay>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <units>Bps</units>
+                            <units>bps</units>
                             <applications>
                                 <application>
                                     <name>Uplinks OLT</name>
@@ -1080,6 +1084,10 @@ return 0;</params>
                                     <type>CHANGE_PER_SECOND</type>
                                     <params/>
                                 </step>
+                                    <step>
+                                        <type>MULTIPLIER</type>
+                                        <params>8</params>
+                                    </step>
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
@@ -1247,7 +1255,7 @@ return 0;</params>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{HUAWEI OLT - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()}&gt;0 and (({HUAWEI OLT - NETSTREAM:netstream.uplink.in.bps[{#SNMPINDEX}].min(5m)}/{HUAWEI OLT - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()})&gt;0.9 or ({HUAWEI OLT - NETSTREAM:netstream.uplink.out.bps[{#SNMPINDEX}].min(5m)}/{HUAWEI OLT - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()})&gt;0.9)</expression>
+                                    <expression>{HUAWEI OLT - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()}&gt;0 and (({HUAWEI OLT - NETSTREAM:netstream.uplink.in[{#SNMPINDEX}].min(5m)}/{HUAWEI OLT - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()})&gt;0.9 or ({HUAWEI OLT - NETSTREAM:netstream.uplink.out[{#SNMPINDEX}].min(5m)}/{HUAWEI OLT - NETSTREAM:netstream.uplink.ifspeed[{#SNMPINDEX}].last()})&gt;0.9)</expression>
                                     <name>Uplink {#IFDESC}: Consumo acima de 90% da porta por 5min</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1278,7 +1286,7 @@ return 0;</params>
                                     <color>00AA00</color>
                                     <item>
                                         <host>HUAWEI OLT - NETSTREAM</host>
-                                        <key>netstream.uplink.in.bps[{#SNMPINDEX}]</key>
+                                        <key>netstream.uplink.in[{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -1286,7 +1294,7 @@ return 0;</params>
                                     <color>0000AA</color>
                                     <item>
                                         <host>HUAWEI OLT - NETSTREAM</host>
-                                        <key>netstream.uplink.out.bps[{#SNMPINDEX}]</key>
+                                        <key>netstream.uplink.out[{#SNMPINDEX}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -1605,7 +1613,7 @@ and&#13;
                             <type>SNMPV2</type>
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.2011.6.128.1.1.2.46.1.24.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.dedicado.lastcause[{#SNMPINDEX}]</key>
+                            <key>netstream.dedicado.offline_reason[{#SNMPINDEX}]</key>
                             <delay>1m</delay>
                             <history>31d</history>
                             <trends>365d</trends>

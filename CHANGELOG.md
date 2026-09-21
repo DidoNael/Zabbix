@@ -15,6 +15,22 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.10.4] — 2026-09-21
+
+### Corrigido
+
+- **Community SNMP hardcoded removida do ZTE 4.4** — discovery `netstream.oltonudedicado` usava `S3ML1M1T3` fixo; substituído por `{$SNMP_COMMUNITY}`.
+- **Key `netstream.dedicado.lastcause` renomeada para `netstream.dedicado.offline_reason`** nos templates Huawei 4.4 e 6.0, equalizado com ZTE e Fiberhome.
+- **Key `netstream.dedicado.status` renomeada para `netstream.onu.status.`** no Fiberhome 6.0 (5 ocorrências: item prototype + trigger expressions + recovery expressions), equalizado com ZTE e Huawei.
+- **Itens de tráfego de uplink corrigidos para bps** em ZTE 4.4, Huawei 4.4/6.0, Fiberhome 4.4/6.0:
+  - Keys renomeadas: `netstream.uplink.in.bps` → `netstream.uplink.in` e `netstream.uplink.out.bps` → `netstream.uplink.out`
+  - Adicionado preprocessing `MULTIPLIER x8` (bytes→bits)
+  - Unidades corrigidas: `Bps` → `bps`
+  - Referencias atualizadas em trigger expressions (saturação) e graph prototypes
+- **Trigger ONU Dedicada offline ZTE 4.4**: tag `tipo=Conectividade` corrigida para `tipo=ONU_Dedicada`, alinhada com ZTE 6.0, Huawei e Fiberhome.
+
+---
+
 ## [v2.10.3] — 2026-09-21
 
 ### Adicionado
