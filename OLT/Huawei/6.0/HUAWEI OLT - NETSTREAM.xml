@@ -1295,7 +1295,7 @@ return 0;</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>c7a9d9c84f874ea6b6ee5da91283b1e9</uuid>
-                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-28 and last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-40</expression>
+                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-28 and last(/HUAWEI OLT - NETSTREAM/netstream.onu.status.[{#SNMPINDEX}])=1</expression>
                                     <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Critico ({ITEM.LASTVALUE})</name>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
@@ -1303,31 +1303,6 @@ return 0;</parameter>
                                         <tag>
                                             <tag>notificar</tag>
                                             <value>telegram</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>scope</tag>
-                                            <value>OLT</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>servico</tag>
-                                            <value>GPON</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>tipo</tag>
-                                            <value>ONU_Dedicada</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                                <trigger_prototype>
-                                    <uuid>6fe042afd5b4495297a385d173f56296</uuid>
-                                    <expression>last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&lt;=-25 and last(/HUAWEI OLT - NETSTREAM/netstream.dedicado.rxpower[{#SNMPINDEX}])&gt;-28</expression>
-                                    <name>ONU Dedicada {#NETSTREAM.ONU_DESC}: Sinal Optico Degradado ({ITEM.LASTVALUE})</name>
-                                    <priority>WARNING</priority>
-                                    <manual_close>YES</manual_close>
-                                    <tags>
-                                        <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
                                         </tag>
                                         <tag>
                                             <tag>scope</tag>
