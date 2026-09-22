@@ -18,8 +18,8 @@ LOCK_FILE  = CACHE_FILE + ".lock"
 CACHE_TTL  = 60
 
 def collect_and_save():
-    OID_ONLINE     = "1.3.6.1.4.1.2011.6.128.1.1.2.21.1.16"
     # hwGponDeviceOntControlRunStatus: 1=online 2=offline — ALL provisioned ONUs
+    # (.21.1.16 retorna total provisionado, não online — não usar para online count)
     OID_RUN_STATUS = "1.3.6.1.4.1.2011.6.128.1.1.2.46.1.15"
     # hwGponDeviceOntControlLastDownCause: 1=LOS 2=LOSi 3=LOFi 4=LOFi 9=SFi 13=DyingGasp
     OID_LAST_CAUSE = "1.3.6.1.4.1.2011.6.128.1.1.2.46.1.24"
@@ -29,8 +29,6 @@ def collect_and_save():
     tmpdir = tempfile.mkdtemp()
     try:
         procs = {
-            "online":     subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_ONLINE],
-                                           stdout=open(tmpdir+"/online","w"), stderr=subprocess.PIPE),
             "run_status": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_RUN_STATUS],
                                            stdout=open(tmpdir+"/run_status","w"), stderr=subprocess.PIPE),
             "last_cause": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_LAST_CAUSE],
@@ -70,11 +68,6 @@ def collect_and_save():
                         port = (i >> 8) & 0xFF
                         pon_names[idx] = "gpon_0/%d/%d" % (slot, port)
 
-        online_data = {}
-        for line in rl("online"):
-            m = re.search(r"\.16\.(\d+)\s+=\s+INTEGER:\s+(\d+)", line)
-            if m: online_data[m.group(1)] = int(m.group(2))
-
         run_status = defaultdict(dict)  # pon_idx -> {onu_id: state}
         for line in rl("run_status"):
             m = re.search(r"\.46\.1\.15\.(\d+)\.(\d+)\s*=\s*(?:INTEGER:\s*)?(\d+)", line)
@@ -89,20 +82,21 @@ def collect_and_save():
 
         result = []
         for pon_idx in sorted(pon_names.keys(), key=lambda x: int(x)):
-            name   = pon_names[pon_idx]
-            online = online_data.get(pon_idx, 0)
-
+            name     = pon_names[pon_idx]
             statuses = run_status.get(pon_idx, {})
             causes   = last_cause.get(pon_idx, {})
-            auth     = len(statuses) if statuses else online
+            auth     = len(statuses)
 
-            if auth == 0 and online == 0:
+            if auth == 0:
                 continue
 
+            online_count  = 0
             offline_count = 0
             dg = los = losi = lof = 0
             for onu_id, state in statuses.items():
-                if state != 1:
+                if state == 1:
+                    online_count += 1
+                else:
                     offline_count += 1
                     cause = causes.get(onu_id, 0)
                     if cause == 13:
@@ -123,7 +117,7 @@ def collect_and_save():
                 "idx":     pon_idx, "desc": "",
                 "name":    name,
                 "auth":    auth,
-                "online":  online,
+                "online":  online_count,
                 "offline": offline_count,
                 "los":     los,
                 "losi":    losi,
