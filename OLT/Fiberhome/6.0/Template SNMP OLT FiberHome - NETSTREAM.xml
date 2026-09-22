@@ -1212,7 +1212,9 @@ return 0;</parameter>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>5eca26c3114a4ac19eece7b04c1d937d</uuid>
-                            <expression>(max(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],900s)-min(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],900s))&gt;=8 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
+                            <expression>change(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}])&gt;=5 and last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],#2)&gt;0 and count(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}])&lt;=last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}],#2)</recovery_expression>
                             <name>PON {#NETSTREAM.PON_LABEL}: DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
