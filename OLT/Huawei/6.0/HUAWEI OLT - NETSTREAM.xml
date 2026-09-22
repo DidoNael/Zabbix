@@ -638,7 +638,7 @@ return 0;</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>482e702bb48746b0aa079bda5d21aec7</uuid>
-                            <expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])=0 and max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],86400s)&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
+                            <expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])=0 and max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],86400s)&gt;0 and change(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])&lt;&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
@@ -668,7 +668,7 @@ return 0;</parameter>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>e307735b110a407b827f0df7be83b47a</uuid>
-                            <expression>(max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}],900s)-min(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}],900s))&gt;=3 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
+                            <expression>(max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}],900s)-min(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}],900s))&gt;=3 and change(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}])&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
                             <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
@@ -701,7 +701,9 @@ return 0;</parameter>
                         </trigger_prototype>
                         <trigger_prototype>
                             <uuid>19ab087ff42147dfb02692bdd4e5298e</uuid>
-                            <expression>(max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}],900s)-min(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}],900s))&gt;=3 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
+                            <expression>(max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}],900s)-min(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}],900s))&gt;=3 and change(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}])&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}])&lt;=max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}],24h)*0.5</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
