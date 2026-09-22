@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys, os, json, time, subprocess, tempfile, shutil, re
+from collections import defaultdict
 
 if len(sys.argv) < 3:
     print("[]"); sys.exit(0)
@@ -17,22 +18,27 @@ LOCK_FILE  = CACHE_FILE + ".lock"
 CACHE_TTL  = 60
 
 def collect_and_save():
-    OID_ONLINE  = "1.3.6.1.4.1.2011.6.128.1.1.2.21.1.16"
-    OID_AUTH    = "1.3.6.1.4.1.2011.6.128.1.1.2.43.1.2"
-    OID_IFDESCR = "1.3.6.1.2.1.2.2.1.2"
-    OID_IFNAME  = "1.3.6.1.2.1.31.1.1.1.1"
+    OID_ONLINE     = "1.3.6.1.4.1.2011.6.128.1.1.2.21.1.16"
+    # hwGponDeviceOntControlRunStatus: 1=online 2=offline — ALL provisioned ONUs
+    OID_RUN_STATUS = "1.3.6.1.4.1.2011.6.128.1.1.2.46.1.15"
+    # hwGponDeviceOntControlLastDownCause: 1=LOS 2=LOSi 3=LOFi 4=LOFi 9=SFi 13=DyingGasp
+    OID_LAST_CAUSE = "1.3.6.1.4.1.2011.6.128.1.1.2.46.1.24"
+    OID_IFDESCR    = "1.3.6.1.2.1.2.2.1.2"
+    OID_IFNAME     = "1.3.6.1.2.1.31.1.1.1.1"
     OPTS = ["-v2c", "-c", COMMUNITY, "-t", "25", "-r", "1", "-Cn0", "-Cr100", SNMP_TARGET]
     tmpdir = tempfile.mkdtemp()
     try:
         procs = {
-            "online":  subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_ONLINE],
-                                        stdout=open(tmpdir+"/online","w"), stderr=subprocess.PIPE),
-            "auth":    subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_AUTH],
-                                        stdout=open(tmpdir+"/auth","w"), stderr=subprocess.PIPE),
-            "ifdescr": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFDESCR],
-                                        stdout=open(tmpdir+"/ifdescr","w"), stderr=subprocess.PIPE),
-            "ifname":  subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFNAME],
-                                        stdout=open(tmpdir+"/ifname","w"), stderr=subprocess.PIPE),
+            "online":     subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_ONLINE],
+                                           stdout=open(tmpdir+"/online","w"), stderr=subprocess.PIPE),
+            "run_status": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_RUN_STATUS],
+                                           stdout=open(tmpdir+"/run_status","w"), stderr=subprocess.PIPE),
+            "last_cause": subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_LAST_CAUSE],
+                                           stdout=open(tmpdir+"/last_cause","w"), stderr=subprocess.PIPE),
+            "ifdescr":    subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFDESCR],
+                                           stdout=open(tmpdir+"/ifdescr","w"), stderr=subprocess.PIPE),
+            "ifname":     subprocess.Popen(["snmpbulkwalk"] + OPTS + [OID_IFNAME],
+                                           stdout=open(tmpdir+"/ifname","w"), stderr=subprocess.PIPE),
         }
         for p in procs.values(): p.wait()
 
@@ -40,7 +46,6 @@ def collect_and_save():
             try: return open(tmpdir+"/"+f).read().strip().splitlines()
             except: return []
 
-        # ifName map: index → "GPON 0/1/2" style
         ifname_map = {}
         for line in rl("ifname"):
             m = re.search(r"ifName\.(\d+)\s+=\s+STRING:\s+(.+)", line)
@@ -49,20 +54,17 @@ def collect_and_save():
 
         pon_names = {}
         for line in rl("ifdescr"):
-            # Alguns modelos retornam "GPON_UNI 0/1/2", outros só "GPON_UNI" sem porta
             m = re.search(r"ifDescr\.(\d+).*GPON_UNI(?:\s+([\d/]+))?", line)
             if m:
                 if m.group(2):
                     pon_names[m.group(1)] = "gpon_" + m.group(2)
                 else:
-                    # Sem porta no ifDescr: usar ifName (ex: "GPON 0/0/0")
                     idx = m.group(1)
                     ifname = ifname_map.get(idx, "")
                     port_m = re.search(r"([\d]+/[\d]+/[\d]+)$", ifname)
                     if port_m:
                         pon_names[idx] = "gpon_" + port_m.group(1)
                     else:
-                        # Fallback: decodificar do ifIndex
                         i = int(idx)
                         slot = (i >> 16) & 0xFF
                         port = (i >> 8) & 0xFF
@@ -73,22 +75,47 @@ def collect_and_save():
             m = re.search(r"\.16\.(\d+)\s+=\s+INTEGER:\s+(\d+)", line)
             if m: online_data[m.group(1)] = int(m.group(2))
 
-        from collections import defaultdict
-        auth_count = defaultdict(int)
-        for line in rl("auth"):
-            m = re.search(r"\.43\.1\.2\.(\d+)\.\d+\s+=\s+INTEGER:", line)
-            if m: auth_count[m.group(1)] += 1
+        run_status = defaultdict(dict)  # pon_idx -> {onu_id: state}
+        for line in rl("run_status"):
+            m = re.search(r"\.46\.1\.15\.(\d+)\.(\d+)\s*=\s*(?:INTEGER:\s*)?(\d+)", line)
+            if m:
+                run_status[m.group(1)][m.group(2)] = int(m.group(3))
+
+        last_cause = defaultdict(dict)  # pon_idx -> {onu_id: cause}
+        for line in rl("last_cause"):
+            m = re.search(r"\.46\.1\.24\.(\d+)\.(\d+)\s*=\s*(?:INTEGER:\s*)?(\d+)", line)
+            if m:
+                last_cause[m.group(1)][m.group(2)] = int(m.group(3))
 
         result = []
         for pon_idx in sorted(pon_names.keys(), key=lambda x: int(x)):
             name   = pon_names[pon_idx]
             online = online_data.get(pon_idx, 0)
-            auth   = auth_count.get(pon_idx, 0)
-            if auth == 0:
-                auth = online
+
+            statuses = run_status.get(pon_idx, {})
+            causes   = last_cause.get(pon_idx, {})
+            auth     = len(statuses) if statuses else online
+
             if auth == 0 and online == 0:
                 continue
-            offline = max(auth - online, 0)
+
+            offline_count = 0
+            dg = los = losi = lof = 0
+            for onu_id, state in statuses.items():
+                if state != 1:
+                    offline_count += 1
+                    cause = causes.get(onu_id, 0)
+                    if cause == 13:
+                        dg += 1
+                    elif cause == 1:
+                        los += 1
+                    elif cause == 2:
+                        losi += 1
+                    elif cause in (3, 4):
+                        lof += 1
+
+            unk = max(offline_count - dg - los - losi - lof, 0)
+
             result.append({
                 "{#NETSTREAM.PON_INDEX}": pon_idx,
                 "{#NETSTREAM.PON_NAME}":  name,
@@ -97,15 +124,14 @@ def collect_and_save():
                 "name":    name,
                 "auth":    auth,
                 "online":  online,
-                "offline": offline,
-                "los":     0,
-                "losi":    0,
-                "lof":     0,
-                "dg":      0,
-                "unk":     offline,
+                "offline": offline_count,
+                "los":     los,
+                "losi":    losi,
+                "lof":     lof,
+                "dg":      dg,
+                "unk":     unk,
             })
 
-        # Buscar ifAlias para os índices SNMP dos PONs (snmpget pontual)
         if result:
             alias_oids = ["1.3.6.1.2.1.31.1.1.1.18." + str(p["idx"]) for p in result]
             get_proc = subprocess.run(
@@ -149,7 +175,6 @@ if cache_age > CACHE_TTL and (not os.path.exists(LOCK_FILE) or lock_age > 180):
         pid = os.fork()
         if pid == 0:
             os.setsid()
-            # Fechar FDs herdados para liberar o pipe do Zabbix imediatamente
             devnull = os.open('/dev/null', os.O_RDWR)
             for fd in (0, 1, 2):
                 try: os.dup2(devnull, fd)

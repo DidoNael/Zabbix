@@ -15,6 +15,14 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.10.7] — 2026-09-21
+
+### Corrigido
+
+- **`pon.status.huawei.py`**: valores de offline/LOS/DyingGasp sempre zerados. Causa raiz: tabela `.43.1.2` (hwGponDeviceOntTable) só expõe ONUs online — contagem de auth era sempre igual a online, resultando em offline=0. LOS/DG/LOFi hardcoded como 0. Correção: usar tabela `.46` (hwGponDeviceOntControlInfoTable) que expõe TODAS as ONUs provisionadas. Novos OIDs: `46.1.15` (hwGponDeviceOntControlRunStatus: 1=online, 2=offline) e `46.1.24` (hwGponDeviceOntControlLastDownCause: 1=LOS, 2=LOSi, 3/4=LOFi, 9=SFi, 13=DyingGasp). Script agora reporta offline, dg, los, losi, lof com valores reais.
+
+---
+
 ## [v2.10.6] — 2026-09-21
 
 ### Corrigido
