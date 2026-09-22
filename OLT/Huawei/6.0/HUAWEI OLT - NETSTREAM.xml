@@ -494,7 +494,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(/{HOST.HOST}/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])</params>
+                            <params>last(/{HOST.HOST}/netstream.gpon.pon.online.huawei[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>de33672a474c4813b67853d403cc6716</uuid>
