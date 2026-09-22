@@ -435,7 +435,7 @@ Todos os direitos reservados.</description>
                             <key>netstream.gpon.pon.alerta.los.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>(last(//netstream.gpon.pon.los.huawei[{#NETSTREAM.PON_INDEX}])&gt;0 and change(//netstream.gpon.pon.online.huawei[{#NETSTREAM.PON_INDEX}])&lt;-5)</params>
+                            <params>(last(/{HOST.HOST}/netstream.gpon.pon.los.huawei[{#NETSTREAM.PON_INDEX}])&gt;0 and change(/{HOST.HOST}/netstream.gpon.pon.online.huawei[{#NETSTREAM.PON_INDEX}])&lt;-5)</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6ee676f6d7bb4c8ba0e8a07992f462da</uuid>
@@ -467,7 +467,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(//netstream.gpon.pon.dg.huawei[{#NETSTREAM.PON_INDEX}])</params>
+                            <params>last(/{HOST.HOST}/netstream.gpon.pon.dg.huawei[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8e84fbcdf64d4865a1653fd49b4864da</uuid>
@@ -476,7 +476,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(//netstream.gpon.pon.los.huawei[{#NETSTREAM.PON_INDEX}])</params>
+                            <params>last(/{HOST.HOST}/netstream.gpon.pon.los.huawei[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>dcdec54261a24fc0b87ac39b4118c5f2</uuid>
@@ -485,7 +485,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.offline.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(//netstream.gpon.pon.offline.huawei[{#NETSTREAM.PON_INDEX}])</params>
+                            <params>last(/{HOST.HOST}/netstream.gpon.pon.offline.huawei[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>7f7e570baa7042169c515e945a84cf42</uuid>
@@ -494,7 +494,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                            <params>last(//netstream.gpon.pon.online.huawei[{#NETSTREAM.PON_INDEX}])</params>
+                            <params>last(/{HOST.HOST}/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>de33672a474c4813b67853d403cc6716</uuid>

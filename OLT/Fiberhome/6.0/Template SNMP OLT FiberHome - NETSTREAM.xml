@@ -914,7 +914,7 @@ the other type could see the card type table</description>
                             <key>netstream.gpon.pon.alerta.los.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                                                        <params>(last(//netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}])&gt;0 and change(//netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}])&lt;-5)</params>
+                                                        <params>(last(/{HOST.HOST}/netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}])&gt;0 and change(/{HOST.HOST}/netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}])&lt;-5)</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>6a420da297e343e4a271ca819b45ad2e</uuid>
@@ -946,7 +946,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                                                        <params>last(//netstream.gpon.pon.dg.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
+                                                        <params>last(/{HOST.HOST}/netstream.gpon.pon.dg.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>5bb9bdc8c3604a23a294f21ec1aeafd3</uuid>
@@ -955,7 +955,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                                                        <params>last(//netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
+                                                        <params>last(/{HOST.HOST}/netstream.gpon.pon.los.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>fd7445ea0a184d4b91a171b9b9420cdf</uuid>
@@ -964,7 +964,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.offline.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                                                        <params>last(//netstream.gpon.pon.offline.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
+                                                        <params>last(/{HOST.HOST}/netstream.gpon.pon.offline.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>c58d18d735c444e395554dddaf90cf86</uuid>
@@ -973,7 +973,7 @@ return 0;</parameter>
                             <key>netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}]</key>
                             <history>7d</history>
                             <trends>0</trends>
-                                                        <params>last(//netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
+                                                        <params>last(/{HOST.HOST}/netstream.gpon.pon.online.fiberhome[{#NETSTREAM.PON_INDEX}])</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>bd485801de3f45fc863570162fde81f8</uuid>
