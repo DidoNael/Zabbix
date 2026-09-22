@@ -13,9 +13,10 @@ SNMP_TARGET = "%s:%s" % (OLT_IP, SNMP_PORT) if SNMP_PORT != "161" else OLT_IP
 if not OLT_IP or not COMMUNITY:
     print("[]"); sys.exit(0)
 
-CACHE_FILE = "/tmp/pon_cache_hw_%s.json" % OLT_IP.replace(".", "_")
-LOCK_FILE  = CACHE_FILE + ".lock"
-CACHE_TTL  = 60
+CACHE_FILE   = "/tmp/pon_cache_hw_%s.json" % OLT_IP.replace(".", "_")
+CACHE_BACKUP = CACHE_FILE + ".bak"
+LOCK_FILE    = CACHE_FILE + ".lock"
+CACHE_TTL    = 60
 
 def collect_and_save():
     # hwGponDeviceOntControlRunStatus: 1=online 2=offline — ALL provisioned ONUs
@@ -153,6 +154,10 @@ def collect_and_save():
                 try: os.remove(CACHE_FILE)
                 except: pass
                 os.rename(CACHE_FILE + ".tmp", CACHE_FILE)
+            try:
+                shutil.copy2(CACHE_FILE, CACHE_BACKUP)
+            except Exception:
+                pass
     finally:
         shutil.rmtree(tmpdir, ignore_errors=True)
         try: os.unlink(LOCK_FILE)
@@ -182,6 +187,9 @@ if cache_age > CACHE_TTL and (not os.path.exists(LOCK_FILE) or lock_age > 180):
 
 if os.path.exists(CACHE_FILE):
     try: print(open(CACHE_FILE).read())
+    except: print("[]")
+elif os.path.exists(CACHE_BACKUP):
+    try: print(open(CACHE_BACKUP).read())
     except: print("[]")
 else:
     print("[]")
