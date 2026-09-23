@@ -15,6 +15,14 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.10.9] — 2026-09-23
+
+### Corrigido
+
+- **`pon.status.huawei.py`**: coleta parcial de snmpbulkwalk (menos de 75% dos PONs do backup) não sobrescreve mais o cache. Causa: snmpbulkwalk com `-Cr100` pode ser truncado pela OLT (especialmente MA5600), retornando apenas 2-40 PONs de 73-161. O preprocessing JS retornava 0 para os PONs ausentes, zerando itens dependentes e disparando cascata de "Queda Total". Correção: antes de gravar, compara `len(result)` com `len(backup)` — descarta se < 75%.
+
+---
+
 ## [v2.10.8] — 2026-09-23
 
 ### Corrigido

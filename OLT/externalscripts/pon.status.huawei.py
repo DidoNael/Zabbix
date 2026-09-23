@@ -146,6 +146,16 @@ def collect_and_save():
             for p in result:
                 p["desc"] = alias_map.get(str(p["idx"]), "")
 
+            # Reject partial results: if backup exists and current has <75% of
+            # backup's PON count, snmpbulkwalk was truncated — keep old cache.
+            try:
+                with open(CACHE_BACKUP) as bf:
+                    backup_count = len(json.load(bf))
+                if backup_count > 0 and len(result) < backup_count * 0.75:
+                    return
+            except Exception:
+                pass
+
             with open(CACHE_FILE + ".tmp", "w") as f:
                 json.dump(result, f)
             try:
