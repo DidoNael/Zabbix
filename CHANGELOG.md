@@ -15,6 +15,14 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.10.8] — 2026-09-23
+
+### Corrigido
+
+- **Huawei OLT 4.4 e 6.0 — trigger "Queda Total"**: expressão alterada de `last()=0` para `min(360s)=0` (6 minutos) e removida condição `change()<>0`. Motivo: cache miss de um ciclo (~5min) causava `[]` retornando do `pon.status.huawei.py`, zerava todos os dependentes e disparava cascata de falsos "Queda Total" em todas as PONs simultaneamente. Com `min(6m)=0`, o trigger só dispara quando o item ficou 6 minutos contínuos em zero — tolerando um ciclo de cache miss sem alertar.
+
+---
+
 ## [v2.10.7] — 2026-09-21
 
 ### Corrigido
