@@ -14,7 +14,7 @@ if not OLT_IP or not COMMUNITY:
     print("[]"); sys.exit(0)
 
 CACHE_FILE   = "/tmp/pon_cache_hw_%s.json" % OLT_IP.replace(".", "_")
-CACHE_BACKUP = CACHE_FILE + ".bak"
+CACHE_BACKUP = "/var/lib/zabbix/pon_cache_bak/" + os.path.basename(CACHE_FILE) + ".bak"
 LOCK_FILE    = CACHE_FILE + ".lock"
 CACHE_TTL    = 60
 
