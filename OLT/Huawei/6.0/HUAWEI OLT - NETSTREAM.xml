@@ -638,7 +638,7 @@ return 0;</parameter>
                     <trigger_prototypes>
                         <trigger_prototype>
                             <uuid>482e702bb48746b0aa079bda5d21aec7</uuid>
-                            <expression>min(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],360s)=0 and max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],86400s)&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
+                            <expression>max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],360s)=0 and max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],86400s)&gt;0 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>

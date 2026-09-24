@@ -15,6 +15,14 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.10.10] — 2026-09-24
+
+### Corrigido
+
+- **Huawei OLT 4.4 e 6.0 — trigger "Queda Total"**: corrige erro na expressão introduzida em v2.10.8. `min(360s)=0` significa "valor mínimo dos últimos 6 min = 0" (basta UM zero para disparar), não "contínuo 6 min em zero". Substituído por `max(360s)=0` ("valor máximo dos últimos 6 min = 0"), que só é verdadeiro quando TODOS os valores do período foram 0 — ou seja, exige 6 minutos contínuos de queda real.
+
+---
+
 ## [v2.10.9] — 2026-09-23
 
 ### Corrigido
