@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>7.0</version>
+    <template_groups>
+        <template_group>
+            <uuid>6c8971c02e0b41aebca43bc986c7b522</uuid>
+            <name>Eletrica</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>fd9cb878a8124b9c88e54fbf76b6c084</uuid>
+            <template>Retificadora Huawei - Controladora SMU11B_X - NESTREAM</template>
+            <name>Retificadora Huawei - Controladora SMU11B_X - NESTREAM</name>
+            <groups>
+                <group>
+                    <name>Eletrica</name>
+                </group>
+            </groups>
+            <items>
+                <!-- Status do AC: 1=Normal, 2=Sem energia AC -->
+                <item>
+                    <uuid>6bb904b8979d43fda711ed352cafccb8</uuid>
+                    <name>Status do AC</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.2011.6.164.1.5.2.1.1.99.1</snmp_oid>
+                    <key>hwAcInputOperStatus</key>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <valuemap>
+                        <name>Controladora  Huawei SMU11B_X</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <uuid>e3173696c48b447fb1d0d1ae5e8e5a2a</uuid>
+                            <!-- Só alerta após 15 minutos contínuos sem energia (min em 900s) -->
+                            <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwAcInputOperStatus,900)&gt;1</expression>
+                            <recovery_mode>EXPRESSION</recovery_mode>
+                            <recovery_expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwAcInputOperStatus,900)=1</recovery_expression>
+                            <name>Falta de energia AC Status: ( {EVENT.OPDATA} )</name>
+                            <opdata>Bateria: {ITEM.LASTVALUE:/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId}</opdata>
+                            <priority>HIGH</priority>
+                            <manual_close>NO</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+
+                <!-- Tensão AC de entrada -->
+                <item>
+                    <uuid>06d25174d98a4d7c89536e48ea818db2</uuid>
+                    <name>Entrada de tensão AC</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.2011.6.164.1.5.2.1.1.4.1</snmp_oid>
+                    <key>hwApOrAblVoltage</key>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <units>v</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.1</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+
+                <!-- Capacidade da bateria em % -->
+                <item>
+                    <uuid>63d61d47b7514c74b5712bf66c11033f</uuid>
+                    <name>Capacidade de horas na bateria em %</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.2011.6.164.1.4.4.2.1.3.5</snmp_oid>
+                    <key>hwBattStringEquipId</key>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <units>%</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.1</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <!-- Todas as triggers de bateria usam min(900) para evitar alarmes em transientes -->
+                        <trigger>
+                            <uuid>7ce21149716d4bbeaff75427e8847479</uuid>
+                            <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=80</expression>
+                            <name>Bateria descarregando! Atualmente 80%</name>
+                            <priority>WARNING</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>Bateria descarregando! Atualmente 50%</name>
+                                    <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=50</expression>
+                                </dependency>
+                            </dependencies>
+                        </trigger>
+                        <trigger>
+                            <uuid>5e94c4ee9a6342bfb498721d7d71166a</uuid>
+                            <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=50</expression>
+                            <name>Bateria descarregando! Atualmente 50%</name>
+                            <priority>AVERAGE</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>Bateria descarregando! Atualmente 30%</name>
+                                    <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=30</expression>
+                                </dependency>
+                            </dependencies>
+                        </trigger>
+                        <trigger>
+                            <uuid>51d90f5f9c664b43a35b303a0cdbab7c</uuid>
+                            <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=30</expression>
+                            <name>Bateria descarregando! Atualmente 30%</name>
+                            <priority>AVERAGE</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>Bateria descarregando! Atualmente 15%</name>
+                                    <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=15</expression>
+                                </dependency>
+                            </dependencies>
+                        </trigger>
+                        <trigger>
+                            <uuid>d4ec85ed5a5d40b4a89e637c3514c27f</uuid>
+                            <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=15</expression>
+                            <name>Bateria descarregando! Atualmente 15%</name>
+                            <priority>HIGH</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>Bateria descarregando! Atualmente 5%</name>
+                                    <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=5</expression>
+                                </dependency>
+                            </dependencies>
+                        </trigger>
+                        <trigger>
+                            <uuid>4aedef0ecab440b490a0e48620cc3f76</uuid>
+                            <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=5</expression>
+                            <name>Bateria descarregando! Atualmente 5%</name>
+                            <priority>HIGH</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>Bateria descarregando! Atualmente 1%</name>
+                                    <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=1</expression>
+                                </dependency>
+                            </dependencies>
+                        </trigger>
+                        <trigger>
+                            <uuid>6ca81042497a44e78d13ac71898e06ad</uuid>
+                            <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=1</expression>
+                            <name>Bateria descarregando! Atualmente 1%</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+
+                <!-- Voltagem mínima configurada (coletada 1x/dia) -->
+                <item>
+                    <uuid>7434096d4ffe4acfbe699c3b7de96043</uuid>
+                    <name>Voltagem minima requerida</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.5.1.6.0</snmp_oid>
+                    <key>hwSetAcsLowerVoltLimit</key>
+                    <delay>1d</delay>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <units>V</units>
+                </item>
+
+                <!-- Voltagem máxima configurada (coletada 1x/dia) -->
+                <item>
+                    <uuid>3e8b3a087ca64b8bb3eca1ed343de8f5</uuid>
+                    <name>Voltagem maxima suportada</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.5.1.5.0</snmp_oid>
+                    <key>hwSetAcsUpperVoltLimit</key>
+                    <delay>1d</delay>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <units>V</units>
+                </item>
+
+                <!-- Tempo estimado de autonomia da bateria (calculado).
+                     Fórmula: %_bateria * {$BATTERY_FULL_MINUTES} / 100
+                     Ajuste {$BATTERY_FULL_MINUTES} no host conforme a autonomia real do banco de baterias. -->
+                <item>
+                    <uuid>a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6</uuid>
+                    <name>Tempo estimado de autonomia da bateria</name>
+                    <type>CALCULATED</type>
+                    <key>hwBattEstimatedAutonomy</key>
+                    <delay>1m</delay>
+                    <history>7d</history>
+                    <trends>90d</trends>
+                    <units>min</units>
+                    <params>last(//hwBattStringEquipId) * {$BATTERY_FULL_MINUTES} / 100</params>
+                </item>
+            </items>
+            <macros>
+                <!-- Autonomia total estimada do banco de baterias em minutos.
+                     Padrão: 240 (4 horas). Ajuste por host conforme a capacidade real. -->
+                <macro>
+                    <macro>{$BATTERY_FULL_MINUTES}</macro>
+                    <value>240</value>
+                    <description>Autonomia total estimada do banco de baterias em minutos (padrão: 240 = 4h). Ajuste por host.</description>
+                </macro>
+            </macros>
+            <tags>
+                <tag>
+                    <tag>ELETRICA</tag>
+                    <value>ELETRICA</value>
+                </tag>
+            </tags>
+            <valuemaps>
+                <valuemap>
+                    <uuid>72a5bf1c7d794a63956f8396fc7a6aea</uuid>
+                    <name>Controladora  Huawei SMU11B_X</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Normal</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Sem energia AC</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Fase Ausente</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>AC acima do limite</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>AC abaixo do limite</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>Frequencia acima de 60Hz</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>Frequencia abaixo de 60Hz</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>254</value>
+                            <newvalue>Retorno de energia AC</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>255</value>
+                            <newvalue>Informação desconhecida</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+        </template>
+    </templates>
+    <!-- Trigger "Tensão no limite": usa min/max(900) para ignorar picos transitórios -->
+    <triggers>
+        <trigger>
+            <uuid>fec3dc13dbc44af3a9b03e18b66d09a1</uuid>
+            <expression>(min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwApOrAblVoltage,900)&lt;last(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwSetAcsLowerVoltLimit) or max(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwApOrAblVoltage,900)&gt;last(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwSetAcsUpperVoltLimit))</expression>
+            <name>Tensão  no limite</name>
+            <priority>DISASTER</priority>
+            <manual_close>YES</manual_close>
+        </trigger>
+    </triggers>
+</zabbix_export>

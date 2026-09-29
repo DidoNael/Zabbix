@@ -15,6 +15,21 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.12.0] — 2026-09-29
+
+### Adicionado
+
+- **Template Retificadora Huawei - Controladora SMU11B_X** (novo): adicionado ao repositório em `Retificadora/Huawei/SMU11B_X/` com melhorias sobre a versão em produção:
+  - Trigger "Falta de energia AC Status": alterado de `last()` para `min(900)` — só alerta após 15 minutos contínuos sem energia, eliminando falsos positivos em microdesligamentos
+  - Trigger "Tensão no limite": alterado de `last()` para `min/max(900)` — ignora picos transitórios de tensão
+  - Triggers de bateria (80/50/30/15/5/1%): alterados para `min(900)` — evita alarmes em leituras instáveis
+  - Triggers de bateria agora têm dependências encadeadas (80→50→30→15→5→1%) para suprimir alertas redundantes
+  - Novo item calculado `hwBattEstimatedAutonomy`: estima o tempo de autonomia restante em minutos usando `%_bateria * {$BATTERY_FULL_MINUTES} / 100`
+  - Nova macro `{$BATTERY_FULL_MINUTES}` (padrão 240 = 4h): ajustável por host conforme capacidade real do banco de baterias
+  - Campo `opdata` na trigger de energia exibe % atual da bateria no momento do alerta
+
+---
+
 ## [v2.11.5] — 2026-09-29
 
 ### Adicionado
