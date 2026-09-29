@@ -16,6 +16,20 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 ---
 
 
+
+## [v2.13.0] — 2026-09-29
+
+### Adicionado
+
+- **Hypervisor/Proxmox/7.0**: Proxmox VE by HTTP.xml — template oficial Zabbix 7.0 para Proxmox VE via API REST. Coleta: nodes, VMs, containers (LXC), storage, CPU, RAM, rede, cluster status. Macros obrigatórias: {.URL}, {.TOKEN.ID}, {.TOKEN.SECRET}.
+- **Hypervisor/VMware/7.0**: VMware Templates.xml — templates oficiais Zabbix 7.0 (VMware + VMware Hypervisor + VMware Guest). Coleta: VMs, datastores, ESXi hosts, snapshots, CPU/RAM por guest. Macros obrigatórias: {.URL}, {.USERNAME}, {.PASSWORD}.
+
+### Configuração para testes
+
+- **Proxmox**: criar token de API no Proxmox (Datacenter → Permissions → API Tokens) e configurar as macros no host
+- **VMware**: configurar interface do tipo VMware no host com URL do vCenter (https://vcenter-ip/sdk) + macros de credencial
+
+---
 ## [v2.12.1] — 2026-09-29
 
 ### Adicionado
