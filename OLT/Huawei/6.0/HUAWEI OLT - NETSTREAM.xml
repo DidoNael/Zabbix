@@ -705,7 +705,7 @@ return 0;</parameter>
                             <uuid>19ab087ff42147dfb02692bdd4e5298e</uuid>
                             <expression>change(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}])&gt;=5 and count(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}],180s)&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}])&lt;=max(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}],24h)*0.5</recovery_expression>
+                            <recovery_expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}])=0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>

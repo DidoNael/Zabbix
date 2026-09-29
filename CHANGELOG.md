@@ -15,6 +15,17 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.11.3] — 2026-09-29
+
+### Corrigido
+
+- **OLT Fiberhome 6.0**: recovery do trigger "LOS detectado (Fibra)" corrigido para `last()=0` — antes `last() <= max(24h)*0.5` causava atraso para fechar incidente
+- **OLT Fiberhome 4.4**: adicionada `recovery_expression` `last()=0` que estava ausente — trigger não tinha auto-recovery
+- **OLT Huawei 4.4**: recovery do trigger "LOS detectado (Fibra)" corrigido para `last()=0` — antes `last() <= max(86400)*0.5`
+- **OLT Huawei 6.0**: recovery do trigger "LOS detectado (Fibra)" corrigido para `last()=0` — antes `last() <= max(24h)*0.5`
+
+---
+
 ## [v2.11.2] — 2026-09-29
 
 ### Corrigido

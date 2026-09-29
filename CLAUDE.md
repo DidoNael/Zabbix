@@ -19,6 +19,21 @@ zabbix-server/docs/TROUBLESHOOTING_XML_IMPORT.md
 
 ---
 
+## PROIBIDO: Importar template ou modificar Zabbix sem permissão do usuário
+
+**Regra**: **nunca** importar template, alterar configuração, modificar host, criar item ou fazer qualquer mudança em qualquer instância Zabbix (produção ou homologação) sem aprovação **explícita** do usuário naquela conversa.
+
+**Por quê**: mudanças no Zabbix em produção afetam monitoramento ao vivo — falsos positivos, itens não suportados, triggers disparando. O usuário decide quando e qual ambiente recebe a mudança.
+
+**Fluxo obrigatório**:
+1. Editar XML localmente e fazer commit + push no GitHub
+2. Apresentar ao usuário o que foi alterado e **aguardar autorização** para importar
+3. Só importar após OK explícito ("pode importar", "aplica no WOW", "pode subir em produção", etc.)
+
+**Exceção**: correção emergencial de incidente ativo com OK explícito do usuário na hora.
+
+---
+
 ## Fluxo obrigatório para novas funcionalidades
 
 **Regra**: qualquer adição de funcionalidade nova (item, trigger, script, discovery) deve ser feita **apenas no repositório GitHub** (edição local + commit + push). Nunca aplicar diretamente no servidor de produção (sem SQL direto, sem import manual em produção, sem editar scripts em produção).
