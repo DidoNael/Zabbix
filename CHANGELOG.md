@@ -15,6 +15,15 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.11.2] — 2026-09-29
+
+### Corrigido
+
+- **OLT ZTE 6.0**: recovery do trigger "LOS detectado (Fibra)" simplificado para `last()=0` — antes usava `last() <= max(24h)*0.5` o que causava atraso de 13+ minutos para fechar incidentes mesmo com LOS = 0
+- **OLT ZTE 4.4**: adicionada `recovery_expression` `last()=0` que estava ausente — trigger não tinha auto-recovery antes desta versão
+
+---
+
 ## [v2.11.1] — 2026-09-29
 
 ### Corrigido
