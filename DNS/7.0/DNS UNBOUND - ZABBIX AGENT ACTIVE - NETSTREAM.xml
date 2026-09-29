@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>7.0</version>
+    <template_groups>
+        <template_group>
+            <uuid>c09f7afb40a84791b3a1a79b19795d40</uuid>
+            <name>DNS</name>
+        </template_group>
+        <template_group>
+            <uuid>b2271ad82d9840639833ce055376d184</uuid>
+            <name>LINUX</name>
+        </template_group>
+        <template_group>
+            <uuid>0976fcc8b7e64812986f34d093a4c316</uuid>
+            <name>UNBOUND</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>bc0a26afea044d318c95bda52423acdd</uuid>
+            <template>DNS UNBOUND -  ZABBIX AGENT ACTIVE</template>
+            <name>DNS UNBOUND -  ZABBIX AGENT ACTIVE</name>
+            <groups>
+                <group><name>DNS</name></group>
+                <group><name>LINUX</name></group>
+                <group><name>UNBOUND</name></group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>c6417ef751a243d69059dbea6950d0eb</uuid>
+                    <name>Number of Server Refused</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>unbound.num.answer.rcode.refused</key>
+                    <delay>10s</delay>
+                    <trends>0</trends>
+                    <units>refused</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>DNS</value></tag>
+                        <tag><tag>tipo</tag><value>Refused</value></tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>d915378e1087403da065414efe32cfd7</uuid>
+                    <name>Number of Server Fail</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>unbound.num.answer.rcode.servfail</key>
+                    <delay>10s</delay>
+                    <trends>0</trends>
+                    <units>fail</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>DNS</value></tag>
+                        <tag><tag>tipo</tag><value>ServFail</value></tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>a12629a88b5445f7aeeb2c929544609e</uuid>
+                    <name>Number of cache hits</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>unbound.num.cachehits</key>
+                    <delay>10s</delay>
+                    <trends>0</trends>
+                    <units>hits</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>DNS</value></tag>
+                        <tag><tag>tipo</tag><value>Cache</value></tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>e9bbdb89ed9b43dab36300841c7e31b0</uuid>
+                    <name>Number of cache misses</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>unbound.num.cachemiss</key>
+                    <delay>10s</delay>
+                    <trends>0</trends>
+                    <units>miss</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>DNS</value></tag>
+                        <tag><tag>tipo</tag><value>Cache</value></tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>466f474eec1647b097c4acae3935b8e1</uuid>
+                    <name>Number of queries</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>unbound.num.queries</key>
+                    <delay>10s</delay>
+                    <trends>0</trends>
+                    <units>queries</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>DNS</value></tag>
+                        <tag><tag>tipo</tag><value>Queries</value></tag>
+                    </tags>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>

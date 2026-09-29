@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>7.0</version>
+    <template_groups>
+        <template_group>
+            <uuid>c09f7afb40a84791b3a1a79b19795d40</uuid>
+            <name>DNS</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>d6e76e973ea241449d1443fd3a6ca080</uuid>
+            <template>DNS unbound statistics</template>
+            <name>DNS unbound statistics</name>
+            <groups>
+                <group><name>DNS</name></group>
+            </groups>
+            <macros>
+                <!-- Configure por host: senha SSH do usuário com acesso ao script de estatísticas.
+                     NUNCA commitar o valor real aqui — definir apenas na macro do host no Zabbix UI. -->
+                <macro>
+                    <macro>{$SSH_USER}</macro>
+                    <value>root</value>
+                    <description>Usuário SSH para coleta de estatísticas Unbound. Ajuste por host.</description>
+                </macro>
+                <macro>
+                    <macro>{$SSH_PORT}</macro>
+                    <value>22</value>
+                    <description>Porta SSH. Ajuste por host.</description>
+                </macro>
+                <macro>
+                    <macro>{$SSH_PASSWORD}</macro>
+                    <value></value>
+                    <type>SECRET_TEXT</type>
+                    <description>Senha SSH. Definir SOMENTE na macro do host no Zabbix UI — nunca aqui.</description>
+                </macro>
+            </macros>
+            <items>
+                <item>
+                    <uuid>d213486ff48a4433ae888237f4b2a8a9</uuid>
+                    <name>GET JSON</name>
+                    <type>SSH</type>
+                    <!-- Porta e credenciais via macro — sem senha hardcoded no template -->
+                    <key>ssh.run[json,,{$SSH_PORT},]</key>
+                    <delay>1h</delay>
+                    <history>90d</history>
+                    <value_type>TEXT</value_type>
+                    <trends>0</trends>
+                    <params>cat /usr/local/bin/printstatistic</params>
+                    <username>{$SSH_USER}</username>
+                    <password>{$SSH_PASSWORD}</password>
+                    <tags>
+                        <tag><tag>scope</tag><value>DNS</value></tag>
+                        <tag><tag>tipo</tag><value>Statistics</value></tag>
+                    </tags>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>645e29175f3a4e4892e654a6903c0003</uuid>
+                    <name>Discovery domains statistics</name>
+                    <type>DEPENDENT</type>
+                    <key>discovery.domains</key>
+                    <delay>0</delay>
+                    <lifetime_type>DELETE_IMMEDIATELY</lifetime_type>
+                    <lifetime>0</lifetime>
+                    <master_item>
+                        <key>ssh.run[json,,{$SSH_PORT},]</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.[*].[*]</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <lld_macro_paths>
+                        <lld_macro_path><lld_macro>{#COUNT}</lld_macro><path>$.count</path></lld_macro_path>
+                        <lld_macro_path><lld_macro>{#DOMAIN}</lld_macro><path>$.domain</path></lld_macro_path>
+                        <lld_macro_path><lld_macro>{#IP}</lld_macro><path>$.ip</path></lld_macro_path>
+                        <lld_macro_path><lld_macro>{#RECORD_TYPE}</lld_macro><path>$.record_type</path></lld_macro_path>
+                    </lld_macro_paths>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>c25b89b5f43147b88adcfe3798803603</uuid>
+                            <name>{#IP}</name>
+                            <type>DEPENDENT</type>
+                            <key>domain.ip["{#IP}"]</key>
+                            <delay>0</delay>
+                            <master_item><key>ssh.run[json,,{$SSH_PORT},]</key></master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.top_ips.[?(@.ip == '{#IP}')].count.first()</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag><tag>scope</tag><value>DNS</value></tag>
+                                <tag><tag>tipo</tag><value>Top_IP</value></tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>076364858bc24357be924d8b401abe50</uuid>
+                            <name>{#RECORD_TYPE}</name>
+                            <type>DEPENDENT</type>
+                            <key>domain.record["{#RECORD_TYPE}"]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <master_item><key>ssh.run[json,,{$SSH_PORT},]</key></master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.top_record_types.[?(@.record_type == '{#RECORD_TYPE}')].count.first()</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag><tag>scope</tag><value>DNS</value></tag>
+                                <tag><tag>tipo</tag><value>Record_Type</value></tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>113cdaf092a44bd9926731ae79b70e63</uuid>
+                            <name>{#DOMAIN}</name>
+                            <type>DEPENDENT</type>
+                            <key>domain.["{#DOMAIN}"]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <master_item><key>ssh.run[json,,{$SSH_PORT},]</key></master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.top_domains.[?(@.domain == '{#DOMAIN}')].count.first()</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag><tag>scope</tag><value>DNS</value></tag>
+                                <tag><tag>tipo</tag><value>Top_Domain</value></tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
