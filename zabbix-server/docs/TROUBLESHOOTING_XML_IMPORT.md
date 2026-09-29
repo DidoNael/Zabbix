@@ -395,6 +395,99 @@ de status, e qualquer outro trigger que detecte transição de valor.
 
 ---
 
+## 17. Parâmetro `templateGroups` inválido na API de Import (Zabbix 6.0)
+
+### Mensagem de Erro:
+```json
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32602,
+    "message": "Invalid params.",
+    "data": "Invalid parameter \"/rules\": unexpected parameter \"templateGroups\"."
+  }
+}
+```
+
+### Causa:
+Ao chamar `configuration.import` via API JSON-RPC no Zabbix **6.0**, o parâmetro
+`templateGroups` dentro do objeto `rules` não é reconhecido. Esse parâmetro foi
+introduzido em versões posteriores (6.4+) do Zabbix e não existe no schema da API 6.0.
+
+### Como Prevenir / Solucionar:
+Remover `templateGroups` do objeto `rules` ao importar via API em servidores Zabbix 6.0:
+
+```python
+# ERRADO — causa o erro no Zabbix 6.0
+rules = {
+    "templates": {"createMissing": True, "updateExisting": True},
+    "templateGroups": {"createMissing": True},   # <- remover esta linha
+    ...
+}
+
+# CORRETO para Zabbix 6.0
+rules = {
+    "templates": {"createMissing": True, "updateExisting": True},
+    "items": {"createMissing": True, "updateExisting": True, "deleteMissing": False},
+    "triggers": {"createMissing": True, "updateExisting": True, "deleteMissing": False},
+    "discoveryRules": {"createMissing": True, "updateExisting": True, "deleteMissing": False},
+    "graphs": {"createMissing": True, "updateExisting": True, "deleteMissing": False},
+    "valueMaps": {"createMissing": True, "updateExisting": True},
+    "templateLinkage": {"createMissing": True}
+}
+```
+
+Os grupos referenciados no template XML precisam existir previamente no servidor ou
+devem ser criados manualmente antes do import.
+
+---
+
+## 18. Token de Sessão Expirado na API Zabbix (`Session terminated`)
+
+### Mensagem de Erro:
+```json
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32500,
+    "message": "Application error.",
+    "data": "Session terminated, re-login, please."
+  }
+}
+```
+
+### Causa:
+O token de API extraído do banco de dados (`SELECT token FROM token` ou via
+`SELECT sessionid FROM sessions`) pode estar expirado ou ter sido invalidado por
+logout ou limpeza de sessões. O Zabbix invalida sessões por inatividade ou após
+a expiração configurada em `Administration → General → GUI`.
+
+### Como Prevenir / Solucionar:
+1. Fazer novo login via API para obter token fresco:
+   ```bash
+   curl -s -X POST http://ZABBIX_HOST/api_jsonrpc.php \
+     -H "Content-Type: application/json" \
+     -d '{"jsonrpc":"2.0","method":"user.login","params":{"username":"Admin","password":"SENHA"},"id":1}'
+   ```
+2. Se a senha for desconhecida, resetar via banco de dados:
+   - **Zabbix 6.0 (PostgreSQL, usa bcrypt):**
+     ```bash
+     HASH=$(php -r "echo password_hash('NovaSenha', PASSWORD_BCRYPT);")
+     psql -h HOST -U zabbix -d zabbix -c "UPDATE users SET passwd='$HASH' WHERE username='Admin';"
+     ```
+   - **Zabbix 6.0 (alternativa md5 — dependendo da versão):**
+     ```bash
+     MD5=$(echo -n "NovaSenha" | md5sum | cut -d' ' -f1)
+     psql -h HOST -U zabbix -d zabbix -c "UPDATE users SET passwd='$MD5' WHERE username='Admin';"
+     ```
+   - Testar qual hash funciona tentando o login via API após cada tentativa.
+3. Após obter o token novo, usar imediatamente pois sessões do Zabbix expiram.
+
+> **Observado em:** Zabbix 6.0 (WOW) — token no PostgreSQL estava expirado; reset via md5
+> funcionou após tentativa com bcrypt falhar.
+
+---
+
 ## Checklist de Validação Antes do Commit
 
 ### Zabbix 4.4
