@@ -395,7 +395,114 @@ de status, e qualquer outro trigger que detecte transição de valor.
 
 ---
 
-## 17. Parâmetro `templateGroups` inválido na API de Import (Zabbix 6.0)
+## 17. Descrição da Porta PON não Aparece nos Alertas (Nome do Circuito Ausente)
+
+### Sintoma:
+Triggers de PON exibem apenas o nome técnico da porta, sem o nome do circuito configurado
+no equipamento:
+
+```
+# Esperado (DEV — com ifAlias):
+PON gpon_1/9/2 (SOBERANA): LOS detectado (Fibra)
+
+# Real (produção — sem ifAlias):
+PON gpon_1/9/2: LOS detectado (Fibra)
+```
+
+### Causa:
+O script `pon.status.zte.py` consultava apenas `ifDescr` (OID `1.3.6.1.2.1.2.2.1.2`),
+que retorna o nome técnico gerado automaticamente pelo equipamento (ex: `gpon-olt_0/1/2`
+ou `GPON0/1/2`) — não o nome do circuito configurado pelo operador.
+
+O nome do circuito fica em `ifAlias` (OID `1.3.6.1.2.1.31.1.1.1.18`), que é o campo
+editável em `interface description` na OLT (ex: `SOBERANA`, `BAIRRO-NORTE`). O script
+não consultava esse OID, então o campo `desc` no cache ficava vazio.
+
+Adicionalmente, o script `pon.discovery.zte.py` não exportava a macro
+`{#NETSTREAM.PON_LABEL}`, que é usada nos nomes de itens e triggers do template. Sem
+essa macro na saída do discovery, o Zabbix resolvia `{#NETSTREAM.PON_LABEL}` como
+vazio ou apenas como `{#NETSTREAM.PON_NAME}` sem o sufixo de descrição.
+
+> **Nota:** os scripts de Fiberhome e Huawei já consultavam `ifAlias` corretamente.
+> O problema era exclusivo do ZTE.
+
+### Como Solucionar:
+1. Atualizar `pon.status.zte.py` para fazer `snmpget` de `ifAlias` após montar o
+   resultado (igual ao padrão Fiberhome/Huawei):
+   ```python
+   alias_oids = ["1.3.6.1.2.1.31.1.1.1.18." + str(p["snmp_idx"]) for p in result]
+   get_proc = subprocess.run(["snmpget", "-v2c", "-c", COMMUNITY, "-OQe", SNMP_TARGET] + alias_oids, ...)
+   for line in get_proc.stdout.splitlines():
+       m = re.search(r'ifAlias\.(\d+)\s*=\s*(.+)', line)
+       if m:
+           alias_map[m.group(1)] = m.group(2).strip().strip('"')
+   for p in result:
+       p["desc"] = alias_map.get(str(p["snmp_idx"]), "")
+   ```
+
+2. Atualizar `pon.discovery.zte.py` para exportar `{#NETSTREAM.PON_LABEL}` e
+   `{#NETSTREAM.PON_DESC}`:
+   ```python
+   "{#NETSTREAM.PON_LABEL}": ("%s (%s)" % (p["name"], p["desc"]) if p.get("desc") else str(p["name"])),
+   "{#NETSTREAM.PON_DESC}": str(p.get("desc", "")),
+   ```
+
+3. Após deploy dos scripts, **deletar o cache antigo** da OLT para forçar nova coleta:
+   ```bash
+   rm /tmp/pon_cache_IP_DA_OLT.json
+   ```
+   O próximo ciclo de coleta criará o cache com `desc` populado e o Zabbix atualizará
+   as macros no próximo ciclo de LLD (discovery delay = 1h por padrão — forçar via
+   "Execute now" na discovery rule se necessário).
+
+### Arquitetura do Fluxo de Descrição
+
+O nome do circuito percorre o seguinte caminho até aparecer no nome do alerta:
+
+```
+OLT (ifAlias configurado no equipamento)
+  │
+  │  snmpget 1.3.6.1.2.1.31.1.1.1.18.{snmp_idx}
+  ▼
+pon.status.zte.py  ──►  /tmp/pon_cache_{ip}.json
+                         [{"name": "gpon_1/9/2", "desc": "SOBERANA", ...}]
+  │
+  │  lê cache
+  ▼
+pon.discovery.zte.py
+  └── exporta LLD JSON:
+      {
+        "{#NETSTREAM.PON_NAME}":  "gpon_1/9/2",
+        "{#NETSTREAM.PON_DESC}":  "SOBERANA",
+        "{#NETSTREAM.PON_LABEL}": "gpon_1/9/2 (SOBERANA)"   ← macro usada nos nomes
+      }
+  │
+  │  Zabbix processa LLD
+  ▼
+Discovery Rule cria item/trigger prototypes com macros resolvidas:
+  Nome do trigger: "PON gpon_1/9/2 (SOBERANA): LOS detectado (Fibra)"
+```
+
+**Por que o snmp_idx e não o idx da tabela de autorização?**
+
+O índice da tabela proprietária ZTE (`1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14`)
+usa formato `(slot<<16)|(card<<8)|port`, enquanto `ifAlias` no IF-MIB usa o
+índice `ifIndex` padrão do sistema operacional. A função `auth_idx_to_ifmib(i)`
+converte entre os dois:
+
+```python
+def auth_idx_to_ifmib(i):
+    card = (i >> 8) & 0xFF
+    port = i & 0xFF
+    return 0x10000000 | (card << 16) | (port << 8)
+```
+
+Esse `snmp_idx` é o mesmo índice usado pelo IF-MIB e pelo `ifAlias`, o que
+permite o `snmpget` pontual por porta após a coleta bulk.
+
+---
+
+## 18. Parâmetro `templateGroups` inválido na API de Import (Zabbix 6.0)
 
 ### Mensagem de Erro:
 ```json
