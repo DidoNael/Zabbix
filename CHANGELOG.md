@@ -15,6 +15,16 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.11.0] — 2026-09-29
+
+### Adicionado
+
+- **Servidor Linux**: novo template `SERVIDOR LINUX - ZABBIX AGENT ACTIVE - NETSTREAM` (Zabbix 7.0) adicionado em `Servidor Linux/7.0/`
+- **Servidor Linux**: UserParameters documentados em `Servidor Linux/userparameters/servidor_linux.conf` com comentários por item, dependências e chave Zabbix correspondente
+- **Servidor Linux**: `CLAUDE.md` criado com estrutura do template, tabela de itens/triggers e instruções de instalação
+
+---
+
 ## [v2.10.10] — 2026-09-24
 
 ### Corrigido

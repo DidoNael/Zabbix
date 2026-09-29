@@ -1,0 +1,263 @@
+<?xml version="1.0" ?>
+<zabbix_export>
+    <version>7.0</version>
+    <template_groups>
+        <template_group>
+            <uuid>b2271ad82d9840639833ce055376d184</uuid>
+            <name>LINUX</name>
+        </template_group>
+        <template_group>
+            <uuid>e66b999dfab24b26902d1314de042937</uuid>
+            <name>ZABBIX-AGENT-ACTIVE</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>6465d773f3a04ed698724400b8bd23a2</uuid>
+            <template>SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM</template>
+            <name>SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM</name>
+            <groups>
+                <group>
+                    <name>LINUX</name>
+                </group>
+                <group>
+                    <name>ZABBIX-AGENT-ACTIVE</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>eb9e1dd89db446288d37d0daf7bc9768</uuid>
+                    <name>Consumo CPU</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>cpu.utilization</key>
+                    <trends>0</trends>
+                    <units>%</units>
+                    <triggers>
+                        <trigger>
+                            <uuid>6044c6488fc44c3b80cee1503eab602a</uuid>
+                            <expression>avg(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/cpu.utilization,#10)&gt;=90</expression>
+                            <name>Consumo de CPU</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>6a0c94080f70442aa81341e64c7437b3</uuid>
+                    <name>Disco IO med read</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>disk.iostat.await</key>
+                    <delay>10m</delay>
+                    <value_type>FLOAT</value_type>
+                    <trends>0</trends>
+                    <units>s</units>
+                </item>
+                <item>
+                    <uuid>9cf49d4d9a6244b1a2b513b4b1dca03a</uuid>
+                    <name>Disco IO read</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>disk.iostat.read</key>
+                    <delay>10m</delay>
+                    <value_type>FLOAT</value_type>
+                    <trends>0</trends>
+                    <units>kB/s</units>
+                </item>
+                <item>
+                    <uuid>1cb856ac591b464f8bc71b1b22eb55d2</uuid>
+                    <name>Disco IO  read wait</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>disk.iostat.r_await</key>
+                    <delay>10m</delay>
+                    <value_type>FLOAT</value_type>
+                    <trends>0</trends>
+                    <units>s</units>
+                </item>
+                <item>
+                    <uuid>664062d5c7974cf39278bc3c06d36893</uuid>
+                    <name>Disco IO write</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>disk.iostat.write</key>
+                    <delay>10m</delay>
+                    <value_type>FLOAT</value_type>
+                    <trends>0</trends>
+                    <units>kB/s</units>
+                </item>
+                <item>
+                    <uuid>c2e73be69735478a8d942493222a4221</uuid>
+                    <name>Disco IO  write wait</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>disk.iostat.w_await</key>
+                    <delay>10m</delay>
+                    <value_type>FLOAT</value_type>
+                    <trends>0</trends>
+                    <units>s</units>
+                </item>
+                <item>
+                    <uuid>516f09a182a244f99a22a662e12d5e49</uuid>
+                    <name>Consumo de disco root</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>disk.used.percent.root</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <units>%</units>
+                    <triggers>
+                        <trigger>
+                            <uuid>873ac04967f44da98b710358fd25268f</uuid>
+                            <expression>avg(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.used.percent.root,#3)&gt;=90</expression>
+                            <name>Consumo de disco elevado</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                        <trigger>
+                            <uuid>17bf1fde60e543d3a2083500726c5fa0</uuid>
+                            <expression>avg(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.used.percent.root,#3)&gt;=99</expression>
+                            <name>Disco Cheio</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>6a2dced713034b1c806183ed9d9fa43c</uuid>
+                    <name>Resolução de DNS - Globo</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>dns.check.globo</key>
+                    <trends>0</trends>
+                </item>
+                <item>
+                    <uuid>7a06cad45d604209b325643a19479e9f</uuid>
+                    <name>Resolução de DNS - registrobr</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>dns.check.registrobr</key>
+                    <trends>0</trends>
+                </item>
+                <item>
+                    <uuid>d8d4b16e1c1c4b998847a59a8d90fa4d</uuid>
+                    <name>Resolução de DNS - Uol</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>dns.check.uol</key>
+                    <trends>0</trends>
+                </item>
+                <item>
+                    <uuid>d1e46464da314980bd73043b70e870f7</uuid>
+                    <name>Resolução de DNS - youtube</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>dns.check.youtube</key>
+                    <trends>0</trends>
+                </item>
+                <item>
+                    <uuid>ff6af6c1583b46a28dfdd11d245feaf4</uuid>
+                    <name>Network RX Bytes</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>net.if.input.mbps</key>
+                    <trends>0</trends>
+                    <units>B</units>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>8</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <uuid>4c16487fcc9042b883c0392be52ab861</uuid>
+                    <name>Network TX Bytes</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>net.if.output.mbps</key>
+                    <trends>0</trends>
+                    <units>B</units>
+                    <preprocessing>
+                        <step>
+                            <type>SIMPLE_CHANGE</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                        </step>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>8</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <uuid>45ace796a79642a0b1c5c7975be07f48</uuid>
+                    <name>Tentativa de ssh</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>ssh.failed.logins</key>
+                    <delay>10m</delay>
+                    <trends>0</trends>
+                    <triggers>
+                        <trigger>
+                            <uuid>b44a2d19e7f649108be49db11fabf6f0</uuid>
+                            <expression>change(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/ssh.failed.logins)&gt;100</expression>
+                            <name>Tentativa de brute force</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>dbfa29f1f1ee4b1d86dc5312185c914d</uuid>
+                    <name>Uptime</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>uptime.system</key>
+                    <delay>10m</delay>
+                    <trends>0</trends>
+                    <units>s</units>
+                    <triggers>
+                        <trigger>
+                            <uuid>a6967247b3514dc9924993fde84194a1</uuid>
+                            <expression>last(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/uptime.system)&lt;86400</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/uptime.system)&gt;=3600</recovery_expression>
+                            <name>Host Reiniciado</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <uuid>213c6bbeaca0456e895e199b76ead642</uuid>
+            <expression>count(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.iostat.read,#10)&gt;=20 or count(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.iostat.write,#10)&gt;=20</expression>
+            <name>DISK IO - Tempo de espera alto &gt; 20Ms</name>
+            <priority>AVERAGE</priority>
+        </trigger>
+        <trigger>
+            <uuid>057fd206378d482caced39bfc3d8869a</uuid>
+            <expression>last(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/dns.check.globo)=0 and last(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/dns.check.registrobr)=0 and last(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/dns.check.uol)=0 and last(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/dns.check.youtube)=0</expression>
+            <name>Falha de resolução DNS</name>
+            <opdata>Globo: {ITEM.LASTVALUE1} , Registro BR: {ITEM.LASTVALUE2}</opdata>
+            <priority>HIGH</priority>
+            <tags>
+                <tag>
+                    <tag>Site Globo</tag>
+                    <value>{ITEM.LASTVALUE1}</value>
+                </tag>
+                <tag>
+                    <tag>Site Registro Br</tag>
+                    <value>{ITEM.LASTVALUE2}</value>
+                </tag>
+                <tag>
+                    <tag>Site Uol</tag>
+                    <value>{ITEM.LASTVALUE3}</value>
+                </tag>
+                <tag>
+                    <tag>Site Youtube</tag>
+                    <value>{ITEM.LASTVALUE4}</value>
+                </tag>
+            </tags>
+        </trigger>
+    </triggers>
+</zabbix_export>
+
