@@ -19,6 +19,47 @@ zabbix-server/docs/TROUBLESHOOTING_XML_IMPORT.md
 
 ---
 
+## OBRIGATÓRIO: Tags em todas as triggers
+
+**Regra global**: toda trigger em qualquer template (OLT, Switch, Retificadora, DNS, etc.) deve ter tags estruturadas para que possam ser filtradas independentemente em actions, dashboards e relatórios. Tags sem valor semântico (ex: `nome=trigger`) são inúteis — cada tag deve permitir filtrar um grupo de triggers por critério.
+
+**Tags obrigatórias em toda trigger**:
+
+| Tag | Obrigatória | Valores de exemplo |
+|---|---|---|
+| `scope` | Sim | `OLT`, `ELETRICA`, `SWITCH`, `DNS` |
+| `tipo` | Sim | `Falta_Energia`, `Bateria`, `LOS`, `DyingGasp`, `Queda_Total`, `Link_Down` |
+| `notificar` | Sim | `telegram`, `nao` |
+
+**Tags adicionais quando aplicável** (permitem filtros específicos em actions):
+
+| Tag | Quando usar | Exemplo |
+|---|---|---|
+| `percentual` | Triggers de bateria por nível | `80`, `50`, `30`, `15`, `5`, `1` |
+| `pon` | Triggers de PON (discovery) | `{#NETSTREAM.PON_NAME}` |
+| `servico` | Serviço específico | `GPON`, `SNMP` |
+
+**No XML** (dentro de `<trigger>`):
+```xml
+<tags>
+    <tag><tag>scope</tag><value>ELETRICA</value></tag>
+    <tag><tag>tipo</tag><value>Falta_Energia</value></tag>
+    <tag><tag>notificar</tag><value>telegram</value></tag>
+</tags>
+```
+
+**No Zabbix UI** (trigger.update via API): campo `tags` como array de objetos `{"tag": "scope", "value": "OLT"}`.
+
+**Por quê**: sem tags, actions precisam filtrar por nome de trigger (frágil, quebra com renomes). Com tags `tipo=LOS` e `notificar=telegram`, uma action única envia Telegram para todos os LOS independente do template ou OLT. Permite filtrar alertas por equipamento (scope), por tipo de evento (tipo) e por canal de notificação (notificar) de forma independente.
+
+**Checklist antes de commitar qualquer trigger**:
+- [ ] Tag `scope` presente
+- [ ] Tag `tipo` presente  
+- [ ] Tag `notificar` presente (`telegram` ou `nao`)
+- [ ] Tags adicionais aplicáveis ao contexto
+
+---
+
 ## PROIBIDO: Importar template ou modificar Zabbix sem permissão do usuário
 
 **Regra**: **nunca** importar template, alterar configuração, modificar host, criar item ou fazer qualquer mudança em qualquer instância Zabbix (produção ou homologação) sem aprovação **explícita** do usuário naquela conversa.

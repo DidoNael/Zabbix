@@ -41,11 +41,16 @@
                             <opdata>Bateria: {ITEM.LASTVALUE:/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId}</opdata>
                             <priority>HIGH</priority>
                             <manual_close>NO</manual_close>
+                            <tags>
+                                <tag><tag>scope</tag><value>ELETRICA</value></tag>
+                                <tag><tag>tipo</tag><value>Falta_Energia</value></tag>
+                                <tag><tag>notificar</tag><value>telegram</value></tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
 
-                <!-- Tensão AC de entrada -->
+                <!-- Tensão AC de entrada — unidade V (maiúsculo) evita prefixo SI automático do Zabbix -->
                 <item>
                     <uuid>06d25174d98a4d7c89536e48ea818db2</uuid>
                     <name>Entrada de tensão AC</name>
@@ -54,7 +59,7 @@
                     <key>hwApOrAblVoltage</key>
                     <history>7d</history>
                     <trends>0</trends>
-                    <units>v</units>
+                    <units>V</units>
                     <preprocessing>
                         <step>
                             <type>MULTIPLIER</type>
@@ -65,10 +70,10 @@
                     </preprocessing>
                 </item>
 
-                <!-- Capacidade da bateria em % -->
+                <!-- Carga da bateria em % -->
                 <item>
                     <uuid>63d61d47b7514c74b5712bf66c11033f</uuid>
-                    <name>Capacidade de horas na bateria em %</name>
+                    <name>Carga da bateria (%)</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>.1.3.6.1.4.1.2011.6.164.1.4.4.2.1.3.5</snmp_oid>
                     <key>hwBattStringEquipId</key>
@@ -84,12 +89,19 @@
                         </step>
                     </preprocessing>
                     <triggers>
-                        <!-- Todas as triggers de bateria usam min(900) para evitar alarmes em transientes -->
+                        <!-- Todas as triggers de bateria: min(900) evita alarmes em leituras instáveis.
+                             Dependências encadeadas: 80→50→30→15→5→1 suprimem alertas redundantes. -->
                         <trigger>
                             <uuid>7ce21149716d4bbeaff75427e8847479</uuid>
                             <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=80</expression>
                             <name>Bateria descarregando! Atualmente 80%</name>
                             <priority>WARNING</priority>
+                            <tags>
+                                <tag><tag>scope</tag><value>ELETRICA</value></tag>
+                                <tag><tag>tipo</tag><value>Bateria</value></tag>
+                                <tag><tag>percentual</tag><value>80</value></tag>
+                                <tag><tag>notificar</tag><value>nao</value></tag>
+                            </tags>
                             <dependencies>
                                 <dependency>
                                     <name>Bateria descarregando! Atualmente 50%</name>
@@ -102,6 +114,12 @@
                             <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=50</expression>
                             <name>Bateria descarregando! Atualmente 50%</name>
                             <priority>AVERAGE</priority>
+                            <tags>
+                                <tag><tag>scope</tag><value>ELETRICA</value></tag>
+                                <tag><tag>tipo</tag><value>Bateria</value></tag>
+                                <tag><tag>percentual</tag><value>50</value></tag>
+                                <tag><tag>notificar</tag><value>telegram</value></tag>
+                            </tags>
                             <dependencies>
                                 <dependency>
                                     <name>Bateria descarregando! Atualmente 30%</name>
@@ -114,6 +132,12 @@
                             <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=30</expression>
                             <name>Bateria descarregando! Atualmente 30%</name>
                             <priority>AVERAGE</priority>
+                            <tags>
+                                <tag><tag>scope</tag><value>ELETRICA</value></tag>
+                                <tag><tag>tipo</tag><value>Bateria</value></tag>
+                                <tag><tag>percentual</tag><value>30</value></tag>
+                                <tag><tag>notificar</tag><value>telegram</value></tag>
+                            </tags>
                             <dependencies>
                                 <dependency>
                                     <name>Bateria descarregando! Atualmente 15%</name>
@@ -126,6 +150,12 @@
                             <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=15</expression>
                             <name>Bateria descarregando! Atualmente 15%</name>
                             <priority>HIGH</priority>
+                            <tags>
+                                <tag><tag>scope</tag><value>ELETRICA</value></tag>
+                                <tag><tag>tipo</tag><value>Bateria</value></tag>
+                                <tag><tag>percentual</tag><value>15</value></tag>
+                                <tag><tag>notificar</tag><value>telegram</value></tag>
+                            </tags>
                             <dependencies>
                                 <dependency>
                                     <name>Bateria descarregando! Atualmente 5%</name>
@@ -138,6 +168,12 @@
                             <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=5</expression>
                             <name>Bateria descarregando! Atualmente 5%</name>
                             <priority>HIGH</priority>
+                            <tags>
+                                <tag><tag>scope</tag><value>ELETRICA</value></tag>
+                                <tag><tag>tipo</tag><value>Bateria</value></tag>
+                                <tag><tag>percentual</tag><value>5</value></tag>
+                                <tag><tag>notificar</tag><value>telegram</value></tag>
+                            </tags>
                             <dependencies>
                                 <dependency>
                                     <name>Bateria descarregando! Atualmente 1%</name>
@@ -150,6 +186,12 @@
                             <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId,900)&lt;=1</expression>
                             <name>Bateria descarregando! Atualmente 1%</name>
                             <priority>DISASTER</priority>
+                            <tags>
+                                <tag><tag>scope</tag><value>ELETRICA</value></tag>
+                                <tag><tag>tipo</tag><value>Bateria</value></tag>
+                                <tag><tag>percentual</tag><value>1</value></tag>
+                                <tag><tag>notificar</tag><value>telegram</value></tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
@@ -180,9 +222,8 @@
                     <units>V</units>
                 </item>
 
-                <!-- Tempo estimado de autonomia da bateria (calculado).
-                     Fórmula: %_bateria * {$BATTERY_FULL_MINUTES} / 100
-                     Ajuste {$BATTERY_FULL_MINUTES} no host conforme a autonomia real do banco de baterias. -->
+                <!-- Autonomia estimada = % bateria * {$BATTERY_FULL_MINUTES} / 100
+                     Ajuste a macro por host conforme a capacidade real do banco. -->
                 <item>
                     <uuid>a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6</uuid>
                     <name>Tempo estimado de autonomia da bateria</name>
@@ -196,12 +237,10 @@
                 </item>
             </items>
             <macros>
-                <!-- Autonomia total estimada do banco de baterias em minutos.
-                     Padrão: 240 (4 horas). Ajuste por host conforme a capacidade real. -->
                 <macro>
                     <macro>{$BATTERY_FULL_MINUTES}</macro>
                     <value>240</value>
-                    <description>Autonomia total estimada do banco de baterias em minutos (padrão: 240 = 4h). Ajuste por host.</description>
+                    <description>Autonomia total do banco de baterias em minutos (padrão: 240 = 4h). Ajuste por host conforme a capacidade real.</description>
                 </macro>
             </macros>
             <tags>
@@ -215,48 +254,21 @@
                     <uuid>72a5bf1c7d794a63956f8396fc7a6aea</uuid>
                     <name>Controladora  Huawei SMU11B_X</name>
                     <mappings>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>Normal</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>2</value>
-                            <newvalue>Sem energia AC</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>3</value>
-                            <newvalue>Fase Ausente</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>4</value>
-                            <newvalue>AC acima do limite</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>5</value>
-                            <newvalue>AC abaixo do limite</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>6</value>
-                            <newvalue>Frequencia acima de 60Hz</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>7</value>
-                            <newvalue>Frequencia abaixo de 60Hz</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>254</value>
-                            <newvalue>Retorno de energia AC</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>255</value>
-                            <newvalue>Informação desconhecida</newvalue>
-                        </mapping>
+                        <mapping><value>1</value><newvalue>Normal</newvalue></mapping>
+                        <mapping><value>2</value><newvalue>Sem energia AC</newvalue></mapping>
+                        <mapping><value>3</value><newvalue>Fase Ausente</newvalue></mapping>
+                        <mapping><value>4</value><newvalue>AC acima do limite</newvalue></mapping>
+                        <mapping><value>5</value><newvalue>AC abaixo do limite</newvalue></mapping>
+                        <mapping><value>6</value><newvalue>Frequencia acima de 60Hz</newvalue></mapping>
+                        <mapping><value>7</value><newvalue>Frequencia abaixo de 60Hz</newvalue></mapping>
+                        <mapping><value>254</value><newvalue>Retorno de energia AC</newvalue></mapping>
+                        <mapping><value>255</value><newvalue>Informação desconhecida</newvalue></mapping>
                     </mappings>
                 </valuemap>
             </valuemaps>
         </template>
     </templates>
-    <!-- Trigger "Tensão no limite": usa min/max(900) para ignorar picos transitórios -->
+    <!-- Trigger "Tensão no limite": min/max(900) ignora picos transitórios -->
     <triggers>
         <trigger>
             <uuid>fec3dc13dbc44af3a9b03e18b66d09a1</uuid>
@@ -264,6 +276,11 @@
             <name>Tensão  no limite</name>
             <priority>DISASTER</priority>
             <manual_close>YES</manual_close>
+            <tags>
+                <tag><tag>scope</tag><value>ELETRICA</value></tag>
+                <tag><tag>tipo</tag><value>Tensao_Limite</value></tag>
+                <tag><tag>notificar</tag><value>telegram</value></tag>
+            </tags>
         </trigger>
     </triggers>
 </zabbix_export>
