@@ -642,6 +642,7 @@ return 0;</parameter>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.online.huawei[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
+                            <opdata>LOS={?last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.los.huawei[{#NETSTREAM.PON_INDEX}])} DG={?last(/HUAWEI OLT - NETSTREAM/netstream.gpon.pon.calc.dg.huawei[{#NETSTREAM.PON_INDEX}])}</opdata>
                             <priority>DISASTER</priority>
                             <tags>
                                 <tag>

@@ -102,14 +102,33 @@ def collect_and_save():
             port = i & 0xFF
             name     = "gpon_%d/%d/%d" % (slot, card, port)
             snmp_idx = auth_idx_to_ifmib(i)
-            desc     = desc_map.get(snmp_idx, "")
             r = reasons.get(idx, {"los":0,"losi":0,"lof":0,"dg":0,"unk":0})
             result.append({
                 "idx": idx, "name": name, "snmp_idx": snmp_idx,
                 "auth": auth, "online": online, "offline": max(auth-online, 0),
                 "los": r["los"], "losi": r["losi"], "lof": r["lof"],
-                "dg": r["dg"], "unk": r["unk"], "desc": desc,
+                "dg": r["dg"], "unk": r["unk"], "desc": "",
             })
+
+        # Buscar ifAlias para nome do circuito configurado na porta (ex: "SOBERANA")
+        if result:
+            alias_oids = ["1.3.6.1.2.1.31.1.1.1.18." + str(p["snmp_idx"]) for p in result]
+            get_proc = subprocess.run(
+                ["snmpget", "-v2c", "-c", COMMUNITY, "-t", "20", "-r", "1",
+                 "-OQe", SNMP_TARGET] + alias_oids,
+                capture_output=True, text=True
+            )
+            alias_map = {}
+            for line in get_proc.stdout.splitlines():
+                m = re.search(r'ifAlias\.(\d+)\s*=\s*(.+)', line)
+                if m:
+                    val = m.group(2).strip().strip('"').strip("'")
+                    if (val and val != '""' and val != "''"
+                            and not val.lower().startswith("no such")
+                            and not val.lower().startswith("no response")):
+                        alias_map[m.group(1)] = val
+            for p in result:
+                p["desc"] = alias_map.get(str(p["snmp_idx"]), "")
 
         if result:
             with open(CACHE_FILE + ".tmp", "w") as f:

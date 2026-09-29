@@ -1370,10 +1370,11 @@ return 0;</params>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
+                            <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1 and ({Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].last()}+0)&gt;=0 and ({Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].last()}+0)&gt;=0</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
+                            <opdata>LOS: {ITEM.VALUE2}, DG: {ITEM.VALUE3}</opdata>
                             <priority>DISASTER</priority>
                             <tags>
                                 <tag>

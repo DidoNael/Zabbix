@@ -15,6 +15,24 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.11.5] — 2026-09-29
+
+### Adicionado
+
+- **OLT ZTE/Fiberhome/Huawei (4.4 e 6.0)**: trigger "Queda total de ONUs" agora exibe contagem de LOS e DG no campo `opdata` — ex: "LOS: 8, DG: 2" visível diretamente no painel de incidentes
+- **Script ZTE `pon.status.zte.py`**: adicionada consulta `ifAlias` (nome do circuito configurado na porta, ex: "SOBERANA") para popular o campo `desc` no cache — antes usava apenas `ifDescr` que retornava o nome de sistema
+- **Script ZTE `pon.discovery.zte.py`**: passa a exportar `{#NETSTREAM.PON_LABEL}` = "gpon_x/y/z (DESC)" quando ifAlias disponível, e `{#NETSTREAM.PON_DESC}` separado — alinha com Fiberhome e Huawei que já faziam isso
+
+---
+
+## [v2.11.4] — 2026-09-29
+
+### Corrigido
+
+- **CLAUDE.md**: adicionada regra proibindo import/alteração em qualquer instância Zabbix sem aprovação explícita do usuário
+
+---
+
 ## [v2.11.3] — 2026-09-29
 
 ### Corrigido

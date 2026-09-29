@@ -1182,6 +1182,7 @@ return 0;</parameter>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                             <name>PON {#NETSTREAM.PON_LABEL}: Queda total de ONUs</name>
+                            <opdata>LOS={?last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}])} DG={?last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}])}</opdata>
                             <priority>DISASTER</priority>
                             <tags>
                                 <tag>
