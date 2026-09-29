@@ -1,0 +1,48 @@
+Netstream Topology Panel — Monitoramento de rede em tempo real para Grafana
+
+Criando as melhores Soluções de monitoramento de rede
+
+Equipes de NOC precisam de visibilidade total em tempo real. Pare de alternar entre dezenas de dashboards e centralize tudo em um único mapa interativo.
+
+v2.13.0 — Versão atual
+Grafana 10+ — Compatibilidade
+3 Datasources — Zabbix, Prometheus, InfluxDB
+
+O Problema: Seu NOC está voando às cegas?
+
+"Equipes de NOC alternam entre dezenas de dashboards para entender o que acontece na rede."
+
+- Dashboards fragmentados — informações espalhadas em dezenas de painéis sem contexto de topologia
+- Sem visão geográfica — impossível entender a relação entre nós e links da rede
+- Alertas sem contexto — notificações chegam, mas ninguém sabe o impacto real na rede
+- Diagnóstico lento — encontrar a causa raiz de um problema leva minutos valiosos
+- Mapas estáticos desatualizados — diagramas em Visio ou Draw.io que ninguém mantém
+- Ferramentas caras e complexas — soluções de NMS que custam fortunas e exigem treinamento
+
+A Solução: Um único mapa com tudo ao vivo
+
+Visualize toda a sua rede em tempo real, direto no Grafana. Status, tráfego, alertas — tudo em um só lugar.
+
+- Topologia interativa — arraste, conecte e organize nós com editor visual drag-and-drop
+- Métricas em tempo real — tráfego, latência e status atualizados a cada refresh do Grafana
+- Alertas visuais — nós e links mudam de cor automaticamente quando há problemas
+- Múltiplos datasources — Zabbix, Prometheus e InfluxDB no mesmo mapa
+- Zero dependências externas — roda 100% dentro do Grafana, sem servidores extras
+- Pronto para produção — usado por ISPs e datacenters com centenas de dispositivos
+
+Como Funciona: Pronto em 3 passos
+1. Conecte seus datasources — Configure Zabbix, Prometheus ou InfluxDB como fonte de dados no Grafana.
+2. Monte sua topologia — Use o editor visual drag-and-drop para criar nós, conexões e organizar o layout da sua rede.
+3. Monitore em tempo real — Métricas, status e alertas fluem automaticamente.
+
+Features: Editor Drag & Drop, Métricas em Tempo Real, Alertas Visuais, Lanes e Camadas, 40+ Ícones Integrados, 6 Temas Visuais
+
+Números: 87+ Features, 60+ Opções de configuração, 40+ Ícones integrados, 6 Temas visuais, 3 Datasources suportados
+
+Casos de Uso: Provedores de Internet (ISPs), Data Centers, Redes Corporativas, Equipes de NOC
+
+Datasources suportados: Zabbix, Prometheus, InfluxDB
+
+"Plugin essencial para qualquer NOC que usa Grafana. Finalmente conseguimos ter uma visão real da rede sem sair do dashboard."
+
+Teste gratuitamente em segundos. Preencha o formulário e receba sua licença gratuita direto no email.
