@@ -15,6 +15,20 @@ Huawei, OSPF genérico, ISP Experience e DNS Monitor, além de scripts de descob
 
 ---
 
+## [v2.11.1] — 2026-09-29
+
+### Corrigido
+
+- **Servidor Linux**: units de `disk.iostat.await/r_await/w_await` corrigidas de `s` para `ms` (UserParameter retorna ms, não segundos)
+- **Servidor Linux**: units de `disk.iostat.read/write` corrigidas de `kB/s` para `r/s` / `w/s` (UserParameter retorna IOPS, não throughput)
+- **Servidor Linux**: nome `Disco IO  read wait` / `write wait` com espaço duplo corrigido
+
+### Adicionado
+
+- **Servidor Linux**: trigger "Disco com uso alto" `avg(#3) >= 80%` AVERAGE adicionado — aviso antecipado antes dos 90% e 99%
+
+---
+
 ## [v2.11.0] — 2026-09-29
 
 ### Adicionado

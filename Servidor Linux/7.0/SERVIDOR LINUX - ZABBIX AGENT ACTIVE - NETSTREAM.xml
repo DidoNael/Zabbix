@@ -49,7 +49,7 @@
                     <delay>10m</delay>
                     <value_type>FLOAT</value_type>
                     <trends>0</trends>
-                    <units>s</units>
+                    <units>ms</units>
                 </item>
                 <item>
                     <uuid>9cf49d4d9a6244b1a2b513b4b1dca03a</uuid>
@@ -59,17 +59,17 @@
                     <delay>10m</delay>
                     <value_type>FLOAT</value_type>
                     <trends>0</trends>
-                    <units>kB/s</units>
+                    <units>r/s</units>
                 </item>
                 <item>
                     <uuid>1cb856ac591b464f8bc71b1b22eb55d2</uuid>
-                    <name>Disco IO  read wait</name>
+                    <name>Disco IO read wait</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>disk.iostat.r_await</key>
                     <delay>10m</delay>
                     <value_type>FLOAT</value_type>
                     <trends>0</trends>
-                    <units>s</units>
+                    <units>ms</units>
                 </item>
                 <item>
                     <uuid>664062d5c7974cf39278bc3c06d36893</uuid>
@@ -79,17 +79,17 @@
                     <delay>10m</delay>
                     <value_type>FLOAT</value_type>
                     <trends>0</trends>
-                    <units>kB/s</units>
+                    <units>w/s</units>
                 </item>
                 <item>
                     <uuid>c2e73be69735478a8d942493222a4221</uuid>
-                    <name>Disco IO  write wait</name>
+                    <name>Disco IO write wait</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>disk.iostat.w_await</key>
                     <delay>10m</delay>
                     <value_type>FLOAT</value_type>
                     <trends>0</trends>
-                    <units>s</units>
+                    <units>ms</units>
                 </item>
                 <item>
                     <uuid>516f09a182a244f99a22a662e12d5e49</uuid>
@@ -100,6 +100,13 @@
                     <trends>0</trends>
                     <units>%</units>
                     <triggers>
+                        <trigger>
+                            <uuid>a1b2c3d4e5f64a7b8c9d0e1f2a3b4c5d</uuid>
+                            <expression>avg(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.used.percent.root,#3)&gt;=80</expression>
+                            <name>Disco com uso alto</name>
+                            <priority>AVERAGE</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
                         <trigger>
                             <uuid>873ac04967f44da98b710358fd25268f</uuid>
                             <expression>avg(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.used.percent.root,#3)&gt;=90</expression>
