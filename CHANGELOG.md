@@ -18,6 +18,24 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 
 
+## [v2.13.2] — 2026-09-30
+
+### Alterado — MikroTik CCR-1036
+
+- **Padronização de interfaces**: nomenclatura alinhada ao template Huawei 6700 para compatibilidade em dashboards
+  - Discovery rule renomeada: `Network Interfaces Discovery` → `Discovery | Network interfaces Physical`
+  - Macro `{#IFCOMENT}` renomeada para `{#IFALIAS}` (mesmo OID ifAlias, só nome padronizado)
+  - Todos os itens de interface atualizados: `Interface {#IFNAME}: Bytes In` → `Incoming traffic on interface - {#IFNAME}: ({#IFALIAS})` e padrão equivalente para todos os demais
+  - Trigger e graph de interface seguem o mesmo padrão
+- **Novo LLD de sinal óptico SFP**: `Discovery | Network interfaces | Sinal optico SFP`
+  - OID: `1.3.6.1.4.1.14988.1.1.19.1.1.*` (mtxrOpticalTable)
+  - Itens por porta SFP: RxPower (dBm), TxPower (dBm), Temperature (°C), TxBias (mA)
+  - Trigger: RxPower < -27 dBm → WARNING, tags scope=SISTEMA/tipo=Sinal_Optico/notificar=telegram
+  - Graph: Signal Power (Rx + Tx sobrepostos)
+- **Tags obrigatórias** adicionadas em todas as triggers: Link Down, Firmware, Fonte desligada
+
+---
+
 ## [v2.13.1] — 2026-09-29
 
 ### Alterado — Servidor Linux
