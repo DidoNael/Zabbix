@@ -17,6 +17,24 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 
 
+
+## [v2.13.1] — 2026-09-29
+
+### Alterado — Servidor Linux
+
+- **LLD de filesystems**: substituiu item fixo disk.used.percent.root por regra de descoberta automática
+  - Chave nativa do agente: fs.fs.discovery + fs.fs.size[{#FSNAME},pused/free/total]
+  - Sem necessidade de UserParameter para disco — agente Zabbix nativo já suporta
+  - Descobre automaticamente todos os discos montados: /, /mnt/samba, /data, etc.
+  - Exclui filesystems virtuais: tmpfs, devtmpfs, proc, sysfs, cgroup, overlay, squashfs
+- **Triggers por filesystem** (encadeadas, disparam só após 15 min contínuos):
+  - >= 80% → AVERAGE / notificar=telegram
+  - >= 90% → HIGH / notificar=telegram (depende da 80%)
+  - >= 95% → DISASTER / notificar=telegram (depende da 90%)
+- **Tags obrigatórias** adicionadas em todas as triggers (scope/tipo/notificar)
+- **userparameters/servidor_linux.conf**: removida entrada disk.used.percent.root
+
+---
 ## [v2.13.0] — 2026-09-29
 
 ### Adicionado

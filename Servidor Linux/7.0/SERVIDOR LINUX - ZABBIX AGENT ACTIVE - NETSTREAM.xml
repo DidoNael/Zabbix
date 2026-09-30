@@ -17,12 +17,8 @@
             <template>SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM</template>
             <name>SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM</name>
             <groups>
-                <group>
-                    <name>LINUX</name>
-                </group>
-                <group>
-                    <name>ZABBIX-AGENT-ACTIVE</name>
-                </group>
+                <group><name>LINUX</name></group>
+                <group><name>ZABBIX-AGENT-ACTIVE</name></group>
             </groups>
             <items>
                 <item>
@@ -32,12 +28,22 @@
                     <key>cpu.utilization</key>
                     <trends>0</trends>
                     <units>%</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>SISTEMA</value></tag>
+                        <tag><tag>tipo</tag><value>CPU</value></tag>
+                    </tags>
                     <triggers>
                         <trigger>
                             <uuid>6044c6488fc44c3b80cee1503eab602a</uuid>
                             <expression>avg(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/cpu.utilization,#10)&gt;=90</expression>
-                            <name>Consumo de CPU</name>
+                            <name>Consumo de CPU alto (&gt;= 90%)</name>
                             <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag><tag>scope</tag><value>SISTEMA</value></tag>
+                                <tag><tag>tipo</tag><value>CPU</value></tag>
+                                <tag><tag>notificar</tag><value>telegram</value></tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
@@ -50,6 +56,10 @@
                     <value_type>FLOAT</value_type>
                     <trends>0</trends>
                     <units>ms</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>DISCO</value></tag>
+                        <tag><tag>tipo</tag><value>IO</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>9cf49d4d9a6244b1a2b513b4b1dca03a</uuid>
@@ -60,6 +70,10 @@
                     <value_type>FLOAT</value_type>
                     <trends>0</trends>
                     <units>r/s</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>DISCO</value></tag>
+                        <tag><tag>tipo</tag><value>IO</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>1cb856ac591b464f8bc71b1b22eb55d2</uuid>
@@ -70,6 +84,10 @@
                     <value_type>FLOAT</value_type>
                     <trends>0</trends>
                     <units>ms</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>DISCO</value></tag>
+                        <tag><tag>tipo</tag><value>IO</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>664062d5c7974cf39278bc3c06d36893</uuid>
@@ -80,6 +98,10 @@
                     <value_type>FLOAT</value_type>
                     <trends>0</trends>
                     <units>w/s</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>DISCO</value></tag>
+                        <tag><tag>tipo</tag><value>IO</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>c2e73be69735478a8d942493222a4221</uuid>
@@ -90,38 +112,10 @@
                     <value_type>FLOAT</value_type>
                     <trends>0</trends>
                     <units>ms</units>
-                </item>
-                <item>
-                    <uuid>516f09a182a244f99a22a662e12d5e49</uuid>
-                    <name>Consumo de disco root</name>
-                    <type>ZABBIX_ACTIVE</type>
-                    <key>disk.used.percent.root</key>
-                    <delay>1h</delay>
-                    <trends>0</trends>
-                    <units>%</units>
-                    <triggers>
-                        <trigger>
-                            <uuid>a1b2c3d4e5f64a7b8c9d0e1f2a3b4c5d</uuid>
-                            <expression>avg(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.used.percent.root,#3)&gt;=80</expression>
-                            <name>Disco com uso alto</name>
-                            <priority>AVERAGE</priority>
-                            <manual_close>YES</manual_close>
-                        </trigger>
-                        <trigger>
-                            <uuid>873ac04967f44da98b710358fd25268f</uuid>
-                            <expression>avg(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.used.percent.root,#3)&gt;=90</expression>
-                            <name>Consumo de disco elevado</name>
-                            <priority>HIGH</priority>
-                            <manual_close>YES</manual_close>
-                        </trigger>
-                        <trigger>
-                            <uuid>17bf1fde60e543d3a2083500726c5fa0</uuid>
-                            <expression>avg(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.used.percent.root,#3)&gt;=99</expression>
-                            <name>Disco Cheio</name>
-                            <priority>HIGH</priority>
-                            <manual_close>YES</manual_close>
-                        </trigger>
-                    </triggers>
+                    <tags>
+                        <tag><tag>scope</tag><value>DISCO</value></tag>
+                        <tag><tag>tipo</tag><value>IO</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>6a2dced713034b1c806183ed9d9fa43c</uuid>
@@ -129,6 +123,10 @@
                     <type>ZABBIX_ACTIVE</type>
                     <key>dns.check.globo</key>
                     <trends>0</trends>
+                    <tags>
+                        <tag><tag>scope</tag><value>DNS</value></tag>
+                        <tag><tag>tipo</tag><value>Resolucao</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>7a06cad45d604209b325643a19479e9f</uuid>
@@ -136,6 +134,10 @@
                     <type>ZABBIX_ACTIVE</type>
                     <key>dns.check.registrobr</key>
                     <trends>0</trends>
+                    <tags>
+                        <tag><tag>scope</tag><value>DNS</value></tag>
+                        <tag><tag>tipo</tag><value>Resolucao</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>d8d4b16e1c1c4b998847a59a8d90fa4d</uuid>
@@ -143,6 +145,10 @@
                     <type>ZABBIX_ACTIVE</type>
                     <key>dns.check.uol</key>
                     <trends>0</trends>
+                    <tags>
+                        <tag><tag>scope</tag><value>DNS</value></tag>
+                        <tag><tag>tipo</tag><value>Resolucao</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>d1e46464da314980bd73043b70e870f7</uuid>
@@ -150,6 +156,10 @@
                     <type>ZABBIX_ACTIVE</type>
                     <key>dns.check.youtube</key>
                     <trends>0</trends>
+                    <tags>
+                        <tag><tag>scope</tag><value>DNS</value></tag>
+                        <tag><tag>tipo</tag><value>Resolucao</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>ff6af6c1583b46a28dfdd11d245feaf4</uuid>
@@ -161,17 +171,17 @@
                     <preprocessing>
                         <step>
                             <type>SIMPLE_CHANGE</type>
-                            <parameters>
-                                <parameter/>
-                            </parameters>
+                            <parameters><parameter/></parameters>
                         </step>
                         <step>
                             <type>MULTIPLIER</type>
-                            <parameters>
-                                <parameter>8</parameter>
-                            </parameters>
+                            <parameters><parameter>8</parameter></parameters>
                         </step>
                     </preprocessing>
+                    <tags>
+                        <tag><tag>scope</tag><value>REDE</value></tag>
+                        <tag><tag>tipo</tag><value>Trafego</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>4c16487fcc9042b883c0392be52ab861</uuid>
@@ -183,17 +193,17 @@
                     <preprocessing>
                         <step>
                             <type>SIMPLE_CHANGE</type>
-                            <parameters>
-                                <parameter/>
-                            </parameters>
+                            <parameters><parameter/></parameters>
                         </step>
                         <step>
                             <type>MULTIPLIER</type>
-                            <parameters>
-                                <parameter>8</parameter>
-                            </parameters>
+                            <parameters><parameter>8</parameter></parameters>
                         </step>
                     </preprocessing>
+                    <tags>
+                        <tag><tag>scope</tag><value>REDE</value></tag>
+                        <tag><tag>tipo</tag><value>Trafego</value></tag>
+                    </tags>
                 </item>
                 <item>
                     <uuid>45ace796a79642a0b1c5c7975be07f48</uuid>
@@ -202,12 +212,21 @@
                     <key>ssh.failed.logins</key>
                     <delay>10m</delay>
                     <trends>0</trends>
+                    <tags>
+                        <tag><tag>scope</tag><value>SEGURANCA</value></tag>
+                        <tag><tag>tipo</tag><value>SSH</value></tag>
+                    </tags>
                     <triggers>
                         <trigger>
                             <uuid>b44a2d19e7f649108be49db11fabf6f0</uuid>
                             <expression>change(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/ssh.failed.logins)&gt;100</expression>
-                            <name>Tentativa de brute force</name>
+                            <name>Tentativa de brute force SSH (&gt; 100 falhas)</name>
                             <priority>AVERAGE</priority>
+                            <tags>
+                                <tag><tag>scope</tag><value>SEGURANCA</value></tag>
+                                <tag><tag>tipo</tag><value>SSH</value></tag>
+                                <tag><tag>notificar</tag><value>telegram</value></tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
@@ -219,26 +238,169 @@
                     <delay>10m</delay>
                     <trends>0</trends>
                     <units>s</units>
+                    <tags>
+                        <tag><tag>scope</tag><value>SISTEMA</value></tag>
+                        <tag><tag>tipo</tag><value>Disponibilidade</value></tag>
+                    </tags>
                     <triggers>
                         <trigger>
                             <uuid>a6967247b3514dc9924993fde84194a1</uuid>
                             <expression>last(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/uptime.system)&lt;86400</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>last(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/uptime.system)&gt;=3600</recovery_expression>
-                            <name>Host Reiniciado</name>
+                            <name>Host reiniciado</name>
                             <priority>HIGH</priority>
+                            <tags>
+                                <tag><tag>scope</tag><value>SISTEMA</value></tag>
+                                <tag><tag>tipo</tag><value>Disponibilidade</value></tag>
+                                <tag><tag>notificar</tag><value>telegram</value></tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
             </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>a3f1c8e2d4b54a6f9e0c7d2b1a5e8f3c</uuid>
+                    <name>Descoberta de filesystems</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>vfs.fs.discovery</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#FSTYPE}</macro>
+                                <value>^(tmpfs|devtmpfs|sysfs|proc|udev|cgroup|cgroup2|overlay|squashfs|pstore|securityfs|debugfs|tracefs|mqueue|hugetlbfs|fusectl|configfs|autofs|ramfs)$</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#FSNAME}</macro>
+                                <value>^(/run|/sys|/proc|/dev)(/|$)</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>B</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime_type>DELETE_IMMEDIATELY</lifetime_type>
+                    <lifetime>0</lifetime>
+                    <enabled_lifetime_type>DISABLE_NEVER</enabled_lifetime_type>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>b1c2d3e4f5a64b7c8d9e0f1a2b3c4d5e</uuid>
+                            <name>Disco {#FSNAME}: uso (%)</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>vfs.fs.size[{#FSNAME},pused]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <tags>
+                                <tag><tag>scope</tag><value>DISCO</value></tag>
+                                <tag><tag>tipo</tag><value>Uso_Disco</value></tag>
+                                <tag><tag>filesystem</tag><value>{#FSNAME}</value></tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>c1d2e3f4a5b64c7d8e9f0a1b2c3d4e5f</uuid>
+                                    <expression>min(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/vfs.fs.size[{#FSNAME},pused],900)&gt;=80</expression>
+                                    <name>Disco {#FSNAME}: uso alto (&gt;= 80%)</name>
+                                    <opdata>Uso atual: {ITEM.LASTVALUE}</opdata>
+                                    <priority>AVERAGE</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag><tag>scope</tag><value>DISCO</value></tag>
+                                        <tag><tag>tipo</tag><value>Uso_Disco</value></tag>
+                                        <tag><tag>notificar</tag><value>telegram</value></tag>
+                                        <tag><tag>filesystem</tag><value>{#FSNAME}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>d1e2f3a4b5c64d7e8f9a0b1c2d3e4f5a</uuid>
+                                    <expression>min(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/vfs.fs.size[{#FSNAME},pused],900)&gt;=90</expression>
+                                    <name>Disco {#FSNAME}: uso elevado (&gt;= 90%)</name>
+                                    <opdata>Uso atual: {ITEM.LASTVALUE}</opdata>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <dependencies>
+                                        <dependency>
+                                            <name>Disco {#FSNAME}: uso alto (&gt;= 80%)</name>
+                                            <expression>min(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/vfs.fs.size[{#FSNAME},pused],900)&gt;=80</expression>
+                                        </dependency>
+                                    </dependencies>
+                                    <tags>
+                                        <tag><tag>scope</tag><value>DISCO</value></tag>
+                                        <tag><tag>tipo</tag><value>Uso_Disco</value></tag>
+                                        <tag><tag>notificar</tag><value>telegram</value></tag>
+                                        <tag><tag>filesystem</tag><value>{#FSNAME}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>e1f2a3b4c5d64e7f8a9b0c1d2e3f4a5b</uuid>
+                                    <expression>min(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/vfs.fs.size[{#FSNAME},pused],900)&gt;=95</expression>
+                                    <name>Disco {#FSNAME}: CHEIO (&gt;= 95%)</name>
+                                    <opdata>Uso atual: {ITEM.LASTVALUE}</opdata>
+                                    <priority>DISASTER</priority>
+                                    <manual_close>YES</manual_close>
+                                    <dependencies>
+                                        <dependency>
+                                            <name>Disco {#FSNAME}: uso elevado (&gt;= 90%)</name>
+                                            <expression>min(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/vfs.fs.size[{#FSNAME},pused],900)&gt;=90</expression>
+                                        </dependency>
+                                    </dependencies>
+                                    <tags>
+                                        <tag><tag>scope</tag><value>DISCO</value></tag>
+                                        <tag><tag>tipo</tag><value>Uso_Disco</value></tag>
+                                        <tag><tag>notificar</tag><value>telegram</value></tag>
+                                        <tag><tag>filesystem</tag><value>{#FSNAME}</value></tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f1a2b3c4d5e64f7a8b9c0d1e2f3a4b5c</uuid>
+                            <name>Disco {#FSNAME}: espaço livre</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>vfs.fs.size[{#FSNAME},free]</key>
+                            <delay>5m</delay>
+                            <value_type>UNSIGNED</value_type>
+                            <units>B</units>
+                            <tags>
+                                <tag><tag>scope</tag><value>DISCO</value></tag>
+                                <tag><tag>tipo</tag><value>Uso_Disco</value></tag>
+                                <tag><tag>filesystem</tag><value>{#FSNAME}</value></tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>a2b3c4d5e6f74a8b9c0d1e2f3a4b5c6d</uuid>
+                            <name>Disco {#FSNAME}: tamanho total</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>vfs.fs.size[{#FSNAME},total]</key>
+                            <delay>1h</delay>
+                            <value_type>UNSIGNED</value_type>
+                            <units>B</units>
+                            <tags>
+                                <tag><tag>scope</tag><value>DISCO</value></tag>
+                                <tag><tag>tipo</tag><value>Uso_Disco</value></tag>
+                                <tag><tag>filesystem</tag><value>{#FSNAME}</value></tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
         </template>
     </templates>
     <triggers>
         <trigger>
             <uuid>213c6bbeaca0456e895e199b76ead642</uuid>
             <expression>count(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.iostat.read,#10)&gt;=20 or count(/SERVIDOR LINUX -  ZABBIX AGENT ACTIVE - NETSTREAM/disk.iostat.write,#10)&gt;=20</expression>
-            <name>DISK IO - Tempo de espera alto &gt; 20Ms</name>
+            <name>DISK IO - Tempo de espera alto (&gt; 20ms)</name>
             <priority>AVERAGE</priority>
+            <tags>
+                <tag><tag>scope</tag><value>DISCO</value></tag>
+                <tag><tag>tipo</tag><value>IO</value></tag>
+                <tag><tag>notificar</tag><value>telegram</value></tag>
+            </tags>
         </trigger>
         <trigger>
             <uuid>057fd206378d482caced39bfc3d8869a</uuid>
@@ -247,24 +409,10 @@
             <opdata>Globo: {ITEM.LASTVALUE1} , Registro BR: {ITEM.LASTVALUE2}</opdata>
             <priority>HIGH</priority>
             <tags>
-                <tag>
-                    <tag>Site Globo</tag>
-                    <value>{ITEM.LASTVALUE1}</value>
-                </tag>
-                <tag>
-                    <tag>Site Registro Br</tag>
-                    <value>{ITEM.LASTVALUE2}</value>
-                </tag>
-                <tag>
-                    <tag>Site Uol</tag>
-                    <value>{ITEM.LASTVALUE3}</value>
-                </tag>
-                <tag>
-                    <tag>Site Youtube</tag>
-                    <value>{ITEM.LASTVALUE4}</value>
-                </tag>
+                <tag><tag>scope</tag><value>DNS</value></tag>
+                <tag><tag>tipo</tag><value>Resolucao</value></tag>
+                <tag><tag>notificar</tag><value>telegram</value></tag>
             </tags>
         </trigger>
     </triggers>
 </zabbix_export>
-
