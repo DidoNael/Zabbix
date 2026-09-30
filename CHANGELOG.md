@@ -18,6 +18,20 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 
 
+## [v2.13.3] — 2026-09-30
+
+### Corrigido — MikroTik CCR-1036
+
+- **Correção OIDs SFP optical**: mapeamento correto após snmpwalk nos equipamentos reais
+  - RxPower: OID `.10` (era `.6`), multiplier 0.01 (era 0.1) → unidade dBm correta
+  - TxPower: OID `.9` (era `.5`), multiplier 0.01 (era 0.1)
+  - Temperature: OID `.6` (era `.8`), multiplier 1 (era 0.1) → já vem em °C
+  - TxBias: OID `.8` (era `.7`), multiplier 1 (era 0.001) → já vem em mA
+  - Verificado em Assare (TxPower=-28.83dBm, RxPower=-30.27dBm, Temp=38°C) e Caragua
+  - Fortaleza não tem módulos SFP (OID `.19` ausente) → discovery retorna zero itens normalmente
+
+---
+
 ## [v2.13.2] — 2026-09-30
 
 ### Alterado — MikroTik CCR-1036
