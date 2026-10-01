@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
     <date>2026-07-24T01:09:10Z</date>
@@ -1373,7 +1373,7 @@ return 0;</params>
                             <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}=0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1 and ({Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].last()}+0)&gt;=0 and ({Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].last()}+0)&gt;=0</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;0</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: Queda total de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda total de ONUs</name>
                             <opdata>LOS: {ITEM.VALUE2}, DG: {ITEM.VALUE3}</opdata>
                             <priority>DISASTER</priority>
                             <tags>
@@ -1403,7 +1403,7 @@ return 0;</params>
                             <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].change()}&gt;=5 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].last(#2)}&gt;0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&lt;={Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}].last(#2)}</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: DyingGasp detectado (Energia)</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): DyingGasp detectado (Energia)</name>
                             <priority>DISASTER</priority>
                             <manual_close>YES</manual_close>
                             <tags>
@@ -1437,7 +1437,7 @@ return 0;</params>
                             <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].delta(900)}&gt;=3 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}].last()}=0</recovery_expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: LOS detectado (Fibra)</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): LOS detectado (Fibra)</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <description>3 ou mais ONUs passaram a ter LOS como motivo de queda nos ultimos 15 minutos. Possivel rompimento de fibra na PON {#NETSTREAM.PON_NAME}.</description>
@@ -1470,7 +1470,7 @@ return 0;</params>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].change()}&lt;-{$GPON_DROP_MIN} and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].last()}&gt;0 and {Template SNMP OLT FiberHome - NETSTREAM:netstream.gpon.pon.calc.online.fiberhome[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
-                            <name>PON {#NETSTREAM.PON_NAME}: Queda parcial de ONUs</name>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda parcial de ONUs</name>
                             <priority>HIGH</priority>
                             <manual_close>YES</manual_close>
                             <tags>
