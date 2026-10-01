@@ -18,6 +18,14 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 
 
+## [v2.13.8] — 2026-10-01
+
+### Corrigido — MikroTik RouterOS
+
+- **CPU discovery OID corrigido**: `hrProcessorLoad.discovery` usava `1.3.6.1.2.1.25.3.3.1.1` (`hrProcessorFrwID`) para enumerar núcleos — OID não implementado em vários modelos MikroTik. Trocado para `1.3.6.1.2.1.25.3.3.1.2` (`hrProcessorLoad`), que responde em todos os modelos testados.
+
+---
+
 ## [v2.13.7] — 2026-10-01
 
 ### Alterado — MikroTik
