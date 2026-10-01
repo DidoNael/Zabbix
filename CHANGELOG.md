@@ -18,6 +18,20 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 
 
+## [v2.13.9] — 2026-10-01
+
+### Adicionado — MikroTik RouterOS
+
+- **Discovery de memória e armazenamento** (`hrStorage.discovery`): LLD via `hrStorageTable` SNMP (`1.3.6.1.2.1.25.2.3.1`)
+  - Descobre todos os storages disponíveis (RAM física, RAM virtual, Flash, etc.) com `{#STORAGE_DESCR}` e `{#SNMPINDEX}`
+  - Item prototypes: `hrStorageSize[{#SNMPINDEX}]` (total em bytes), `hrStorageUsed[{#SNMPINDEX}]` (usado em bytes), `percent.storage[{#SNMPINDEX}]` (% calculado)
+  - Trigger prototypes: > 80% por 10 min → WARNING; > 90% por 5 min → HIGH (notifica telegram)
+  - Graph prototype: "Storage {#STORAGE_DESCR}: Uso" com área usada e linha de total
+  - Substitui itens fixos `mikrotik.total.memory` / `mikrotik.used.memory` / `percent.memory` (índice 65536 hardcoded)
+  - Delay discovery: 1h; lifetime de itens descobertos: 2d
+
+---
+
 ## [v2.13.8] — 2026-10-01
 
 ### Corrigido — MikroTik RouterOS
