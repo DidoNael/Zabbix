@@ -18,6 +18,41 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 
 
+## [v2.14.0] — 2026-10-01
+
+### Adicionado — Monitoramento CGNAT MikroTik
+
+- **Macros CGNAT** no template `MikroTik RouterOS - NETSTREAM`:
+  - `{$CGNAT_PORT_LIMIT}` = 2000 (limite de portas por cliente, ratio 1/32)
+  - `{$CGNAT_PORT_WARN}` = 1600 (80% do limite — WARNING)
+  - `{$CGNAT_PORT_HIGH}` = 1900 (95% do limite — HIGH)
+  - `{$CGNAT_POOL_NAME}` = poolIXCCGNat (nome do pool no RouterOS `/ip pool`)
+  - `{$CGNAT_POOL_SIZE}` = 1022 (total IPs usáveis em /22)
+  - Todos ajustáveis por host via macros (override no host)
+
+- **Triggers CGNAT por cliente** (LLD `conntrack.top.discovery`):
+  - WARNING: `min(...,10m) >= {$CGNAT_PORT_WARN}` — cliente se aproximando do limite
+  - HIGH: `min(...,10m) >= {$CGNAT_PORT_HIGH}` — estouro iminente (priority=4)
+  - Tags: `scope=CGNAT`, `tipo=Port_Exhaustion`, `notificar=telegram`, `cliente={#CONN_IP}`
+  - Valor de threshold 100% controlado por macro — fácil ajuste por host para ratios diferentes
+
+- **Monitoramento de pool CGNAT**:
+  - Item `cgnat.pool.used[{HOST.CONN},...,{$CGNAT_POOL_NAME}]` (EXTERNAL): conta IPs ativos via `/ip pool used print count-only`
+  - Item calculado `percent.cgnat.pool`: `pool_used * 100 / {$CGNAT_POOL_SIZE}` em %
+  - Trigger WARNING: pool > 80% por 10 min
+  - Trigger HIGH: pool > 90% por 5 min (notifica telegram)
+
+- **Script** `Mikrotik/externalscripts/cgnat.pool.used`:
+  - SSH no RouterOS, retorna count inteiro do pool nomeado
+  - Aceita parâmetros: host, user, password, pool_name
+
+### Nota técnica
+- RouterOS **não expõe** conntrack count nem pool usage via SNMP — SSH é o único método
+- OID para total de conexões (`/ip firewall connection`) não existe na MIB MikroTik
+- A granularidade por cliente vem do script `conntrack.top` (top N IPs) — clientes fora do top N têm threshold protegido pelo `error_handler=DISCARD_VALUE` (mantém último valor)
+
+---
+
 ## [v2.13.9] — 2026-10-01
 
 ### Adicionado — MikroTik RouterOS
