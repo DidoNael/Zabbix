@@ -1,0 +1,16 @@
+#!/bin/bash
+# avg.cpu.util - MikroTik average CPU utilization across all discovered cores
+# Works for any CCR/RouterBOARD model regardless of core count
+# Usage (Zabbix external check): avg.cpu.util[{HOST.CONN},{$SNMP_COMMUNITY}]
+#
+# Deploy to: /usr/lib/zabbix/externalscripts/avg.cpu.util
+# chmod +x /usr/lib/zabbix/externalscripts/avg.cpu.util
+
+HOST="$1"
+COMMUNITY="$2"
+
+result=$(snmpwalk -v2c -c "$COMMUNITY" "$HOST" 1.3.6.1.2.1.25.3.3.1.2 2>/dev/null \
+  | grep -oE '[0-9]+$' \
+  | awk '{s+=$1; c++} END {if (c>0) printf "%.2f", s/c; else print 0}')
+
+echo "${result:-0}"

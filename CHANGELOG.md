@@ -18,6 +18,20 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 
 
+## [v2.13.6] — 2026-10-01
+
+### Corrigido — MikroTik CCR-1036
+
+- **`avg.cpu.util` agora funciona em qualquer modelo MikroTik** (não apenas CCR-1036):
+  - Tipo alterado de `CALCULATED` (hardcoded 36 núcleos) para `EXTERNAL` (script SNMP walk)
+  - Novo script `Mikrotik/externalscripts/avg.cpu.util`: faz `snmpwalk 1.3.6.1.2.1.25.3.3.1.2` e retorna média de todos os núcleos encontrados
+  - Delay alterado de `1s` (absurdo para calculated) para `60s`
+  - Chave atualizada: `avg.cpu.util[{HOST.CONN},{$SNMP_COMMUNITY}]`
+  - Deploy obrigatório: copiar script para `/usr/lib/zabbix/externalscripts/avg.cpu.util` no servidor Zabbix e dar `chmod +x`
+- **Porta hardcoded removida** da discovery rule `CPU discovery` e item prototype `system.cpu.util[hrProcessorLoad.{#SNMPINDEX}]` — porta `161` nunca deve ser definida em item prototypes
+
+---
+
 ## [v2.13.5] — 2026-10-01
 
 ### Adicionado — MikroTik CCR-1036

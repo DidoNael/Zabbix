@@ -280,7 +280,27 @@ ONU Dedicada {#NETSTREAM.ONU_DESC}: Status atual
 
 ---
 
-## 14. Changelog e Versionamento
+## 14. Monitoramento obrigatório pós-import
+
+**Regra**: toda vez que um template for importado no Zabbix (produção ou homologação), é obrigatório monitorar o resultado por 24 horas.
+
+**Fluxo**:
+1. Aguardar ~10 minutos após o import
+2. Verificar no Zabbix: items "not supported", triggers em estado "Unknown" ou disparando incorretamente
+3. Repetir a verificação a cada 1 hora pelas primeiras 24 horas
+4. Se encontrar problema: apresentar diagnóstico de causa raiz + proposta de correção ao usuário antes de aplicar qualquer fix
+
+**O que verificar em cada ciclo de validação**:
+- Items CALCULATED com "not supported": a fórmula pode referenciar item ausente (LLD não rodou ainda, ou host com modelo diferente do esperado)
+- Triggers em estado "Desconhecido" (Unknown): item base com erro — ver coluna "Informação" no Zabbix
+- Discovery rules com delay alto (ex: 1 dia): verificar se os protótipos foram criados; se não, forçar execução manual via "Executar agora"
+- Triggers disparando (falso positivo) logo após import: avaliar se são legítimas ou artefato do import
+
+**Causa frequente pós-import**: item CALCULATED que depende de itens criados por LLD. O LLD tem delay, então nos primeiros minutos/horas os itens não existem e o CALCULATED fica "not supported". Solução: forçar execução do LLD manualmente logo após o import.
+
+---
+
+## 15. Changelog e Versionamento
 
 **Regra**: toda mudança no projeto (novo item, trigger, script, correção) deve:
 
