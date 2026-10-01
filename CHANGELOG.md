@@ -18,6 +18,19 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 
 
+## [v2.13.5] — 2026-10-01
+
+### Adicionado — MikroTik CCR-1036
+
+- **Triggers de CPU** no item `avg.cpu.util` (média geral de todos os núcleos):
+  - > 60% por 10 minutos → WARNING, tags scope=SISTEMA/tipo=CPU/notificar=telegram
+  - > 80% por 5 minutos → HIGH (INCIDENTE), mesmas tags
+- **Triggers de RAM** no item `percent.memory` (substituiu trigger simples sem tags):
+  - > 80% por 10 minutos → WARNING, tags scope=SISTEMA/tipo=Memoria/notificar=telegram
+  - > 90% por 5 minutos → HIGH (INCIDENTE), mesmas tags
+
+---
+
 ## [v2.13.3] — 2026-09-30
 
 ### Corrigido — MikroTik CCR-1036
