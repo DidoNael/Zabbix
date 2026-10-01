@@ -18,6 +18,17 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 
 
+## [v2.13.7] — 2026-10-01
+
+### Alterado — MikroTik
+
+- **Renomeado template**: `Mikrotik CCR-1036 - COM CPU - NETSTREAM` → `MikroTik RouterOS - NETSTREAM`
+  - Template agora é genérico para qualquer RouterOS (CCR, CRS, hEX, RB, etc.)
+  - Arquivo renomeado: `Mikrotik CCR-1036 - COM CPU - NETSTREAM.xml` → `MikroTik RouterOS - NETSTREAM.xml`
+  - Rename feito via API no Zabbix 177.91.165.53 (ID 10892 preservado, histórico intacto)
+
+---
+
 ## [v2.13.6] — 2026-10-01
 
 ### Corrigido — MikroTik CCR-1036
