@@ -15,7 +15,14 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 ---
 
+## [v2.14.1] - 2026-10-03
+### Fixed
+- **Huawei 6700 (4.4 e 6.0)**: trigger BGP peer DOWN disparava em cada transição de estado (flap),
+  gerando alarmes constantes. Corrigido: expressão mudada para `min(#3)<>6` (peer precisa estar
+  não-estabelecido por 3 amostras consecutivas) + recovery expression explícita `last()=6`.
+  Válido para IPv4 (netstream.bgppeerv4) e IPv6 (netstream.bgppeerv6).
 
+---
 
 
 ## [v2.14.0] — 2026-10-01
