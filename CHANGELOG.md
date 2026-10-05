@@ -15,6 +15,39 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 ---
 
+## [v2.14.4] - 2026-10-05
+### Fixed
+- **ZTE DEV (4.4 e 6.0)**: recovery expression do trigger LOS corrigida — expressão anterior
+  (`last()<=max(24h)*0.5` / `last()<=min(7d)+2`) nunca disparava com contadores cumulativos.
+  Nova expressão: `delta(900)<3` (mesmo critério da alarm expression, invertido), garantindo
+  auto-recuperação quando não há novos eventos de LOS nos últimos 15 minutos.
+- **Fiberhome DEV**: mesma correção aplicada via API Zabbix no template 10933 (sem XML DEV
+  separado no repositório).
+- **ZTE DEV (6.0)**: adicionados dependency (LOS suprimido por Queda Total) e opdata com
+  causa (LOS/DG) no trigger Queda Total — aplicados via API no template 10931.
+
+## [v2.14.3] - 2026-10-03
+### Fixed
+- **Huawei OLT (4.4 e 6.0)**: trigger "PON {#OLTPORT}: Link DOWN" renomeado para
+  **"PON {#OLTPORT}: Porta GPON Inativa"** (padrão igual a ZTE e Fiberhome) e corrigido
+  `notificar=nao` → `notificar=telegram`. Adicionadas tags `pon={#OLTPORT}` e
+  `pon_desc={#IFALIAS}`. Tipo alterado de `Link_Down` → `Queda_Total`.
+  Host afetado: TR 11 - OLT-HUAWEI-MA5800X7-GUARULHOS-TIMOTEO.
+
+---
+
+## [v2.14.2] - 2026-10-03
+### Fixed
+- **Fiberhome OLT (6.0)**: template de produção (`Template SNMP OLT FiberHome - NETSTREAM`, id=10685)
+  estava desatualizado em relação ao DEV — não possuía o trigger prototype **"Porta GPON Inativa"**
+  (`notificar=telegram`), causando ausência de alertas Telegram quando portas PON ficavam inativas.
+  Importado template 6.0 atualizado; LLD de PON re-executado nos 5 hosts vinculados
+  (Dutra 1, Dutra 2, Itaquaquecetuba, Fortaleza GPON, Fortaleza EPON).
+- **Fiberhome OLT (6.0)**: adicionada tag `pon_desc` em todos os trigger prototypes de PON
+  (corrige `*UNKNOWN*` em notificações Telegram que exibem descrição da porta).
+
+---
+
 ## [v2.14.1] - 2026-10-03
 ### Fixed
 - **Huawei 6700 (4.4 e 6.0)**: trigger BGP peer DOWN disparava em cada transição de estado (flap),
