@@ -15,6 +15,22 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 ---
 
+## [v2.14.5] - 2026-10-06
+### Fixed
+- **ZTE DEV (6.0)**: opdata do trigger Queda Total corrigido — trocado `{ITEM.VALUE2}/{ITEM.VALUE3}`
+  (last() instantâneo) por `{?max(...,1800)}` (máximo nos últimos 30 min). Garante que DG e LOS
+  apareçam como não-zero mesmo quando o counter zerou entre a causa e a avaliação do opdata.
+- **ZTE DEV (4.4)**: mesma correção com sintaxe 4.4 — adicionadas condições dummy de LOS/DG na
+  expressão + opdata `LOS: {ITEM.VALUE2}, DG: {ITEM.VALUE3}`.
+- **ZTE Prod (80655/80656/80657)**: adicionada tag `pon_desc={#NETSTREAM.PON_DESC}` nos triggers
+  Queda Total, DyingGasp e LOS — corrige `*UNKNOWN*` no Telegram (Action 37 usa
+  `{EVENT.TAGS.pon_desc}`). Opdata do Queda Total também corrigido para `max(1800)`.
+- **Huawei Prod (43130/43131/43132/43133)**: adicionada tag `pon_desc={#NETSTREAM.PON_DESC}` nos
+  triggers Queda Total, DyingGasp, LOS e Queda Parcial. Script de discovery já exportava essa macro.
+### Identified (pendente)
+- **ZTE Prod (77838–77842)**: triggers de tráfego/capacidade legados usam `pon_desc={#PONDESC}`
+  (macro da discovery de interface IF-MIB). Requer investigação separada para migrar sem quebrar LLD.
+
 ## [v2.14.4] - 2026-10-05
 ### Fixed
 - **ZTE DEV (4.4 e 6.0)**: recovery expression do trigger LOS corrigida — expressão anterior
