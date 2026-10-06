@@ -15,6 +15,14 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 ---
 
+## [v2.14.6] - 2026-10-06
+### Added
+- **ZTE DEV + FH DEV**: dependências configuradas nos trigger prototypes — LOS, DyingGasp e
+  Queda Parcial agora dependem de Queda Total. Enquanto Queda Total estiver ativa, os demais
+  ficam suprimidos (sem notificação duplicada).
+- **FH DEV**: arquivo XML adicionado ao repositório (`OLT/Fiberhome/6.0/Template SNMP OLT FiberHome - NETSTREAM [DEV].xml`)
+  exportado diretamente do Zabbix DEV com todas as correções desta versão.
+
 ## [v2.14.5] - 2026-10-06
 ### Fixed
 - **ZTE DEV (6.0)**: opdata do trigger Queda Total corrigido — trocado `{ITEM.VALUE2}/{ITEM.VALUE3}`
