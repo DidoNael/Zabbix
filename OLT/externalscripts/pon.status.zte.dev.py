@@ -24,8 +24,8 @@ if not OLT_IP or not COMMUNITY:
     print("[]"); sys.exit(0)
 
 _ip = OLT_IP.replace(".", "_")
-CACHE_FULL = "/tmp/pon_cache_zte_%s.json" % _ip
-CACHE_FAST = "/tmp/pon_cache_zte_%s_fast.json" % _ip
+CACHE_FULL = "/tmp/pon_cache_zte_dev_%s.json" % _ip
+CACHE_FAST = "/tmp/pon_cache_zte_dev_%s_fast.json" % _ip
 LOCK_FILE  = CACHE_FULL + ".lock"
 CACHE_TTL  = 60
 

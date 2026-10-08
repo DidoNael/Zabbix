@@ -5,6 +5,62 @@ Referência canônica: `OLT/ZTE/4.4/Template.xml` e `OLT/ZTE/6.0/Template.xml`.
 
 ---
 
+## 0. OBRIGATÓRIO: Scripts DEV separados de Produção
+
+**Todo script externo de OLT tem versão DEV isolada de produção.**
+
+| Script produção | Script DEV | Wrapper produção | Wrapper DEV |
+|---|---|---|---|
+| `pon.status.zte.py` | `pon.status.zte.dev.py` | `netstream.gpon.pon.status.zte` | `netstream.gpon.pon.status.zte.dev` |
+| `pon.status.fiberhome.py` | `pon.status.fiberhome.dev.py` | `netstream.gpon.pon.status.fiberhome` | `netstream.gpon.pon.status.fiberhome.dev` |
+
+**Nomes de cache:**
+- Produção: `/tmp/pon_cache_zte_{IP}.json` e `/tmp/pon_cache_fh_{IP}.json`
+- DEV: `/tmp/pon_cache_zte_dev_{IP}.json` e `/tmp/pon_cache_fh_dev_{IP}.json`
+
+**Regra absoluta:** o script DEV NUNCA usa o mesmo arquivo de cache que o script de produção. Qualquer bug no script DEV fica contido — não contamina o cache lido pelos hosts de produção.
+
+**Keys Zabbix:**
+- Produção: `netstream.gpon.pon.status.zte[{HOST.IP},{$SNMP_COMMUNITY}]`
+- DEV: `netstream.gpon.pon.status.zte.dev[{HOST.IP},{$SNMP_COMMUNITY}]`
+
+**Fluxo de promoção:**
+1. Implementar mudança em `*.dev.py` e testar em host DEV
+2. Validar pelo menos 1 ciclo completo (coleta + triggers estáveis)
+3. Copiar `*.dev.py` → `*.py` (sem alterar lógica)
+4. `git add`, `git commit`, `git push origin dev`
+5. Deploy no servidor: `scp` + `chmod +x`
+
+---
+
+## 0.1. PROIBIDO: Limpar cache de produção
+
+**NUNCA executar `rm /tmp/pon_cache_zte_*.json` em produção.**
+
+Motivo: a limpeza causa oscilação nos itens DG/LOS (valores vão a 0 e voltam ao nível real). Com `delta(900)>=3`, cada oscilação abre novos eventos falsos. Com `manual_close=YES` no trigger DG, os eventos NÃO fecham sozinhos — exigem fechamento manual em massa.
+
+**Permitido limpar cache apenas:**
+- Em hosts DEV (nunca em produção)
+- Quando o IP da OLT mudou (obsoleto)
+- Para forçar coleta inicial em nova OLT (antes do primeiro ciclo)
+
+---
+
+## 0.2. Trigger DG — Proteção contra ruído de fundo
+
+Algumas OLTs ZTE têm alto número de ONUs deprovisioned permanentemente offline com histórico DyingGasp. Isso gera DG de fundo estável (ex: DG=39 no DUTRA). O trigger `delta(900)>=3` não dispara para valores estáveis, mas OLTs com muito ruído podem se beneficiar de threshold maior.
+
+**Macro opcional por host:** `{$DG_MIN_TRIGGER}` (default: não definida, usa trigger padrão).
+
+Se configurada no host, o trigger DG pode usar:
+```
+delta(900)>={$DG_MIN_TRIGGER} and count(180)>1
+```
+
+Hosts candidatos: OLTs ZTE com muitas ONUs deprovisioned (ex: DUTRA C350).
+
+---
+
 ## 1. Discovery de PONs (LOS/DG via script externo)
 
 ### Obrigatório em todos os templates

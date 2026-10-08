@@ -621,4 +621,47 @@ a expiração configurada em `Administration → General → GUI`.
 13. [ ] O encoding do arquivo XML está em UTF-8 sem BOM e indentado corretamente.
 14. [ ] Rodar `xref.py` confirma zero referências internas quebradas.
 
+---
+
+## 12. Falso Positivo em Massa — DyingGasp / LOS após Deploy de Script Externo
+
+### Sintoma
+Após deploy ou rollback de script externo (`pon.status.zte.py`, etc.), dezenas/centenas de alertas DyingGasp ou LOS abrem simultaneamente em hosts que não têm queda real de clientes (PPPoE estável).
+
+### Causa Raiz
+**Cenário A — Script com contagem não filtrada:** O script contabiliza `reason codes` de todos os ONUs offline sem filtrar pelo estado atual (`onu_state`). Como o ZTE armazena o último reason permanentemente (mesmo após ONU voltar online), o DG/LOS fica inflacionado. A troca de versão (inflado → correto ou correto → inflado) gera `delta(900)>=3` → trigger dispara.
+
+**Cenário B — Limpeza de cache:** Ao executar `rm /tmp/pon_cache_zte_*.json`, os itens calculam com valor 0 (cache vazio → JSON vazio → JSONPath retorna 0). Na coleta seguinte, os valores voltam ao nível real (ex: DG=39). `delta(900) = 39 - 0 = 39 >= 3` → trigger dispara. Como o trigger DG tem `manual_close=YES`, os eventos NÃO fecham sozinhos e se acumulam a cada ciclo.
+
+### Prevenção
+1. **NUNCA limpar cache de produção** (`/tmp/pon_cache_zte_*.json`, `/tmp/pon_cache_fh_*.json`).
+2. **Scripts DEV usam cache separado** (`pon_cache_zte_dev_*.json`) — bug no DEV não contamina produção.
+3. **Testar em host DEV por pelo menos 1 ciclo completo** antes de promover para produção.
+4. **Não fazer deploy de script em produção** sem aprovação explícita do usuário.
+
+### Resolução (quando já ocorreu)
+1. Confirmar que é falso positivo (verificar PPPoE, checar `online` vs `offline` nos itens).
+2. Fechar todos os alertas DG via API (loop com `event.acknowledge` action=5, lotes de 500):
+   ```python
+   # Requer múltiplas rodadas — novos eventos abrem enquanto DG oscila
+   for rodada in range(10):
+       dg = api(tok, "event.get", {"hostids": [...], "value": "1",
+                "search": {"name": "DyingGasp"}, "output": ["eventid"], "limit": 500})
+       if not dg: break
+       api(tok, "event.acknowledge", {"eventids": [e["eventid"] for e in dg],
+           "action": 5, "message": "Falso positivo: <causa>."})
+   ```
+3. **NÃO limpar o cache** durante o processo — piora a oscilação.
+4. Aguardar ~15 minutos para `delta(900)` zerar com valores estáveis.
+5. Fechar rodada final dos eventos residuais.
+
+### Diagnóstico — script onu_state com community errada
+Se `snmpbulkwalk ... 10.x.x.x <OID_ONU_STATE>` retornar vazio, verificar community SNMP:
+```bash
+# Obter community real do host no Zabbix
+python3 -c "import json,urllib.request; ..."  # via API usermacro.get + globalmacro
+# Testar:
+snmpbulkwalk -v2c -c S3ML1M1T3 -t 15 -r 1 -Cr10 10.x.x.x <OID>
+```
+
 
