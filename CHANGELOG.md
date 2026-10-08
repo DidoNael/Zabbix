@@ -15,6 +15,24 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 ---
 
+## [v2.14.7] - 2026-10-08
+### Fixed
+- **`pon.status.zte.py`**: reescrito com arquitetura de coleta em duas fases para garantir
+  dados consistentes durante quedas de PON.
+  - **Fase 1 (rápida, ~6s)**: auth + online + reason — calcula LOS diretamente sem depender
+    de `OID_ONU_STATE`. Grava `pon_cache_zte_{IP}_fast.json` imediatamente.
+  - **Fase 2 (enriquecimento)**: onu_state + ifname — resolve `snmp_idx` e valida LOS.
+    Grava `pon_cache_zte_{IP}.json` completo.
+  - **Causa raiz do incidente CARAGUATATUBA**: script anterior contava LOS apenas para ONUs
+    presentes em `onu_state==2`. Durante queda total de PON, walk `OID_ONU_STATE` falha/timeout
+    (6 walks paralelos levam 27s contra OLT sob stress) → `offline_onus={}` → LOS=0.
+    Script 4.4 não usa `onu_state`, conta `reason==2` direto → LOS=4 correto.
+  - **Novo comportamento**: se fase 2 falhar, `_fast.json` mantém LOS correto da fase 1.
+    Zabbix lê `_fast.json` como fallback quando cache completo não está fresco.
+- **Zabbix DEV**: host `TR 6 - OLT - ZTE - CARAGUATATUBA - C350 [DEV]` (hostid=10941)
+  criado no grupo Caraguatatuba com template `OLT ZTE - NETSTREAM DEV`. LOS=4 confirmado
+  em gpon_1/2/6 após discovery.
+
 ## [v2.14.6] - 2026-10-06
 ### Added
 - **ZTE DEV + FH DEV**: dependências configuradas nos trigger prototypes — LOS, DyingGasp e
