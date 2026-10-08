@@ -193,6 +193,15 @@ Todos os direitos reservados.</description>
                     <history>7d</history>
                     <value_type>TEXT</value_type>
                     <description>Master item: retorna JSON com status de todas as PONs (online/offline/LOS/DyingGasp)</description>
+                    <preprocessing>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <parameters>
+                                <parameter>^\[\]$</parameter>
+                            </parameters>
+                            <error_handler>DISCARD_VALUE</error_handler>
+                        </step>
+                    </preprocessing>
                 </item>
                 <item>
                     <uuid>fc24f80dfbde46de992a3d718deeaebc</uuid>
