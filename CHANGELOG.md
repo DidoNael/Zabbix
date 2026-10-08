@@ -15,6 +15,16 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 ---
 
+## [v2.14.8] - 2026-10-08
+### Fixed
+- **`pon.status.zte.py` v2.1**: corrigida regressão do v2 que causava falsos positivos
+  de DyingGasp/LOS em todos os hosts ZTE. Causa: fase 1 contava `reason` sem filtro e
+  fase 2 não sobrescrevia os counts com valores filtrados por `onu_state`.
+  - Fase 2 agora **recalcula** LOS/DG usando `onu_state` como filtro quando disponível
+  - Se `offline_onus > 0`: usa counts filtrados (sem histórico acumulado)
+  - Se `offline_onus == 0` e `offline_expected == 0`: força 0 (ONUs online, reason é stale)
+  - Se `offline_onus == 0` e `offline_expected > 0`: mantém fase 1 (queda total no GPON)
+
 ## [v2.14.7] - 2026-10-08
 ### Fixed
 - **`pon.status.zte.py`**: reescrito com arquitetura de coleta em duas fases para garantir
