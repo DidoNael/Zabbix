@@ -1,5 +1,35 @@
 # Regras do projeto zabbix-templates / OLT NETSTREAM
 
+## OBRIGATÓRIO: Scripts DEV separados de Produção
+
+**Regra**: qualquer script externo OLT em fase de desenvolvimento ou teste deve usar um arquivo `.dev.py` separado, nunca o script de produção diretamente.
+
+**Estrutura obrigatória para cada OLT:**
+
+| Arquivo | Ambiente | Chamado por |
+|---|---|---|
+| `pon.status.zte.py` | **Produção** | `netstream.gpon.pon.status.zte` |
+| `pon.status.zte.dev.py` | **DEV** | `netstream.gpon.pon.status.zte.dev` |
+| `pon.status.fiberhome.py` | **Produção** | `netstream.gpon.pon.status.fiberhome` |
+| `pon.status.fiberhome.dev.py` | **DEV** | `netstream.gpon.pon.status.fiberhome.dev` |
+| `pon.discovery.zte.py` | **Produção** | `netstream.gpon.pon.discovery.zte` |
+| `pon.discovery.zte.dev.py` | **DEV** | `netstream.gpon.pon.discovery.zte.dev` |
+
+**Templates Zabbix:**
+- Template `OLT ZTE - NETSTREAM` (prod) → itens usam chaves `netstream.gpon.pon.status.zte[...]`
+- Template `OLT ZTE - NETSTREAM DEV` (dev) → itens usam chaves `netstream.gpon.pon.status.zte.dev[...]`
+
+**Fluxo de promoção DEV → Produção:**
+1. Implementar mudança no `.dev.py`
+2. Testar em host com template DEV (ex: CARAGUATATUBA DEV)
+3. Validar coleta, triggers e ausência de falsos positivos por pelo menos 1 ciclo de monitoramento
+4. Copiar `.dev.py` → `.py` (produção)
+5. Commit + push + deploy no servidor
+
+**Por quê**: script de produção afeta TODOS os hosts ZTE simultaneamente. Erro no script (ex: contagem inflada de DG) dispara falsos positivos em massa. O script DEV roda apenas nos hosts com template DEV, limitando o impacto.
+
+---
+
 ## OBRIGATÓRIO: Consultar guia de erros antes de editar qualquer XML
 
 **Regra**: antes de realizar qualquer edição em template XML (item, trigger, discovery, preprocessing, graph, valuemap), consultar obrigatoriamente:
@@ -134,6 +164,37 @@ zabbix-server/docs/TROUBLESHOOTING_XML_IMPORT.md
 - Erro "No permissions to referred object" = item mudou de prototype para standalone (ou vice-versa)
 - Solução: deletar o item conflitante antes de importar
 - Ver: feedback_zabbix_import_prototype_conflict.md
+
+---
+
+## Padrão de nomenclatura de item/trigger/graph prototypes de interface
+
+**Regra global**: todos os prototypes de discovery de interface devem seguir o padrão abaixo, sem exceção.
+
+### Templates Switch/Roteador com `{#IFNAME}` + `{#IFALIAS}` (Huawei, Mikrotik)
+```
+[Descrição] - {#IFNAME}: ({#IFALIAS})
+```
+Exemplos: `Incoming traffic on interface - {#IF}: ({#IFALIAS})`, `Link down - {#IFNAME}: ({#IFALIAS})`
+
+### Templates Switch/Roteador sem `{#IFALIAS}` (Cisco, Datacom)
+```
+[Descrição] - {#IFNAME}
+```
+Exemplos: `Trafego de Entrada - {#IFNAME}`, `Status Operacional - {#IFNAME}`
+
+### Regras
+- Separador obrigatório: ` - ` (espaço-hífen-espaço) entre descrição e macro
+- Macro identificadora da interface sempre **depois** da descrição
+- `({#IFALIAS})` no final quando disponível no discovery
+- Sufixos como " In"/" Out" incorporar na descrição: `Packets in on interface - {#IFNAME}: ({#IFALIAS})`
+- Nomes idênticos em 4.4 e 6.0 — sincronizar no mesmo commit
+
+### Exceção — OLT (PON/Uplink)
+Templates OLT usam prefixo de tipo antes da macro: `PON {#NETSTREAM.PON_NAME} - LOS (Fibra)`, `Uplink {#IFNAME} - Status`. Domínio diferente de interface de rede — manter padrão próprio.
+
+### Exceção — Optical Module (Huawei Switch)
+`Optical Module Interface {#ENTPHYSICALNAME} ({#IFALIAS}): [métrica]` — identificador primário é físico, não IF. Manter padrão próprio.
 
 ---
 
