@@ -1577,7 +1577,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>d4e5f6a7b8c94d5e6f7a8b9c0d1e2f3a</uuid>
+                                    <uuid>d4e5f6a7b8c94d5e8f7a8b9c0d1e2f3a</uuid>
                                     <expression>min(/OLT ZTE - NETSTREAM/netstream.net.if.in[{#SNMPINDEX}],#5)&gt;{$GPON_PON_DOWN_LIMIT}</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>max(/OLT ZTE - NETSTREAM/netstream.net.if.in[{#SNMPINDEX}],#3)&lt;{$GPON_PON_DOWN_LIMIT}</recovery_expression>
@@ -1672,7 +1672,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>e5f6a7b8c9d04e5f6a7b8c9d0e1f2a3b</uuid>
+                                    <uuid>e5f6a7b8c9d04e5f8a7b8c9d0e1f2a3b</uuid>
                                     <expression>min(/OLT ZTE - NETSTREAM/netstream.net.if.out[{#SNMPINDEX}],#5)&gt;{$GPON_PON_UP_LIMIT}</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>max(/OLT ZTE - NETSTREAM/netstream.net.if.out[{#SNMPINDEX}],#3)&lt;{$GPON_PON_UP_LIMIT}</recovery_expression>
