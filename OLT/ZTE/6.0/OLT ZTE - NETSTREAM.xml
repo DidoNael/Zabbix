@@ -1432,7 +1432,6 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                     <snmp_oid>discovery[{#PONNAME},1.3.6.1.2.1.31.1.1.1.1, {#PONDESC},1.3.6.1.2.1.2.2.1.2, {#PONADMIN},1.3.6.1.2.1.2.2.1.7, {#PONOPER},1.3.6.1.2.1.2.2.1.8, {#ONUAUTH},1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14]</snmp_oid>
                     <key>netstream.gpon.port.discovery</key>
                     <delay>1d</delay>
-                    <status>DISABLED</status>
                     <filter>
                         <evaltype>AND</evaltype>
                         <conditions>
@@ -1452,33 +1451,6 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#PROPRIETARYINDEX}</snmp_oid>
                             <key>netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]</key>
                             <delay>1h</delay>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>bcb1fc39bb784c5785ee95e9719878db</uuid>
-                            <name>PON {#PONNAME} ({#PONDESC}) - ONUs Offline</name>
-                            <type>CALCULATED</type>
-                            <key>netstream.gpon.onu.offline[{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <status>DISABLED</status>
-                            <params>last(/{HOST.HOST}/netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}])-last(/{HOST.HOST}/netstream.gpon.onu.online[{#SNMPINDEX}])</params>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>95b5ad9693cb4b79a13a3af4a4c84f1d</uuid>
-                            <name>PON {#PONNAME} ({#PONDESC}) - ONUs Online</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15.{#PROPRIETARYINDEX}</snmp_oid>
-                            <key>netstream.gpon.onu.online[{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <status>DISABLED</status>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>1af8dcc71a9d49eb9490d2881e19bb87</uuid>
-                            <name>PON {#PONNAME} ({#PONDESC}) - ONUs Online Antes</name>
-                            <type>CALCULATED</type>
-                            <key>netstream.gpon.onu.online_antes[{#SNMPINDEX}]</key>
-                            <delay>5m</delay>
-                            <status>DISABLED</status>
-                            <params>last(/{HOST.HOST}/netstream.gpon.onu.online[{#SNMPINDEX}],#2)</params>
                         </item_prototype>
                         <item_prototype>
                             <uuid>8ff71fd0dc1d4d37a618a60fc78540cb</uuid>
@@ -1828,103 +1800,7 @@ return JSON.stringify(result);</parameter>
                             </parameters>
                         </step>
                     </preprocessing>
-                </discovery_rule>
-                <discovery_rule>
-                    <uuid>25381fa8e5ea4a308d677fb18a4fb5ec</uuid>
-                    <name>Discovery pon state | pon name | pondesc</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>discovery[{#PONNAME},1.3.6.1.2.1.31.1.1.1.1, {#PONDESC},1.3.6.1.2.1.2.2.1.2, {#PONADMIN},1.3.6.1.2.1.2.2.1.7, {#PONOPER},1.3.6.1.2.1.2.2.1.8, {#ONUAUTH},1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14]</snmp_oid>
-                    <key>netstream.interfaces.discovery</key>
-                    <delay>1d</delay>
-                    <status>DISABLED</status>
-                    <filter>
-                        <evaltype>AND</evaltype>
-                        <conditions>
-                            <condition>
-                                <macro>{#PONDESC}</macro>
-                                <value>LAB-NAEL</value>
-                            </condition>
-                            <condition>
-                                <macro>{#PONNAME}</macro>
-                                <value>^(xgei_|gei_).*</value>
-                            </condition>
-                        </conditions>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <enabled_lifetime_type>DISABLE_NEVER</enabled_lifetime_type>
-                    <item_prototypes>
-                        <item_prototype>
-                            <uuid>06f9453b7fd6484690fe3c8c0b8cd7c2</uuid>
-                            <name>ONU Autorizadas: {#PONNAME} : {#PONDESC}</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.onuauth.[{#SNMPINDEX}]</key>
-                            <delay>1d</delay>
-                            <trends>0</trends>
-                            <status>DISABLED</status>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>onu</value>
-                                </tag>
-                            </tags>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>fac988a2f1ab474485bbaa82c7fb9180</uuid>
-                            <name>Operational Status: {#PONNAME} : {#PONDESC}</name>
-                            <type>SNMP_AGENT</type>
-                            <snmp_oid>IF-MIB::ifOperStatus.{#SNMPINDEX}</snmp_oid>
-                            <key>netstream.statuspon.[{#SNMPINDEX}]</key>
-                            <trends>90d</trends>
-                            <status>DISABLED</status>
-                            <valuemap>
-                                <name>OLT</name>
-                            </valuemap>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>ifstatus</value>
-                                </tag>
-                            </tags>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>21dbf9ad72eb4160bfb1f5bdf0543444</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.statuspon.[{#SNMPINDEX}])=2 and min(/OLT ZTE - NETSTREAM/netstream.statuspon.[{#SNMPINDEX}],#3)=2</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.statuspon.[{#SNMPINDEX}])=1</recovery_expression>
-                                    <name>{#PONNAME} : {#PONDESC}</name>
-                                    <status>DISABLED</status>
-                                    <priority>HIGH</priority>
-                                    <description>{#PONNAME}</description>
-                                    <manual_close>YES</manual_close>
-                                    <tags>
-                                        <tag>
-                                            <tag>pon</tag>
-                                            <value>{#PONNAME}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>pon_desc</tag>
-                                            <value>{#PONDESC}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>scope</tag>
-                                            <value>OLT</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>tipo</tag>
-                                            <value>Conectividade</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>vendor</tag>
-                                            <value>ZTE</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                            </trigger_prototypes>
-                        </item_prototype>
-                    </item_prototypes>
-                </discovery_rule>
-                <discovery_rule>
+                </discovery_rule>                <discovery_rule>
                     <uuid>119e0e06f3a64418b1e59ecc4dd84e9a</uuid>
                     <name>NETSTREAM - Descoberta de Portas LAN / Uplink da OLT</name>
                     <type>SNMP_AGENT</type>
