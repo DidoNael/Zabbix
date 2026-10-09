@@ -107,7 +107,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/Trafego|Erros|Drops/"
+                          "filter": "/^Uplink.*(Trafego|Erros|Drops)/"
                         },
                         "itemTag": {
                           "filter": ""
@@ -2468,7 +2468,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "Temperatura das Placas"
+                          "filter": "/Temperatura das Placas/"
                         },
                         "itemTag": {
                           "filter": ""
