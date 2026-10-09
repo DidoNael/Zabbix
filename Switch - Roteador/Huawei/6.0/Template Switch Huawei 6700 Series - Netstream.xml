@@ -3557,7 +3557,7 @@ min(/Template Switch Huawei 6700 Series - Netstream/netstream.hwEntityOpticalLan
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <uuid>a2b3c4d5e6f74a8b9c0d1e2f3a4b5c6d</uuid>
+                    <uuid>aeedd1a63a304575b0f0496ae857e961</uuid>
                     <name>Discovery: BGP VPN Instance Peers</name>
                     <type>SNMP_AGENT</type>
                     <snmp_oid>discovery[{#HW_BGP_VRF},1.3.6.1.4.1.2011.5.25.177.1.1.1.1.6]</snmp_oid>
@@ -3579,7 +3579,7 @@ OID .1.1.1.1.6 retorna o nome do VRF de cada peer. Indice: {VRF_IDX}.{AFI}.{SAFI
 Filtro exclui contexto global (Public/PublicV6) — apenas VPN instances (IX-FOR-CE, IX-RJO-RJ, etc.).</description>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>b3c4d5e6f7a84b9c0d1e2f3a4b5c6d7e</uuid>
+                            <uuid>a7440a1889bb40b19f0be12bc0bc2af8</uuid>
                             <name>BGP VPN - {#HW_BGP_VRF}: peer {#SNMPINDEX} - Estado</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.177.1.1.2.1.5.{#SNMPINDEX}</snmp_oid>
@@ -3599,7 +3599,7 @@ Filtro exclui contexto global (Public/PublicV6) — apenas VPN instances (IX-FOR
                             </tags>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <uuid>c4d5e6f7a8b94c0d1e2f3a4b5c6d7e8f</uuid>
+                                    <uuid>bf917a83356a4853bc5976b791afe3ad</uuid>
                                     <expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.bgp.vpn.peer.state[{#SNMPINDEX}])&lt;&gt;6</expression>
                                     <recovery_expression>last(/Template Switch Huawei 6700 Series - Netstream/netstream.bgp.vpn.peer.state[{#SNMPINDEX}])=6</recovery_expression>
                                     <name>BGP VPN - {#HW_BGP_VRF}: peer {#SNMPINDEX} não estabelecido (state={ITEM.LASTVALUE1})</name>
@@ -3629,7 +3629,7 @@ Verificar conectividade, config BGP e logs do NE8000.</description>
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>d5e6f7a8b9c04d1e2f3a4b5c6d7e8f9a</uuid>
+                            <uuid>cc6817b46d024714930596675eda9994</uuid>
                             <name>BGP VPN - {#HW_BGP_VRF}: peer {#SNMPINDEX} - Prefixos Recebidos</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.177.1.1.2.1.2.{#SNMPINDEX}</snmp_oid>
@@ -3646,7 +3646,7 @@ Verificar conectividade, config BGP e logs do NE8000.</description>
                             </tags>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>e6f7a8b9c0d14e2f3a4b5c6d7e8f9a0b</uuid>
+                            <uuid>34c4af95f9434806965bee8c39777032</uuid>
                             <name>BGP VPN - {#HW_BGP_VRF}: peer {#SNMPINDEX} - IP Remoto</name>
                             <type>SNMP_AGENT</type>
                             <snmp_oid>1.3.6.1.4.1.2011.5.25.177.1.1.2.1.4.{#SNMPINDEX}</snmp_oid>
