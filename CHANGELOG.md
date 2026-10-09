@@ -15,6 +15,18 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 ---
 
+## [v2.15.0] - 2026-10-09
+### Added
+- **`RT Huawei NE8000 - BGP VPN - NETSTREAM`** (6.0): novo template para monitoramento
+  de peers BGP em VPN instances do Huawei NE8000 via SNMP (hwBgpMIB 1.3.6.1.4.1.2011.5.25.177).
+  - LLD rule descobre peers nas VPN instances (IX-FOR-CE, IX-RJO-RJ, IX-SPO-SP4, etc.)
+    excluindo contexto global (Public/PublicV6) via filtro `^Public`
+  - Item prototypes: estado da sessão (valuemap 1=Idle…6=Established), prefixos recebidos,
+    IP remoto do peer
+  - Trigger prototype: alerta HIGH quando peer não está em estado 6 (Established)
+  - Valuemap `Huawei BGP Peer State` incluído no template
+  - OID de estado confirmado: `.177.1.1.2.1.5.{INDEX}` (valores 1-6 validados contra CLI)
+
 ## [v2.14.8] - 2026-10-08
 ### Fixed
 - **`pon.status.zte.py` v2.1**: corrigida regressão do v2 que causava falsos positivos
