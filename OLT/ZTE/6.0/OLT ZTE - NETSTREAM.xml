@@ -1192,11 +1192,11 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <uuid>2c2c45b1d01348b3a6db6b9377622b51</uuid>
-                                    <expression>change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&lt;-{$GPON_DROP_MIN} and last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1</expression>
+                                    <expression>change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&lt;-{$GPON_DROP_MIN} and last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0 and count(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],180)&gt;1 and (last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}])+0)&gt;=0 and (last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}])+0)&gt;=0 and (last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.auth.zte[{#NETSTREAM.PON_INDEX}])+0)&gt;=0</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                                     <name>PON {#NETSTREAM.PON_LABEL}: Queda parcial de ONUs</name>
-                                    <opdata>Auth:{?last(/{HOST.HOST}/netstream.gpon.pon.auth.zte[{#NETSTREAM.PON_INDEX}])} LOS:{?max(/{HOST.HOST}/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],1800)} DG:{?max(/{HOST.HOST}/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],1800)}</opdata>
+                                    <opdata>Online:{ITEM.VALUE1} Auth:{ITEM.VALUE4} LOS:{ITEM.VALUE2} DG:{ITEM.VALUE3}</opdata>
 
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
