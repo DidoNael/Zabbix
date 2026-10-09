@@ -5,8 +5,7 @@
     "name": "olt-geral-netstream",
     "namespace": "default",
     "creationTimestamp": "2025-08-13T00:18:22Z",
-    "labels": {
-    },
+    "labels": {},
     "annotations": {
       "grafana.app/createdBy": "user:u000000011",
       "grafana.app/folder": "5Rt2P10Iz",
@@ -65,11 +64,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "Uplink / LAN OLT"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -152,7 +151,9 @@
                 }
               ],
               "transformations": [],
-              "queryOptions": {"minInterval": "5m"}
+              "queryOptions": {
+                "minInterval": "5m"
+              }
             }
           },
           "vizConfig": {
@@ -248,27 +249,30 @@
                           "fixedColor": "#69a6bf",
                           "mode": "fixed"
                         }
-                      }
-                    ,
-                  {
-                    "matcher": {
-                      "id": "byRegexp",
-                      "options": "/Erros|Drops/"
-                    },
-                    "properties": [
-                      {
-                        "id": "custom.lineStyle",
-                        "value": {
-                          "dash": [10, 10],
-                          "fill": "dash"
-                        }
                       },
                       {
-                        "id": "custom.fillOpacity",
-                        "value": 0
+                        "matcher": {
+                          "id": "byRegexp",
+                          "options": "/Erros|Drops/"
+                        },
+                        "properties": [
+                          {
+                            "id": "custom.lineStyle",
+                            "value": {
+                              "dash": [
+                                10,
+                                10
+                              ],
+                              "fill": "dash"
+                            }
+                          },
+                          {
+                            "id": "custom.fillOpacity",
+                            "value": 0
+                          }
+                        ]
                       }
                     ]
-                  }]
                   },
                   {
                     "matcher": {
@@ -377,11 +381,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "uptime"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -531,11 +535,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "ONUs Autorizadas"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -577,7 +581,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/.*/"
+                          "filter": "/.*Autorizadas.*/"
                         },
                         "itemTag": {
                           "filter": "ONUs Autorizadas"
@@ -693,11 +697,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "ONUs Online"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -739,7 +743,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/.*/"
+                          "filter": "/.*Online \\(calc\\).*/"
                         },
                         "itemTag": {
                           "filter": "ONUs Onlines"
@@ -855,11 +859,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "ONUs Offline"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -901,7 +905,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/.*/"
+                          "filter": "/.*Offline \\(calc\\).*/"
                         },
                         "itemTag": {
                           "filter": "ONUs OFF"
@@ -1017,11 +1021,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "ONUs LOS"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -1063,7 +1067,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/.*/"
+                          "filter": "/.*LOS \\(calc\\).*/"
                         },
                         "itemTag": {
                           "filter": "ONUs LOS"
@@ -1180,11 +1184,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "ONUs Online"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -1226,7 +1230,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/.*/"
+                          "filter": "/.*Online \\(calc\\).*/"
                         },
                         "itemTag": {
                           "filter": ""
@@ -1343,7 +1347,7 @@
                       "group": "mysql",
                       "version": "v0",
                       "datasource": {
-                        "name": "Y_t98X_Mk"
+                        "name": "Z7RVMa_Nk"
                       },
                       "spec": {
                         "editorMode": "code",
@@ -1501,7 +1505,7 @@
                           ]
                         }
                       }
-                                      ]
+                    ]
                   },
                   {
                     "matcher": {
@@ -1525,7 +1529,7 @@
                           ]
                         }
                       }
-                                      ]
+                    ]
                   },
                   {
                     "matcher": {
@@ -1549,7 +1553,7 @@
                           ]
                         }
                       }
-                                      ]
+                    ]
                   },
                   {
                     "matcher": {
@@ -1581,7 +1585,7 @@
                           ]
                         }
                       }
-                                      ]
+                    ]
                   },
                   {
                     "matcher": {
@@ -1613,7 +1617,7 @@
                           ]
                         }
                       }
-                                      ]
+                    ]
                   },
                   {
                     "matcher": {
@@ -1680,7 +1684,7 @@
                       "group": "mysql",
                       "version": "v0",
                       "datasource": {
-                        "name": "Y_t98X_Mk"
+                        "name": "Z7RVMa_Nk"
                       },
                       "spec": {
                         "dataset": "zabbix",
@@ -1866,7 +1870,7 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
@@ -2034,14 +2038,14 @@
                       "group": "mysql",
                       "version": "v0",
                       "datasource": {
-                        "name": "Y_t98X_Mk"
+                        "name": "Z7RVMa_Nk"
                       },
                       "spec": {
                         "dataset": "zabbix",
                         "editorMode": "code",
                         "format": "table",
                         "rawQuery": true,
-                        "rawSql": "SELECT\r\n  sub.host,\r\n  sub.interface,\r\n  sub.bitsin,\r\n  sub.bitsout,\r\n  sub.status,\r\n  sub.speed,\r\n  sub.usoin,\r\n  sub.usoout,\r\n  sub.rxpower,\r\n  sub.txpower,\r\n  sub.distancia,\r\n  sub.limiterx,\r\n  CASE\r\n    WHEN sub.rxpower IS NULL THEN NULL\r\n    WHEN sub.is_xgei = 1 AND (sub.rxpower < -9.00 OR sub.rxpower > 0.00) THEN 'anormal'\r\n    WHEN sub.is_xgei = 0 AND (sub.rxpower < -11.00 OR sub.rxpower > -1.00) THEN 'anormal'\r\n  END AS staturx,\r\n  sub.ultverificacao\r\nFROM (\r\n  SELECT\r\n    ht.name AS host,\r\n    SUBSTRING_INDEX(it.name, ': ', 1) AS interface,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Entrada%' THEN h.value END) AS bitsin,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Saida%'   THEN h.value END) AS bitsout,\r\n    MAX(CASE WHEN it.name LIKE '%Status Operacional%'  THEN h.value END) AS status,\r\n    MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END) AS speed,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Entrada%' THEN h.value END)\r\n      / NULLIF(MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END), 0) * 100 AS usoin,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Saida%' THEN h.value END)\r\n      / NULLIF(MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END), 0) * 100 AS usoout,\r\n    MAX(CASE WHEN it.name LIKE '%Sinal RX%' THEN h.value END) AS rxpower,\r\n    MAX(CASE WHEN it.name LIKE '%Sinal TX%' THEN h.value END) AS txpower,\r\n    NULL AS distancia,\r\n    MAX(CASE WHEN it.name LIKE '%xgei%'  THEN '0.00 a -9.00'\r\n             WHEN it.name LIKE '% gei_%' THEN '-1.00 a -11.00'\r\n        END) AS limiterx,\r\n    MAX(CASE WHEN it.name LIKE '%xgei%' THEN 1 ELSE 0 END) AS is_xgei,\r\n    MAX(DATE_FORMAT(CONVERT_TZ(FROM_UNIXTIME(h.clock), '+00:00', '+00:00'), '%d-%m-%Y %H:%i:%s')) AS ultverificacao\r\n  FROM items it\r\n  INNER JOIN hosts ht ON ht.hostid = it.hostid AND ht.name IN ('$host') AND ht.status = 0\r\n  LEFT JOIN (\r\n    SELECT itemid, MAX(clock) AS max_clock\r\n    FROM history\r\n    WHERE clock > UNIX_TIMESTAMP() - 7200\r\n    GROUP BY itemid\r\n  ) AS max_h ON it.itemid = max_h.itemid\r\n  LEFT JOIN history h ON h.itemid = max_h.itemid AND h.clock = max_h.max_clock\r\n  INNER JOIN items_applications ia2 ON ia2.itemid = it.itemid\r\n  INNER JOIN applications ap ON ap.applicationid = ia2.applicationid AND ap.name = 'Uplink / LAN OLT'\r\n  WHERE it.flags IN (0, 4)\r\n    AND it.status = 0\r\n    AND (\r\n      it.name LIKE '%Trafego%'\r\n      OR it.name LIKE '%Status Operacional%'\r\n      OR it.name LIKE '%Velocidade da Porta%'\r\n      OR it.name LIKE '%Erros%'\r\n      OR it.name LIKE '%Drops%'\r\n      OR it.name LIKE '%Sinal RX%'\r\n      OR it.name LIKE '%Sinal TX%'\r\n    )\r\n  GROUP BY interface, host\r\n) sub\r\nORDER BY sub.interface;",
+                        "rawSql": "SELECT\r\n  sub.host,\r\n  sub.interface,\r\n  sub.bitsin,\r\n  sub.bitsout,\r\n  sub.status,\r\n  sub.speed,\r\n  sub.usoin,\r\n  sub.usoout,\r\n  sub.rxpower,\r\n  sub.txpower,\r\n  sub.distancia,\r\n  sub.limiterx,\r\n  CASE\r\n    WHEN sub.rxpower IS NULL THEN NULL\r\n    WHEN sub.is_xgei = 1 AND (sub.rxpower < -9.00 OR sub.rxpower > 0.00) THEN 'anormal'\r\n    WHEN sub.is_xgei = 0 AND (sub.rxpower < -11.00 OR sub.rxpower > -1.00) THEN 'anormal'\r\n  END AS staturx,\r\n  sub.ultverificacao\r\nFROM (\r\n  SELECT\r\n    ht.name AS host,\r\n    SUBSTRING_INDEX(it.name, ': ', 1) AS interface,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Entrada%' THEN h.value END) AS bitsin,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Saida%'   THEN h.value END) AS bitsout,\r\n    MAX(CASE WHEN it.name LIKE '%Status Operacional%'  THEN h.value END) AS status,\r\n    MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END) AS speed,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Entrada%' THEN h.value END)\r\n      / NULLIF(MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END), 0) * 100 AS usoin,\r\n    MAX(CASE WHEN it.name LIKE '%Trafego de Saida%' THEN h.value END)\r\n      / NULLIF(MAX(CASE WHEN it.name LIKE '%Velocidade da Porta%' THEN h.value END), 0) * 100 AS usoout,\r\n    MAX(CASE WHEN it.name LIKE '%Sinal RX%' THEN h.value END) AS rxpower,\r\n    MAX(CASE WHEN it.name LIKE '%Sinal TX%' THEN h.value END) AS txpower,\r\n    NULL AS distancia,\r\n    MAX(CASE WHEN it.name LIKE '%xgei%'  THEN '0.00 a -9.00'\r\n             WHEN it.name LIKE '% gei_%' THEN '-1.00 a -11.00'\r\n        END) AS limiterx,\r\n    MAX(CASE WHEN it.name LIKE '%xgei%' THEN 1 ELSE 0 END) AS is_xgei,\r\n    MAX(DATE_FORMAT(CONVERT_TZ(FROM_UNIXTIME(h.clock), '+00:00', '+00:00'), '%d-%m-%Y %H:%i:%s')) AS ultverificacao\r\n  FROM items it\r\n  INNER JOIN hosts ht ON ht.hostid = it.hostid AND ht.name IN ('$host') AND ht.status = 0\r\n  LEFT JOIN (\r\n    SELECT itemid, MAX(clock) AS max_clock\r\n    FROM history\r\n    WHERE clock > UNIX_TIMESTAMP() - 7200\r\n    GROUP BY itemid\r\n  ) AS max_h ON it.itemid = max_h.itemid\r\n  LEFT JOIN history h ON h.itemid = max_h.itemid AND h.clock = max_h.max_clock\r\n  WHERE it.flags IN (0, 4)\r\n    AND it.status = 0\r\n    AND it.name LIKE 'Uplink %'\r\n    AND (\r\n      it.name LIKE '%Trafego%'\r\n      OR it.name LIKE '%Status Operacional%'\r\n      OR it.name LIKE '%Velocidade da Porta%'\r\n      OR it.name LIKE '%Erros%'\r\n      OR it.name LIKE '%Drops%'\r\n      OR it.name LIKE '%Sinal RX%'\r\n      OR it.name LIKE '%Sinal TX%'\r\n    )\r\n  GROUP BY interface, host\r\n) sub\r\nORDER BY sub.interface;",
                         "sql": {
                           "columns": [
                             {
@@ -2448,7 +2452,7 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
@@ -2591,11 +2595,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "ONUs Online"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -2634,7 +2638,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/.*/"
+                          "filter": "/.*Online \\(calc\\).*/"
                         },
                         "itemTag": {
                           "filter": "ONUs Onlines"
@@ -2784,11 +2788,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "ONUs LOS"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -2827,7 +2831,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/.*/"
+                          "filter": "/.*LOS \\(calc\\).*/"
                         },
                         "itemTag": {
                           "filter": "ONUs LOS"
@@ -2977,11 +2981,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "ONUs Dying Gasp"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -3020,7 +3024,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/.*/"
+                          "filter": "/.*Dying Gasp \\(calc\\).*/"
                         },
                         "itemTag": {
                           "filter": "ONUs DyingGasp"
@@ -3170,11 +3174,11 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
                         "application": {
-                          "filter": "ONUs Offline"
+                          "filter": ""
                         },
                         "countTriggersBy": "",
                         "evaltype": "0",
@@ -3213,7 +3217,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/.*/"
+                          "filter": "/.*Offline \\(calc\\).*/"
                         },
                         "itemTag": {
                           "filter": "ONUs OFF"
@@ -3363,28 +3367,58 @@
                       "group": "alexanderzobnin-zabbix-datasource",
                       "version": "v0",
                       "datasource": {
-                        "name": "000000002"
+                        "name": "E2jcnadVz"
                       },
                       "spec": {
-                        "application": {"filter": ""},
+                        "application": {
+                          "filter": ""
+                        },
                         "countTriggersBy": "",
                         "evaltype": "0",
                         "functions": [],
-                        "group": {"filter": "OLT-NETSTREAM"},
-                        "host": {"filter": "$host"},
-                        "item": {"filter": "/Porta .* Trafego/"},
-                        "itemTag": {"filter": ""},
-                        "macro": {"filter": ""},
-                        "options": {"count": false,"disableDataAlignment": true,"minSeverity": 3,"showDisabledItems": false,"skipEmptyValues": false,"useTrends": "default","useZabbixValueMapping": true},
-                        "proxy": {"filter": ""},
+                        "group": {
+                          "filter": "OLT-NETSTREAM"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/Porta .* Trafego/"
+                        },
+                        "itemTag": {
+                          "filter": ""
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": true,
+                          "minSeverity": 3,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": true
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
                         "queryType": "0",
                         "resultFormat": "time_series",
                         "schema": 12,
-                        "table": {"skipEmptyValues": false},
-                        "tags": {"filter": ""},
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
                         "textFilter": "",
-                        "trigger": {"filter": ""},
-                        "triggers": {"acknowledged": 2}
+                        "trigger": {
+                          "filter": ""
+                        },
+                        "triggers": {
+                          "acknowledged": 2
+                        }
                       }
                     },
                     "refId": "A",
@@ -3393,7 +3427,9 @@
                 }
               ],
               "transformations": [],
-              "queryOptions": {"minInterval": "5m"}
+              "queryOptions": {
+                "minInterval": "5m"
+              }
             }
           },
           "vizConfig": {
@@ -3402,14 +3438,41 @@
             "version": "13.1.0",
             "spec": {
               "options": {
-                "legend": {"calcs": ["lastNotNull"],"displayMode": "table","enableFacetedFilter": false,"overflow": "ellipsis","placement": "right","showLegend": true},
-                "tooltip": {"hideZeros": false,"mode": "single","sort": "none"}
+                "legend": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "right",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
               },
               "fieldConfig": {
                 "defaults": {
                   "unit": "bps",
-                  "color": {"mode": "palette-classic"},
-                  "custom": {"drawStyle": "line","fillOpacity": 20,"gradientMode": "none","lineInterpolation": "smooth","lineWidth": 1,"showPoints": "auto","spanNulls": false,"stacking": {"group": "A","mode": "none"}}
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "drawStyle": "line",
+                    "fillOpacity": 20,
+                    "gradientMode": "none",
+                    "lineInterpolation": "smooth",
+                    "lineWidth": 1,
+                    "showPoints": "auto",
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    }
+                  }
                 },
                 "overrides": []
               }
@@ -3662,7 +3725,11 @@
     "links": [],
     "liveNow": false,
     "preload": false,
-    "tags": ["bee", "olt", "gpon"],
+    "tags": [
+      "bee",
+      "olt",
+      "gpon"
+    ],
     "timeSettings": {
       "timezone": "browser",
       "from": "now-12h",
@@ -3702,7 +3769,7 @@
             "group": "alexanderzobnin-zabbix-datasource",
             "version": "v0",
             "datasource": {
-              "name": "000000002"
+              "name": "E2jcnadVz"
             },
             "spec": {
               "application": "",
