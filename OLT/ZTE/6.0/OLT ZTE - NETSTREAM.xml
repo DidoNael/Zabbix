@@ -1196,7 +1196,8 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                                     <name>PON {#NETSTREAM.PON_LABEL}: Queda parcial de ONUs</name>
-                                    <opdata>LOS:{?max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],1800)} DG:{?max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],1800)}</opdata>
+                                    <opdata>Auth:{?last(/{HOST.HOST}/netstream.gpon.pon.auth.zte[{#NETSTREAM.PON_INDEX}])} LOS:{?max(/{HOST.HOST}/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],1800)} DG:{?max(/{HOST.HOST}/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],1800)}</opdata>
+
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
@@ -1228,7 +1229,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                                     <name>PON {#NETSTREAM.PON_LABEL}: Queda total de ONUs</name>
-                                    <opdata>Offline:{?last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.offline.zte[{#NETSTREAM.PON_INDEX}])} LOS:{?max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],1800)} DG:{?max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],1800)} LOF:{?last(/OLT ZTE - NETSTREAM/netstream.gpon.pon.lof.zte[{#NETSTREAM.PON_INDEX}])}</opdata>
+                                    <opdata>P:{?max(/{HOST.HOST}/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}],900)} N:{?last(/{HOST.HOST}/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])}</opdata>
                                     <priority>DISASTER</priority>
                                     <tags>
                                         <tag>
@@ -1386,43 +1387,6 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                             <key>netstream.gpon.port.ifoperstatus.zte[{#SNMPINDEX}]</key>
                             <history>7d</history>
                             <trends>90d</trends>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>a7b3c9d1e5f2480ba1c3d7e9f0b2c4a6</uuid>
-                                    <expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.port.ifoperstatus.zte[{#SNMPINDEX}],#1)=2 and last(/OLT ZTE - NETSTREAM/netstream.gpon.port.ifoperstatus.zte[{#SNMPINDEX}],#2)=1 and count(/OLT ZTE - NETSTREAM/netstream.gpon.port.ifoperstatus.zte[{#SNMPINDEX}],10m)&gt;1</expression>
-                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                                    <recovery_expression>last(/OLT ZTE - NETSTREAM/netstream.gpon.port.ifoperstatus.zte[{#SNMPINDEX}])=1</recovery_expression>
-                                    <name>PON {#NETSTREAM.PON_LABEL}: Porta GPON Inativa</name>
-                                    <priority>DISASTER</priority>
-                                    <manual_close>YES</manual_close>
-                                    <tags>
-                                        <tag>
-                                            <tag>notificar</tag>
-                                            <value>telegram</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>pon</tag>
-                                            <value>{#NETSTREAM.PON_NAME}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>pon_desc</tag>
-                                            <value>{#NETSTREAM.PON_DESC}</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>scope</tag>
-                                            <value>OLT</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>servico</tag>
-                                            <value>GPON</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>tipo</tag>
-                                            <value>Queda_Total</value>
-                                        </tag>
-                                    </tags>
-                                </trigger_prototype>
-                            </trigger_prototypes>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
@@ -1897,24 +1861,6 @@ return JSON.stringify(result);</parameter>
                             </graph_items>
                         </graph_prototype>
                     </graph_prototypes>
-                </discovery_rule>
-                <discovery_rule>
-                    <uuid>be066e422e4344cb82fe692db062fde0</uuid>
-                    <name>NETSTREAM - Discovery ONU DEDICADO</name>
-                    <type>SNMP_AGENT</type>
-                    <snmp_oid>discovery[{#ONTDESC},1.3.6.1.4.1.3902.1012.3.28.1.1.2]</snmp_oid>
-                    <key>netstream.oltonudedicado</key>
-                    <delay>1d</delay>
-                    <filter>
-                        <conditions>
-                            <condition>
-                                <macro>{#ONTDESC}</macro>
-                                <value>dedicado-.*</value>
-                            </condition>
-                        </conditions>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <enabled_lifetime_type>DISABLE_NEVER</enabled_lifetime_type>
                 </discovery_rule>
                 <discovery_rule>
                     <uuid>9b41ea1c26824bd4a8098c060ee8abe3</uuid>
