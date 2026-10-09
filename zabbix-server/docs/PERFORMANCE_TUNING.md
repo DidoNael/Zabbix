@@ -458,4 +458,107 @@ tail -n 5000 /var/log/zabbix/zabbix_server.log \
 
 ---
 
-*Última atualização: 2026-07-24 — aplicado em ambiente Semlimite Telecom*
+---
+
+## 7. MariaDB — Zabbix 7.0 (177.91.165.53)
+
+### 7.1 Diagnóstico do problema
+
+O servidor Zabbix 7.0 estava com configuração padrão do MariaDB 10.11 (instalação Debian):
+`innodb_buffer_pool_size = 128MB` — o padrão mínimo, sem nenhum ajuste de performance.
+
+Com `history_uint` com ~292 milhões de linhas (≈ 104 GB dados+índice), cada query de leitura
+resultava em I/O de disco. Sintoma: queries Grafana via SQL direto levando 84–121 segundos
+mesmo usando o índice PRIMARY `(itemid, clock, ns)`.
+
+```bash
+# Confirmar buffer pool atual
+mysql -e 'SHOW VARIABLES LIKE "innodb_buffer_pool_size";'
+# 134217728 = 128MB → insuficiente para qualquer query de histórico em cache
+```
+
+### 7.2 Configuração aplicada
+
+**Servidor:** `177.91.165.53` | **RAM:** 7.8 GB | **MariaDB:** 10.11.6
+
+Arquivo: `/etc/mysql/mariadb.conf.d/50-server.cnf`
+
+```ini
+[mysqld]
+innodb_buffer_pool_size      = 4G    # era 128MB — mantém history_uint quente em RAM
+innodb_buffer_pool_instances = 2     # 1 instância por 2GB de pool
+innodb_log_file_size         = 256M  # era 96MB — menos checkpoints = menor I/O
+innodb_flush_log_at_trx_commit = 2   # era 1 — flush por segundo, não por commit
+innodb_flush_method          = O_DIRECT
+innodb_file_per_table        = ON
+max_connections              = 300   # era 151
+```
+
+**Resultado após restart:**
+
+| Parâmetro | Antes | Depois |
+|---|---|---|
+| `innodb_buffer_pool_size` | 128 MB | **4 GB** |
+| `innodb_log_file_size` | 96 MB | **256 MB** |
+| `innodb_flush_log_at_trx_commit` | 1 | **2** |
+| `max_connections` | 151 | **300** |
+
+### 7.3 Por que `innodb_flush_log_at_trx_commit = 2` é seguro para Zabbix
+
+O valor `1` (padrão) faz fsync a cada INSERT — necessário para bancos financeiros onde
+perder 1 transação é inaceitável. Para monitoramento, perder 1 segundo de dados em caso
+de crash do SO (não do MariaDB) é aceitável. O ganho em throughput de escrita é
+significativo, pois o Zabbix insere histórico continuamente.
+
+| Valor | Comportamento | Risco de perda |
+|---|---|---|
+| `0` | Flush a cada 1s pelo thread do InnoDB | Até 1s (crash do MariaDB ou SO) |
+| `1` | Flush síncrono por commit (padrão) | Nenhuma | 
+| `2` | Flush para OS a cada 1s | Até 1s (crash do SO apenas) |
+
+Para Zabbix: usar `2`. Crash do MariaDB sozinho não perde dados (OS cache sobrevive).
+Crash de máquina/kernel perde até 1s de coleta — aceitável.
+
+### 7.4 Diferença vs Zabbix 4.4 (177.91.165.47)
+
+O servidor 4.4 tem 19 GB de RAM e `innodb_buffer_pool_size = 10240M` (10 GB).
+A proporção recomendada é **50–70% da RAM livre** para o buffer pool.
+
+| Servidor | RAM | Buffer Pool | % da RAM |
+|---|---|---|---|
+| Zabbix 4.4 (177.91.165.47) | 19 GB | 10 GB | 53% |
+| Zabbix 7.0 (177.91.165.53) | 7.8 GB | **4 GB** | 51% |
+
+### 7.5 Aplicar em novo servidor (passo a passo)
+
+```bash
+# 1. Verificar RAM disponível
+free -h
+
+# 2. Adicionar bloco no arquivo de configuração MariaDB (Debian/Ubuntu)
+cat >> /etc/mysql/mariadb.conf.d/50-server.cnf << 'EOF'
+[mysqld]
+innodb_buffer_pool_size      = 4G   # ajustar para ~50% da RAM do servidor
+innodb_buffer_pool_instances = 2
+innodb_log_file_size         = 256M
+innodb_flush_log_at_trx_commit = 2
+innodb_flush_method          = O_DIRECT
+innodb_file_per_table        = ON
+max_connections              = 300
+EOF
+
+# 3. Reiniciar MariaDB (derruba Zabbix brevemente — fazer em janela de manutenção)
+systemctl restart mariadb
+
+# 4. Confirmar
+mysql -e 'SHOW VARIABLES WHERE Variable_name IN
+  ("innodb_buffer_pool_size","innodb_buffer_pool_instances",
+   "innodb_log_file_size","innodb_flush_log_at_trx_commit","max_connections");'
+
+# 5. Verificar que Zabbix voltou
+systemctl is-active zabbix-server mariadb
+```
+
+---
+
+*Última atualização: 2026-10-09 — Zabbix 7.0 (177.91.165.53) otimizado; Semlimite Telecom*
