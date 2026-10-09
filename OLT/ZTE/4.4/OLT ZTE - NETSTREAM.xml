@@ -846,6 +846,39 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <params>if (value &gt; 12500000000) { return null; } return value;</params>
                                 </step>
                             </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.net.if.in[{#SNMPINDEX}].min(#5)}&gt;{$GPON_PON_DOWN_LIMIT}</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{OLT ZTE - NETSTREAM:netstream.net.if.in[{#SNMPINDEX}].max(#3)}&lt;{$GPON_PON_DOWN_LIMIT}</recovery_expression>
+                                    <name>Porta {#PONNAME} ({#PONDESC}): Saturacao de Download (5 amostras no limite)</name>
+                                    <opdata>{ITEM.LASTVALUE1}</opdata>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Performance</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>notificar</tag>
+                                            <value>telegram</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>pon</tag>
+                                            <value>{#PONNAME}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): Erros de Sa�da</name>
@@ -913,6 +946,39 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                                     <params>if (value &gt; 12500000000) { return null; } return value;</params>
                                 </step>
                             </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{OLT ZTE - NETSTREAM:netstream.net.if.out[{#SNMPINDEX}].min(#5)}&gt;{$GPON_PON_UP_LIMIT}</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{OLT ZTE - NETSTREAM:netstream.net.if.out[{#SNMPINDEX}].max(#3)}&lt;{$GPON_PON_UP_LIMIT}</recovery_expression>
+                                    <name>Porta {#PONNAME} ({#PONDESC}): Saturacao de Upload (5 amostras no limite)</name>
+                                    <opdata>{ITEM.LASTVALUE1}</opdata>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>OLT</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>servico</tag>
+                                            <value>GPON</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>tipo</tag>
+                                            <value>Performance</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>notificar</tag>
+                                            <value>telegram</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>pon</tag>
+                                            <value>{#PONNAME}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                     </item_prototypes>
                                         <preprocessing>
@@ -1990,6 +2056,16 @@ return JSON.stringify(result);</params>
                 <macro>
                     <macro>{$GPON_DROP_MIN}</macro>
                     <value>5</value>
+                </macro>
+                <macro>
+                    <macro>{$GPON_PON_DOWN_LIMIT}</macro>
+                    <value>2500000000</value>
+                    <description>Limite de saturacao de download da PON em bps (GPON: 2.5 Gbps)</description>
+                </macro>
+                <macro>
+                    <macro>{$GPON_PON_UP_LIMIT}</macro>
+                    <value>1250000000</value>
+                    <description>Limite de saturacao de upload da PON em bps (GPON: 1.25 Gbps)</description>
                 </macro>
             </macros>
         </template>
