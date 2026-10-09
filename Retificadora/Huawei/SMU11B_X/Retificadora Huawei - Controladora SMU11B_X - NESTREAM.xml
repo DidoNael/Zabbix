@@ -35,7 +35,7 @@
                             <uuid>e3173696c48b447fb1d0d1ae5e8e5a2a</uuid>
                             <!-- Só alerta após 15 minutos contínuos sem energia (min em 900s) -->
                             <expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwAcInputOperStatus,900)&gt;1</expression>
-                            <recovery_mode>EXPRESSION</recovery_mode>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwAcInputOperStatus,900)=1</recovery_expression>
                             <name>Falta de energia AC Status: ( {EVENT.OPDATA} )</name>
                             <opdata>Bateria: {ITEM.LASTVALUE:/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwBattStringEquipId}</opdata>
