@@ -36,6 +36,7 @@ OID_ONLINE    = "1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.15"
 OID_REASON    = "1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7"
 OID_ONU_STATE = "1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.2"
 OID_IFNAME    = "1.3.6.1.2.1.31.1.1.1.1"
+OID_IFALIAS   = "1.3.6.1.2.1.31.1.1.1.18"
 
 
 def _atomic_write(path, data):
@@ -133,10 +134,11 @@ def _phase1(tmpdir):
 
 
 def _phase2_enrich(pons, reason_lines, tmpdir):
-    """2 walks: onu_state + ifname. Refina counts e resolve snmp_idx."""
+    """3 walks: onu_state + ifname + ifalias. Refina counts, resolve snmp_idx e desc."""
     raw = _walk_parallel({
         "onu_state": OID_ONU_STATE,
         "ifname":    OID_IFNAME,
+        "ifalias":   OID_IFALIAS,
     }, tmpdir)
 
     # Mapear nome GPON → snmp_idx via ifName
@@ -145,6 +147,15 @@ def _phase2_enrich(pons, reason_lines, tmpdir):
         m = re.search(r"ifName\.(\d+)\s*=\s*STRING:\s*(\S+)", line)
         if m:
             name_to_ifidx[m.group(2).strip()] = int(m.group(1))
+
+    # Mapear snmp_idx → alias (ifAlias) — descrição configurada na OLT
+    ifidx_to_alias = {}
+    for line in raw["ifalias"]:
+        m = re.search(r"ifAlias\.(\d+)\s*=\s*STRING:\s*(.*)", line)
+        if m:
+            alias = m.group(2).strip()
+            if alias:
+                ifidx_to_alias[int(m.group(1))] = alias
 
     # Montar offline_onus por PON
     offline_onus = {}
@@ -160,10 +171,13 @@ def _phase2_enrich(pons, reason_lines, tmpdir):
         idx  = pon["idx"]
         name = pon["name"]
 
-        # Resolver snmp_idx via ifName
+        # Resolver snmp_idx via ifName e alias via ifAlias
         snmp_idx = name_to_ifidx.get(name)
         if snmp_idx is not None:
             pon["snmp_idx"] = snmp_idx
+            alias = ifidx_to_alias.get(snmp_idx, "")
+            if alias:
+                pon["desc"] = alias
 
         offline_expected = pon["offline"]
         actual_offline   = len(offline_onus.get(idx, set()))
