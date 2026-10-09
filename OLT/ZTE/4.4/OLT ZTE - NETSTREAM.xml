@@ -2216,6 +2216,41 @@ return s;</params>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].change()}&lt;-{$GPON_DROP_MIN} and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].last()}&gt;0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1 and ({OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}].last()}+0)&gt;=0 and ({OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}].last()}+0)&gt;=0</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}].change()}&gt;0</recovery_expression>
+                            <name>PON {#NETSTREAM.PON_NAME} ({#NETSTREAM.PON_DESC}): Queda parcial de ONUs</name>
+                            <opdata>LOS: {ITEM.VALUE4}, DG: {ITEM.VALUE5}</opdata>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon</tag>
+                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon_desc</tag>
+                                    <value>{#NETSTREAM.PON_DESC}</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Queda_Parcial</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>nao</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
                             <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}].change()}&gt;=5 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}].last(#2)}&gt;0 and {OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}].count(180)}&gt;1</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                             <recovery_expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}].last()}&lt;={OLT ZTE - NETSTREAM:netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}].last(#2)}</recovery_expression>

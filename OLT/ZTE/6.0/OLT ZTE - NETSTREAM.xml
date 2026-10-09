@@ -1196,6 +1196,7 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>change(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.online.zte[{#NETSTREAM.PON_INDEX}])&gt;0</recovery_expression>
                                     <name>PON {#NETSTREAM.PON_LABEL}: Queda parcial de ONUs</name>
+                                    <opdata>LOS:{?max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],1800)} DG:{?max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],1800)}</opdata>
                                     <priority>HIGH</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
