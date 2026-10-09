@@ -15,6 +15,13 @@ Huawei, OSPF genÃ©rico, ISP Experience e DNS Monitor, alÃ©m de scripts de de
 
 ---
 
+## [v2.15.1] - 2026-10-09
+### Changed
+- **OLT ZTE, FiberHome, Huawei** (4.4 e 6.0): removida tag `notificar=nao` de todos os
+  templates de produção (30 ocorrências em 7 arquivos). Tag `notificar=nao` deve existir
+  apenas nos templates DEV para sinalizar que nenhum alerta deve ser enviado em ambiente
+  de teste. Produção usa `notificar=telegram` onde aplicável, sem tag nos demais triggers.
+
 ## [v2.15.0] - 2026-10-09
 ### Added
 - **`Template Switch Huawei 6700 Series - Netstream`** (6.0): nova discovery rule

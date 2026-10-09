@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>7.2</version>
     <template_groups>
@@ -1223,10 +1223,6 @@ return 0;</parameter>
                                             <value>energia</value>
                                         </tag>
                                         <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
-                                        </tag>
-                                        <tag>
                                             <tag>pon</tag>
                                             <value>{#NETSTREAM.PON_NAME}</value>
                                         </tag>
@@ -1272,10 +1268,6 @@ return 0;</parameter>
                                         <tag>
                                             <tag>causa</tag>
                                             <value>fibra</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
                                         </tag>
                                         <tag>
                                             <tag>pon</tag>
@@ -1327,10 +1319,6 @@ return 0;</parameter>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
-                                        </tag>
-                                        <tag>
                                             <tag>pon</tag>
                                             <value>{#NETSTREAM.PON_NAME}</value>
                                         </tag>
@@ -1361,10 +1349,6 @@ return 0;</parameter>
                                     <opdata>LOS={?last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.los.fiberhome[{#NETSTREAM.PON_INDEX}])} DG={?last(/Template SNMP OLT FiberHome - NETSTREAM/netstream.gpon.pon.calc.dg.fiberhome[{#NETSTREAM.PON_INDEX}])}</opdata>
                                     <priority>DISASTER</priority>
                                     <tags>
-                                        <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
-                                        </tag>
                                         <tag>
                                             <tag>pon</tag>
                                             <value>{#NETSTREAM.PON_NAME}</value>
@@ -2346,10 +2330,6 @@ last(/Template SNMP OLT FiberHome - NETSTREAM/onuPonRXOpticalPowerdedicado.[&quo
                             <description>{#PONNAME}</description>
                             <manual_close>YES</manual_close>
                             <tags>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
-                                </tag>
                                 <tag>
                                     <tag>scope</tag>
                                     <value>OLT</value>

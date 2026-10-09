@@ -2369,10 +2369,6 @@ return s;</params>
                                     <tag>tipo</tag>
                                     <value>Queda_Total</value>
                                 </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
-                                </tag>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
@@ -2402,10 +2398,6 @@ return s;</params>
                                 <tag>
                                     <tag>causa</tag>
                                     <value>energia</value>
-                                </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>

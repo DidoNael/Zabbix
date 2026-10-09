@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>7.2</version>
     <template_groups>
@@ -861,10 +861,6 @@ return (-power / 10).toFixed(1);</parameter>
                             <description>A ONU dedicada esta online na fibra, porem o cabo de rede RJ45 (LAN 1) que liga ao cliente esta desconectado ou DOWN.</description>
                             <tags>
                                 <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
-                                </tag>
-                                <tag>
                                     <tag>onu_id</tag>
                                     <value>{#NETSTREAM.ONU_DESC}</value>
                                 </tag>
@@ -901,10 +897,6 @@ return (-power / 10).toFixed(1);</parameter>
                             <priority>WARNING</priority>
                             <description>O cabo de rede do cliente dedicado negociou a 100 Mbps em vez de Gigabit (1000 Mbps). Verificar crimpagem, oxidacao de conector RJ45 ou porta do firewall.</description>
                             <tags>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
-                                </tag>
                                 <tag>
                                     <tag>onu_id</tag>
                                     <value>{#NETSTREAM.ONU_DESC}</value>
@@ -1111,10 +1103,6 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                             <value>energia</value>
                                         </tag>
                                         <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
-                                        </tag>
-                                        <tag>
                                             <tag>pon</tag>
                                             <value>{#NETSTREAM.PON_NAME}</value>
                                         </tag>
@@ -1159,10 +1147,6 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                         <tag>
                                             <tag>causa</tag>
                                             <value>fibra</value>
-                                        </tag>
-                                        <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
                                         </tag>
                                         <tag>
                                             <tag>pon</tag>
@@ -1216,10 +1200,6 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                     <manual_close>YES</manual_close>
                                     <tags>
                                         <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
-                                        </tag>
-                                        <tag>
                                             <tag>pon</tag>
                                             <value>{#NETSTREAM.PON_NAME}</value>
                                         </tag>
@@ -1250,10 +1230,6 @@ return ((power * 0.002) - 30).toFixed(2);</parameter>
                                     <opdata>LOS:{?max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.los.zte[{#NETSTREAM.PON_INDEX}],1800)} DG:{?max(/OLT ZTE - NETSTREAM/netstream.gpon.pon.calc.dg.zte[{#NETSTREAM.PON_INDEX}],1800)}</opdata>
                                     <priority>DISASTER</priority>
                                     <tags>
-                                        <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
-                                        </tag>
                                         <tag>
                                             <tag>pon</tag>
                                             <value>{#NETSTREAM.PON_NAME}</value>

@@ -1393,10 +1393,6 @@ return 0;</params>
                                     <tag>tipo</tag>
                                     <value>Queda_Total</value>
                                 </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
-                                </tag>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
@@ -1426,10 +1422,6 @@ return 0;</params>
                                 <tag>
                                     <tag>causa</tag>
                                     <value>energia</value>
-                                </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1489,10 +1481,6 @@ return 0;</params>
                                 <tag>
                                     <tag>tipo</tag>
                                     <value>Queda_Parcial</value>
-                                </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -2355,10 +2343,6 @@ and &#13;
                                 <tag>
                                     <tag>tipo</tag>
                                     <value>Queda_Total</value>
-                                </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
                                 </tag>
                                 <tag>
                                     <tag>PONDOWN</tag>

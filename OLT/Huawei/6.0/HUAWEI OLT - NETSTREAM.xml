@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
     <date>2026-08-14T00:00:00Z</date>
@@ -661,10 +661,6 @@ return 0;</parameter>
                                     <tag>tipo</tag>
                                     <value>Queda_Total</value>
                                 </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
-                                </tag>
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
@@ -695,10 +691,6 @@ return 0;</parameter>
                                 <tag>
                                     <tag>causa</tag>
                                     <value>energia</value>
-                                </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -760,10 +752,6 @@ return 0;</parameter>
                                 <tag>
                                     <tag>tipo</tag>
                                     <value>Queda_Parcial</value>
-                                </tag>
-                                <tag>
-                                    <tag>notificar</tag>
-                                    <value>nao</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
@@ -1091,7 +1079,7 @@ return 0;</parameter>
                                     <expression>change(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=2</expression>
                                     <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
                                     <recovery_expression>change(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])&lt;&gt;0 and last(/HUAWEI OLT - NETSTREAM/OltLinktState[{#OLTPORT}])=1</recovery_expression>
-                                    <name>PON {#OLTPORT}: Link DOWN</name>
+                                    <name>PON {#OLTPORT}: Porta GPON Inativa</name>
                                     <priority>DISASTER</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
@@ -1105,11 +1093,19 @@ return 0;</parameter>
                                         </tag>
                                         <tag>
                                             <tag>tipo</tag>
-                                            <value>Link_Down</value>
+                                            <value>Queda_Total</value>
                                         </tag>
                                         <tag>
                                             <tag>notificar</tag>
-                                            <value>nao</value>
+                                            <value>telegram</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>pon</tag>
+                                            <value>{#OLTPORT}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>pon_desc</tag>
+                                            <value>{#IFALIAS}</value>
                                         </tag>
                                     </tags>
                                 </trigger_prototype>
@@ -1356,10 +1352,6 @@ return 0;</parameter>
                                     <priority>AVERAGE</priority>
                                     <manual_close>YES</manual_close>
                                     <tags>
-                                        <tag>
-                                            <tag>notificar</tag>
-                                            <value>nao</value>
-                                        </tag>
                                         <tag>
                                             <tag>scope</tag>
                                             <value>OLT</value>
