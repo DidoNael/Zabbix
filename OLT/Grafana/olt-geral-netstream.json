@@ -3383,7 +3383,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/Porta .* Trafego/"
+                          "filter": "/^PON .* Trafego/"
                         },
                         "itemTag": {
                           "filter": ""
