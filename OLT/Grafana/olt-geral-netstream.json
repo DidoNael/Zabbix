@@ -2468,7 +2468,7 @@
                           "filter": "$host"
                         },
                         "item": {
-                          "filter": "/Temperatura das Placas/"
+                          "filter": "/Placa.*Temperatura/"
                         },
                         "itemTag": {
                           "filter": ""
