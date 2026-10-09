@@ -685,6 +685,40 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </valuemap>
                         </item_prototype>
                     </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <name>PON {#NETSTREAM.PON_LABEL}: Porta GPON Cheia (&gt;127 ONUs autorizadas)</name>
+                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.pon.auth.zte[{#NETSTREAM.PON_INDEX}].last()}&gt;127</expression>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>pon</tag>
+                                    <value>{#NETSTREAM.PON_NAME}</value>
+                                </tag>
+                                <tag>
+                                    <tag>pon_desc</tag>
+                                    <value>{#NETSTREAM.PON_DESC}</value>
+                                </tag>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>OLT</value>
+                                </tag>
+                                <tag>
+                                    <tag>servico</tag>
+                                    <value>GPON</value>
+                                </tag>
+                                <tag>
+                                    <tag>tipo</tag>
+                                    <value>Capacidade</value>
+                                </tag>
+                                <tag>
+                                    <tag>notificar</tag>
+                                    <value>nao</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                    </trigger_prototypes>
                 </discovery_rule>
                 <discovery_rule>
                     <name>NETSTREAM - Descoberta de Portas GPON</name>
@@ -704,14 +738,6 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                         </conditions>
                     </filter>
                     <item_prototypes>
-                        <item_prototype>
-                            <name>Porta {#PONNAME} ({#PONDESC}): ONUs Autorizadas</name>
-                            <type>SNMPV2</type>
-                            <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                            <snmp_oid>1.3.6.1.4.1.3902.1082.500.10.2.2.3.1.14.{#PROPRIETARYINDEX}</snmp_oid>
-                            <key>netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}]</key>
-                            <delay>1h</delay>
-                        </item_prototype>
                         <item_prototype>
                             <name>Porta {#PONNAME} ({#PONDESC}): Status Operacional</name>
                             <type>SNMPV2</type>
@@ -889,69 +915,7 @@ return ((power * 0.002) - 30).toFixed(2);</params>
                             </preprocessing>
                         </item_prototype>
                     </item_prototypes>
-                    <trigger_prototypes>
-                        <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].max(#3)}=2</expression>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Apagada (Inativa)</name>
-                            <priority>HIGH</priority>
-                            <manual_close>YES</manual_close>
-                            <tags>
-                                <tag>
-                                    <tag>scope</tag>
-                                    <value>OLT</value>
-                                </tag>
-                                <tag>
-                                    <tag>tipo</tag>
-                                    <value>Conectividade</value>
-                                </tag>
-                                <tag>
-                                    <tag>servico</tag>
-                                    <value>GPON</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon</tag>
-                                    <value>{#PONNAME}</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon_desc</tag>
-                                    <value>{#PONDESC}</value>
-                                </tag>
-                            </tags>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{OLT ZTE - NETSTREAM:netstream.gpon.onu.count[{#SNMPINDEX},{#PROPRIETARYINDEX}].last()}&gt;127 and {OLT ZTE - NETSTREAM:netstream.gpon.port.status[{#SNMPINDEX}].last()}=1</expression>
-                            <name>Porta {#PONNAME} ({#PONDESC}): Porta GPON Cheia (&gt;127 ONUs autorizadas)</name>
-                            <priority>WARNING</priority>
-                            <manual_close>YES</manual_close>
-                            <tags>
-                                <tag>
-                                    <tag>scope</tag>
-                                    <value>OLT</value>
-                                </tag>
-                                <tag>
-                                    <tag>tipo</tag>
-                                    <value>Capacidade</value>
-                                </tag>
-                                <tag>
-                                    <tag>servico</tag>
-                                    <value>GPON</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon</tag>
-                                    <value>{#PONNAME}</value>
-                                </tag>
-                                <tag>
-                                    <tag>pon_desc</tag>
-                                    <value>{#PONDESC}</value>
-                                </tag>
-                                <tag>
-                                    <tag>onus_online</tag>
-                                    <value>{ITEM.LASTVALUE1}</value>
-                                </tag>
-                            </tags>
-                        </trigger_prototype>
-                    </trigger_prototypes>
-                    <preprocessing>
+                                        <preprocessing>
                         <step>
                             <type>JAVASCRIPT</type>
                             <params>var lld = JSON.parse(value);
@@ -1069,7 +1033,7 @@ return JSON.stringify(result);</params>
                         </step>
                     </preprocessing>
                 </discovery_rule>                <discovery_rule>
-                    <name>Discovery ONU DEDICADO</name>
+                    <name>NETSTREAM - Discovery ONU DEDICADO</name>
                     <type>SNMPV2</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#ONTDESC},1.3.6.1.4.1.3902.1012.3.28.1.1.2]</snmp_oid>
