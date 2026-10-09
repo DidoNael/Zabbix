@@ -249,6 +249,21 @@
                     <value>ELETRICA</value>
                 </tag>
             </tags>
+            <triggers>
+                <!-- Tensão no limite: min/max(900) ignora picos transitórios -->
+                <trigger>
+                    <uuid>fec3dc13dbc44af3a9b03e18b66d09a1</uuid>
+                    <expression>(min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwApOrAblVoltage,900)&lt;last(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwSetAcsLowerVoltLimit) or max(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwApOrAblVoltage,900)&gt;last(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwSetAcsUpperVoltLimit))</expression>
+                    <name>Tensão  no limite</name>
+                    <priority>DISASTER</priority>
+                    <manual_close>YES</manual_close>
+                    <tags>
+                        <tag><tag>scope</tag><value>ELETRICA</value></tag>
+                        <tag><tag>tipo</tag><value>Tensao_Limite</value></tag>
+                        <tag><tag>notificar</tag><value>telegram</value></tag>
+                    </tags>
+                </trigger>
+            </triggers>
             <valuemaps>
                 <valuemap>
                     <uuid>72a5bf1c7d794a63956f8396fc7a6aea</uuid>
@@ -268,19 +283,4 @@
             </valuemaps>
         </template>
     </templates>
-    <!-- Trigger "Tensão no limite": min/max(900) ignora picos transitórios -->
-    <triggers>
-        <trigger>
-            <uuid>fec3dc13dbc44af3a9b03e18b66d09a1</uuid>
-            <expression>(min(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwApOrAblVoltage,900)&lt;last(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwSetAcsLowerVoltLimit) or max(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwApOrAblVoltage,900)&gt;last(/Retificadora Huawei - Controladora SMU11B_X - NESTREAM/hwSetAcsUpperVoltLimit))</expression>
-            <name>Tensão  no limite</name>
-            <priority>DISASTER</priority>
-            <manual_close>YES</manual_close>
-            <tags>
-                <tag><tag>scope</tag><value>ELETRICA</value></tag>
-                <tag><tag>tipo</tag><value>Tensao_Limite</value></tag>
-                <tag><tag>notificar</tag><value>telegram</value></tag>
-            </tags>
-        </trigger>
-    </triggers>
 </zabbix_export>
