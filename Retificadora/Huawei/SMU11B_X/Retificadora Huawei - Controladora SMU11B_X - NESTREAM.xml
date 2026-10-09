@@ -240,7 +240,7 @@
                 <!-- Autonomia estimada = % bateria * {$BATTERY_FULL_MINUTES} / 100
                      Ajuste a macro por host conforme a capacidade real do banco. -->
                 <item>
-                    <uuid>a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6</uuid>
+                    <uuid>0fed11545b2e492bbeb8100ce09b4426</uuid>
                     <name>Tempo estimado de autonomia da bateria</name>
                     <type>CALCULATED</type>
                     <key>hwBattEstimatedAutonomy</key>
