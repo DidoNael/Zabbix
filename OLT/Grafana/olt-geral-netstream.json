@@ -427,7 +427,7 @@
                           "filter": "/Uptime/"
                         },
                         "itemTag": {
-                          "filter": "Uptime"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
@@ -584,7 +584,7 @@
                           "filter": "/.*Autorizadas.*/"
                         },
                         "itemTag": {
-                          "filter": "ONUs Autorizadas"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
@@ -746,7 +746,7 @@
                           "filter": "/.*Online \\(calc\\).*/"
                         },
                         "itemTag": {
-                          "filter": "ONUs Onlines"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
@@ -908,7 +908,7 @@
                           "filter": "/.*Offline \\(calc\\).*/"
                         },
                         "itemTag": {
-                          "filter": "ONUs OFF"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
@@ -1070,7 +1070,7 @@
                           "filter": "/.*LOS \\(calc\\).*/"
                         },
                         "itemTag": {
-                          "filter": "ONUs LOS"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
@@ -2641,7 +2641,7 @@
                           "filter": "/.*Online \\(calc\\).*/"
                         },
                         "itemTag": {
-                          "filter": "ONUs Onlines"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
@@ -2834,7 +2834,7 @@
                           "filter": "/.*LOS \\(calc\\).*/"
                         },
                         "itemTag": {
-                          "filter": "ONUs LOS"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
@@ -3027,7 +3027,7 @@
                           "filter": "/.*Dying Gasp \\(calc\\).*/"
                         },
                         "itemTag": {
-                          "filter": "ONUs DyingGasp"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
@@ -3220,7 +3220,7 @@
                           "filter": "/.*Offline \\(calc\\).*/"
                         },
                         "itemTag": {
-                          "filter": "ONUs OFF"
+                          "filter": ""
                         },
                         "macro": {
                           "filter": ""
